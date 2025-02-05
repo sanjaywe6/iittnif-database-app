@@ -1,0 +1,131 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: ID -->
+		<div class="form-group approval_table-procurement_approval_id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">ID</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(procurement_approval_id)%%></div>
+			</div>
+		</div>
+		<!-- Field: Approval for -->
+		<div class="form-group approval_table-type" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Approval for</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(type)%%></div>
+			</div>
+		</div>
+		<!-- Field: Description -->
+		<div class="form-group approval_table-description" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Description</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(description)%%></div>
+			</div>
+		</div>
+		<!-- Field: Quantity -->
+		<div class="form-group approval_table-quantity" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Quantity</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(quantity)%%></div>
+			</div>
+		</div>
+		<!-- Field: Full Estimated Value -->
+		<div class="form-group approval_table-full_est_value" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Full Estimated Value</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(full_est_value)%%></div>
+			</div>
+		</div>
+		<!-- Field: Name of Vendor -->
+		<div class="form-group approval_table-name_of_vendor" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Name of Vendor</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(name_of_vendor)%%></div>
+			</div>
+		</div>
+		<!-- Field: Purpose -->
+		<div class="form-group approval_table-purpose" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Purpose</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(purpose)%%></div>
+			</div>
+		</div>
+		<!-- Field: Requested Department -->
+		<div class="form-group approval_table-requested_department" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Requested Department</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(requested_department)%%></div>
+			</div>
+		</div>
+		<!-- Field: Person Responsbility -->
+		<div class="form-group approval_table-person_responsbility" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Person Responsbility</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="person_responsbility<%%RND1%%>"><%%COMBOTEXT(person_responsbility)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Mode of Purchase -->
+		<div class="form-group approval_table-mode_of_purchase" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Mode of Purchase</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(mode_of_purchase)%%></div>
+			</div>
+		</div>
+		<!-- Field: Others if Any -->
+		<div class="form-group approval_table-others_if_any" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Others if Any</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(others_if_any)%%></div>
+			</div>
+		</div>
+		<!-- Field: Approval Status -->
+		<div class="form-group approval_table-approval_status" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Approval Status</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(approval_status)%%></div>
+			</div>
+		</div>
+		<!-- Field: Upload Image if Any (Optional) -->
+		<div class="form-group approval_table-image" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Upload Image if Any (Optional)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><script>
+				var imageSrc1<%%RND1%%>='<%%BASE_UPLOAD_PATH%%><%%VALUE(image)%%>';
+				var imageSrc2<%%RND1%%>='thumbnail.php?t=approval_table&f=image&i=<%%VALUE(image)%%>&v=dv'
+			</script>
+			<a href="#" onclick="$j('#imageImg<%%RND1%%>').attr('src', ($j('#imageImg<%%RND1%%>').attr('src').search(/thumbnail\.php/) != -1 && imageSrc1<%%RND1%%> != '<%%BASE_UPLOAD_PATH%%>' ? imageSrc1<%%RND1%%> : imageSrc2<%%RND1%%>)); return false;"><img id="imageImg<%%RND1%%>" src="thumbnail.php?t=approval_table&f=image&i=<%%VALUE(image)%%>&v=dv" class="img-thumbnail"></a></div>
+			</div>
+		</div>
+		<!-- Field: Upload Other File if Any (Optional) -->
+		<div class="form-group approval_table-other_file" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Upload Other File if Any (Optional)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><a id="other_file-link" href="link.php?t=approval_table&f=other_file&i=<%%VALUE(procurement_approval_id)%%>" target="_blank"><i class="glyphicon glyphicon-lg glyphicon-file" title="<%%VALUE(other_file)%%>"></i></a><script>jQuery(function() { var e_other_file = '<%%VALUE(other_file)%%>'; if(e_other_file == '' || e_other_file == '&nbsp;' || e_other_file == 'blank.gif') jQuery('#other_file-link').hide(); });</script></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

@@ -1,0 +1,219 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Date -->
+		<div class="form-group asset_table-Date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(Date)%%></div>
+			</div>
+		</div>
+		<!-- Field: Classification of Assest -->
+		<div class="form-group asset_table-ClassificationofAssest" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Classification of Assest</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(ClassificationofAssest)%%></div>
+			</div>
+		</div>
+		<!-- Field: Sub Category -->
+		<div class="form-group asset_table-SubCategory" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Sub Category</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(SubCategory)%%></div>
+			</div>
+		</div>
+		<!-- Field: Asset Serial No -->
+		<div class="form-group asset_table-AssetSerialNo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Asset Serial No</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(AssetSerialNo)%%></div>
+			</div>
+		</div>
+		<!-- Field: QR & Bar Code -->
+		<div class="form-group asset_table-QRBarCode" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">QR & Bar Code</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(QRBarCode)%%></div>
+			</div>
+		</div>
+		<!-- Field: Asset No -->
+		<div class="form-group asset_table-AssetNo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Asset No</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(AssetNo)%%></div>
+			</div>
+		</div>
+		<!-- Field: PO. NO. -->
+		<div class="form-group asset_table-PONO" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">PO. NO.</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(PONO)%%></div>
+			</div>
+		</div>
+		<!-- Field: P.O DATE -->
+		<div class="form-group asset_table-PODATE" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">P.O DATE</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(PODATE)%%></div>
+			</div>
+		</div>
+		<!-- Field: PARTICULARS OF SUPPLIER VENDOR NAME AND ADDRESS -->
+		<div class="form-group asset_table-PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">PARTICULARS OF SUPPLIER VENDOR NAME AND ADDRESS</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS)%%></div>
+			</div>
+		</div>
+		<!-- Field: Item Description -->
+		<div class="form-group asset_table-ItemDescription" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Item Description</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(ItemDescription)%%></div>
+			</div>
+		</div>
+		<!-- Field: Bill No.  -->
+		<div class="form-group asset_table-BillNo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Bill No. </label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(BillNo)%%></div>
+			</div>
+		</div>
+		<!-- Field: Bill Date -->
+		<div class="form-group asset_table-BillDate" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Bill Date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(BillDate)%%></div>
+			</div>
+		</div>
+		<!-- Field: QUANTITY -->
+		<div class="form-group asset_table-QUANTITY" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">QUANTITY</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(QUANTITY)%%></div>
+			</div>
+		</div>
+		<!-- Field: Cost of the Asset in INR -->
+		<div class="form-group asset_table-CostoftheAsset" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Cost of the Asset in INR</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(CostoftheAsset)%%></div>
+			</div>
+		</div>
+		<!-- Field: Image -->
+		<div class="form-group asset_table-image" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Image</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(image)%%></div>
+			</div>
+		</div>
+		<!-- Field: Total Invoice Value in INR -->
+		<div class="form-group asset_table-TotalInvoiceValue" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Total Invoice Value in INR</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(TotalInvoiceValue)%%></div>
+			</div>
+		</div>
+		<!-- Field: Custody Department -->
+		<div class="form-group asset_table-CustodyDepartment" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Custody Department</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(CustodyDepartment)%%></div>
+			</div>
+		</div>
+		<!-- Field: Custodian -->
+		<div class="form-group asset_table-Custodian" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Custodian</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Custodian)%%></div>
+			</div>
+		</div>
+		<!-- Field: Custodian Signature -->
+		<div class="form-group asset_table-CustodianSignature" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Custodian Signature</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(CustodianSignature)%%></div>
+			</div>
+		</div>
+		<!-- Field: No of years Useful Life of Assets -->
+		<div class="form-group asset_table-noofyearsUsefulLifeofAssets" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">No of years Useful Life of Assets</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(noofyearsUsefulLifeofAssets)%%></div>
+			</div>
+		</div>
+		<!-- Field: Date of useful life of Assets ends -->
+		<div class="form-group asset_table-DateofusefullifeofAssetsends" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Date of useful life of Assets ends</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(DateofusefullifeofAssetsends)%%></div>
+			</div>
+		</div>
+		<!-- Field: PV Status -->
+		<div class="form-group asset_table-PVStatus" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">PV Status</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(PVStatus)%%></div>
+			</div>
+		</div>
+		<!-- Field: Remarks -->
+		<div class="form-group asset_table-Remarks" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Remarks</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Remarks)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>
+<!-- child records -->
+<div class="panel-body">
+	<div id="asset_table-children"></div>
+</div>
+
+<script>
+	$j(function() {
+		/* prevent loading child records in multiple DVP */
+		if($j('[id=asset_table-children]').length > 1) return;
+
+		post(
+			'parent-children.php', {
+				ParentTable: 'asset_table',
+				SelectedID: '<%%VALUE(id)%%>',
+				Operation: 'show-children-printable'
+			},
+			'asset_table-children',
+			'disable-element',
+			'loading-element',
+			apply_persisting_children
+		);
+
+		$j('form').on('click', '#children-tabs button[data-target]', function() {
+			$j(this).toggleClass('active');
+			persist_expanded_child($j(this).attr('id'));
+		});
+	})
+</script>
+

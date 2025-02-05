@@ -1,0 +1,71 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: IITTNiF id -->
+		<div class="form-group star_pnt-iittnif_id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">IITTNiF id</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="iittnif_id-readonly<%%RND1%%>"><%%COMBOTEXT(iittnif_id)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Name of the Candidate -->
+		<div class="form-group star_pnt-name_of_the_candidate" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Name of the Candidate</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(name_of_the_candidate)%%></div>
+			</div>
+		</div>
+		<!-- Field: Institute -->
+		<div class="form-group star_pnt-institute" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Institute</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(institute)%%></div>
+			</div>
+		</div>
+		<!-- Field: Workspace -->
+		<div class="form-group star_pnt-workspace" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Workspace</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(workspace)%%></div>
+			</div>
+		</div>
+		<!-- Field: Year and department -->
+		<div class="form-group star_pnt-year_and_department" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Year and department</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(year_and_department)%%></div>
+			</div>
+		</div>
+		<!-- Field: Project title -->
+		<div class="form-group star_pnt-project_title" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Project title</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(project_title)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

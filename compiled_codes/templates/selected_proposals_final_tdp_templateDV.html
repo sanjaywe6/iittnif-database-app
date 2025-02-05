@@ -1,0 +1,330 @@
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/selected_proposals_final_tdp-dv.js rather than editing this file -->
+
+<div id="detail-view"></div>
+<div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
+
+<div id="selected_proposals_final_tdp_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+
+<div class="panel-body hidden" id="selected_proposals_final_tdp_dv_container">
+	<!-- child links -->
+	<div class="row vspacer-md">
+		<div class="col-xs-12 children-links">
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<hr class="hidden-xs hidden-sm">
+
+	<div class="row">
+		<!-- form inputs -->
+		<div class="col-md-8 col-lg-10" id="selected_proposals_final_tdp_dv_form">
+			<fieldset class="form-horizontal">
+
+				<!-- Field: Project ID::Title -->
+				<div class="form-group selected_proposals_final_tdp-project_id">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="project_id" data-parent_link="view_parent_modal">Project ID::Title</label>
+					<div class="col-lg-9">
+						<div class="lookup-flex"><%%COMBO(project_id)%%><%%PLINK(project_id)%%><%%ADDNEW(panel_decision_table_tdp)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Breakthrough / Novel -->
+				<div class="form-group selected_proposals_final_tdp-breakthrough">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="breakthrough">Breakthrough / Novel</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="breakthrough" id="breakthrough" value="<%%VALUE(breakthrough)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Project title -->
+				<div class="form-group selected_proposals_final_tdp-project_title">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="project_title">Project title</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="project_title" id="project_title" rows=" 5"><%%VALUE(project_title)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Short name -->
+				<div class="form-group selected_proposals_final_tdp-short_name">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="short_name">Short name</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="short_name" id="short_name" value="<%%VALUE(short_name)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Duration in months -->
+				<div class="form-group selected_proposals_final_tdp-duration_in_months">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="duration_in_months">Duration in months</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="duration_in_months" id="duration_in_months" value="<%%VALUE(duration_in_months)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Name of PI -->
+				<div class="form-group selected_proposals_final_tdp-name_of_pi">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="name_of_pi">Name of PI</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="name_of_pi" id="name_of_pi" value="<%%VALUE(name_of_pi)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Mobile number -->
+				<div class="form-group selected_proposals_final_tdp-mobile_number">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="mobile_number">Mobile number</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="mobile_number" id="mobile_number" value="<%%VALUE(mobile_number)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Institute -->
+				<div class="form-group selected_proposals_final_tdp-institute">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="institute">Institute</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="institute" id="institute" value="<%%VALUE(institute)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Stage 1 in Rs. -->
+				<div class="form-group selected_proposals_final_tdp-stage_1">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="stage_1">Stage 1 in Rs.</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="stage_1" id="stage_1" value="<%%VALUE(stage_1)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Stage 2 in Rs. -->
+				<div class="form-group selected_proposals_final_tdp-stage_2">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="stage_2">Stage 2 in Rs.</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="stage_2" id="stage_2" value="<%%VALUE(stage_2)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Stage 3 in Rs. -->
+				<div class="form-group selected_proposals_final_tdp-stage_3">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="stage_3">Stage 3 in Rs.</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="stage_3" id="stage_3" value="<%%VALUE(stage_3)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Stage 4 in Rs. -->
+				<div class="form-group selected_proposals_final_tdp-stage_4">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="stage_4">Stage 4 in Rs.</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="stage_4" id="stage_4" value="<%%VALUE(stage_4)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Total budget specified in Rs. -->
+				<div class="form-group selected_proposals_final_tdp-total_budget_specified">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="total_budget_specified">Total budget specified in Rs.</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="total_budget_specified" id="total_budget_specified" value="<%%VALUE(total_budget_specified)%%>">
+					</div>
+				</div>
+
+				<!-- Field: One slide PPT link -->
+				<div class="form-group selected_proposals_final_tdp-one_slide_ppt_link">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="one_slide_ppt_link">One slide PPT link</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="one_slide_ppt_link" id="one_slide_ppt_link" value="<%%VALUE(one_slide_ppt_link)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Proposal link -->
+				<div class="form-group selected_proposals_final_tdp-proposal_link">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="proposal_link">Proposal link</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="proposal_link" id="proposal_link" value="<%%VALUE(proposal_link)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Existing TRL -->
+				<div class="form-group selected_proposals_final_tdp-existing_trl">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="existing_trl">Existing TRL</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="existing_trl" id="existing_trl" value="<%%VALUE(existing_trl)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Expected TRL -->
+				<div class="form-group selected_proposals_final_tdp-expected_trl">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="expected_trl">Expected TRL</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="expected_trl" id="expected_trl" value="<%%VALUE(expected_trl)%%>">
+					</div>
+				</div>
+
+			</fieldset>
+		</div>
+
+		<!-- DV action buttons -->
+		<hr class="hidden-md hidden-lg">
+		<div class="col-md-4 col-lg-2" id="selected_proposals_final_tdp_dv_action_buttons">
+			<div class="btn-toolbar">
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%UPDATE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%DESELECT_BUTTON%%>
+					<%%DVPRINT_BUTTON%%>
+					<%%DELETE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%INSERT_BUTTON%%>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div><!-- /div class="panel-body" -->
+	<script>
+		$j(function() {
+			var add_new_mode = (!$j('input[name=SelectedID]').val());
+			var embedded_mode = ($j('input[name=Embedded]').val() == 1);
+
+			/* auto-close embedded page? */
+			var autoclose_mode = ($j('input[name=AutoClose]').val() == 1);
+			var record_added_ok = (location.search.split('record-added-ok=').length == 2);
+			var record_updated_ok = (location.search.split('record-updated-ok=').length == 2);
+			if((record_added_ok || record_updated_ok) && embedded_mode && autoclose_mode) {
+				setTimeout(AppGini.closeParentModal, 2000);
+			}
+
+
+			/* enable DV action buttons to float on scrolling down the form */
+			enable_dvab_floating();
+
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
+				AppGini.once({
+					condition: function() {
+						return $j('.form-group.selected_proposals_final_tdp-project_id')
+									.find('.nicEdit-main, .select2-container, input[type=radio]')
+									.length > 0
+								// or read-only DV
+								|| (!$j('#update').length && !$j('#insert').length);
+					},
+					action: function() {
+						$j('#selected_proposals_final_tdp_dv_container-loading').addClass('hidden');
+						$j('#selected_proposals_final_tdp_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('selected_proposals_final_tdp', 'project_id');
+					},
+					timeout:  5000,
+					doActionOnTimeout:  true
+				});
+			} else {
+				$j('#selected_proposals_final_tdp_dv_container-loading').addClass('hidden');
+				$j('#selected_proposals_final_tdp_dv_container').removeClass('hidden');
+			}
+
+			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
+
+
+			if(true /* !embedded_mode */) {
+				$j('.add_new_parent').click(function() {
+					var pt = $j(this).attr('id').replace(/_add_new$/, '');
+					modal_window({
+						url: pt + '_view.php?addNew_x=1&Embedded=1',
+						close: function() {
+							var field_id = $j('#' + pt + '_add_new').prevAll('input:hidden').eq(0).attr('id');
+							$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+							/* if a new parent was added, select it */
+							var new_id = localStorage.getItem(pt + '_last_added_id');
+							if(new_id === null) return;
+
+							localStorage.removeItem(pt + '_last_added_id');
+							AppGini.lookupText({
+								id: new_id,
+								table: 'selected_proposals_final_tdp',
+								field: field_id,
+								callback: function(data) {
+									$j('#' + field_id + '-container').select2('data', data, true);
+								}
+							});
+						},
+						size: 'full',
+						title: $j(this).attr('title')
+					});
+				});
+			}
+
+			AppGini.hideViewParentLinks();
+
+			$j('form').on('click', '.view_parent', function() {
+				var pt = $j(this).attr('id').replace(/_view_parent$/, '');
+				if($j(this).prevAll('input:hidden').length) {
+					var parent_id = $j(this).prevAll('input:hidden').eq(0).val();
+				} else {
+					var parent_id = $j(this).prevAll().children('input:hidden').eq(0).val();
+				}
+
+				/* handle radio lookups */
+				if($j(this).prevAll('[type=radio]').length) {
+					parent_id = $j(this).prevAll('[type=radio]').eq(0).val();
+				}
+
+				if(parent_id != '{empty_value}' && parent_id != undefined && parent_id != '') {
+					var parent_link = $j(this).parents('.form-group').children('label').data('parent_link');
+					switch(parent_link) {
+						case 'view_parent_hidden':
+							break;
+						case 'view_parent_modal':
+							modal_window({
+								url: pt + '_view.php?Embedded=1&SelectedID=' + encodeURIComponent(parent_id),
+								close: function() {
+									var field_id = $j('#' + pt + '_view_parent').prevAll('input:hidden').eq(0).attr('id');
+									$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+									// in case the parent record was updated, we should update auto-fills
+									var updaterName = field_id + '_update_autofills';
+									if(typeof(window[updaterName]) == 'function')
+										window[updaterName]();
+								},
+								size: 'full',
+								title: $j(this).attr('title')
+							});
+							break;
+						case 'view_parent_same_window':
+							window.location = pt + '_view.php?Embedded=' + (embedded_mode ? '1' : '') + '&SelectedID=' + encodeURIComponent(parent_id);
+							break;
+						case 'view_parent_new_window':
+							window.open(pt + '_view.php?SelectedID=' + encodeURIComponent(parent_id));
+							break;
+					}
+
+				}
+			});
+
+
+			/* load admin tools for admin user */
+			if(!add_new_mode) {
+				$j('body').append('<div id="admin-tools-appendix"></div>');
+				$j('#admin-tools-appendix').load(
+					'ajax_admin_tools.php?table=selected_proposals_final_tdp&id=<%%URLVALUE(selected_proposals_id)%%>',
+					function(resp) {
+						if(!resp.length) return;
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=selected_proposals_final_tdp&id=<%%URLVALUE(selected_proposals_id)%%>');
+					}
+				);
+			}
+		});
+	</script>

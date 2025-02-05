@@ -1,0 +1,411 @@
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/training_program_on_geospatial_tchnologies_table-dv.js rather than editing this file -->
+
+<div id="detail-view"></div>
+<div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
+
+<div id="training_program_on_geospatial_tchnologies_table_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+
+<div class="panel-body hidden" id="training_program_on_geospatial_tchnologies_table_dv_container">
+	<!-- child links -->
+	<div class="row vspacer-md">
+		<div class="col-xs-12 children-links">
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<hr class="hidden-xs hidden-sm">
+
+	<div class="row">
+		<!-- form inputs -->
+		<div class="col-md-8 col-lg-10" id="training_program_on_geospatial_tchnologies_table_dv_form">
+			<fieldset class="form-horizontal">
+
+				<!-- Field: Certificate No. -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-certificate_number">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="certificate_number">Certificate No.</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="certificate_number" id="certificate_number" value="<%%VALUE(certificate_number)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Datetime -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-datetime">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="datetime-dd">Datetime</label>
+					<div class="col-lg-9">
+						<%%COMBO(datetime)%%>
+					</div>
+				</div>
+
+				<!-- Field: Salutation -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-salutation">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="salutation">Salutation</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="salutation" id="salutation" value="<%%VALUE(salutation)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Name -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-name">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="name">Name</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="name" id="name" value="<%%VALUE(name)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Email id -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-email_id">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="email_id">Email id</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="email_id" id="email_id" value="<%%VALUE(email_id)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Secondary email id -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-secondary_email_id">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="secondary_email_id">Secondary email id</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="secondary_email_id" id="secondary_email_id" value="<%%VALUE(secondary_email_id)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Mobile number -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-mobile_number">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="mobile_number">Mobile number</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="mobile_number" id="mobile_number" value="<%%VALUE(mobile_number)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Whatsapp number -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-whatsapp_number">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="whatsapp_number">Whatsapp number</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="whatsapp_number" id="whatsapp_number" value="<%%VALUE(whatsapp_number)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Gender -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-gender">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="gender">Gender</label>
+					<div class="col-lg-9">
+						<%%COMBO(gender)%%>
+					</div>
+				</div>
+
+				<!-- Field: Social media link -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-social_media_link">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="social_media_link">Social media link</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="social_media_link" id="social_media_link" value="<%%VALUE(social_media_link)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Educational Qualification -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-education_qualification">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="education_qualification">Educational Qualification</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="education_qualification" id="education_qualification" value="<%%VALUE(education_qualification)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Profession -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-profession">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="profession">Profession</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="profession" id="profession" value="<%%VALUE(profession)%%>">
+					</div>
+				</div>
+
+				<!-- Field: School/Institute Name -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-school_name">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="school_name">School/Institute Name</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="school_name" id="school_name" value="<%%VALUE(school_name)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Parent's Name -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-parents_name">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="parents_name">Parent's Name</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="parents_name" id="parents_name" value="<%%VALUE(parents_name)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Parent's Contact No. -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-parents_contact_number">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="parents_contact_number">Parent's Contact No.</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="parents_contact_number" id="parents_contact_number" value="<%%VALUE(parents_contact_number)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Parents email id -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-parents_email_id">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="parents_email_id">Parents email id</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="parents_email_id" id="parents_email_id" value="<%%VALUE(parents_email_id)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Residential address -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-residential_address">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="residential_address">Residential address</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="residential_address" id="residential_address" value="<%%VALUE(residential_address)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Designation -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-parents_designation">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="parents_designation">Designation</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="parents_designation" id="parents_designation" value="<%%VALUE(parents_designation)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Parents school name -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-parents_school_name">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="parents_school_name">Parents school name</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="parents_school_name" id="parents_school_name" value="<%%VALUE(parents_school_name)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Teaching subject -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-teaching_subject">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="teaching_subject">Teaching subject</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="teaching_subject" id="teaching_subject" value="<%%VALUE(teaching_subject)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Address line 2 -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-address_line_2">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="address_line_2">Address line 2</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="address_line_2" id="address_line_2" value="<%%VALUE(address_line_2)%%>">
+					</div>
+				</div>
+
+				<!-- Field: City -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-city">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="city">City</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="city" id="city" value="<%%VALUE(city)%%>">
+					</div>
+				</div>
+
+				<!-- Field: State/Region/Province -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-state_region_province">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="state_region_province">State/Region/Province</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="state_region_province" id="state_region_province" value="<%%VALUE(state_region_province)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Zip code -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-zip_code">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="zip_code">Zip code</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="zip_code" id="zip_code" value="<%%VALUE(zip_code)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Country -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-country">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="country">Country</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="country" id="country" value="<%%VALUE(country)%%>">
+					</div>
+				</div>
+
+				<!-- Field: How did you know about the Training/Workshop? -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-how_did_you_know">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="how_did_you_know">How did you know about the Training/Workshop?</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="how_did_you_know" id="how_did_you_know" value="<%%VALUE(how_did_you_know)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Training/Workshop attended at school/Institute name. -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-attended_training_school">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="attended_training_school">Training/Workshop attended at school/Institute name.</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="attended_training_school" id="attended_training_school" value="<%%VALUE(attended_training_school)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Attended training date -->
+				<div class="form-group training_program_on_geospatial_tchnologies_table-attended_training_date">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="attended_training_date-dd">Attended training date</label>
+					<div class="col-lg-9">
+						<%%COMBO(attended_training_date)%%>
+					</div>
+				</div>
+
+			</fieldset>
+		</div>
+
+		<!-- DV action buttons -->
+		<hr class="hidden-md hidden-lg">
+		<div class="col-md-4 col-lg-2" id="training_program_on_geospatial_tchnologies_table_dv_action_buttons">
+			<div class="btn-toolbar">
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%UPDATE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%DESELECT_BUTTON%%>
+					<%%DVPRINT_BUTTON%%>
+					<%%DELETE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%INSERT_BUTTON%%>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div><!-- /div class="panel-body" -->
+	<script>
+		$j(function() {
+			var add_new_mode = (!$j('input[name=SelectedID]').val());
+			var embedded_mode = ($j('input[name=Embedded]').val() == 1);
+
+			/* auto-close embedded page? */
+			var autoclose_mode = ($j('input[name=AutoClose]').val() == 1);
+			var record_added_ok = (location.search.split('record-added-ok=').length == 2);
+			var record_updated_ok = (location.search.split('record-updated-ok=').length == 2);
+			if((record_added_ok || record_updated_ok) && embedded_mode && autoclose_mode) {
+				setTimeout(AppGini.closeParentModal, 2000);
+			}
+
+
+			/* enable DV action buttons to float on scrolling down the form */
+			enable_dvab_floating();
+
+			$j('#training_program_on_geospatial_tchnologies_table_dv_container-loading').addClass('hidden');
+			$j('#training_program_on_geospatial_tchnologies_table_dv_container').removeClass('hidden');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('training_program_on_geospatial_tchnologies_table', 'certificate_number');
+
+			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
+
+
+			if(true /* !embedded_mode */) {
+				$j('.add_new_parent').click(function() {
+					var pt = $j(this).attr('id').replace(/_add_new$/, '');
+					modal_window({
+						url: pt + '_view.php?addNew_x=1&Embedded=1',
+						close: function() {
+							var field_id = $j('#' + pt + '_add_new').prevAll('input:hidden').eq(0).attr('id');
+							$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+							/* if a new parent was added, select it */
+							var new_id = localStorage.getItem(pt + '_last_added_id');
+							if(new_id === null) return;
+
+							localStorage.removeItem(pt + '_last_added_id');
+							AppGini.lookupText({
+								id: new_id,
+								table: 'training_program_on_geospatial_tchnologies_table',
+								field: field_id,
+								callback: function(data) {
+									$j('#' + field_id + '-container').select2('data', data, true);
+								}
+							});
+						},
+						size: 'full',
+						title: $j(this).attr('title')
+					});
+				});
+			}
+
+			AppGini.hideViewParentLinks();
+
+			$j('form').on('click', '.view_parent', function() {
+				var pt = $j(this).attr('id').replace(/_view_parent$/, '');
+				if($j(this).prevAll('input:hidden').length) {
+					var parent_id = $j(this).prevAll('input:hidden').eq(0).val();
+				} else {
+					var parent_id = $j(this).prevAll().children('input:hidden').eq(0).val();
+				}
+
+				/* handle radio lookups */
+				if($j(this).prevAll('[type=radio]').length) {
+					parent_id = $j(this).prevAll('[type=radio]').eq(0).val();
+				}
+
+				if(parent_id != '{empty_value}' && parent_id != undefined && parent_id != '') {
+					var parent_link = $j(this).parents('.form-group').children('label').data('parent_link');
+					switch(parent_link) {
+						case 'view_parent_hidden':
+							break;
+						case 'view_parent_modal':
+							modal_window({
+								url: pt + '_view.php?Embedded=1&SelectedID=' + encodeURIComponent(parent_id),
+								close: function() {
+									var field_id = $j('#' + pt + '_view_parent').prevAll('input:hidden').eq(0).attr('id');
+									$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+									// in case the parent record was updated, we should update auto-fills
+									var updaterName = field_id + '_update_autofills';
+									if(typeof(window[updaterName]) == 'function')
+										window[updaterName]();
+								},
+								size: 'full',
+								title: $j(this).attr('title')
+							});
+							break;
+						case 'view_parent_same_window':
+							window.location = pt + '_view.php?Embedded=' + (embedded_mode ? '1' : '') + '&SelectedID=' + encodeURIComponent(parent_id);
+							break;
+						case 'view_parent_new_window':
+							window.open(pt + '_view.php?SelectedID=' + encodeURIComponent(parent_id));
+							break;
+					}
+
+				}
+			});
+
+
+			/* load admin tools for admin user */
+			if(!add_new_mode) {
+				$j('body').append('<div id="admin-tools-appendix"></div>');
+				$j('#admin-tools-appendix').load(
+					'ajax_admin_tools.php?table=training_program_on_geospatial_tchnologies_table&id=<%%URLVALUE(id)%%>',
+					function(resp) {
+						if(!resp.length) return;
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=training_program_on_geospatial_tchnologies_table&id=<%%URLVALUE(id)%%>');
+					}
+				);
+			}
+		});
+	</script>

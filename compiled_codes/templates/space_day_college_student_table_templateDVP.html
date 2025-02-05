@@ -1,0 +1,92 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Name of the student -->
+		<div class="form-group space_day_college_student_table-name_of_student" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Name of the student</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(name_of_student)%%></div>
+			</div>
+		</div>
+		<!-- Field: Registration number -->
+		<div class="form-group space_day_college_student_table-registration_number" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Registration number</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(registration_number)%%></div>
+			</div>
+		</div>
+		<!-- Field: Degree & Department -->
+		<div class="form-group space_day_college_student_table-degree_department" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Degree & Department</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(degree_department)%%></div>
+			</div>
+		</div>
+		<!-- Field: Gender -->
+		<div class="form-group space_day_college_student_table-gender" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Gender</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(gender)%%></div>
+			</div>
+		</div>
+		<!-- Field: Home address -->
+		<div class="form-group space_day_college_student_table-home_address" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Home address</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(home_address)%%></div>
+			</div>
+		</div>
+		<!-- Field: Email id -->
+		<div class="form-group space_day_college_student_table-email_id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Email id</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(email_id)%%></div>
+			</div>
+		</div>
+		<!-- Field: Contact number -->
+		<div class="form-group space_day_college_student_table-contact_number" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Contact number</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(contact_number)%%></div>
+			</div>
+		</div>
+		<!-- Field: Interest -->
+		<div class="form-group space_day_college_student_table-interest" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Interest</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(interest)%%></div>
+			</div>
+		</div>
+		<!-- Field: College name -->
+		<div class="form-group space_day_college_student_table-college_name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">College name</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(college_name)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

@@ -1,0 +1,156 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Type -->
+		<div class="form-group mou_details_table-type" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Type</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(type)%%></div>
+			</div>
+		</div>
+		<!-- Field: Company name -->
+		<div class="form-group mou_details_table-company_name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Company name</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(company_name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Objectives/ Scope of the MOU -->
+		<div class="form-group mou_details_table-objective_of_mou" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Objectives/ Scope of the MOU</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(objective_of_mou)%%></div>
+			</div>
+		</div>
+		<!-- Field: Agreement period (In Years) -->
+		<div class="form-group mou_details_table-agreement_period" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Agreement period (In Years)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(agreement_period)%%></div>
+			</div>
+		</div>
+		<!-- Field: Date of agreement -->
+		<div class="form-group mou_details_table-date_of_agreement" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Date of agreement</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(date_of_agreement)%%></div>
+			</div>
+		</div>
+		<!-- Field: Date of expiry -->
+		<div class="form-group mou_details_table-date_of_expiry" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Date of expiry</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(date_of_expiry)%%></div>
+			</div>
+		</div>
+		<!-- Field: Status -->
+		<div class="form-group mou_details_table-status" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Status</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(status)%%></div>
+			</div>
+		</div>
+		<!-- Field: Point of contact (Name) -->
+		<div class="form-group mou_details_table-point_of_contact" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Point of contact (Name)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(point_of_contact)%%></div>
+			</div>
+		</div>
+		<!-- Field: Contact number -->
+		<div class="form-group mou_details_table-contact_number" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Contact number</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(contact_number)%%></div>
+			</div>
+		</div>
+		<!-- Field: Contact email id -->
+		<div class="form-group mou_details_table-contact_email_id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Contact email id</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(contact_email_id)%%></div>
+			</div>
+		</div>
+		<!-- Field: Website link -->
+		<div class="form-group mou_details_table-website_link" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Website link</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(website_link)%%></div>
+			</div>
+		</div>
+		<!-- Field: Country -->
+		<div class="form-group mou_details_table-country" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Country</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(country)%%></div>
+			</div>
+		</div>
+		<!-- Field: Assigned MoU to -->
+		<div class="form-group mou_details_table-assigned_mou_to" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Assigned MoU to</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="assigned_mou_to<%%RND1%%>"><%%COMBOTEXT(assigned_mou_to)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Upload MoU (PDF or DOC format) -->
+		<div class="form-group mou_details_table-upload_mou" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Upload MoU (PDF or DOC format)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><a id="upload_mou-link" href="link.php?t=mou_details_table&f=upload_mou&i=<%%VALUE(id)%%>" target="_blank"><i class="glyphicon glyphicon-lg glyphicon-file" title="<%%VALUE(upload_mou)%%>"></i></a><script>jQuery(function() { var e_upload_mou = '<%%VALUE(upload_mou)%%>'; if(e_upload_mou == '' || e_upload_mou == '&nbsp;' || e_upload_mou == 'blank.gif') jQuery('#upload_mou-link').hide(); });</script></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>
+<!-- child records -->
+<div class="panel-body">
+	<div id="mou_details_table-children"></div>
+</div>
+
+<script>
+	$j(function() {
+		/* prevent loading child records in multiple DVP */
+		if($j('[id=mou_details_table-children]').length > 1) return;
+
+		post(
+			'parent-children.php', {
+				ParentTable: 'mou_details_table',
+				SelectedID: '<%%VALUE(id)%%>',
+				Operation: 'show-children-printable'
+			},
+			'mou_details_table-children',
+			'disable-element',
+			'loading-element',
+			apply_persisting_children
+		);
+
+		$j('form').on('click', '#children-tabs button[data-target]', function() {
+			$j(this).toggleClass('active');
+			persist_expanded_child($j(this).attr('id'));
+		});
+	})
+</script>
+

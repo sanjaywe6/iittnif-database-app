@@ -1,0 +1,120 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Select statement type -->
+		<div class="form-group all_bank_account_statement_table-statement_type" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Select statement type</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(statement_type)%%></div>
+			</div>
+		</div>
+		<!-- Field: Txn date -->
+		<div class="form-group all_bank_account_statement_table-txn_date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Txn date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(txn_date)%%></div>
+			</div>
+		</div>
+		<!-- Field: Value date -->
+		<div class="form-group all_bank_account_statement_table-value_date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Value date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(value_date)%%></div>
+			</div>
+		</div>
+		<!-- Field: Description -->
+		<div class="form-group all_bank_account_statement_table-description" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Description</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(description)%%></div>
+			</div>
+		</div>
+		<!-- Field: Ref No. / Cheque No. -->
+		<div class="form-group all_bank_account_statement_table-ref_no_or_cheque_no" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Ref No. / Cheque No.</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(ref_no_or_cheque_no)%%></div>
+			</div>
+		</div>
+		<!-- Field: Branch code -->
+		<div class="form-group all_bank_account_statement_table-branch_code" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Branch code</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(branch_code)%%></div>
+			</div>
+		</div>
+		<!-- Field: Debit -->
+		<div class="form-group all_bank_account_statement_table-debit" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Debit</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(debit)%%></div>
+			</div>
+		</div>
+		<!-- Field: Credit -->
+		<div class="form-group all_bank_account_statement_table-credit" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Credit</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(credit)%%></div>
+			</div>
+		</div>
+		<!-- Field: Balance 1 -->
+		<div class="form-group all_bank_account_statement_table-balance_1" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Balance 1</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(balance_1)%%></div>
+			</div>
+		</div>
+		<!-- Field: Balance 2 -->
+		<div class="form-group all_bank_account_statement_table-balance_2" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Balance 2</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(balance_2)%%></div>
+			</div>
+		</div>
+		<!-- Field: Remarks 1 -->
+		<div class="form-group all_bank_account_statement_table-remarks_1" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Remarks 1</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(remarks_1)%%></div>
+			</div>
+		</div>
+		<!-- Field: Remarks 2 -->
+		<div class="form-group all_bank_account_statement_table-remarks_2" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Remarks 2</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(remarks_2)%%></div>
+			</div>
+		</div>
+		<!-- Field: Category -->
+		<div class="form-group all_bank_account_statement_table-category" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Category</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(category)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

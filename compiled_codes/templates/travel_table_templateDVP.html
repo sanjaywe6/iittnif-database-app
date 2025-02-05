@@ -1,0 +1,128 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: First name -->
+		<div class="form-group travel_table-first_name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">First name</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(first_name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Last name -->
+		<div class="form-group travel_table-last_name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Last name</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(last_name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Age -->
+		<div class="form-group travel_table-age" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Age</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(age)%%></div>
+			</div>
+		</div>
+		<!-- Field: Gender -->
+		<div class="form-group travel_table-gender" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Gender</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(gender)%%></div>
+			</div>
+		</div>
+		<!-- Field: Mobile number -->
+		<div class="form-group travel_table-mobile_number" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Mobile number</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(mobile_number)%%></div>
+			</div>
+		</div>
+		<!-- Field: Date from -->
+		<div class="form-group travel_table-date_from" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Date from</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(date_from)%%></div>
+			</div>
+		</div>
+		<!-- Field: Date to -->
+		<div class="form-group travel_table-date_to" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Date to</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(date_to)%%></div>
+			</div>
+		</div>
+		<!-- Field: Travel description -->
+		<div class="form-group travel_table-travel_description" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Travel description</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(travel_description)%%></div>
+			</div>
+		</div>
+		<!-- Field: Approved by -->
+		<div class="form-group travel_table-approved_by" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Approved by</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="approved_by<%%RND1%%>"><%%COMBOTEXT(approved_by)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Remarks -->
+		<div class="form-group travel_table-remarks" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Remarks</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(remarks)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>
+<!-- child records -->
+<div class="panel-body">
+	<div id="travel_table-children"></div>
+</div>
+
+<script>
+	$j(function() {
+		/* prevent loading child records in multiple DVP */
+		if($j('[id=travel_table-children]').length > 1) return;
+
+		post(
+			'parent-children.php', {
+				ParentTable: 'travel_table',
+				SelectedID: '<%%VALUE(id)%%>',
+				Operation: 'show-children-printable'
+			},
+			'travel_table-children',
+			'disable-element',
+			'loading-element',
+			apply_persisting_children
+		);
+
+		$j('form').on('click', '#children-tabs button[data-target]', function() {
+			$j(this).toggleClass('active');
+			persist_expanded_child($j(this).attr('id'));
+		});
+	})
+</script>
+

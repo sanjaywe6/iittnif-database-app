@@ -1,0 +1,18 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the star_pnt_init() hook (in hooks/star_pnt.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="star_pnt-id-<%%VALUE(id)%%>" class="star_pnt-id text-right text-bold"><%%VALUE(id)%%></td>
+		<td id="star_pnt-iittnif_id-<%%VALUE(id)%%>" class="star_pnt-iittnif_id text-bold"><%%VALUE(iittnif_id)%%></td>
+		<td id="star_pnt-name_of_the_candidate-<%%VALUE(id)%%>" class="star_pnt-name_of_the_candidate text-bold"><%%VALUE(name_of_the_candidate)%%></td>
+		<td id="star_pnt-institute-<%%VALUE(id)%%>" class="star_pnt-institute text-bold"><%%VALUE(institute)%%></td>
+		<td id="star_pnt-workspace-<%%VALUE(id)%%>" class="star_pnt-workspace text-bold"><%%VALUE(workspace)%%></td>
+		<td id="star_pnt-year_and_department-<%%VALUE(id)%%>" class="star_pnt-year_and_department text-bold"><%%VALUE(year_and_department)%%></td>
+		<td id="star_pnt-project_title-<%%VALUE(id)%%>" class="star_pnt-project_title text-bold"><%%VALUE(project_title)%%></td>
+		<td id="star_pnt-created_by-<%%VALUE(id)%%>" class="star_pnt-created_by text-bold"><%%VALUE(created_by)%%></td>
+		<td id="star_pnt-created_at-<%%VALUE(id)%%>" class="star_pnt-created_at text-bold"><%%VALUE(created_at)%%></td>
+		<td id="star_pnt-last_updated_by-<%%VALUE(id)%%>" class="star_pnt-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
+		<td id="star_pnt-last_updated_at-<%%VALUE(id)%%>" class="star_pnt-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>

@@ -1,0 +1,226 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Project number -->
+		<div class="form-group summary_table_tdp-project_number" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Project number</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(project_number)%%></div>
+			</div>
+		</div>
+		<!-- Field: Project title -->
+		<div class="form-group summary_table_tdp-project_title" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Project title</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(project_title)%%></div>
+			</div>
+		</div>
+		<!-- Field: Year -->
+		<div class="form-group summary_table_tdp-year" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Year</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(year)%%></div>
+			</div>
+		</div>
+		<!-- Field: PI -->
+		<div class="form-group summary_table_tdp-pi" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">PI</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(pi)%%></div>
+			</div>
+		</div>
+		<!-- Field: Institute -->
+		<div class="form-group summary_table_tdp-institute" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Institute</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(institute)%%></div>
+			</div>
+		</div>
+		<!-- Field: Duration in months -->
+		<div class="form-group summary_table_tdp-duration_in_months" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Duration in months</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(duration_in_months)%%></div>
+			</div>
+		</div>
+		<!-- Field: Overall budget in Rs. -->
+		<div class="form-group summary_table_tdp-overall_budget" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Overall budget in Rs.</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(overall_budget)%%></div>
+			</div>
+		</div>
+		<!-- Field: Number of products -->
+		<div class="form-group summary_table_tdp-number_of_products" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Number of products</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(number_of_products)%%></div>
+			</div>
+		</div>
+		<!-- Field: TRL status -->
+		<div class="form-group summary_table_tdp-trl_status" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">TRL status</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(trl_status)%%></div>
+			</div>
+		</div>
+		<!-- Field: Sactioned date -->
+		<div class="form-group summary_table_tdp-sactioned_date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Sactioned date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(sactioned_date)%%></div>
+			</div>
+		</div>
+		<!-- Field: Ongoing month of project -->
+		<div class="form-group summary_table_tdp-ongoing_month_of_project" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Ongoing month of project</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(ongoing_month_of_project)%%></div>
+			</div>
+		</div>
+		<!-- Field: Last monthly report -->
+		<div class="form-group summary_table_tdp-last_monthly_report" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Last monthly report</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(last_monthly_report)%%></div>
+			</div>
+		</div>
+		<!-- Field: No. of UG -->
+		<div class="form-group summary_table_tdp-no_of_ug" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">No. of UG</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(no_of_ug)%%></div>
+			</div>
+		</div>
+		<!-- Field: No. of PG -->
+		<div class="form-group summary_table_tdp-no_of_pg" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">No. of PG</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(no_of_pg)%%></div>
+			</div>
+		</div>
+		<!-- Field: No. of PhD -->
+		<div class="form-group summary_table_tdp-no_of_phd" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">No. of PhD</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(no_of_phd)%%></div>
+			</div>
+		</div>
+		<!-- Field: No. of Post Doc -->
+		<div class="form-group summary_table_tdp-no_of_postdoc" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">No. of Post Doc</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(no_of_postdoc)%%></div>
+			</div>
+		</div>
+		<!-- Field: 1st Milestone Amount & Date -->
+		<div class="form-group summary_table_tdp-first_milestone_amount_and_date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">1st Milestone Amount & Date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(first_milestone_amount_and_date)%%></div>
+			</div>
+		</div>
+		<!-- Field: Stage 1 completion -->
+		<div class="form-group summary_table_tdp-stage_I_completion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Stage 1 completion</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(stage_I_completion)%%></div>
+			</div>
+		</div>
+		<!-- Field: 2nd Milestone Amount & Date -->
+		<div class="form-group summary_table_tdp-second_milestone_amount_and_date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">2nd Milestone Amount & Date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(second_milestone_amount_and_date)%%></div>
+			</div>
+		</div>
+		<!-- Field: Stage 2 completion -->
+		<div class="form-group summary_table_tdp-stage_2_completion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Stage 2 completion</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(stage_2_completion)%%></div>
+			</div>
+		</div>
+		<!-- Field: 3rd Milestone Amount & Date -->
+		<div class="form-group summary_table_tdp-third_milestone_amount_and_date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">3rd Milestone Amount & Date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(third_milestone_amount_and_date)%%></div>
+			</div>
+		</div>
+		<!-- Field: Stage 3 completion -->
+		<div class="form-group summary_table_tdp-stage_3_completion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Stage 3 completion</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(stage_3_completion)%%></div>
+			</div>
+		</div>
+		<!-- Field: 4th Milestone Amount & Date -->
+		<div class="form-group summary_table_tdp-fourth_milestone_amount_and_date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">4th Milestone Amount & Date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(fourth_milestone_amount_and_date)%%></div>
+			</div>
+		</div>
+		<!-- Field: Stage 4 completion -->
+		<div class="form-group summary_table_tdp-stage_4_completion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Stage 4 completion</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(stage_4_completion)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>
+<!-- child records -->
+<div class="panel-body">
+	<div id="summary_table_tdp-children"></div>
+</div>
+
+<script>
+	$j(function() {
+		/* prevent loading child records in multiple DVP */
+		if($j('[id=summary_table_tdp-children]').length > 1) return;
+
+		post(
+			'parent-children.php', {
+				ParentTable: 'summary_table_tdp',
+				SelectedID: '<%%VALUE(id)%%>',
+				Operation: 'show-children-printable'
+			},
+			'summary_table_tdp-children',
+			'disable-element',
+			'loading-element',
+			apply_persisting_children
+		);
+
+		$j('form').on('click', '#children-tabs button[data-target]', function() {
+			$j(this).toggleClass('active');
+			persist_expanded_child($j(this).attr('id'));
+		});
+	})
+</script>
+

@@ -1,0 +1,18 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the task_setting_table_init() hook (in hooks/task_setting_table.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="task_setting_table-task_id-<%%VALUE(task_id)%%>" class="task_setting_table-task_id text-right text-bold"><%%VALUE(task_id)%%></td>
+		<td id="task_setting_table-task_status-<%%VALUE(task_id)%%>" class="task_setting_table-task_status text-bold"><%%VALUE(task_status)%%></td>
+		<td id="task_setting_table-task_description-<%%VALUE(task_id)%%>" class="task_setting_table-task_description text-bold"><%%VALUE(task_description)%%></td>
+		<td id="task_setting_table-task_duration-<%%VALUE(task_id)%%>" class="task_setting_table-task_duration text-bold"><%%VALUE(task_duration)%%></td>
+		<td id="task_setting_table-task_set_date-<%%VALUE(task_id)%%>" class="task_setting_table-task_set_date text-bold"><%%VALUE(task_set_date)%%></td>
+		<td id="task_setting_table-supervisor_name-<%%VALUE(task_id)%%>" class="task_setting_table-supervisor_name text-bold"><%%VALUE(supervisor_name)%%></td>
+		<td id="task_setting_table-assigned_to-<%%VALUE(task_id)%%>" class="task_setting_table-assigned_to text-bold"><%%VALUE(assigned_to)%%></td>
+		<td id="task_setting_table-created_by-<%%VALUE(task_id)%%>" class="task_setting_table-created_by text-bold"><%%VALUE(created_by)%%></td>
+		<td id="task_setting_table-created_at-<%%VALUE(task_id)%%>" class="task_setting_table-created_at text-bold"><%%VALUE(created_at)%%></td>
+		<td id="task_setting_table-last_updated_by-<%%VALUE(task_id)%%>" class="task_setting_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
+		<td id="task_setting_table-last_updated_at-<%%VALUE(task_id)%%>" class="task_setting_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>

@@ -1,0 +1,110 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: IT inventory  -->
+		<div class="form-group it_inventory_billing_details-it_inventory_lookup" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">IT inventory </label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="it_inventory_lookup-readonly<%%RND1%%>"><%%COMBOTEXT(it_inventory_lookup)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: PO Number -->
+		<div class="form-group it_inventory_billing_details-po_no" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">PO Number</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(po_no)%%></div>
+			</div>
+		</div>
+		<!-- Field: PO Date -->
+		<div class="form-group it_inventory_billing_details-po_date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">PO Date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(po_date)%%></div>
+			</div>
+		</div>
+		<!-- Field: Particulars of supplier -->
+		<div class="form-group it_inventory_billing_details-particulars_of_supplier" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Particulars of supplier</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(particulars_of_supplier)%%></div>
+			</div>
+		</div>
+		<!-- Field: Item description -->
+		<div class="form-group it_inventory_billing_details-item_description" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Item description</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(item_description)%%></div>
+			</div>
+		</div>
+		<!-- Field: Bill no -->
+		<div class="form-group it_inventory_billing_details-bill_no" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Bill no</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(bill_no)%%></div>
+			</div>
+		</div>
+		<!-- Field: Bill date -->
+		<div class="form-group it_inventory_billing_details-bill_date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Bill date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(bill_date)%%></div>
+			</div>
+		</div>
+		<!-- Field: Quantity -->
+		<div class="form-group it_inventory_billing_details-quantity" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Quantity</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(quantity)%%></div>
+			</div>
+		</div>
+		<!-- Field: Total invoice value -->
+		<div class="form-group it_inventory_billing_details-total_invoice_value" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Total invoice value</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(total_invoice_value)%%></div>
+			</div>
+		</div>
+		<!-- Field: Cost of the asset -->
+		<div class="form-group it_inventory_billing_details-cost_of_the_asset" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Cost of the asset</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(cost_of_the_asset)%%></div>
+			</div>
+		</div>
+		<!-- Field: Image -->
+		<div class="form-group it_inventory_billing_details-image" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Image</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><script>
+				var imageSrc1<%%RND1%%>='<%%BASE_UPLOAD_PATH%%><%%VALUE(image)%%>';
+				var imageSrc2<%%RND1%%>='thumbnail.php?t=it_inventory_billing_details&f=image&i=<%%VALUE(image)%%>&v=dv'
+			</script>
+			<a href="#" onclick="$j('#imageImg<%%RND1%%>').attr('src', ($j('#imageImg<%%RND1%%>').attr('src').search(/thumbnail\.php/) != -1 && imageSrc1<%%RND1%%> != '<%%BASE_UPLOAD_PATH%%>' ? imageSrc1<%%RND1%%> : imageSrc2<%%RND1%%>)); return false;"><img id="imageImg<%%RND1%%>" src="thumbnail.php?t=it_inventory_billing_details&f=image&i=<%%VALUE(image)%%>&v=dv" class="img-thumbnail"></a></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

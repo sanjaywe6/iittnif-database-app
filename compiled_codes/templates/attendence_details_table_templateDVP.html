@@ -1,0 +1,85 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Enrollment No. -->
+		<div class="form-group attendence_details_table-enrollment_no" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Enrollment No.</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(enrollment_no)%%></div>
+			</div>
+		</div>
+		<!-- Field: Name in device scanner -->
+		<div class="form-group attendence_details_table-name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Name in device scanner</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Mode of punch -->
+		<div class="form-group attendence_details_table-mode" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Mode of punch</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(mode)%%></div>
+			</div>
+		</div>
+		<!-- Field: Date -->
+		<div class="form-group attendence_details_table-date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(date)%%></div>
+			</div>
+		</div>
+		<!-- Field: Punch In Time -->
+		<div class="form-group attendence_details_table-in_time" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Punch In Time</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(in_time)%%></div>
+			</div>
+		</div>
+		<!-- Field: Punch Out Time -->
+		<div class="form-group attendence_details_table-out_time" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Punch Out Time</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(out_time)%%></div>
+			</div>
+		</div>
+		<!-- Field: Working hours -->
+		<div class="form-group attendence_details_table-working_hours" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Working hours</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(working_hours)%%></div>
+			</div>
+		</div>
+		<!-- Field: Remarks -->
+		<div class="form-group attendence_details_table-remarks" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Remarks</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(remarks)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

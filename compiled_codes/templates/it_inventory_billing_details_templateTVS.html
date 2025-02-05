@@ -1,0 +1,23 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the it_inventory_billing_details_init() hook (in hooks/it_inventory_billing_details.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="it_inventory_billing_details-it_inventory_biling_details_id-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-it_inventory_biling_details_id text-right text-bold"><%%VALUE(it_inventory_biling_details_id)%%></td>
+		<td id="it_inventory_billing_details-it_inventory_lookup-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-it_inventory_lookup text-bold"><%%VALUE(it_inventory_lookup)%%></td>
+		<td id="it_inventory_billing_details-po_no-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-po_no text-bold"><%%VALUE(po_no)%%></td>
+		<td id="it_inventory_billing_details-po_date-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-po_date text-bold"><%%VALUE(po_date)%%></td>
+		<td id="it_inventory_billing_details-particulars_of_supplier-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-particulars_of_supplier text-bold"><%%VALUE(particulars_of_supplier)%%></td>
+		<td id="it_inventory_billing_details-item_description-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-item_description text-bold"><%%VALUE(item_description)%%></td>
+		<td id="it_inventory_billing_details-bill_no-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-bill_no text-bold"><%%VALUE(bill_no)%%></td>
+		<td id="it_inventory_billing_details-bill_date-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-bill_date text-bold"><%%VALUE(bill_date)%%></td>
+		<td id="it_inventory_billing_details-quantity-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-quantity text-bold"><%%VALUE(quantity)%%></td>
+		<td id="it_inventory_billing_details-total_invoice_value-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-total_invoice_value text-bold"><%%VALUE(total_invoice_value)%%></td>
+		<td id="it_inventory_billing_details-cost_of_the_asset-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-cost_of_the_asset text-bold"><%%VALUE(cost_of_the_asset)%%></td>
+		<td id="it_inventory_billing_details-image-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-image text-bold"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(image)%%>" data-lightbox="it_inventory_billing_details-image"><img src="thumbnail.php?i=<%%VALUE(image)%%>&t=it_inventory_billing_details&f=image&v=tv" class="img-thumbnail"></a></td>
+		<td id="it_inventory_billing_details-created_by-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-created_by text-bold"><%%VALUE(created_by)%%></td>
+		<td id="it_inventory_billing_details-created_at-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-created_at text-bold"><%%VALUE(created_at)%%></td>
+		<td id="it_inventory_billing_details-last_updated_by-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
+		<td id="it_inventory_billing_details-last_updated_at-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>

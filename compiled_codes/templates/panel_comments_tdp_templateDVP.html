@@ -1,0 +1,106 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Project ID::Title -->
+		<div class="form-group panel_comments_tdp-project_id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Project ID::Title</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="project_id<%%RND1%%>"><%%COMBOTEXT(project_id)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Project title -->
+		<div class="form-group panel_comments_tdp-project_title" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Project title</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(project_title)%%></div>
+			</div>
+		</div>
+		<!-- Field: Name of PI -->
+		<div class="form-group panel_comments_tdp-name_of_pi" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Name of PI</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(name_of_pi)%%></div>
+			</div>
+		</div>
+		<!-- Field: Institute -->
+		<div class="form-group panel_comments_tdp-institute" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Institute</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(institute)%%></div>
+			</div>
+		</div>
+		<!-- Field: Final budget in Rs. -->
+		<div class="form-group panel_comments_tdp-final_budget" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Final budget in Rs.</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(final_budget)%%></div>
+			</div>
+		</div>
+		<!-- Field: Comments from YVN sir -->
+		<div class="form-group panel_comments_tdp-comments_from_yvn_sir" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Comments from YVN sir</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(comments_from_yvn_sir)%%></div>
+			</div>
+		</div>
+		<!-- Field: Comments from Ramakrishna sir -->
+		<div class="form-group panel_comments_tdp-comments_from_ramakrishna_sir" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Comments from Ramakrishna sir</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(comments_from_ramakrishna_sir)%%></div>
+			</div>
+		</div>
+		<!-- Field: Comments from Bharat Lohani sir -->
+		<div class="form-group panel_comments_tdp-comments_from_bharat_lohani_sir" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Comments from Bharat Lohani sir</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(comments_from_bharat_lohani_sir)%%></div>
+			</div>
+		</div>
+		<!-- Field: Remarks 1 -->
+		<div class="form-group panel_comments_tdp-remarks_1" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Remarks 1</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(remarks_1)%%></div>
+			</div>
+		</div>
+		<!-- Field: Remarks 2 -->
+		<div class="form-group panel_comments_tdp-remarks_2" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Remarks 2</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(remarks_2)%%></div>
+			</div>
+		</div>
+		<!-- Field: Finale decision -->
+		<div class="form-group panel_comments_tdp-finale_decision" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Finale decision</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(finale_decision)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

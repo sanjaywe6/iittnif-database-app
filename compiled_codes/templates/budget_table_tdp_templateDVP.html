@@ -1,0 +1,120 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Project ID::Title -->
+		<div class="form-group budget_table_tdp-project_id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Project ID::Title</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="project_id<%%RND1%%>"><%%COMBOTEXT(project_id)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Title of the project -->
+		<div class="form-group budget_table_tdp-title_of_the_project" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Title of the project</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(title_of_the_project)%%></div>
+			</div>
+		</div>
+		<!-- Field: Name of PI -->
+		<div class="form-group budget_table_tdp-name_of_pi" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Name of PI</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(name_of_pi)%%></div>
+			</div>
+		</div>
+		<!-- Field: Institute -->
+		<div class="form-group budget_table_tdp-institute" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Institute</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(institute)%%></div>
+			</div>
+		</div>
+		<!-- Field: Date of presentation -->
+		<div class="form-group budget_table_tdp-date_of_presentation" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Date of presentation</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(date_of_presentation)%%></div>
+			</div>
+		</div>
+		<!-- Field: Manpower -->
+		<div class="form-group budget_table_tdp-manpower" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Manpower</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(manpower)%%></div>
+			</div>
+		</div>
+		<!-- Field: Travel -->
+		<div class="form-group budget_table_tdp-travel" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Travel</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(travel)%%></div>
+			</div>
+		</div>
+		<!-- Field: Infrastructure / Equipment -->
+		<div class="form-group budget_table_tdp-infrastructure" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Infrastructure / Equipment</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(infrastructure)%%></div>
+			</div>
+		</div>
+		<!-- Field: Consumables -->
+		<div class="form-group budget_table_tdp-consumables" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Consumables</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(consumables)%%></div>
+			</div>
+		</div>
+		<!-- Field: Contigency -->
+		<div class="form-group budget_table_tdp-contigency" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Contigency</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(contigency)%%></div>
+			</div>
+		</div>
+		<!-- Field: Overhead -->
+		<div class="form-group budget_table_tdp-overhead" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Overhead</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(overhead)%%></div>
+			</div>
+		</div>
+		<!-- Field: Any other -->
+		<div class="form-group budget_table_tdp-any_other" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Any other</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(any_other)%%></div>
+			</div>
+		</div>
+		<!-- Field: Total budget in Rs. -->
+		<div class="form-group budget_table_tdp-total_budget" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Total budget in Rs.</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(total_budget)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

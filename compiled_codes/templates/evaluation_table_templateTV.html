@@ -1,0 +1,17 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the evaluation_table_init() hook (in hooks/evaluation_table.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="evaluation_table-evaluation_id-<%%VALUE(evaluation_id)%%>" class="evaluation_table-evaluation_id text-right"><%%SELECT%%><%%VALUE(evaluation_id)%%><%%ENDSELECT%%></td>
+		<td id="evaluation_table-result-<%%VALUE(evaluation_id)%%>" class="evaluation_table-result"><%%SELECT%%><%%VALUE(result)%%><%%ENDSELECT%%></td>
+		<td id="evaluation_table-select_startup-<%%VALUE(evaluation_id)%%>" class="evaluation_table-select_startup"><%%SELECT%%><%%VALUE(select_startup)%%><%%ENDSELECT%%></td>
+		<td id="evaluation_table-recommendation-<%%VALUE(evaluation_id)%%>" class="evaluation_table-recommendation"><%%SELECT%%><%%VALUE(recommendation)%%><%%ENDSELECT%%></td>
+		<td id="evaluation_table-marks-<%%VALUE(evaluation_id)%%>" class="evaluation_table-marks"><%%SELECT%%><%%VALUE(marks)%%><%%ENDSELECT%%></td>
+		<td id="evaluation_table-reason_for_not_recommending-<%%VALUE(evaluation_id)%%>" class="evaluation_table-reason_for_not_recommending"><%%SELECT%%><%%VALUE(reason_for_not_recommending)%%><%%ENDSELECT%%></td>
+		<td id="evaluation_table-created_by-<%%VALUE(evaluation_id)%%>" class="evaluation_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
+		<td id="evaluation_table-created_at-<%%VALUE(evaluation_id)%%>" class="evaluation_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
+		<td id="evaluation_table-last_updated_by-<%%VALUE(evaluation_id)%%>" class="evaluation_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>
+		<td id="evaluation_table-last_updated_at-<%%VALUE(evaluation_id)%%>" class="evaluation_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>

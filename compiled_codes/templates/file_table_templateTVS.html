@@ -1,0 +1,22 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the file_table_init() hook (in hooks/file_table.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="file_table-file_id-<%%VALUE(file_id)%%>" class="file_table-file_id text-right text-bold"><%%VALUE(file_id)%%></td>
+		<td id="file_table-data_str_key-<%%VALUE(file_id)%%>" class="file_table-data_str_key text-bold"><%%VALUE(data_str_key)%%></td>
+		<td id="file_table-name_title_of_the_dataset-<%%VALUE(file_id)%%>" class="file_table-name_title_of_the_dataset text-bold"><%%VALUE(name_title_of_the_dataset)%%></td>
+		<td id="file_table-category_of_the_dataset-<%%VALUE(file_id)%%>" class="file_table-category_of_the_dataset text-bold"><%%VALUE(category_of_the_dataset)%%></td>
+		<td id="file_table-description_of_the_dataset-<%%VALUE(file_id)%%>" class="file_table-description_of_the_dataset text-bold"><%%VALUE(description_of_the_dataset)%%></td>
+		<td id="file_table-geographic_coverage-<%%VALUE(file_id)%%>" class="file_table-geographic_coverage text-bold"><%%VALUE(geographic_coverage)%%></td>
+		<td id="file_table-format_of_the_dataset-<%%VALUE(file_id)%%>" class="file_table-format_of_the_dataset text-bold"><%%VALUE(format_of_the_dataset)%%></td>
+		<td id="file_table-upload_file-<%%VALUE(file_id)%%>" class="file_table-upload_file text-bold"><a href="link.php?t=file_table&f=upload_file&i=<%%VALUE(file_id)%%>" target="_blank" title="<%%VALUE(upload_file)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-picture text-info"></i></a></td>
+		<td id="file_table-created_by-<%%VALUE(file_id)%%>" class="file_table-created_by text-bold"><%%VALUE(created_by)%%></td>
+		<td id="file_table-created_at-<%%VALUE(file_id)%%>" class="file_table-created_at text-bold"><%%VALUE(created_at)%%></td>
+		<td id="file_table-last_updated_by-<%%VALUE(file_id)%%>" class="file_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
+		<td id="file_table-last_updated_at-<%%VALUE(file_id)%%>" class="file_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>
+		<script>$j(function() {
+			var e_upload_file = '<%%VALUE(upload_file)%%>'; if(e_upload_file == '' || e_upload_file == '&nbsp;') $j(/*<*/ '#file_table-upload_file-<%%VALUE(file_id)%%>' /*>*/).html('');
+		});</script>

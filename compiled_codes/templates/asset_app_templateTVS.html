@@ -1,0 +1,25 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the asset_app_init() hook (in hooks/asset_app.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="asset_app-asset_id-<%%VALUE(asset_id)%%>" class="asset_app-asset_id text-right text-bold"><%%VALUE(asset_id)%%></td>
+		<td id="asset_app-date-<%%VALUE(asset_id)%%>" class="asset_app-date text-bold"><%%VALUE(date)%%></td>
+		<td id="asset_app-classification_of_asset-<%%VALUE(asset_id)%%>" class="asset_app-classification_of_asset text-bold"><%%VALUE(classification_of_asset)%%></td>
+		<td id="asset_app-sub_category-<%%VALUE(asset_id)%%>" class="asset_app-sub_category text-bold"><%%VALUE(sub_category)%%></td>
+		<td id="asset_app-asset_serial_number-<%%VALUE(asset_id)%%>" class="asset_app-asset_serial_number text-bold"><%%VALUE(asset_serial_number)%%></td>
+		<td id="asset_app-qr_and_bar_code-<%%VALUE(asset_id)%%>" class="asset_app-qr_and_bar_code text-bold"><%%VALUE(qr_and_bar_code)%%></td>
+		<td id="asset_app-custody_department-<%%VALUE(asset_id)%%>" class="asset_app-custody_department text-bold"><%%VALUE(custody_department)%%></td>
+		<td id="asset_app-custodian-<%%VALUE(asset_id)%%>" class="asset_app-custodian text-bold"><%%VALUE(custodian)%%></td>
+		<td id="asset_app-custodian_signature-<%%VALUE(asset_id)%%>" class="asset_app-custodian_signature text-bold"><img src="thumbnail.php?i=<%%VALUE(custodian_signature)%%>&t=asset_app&f=custodian_signature&v=tv" class="img-thumbnail"></td>
+		<td id="asset_app-no_of_years_useful_life_of_assets-<%%VALUE(asset_id)%%>" class="asset_app-no_of_years_useful_life_of_assets text-bold"><%%VALUE(no_of_years_useful_life_of_assets)%%></td>
+		<td id="asset_app-date_of_useful_life_of_assets_ends-<%%VALUE(asset_id)%%>" class="asset_app-date_of_useful_life_of_assets_ends text-bold"><%%VALUE(date_of_useful_life_of_assets_ends)%%></td>
+		<td id="asset_app-remarks-<%%VALUE(asset_id)%%>" class="asset_app-remarks text-bold"><%%VALUE(remarks)%%></td>
+		<td id="asset_app-sactioned_by-<%%VALUE(asset_id)%%>" class="asset_app-sactioned_by text-bold"><%%VALUE(sactioned_by)%%></td>
+		<td id="asset_app-asset_str-<%%VALUE(asset_id)%%>" class="asset_app-asset_str text-bold"><%%VALUE(asset_str)%%></td>
+		<td id="asset_app-created_by-<%%VALUE(asset_id)%%>" class="asset_app-created_by text-bold"><%%VALUE(created_by)%%></td>
+		<td id="asset_app-created_at-<%%VALUE(asset_id)%%>" class="asset_app-created_at text-bold"><%%VALUE(created_at)%%></td>
+		<td id="asset_app-last_updated_by-<%%VALUE(asset_id)%%>" class="asset_app-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
+		<td id="asset_app-last_updated_at-<%%VALUE(asset_id)%%>" class="asset_app-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>

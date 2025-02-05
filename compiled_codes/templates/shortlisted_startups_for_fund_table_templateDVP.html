@@ -1,0 +1,162 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Select startup -->
+		<div class="form-group shortlisted_startups_for_fund_table-startup" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Select startup</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="startup<%%RND1%%>"><%%COMBOTEXT(startup)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Scheme -->
+		<div class="form-group shortlisted_startups_for_fund_table-scheme" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Scheme</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(scheme)%%></div>
+			</div>
+		</div>
+		<!-- Field: Recommended fund (in Lakhs INR) -->
+		<div class="form-group shortlisted_startups_for_fund_table-recommended_fund" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Recommended fund (in Lakhs INR)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(recommended_fund)%%></div>
+			</div>
+		</div>
+		<!-- Field: Name of founder -->
+		<div class="form-group shortlisted_startups_for_fund_table-name_of_founder" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Name of founder</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(name_of_founder)%%></div>
+			</div>
+		</div>
+		<!-- Field: Email of founder -->
+		<div class="form-group shortlisted_startups_for_fund_table-email_of_founder" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Email of founder</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(email_of_founder)%%></div>
+			</div>
+		</div>
+		<!-- Field: Phone number of founder -->
+		<div class="form-group shortlisted_startups_for_fund_table-phone_number_of_founder" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Phone number of founder</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(phone_number_of_founder)%%></div>
+			</div>
+		</div>
+		<!-- Field: Due diligence start -->
+		<div class="form-group shortlisted_startups_for_fund_table-due_diligence_start" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Due diligence start</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(due_diligence_start)%%></div>
+			</div>
+		</div>
+		<!-- Field: Terms agreed -->
+		<div class="form-group shortlisted_startups_for_fund_table-terms_agreed" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Terms agreed</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(terms_agreed)%%></div>
+			</div>
+		</div>
+		<!-- Field: Grant amount (in INR) -->
+		<div class="form-group shortlisted_startups_for_fund_table-grant_amount" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Grant amount (in INR)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(grant_amount)%%></div>
+			</div>
+		</div>
+		<!-- Field: Debt amount (in INR) -->
+		<div class="form-group shortlisted_startups_for_fund_table-debt_amount" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Debt amount (in INR)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(debt_amount)%%></div>
+			</div>
+		</div>
+		<!-- Field: OCD/CCD Amount (in INR) -->
+		<div class="form-group shortlisted_startups_for_fund_table-ocd_or_ccd_amount" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">OCD/CCD Amount (in INR)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(ocd_or_ccd_amount)%%></div>
+			</div>
+		</div>
+		<!-- Field: Equity amount (in INR) -->
+		<div class="form-group shortlisted_startups_for_fund_table-equity_amount" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Equity amount (in INR)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(equity_amount)%%></div>
+			</div>
+		</div>
+		<!-- Field: Interest rate (in %) -->
+		<div class="form-group shortlisted_startups_for_fund_table-interest_rate" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Interest rate (in %)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(interest_rate)%%></div>
+			</div>
+		</div>
+		<!-- Field: Period (in Years) -->
+		<div class="form-group shortlisted_startups_for_fund_table-period" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Period (in Years)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(period)%%></div>
+			</div>
+		</div>
+		<!-- Field: Conversion formula -->
+		<div class="form-group shortlisted_startups_for_fund_table-conversion_formula" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Conversion formula</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(conversion_formula)%%></div>
+			</div>
+		</div>
+		<!-- Field: Equity diluted (in %) -->
+		<div class="form-group shortlisted_startups_for_fund_table-equity_diluted" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Equity diluted (in %)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(equity_diluted)%%></div>
+			</div>
+		</div>
+		<!-- Field: Comments -->
+		<div class="form-group shortlisted_startups_for_fund_table-comments" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Comments</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(comments)%%></div>
+			</div>
+		</div>
+		<!-- Field: Remarks 1 -->
+		<div class="form-group shortlisted_startups_for_fund_table-remarks_1" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Remarks 1</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(remarks_1)%%></div>
+			</div>
+		</div>
+		<!-- Field: Remarks 2 -->
+		<div class="form-group shortlisted_startups_for_fund_table-remarks_2" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Remarks 2</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(remarks_2)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

@@ -1,0 +1,19 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the participants_table_init() hook (in hooks/participants_table.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="participants_table-participants_id-<%%VALUE(participants_id)%%>" class="participants_table-participants_id text-right"><%%SELECT%%><%%VALUE(participants_id)%%><%%ENDSELECT%%></td>
+		<td id="participants_table-event_lookup-<%%VALUE(participants_id)%%>" class="participants_table-event_lookup"><%%SELECT%%><%%VALUE(event_lookup)%%><%%ENDSELECT%%></td>
+		<td id="participants_table-meeting_lookup-<%%VALUE(participants_id)%%>" class="participants_table-meeting_lookup"><%%SELECT%%><%%VALUE(meeting_lookup)%%><%%ENDSELECT%%></td>
+		<td id="participants_table-name-<%%VALUE(participants_id)%%>" class="participants_table-name"><%%SELECT%%><%%VALUE(name)%%><%%ENDSELECT%%></td>
+		<td id="participants_table-designation-<%%VALUE(participants_id)%%>" class="participants_table-designation"><%%SELECT%%><%%VALUE(designation)%%><%%ENDSELECT%%></td>
+		<td id="participants_table-participant_type-<%%VALUE(participants_id)%%>" class="participants_table-participant_type"><%%SELECT%%><%%VALUE(participant_type)%%><%%ENDSELECT%%></td>
+		<td id="participants_table-accepted_status-<%%VALUE(participants_id)%%>" class="participants_table-accepted_status"><%%SELECT%%><%%VALUE(accepted_status)%%><%%ENDSELECT%%></td>
+		<td id="participants_table-status_date-<%%VALUE(participants_id)%%>" class="participants_table-status_date"><%%SELECT%%><%%VALUE(status_date)%%><%%ENDSELECT%%></td>
+		<td id="participants_table-created_by-<%%VALUE(participants_id)%%>" class="participants_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
+		<td id="participants_table-created_at-<%%VALUE(participants_id)%%>" class="participants_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
+		<td id="participants_table-last_updated_by-<%%VALUE(participants_id)%%>" class="participants_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>
+		<td id="participants_table-last_updated_at-<%%VALUE(participants_id)%%>" class="participants_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>

@@ -1,0 +1,225 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Certificate No. -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-certificate_number" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Certificate No.</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(certificate_number)%%></div>
+			</div>
+		</div>
+		<!-- Field: Datetime -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-datetime" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Datetime</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(datetime)%%></div>
+			</div>
+		</div>
+		<!-- Field: Salutation -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-salutation" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Salutation</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(salutation)%%></div>
+			</div>
+		</div>
+		<!-- Field: Name -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Name</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Email id -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-email_id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Email id</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(email_id)%%></div>
+			</div>
+		</div>
+		<!-- Field: Secondary email id -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-secondary_email_id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Secondary email id</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(secondary_email_id)%%></div>
+			</div>
+		</div>
+		<!-- Field: Mobile number -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-mobile_number" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Mobile number</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(mobile_number)%%></div>
+			</div>
+		</div>
+		<!-- Field: Whatsapp number -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-whatsapp_number" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Whatsapp number</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(whatsapp_number)%%></div>
+			</div>
+		</div>
+		<!-- Field: Gender -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-gender" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Gender</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(gender)%%></div>
+			</div>
+		</div>
+		<!-- Field: Social media link -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-social_media_link" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Social media link</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(social_media_link)%%></div>
+			</div>
+		</div>
+		<!-- Field: Educational Qualification -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-education_qualification" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Educational Qualification</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(education_qualification)%%></div>
+			</div>
+		</div>
+		<!-- Field: Profession -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-profession" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Profession</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(profession)%%></div>
+			</div>
+		</div>
+		<!-- Field: School/Institute Name -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-school_name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">School/Institute Name</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(school_name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Parent's Name -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-parents_name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Parent's Name</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(parents_name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Parent's Contact No. -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-parents_contact_number" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Parent's Contact No.</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(parents_contact_number)%%></div>
+			</div>
+		</div>
+		<!-- Field: Parents email id -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-parents_email_id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Parents email id</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(parents_email_id)%%></div>
+			</div>
+		</div>
+		<!-- Field: Residential address -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-residential_address" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Residential address</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(residential_address)%%></div>
+			</div>
+		</div>
+		<!-- Field: Designation -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-parents_designation" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Designation</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(parents_designation)%%></div>
+			</div>
+		</div>
+		<!-- Field: Parents school name -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-parents_school_name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Parents school name</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(parents_school_name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Teaching subject -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-teaching_subject" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Teaching subject</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(teaching_subject)%%></div>
+			</div>
+		</div>
+		<!-- Field: Address line 2 -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-address_line_2" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Address line 2</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(address_line_2)%%></div>
+			</div>
+		</div>
+		<!-- Field: City -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-city" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">City</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(city)%%></div>
+			</div>
+		</div>
+		<!-- Field: State/Region/Province -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-state_region_province" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">State/Region/Province</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(state_region_province)%%></div>
+			</div>
+		</div>
+		<!-- Field: Zip code -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-zip_code" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Zip code</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(zip_code)%%></div>
+			</div>
+		</div>
+		<!-- Field: Country -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-country" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Country</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(country)%%></div>
+			</div>
+		</div>
+		<!-- Field: How did you know about the Training/Workshop? -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-how_did_you_know" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">How did you know about the Training/Workshop?</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(how_did_you_know)%%></div>
+			</div>
+		</div>
+		<!-- Field: Training/Workshop attended at school/Institute name. -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-attended_training_school" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Training/Workshop attended at school/Institute name.</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(attended_training_school)%%></div>
+			</div>
+		</div>
+		<!-- Field: Attended training date -->
+		<div class="form-group training_program_on_geospatial_tchnologies_table-attended_training_date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Attended training date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(attended_training_date)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

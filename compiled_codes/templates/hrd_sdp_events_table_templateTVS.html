@@ -1,0 +1,21 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the hrd_sdp_events_table_init() hook (in hooks/hrd_sdp_events_table.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="hrd_sdp_events_table-id-<%%VALUE(id)%%>" class="hrd_sdp_events_table-id text-right text-bold"><%%VALUE(id)%%></td>
+		<td id="hrd_sdp_events_table-year-<%%VALUE(id)%%>" class="hrd_sdp_events_table-year text-bold"><%%VALUE(year)%%></td>
+		<td id="hrd_sdp_events_table-program_name-<%%VALUE(id)%%>" class="hrd_sdp_events_table-program_name text-bold"><%%VALUE(program_name)%%></td>
+		<td id="hrd_sdp_events_table-area_of_workshop-<%%VALUE(id)%%>" class="hrd_sdp_events_table-area_of_workshop text-bold"><%%VALUE(area_of_workshop)%%></td>
+		<td id="hrd_sdp_events_table-host_name-<%%VALUE(id)%%>" class="hrd_sdp_events_table-host_name text-bold"><%%VALUE(host_name)%%></td>
+		<td id="hrd_sdp_events_table-location-<%%VALUE(id)%%>" class="hrd_sdp_events_table-location text-bold"><%%VALUE(location)%%></td>
+		<td id="hrd_sdp_events_table-start_date-<%%VALUE(id)%%>" class="hrd_sdp_events_table-start_date text-bold"><%%VALUE(start_date)%%></td>
+		<td id="hrd_sdp_events_table-end_date-<%%VALUE(id)%%>" class="hrd_sdp_events_table-end_date text-bold"><%%VALUE(end_date)%%></td>
+		<td id="hrd_sdp_events_table-number_of_participants-<%%VALUE(id)%%>" class="hrd_sdp_events_table-number_of_participants text-bold"><%%VALUE(number_of_participants)%%></td>
+		<td id="hrd_sdp_events_table-more_details-<%%VALUE(id)%%>" class="hrd_sdp_events_table-more_details text-bold"><%%VALUE(more_details)%%></td>
+		<td id="hrd_sdp_events_table-created_by-<%%VALUE(id)%%>" class="hrd_sdp_events_table-created_by text-bold"><%%VALUE(created_by)%%></td>
+		<td id="hrd_sdp_events_table-created_at-<%%VALUE(id)%%>" class="hrd_sdp_events_table-created_at text-bold"><%%VALUE(created_at)%%></td>
+		<td id="hrd_sdp_events_table-last_updated_by-<%%VALUE(id)%%>" class="hrd_sdp_events_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
+		<td id="hrd_sdp_events_table-last_updated_at-<%%VALUE(id)%%>" class="hrd_sdp_events_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>

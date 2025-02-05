@@ -1,0 +1,92 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Travel details -->
+		<div class="form-group travel_flight_table-travel_details" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Travel details</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="travel_details-readonly<%%RND1%%>"><%%COMBOTEXT(travel_details)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Flight number -->
+		<div class="form-group travel_flight_table-flight_number" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Flight number</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(flight_number)%%></div>
+			</div>
+		</div>
+		<!-- Field: Travel date -->
+		<div class="form-group travel_flight_table-travel_date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Travel date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(travel_date)%%></div>
+			</div>
+		</div>
+		<!-- Field: Flight time -->
+		<div class="form-group travel_flight_table-flight_time" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Flight time</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(flight_time)%%></div>
+			</div>
+		</div>
+		<!-- Field: From -->
+		<div class="form-group travel_flight_table-from" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">From</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(from)%%></div>
+			</div>
+		</div>
+		<!-- Field: To -->
+		<div class="form-group travel_flight_table-to" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">To</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(to)%%></div>
+			</div>
+		</div>
+		<!-- Field: Seat preferance -->
+		<div class="form-group travel_flight_table-seat_preferance" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Seat preferance</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(seat_preferance)%%></div>
+			</div>
+		</div>
+		<!-- Field: Status -->
+		<div class="form-group travel_flight_table-status" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Status</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(status)%%></div>
+			</div>
+		</div>
+		<!-- Field: Remarks -->
+		<div class="form-group travel_flight_table-remarks" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Remarks</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(remarks)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

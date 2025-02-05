@@ -1,0 +1,92 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Year -->
+		<div class="form-group hrd_sdp_events_table-year" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Year</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(year)%%></div>
+			</div>
+		</div>
+		<!-- Field: Program name -->
+		<div class="form-group hrd_sdp_events_table-program_name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Program name</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(program_name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Topic/Area of Workshop -->
+		<div class="form-group hrd_sdp_events_table-area_of_workshop" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Topic/Area of Workshop</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(area_of_workshop)%%></div>
+			</div>
+		</div>
+		<!-- Field: Host name -->
+		<div class="form-group hrd_sdp_events_table-host_name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Host name</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(host_name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Location -->
+		<div class="form-group hrd_sdp_events_table-location" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Location</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(location)%%></div>
+			</div>
+		</div>
+		<!-- Field: Start date -->
+		<div class="form-group hrd_sdp_events_table-start_date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Start date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(start_date)%%></div>
+			</div>
+		</div>
+		<!-- Field: End date -->
+		<div class="form-group hrd_sdp_events_table-end_date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">End date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(end_date)%%></div>
+			</div>
+		</div>
+		<!-- Field: Number of participants -->
+		<div class="form-group hrd_sdp_events_table-number_of_participants" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Number of participants</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(number_of_participants)%%></div>
+			</div>
+		</div>
+		<!-- Field: More details -->
+		<div class="form-group hrd_sdp_events_table-more_details" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">More details</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(more_details)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

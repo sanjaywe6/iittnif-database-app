@@ -1,0 +1,323 @@
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/asset_app-dv.js rather than editing this file -->
+
+<div id="detail-view"></div>
+<div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
+
+<div id="asset_app_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+
+<div class="panel-body hidden" id="asset_app_dv_container">
+	<!-- child links -->
+	<div class="row vspacer-md">
+		<div class="col-xs-12 children-links">
+			<input type="hidden" id="asset_billing_details_hclink" value="asset_billing_details_view.php?filterer_asset_lookup=<%%URLVALUE(asset_id)%%>&<%%EMBEDDED%%>">
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<hr class="hidden-xs hidden-sm">
+
+	<div class="row">
+		<!-- form inputs -->
+		<div class="col-md-8 col-lg-10" id="asset_app_dv_form">
+			<fieldset class="form-horizontal">
+
+				<!-- Field: Date -->
+				<div class="form-group asset_app-date">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="date-dd">Date</label>
+					<div class="col-lg-9">
+						<%%COMBO(date)%%>
+					</div>
+				</div>
+
+				<!-- Field: Classification of asset -->
+				<div class="form-group asset_app-classification_of_asset">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="classification_of_asset">Classification of asset</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="classification_of_asset" id="classification_of_asset" value="<%%VALUE(classification_of_asset)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Sub category -->
+				<div class="form-group asset_app-sub_category">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="sub_category">Sub category</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="sub_category" id="sub_category" value="<%%VALUE(sub_category)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Asset serial number -->
+				<div class="form-group asset_app-asset_serial_number">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="asset_serial_number">Asset serial number</label>
+					<div class="col-lg-9">
+						<input maxlength="40" type="text" class="form-control" name="asset_serial_number" id="asset_serial_number" value="<%%VALUE(asset_serial_number)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Qr and bar code -->
+				<div class="form-group asset_app-qr_and_bar_code">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="qr_and_bar_code">Qr and bar code</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="qr_and_bar_code" id="qr_and_bar_code" value="<%%VALUE(qr_and_bar_code)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Custody department -->
+				<div class="form-group asset_app-custody_department">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="custody_department">Custody department</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="custody_department" id="custody_department" value="<%%VALUE(custody_department)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Custodian -->
+				<div class="form-group asset_app-custodian">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="custodian">Custodian</label>
+					<div class="col-lg-9">
+						<input maxlength="40" type="text" class="form-control" name="custodian" id="custodian" value="<%%VALUE(custodian)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Custodian signature -->
+				<div class="form-group asset_app-custodian_signature">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Custodian signature <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#custodian_signature-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="custodian_signature-description"><div class="alert alert-info bspacer-xs">Maximum file size allowed: 10000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp</div></span>
+						<div class="form-control-static well well-sm">
+							<div class="row" style="margin-right: 0; margin-left: 0;">
+								<div class="col-lg-8 col-md-6" style="padding-left: 0;"><img src="thumbnail.php?i=<%%VALUE(custodian_signature)%%>&t=asset_app&f=custodian_signature&v=dv" class="img-thumbnail" id="custodian_signature-image"></div>
+								<div class="hidden-md hidden-lg vspacer-lg"></div>
+								<div class="col-lg-4 col-md-6 well upload-toolbox">
+									<%%REMOVEFILE(custodian_signature)%%>
+									<%%UPLOADFILE(custodian_signature)%%>
+									<div class="text-bold text-danger file-type-error hidden"><%%TRANSLATION(invalid file type)%%></div>
+									<div class="text-bold text-danger file-size-error hidden"><%%TRANSLATION(file too large)%%></div>
+								</div>
+							</div>
+						</div>
+						<script>/* disable empty links */ $j(() => { const e_custodian_signature = '<%%VALUE(custodian_signature)%%>'; if(e_custodian_signature == '' || e_custodian_signature == '&nbsp;' || e_custodian_signature == 'blank.gif') { $j('#custodian_signature-link').hide(); $j('#custodian_signature-image').parents('a').attr('href', '').on('click', (e) => e.preventDefault()); } });</script>
+					</div>
+				</div>
+
+				<!-- Field: Number of years useful life of assets -->
+				<div class="form-group asset_app-no_of_years_useful_life_of_assets">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="no_of_years_useful_life_of_assets">Number of years useful life of assets</label>
+					<div class="col-lg-9">
+						<input maxlength="40" type="text" class="form-control" name="no_of_years_useful_life_of_assets" id="no_of_years_useful_life_of_assets" value="<%%VALUE(no_of_years_useful_life_of_assets)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Date of useful life of assets ends -->
+				<div class="form-group asset_app-date_of_useful_life_of_assets_ends">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="date_of_useful_life_of_assets_ends-dd">Date of useful life of assets ends</label>
+					<div class="col-lg-9">
+						<%%COMBO(date_of_useful_life_of_assets_ends)%%>
+					</div>
+				</div>
+
+				<!-- Field: Remarks -->
+				<div class="form-group asset_app-remarks">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="remarks">Remarks</label>
+					<div class="col-lg-9">
+						<input maxlength="40" type="text" class="form-control" name="remarks" id="remarks" value="<%%VALUE(remarks)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Sactioned by -->
+				<div class="form-group asset_app-sactioned_by">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="sactioned_by" data-parent_link="view_parent_modal">Sactioned by</label>
+					<div class="col-lg-9">
+						<div class="lookup-flex"><%%COMBO(sactioned_by)%%><%%PLINK(sactioned_by)%%><%%ADDNEW(user_table)%%></div>
+					</div>
+				</div>
+
+			</fieldset>
+		</div>
+
+		<!-- DV action buttons -->
+		<hr class="hidden-md hidden-lg">
+		<div class="col-md-4 col-lg-2" id="asset_app_dv_action_buttons">
+			<div class="btn-toolbar">
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%UPDATE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%DESELECT_BUTTON%%>
+					<%%DVPRINT_BUTTON%%>
+					<%%DELETE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%INSERT_BUTTON%%>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- child records -->
+	<hr>
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1">
+			<div id="asset_app-children" class="children-tabs">
+				<div class="text-center"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+			</div>
+		</div>
+	</div>
+
+</div><!-- /div class="panel-body" -->
+	<script>
+		$j(function() {
+			var add_new_mode = (!$j('input[name=SelectedID]').val());
+			var embedded_mode = ($j('input[name=Embedded]').val() == 1);
+
+			/* auto-close embedded page? */
+			var autoclose_mode = ($j('input[name=AutoClose]').val() == 1);
+			var record_added_ok = (location.search.split('record-added-ok=').length == 2);
+			var record_updated_ok = (location.search.split('record-updated-ok=').length == 2);
+			if((record_added_ok || record_updated_ok) && embedded_mode && autoclose_mode) {
+				setTimeout(AppGini.closeParentModal, 2000);
+			}
+
+
+			/* enable DV action buttons to float on scrolling down the form */
+			enable_dvab_floating();
+
+			$j('#asset_app_dv_container-loading').addClass('hidden');
+			$j('#asset_app_dv_container').removeClass('hidden');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('asset_app', 'date');
+
+			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
+
+			if(embedded_mode) {
+				/* hide links to children tables in embedded mode */
+				$j('.detail_view a[id$=_link]').remove();
+
+				/* append embedded mode to all links */
+				var append_embedded = function() {
+					$j('a[href]:not([href^="#"]):not([href^="javascript"]):not([href$="Embedded=1"]):not([href*="link.php?t="]):not([href^="mailto:"]):not([href$=".jpg"]):not([href$=".png"]):not([href$=".gif"])').each(
+						function() {
+							$j(this).attr('href', $j(this).attr('href') + '&Embedded=1');
+						}
+					);
+				}
+				setTimeout(append_embedded, 500);
+				setTimeout(append_embedded, 1500);
+				setTimeout(append_embedded, 2500);
+				setTimeout(append_embedded, 3500);
+			}
+
+			/* when no record is selected ('add new' mode) */
+			if(add_new_mode) {
+				/* hide links to children tables */
+				$j('.detail_view a[id$=_link]').remove();
+			} else {
+				post(
+					'parent-children.php', {
+						ParentTable: 'asset_app',
+						SelectedID: '<%%VALUE(asset_id)%%>',
+						Operation: 'show-children'
+					},
+					'asset_app-children'
+				);
+			}
+
+			if(true /* !embedded_mode */) {
+				$j('.add_new_parent').click(function() {
+					var pt = $j(this).attr('id').replace(/_add_new$/, '');
+					modal_window({
+						url: pt + '_view.php?addNew_x=1&Embedded=1',
+						close: function() {
+							var field_id = $j('#' + pt + '_add_new').prevAll('input:hidden').eq(0).attr('id');
+							$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+							/* if a new parent was added, select it */
+							var new_id = localStorage.getItem(pt + '_last_added_id');
+							if(new_id === null) return;
+
+							localStorage.removeItem(pt + '_last_added_id');
+							AppGini.lookupText({
+								id: new_id,
+								table: 'asset_app',
+								field: field_id,
+								callback: function(data) {
+									$j('#' + field_id + '-container').select2('data', data, true);
+								}
+							});
+						},
+						size: 'full',
+						title: $j(this).attr('title')
+					});
+				});
+			}
+
+			AppGini.hideViewParentLinks();
+
+			$j('form').on('click', '.view_parent', function() {
+				var pt = $j(this).attr('id').replace(/_view_parent$/, '');
+				if($j(this).prevAll('input:hidden').length) {
+					var parent_id = $j(this).prevAll('input:hidden').eq(0).val();
+				} else {
+					var parent_id = $j(this).prevAll().children('input:hidden').eq(0).val();
+				}
+
+				/* handle radio lookups */
+				if($j(this).prevAll('[type=radio]').length) {
+					parent_id = $j(this).prevAll('[type=radio]').eq(0).val();
+				}
+
+				if(parent_id != '{empty_value}' && parent_id != undefined && parent_id != '') {
+					var parent_link = $j(this).parents('.form-group').children('label').data('parent_link');
+					switch(parent_link) {
+						case 'view_parent_hidden':
+							break;
+						case 'view_parent_modal':
+							modal_window({
+								url: pt + '_view.php?Embedded=1&SelectedID=' + encodeURIComponent(parent_id),
+								close: function() {
+									var field_id = $j('#' + pt + '_view_parent').prevAll('input:hidden').eq(0).attr('id');
+									$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+									// in case the parent record was updated, we should update auto-fills
+									var updaterName = field_id + '_update_autofills';
+									if(typeof(window[updaterName]) == 'function')
+										window[updaterName]();
+								},
+								size: 'full',
+								title: $j(this).attr('title')
+							});
+							break;
+						case 'view_parent_same_window':
+							window.location = pt + '_view.php?Embedded=' + (embedded_mode ? '1' : '') + '&SelectedID=' + encodeURIComponent(parent_id);
+							break;
+						case 'view_parent_new_window':
+							window.open(pt + '_view.php?SelectedID=' + encodeURIComponent(parent_id));
+							break;
+					}
+
+				}
+			});
+
+
+			/* load admin tools for admin user */
+			if(!add_new_mode) {
+				$j('body').append('<div id="admin-tools-appendix"></div>');
+				$j('#admin-tools-appendix').load(
+					'ajax_admin_tools.php?table=asset_app&id=<%%URLVALUE(asset_id)%%>',
+					function(resp) {
+						if(!resp.length) return;
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=asset_app&id=<%%URLVALUE(asset_id)%%>');
+					}
+				);
+			}
+		});
+	</script>

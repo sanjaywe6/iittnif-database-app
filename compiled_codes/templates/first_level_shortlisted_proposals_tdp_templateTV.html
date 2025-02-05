@@ -1,0 +1,18 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the first_level_shortlisted_proposals_tdp_init() hook (in hooks/first_level_shortlisted_proposals_tdp.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="first_level_shortlisted_proposals_tdp-id-<%%VALUE(id)%%>" class="first_level_shortlisted_proposals_tdp-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></td>
+		<td id="first_level_shortlisted_proposals_tdp-project_id-<%%VALUE(id)%%>" class="first_level_shortlisted_proposals_tdp-project_id"><%%SELECT%%><%%VALUE(project_id)%%><%%ENDSELECT%%></td>
+		<td id="first_level_shortlisted_proposals_tdp-name-<%%VALUE(id)%%>" class="first_level_shortlisted_proposals_tdp-name"><%%SELECT%%><%%VALUE(name)%%><%%ENDSELECT%%></td>
+		<td id="first_level_shortlisted_proposals_tdp-institution-<%%VALUE(id)%%>" class="first_level_shortlisted_proposals_tdp-institution"><%%SELECT%%><%%VALUE(institution)%%><%%ENDSELECT%%></td>
+		<td id="first_level_shortlisted_proposals_tdp-domain_of_interest-<%%VALUE(id)%%>" class="first_level_shortlisted_proposals_tdp-domain_of_interest"><%%SELECT%%><%%VALUE(domain_of_interest)%%><%%ENDSELECT%%></td>
+		<td id="first_level_shortlisted_proposals_tdp-proposal_link-<%%VALUE(id)%%>" class="first_level_shortlisted_proposals_tdp-proposal_link"><%%SELECT%%><%%VALUE(proposal_link)%%><%%ENDSELECT%%></td>
+		<td id="first_level_shortlisted_proposals_tdp-first_level_comment-<%%VALUE(id)%%>" class="first_level_shortlisted_proposals_tdp-first_level_comment"><%%SELECT%%><%%VALUE(first_level_comment)%%><%%ENDSELECT%%></td>
+		<td id="first_level_shortlisted_proposals_tdp-created_by-<%%VALUE(id)%%>" class="first_level_shortlisted_proposals_tdp-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
+		<td id="first_level_shortlisted_proposals_tdp-created_at-<%%VALUE(id)%%>" class="first_level_shortlisted_proposals_tdp-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
+		<td id="first_level_shortlisted_proposals_tdp-last_updated_by-<%%VALUE(id)%%>" class="first_level_shortlisted_proposals_tdp-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>
+		<td id="first_level_shortlisted_proposals_tdp-last_updated_at-<%%VALUE(id)%%>" class="first_level_shortlisted_proposals_tdp-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>

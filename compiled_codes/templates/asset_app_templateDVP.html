@@ -1,0 +1,142 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Date -->
+		<div class="form-group asset_app-date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(date)%%></div>
+			</div>
+		</div>
+		<!-- Field: Classification of asset -->
+		<div class="form-group asset_app-classification_of_asset" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Classification of asset</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(classification_of_asset)%%></div>
+			</div>
+		</div>
+		<!-- Field: Sub category -->
+		<div class="form-group asset_app-sub_category" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Sub category</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(sub_category)%%></div>
+			</div>
+		</div>
+		<!-- Field: Asset serial number -->
+		<div class="form-group asset_app-asset_serial_number" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Asset serial number</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(asset_serial_number)%%></div>
+			</div>
+		</div>
+		<!-- Field: Qr and bar code -->
+		<div class="form-group asset_app-qr_and_bar_code" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Qr and bar code</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(qr_and_bar_code)%%></div>
+			</div>
+		</div>
+		<!-- Field: Custody department -->
+		<div class="form-group asset_app-custody_department" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Custody department</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(custody_department)%%></div>
+			</div>
+		</div>
+		<!-- Field: Custodian -->
+		<div class="form-group asset_app-custodian" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Custodian</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(custodian)%%></div>
+			</div>
+		</div>
+		<!-- Field: Custodian signature -->
+		<div class="form-group asset_app-custodian_signature" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Custodian signature</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><img id="custodian_signatureImg" src="thumbnail.php?t=asset_app&f=custodian_signature&i=<%%VALUE(custodian_signature)%%>&v=dv" class="img-thumbnail"></div>
+			</div>
+		</div>
+		<!-- Field: Number of years useful life of assets -->
+		<div class="form-group asset_app-no_of_years_useful_life_of_assets" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Number of years useful life of assets</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(no_of_years_useful_life_of_assets)%%></div>
+			</div>
+		</div>
+		<!-- Field: Date of useful life of assets ends -->
+		<div class="form-group asset_app-date_of_useful_life_of_assets_ends" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Date of useful life of assets ends</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(date_of_useful_life_of_assets_ends)%%></div>
+			</div>
+		</div>
+		<!-- Field: Remarks -->
+		<div class="form-group asset_app-remarks" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Remarks</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(remarks)%%></div>
+			</div>
+		</div>
+		<!-- Field: Sactioned by -->
+		<div class="form-group asset_app-sactioned_by" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Sactioned by</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="sactioned_by<%%RND1%%>"><%%COMBOTEXT(sactioned_by)%%></span></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>
+<!-- child records -->
+<div class="panel-body">
+	<div id="asset_app-children"></div>
+</div>
+
+<script>
+	$j(function() {
+		/* prevent loading child records in multiple DVP */
+		if($j('[id=asset_app-children]').length > 1) return;
+
+		post(
+			'parent-children.php', {
+				ParentTable: 'asset_app',
+				SelectedID: '<%%VALUE(asset_id)%%>',
+				Operation: 'show-children-printable'
+			},
+			'asset_app-children',
+			'disable-element',
+			'loading-element',
+			apply_persisting_children
+		);
+
+		$j('form').on('click', '#children-tabs button[data-target]', function() {
+			$j(this).toggleClass('active');
+			persist_expanded_child($j(this).attr('id'));
+		});
+	})
+</script>
+

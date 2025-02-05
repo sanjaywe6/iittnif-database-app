@@ -1,0 +1,64 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Name -->
+		<div class="form-group evaluators_table-name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Name</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Designation -->
+		<div class="form-group evaluators_table-designation" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Designation</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(designation)%%></div>
+			</div>
+		</div>
+		<!-- Field: Qualification -->
+		<div class="form-group evaluators_table-qualification" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Qualification</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(qualification)%%></div>
+			</div>
+		</div>
+		<!-- Field: Self description -->
+		<div class="form-group evaluators_table-self_description" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Self description</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(self_description)%%></div>
+			</div>
+		</div>
+		<!-- Field: Role -->
+		<div class="form-group evaluators_table-role" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Role</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(role)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

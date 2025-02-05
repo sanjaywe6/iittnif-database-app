@@ -1,0 +1,361 @@
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/mou_details_table-dv.js rather than editing this file -->
+
+<div id="detail-view"></div>
+<div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
+
+<div id="mou_details_table_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+
+<div class="panel-body hidden" id="mou_details_table_dv_container">
+	<!-- child links -->
+	<div class="row vspacer-md">
+		<div class="col-xs-12 children-links">
+			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="mou_company_area_details_table_view.php?filterer_name_of_the_company=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="mou_company_area_details_table_link"><img src="table.gif"> MoU company area details - App</a>
+			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="mou_company_area_details_table_view.php?filterer_name_of_the_company=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_mou_company_area_details_table_link"><img src="table.gif"> MoU company area details - App</a>
+			<input type="hidden" id="mou_company_area_details_table_hclink" value="mou_company_area_details_table_view.php?filterer_name_of_the_company=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<hr class="hidden-xs hidden-sm">
+
+	<div class="row">
+		<!-- form inputs -->
+		<div class="col-md-8 col-lg-10" id="mou_details_table_dv_form">
+			<fieldset class="form-horizontal">
+
+				<!-- Field: Type -->
+				<div class="form-group mou_details_table-type">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="type">Type</label>
+					<div class="col-lg-9">
+						<%%COMBO(type)%%>
+					</div>
+				</div>
+
+				<!-- Field: Company name -->
+				<div class="form-group mou_details_table-company_name">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="company_name">Company name</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="company_name" id="company_name" rows=" 5"><%%VALUE(company_name)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Objectives/ Scope of the MOU -->
+				<div class="form-group mou_details_table-objective_of_mou">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="objective_of_mou">Objectives/ Scope of the MOU</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="objective_of_mou" id="objective_of_mou" rows=" 5"><%%VALUE(objective_of_mou)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Agreement period (In Years) -->
+				<div class="form-group mou_details_table-agreement_period">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="agreement_period">Agreement period (In Years)</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="agreement_period" id="agreement_period" value="<%%VALUE(agreement_period)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Date of agreement -->
+				<div class="form-group mou_details_table-date_of_agreement">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="date_of_agreement-dd">Date of agreement</label>
+					<div class="col-lg-9">
+						<%%COMBO(date_of_agreement)%%>
+					</div>
+				</div>
+
+				<!-- Field: Date of expiry -->
+				<div class="form-group mou_details_table-date_of_expiry">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="date_of_expiry-dd">Date of expiry</label>
+					<div class="col-lg-9">
+						<%%COMBO(date_of_expiry)%%>
+					</div>
+				</div>
+
+				<!-- Field: Status -->
+				<div class="form-group mou_details_table-status">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="status">Status</label>
+					<div class="col-lg-9">
+						<%%COMBO(status)%%>
+					</div>
+				</div>
+
+				<!-- Field: Point of contact (Name) -->
+				<div class="form-group mou_details_table-point_of_contact">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="point_of_contact">Point of contact (Name)</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="point_of_contact" id="point_of_contact" value="<%%VALUE(point_of_contact)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Contact number -->
+				<div class="form-group mou_details_table-contact_number">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="contact_number">Contact number</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="contact_number" id="contact_number" value="<%%VALUE(contact_number)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Contact email id -->
+				<div class="form-group mou_details_table-contact_email_id">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="contact_email_id">Contact email id</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="contact_email_id" id="contact_email_id" value="<%%VALUE(contact_email_id)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Website link -->
+				<div class="form-group mou_details_table-website_link">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="website_link">Website link</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="website_link" id="website_link" value="<%%VALUE(website_link)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Country -->
+				<div class="form-group mou_details_table-country">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="country">Country</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="country" id="country" value="<%%VALUE(country)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Assigned MoU to -->
+				<div class="form-group mou_details_table-assigned_mou_to">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="assigned_mou_to" data-parent_link="view_parent_modal">Assigned MoU to</label>
+					<div class="col-lg-9">
+						<div class="lookup-flex"><%%COMBO(assigned_mou_to)%%><%%PLINK(assigned_mou_to)%%><%%ADDNEW(user_table)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Upload MoU (PDF or DOC format) -->
+				<div class="form-group mou_details_table-upload_mou">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Upload MoU (PDF or DOC format) <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#upload_mou-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="upload_mou-description"><div class="alert alert-info bspacer-xs">Maximum file size allowed: 100 KB.<br>Allowed file types: txt, doc, docx, docm, odt, pdf, rtf</div></span>
+						<div class="form-control-static well well-sm">
+							<div class="row" style="margin-right: 0; margin-left: 0;">
+								<div class="col-lg-8 col-md-6" style="padding-left: 0;"><a id="upload_mou-link" href="link.php?t=mou_details_table&f=upload_mou&i=<%%VALUE(id)%%>" target="_blank" class="rspacer-lg"><i class="glyphicon glyphicon-file" title="<%%VALUE(upload_mou)%%>" style="font-size: 4em;"></i></a></div>
+								<div class="hidden-md hidden-lg vspacer-lg"></div>
+								<div class="col-lg-4 col-md-6 well upload-toolbox">
+									<%%REMOVEFILE(upload_mou)%%>
+									<%%UPLOADFILE(upload_mou)%%>
+									<div class="text-bold text-danger file-type-error hidden"><%%TRANSLATION(invalid file type)%%></div>
+									<div class="text-bold text-danger file-size-error hidden"><%%TRANSLATION(file too large)%%></div>
+								</div>
+							</div>
+						</div>
+						<script>/* disable empty links */ $j(() => { const e_upload_mou = '<%%VALUE(upload_mou)%%>'; if(e_upload_mou == '' || e_upload_mou == '&nbsp;' || e_upload_mou == 'blank.gif') { $j('#upload_mou-link').hide(); $j('#upload_mou-image').parents('a').attr('href', '').on('click', (e) => e.preventDefault()); } });</script>
+					</div>
+				</div>
+
+			</fieldset>
+		</div>
+
+		<!-- DV action buttons -->
+		<hr class="hidden-md hidden-lg">
+		<div class="col-md-4 col-lg-2" id="mou_details_table_dv_action_buttons">
+			<div class="btn-toolbar">
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%UPDATE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%DESELECT_BUTTON%%>
+					<%%DVPRINT_BUTTON%%>
+					<%%DELETE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%INSERT_BUTTON%%>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- child records -->
+	<hr>
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1">
+			<div id="mou_details_table-children" class="children-tabs">
+				<div class="text-center"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+			</div>
+		</div>
+	</div>
+
+</div><!-- /div class="panel-body" -->
+	<script>
+		$j(function() {
+			var add_new_mode = (!$j('input[name=SelectedID]').val());
+			var embedded_mode = ($j('input[name=Embedded]').val() == 1);
+
+			/* auto-close embedded page? */
+			var autoclose_mode = ($j('input[name=AutoClose]').val() == 1);
+			var record_added_ok = (location.search.split('record-added-ok=').length == 2);
+			var record_updated_ok = (location.search.split('record-updated-ok=').length == 2);
+			if((record_added_ok || record_updated_ok) && embedded_mode && autoclose_mode) {
+				setTimeout(AppGini.closeParentModal, 2000);
+			}
+
+
+			/* enable DV action buttons to float on scrolling down the form */
+			enable_dvab_floating();
+
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
+				AppGini.once({
+					condition: function() {
+						return $j('.form-group.mou_details_table-type')
+									.find('.nicEdit-main, .select2-container, input[type=radio]')
+									.length > 0
+								// or read-only DV
+								|| (!$j('#update').length && !$j('#insert').length);
+					},
+					action: function() {
+						$j('#mou_details_table_dv_container-loading').addClass('hidden');
+						$j('#mou_details_table_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('mou_details_table', 'type');
+					},
+					timeout:  5000,
+					doActionOnTimeout:  true
+				});
+			} else {
+				$j('#mou_details_table_dv_container-loading').addClass('hidden');
+				$j('#mou_details_table_dv_container').removeClass('hidden');
+			}
+
+			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
+
+			if(embedded_mode) {
+				/* hide links to children tables in embedded mode */
+				$j('.detail_view a[id$=_link]').remove();
+
+				/* append embedded mode to all links */
+				var append_embedded = function() {
+					$j('a[href]:not([href^="#"]):not([href^="javascript"]):not([href$="Embedded=1"]):not([href*="link.php?t="]):not([href^="mailto:"]):not([href$=".jpg"]):not([href$=".png"]):not([href$=".gif"])').each(
+						function() {
+							$j(this).attr('href', $j(this).attr('href') + '&Embedded=1');
+						}
+					);
+				}
+				setTimeout(append_embedded, 500);
+				setTimeout(append_embedded, 1500);
+				setTimeout(append_embedded, 2500);
+				setTimeout(append_embedded, 3500);
+			}
+
+			/* when no record is selected ('add new' mode) */
+			if(add_new_mode) {
+				/* hide links to children tables */
+				$j('.detail_view a[id$=_link]').remove();
+			} else {
+				post(
+					'parent-children.php', {
+						ParentTable: 'mou_details_table',
+						SelectedID: '<%%VALUE(id)%%>',
+						Operation: 'show-children'
+					},
+					'mou_details_table-children'
+				);
+			}
+
+			if(true /* !embedded_mode */) {
+				$j('.add_new_parent').click(function() {
+					var pt = $j(this).attr('id').replace(/_add_new$/, '');
+					modal_window({
+						url: pt + '_view.php?addNew_x=1&Embedded=1',
+						close: function() {
+							var field_id = $j('#' + pt + '_add_new').prevAll('input:hidden').eq(0).attr('id');
+							$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+							/* if a new parent was added, select it */
+							var new_id = localStorage.getItem(pt + '_last_added_id');
+							if(new_id === null) return;
+
+							localStorage.removeItem(pt + '_last_added_id');
+							AppGini.lookupText({
+								id: new_id,
+								table: 'mou_details_table',
+								field: field_id,
+								callback: function(data) {
+									$j('#' + field_id + '-container').select2('data', data, true);
+								}
+							});
+						},
+						size: 'full',
+						title: $j(this).attr('title')
+					});
+				});
+			}
+
+			AppGini.hideViewParentLinks();
+
+			$j('form').on('click', '.view_parent', function() {
+				var pt = $j(this).attr('id').replace(/_view_parent$/, '');
+				if($j(this).prevAll('input:hidden').length) {
+					var parent_id = $j(this).prevAll('input:hidden').eq(0).val();
+				} else {
+					var parent_id = $j(this).prevAll().children('input:hidden').eq(0).val();
+				}
+
+				/* handle radio lookups */
+				if($j(this).prevAll('[type=radio]').length) {
+					parent_id = $j(this).prevAll('[type=radio]').eq(0).val();
+				}
+
+				if(parent_id != '{empty_value}' && parent_id != undefined && parent_id != '') {
+					var parent_link = $j(this).parents('.form-group').children('label').data('parent_link');
+					switch(parent_link) {
+						case 'view_parent_hidden':
+							break;
+						case 'view_parent_modal':
+							modal_window({
+								url: pt + '_view.php?Embedded=1&SelectedID=' + encodeURIComponent(parent_id),
+								close: function() {
+									var field_id = $j('#' + pt + '_view_parent').prevAll('input:hidden').eq(0).attr('id');
+									$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+									// in case the parent record was updated, we should update auto-fills
+									var updaterName = field_id + '_update_autofills';
+									if(typeof(window[updaterName]) == 'function')
+										window[updaterName]();
+								},
+								size: 'full',
+								title: $j(this).attr('title')
+							});
+							break;
+						case 'view_parent_same_window':
+							window.location = pt + '_view.php?Embedded=' + (embedded_mode ? '1' : '') + '&SelectedID=' + encodeURIComponent(parent_id);
+							break;
+						case 'view_parent_new_window':
+							window.open(pt + '_view.php?SelectedID=' + encodeURIComponent(parent_id));
+							break;
+					}
+
+				}
+			});
+
+
+			/* load admin tools for admin user */
+			if(!add_new_mode) {
+				$j('body').append('<div id="admin-tools-appendix"></div>');
+				$j('#admin-tools-appendix').load(
+					'ajax_admin_tools.php?table=mou_details_table&id=<%%URLVALUE(id)%%>',
+					function(resp) {
+						if(!resp.length) return;
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=mou_details_table&id=<%%URLVALUE(id)%%>');
+					}
+				);
+			}
+		});
+	</script>

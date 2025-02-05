@@ -1,0 +1,26 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the it_inventory_app_init() hook (in hooks/it_inventory_app.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="it_inventory_app-it_inventory_id-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-it_inventory_id text-right text-bold"><%%VALUE(it_inventory_id)%%></td>
+		<td id="it_inventory_app-date-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-date text-bold"><%%VALUE(date)%%></td>
+		<td id="it_inventory_app-description-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-description text-bold"><%%VALUE(description)%%></td>
+		<td id="it_inventory_app-classification_of_asset-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-classification_of_asset text-bold"><%%VALUE(classification_of_asset)%%></td>
+		<td id="it_inventory_app-sub_category-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-sub_category text-bold"><%%VALUE(sub_category)%%></td>
+		<td id="it_inventory_app-asset_serial_number-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-asset_serial_number text-bold"><%%VALUE(asset_serial_number)%%></td>
+		<td id="it_inventory_app-qr_and_bar_code-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-qr_and_bar_code text-bold"><%%VALUE(qr_and_bar_code)%%></td>
+		<td id="it_inventory_app-custody_department-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-custody_department text-bold"><%%VALUE(custody_department)%%></td>
+		<td id="it_inventory_app-custodian-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-custodian text-bold"><%%VALUE(custodian)%%></td>
+		<td id="it_inventory_app-custodian_signature-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-custodian_signature text-bold"><img src="thumbnail.php?i=<%%VALUE(custodian_signature)%%>&t=it_inventory_app&f=custodian_signature&v=tv" class="img-thumbnail"></td>
+		<td id="it_inventory_app-no_of_years_useful_life_of_assets-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-no_of_years_useful_life_of_assets text-bold"><%%VALUE(no_of_years_useful_life_of_assets)%%></td>
+		<td id="it_inventory_app-date_of_useful_life_of_assets_ends-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-date_of_useful_life_of_assets_ends text-bold"><%%VALUE(date_of_useful_life_of_assets_ends)%%></td>
+		<td id="it_inventory_app-remarks-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-remarks text-bold"><%%VALUE(remarks)%%></td>
+		<td id="it_inventory_app-sactioned_by-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-sactioned_by text-bold"><%%VALUE(sactioned_by)%%></td>
+		<td id="it_inventory_app-it_inventory_str-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-it_inventory_str text-bold"><%%VALUE(it_inventory_str)%%></td>
+		<td id="it_inventory_app-created_by-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-created_by text-bold"><%%VALUE(created_by)%%></td>
+		<td id="it_inventory_app-created_at-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-created_at text-bold"><%%VALUE(created_at)%%></td>
+		<td id="it_inventory_app-last_updated_by-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
+		<td id="it_inventory_app-last_updated_at-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>

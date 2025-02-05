@@ -1,0 +1,511 @@
+<?php
+	define('PREPEND_PATH', '');
+	include_once(__DIR__ . '/lib.php');
+
+	// accept a record as an assoc array, return transformed row ready to insert to table
+	$transformFunctions = [
+		'user_table' => function($data, $options = []) {
+
+			return $data;
+		},
+		'suggestion' => function($data, $options = []) {
+
+			return $data;
+		},
+		'event_table' => function($data, $options = []) {
+			if(isset($data['event_from_date'])) $data['event_from_date'] = guessMySQLDateTime($data['event_from_date']);
+			if(isset($data['event_to_date'])) $data['event_to_date'] = guessMySQLDateTime($data['event_to_date']);
+
+			return $data;
+		},
+		'outcomes_expected_table' => function($data, $options = []) {
+			if(isset($data['event_lookup'])) $data['event_lookup'] = pkGivenLookupText($data['event_lookup'], 'outcomes_expected_table', 'event_lookup');
+
+			return $data;
+		},
+		'meetings_table' => function($data, $options = []) {
+			if(isset($data['visiting_card_lookup'])) $data['visiting_card_lookup'] = pkGivenLookupText($data['visiting_card_lookup'], 'meetings_table', 'visiting_card_lookup');
+			if(isset($data['event_lookup'])) $data['event_lookup'] = pkGivenLookupText($data['event_lookup'], 'meetings_table', 'event_lookup');
+			if(isset($data['meeting_from_date'])) $data['meeting_from_date'] = guessMySQLDateTime($data['meeting_from_date']);
+			if(isset($data['meeting_to_date'])) $data['meeting_to_date'] = guessMySQLDateTime($data['meeting_to_date']);
+
+			return $data;
+		},
+		'agenda_table' => function($data, $options = []) {
+			if(isset($data['meeting_lookup'])) $data['meeting_lookup'] = pkGivenLookupText($data['meeting_lookup'], 'agenda_table', 'meeting_lookup');
+
+			return $data;
+		},
+		'decision_table' => function($data, $options = []) {
+			if(isset($data['agenda_lookup'])) $data['agenda_lookup'] = pkGivenLookupText($data['agenda_lookup'], 'decision_table', 'agenda_lookup');
+			if(isset($data['decision_actor'])) $data['decision_actor'] = pkGivenLookupText($data['decision_actor'], 'decision_table', 'decision_actor');
+			if(isset($data['action_taken_with_date'])) $data['action_taken_with_date'] = guessMySQLDateTime($data['action_taken_with_date']);
+			if(isset($data['decision_status_update_date'])) $data['decision_status_update_date'] = guessMySQLDateTime($data['decision_status_update_date']);
+
+			return $data;
+		},
+		'participants_table' => function($data, $options = []) {
+			if(isset($data['event_lookup'])) $data['event_lookup'] = pkGivenLookupText($data['event_lookup'], 'participants_table', 'event_lookup');
+			if(isset($data['meeting_lookup'])) $data['meeting_lookup'] = pkGivenLookupText($data['meeting_lookup'], 'participants_table', 'meeting_lookup');
+			if(isset($data['status_date'])) $data['status_date'] = guessMySQLDateTime($data['status_date']);
+
+			return $data;
+		},
+		'action_actor' => function($data, $options = []) {
+			if(isset($data['actor'])) $data['actor'] = pkGivenLookupText($data['actor'], 'action_actor', 'actor');
+
+			return $data;
+		},
+		'visiting_card_table' => function($data, $options = []) {
+			if(isset($data['given_by'])) $data['given_by'] = pkGivenLookupText($data['given_by'], 'visiting_card_table', 'given_by');
+
+			return $data;
+		},
+		'mou_details_table' => function($data, $options = []) {
+			if(isset($data['date_of_agreement'])) $data['date_of_agreement'] = guessMySQLDateTime($data['date_of_agreement']);
+			if(isset($data['date_of_expiry'])) $data['date_of_expiry'] = guessMySQLDateTime($data['date_of_expiry']);
+			if(isset($data['assigned_mou_to'])) $data['assigned_mou_to'] = pkGivenLookupText($data['assigned_mou_to'], 'mou_details_table', 'assigned_mou_to');
+
+			return $data;
+		},
+		'mou_company_area_details_table' => function($data, $options = []) {
+			if(isset($data['name_of_the_company'])) $data['name_of_the_company'] = pkGivenLookupText($data['name_of_the_company'], 'mou_company_area_details_table', 'name_of_the_company');
+			if(isset($data['assigned_mou_to'])) $data['assigned_mou_to'] = pkGivenLookupText($data['assigned_mou_to'], 'mou_company_area_details_table', 'assigned_mou_to');
+
+			return $data;
+		},
+		'goal_setting_table' => function($data, $options = []) {
+			if(isset($data['goal_set_date'])) $data['goal_set_date'] = guessMySQLDateTime($data['goal_set_date']);
+			if(isset($data['supervisor_name'])) $data['supervisor_name'] = pkGivenLookupText($data['supervisor_name'], 'goal_setting_table', 'supervisor_name');
+			if(isset($data['assigned_to'])) $data['assigned_to'] = pkGivenLookupText($data['assigned_to'], 'goal_setting_table', 'assigned_to');
+
+			return $data;
+		},
+		'goal_progress_table' => function($data, $options = []) {
+			if(isset($data['goal_lookup'])) $data['goal_lookup'] = pkGivenLookupText($data['goal_lookup'], 'goal_progress_table', 'goal_lookup');
+			if(isset($data['remarks_by'])) $data['remarks_by'] = pkGivenLookupText($data['remarks_by'], 'goal_progress_table', 'remarks_by');
+
+			return $data;
+		},
+		'task_setting_table' => function($data, $options = []) {
+			if(isset($data['task_set_date'])) $data['task_set_date'] = guessMySQLDateTime($data['task_set_date']);
+			if(isset($data['supervisor_name'])) $data['supervisor_name'] = pkGivenLookupText($data['supervisor_name'], 'task_setting_table', 'supervisor_name');
+			if(isset($data['assigned_to'])) $data['assigned_to'] = pkGivenLookupText($data['assigned_to'], 'task_setting_table', 'assigned_to');
+
+			return $data;
+		},
+		'subtask_setting_table' => function($data, $options = []) {
+			if(isset($data['task_lookup'])) $data['task_lookup'] = pkGivenLookupText($data['task_lookup'], 'subtask_setting_table', 'task_lookup');
+			if(isset($data['subtask_set_date'])) $data['subtask_set_date'] = guessMySQLDateTime($data['subtask_set_date']);
+			if(isset($data['supervisor_name'])) $data['supervisor_name'] = pkGivenLookupText($data['supervisor_name'], 'subtask_setting_table', 'supervisor_name');
+			if(isset($data['assigned_to'])) $data['assigned_to'] = pkGivenLookupText($data['assigned_to'], 'subtask_setting_table', 'assigned_to');
+
+			return $data;
+		},
+		'internship_fellowship_details_app' => function($data, $options = []) {
+
+			return $data;
+		},
+		'star_pnt' => function($data, $options = []) {
+			if(isset($data['iittnif_id'])) $data['iittnif_id'] = pkGivenLookupText($data['iittnif_id'], 'star_pnt', 'iittnif_id');
+
+			return $data;
+		},
+		'hrd_sdp_events_table' => function($data, $options = []) {
+			if(isset($data['start_date'])) $data['start_date'] = guessMySQLDateTime($data['start_date']);
+			if(isset($data['end_date'])) $data['end_date'] = guessMySQLDateTime($data['end_date']);
+
+			return $data;
+		},
+		'training_program_on_geospatial_tchnologies_table' => function($data, $options = []) {
+			if(isset($data['datetime'])) $data['datetime'] = guessMySQLDateTime($data['datetime']);
+			if(isset($data['attended_training_date'])) $data['attended_training_date'] = guessMySQLDateTime($data['attended_training_date']);
+
+			return $data;
+		},
+		'space_day_school_details_app' => function($data, $options = []) {
+
+			return $data;
+		},
+		'space_day_college_student_table' => function($data, $options = []) {
+
+			return $data;
+		},
+		'school_list' => function($data, $options = []) {
+
+			return $data;
+		},
+		'sdp_participants_college_details_table' => function($data, $options = []) {
+			if(isset($data['start_date'])) $data['start_date'] = guessMySQLDateTime($data['start_date']);
+			if(isset($data['end_date'])) $data['end_date'] = guessMySQLDateTime($data['end_date']);
+
+			return $data;
+		},
+		'asset_app' => function($data, $options = []) {
+			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
+			if(isset($data['date_of_useful_life_of_assets_ends'])) $data['date_of_useful_life_of_assets_ends'] = guessMySQLDateTime($data['date_of_useful_life_of_assets_ends']);
+			if(isset($data['sactioned_by'])) $data['sactioned_by'] = pkGivenLookupText($data['sactioned_by'], 'asset_app', 'sactioned_by');
+
+			return $data;
+		},
+		'asset_billing_details' => function($data, $options = []) {
+			if(isset($data['asset_lookup'])) $data['asset_lookup'] = pkGivenLookupText($data['asset_lookup'], 'asset_billing_details', 'asset_lookup');
+			if(isset($data['po_date'])) $data['po_date'] = guessMySQLDateTime($data['po_date']);
+			if(isset($data['bill_date'])) $data['bill_date'] = guessMySQLDateTime($data['bill_date']);
+
+			return $data;
+		},
+		'asset_table' => function($data, $options = []) {
+			if(isset($data['Date'])) $data['Date'] = guessMySQLDateTime($data['Date']);
+			if(isset($data['PODATE'])) $data['PODATE'] = guessMySQLDateTime($data['PODATE']);
+			if(isset($data['BillDate'])) $data['BillDate'] = guessMySQLDateTime($data['BillDate']);
+
+			return $data;
+		},
+		'asset_allotment_table' => function($data, $options = []) {
+			if(isset($data['asset_lookup'])) $data['asset_lookup'] = pkGivenLookupText($data['asset_lookup'], 'asset_allotment_table', 'asset_lookup');
+			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
+			if(isset($data['alloted_by'])) $data['alloted_by'] = pkGivenLookupText($data['alloted_by'], 'asset_allotment_table', 'alloted_by');
+			if(isset($data['returned_date'])) $data['returned_date'] = guessMySQLDateTime($data['returned_date']);
+
+			return $data;
+		},
+		'it_inventory_app' => function($data, $options = []) {
+			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
+			if(isset($data['date_of_useful_life_of_assets_ends'])) $data['date_of_useful_life_of_assets_ends'] = guessMySQLDateTime($data['date_of_useful_life_of_assets_ends']);
+			if(isset($data['sactioned_by'])) $data['sactioned_by'] = pkGivenLookupText($data['sactioned_by'], 'it_inventory_app', 'sactioned_by');
+
+			return $data;
+		},
+		'it_inventory_billing_details' => function($data, $options = []) {
+			if(isset($data['it_inventory_lookup'])) $data['it_inventory_lookup'] = pkGivenLookupText($data['it_inventory_lookup'], 'it_inventory_billing_details', 'it_inventory_lookup');
+			if(isset($data['po_date'])) $data['po_date'] = guessMySQLDateTime($data['po_date']);
+			if(isset($data['bill_date'])) $data['bill_date'] = guessMySQLDateTime($data['bill_date']);
+
+			return $data;
+		},
+		'it_inventory_allotment_table' => function($data, $options = []) {
+			if(isset($data['it_inventory_lookup'])) $data['it_inventory_lookup'] = pkGivenLookupText($data['it_inventory_lookup'], 'it_inventory_allotment_table', 'it_inventory_lookup');
+			if(isset($data['select_employee'])) $data['select_employee'] = pkGivenLookupText($data['select_employee'], 'it_inventory_allotment_table', 'select_employee');
+			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
+			if(isset($data['alloted_by'])) $data['alloted_by'] = pkGivenLookupText($data['alloted_by'], 'it_inventory_allotment_table', 'alloted_by');
+			if(isset($data['returned_date'])) $data['returned_date'] = guessMySQLDateTime($data['returned_date']);
+
+			return $data;
+		},
+		'computer_details_table' => function($data, $options = []) {
+
+			return $data;
+		},
+		'computer_usage_table' => function($data, $options = []) {
+			if(isset($data['pc_id'])) $data['pc_id'] = pkGivenLookupText($data['pc_id'], 'computer_usage_table', 'pc_id');
+			if(isset($data['from_date'])) $data['from_date'] = guessMySQLDateTime($data['from_date']);
+			if(isset($data['to_date'])) $data['to_date'] = guessMySQLDateTime($data['to_date']);
+
+			return $data;
+		},
+		'personal_data_table' => function($data, $options = []) {
+			if(isset($data['date_of_birth'])) $data['date_of_birth'] = guessMySQLDateTime($data['date_of_birth']);
+			if(isset($data['date_of_joining'])) $data['date_of_joining'] = guessMySQLDateTime($data['date_of_joining']);
+			if(isset($data['date_of_exit'])) $data['date_of_exit'] = guessMySQLDateTime($data['date_of_exit']);
+
+			return $data;
+		},
+		'employees_designation_table' => function($data, $options = []) {
+			if(isset($data['employee_details'])) $data['employee_details'] = pkGivenLookupText($data['employee_details'], 'employees_designation_table', 'employee_details');
+			if(isset($data['date_of_appointment_to_new_designation'])) $data['date_of_appointment_to_new_designation'] = guessMySQLDateTime($data['date_of_appointment_to_new_designation']);
+
+			return $data;
+		},
+		'attendence_details_table' => function($data, $options = []) {
+			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
+
+			return $data;
+		},
+		'leave_table' => function($data, $options = []) {
+			if(isset($data['from_date'])) $data['from_date'] = guessMySQLDateTime($data['from_date']);
+			if(isset($data['to_date'])) $data['to_date'] = guessMySQLDateTime($data['to_date']);
+			if(isset($data['approved_by'])) $data['approved_by'] = pkGivenLookupText($data['approved_by'], 'leave_table', 'approved_by');
+
+			return $data;
+		},
+		'work_from_home_table' => function($data, $options = []) {
+			if(isset($data['from_date'])) $data['from_date'] = guessMySQLDateTime($data['from_date']);
+			if(isset($data['to_date'])) $data['to_date'] = guessMySQLDateTime($data['to_date']);
+			if(isset($data['approved_by'])) $data['approved_by'] = pkGivenLookupText($data['approved_by'], 'work_from_home_table', 'approved_by');
+
+			return $data;
+		},
+		'email_id_allocation_table' => function($data, $options = []) {
+			if(isset($data['date_of_allocation'])) $data['date_of_allocation'] = guessMySQLDateTime($data['date_of_allocation']);
+			if(isset($data['reporting_manager'])) $data['reporting_manager'] = pkGivenLookupText($data['reporting_manager'], 'email_id_allocation_table', 'reporting_manager');
+
+			return $data;
+		},
+		'all_startup_data_table' => function($data, $options = []) {
+			if(isset($data['date_of_incubation'])) $data['date_of_incubation'] = guessMySQLDateTime($data['date_of_incubation']);
+
+			return $data;
+		},
+		'shortlisted_startups_for_fund_table' => function($data, $options = []) {
+			if(isset($data['startup'])) $data['startup'] = pkGivenLookupText($data['startup'], 'shortlisted_startups_for_fund_table', 'startup');
+
+			return $data;
+		},
+		'shortlisted_startups_dd_and_agreement_table' => function($data, $options = []) {
+			if(isset($data['startup'])) $data['startup'] = pkGivenLookupText($data['startup'], 'shortlisted_startups_dd_and_agreement_table', 'startup');
+
+			return $data;
+		},
+		'vikas_startup_applications_table' => function($data, $options = []) {
+			if(isset($data['incorporation_date'])) $data['incorporation_date'] = guessMySQLDateTime($data['incorporation_date']);
+			if(isset($data['datetime'])) $data['datetime'] = guessMySQLDateTime($data['datetime']);
+
+			return $data;
+		},
+		'programs_table' => function($data, $options = []) {
+
+			return $data;
+		},
+		'evaluation_table' => function($data, $options = []) {
+			if(isset($data['select_startup'])) $data['select_startup'] = pkGivenLookupText($data['select_startup'], 'evaluation_table', 'select_startup');
+
+			return $data;
+		},
+		'problem_statement_table' => function($data, $options = []) {
+			if(isset($data['select_program_id'])) $data['select_program_id'] = pkGivenLookupText($data['select_program_id'], 'problem_statement_table', 'select_program_id');
+
+			return $data;
+		},
+		'evaluators_table' => function($data, $options = []) {
+			if(isset($data['evaluation_lookup'])) $data['evaluation_lookup'] = pkGivenLookupText($data['evaluation_lookup'], 'evaluators_table', 'evaluation_lookup');
+
+			return $data;
+		},
+		'approval_table' => function($data, $options = []) {
+			if(isset($data['person_responsbility'])) $data['person_responsbility'] = pkGivenLookupText($data['person_responsbility'], 'approval_table', 'person_responsbility');
+
+			return $data;
+		},
+		'all_bank_account_statement_table' => function($data, $options = []) {
+			if(isset($data['txn_date'])) $data['txn_date'] = guessMySQLDateTime($data['txn_date']);
+			if(isset($data['value_date'])) $data['value_date'] = guessMySQLDateTime($data['value_date']);
+
+			return $data;
+		},
+		'payment_track_details_table' => function($data, $options = []) {
+			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
+			if(isset($data['payment_date'])) $data['payment_date'] = guessMySQLDateTime($data['payment_date']);
+
+			return $data;
+		},
+		'car_table' => function($data, $options = []) {
+			if(isset($data['rental_start_date'])) $data['rental_start_date'] = guessMySQLDateTime($data['rental_start_date']);
+			if(isset($data['rental_end_date'])) $data['rental_end_date'] = guessMySQLDateTime($data['rental_end_date']);
+
+			return $data;
+		},
+		'car_usage_table' => function($data, $options = []) {
+			if(isset($data['car_lookup'])) $data['car_lookup'] = pkGivenLookupText($data['car_lookup'], 'car_usage_table', 'car_lookup');
+			if(isset($data['datetime_from'])) $data['datetime_from'] = guessMySQLDateTime($data['datetime_from']);
+			if(isset($data['datetime_to'])) $data['datetime_to'] = guessMySQLDateTime($data['datetime_to']);
+
+			return $data;
+		},
+		'travel_table' => function($data, $options = []) {
+			if(isset($data['date_from'])) $data['date_from'] = guessMySQLDateTime($data['date_from']);
+			if(isset($data['date_to'])) $data['date_to'] = guessMySQLDateTime($data['date_to']);
+			if(isset($data['approved_by'])) $data['approved_by'] = pkGivenLookupText($data['approved_by'], 'travel_table', 'approved_by');
+
+			return $data;
+		},
+		'travel_cab_table' => function($data, $options = []) {
+			if(isset($data['travel_details'])) $data['travel_details'] = pkGivenLookupText($data['travel_details'], 'travel_cab_table', 'travel_details');
+			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
+
+			return $data;
+		},
+		'travel_flight_table' => function($data, $options = []) {
+			if(isset($data['travel_details'])) $data['travel_details'] = pkGivenLookupText($data['travel_details'], 'travel_flight_table', 'travel_details');
+			if(isset($data['travel_date'])) $data['travel_date'] = guessMySQLDateTime($data['travel_date']);
+
+			return $data;
+		},
+		'travel_hotel_table' => function($data, $options = []) {
+			if(isset($data['travel_details'])) $data['travel_details'] = pkGivenLookupText($data['travel_details'], 'travel_hotel_table', 'travel_details');
+			if(isset($data['checkin_date'])) $data['checkin_date'] = guessMySQLDateTime($data['checkin_date']);
+			if(isset($data['checkout_date'])) $data['checkout_date'] = guessMySQLDateTime($data['checkout_date']);
+
+			return $data;
+		},
+		'operation_dronagiri_data_submission_app' => function($data, $options = []) {
+			if(isset($data['submit_date'])) $data['submit_date'] = guessMySQLDateTime($data['submit_date']);
+
+			return $data;
+		},
+		'file_table' => function($data, $options = []) {
+			if(isset($data['data_str_key'])) $data['data_str_key'] = pkGivenLookupText($data['data_str_key'], 'file_table', 'data_str_key');
+
+			return $data;
+		},
+		'panel_decision_table_tdp' => function($data, $options = []) {
+			if(isset($data['date_of_presentation'])) $data['date_of_presentation'] = guessMySQLDateTime($data['date_of_presentation']);
+
+			return $data;
+		},
+		'selected_proposals_final_tdp' => function($data, $options = []) {
+			if(isset($data['project_id'])) $data['project_id'] = pkGivenLookupText($data['project_id'], 'selected_proposals_final_tdp', 'project_id');
+
+			return $data;
+		},
+		'stage_wise_budget_table_tdp' => function($data, $options = []) {
+			if(isset($data['project_id'])) $data['project_id'] = pkGivenLookupText($data['project_id'], 'stage_wise_budget_table_tdp', 'project_id');
+
+			return $data;
+		},
+		'first_level_shortlisted_proposals_tdp' => function($data, $options = []) {
+			if(isset($data['project_id'])) $data['project_id'] = pkGivenLookupText($data['project_id'], 'first_level_shortlisted_proposals_tdp', 'project_id');
+
+			return $data;
+		},
+		'budget_table_tdp' => function($data, $options = []) {
+			if(isset($data['project_id'])) $data['project_id'] = pkGivenLookupText($data['project_id'], 'budget_table_tdp', 'project_id');
+			if(isset($data['date_of_presentation'])) $data['date_of_presentation'] = guessMySQLDateTime($data['date_of_presentation']);
+
+			return $data;
+		},
+		'panel_comments_tdp' => function($data, $options = []) {
+			if(isset($data['project_id'])) $data['project_id'] = pkGivenLookupText($data['project_id'], 'panel_comments_tdp', 'project_id');
+
+			return $data;
+		},
+		'selected_tdp' => function($data, $options = []) {
+			if(isset($data['project_id'])) $data['project_id'] = pkGivenLookupText($data['project_id'], 'selected_tdp', 'project_id');
+
+			return $data;
+		},
+		'address_tdp' => function($data, $options = []) {
+			if(isset($data['project_id'])) $data['project_id'] = pkGivenLookupText($data['project_id'], 'address_tdp', 'project_id');
+
+			return $data;
+		},
+		'summary_table_tdp' => function($data, $options = []) {
+			if(isset($data['sactioned_date'])) $data['sactioned_date'] = guessMySQLDateTime($data['sactioned_date']);
+			if(isset($data['first_milestone_amount_and_date'])) $data['first_milestone_amount_and_date'] = guessMySQLDateTime($data['first_milestone_amount_and_date']);
+			if(isset($data['stage_I_completion'])) $data['stage_I_completion'] = guessMySQLDateTime($data['stage_I_completion']);
+			if(isset($data['second_milestone_amount_and_date'])) $data['second_milestone_amount_and_date'] = guessMySQLDateTime($data['second_milestone_amount_and_date']);
+			if(isset($data['stage_2_completion'])) $data['stage_2_completion'] = guessMySQLDateTime($data['stage_2_completion']);
+			if(isset($data['third_milestone_amount_and_date'])) $data['third_milestone_amount_and_date'] = guessMySQLDateTime($data['third_milestone_amount_and_date']);
+			if(isset($data['stage_3_completion'])) $data['stage_3_completion'] = guessMySQLDateTime($data['stage_3_completion']);
+			if(isset($data['fourth_milestone_amount_and_date'])) $data['fourth_milestone_amount_and_date'] = guessMySQLDateTime($data['fourth_milestone_amount_and_date']);
+			if(isset($data['stage_4_completion'])) $data['stage_4_completion'] = guessMySQLDateTime($data['stage_4_completion']);
+
+			return $data;
+		},
+		'project_details_tdp' => function($data, $options = []) {
+			if(isset($data['project_number'])) $data['project_number'] = pkGivenLookupText($data['project_number'], 'project_details_tdp', 'project_number');
+
+			return $data;
+		},
+	];
+
+	// accept a record as an assoc array, return a boolean indicating whether to import or skip record
+	$filterFunctions = [
+		'user_table' => function($data, $options = []) { return true; },
+		'suggestion' => function($data, $options = []) { return true; },
+		'event_table' => function($data, $options = []) { return true; },
+		'outcomes_expected_table' => function($data, $options = []) { return true; },
+		'meetings_table' => function($data, $options = []) { return true; },
+		'agenda_table' => function($data, $options = []) { return true; },
+		'decision_table' => function($data, $options = []) { return true; },
+		'participants_table' => function($data, $options = []) { return true; },
+		'action_actor' => function($data, $options = []) { return true; },
+		'visiting_card_table' => function($data, $options = []) { return true; },
+		'mou_details_table' => function($data, $options = []) { return true; },
+		'mou_company_area_details_table' => function($data, $options = []) { return true; },
+		'goal_setting_table' => function($data, $options = []) { return true; },
+		'goal_progress_table' => function($data, $options = []) { return true; },
+		'task_setting_table' => function($data, $options = []) { return true; },
+		'subtask_setting_table' => function($data, $options = []) { return true; },
+		'internship_fellowship_details_app' => function($data, $options = []) { return true; },
+		'star_pnt' => function($data, $options = []) { return true; },
+		'hrd_sdp_events_table' => function($data, $options = []) { return true; },
+		'training_program_on_geospatial_tchnologies_table' => function($data, $options = []) { return true; },
+		'space_day_school_details_app' => function($data, $options = []) { return true; },
+		'space_day_college_student_table' => function($data, $options = []) { return true; },
+		'school_list' => function($data, $options = []) { return true; },
+		'sdp_participants_college_details_table' => function($data, $options = []) { return true; },
+		'asset_app' => function($data, $options = []) { return true; },
+		'asset_billing_details' => function($data, $options = []) { return true; },
+		'asset_table' => function($data, $options = []) { return true; },
+		'asset_allotment_table' => function($data, $options = []) { return true; },
+		'it_inventory_app' => function($data, $options = []) { return true; },
+		'it_inventory_billing_details' => function($data, $options = []) { return true; },
+		'it_inventory_allotment_table' => function($data, $options = []) { return true; },
+		'computer_details_table' => function($data, $options = []) { return true; },
+		'computer_usage_table' => function($data, $options = []) { return true; },
+		'personal_data_table' => function($data, $options = []) { return true; },
+		'employees_designation_table' => function($data, $options = []) { return true; },
+		'attendence_details_table' => function($data, $options = []) { return true; },
+		'leave_table' => function($data, $options = []) { return true; },
+		'work_from_home_table' => function($data, $options = []) { return true; },
+		'email_id_allocation_table' => function($data, $options = []) { return true; },
+		'all_startup_data_table' => function($data, $options = []) { return true; },
+		'shortlisted_startups_for_fund_table' => function($data, $options = []) { return true; },
+		'shortlisted_startups_dd_and_agreement_table' => function($data, $options = []) { return true; },
+		'vikas_startup_applications_table' => function($data, $options = []) { return true; },
+		'programs_table' => function($data, $options = []) { return true; },
+		'evaluation_table' => function($data, $options = []) { return true; },
+		'problem_statement_table' => function($data, $options = []) { return true; },
+		'evaluators_table' => function($data, $options = []) { return true; },
+		'approval_table' => function($data, $options = []) { return true; },
+		'all_bank_account_statement_table' => function($data, $options = []) { return true; },
+		'payment_track_details_table' => function($data, $options = []) { return true; },
+		'car_table' => function($data, $options = []) { return true; },
+		'car_usage_table' => function($data, $options = []) { return true; },
+		'travel_table' => function($data, $options = []) { return true; },
+		'travel_cab_table' => function($data, $options = []) { return true; },
+		'travel_flight_table' => function($data, $options = []) { return true; },
+		'travel_hotel_table' => function($data, $options = []) { return true; },
+		'operation_dronagiri_data_submission_app' => function($data, $options = []) { return true; },
+		'file_table' => function($data, $options = []) { return true; },
+		'panel_decision_table_tdp' => function($data, $options = []) { return true; },
+		'selected_proposals_final_tdp' => function($data, $options = []) { return true; },
+		'stage_wise_budget_table_tdp' => function($data, $options = []) { return true; },
+		'first_level_shortlisted_proposals_tdp' => function($data, $options = []) { return true; },
+		'budget_table_tdp' => function($data, $options = []) { return true; },
+		'panel_comments_tdp' => function($data, $options = []) { return true; },
+		'selected_tdp' => function($data, $options = []) { return true; },
+		'address_tdp' => function($data, $options = []) { return true; },
+		'summary_table_tdp' => function($data, $options = []) { return true; },
+		'project_details_tdp' => function($data, $options = []) { return true; },
+	];
+
+	/*
+	Hook file for overwriting/amending $transformFunctions and $filterFunctions:
+	hooks/import-csv.php
+	If found, it's included below
+
+	The way this works is by either completely overwriting any of the above 2 arrays,
+	or, more commonly, overwriting a single function, for example:
+		$transformFunctions['tablename'] = function($data, $options = []) {
+			// new definition here
+			// then you must return transformed data
+			return $data;
+		};
+
+	Another scenario is transforming a specific field and leaving other fields to the default
+	transformation. One possible way of doing this is to store the original transformation function
+	in GLOBALS array, calling it inside the custom transformation function, then modifying the
+	specific field:
+		$GLOBALS['originalTransformationFunction'] = $transformFunctions['tablename'];
+		$transformFunctions['tablename'] = function($data, $options = []) {
+			$data = call_user_func_array($GLOBALS['originalTransformationFunction'], [$data, $options]);
+			$data['fieldname'] = 'transformed value';
+			return $data;
+		};
+	*/
+
+	@include(__DIR__ . '/hooks/import-csv.php');
+
+	$ui = new CSVImportUI($transformFunctions, $filterFunctions);

@@ -1,0 +1,71 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Name/Title of the dataset -->
+		<div class="form-group file_table-name_title_of_the_dataset" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Name/Title of the dataset</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(name_title_of_the_dataset)%%></div>
+			</div>
+		</div>
+		<!-- Field: Category of the dataset -->
+		<div class="form-group file_table-category_of_the_dataset" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Category of the dataset</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(category_of_the_dataset)%%></div>
+			</div>
+		</div>
+		<!-- Field: Description of the dataset (Provide a brief note on the dataset content, including what the data represents.) -->
+		<div class="form-group file_table-description_of_the_dataset" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Description of the dataset (Provide a brief note on the dataset content, including what the data represents.)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(description_of_the_dataset)%%></div>
+			</div>
+		</div>
+		<!-- Field: Geographic Coverage (Specify the region/area covered by the dataset, e.g., Block Name, Taluk Name, Village Name, Vizianagaram district, Andhra Pradesh.) -->
+		<div class="form-group file_table-geographic_coverage" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Geographic Coverage (Specify the region/area covered by the dataset, e.g., Block Name, Taluk Name, Village Name, Vizianagaram district, Andhra Pradesh.)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(geographic_coverage)%%></div>
+			</div>
+		</div>
+		<!-- Field: Format of the dataset -->
+		<div class="form-group file_table-format_of_the_dataset" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Format of the dataset</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(format_of_the_dataset)%%></div>
+			</div>
+		</div>
+		<!-- Field: Upload file -->
+		<div class="form-group file_table-upload_file" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Upload file</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><a id="upload_file-link" href="link.php?t=file_table&f=upload_file&i=<%%VALUE(file_id)%%>" target="_blank"><i class="glyphicon glyphicon-lg glyphicon-picture" title="<%%VALUE(upload_file)%%>"></i></a><script>jQuery(function() { var e_upload_file = '<%%VALUE(upload_file)%%>'; if(e_upload_file == '' || e_upload_file == '&nbsp;' || e_upload_file == 'blank.gif') jQuery('#upload_file-link').hide(); });</script></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

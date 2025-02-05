@@ -1,0 +1,148 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Project ID::Title -->
+		<div class="form-group selected_proposals_final_tdp-project_id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Project ID::Title</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="project_id<%%RND1%%>"><%%COMBOTEXT(project_id)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Breakthrough / Novel -->
+		<div class="form-group selected_proposals_final_tdp-breakthrough" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Breakthrough / Novel</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(breakthrough)%%></div>
+			</div>
+		</div>
+		<!-- Field: Project title -->
+		<div class="form-group selected_proposals_final_tdp-project_title" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Project title</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(project_title)%%></div>
+			</div>
+		</div>
+		<!-- Field: Short name -->
+		<div class="form-group selected_proposals_final_tdp-short_name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Short name</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(short_name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Duration in months -->
+		<div class="form-group selected_proposals_final_tdp-duration_in_months" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Duration in months</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(duration_in_months)%%></div>
+			</div>
+		</div>
+		<!-- Field: Name of PI -->
+		<div class="form-group selected_proposals_final_tdp-name_of_pi" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Name of PI</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(name_of_pi)%%></div>
+			</div>
+		</div>
+		<!-- Field: Mobile number -->
+		<div class="form-group selected_proposals_final_tdp-mobile_number" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Mobile number</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(mobile_number)%%></div>
+			</div>
+		</div>
+		<!-- Field: Institute -->
+		<div class="form-group selected_proposals_final_tdp-institute" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Institute</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(institute)%%></div>
+			</div>
+		</div>
+		<!-- Field: Stage 1 in Rs. -->
+		<div class="form-group selected_proposals_final_tdp-stage_1" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Stage 1 in Rs.</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(stage_1)%%></div>
+			</div>
+		</div>
+		<!-- Field: Stage 2 in Rs. -->
+		<div class="form-group selected_proposals_final_tdp-stage_2" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Stage 2 in Rs.</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(stage_2)%%></div>
+			</div>
+		</div>
+		<!-- Field: Stage 3 in Rs. -->
+		<div class="form-group selected_proposals_final_tdp-stage_3" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Stage 3 in Rs.</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(stage_3)%%></div>
+			</div>
+		</div>
+		<!-- Field: Stage 4 in Rs. -->
+		<div class="form-group selected_proposals_final_tdp-stage_4" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Stage 4 in Rs.</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(stage_4)%%></div>
+			</div>
+		</div>
+		<!-- Field: Total budget specified in Rs. -->
+		<div class="form-group selected_proposals_final_tdp-total_budget_specified" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Total budget specified in Rs.</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(total_budget_specified)%%></div>
+			</div>
+		</div>
+		<!-- Field: One slide PPT link -->
+		<div class="form-group selected_proposals_final_tdp-one_slide_ppt_link" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">One slide PPT link</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(one_slide_ppt_link)%%></div>
+			</div>
+		</div>
+		<!-- Field: Proposal link -->
+		<div class="form-group selected_proposals_final_tdp-proposal_link" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Proposal link</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(proposal_link)%%></div>
+			</div>
+		</div>
+		<!-- Field: Existing TRL -->
+		<div class="form-group selected_proposals_final_tdp-existing_trl" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Existing TRL</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(existing_trl)%%></div>
+			</div>
+		</div>
+		<!-- Field: Expected TRL -->
+		<div class="form-group selected_proposals_final_tdp-expected_trl" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Expected TRL</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(expected_trl)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

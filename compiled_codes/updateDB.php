@@ -1,0 +1,306 @@
+<?php
+	// check this file's MD5 to make sure it wasn't called before
+	$tenantId = Authentication::tenantIdPadded();
+	$setupHash = __DIR__ . "/setup{$tenantId}.md5";
+
+	$prevMD5 = @file_get_contents($setupHash);
+	$thisMD5 = md5_file(__FILE__);
+
+	// check if this setup file already run
+	if($thisMD5 != $prevMD5) {
+		// set up tables
+		setupTable('user_table', []);
+
+		setupTable('suggestion', []);
+
+		setupTable('event_table', []);
+
+		setupTable('outcomes_expected_table', []);
+		setupIndexes('outcomes_expected_table', ['event_lookup',]);
+
+		setupTable('meetings_table', []);
+		setupIndexes('meetings_table', ['visiting_card_lookup','event_lookup',]);
+
+		setupTable('agenda_table', []);
+		setupIndexes('agenda_table', ['meeting_lookup',]);
+
+		setupTable('decision_table', []);
+		setupIndexes('decision_table', ['agenda_lookup','decision_actor',]);
+
+		setupTable('participants_table', []);
+		setupIndexes('participants_table', ['event_lookup','meeting_lookup',]);
+
+		setupTable('action_actor', []);
+		setupIndexes('action_actor', ['actor',]);
+
+		setupTable('visiting_card_table', []);
+		setupIndexes('visiting_card_table', ['given_by',]);
+
+		setupTable('mou_details_table', []);
+		setupIndexes('mou_details_table', ['assigned_mou_to',]);
+
+		setupTable('mou_company_area_details_table', []);
+		setupIndexes('mou_company_area_details_table', ['name_of_the_company','assigned_mou_to',]);
+
+		setupTable('goal_setting_table', []);
+		setupIndexes('goal_setting_table', ['supervisor_name','assigned_to',]);
+
+		setupTable('goal_progress_table', []);
+		setupIndexes('goal_progress_table', ['goal_lookup','remarks_by',]);
+
+		setupTable('task_setting_table', []);
+		setupIndexes('task_setting_table', ['supervisor_name','assigned_to',]);
+
+		setupTable('subtask_setting_table', []);
+		setupIndexes('subtask_setting_table', ['task_lookup','supervisor_name','assigned_to',]);
+
+		setupTable('internship_fellowship_details_app', []);
+
+		setupTable('star_pnt', []);
+		setupIndexes('star_pnt', ['iittnif_id',]);
+
+		setupTable('hrd_sdp_events_table', []);
+
+		setupTable('training_program_on_geospatial_tchnologies_table', []);
+
+		setupTable('space_day_school_details_app', []);
+
+		setupTable('space_day_college_student_table', []);
+
+		setupTable('school_list', []);
+
+		setupTable('sdp_participants_college_details_table', []);
+
+		setupTable('asset_app', []);
+		setupIndexes('asset_app', ['sactioned_by',]);
+
+		setupTable('asset_billing_details', []);
+		setupIndexes('asset_billing_details', ['asset_lookup',]);
+
+		setupTable('asset_table', []);
+
+		setupTable('asset_allotment_table', []);
+		setupIndexes('asset_allotment_table', ['asset_lookup','alloted_by',]);
+
+		setupTable('it_inventory_app', []);
+		setupIndexes('it_inventory_app', ['sactioned_by',]);
+
+		setupTable('it_inventory_billing_details', []);
+		setupIndexes('it_inventory_billing_details', ['it_inventory_lookup',]);
+
+		setupTable('it_inventory_allotment_table', []);
+		setupIndexes('it_inventory_allotment_table', ['it_inventory_lookup','select_employee','alloted_by',]);
+
+		setupTable('computer_details_table', []);
+
+		setupTable('computer_usage_table', []);
+		setupIndexes('computer_usage_table', ['pc_id',]);
+
+		setupTable('personal_data_table', []);
+
+		setupTable('employees_designation_table', []);
+		setupIndexes('employees_designation_table', ['employee_details',]);
+
+		setupTable('attendence_details_table', []);
+
+		setupTable('leave_table', []);
+		setupIndexes('leave_table', ['approved_by',]);
+
+		setupTable('work_from_home_table', []);
+		setupIndexes('work_from_home_table', ['approved_by',]);
+
+		setupTable('email_id_allocation_table', []);
+		setupIndexes('email_id_allocation_table', ['reporting_manager',]);
+
+		setupTable('all_startup_data_table', []);
+
+		setupTable('shortlisted_startups_for_fund_table', []);
+		setupIndexes('shortlisted_startups_for_fund_table', ['startup',]);
+
+		setupTable('shortlisted_startups_dd_and_agreement_table', []);
+		setupIndexes('shortlisted_startups_dd_and_agreement_table', ['startup',]);
+
+		setupTable('vikas_startup_applications_table', []);
+
+		setupTable('programs_table', []);
+
+		setupTable('evaluation_table', []);
+		setupIndexes('evaluation_table', ['select_startup',]);
+
+		setupTable('problem_statement_table', []);
+		setupIndexes('problem_statement_table', ['select_program_id',]);
+
+		setupTable('evaluators_table', []);
+		setupIndexes('evaluators_table', ['evaluation_lookup',]);
+
+		setupTable('approval_table', []);
+		setupIndexes('approval_table', ['person_responsbility',]);
+
+		setupTable('all_bank_account_statement_table', []);
+
+		setupTable('payment_track_details_table', []);
+
+		setupTable('car_table', []);
+
+		setupTable('car_usage_table', []);
+		setupIndexes('car_usage_table', ['car_lookup',]);
+
+		setupTable('travel_table', []);
+		setupIndexes('travel_table', ['approved_by',]);
+
+		setupTable('travel_cab_table', []);
+		setupIndexes('travel_cab_table', ['travel_details',]);
+
+		setupTable('travel_flight_table', []);
+		setupIndexes('travel_flight_table', ['travel_details',]);
+
+		setupTable('travel_hotel_table', []);
+		setupIndexes('travel_hotel_table', ['travel_details',]);
+
+		setupTable('operation_dronagiri_data_submission_app', []);
+
+		setupTable('file_table', []);
+		setupIndexes('file_table', ['data_str_key',]);
+
+		setupTable('panel_decision_table_tdp', []);
+
+		setupTable('selected_proposals_final_tdp', []);
+		setupIndexes('selected_proposals_final_tdp', ['project_id',]);
+
+		setupTable('stage_wise_budget_table_tdp', []);
+		setupIndexes('stage_wise_budget_table_tdp', ['project_id',]);
+
+		setupTable('first_level_shortlisted_proposals_tdp', []);
+		setupIndexes('first_level_shortlisted_proposals_tdp', ['project_id',]);
+
+		setupTable('budget_table_tdp', []);
+		setupIndexes('budget_table_tdp', ['project_id',]);
+
+		setupTable('panel_comments_tdp', []);
+		setupIndexes('panel_comments_tdp', ['project_id',]);
+
+		setupTable('selected_tdp', []);
+		setupIndexes('selected_tdp', ['project_id',]);
+
+		setupTable('address_tdp', []);
+		setupIndexes('address_tdp', ['project_id',]);
+
+		setupTable('summary_table_tdp', []);
+
+		setupTable('project_details_tdp', []);
+		setupIndexes('project_details_tdp', ['project_number',]);
+
+
+
+		// set up internal tables
+		setupTable('appgini_query_log', []);
+		setupTable('appgini_csv_import_jobs', []);
+
+		// save MD5
+		@file_put_contents($setupHash, $thisMD5);
+	}
+
+
+	function setupIndexes($tableName, $arrFields) {
+		if(!is_array($arrFields) || !count($arrFields)) return false;
+
+		foreach($arrFields as $fieldName) {
+			if(!$res = @db_query("SHOW COLUMNS FROM `$tableName` like '$fieldName'")) continue;
+			if(!$row = @db_fetch_assoc($res)) continue;
+			if($row['Key']) continue;
+
+			@db_query("ALTER TABLE `$tableName` ADD INDEX `$fieldName` (`$fieldName`)");
+		}
+	}
+
+
+	function setupTable($tableName, $arrAlter = []) {
+		global $Translation;
+		$oldTableName = '';
+
+		$createSQL = createTableIfNotExists($tableName, true);
+		ob_start();
+
+		echo '<div style="padding: 5px; border-bottom:solid 1px silver; font-family: verdana, arial; font-size: 10px;">';
+
+		// is there a table rename query?
+		if(!empty($arrAlter)) {
+			$matches = [];
+			if(preg_match("/ALTER TABLE `(.*)` RENAME `$tableName`/i", $arrAlter[0], $matches)) {
+				$oldTableName = $matches[1];
+			}
+		}
+
+		if($res = @db_query("SELECT COUNT(1) FROM `$tableName`")) { // table already exists
+			if($row = @db_fetch_array($res)) {
+				echo str_replace(['<TableName>', '<NumRecords>'], [$tableName, $row[0]], $Translation['table exists']);
+				if(!empty($arrAlter)) {
+					echo '<br>';
+					foreach($arrAlter as $alter) {
+						if($alter != '') {
+							echo "$alter ... ";
+							if(!@db_query($alter)) {
+								echo '<span class="label label-danger">' . $Translation['failed'] . '</span>';
+								echo '<div class="text-danger">' . $Translation['mysql said'] . ' ' . db_error(db_link()) . '</div>';
+							} else {
+								echo '<span class="label label-success">' . $Translation['ok'] . '</span>';
+							}
+						}
+					}
+				} else {
+					echo $Translation['table uptodate'];
+				}
+			} else {
+				echo str_replace('<TableName>', $tableName, $Translation['couldnt count']);
+			}
+		} else { // given tableName doesn't exist
+
+			if($oldTableName != '') { // if we have a table rename query
+				if($ro = @db_query("SELECT COUNT(1) FROM `$oldTableName`")) { // if old table exists, rename it.
+					$renameQuery = array_shift($arrAlter); // get and remove rename query
+
+					echo "$renameQuery ... ";
+					if(!@db_query($renameQuery)) {
+						echo '<span class="label label-danger">' . $Translation['failed'] . '</span>';
+						echo '<div class="text-danger">' . $Translation['mysql said'] . ' ' . db_error(db_link()) . '</div>';
+					} else {
+						echo '<span class="label label-success">' . $Translation['ok'] . '</span>';
+					}
+
+					if(!empty($arrAlter)) setupTable($tableName, $arrAlter); // execute Alter queries on renamed table ...
+				} else { // if old tableName doesn't exist (nor the new one since we're here), then just create the table.
+					setupTable($tableName); // no Alter queries passed ...
+				}
+			} else { // tableName doesn't exist and no rename, so just create the table
+				echo str_replace("<TableName>", $tableName, $Translation["creating table"]);
+				if(!@db_query($createSQL)) {
+					echo '<span class="label label-danger">' . $Translation['failed'] . '</span>';
+					echo '<div class="text-danger">' . $Translation['mysql said'] . db_error(db_link()) . '</div>';
+
+					// create table with a dummy field
+					@db_query("CREATE TABLE IF NOT EXISTS `$tableName` (`_dummy_deletable_field` TINYINT)");
+				} else {
+					echo '<span class="label label-success">' . $Translation['ok'] . '</span>';
+				}
+			}
+
+			// set Admin group permissions for newly created table if membership_grouppermissions exists
+			if($ro = @db_query("SELECT COUNT(1) FROM `membership_grouppermissions`")) {
+				// get Admins group id
+				$ro = @db_query("SELECT `groupID` FROM `membership_groups` WHERE `name`='Admins'");
+				if($ro) {
+					$adminGroupID = intval(db_fetch_row($ro)[0]);
+					if($adminGroupID) @db_query("INSERT IGNORE INTO `membership_grouppermissions` SET
+						`groupID`='$adminGroupID',
+						`tableName`='$tableName',
+						`allowInsert`=1, `allowView`=1, `allowEdit`=1, `allowDelete`=1
+					");
+				}
+			}
+		}
+
+		echo '</div>';
+
+		$out = ob_get_clean();
+		if(defined('APPGINI_SETUP') && APPGINI_SETUP) echo $out;
+	}

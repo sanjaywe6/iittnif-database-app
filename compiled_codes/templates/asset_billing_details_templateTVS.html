@@ -1,0 +1,23 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the asset_billing_details_init() hook (in hooks/asset_billing_details.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="asset_billing_details-asset_biling_details_id-<%%VALUE(asset_biling_details_id)%%>" class="asset_billing_details-asset_biling_details_id text-right text-bold"><%%VALUE(asset_biling_details_id)%%></td>
+		<td id="asset_billing_details-asset_lookup-<%%VALUE(asset_biling_details_id)%%>" class="asset_billing_details-asset_lookup text-bold"><%%VALUE(asset_lookup)%%></td>
+		<td id="asset_billing_details-po_no-<%%VALUE(asset_biling_details_id)%%>" class="asset_billing_details-po_no text-bold"><%%VALUE(po_no)%%></td>
+		<td id="asset_billing_details-po_date-<%%VALUE(asset_biling_details_id)%%>" class="asset_billing_details-po_date text-bold"><%%VALUE(po_date)%%></td>
+		<td id="asset_billing_details-particulars_of_supplier-<%%VALUE(asset_biling_details_id)%%>" class="asset_billing_details-particulars_of_supplier text-bold"><%%VALUE(particulars_of_supplier)%%></td>
+		<td id="asset_billing_details-item_description-<%%VALUE(asset_biling_details_id)%%>" class="asset_billing_details-item_description text-bold"><%%VALUE(item_description)%%></td>
+		<td id="asset_billing_details-bill_no-<%%VALUE(asset_biling_details_id)%%>" class="asset_billing_details-bill_no text-bold"><%%VALUE(bill_no)%%></td>
+		<td id="asset_billing_details-bill_date-<%%VALUE(asset_biling_details_id)%%>" class="asset_billing_details-bill_date text-bold"><%%VALUE(bill_date)%%></td>
+		<td id="asset_billing_details-quantity-<%%VALUE(asset_biling_details_id)%%>" class="asset_billing_details-quantity text-bold"><%%VALUE(quantity)%%></td>
+		<td id="asset_billing_details-total_invoice_value-<%%VALUE(asset_biling_details_id)%%>" class="asset_billing_details-total_invoice_value text-bold"><%%VALUE(total_invoice_value)%%></td>
+		<td id="asset_billing_details-cost_of_the_asset-<%%VALUE(asset_biling_details_id)%%>" class="asset_billing_details-cost_of_the_asset text-bold"><%%VALUE(cost_of_the_asset)%%></td>
+		<td id="asset_billing_details-image-<%%VALUE(asset_biling_details_id)%%>" class="asset_billing_details-image text-bold"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(image)%%>" data-lightbox="asset_billing_details-image"><img src="thumbnail.php?i=<%%VALUE(image)%%>&t=asset_billing_details&f=image&v=tv" class="img-thumbnail"></a></td>
+		<td id="asset_billing_details-created_by-<%%VALUE(asset_biling_details_id)%%>" class="asset_billing_details-created_by text-bold"><%%VALUE(created_by)%%></td>
+		<td id="asset_billing_details-created_at-<%%VALUE(asset_biling_details_id)%%>" class="asset_billing_details-created_at text-bold"><%%VALUE(created_at)%%></td>
+		<td id="asset_billing_details-last_updated_by-<%%VALUE(asset_biling_details_id)%%>" class="asset_billing_details-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
+		<td id="asset_billing_details-last_updated_at-<%%VALUE(asset_biling_details_id)%%>" class="asset_billing_details-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>

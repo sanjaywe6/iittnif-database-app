@@ -1,0 +1,227 @@
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/file_table-dv.js rather than editing this file -->
+
+<div id="detail-view"></div>
+<div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
+
+<div id="file_table_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+
+<div class="panel-body hidden" id="file_table_dv_container">
+	<!-- child links -->
+	<div class="row vspacer-md">
+		<div class="col-xs-12 children-links">
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<hr class="hidden-xs hidden-sm">
+
+	<div class="row">
+		<!-- form inputs -->
+		<div class="col-md-8 col-lg-10" id="file_table_dv_form">
+			<fieldset class="form-horizontal">
+
+				<!-- Field: Name/Title of the dataset -->
+				<div class="form-group file_table-name_title_of_the_dataset">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="name_title_of_the_dataset">Name/Title of the dataset<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="name_title_of_the_dataset" id="name_title_of_the_dataset" value="<%%VALUE(name_title_of_the_dataset)%%>" required>
+					</div>
+				</div>
+
+				<!-- Field: Category of the dataset -->
+				<div class="form-group file_table-category_of_the_dataset">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="category_of_the_dataset">Category of the dataset</label>
+					<div class="col-lg-9">
+						<%%COMBO(category_of_the_dataset)%%>
+					</div>
+				</div>
+
+				<!-- Field: Description of the dataset (Provide a brief note on the dataset content, including what the data represents.) -->
+				<div class="form-group file_table-description_of_the_dataset">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="description_of_the_dataset">Description of the dataset (Provide a brief note on the dataset content, including what the data represents.)</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="description_of_the_dataset" id="description_of_the_dataset" rows=" 5"><%%VALUE(description_of_the_dataset)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Geographic Coverage (Specify the region/area covered by the dataset, e.g., Block Name, Taluk Name, Village Name, Vizianagaram district, Andhra Pradesh.) -->
+				<div class="form-group file_table-geographic_coverage">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="geographic_coverage">Geographic Coverage (Specify the region/area covered by the dataset, e.g., Block Name, Taluk Name, Village Name, Vizianagaram district, Andhra Pradesh.)</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="geographic_coverage" id="geographic_coverage" rows=" 5"><%%VALUE(geographic_coverage)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Format of the dataset -->
+				<div class="form-group file_table-format_of_the_dataset">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="format_of_the_dataset">Format of the dataset</label>
+					<div class="col-lg-9">
+						<%%COMBO(format_of_the_dataset)%%>
+					</div>
+				</div>
+
+				<!-- Field: Upload file -->
+				<div class="form-group file_table-upload_file">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Upload file <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#upload_file-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="upload_file-description"><div class="alert alert-info bspacer-xs">Maximum file size allowed: 1048576 KB.<br>Allowed file types: csv, xls, shp, geojson, tif, png, gif, shp, shx, dbf, prj, sbn, sbx, xml, geojson, json, kml, kmz, gml, csv, xls, xlsx, xlsm, ods, tif, tiff, jpg, jpeg, png, bmp, gif, img, ecw, sid, jp2</div></span>
+						<div class="form-control-static well well-sm">
+							<div class="row" style="margin-right: 0; margin-left: 0;">
+								<div class="col-lg-8 col-md-6" style="padding-left: 0;"><a id="upload_file-link" href="link.php?t=file_table&f=upload_file&i=<%%VALUE(file_id)%%>" target="_blank" class="rspacer-lg"><i class="glyphicon glyphicon-picture" title="<%%VALUE(upload_file)%%>" style="font-size: 4em;"></i></a></div>
+								<div class="hidden-md hidden-lg vspacer-lg"></div>
+								<div class="col-lg-4 col-md-6 well upload-toolbox">
+									<%%REMOVEFILE(upload_file)%%>
+									<%%UPLOADFILE(upload_file)%%>
+									<div class="text-bold text-danger file-type-error hidden"><%%TRANSLATION(invalid file type)%%></div>
+									<div class="text-bold text-danger file-size-error hidden"><%%TRANSLATION(file too large)%%></div>
+								</div>
+							</div>
+						</div>
+						<script>/* disable empty links */ $j(() => { const e_upload_file = '<%%VALUE(upload_file)%%>'; if(e_upload_file == '' || e_upload_file == '&nbsp;' || e_upload_file == 'blank.gif') { $j('#upload_file-link').hide(); $j('#upload_file-image').parents('a').attr('href', '').on('click', (e) => e.preventDefault()); } });</script>
+					</div>
+				</div>
+
+			</fieldset>
+		</div>
+
+		<!-- DV action buttons -->
+		<hr class="hidden-md hidden-lg">
+		<div class="col-md-4 col-lg-2" id="file_table_dv_action_buttons">
+			<div class="btn-toolbar">
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%UPDATE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%DESELECT_BUTTON%%>
+					<%%DVPRINT_BUTTON%%>
+					<%%DELETE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%INSERT_BUTTON%%>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<input type="hidden" name="data_str_key" value="<%%VALUE(data_str_key)%%>">
+
+</div><!-- /div class="panel-body" -->
+	<script>
+		$j(function() {
+			var add_new_mode = (!$j('input[name=SelectedID]').val());
+			var embedded_mode = ($j('input[name=Embedded]').val() == 1);
+
+			/* auto-close embedded page? */
+			var autoclose_mode = ($j('input[name=AutoClose]').val() == 1);
+			var record_added_ok = (location.search.split('record-added-ok=').length == 2);
+			var record_updated_ok = (location.search.split('record-updated-ok=').length == 2);
+			if((record_added_ok || record_updated_ok) && embedded_mode && autoclose_mode) {
+				setTimeout(AppGini.closeParentModal, 2000);
+			}
+
+
+			/* enable DV action buttons to float on scrolling down the form */
+			enable_dvab_floating();
+
+			$j('#file_table_dv_container-loading').addClass('hidden');
+			$j('#file_table_dv_container').removeClass('hidden');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('file_table', 'name_title_of_the_dataset');
+
+			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
+
+
+			if(true /* !embedded_mode */) {
+				$j('.add_new_parent').click(function() {
+					var pt = $j(this).attr('id').replace(/_add_new$/, '');
+					modal_window({
+						url: pt + '_view.php?addNew_x=1&Embedded=1',
+						close: function() {
+							var field_id = $j('#' + pt + '_add_new').prevAll('input:hidden').eq(0).attr('id');
+							$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+							/* if a new parent was added, select it */
+							var new_id = localStorage.getItem(pt + '_last_added_id');
+							if(new_id === null) return;
+
+							localStorage.removeItem(pt + '_last_added_id');
+							AppGini.lookupText({
+								id: new_id,
+								table: 'file_table',
+								field: field_id,
+								callback: function(data) {
+									$j('#' + field_id + '-container').select2('data', data, true);
+								}
+							});
+						},
+						size: 'full',
+						title: $j(this).attr('title')
+					});
+				});
+			}
+
+			AppGini.hideViewParentLinks();
+
+			$j('form').on('click', '.view_parent', function() {
+				var pt = $j(this).attr('id').replace(/_view_parent$/, '');
+				if($j(this).prevAll('input:hidden').length) {
+					var parent_id = $j(this).prevAll('input:hidden').eq(0).val();
+				} else {
+					var parent_id = $j(this).prevAll().children('input:hidden').eq(0).val();
+				}
+
+				/* handle radio lookups */
+				if($j(this).prevAll('[type=radio]').length) {
+					parent_id = $j(this).prevAll('[type=radio]').eq(0).val();
+				}
+
+				if(parent_id != '{empty_value}' && parent_id != undefined && parent_id != '') {
+					var parent_link = $j(this).parents('.form-group').children('label').data('parent_link');
+					switch(parent_link) {
+						case 'view_parent_hidden':
+							break;
+						case 'view_parent_modal':
+							modal_window({
+								url: pt + '_view.php?Embedded=1&SelectedID=' + encodeURIComponent(parent_id),
+								close: function() {
+									var field_id = $j('#' + pt + '_view_parent').prevAll('input:hidden').eq(0).attr('id');
+									$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+									// in case the parent record was updated, we should update auto-fills
+									var updaterName = field_id + '_update_autofills';
+									if(typeof(window[updaterName]) == 'function')
+										window[updaterName]();
+								},
+								size: 'full',
+								title: $j(this).attr('title')
+							});
+							break;
+						case 'view_parent_same_window':
+							window.location = pt + '_view.php?Embedded=' + (embedded_mode ? '1' : '') + '&SelectedID=' + encodeURIComponent(parent_id);
+							break;
+						case 'view_parent_new_window':
+							window.open(pt + '_view.php?SelectedID=' + encodeURIComponent(parent_id));
+							break;
+					}
+
+				}
+			});
+
+
+			/* load admin tools for admin user */
+			if(!add_new_mode) {
+				$j('body').append('<div id="admin-tools-appendix"></div>');
+				$j('#admin-tools-appendix').load(
+					'ajax_admin_tools.php?table=file_table&id=<%%URLVALUE(file_id)%%>',
+					function(resp) {
+						if(!resp.length) return;
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=file_table&id=<%%URLVALUE(file_id)%%>');
+					}
+				);
+			}
+		});
+	</script>

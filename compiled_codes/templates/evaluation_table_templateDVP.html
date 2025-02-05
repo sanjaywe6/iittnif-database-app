@@ -1,0 +1,93 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Result -->
+		<div class="form-group evaluation_table-result" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Result</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(result)%%></div>
+			</div>
+		</div>
+		<!-- Field: Select startup -->
+		<div class="form-group evaluation_table-select_startup" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Select startup</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="select_startup<%%RND1%%>"><%%COMBOTEXT(select_startup)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Recommendation -->
+		<div class="form-group evaluation_table-recommendation" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Recommendation</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(recommendation)%%></div>
+			</div>
+		</div>
+		<!-- Field: Marks -->
+		<div class="form-group evaluation_table-marks" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Marks</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(marks)%%></div>
+			</div>
+		</div>
+		<!-- Field: Reason for not recommending -->
+		<div class="form-group evaluation_table-reason_for_not_recommending" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Reason for not recommending</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(reason_for_not_recommending)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>
+<!-- child records -->
+<div class="panel-body">
+	<div id="evaluation_table-children"></div>
+</div>
+
+<script>
+	$j(function() {
+		/* prevent loading child records in multiple DVP */
+		if($j('[id=evaluation_table-children]').length > 1) return;
+
+		post(
+			'parent-children.php', {
+				ParentTable: 'evaluation_table',
+				SelectedID: '<%%VALUE(evaluation_id)%%>',
+				Operation: 'show-children-printable'
+			},
+			'evaluation_table-children',
+			'disable-element',
+			'loading-element',
+			apply_persisting_children
+		);
+
+		$j('form').on('click', '#children-tabs button[data-target]', function() {
+			$j(this).toggleClass('active');
+			persist_expanded_child($j(this).attr('id'));
+		});
+	})
+</script>
+

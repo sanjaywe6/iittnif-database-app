@@ -1,0 +1,18 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the selected_tdp_init() hook (in hooks/selected_tdp.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="selected_tdp-id-<%%VALUE(id)%%>" class="selected_tdp-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></td>
+		<td id="selected_tdp-project_id-<%%VALUE(id)%%>" class="selected_tdp-project_id"><%%SELECT%%><%%VALUE(project_id)%%><%%ENDSELECT%%></td>
+		<td id="selected_tdp-project_title-<%%VALUE(id)%%>" class="selected_tdp-project_title"><%%SELECT%%><%%VALUE(project_title)%%><%%ENDSELECT%%></td>
+		<td id="selected_tdp-name_of_pi-<%%VALUE(id)%%>" class="selected_tdp-name_of_pi"><%%SELECT%%><%%VALUE(name_of_pi)%%><%%ENDSELECT%%></td>
+		<td id="selected_tdp-institute-<%%VALUE(id)%%>" class="selected_tdp-institute"><%%SELECT%%><%%VALUE(institute)%%><%%ENDSELECT%%></td>
+		<td id="selected_tdp-budget-<%%VALUE(id)%%>" class="selected_tdp-budget"><%%SELECT%%><%%VALUE(budget)%%><%%ENDSELECT%%></td>
+		<td id="selected_tdp-decision-<%%VALUE(id)%%>" class="selected_tdp-decision"><%%SELECT%%><%%VALUE(decision)%%><%%ENDSELECT%%></td>
+		<td id="selected_tdp-created_by-<%%VALUE(id)%%>" class="selected_tdp-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
+		<td id="selected_tdp-created_at-<%%VALUE(id)%%>" class="selected_tdp-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
+		<td id="selected_tdp-last_updated_by-<%%VALUE(id)%%>" class="selected_tdp-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>
+		<td id="selected_tdp-last_updated_at-<%%VALUE(id)%%>" class="selected_tdp-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>

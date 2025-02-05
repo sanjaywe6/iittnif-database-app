@@ -1,0 +1,85 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Startup -->
+		<div class="form-group shortlisted_startups_dd_and_agreement_table-startup" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Startup</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="startup<%%RND1%%>"><%%COMBOTEXT(startup)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Documents -->
+		<div class="form-group shortlisted_startups_dd_and_agreement_table-documents" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Documents</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(documents)%%></div>
+			</div>
+		</div>
+		<!-- Field: Status -->
+		<div class="form-group shortlisted_startups_dd_and_agreement_table-status_1" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Status</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(status_1)%%></div>
+			</div>
+		</div>
+		<!-- Field: Comment -->
+		<div class="form-group shortlisted_startups_dd_and_agreement_table-comment_1" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Comment</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(comment_1)%%></div>
+			</div>
+		</div>
+		<!-- Field: Link to DDR -->
+		<div class="form-group shortlisted_startups_dd_and_agreement_table-link_to_ddr" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Link to DDR</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(link_to_ddr)%%></div>
+			</div>
+		</div>
+		<!-- Field: Status -->
+		<div class="form-group shortlisted_startups_dd_and_agreement_table-status_2" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Status</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(status_2)%%></div>
+			</div>
+		</div>
+		<!-- Field: Comment -->
+		<div class="form-group shortlisted_startups_dd_and_agreement_table-comment_2" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Comment</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(comment_2)%%></div>
+			</div>
+		</div>
+		<!-- Field: Link to agreement -->
+		<div class="form-group shortlisted_startups_dd_and_agreement_table-link_to_agreement" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Link to agreement</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(link_to_agreement)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

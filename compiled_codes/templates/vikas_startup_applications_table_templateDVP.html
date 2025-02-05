@@ -1,0 +1,176 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Startup name -->
+		<div class="form-group vikas_startup_applications_table-startup_name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Startup name</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(startup_name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Email -->
+		<div class="form-group vikas_startup_applications_table-email" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Email</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(email)%%></div>
+			</div>
+		</div>
+		<!-- Field: Incorporation date -->
+		<div class="form-group vikas_startup_applications_table-incorporation_date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Incorporation date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(incorporation_date)%%></div>
+			</div>
+		</div>
+		<!-- Field: Website URL (in any) -->
+		<div class="form-group vikas_startup_applications_table-website_url" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Website URL (in any)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(website_url)%%></div>
+			</div>
+		</div>
+		<!-- Field: Physical address -->
+		<div class="form-group vikas_startup_applications_table-physical_address" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Physical address</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(physical_address)%%></div>
+			</div>
+		</div>
+		<!-- Field: Primary contact name -->
+		<div class="form-group vikas_startup_applications_table-primary_contact_name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Primary contact name</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(primary_contact_name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Primary Contact Email -->
+		<div class="form-group vikas_startup_applications_table-email_1" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Primary Contact Email</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(email_1)%%></div>
+			</div>
+		</div>
+		<!-- Field: Mobile number -->
+		<div class="form-group vikas_startup_applications_table-mobile_number" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Mobile number</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(mobile_number)%%></div>
+			</div>
+		</div>
+		<!-- Field: Name(s) of Founders(s) -->
+		<div class="form-group vikas_startup_applications_table-name_of_founders" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Name(s) of Founders(s)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(name_of_founders)%%></div>
+			</div>
+		</div>
+		<!-- Field: Founder(s) Mobile Number(s) -->
+		<div class="form-group vikas_startup_applications_table-number_of_founders" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Founder(s) Mobile Number(s)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(number_of_founders)%%></div>
+			</div>
+		</div>
+		<!-- Field: Founders(s) Email Address(es) -->
+		<div class="form-group vikas_startup_applications_table-email_of_founders" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Founders(s) Email Address(es)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(email_of_founders)%%></div>
+			</div>
+		</div>
+		<!-- Field: Business Sector/Industry -->
+		<div class="form-group vikas_startup_applications_table-business_sector" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Business Sector/Industry</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(business_sector)%%></div>
+			</div>
+		</div>
+		<!-- Field: Number of employees -->
+		<div class="form-group vikas_startup_applications_table-number_of_employees" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Number of employees</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(number_of_employees)%%></div>
+			</div>
+		</div>
+		<!-- Field: Brief Description of Product/Service -->
+		<div class="form-group vikas_startup_applications_table-brief_description_of_service" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Brief Description of Product/Service</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(brief_description_of_service)%%></div>
+			</div>
+		</div>
+		<!-- Field: Preferred Mode of Participation: (Please select one) -->
+		<div class="form-group vikas_startup_applications_table-mode_of_incubation" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Preferred Mode of Participation: (Please select one)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(mode_of_incubation)%%></div>
+			</div>
+		</div>
+		<!-- Field: Type of Workspace Desired -->
+		<div class="form-group vikas_startup_applications_table-type_of_workspace_desired" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Type of Workspace Desired</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(type_of_workspace_desired)%%></div>
+			</div>
+		</div>
+		<!-- Field: Key areas of support -->
+		<div class="form-group vikas_startup_applications_table-key_areas_of_support" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Key areas of support</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(key_areas_of_support)%%></div>
+			</div>
+		</div>
+		<!-- Field: Declaration form link -->
+		<div class="form-group vikas_startup_applications_table-declaration_form_link" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Declaration form link</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(declaration_form_link)%%></div>
+			</div>
+		</div>
+		<!-- Field: Is your start up DPIIT registered -->
+		<div class="form-group vikas_startup_applications_table-is_your_start_up_dpiit_registered" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Is your start up DPIIT registered</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(is_your_start_up_dpiit_registered)%%></div>
+			</div>
+		</div>
+		<!-- Field: Incubation status -->
+		<div class="form-group vikas_startup_applications_table-incubation_status" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Incubation status</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(incubation_status)%%></div>
+			</div>
+		</div>
+		<!-- Field: Datetime -->
+		<div class="form-group vikas_startup_applications_table-datetime" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Datetime</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(datetime)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

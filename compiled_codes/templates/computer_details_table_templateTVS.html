@@ -1,0 +1,20 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the computer_details_table_init() hook (in hooks/computer_details_table.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="computer_details_table-id-<%%VALUE(id)%%>" class="computer_details_table-id text-right text-bold"><%%VALUE(id)%%></td>
+		<td id="computer_details_table-pc_number-<%%VALUE(id)%%>" class="computer_details_table-pc_number text-bold"><%%VALUE(pc_number)%%></td>
+		<td id="computer_details_table-pc_hostname-<%%VALUE(id)%%>" class="computer_details_table-pc_hostname text-bold"><%%VALUE(pc_hostname)%%></td>
+		<td id="computer_details_table-pc_mac_address-<%%VALUE(id)%%>" class="computer_details_table-pc_mac_address text-bold"><%%VALUE(pc_mac_address)%%></td>
+		<td id="computer_details_table-room_number-<%%VALUE(id)%%>" class="computer_details_table-room_number text-bold"><%%VALUE(room_number)%%></td>
+		<td id="computer_details_table-desk_number-<%%VALUE(id)%%>" class="computer_details_table-desk_number text-bold"><%%VALUE(desk_number)%%></td>
+		<td id="computer_details_table-maintained_by-<%%VALUE(id)%%>" class="computer_details_table-maintained_by text-bold"><%%VALUE(maintained_by)%%></td>
+		<td id="computer_details_table-assigned_to_user-<%%VALUE(id)%%>" class="computer_details_table-assigned_to_user text-bold"><%%VALUE(assigned_to_user)%%></td>
+		<td id="computer_details_table-remote_access-<%%VALUE(id)%%>" class="computer_details_table-remote_access text-bold"><%%VALUE(remote_access)%%></td>
+		<td id="computer_details_table-created_by-<%%VALUE(id)%%>" class="computer_details_table-created_by text-bold"><%%VALUE(created_by)%%></td>
+		<td id="computer_details_table-created_at-<%%VALUE(id)%%>" class="computer_details_table-created_at text-bold"><%%VALUE(created_at)%%></td>
+		<td id="computer_details_table-last_updated_by-<%%VALUE(id)%%>" class="computer_details_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
+		<td id="computer_details_table-last_updated_at-<%%VALUE(id)%%>" class="computer_details_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>

@@ -1,0 +1,19 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the goal_setting_table_init() hook (in hooks/goal_setting_table.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="goal_setting_table-goal_id-<%%VALUE(goal_id)%%>" class="goal_setting_table-goal_id text-right text-bold"><%%VALUE(goal_id)%%></td>
+		<td id="goal_setting_table-goal_status-<%%VALUE(goal_id)%%>" class="goal_setting_table-goal_status text-bold"><%%VALUE(goal_status)%%></td>
+		<td id="goal_setting_table-goal_description-<%%VALUE(goal_id)%%>" class="goal_setting_table-goal_description text-bold"><%%VALUE(goal_description)%%></td>
+		<td id="goal_setting_table-goal_duration-<%%VALUE(goal_id)%%>" class="goal_setting_table-goal_duration text-bold"><%%VALUE(goal_duration)%%></td>
+		<td id="goal_setting_table-goal_set_date-<%%VALUE(goal_id)%%>" class="goal_setting_table-goal_set_date text-bold"><%%VALUE(goal_set_date)%%></td>
+		<td id="goal_setting_table-supervisor_name-<%%VALUE(goal_id)%%>" class="goal_setting_table-supervisor_name text-bold"><%%VALUE(supervisor_name)%%></td>
+		<td id="goal_setting_table-assigned_to-<%%VALUE(goal_id)%%>" class="goal_setting_table-assigned_to text-bold"><%%VALUE(assigned_to)%%></td>
+		<td id="goal_setting_table-goal_setting_str-<%%VALUE(goal_id)%%>" class="goal_setting_table-goal_setting_str text-bold"><%%VALUE(goal_setting_str)%%></td>
+		<td id="goal_setting_table-created_by-<%%VALUE(goal_id)%%>" class="goal_setting_table-created_by text-bold"><%%VALUE(created_by)%%></td>
+		<td id="goal_setting_table-created_at-<%%VALUE(goal_id)%%>" class="goal_setting_table-created_at text-bold"><%%VALUE(created_at)%%></td>
+		<td id="goal_setting_table-last_updated_by-<%%VALUE(goal_id)%%>" class="goal_setting_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
+		<td id="goal_setting_table-last_updated_at-<%%VALUE(goal_id)%%>" class="goal_setting_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>

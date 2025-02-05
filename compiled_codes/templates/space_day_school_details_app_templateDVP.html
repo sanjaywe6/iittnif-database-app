@@ -1,0 +1,71 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: School name -->
+		<div class="form-group space_day_school_details_app-school_name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">School name</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(school_name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Profile type -->
+		<div class="form-group space_day_school_details_app-profile_type" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Profile type</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(profile_type)%%></div>
+			</div>
+		</div>
+		<!-- Field: Name of Student/Teacher -->
+		<div class="form-group space_day_school_details_app-name_of_student_teacher" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Name of Student/Teacher</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(name_of_student_teacher)%%></div>
+			</div>
+		</div>
+		<!-- Field: Gender -->
+		<div class="form-group space_day_school_details_app-gender" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Gender</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(gender)%%></div>
+			</div>
+		</div>
+		<!-- Field: Class(If student) / Subject Handled (If Teacher) -->
+		<div class="form-group space_day_school_details_app-class_subject" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Class(If student) / Subject Handled (If Teacher)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(class_subject)%%></div>
+			</div>
+		</div>
+		<!-- Field: Contact number -->
+		<div class="form-group space_day_school_details_app-contact_number" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Contact number</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(contact_number)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

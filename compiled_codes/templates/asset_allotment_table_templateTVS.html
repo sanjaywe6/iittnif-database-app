@@ -1,0 +1,22 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the asset_allotment_table_init() hook (in hooks/asset_allotment_table.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="asset_allotment_table-asset_allotment_id-<%%VALUE(asset_allotment_id)%%>" class="asset_allotment_table-asset_allotment_id text-right text-bold"><%%VALUE(asset_allotment_id)%%></td>
+		<td id="asset_allotment_table-asset_lookup-<%%VALUE(asset_allotment_id)%%>" class="asset_allotment_table-asset_lookup text-bold"><%%VALUE(asset_lookup)%%></td>
+		<td id="asset_allotment_table-name-<%%VALUE(asset_allotment_id)%%>" class="asset_allotment_table-name text-bold"><%%VALUE(name)%%></td>
+		<td id="asset_allotment_table-designation-<%%VALUE(asset_allotment_id)%%>" class="asset_allotment_table-designation text-bold"><%%VALUE(designation)%%></td>
+		<td id="asset_allotment_table-employee_id-<%%VALUE(asset_allotment_id)%%>" class="asset_allotment_table-employee_id text-bold"><%%VALUE(employee_id)%%></td>
+		<td id="asset_allotment_table-department-<%%VALUE(asset_allotment_id)%%>" class="asset_allotment_table-department text-bold"><%%VALUE(department)%%></td>
+		<td id="asset_allotment_table-date-<%%VALUE(asset_allotment_id)%%>" class="asset_allotment_table-date text-bold"><%%VALUE(date)%%></td>
+		<td id="asset_allotment_table-purpose-<%%VALUE(asset_allotment_id)%%>" class="asset_allotment_table-purpose text-bold"><%%VALUE(purpose)%%></td>
+		<td id="asset_allotment_table-alloted_by-<%%VALUE(asset_allotment_id)%%>" class="asset_allotment_table-alloted_by text-bold"><%%VALUE(alloted_by)%%></td>
+		<td id="asset_allotment_table-status-<%%VALUE(asset_allotment_id)%%>" class="asset_allotment_table-status text-bold"><%%VALUE(status)%%></td>
+		<td id="asset_allotment_table-returned_date-<%%VALUE(asset_allotment_id)%%>" class="asset_allotment_table-returned_date text-bold"><%%VALUE(returned_date)%%></td>
+		<td id="asset_allotment_table-created_by-<%%VALUE(asset_allotment_id)%%>" class="asset_allotment_table-created_by text-bold"><%%VALUE(created_by)%%></td>
+		<td id="asset_allotment_table-created_at-<%%VALUE(asset_allotment_id)%%>" class="asset_allotment_table-created_at text-bold"><%%VALUE(created_at)%%></td>
+		<td id="asset_allotment_table-last_updated_by-<%%VALUE(asset_allotment_id)%%>" class="asset_allotment_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
+		<td id="asset_allotment_table-last_updated_at-<%%VALUE(asset_allotment_id)%%>" class="asset_allotment_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>

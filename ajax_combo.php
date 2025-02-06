@@ -51,6 +51,30 @@
 				'not_null' => false,
 			],
 		],
+		'event_decision_table' => [
+			'outcomes_expected_lookup' => [
+				'parent_table' => 'outcomes_expected_table',
+				'parent_pk_field' => 'outcomes_expected_id',
+				'parent_caption' => '`outcomes_expected_table`.`outcomes_expected_str`',
+				'parent_from' => '`outcomes_expected_table` LEFT JOIN `event_table` as event_table1 ON `event_table1`.`event_id`=`outcomes_expected_table`.`event_lookup` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
+			'decision_actor' => [
+				'parent_table' => 'user_table',
+				'parent_pk_field' => 'user_id',
+				'parent_caption' => '`user_table`.`memberID`',
+				'parent_from' => '`user_table` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
+		],
 		'meetings_table' => [
 			'visiting_card_lookup' => [
 				'parent_table' => 'visiting_card_table',

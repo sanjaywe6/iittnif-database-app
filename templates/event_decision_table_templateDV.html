@@ -1,17 +1,14 @@
-<!-- To change the layout of the detail view form, we recommend using JS code in hooks/outcomes_expected_table-dv.js rather than editing this file -->
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/event_decision_table-dv.js rather than editing this file -->
 
 <div id="detail-view"></div>
 <div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
 
-<div id="outcomes_expected_table_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+<div id="event_decision_table_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
 
-<div class="panel-body hidden" id="outcomes_expected_table_dv_container">
+<div class="panel-body hidden" id="event_decision_table_dv_container">
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
-			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="event_decision_table_view.php?filterer_outcomes_expected_lookup=<%%URLVALUE(outcomes_expected_id)%%>&<%%EMBEDDED%%>" id="event_decision_table_link"><img src="table.gif"> Decision - App</a>
-			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="event_decision_table_view.php?filterer_outcomes_expected_lookup=<%%URLVALUE(outcomes_expected_id)%%>&<%%EMBEDDED%%>" id="xs_event_decision_table_link"><img src="table.gif"> Decision - App</a>
-			<input type="hidden" id="event_decision_table_hclink" value="event_decision_table_view.php?filterer_outcomes_expected_lookup=<%%URLVALUE(outcomes_expected_id)%%>&<%%EMBEDDED%%>">
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -19,36 +16,72 @@
 
 	<div class="row">
 		<!-- form inputs -->
-		<div class="col-md-8 col-lg-10" id="outcomes_expected_table_dv_form">
+		<div class="col-md-8 col-lg-10" id="event_decision_table_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: Event -->
-				<div class="form-group outcomes_expected_table-event_lookup">
+				<!-- Field: Expected Outcomes of Meeting -->
+				<div class="form-group event_decision_table-outcomes_expected_lookup">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Event</label>
+					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Expected Outcomes of Meeting</label>
 					<div class="col-lg-9">
 						<div class="form-control-static">
-							<span id="event_lookup-readonly"><%%COMBOTEXT(event_lookup)%%></span>
-							<%%PLINK(event_lookup)%%>
+							<span id="outcomes_expected_lookup-readonly"><%%COMBOTEXT(outcomes_expected_lookup)%%></span>
+							<%%PLINK(outcomes_expected_lookup)%%>
 						</div>
 					</div>
 				</div>
 
-				<!-- Field: Target audience -->
-				<div class="form-group outcomes_expected_table-target_audience">
+				<!-- Field: Decision description -->
+				<div class="form-group event_decision_table-decision_description">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="target_audience">Target audience</label>
+					<label class="control-label col-lg-3" for="decision_description">Decision description</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="target_audience" id="target_audience" value="<%%VALUE(target_audience)%%>">
+						<textarea class="form-control" name="decision_description" id="decision_description" rows=" 5"><%%VALUE(decision_description)%%></textarea>
 					</div>
 				</div>
 
-				<!-- Field: Expected outcomes -->
-				<div class="form-group outcomes_expected_table-expected_outcomes">
+				<!-- Field: Decision actor -->
+				<div class="form-group event_decision_table-decision_actor">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="expected_outcomes">Expected outcomes</label>
+					<label class="control-label col-lg-3" for="decision_actor" data-parent_link="view_parent_modal">Decision actor</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="expected_outcomes" id="expected_outcomes" rows=" 5"><%%VALUE(expected_outcomes)%%></textarea>
+						<div class="lookup-flex"><%%COMBO(decision_actor)%%><%%PLINK(decision_actor)%%><%%ADDNEW(user_table)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Action taken with date -->
+				<div class="form-group event_decision_table-action_taken_with_date">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="action_taken_with_date-dd">Action taken with date</label>
+					<div class="col-lg-9">
+						<%%COMBO(action_taken_with_date)%%>
+					</div>
+				</div>
+
+				<!-- Field: Decision status -->
+				<div class="form-group event_decision_table-decision_status">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="decision_status">Decision status</label>
+					<div class="col-lg-9">
+						<%%COMBO(decision_status)%%>
+					</div>
+				</div>
+
+				<!-- Field: Decision status update date -->
+				<div class="form-group event_decision_table-decision_status_update_date">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="decision_status_update_date-dd">Decision status update date</label>
+					<div class="col-lg-9">
+						<%%COMBO(decision_status_update_date)%%>
+					</div>
+				</div>
+
+				<!-- Field: Decision status remarks by superior -->
+				<div class="form-group event_decision_table-decision_status_remarks_by_superior">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="decision_status_remarks_by_superior">Decision status remarks by superior</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="decision_status_remarks_by_superior" id="decision_status_remarks_by_superior" value="<%%VALUE(decision_status_remarks_by_superior)%%>">
 					</div>
 				</div>
 
@@ -57,7 +90,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2" id="outcomes_expected_table_dv_action_buttons">
+		<div class="col-md-4 col-lg-2" id="event_decision_table_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>
@@ -74,16 +107,6 @@
 		</div>
 	</div>
 
-
-	<!-- child records -->
-	<hr>
-	<div class="row">
-		<div class="col-lg-10 col-lg-offset-1">
-			<div id="outcomes_expected_table-children" class="children-tabs">
-				<div class="text-center"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
-			</div>
-		</div>
-	</div>
 
 </div><!-- /div class="panel-body" -->
 	<script>
@@ -103,44 +126,12 @@
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-			$j('#outcomes_expected_table_dv_container-loading').addClass('hidden');
-			$j('#outcomes_expected_table_dv_container').removeClass('hidden');
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('outcomes_expected_table', 'target_audience');
+			$j('#event_decision_table_dv_container-loading').addClass('hidden');
+			$j('#event_decision_table_dv_container').removeClass('hidden');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('event_decision_table', 'decision_description');
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 
-			if(embedded_mode) {
-				/* hide links to children tables in embedded mode */
-				$j('.detail_view a[id$=_link]').remove();
-
-				/* append embedded mode to all links */
-				var append_embedded = function() {
-					$j('a[href]:not([href^="#"]):not([href^="javascript"]):not([href$="Embedded=1"]):not([href*="link.php?t="]):not([href^="mailto:"]):not([href$=".jpg"]):not([href$=".png"]):not([href$=".gif"])').each(
-						function() {
-							$j(this).attr('href', $j(this).attr('href') + '&Embedded=1');
-						}
-					);
-				}
-				setTimeout(append_embedded, 500);
-				setTimeout(append_embedded, 1500);
-				setTimeout(append_embedded, 2500);
-				setTimeout(append_embedded, 3500);
-			}
-
-			/* when no record is selected ('add new' mode) */
-			if(add_new_mode) {
-				/* hide links to children tables */
-				$j('.detail_view a[id$=_link]').remove();
-			} else {
-				post(
-					'parent-children.php', {
-						ParentTable: 'outcomes_expected_table',
-						SelectedID: '<%%VALUE(outcomes_expected_id)%%>',
-						Operation: 'show-children'
-					},
-					'outcomes_expected_table-children'
-				);
-			}
 
 			if(true /* !embedded_mode */) {
 				$j('.add_new_parent').click(function() {
@@ -158,7 +149,7 @@
 							localStorage.removeItem(pt + '_last_added_id');
 							AppGini.lookupText({
 								id: new_id,
-								table: 'outcomes_expected_table',
+								table: 'event_decision_table',
 								field: field_id,
 								callback: function(data) {
 									$j('#' + field_id + '-container').select2('data', data, true);
@@ -223,10 +214,10 @@
 			if(!add_new_mode) {
 				$j('body').append('<div id="admin-tools-appendix"></div>');
 				$j('#admin-tools-appendix').load(
-					'ajax_admin_tools.php?table=outcomes_expected_table&id=<%%URLVALUE(outcomes_expected_id)%%>',
+					'ajax_admin_tools.php?table=event_decision_table&id=<%%URLVALUE(decision_id)%%>',
 					function(resp) {
 						if(!resp.length) return;
-						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=outcomes_expected_table&id=<%%URLVALUE(outcomes_expected_id)%%>');
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=event_decision_table&id=<%%URLVALUE(decision_id)%%>');
 					}
 				);
 			}

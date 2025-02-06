@@ -23,6 +23,14 @@
 
 			return $data;
 		},
+		'event_decision_table' => function($data, $options = []) {
+			if(isset($data['outcomes_expected_lookup'])) $data['outcomes_expected_lookup'] = pkGivenLookupText($data['outcomes_expected_lookup'], 'event_decision_table', 'outcomes_expected_lookup');
+			if(isset($data['decision_actor'])) $data['decision_actor'] = pkGivenLookupText($data['decision_actor'], 'event_decision_table', 'decision_actor');
+			if(isset($data['action_taken_with_date'])) $data['action_taken_with_date'] = guessMySQLDateTime($data['action_taken_with_date']);
+			if(isset($data['decision_status_update_date'])) $data['decision_status_update_date'] = guessMySQLDateTime($data['decision_status_update_date']);
+
+			return $data;
+		},
 		'meetings_table' => function($data, $options = []) {
 			if(isset($data['visiting_card_lookup'])) $data['visiting_card_lookup'] = pkGivenLookupText($data['visiting_card_lookup'], 'meetings_table', 'visiting_card_lookup');
 			if(isset($data['event_lookup'])) $data['event_lookup'] = pkGivenLookupText($data['event_lookup'], 'meetings_table', 'event_lookup');
@@ -415,6 +423,7 @@
 		'suggestion' => function($data, $options = []) { return true; },
 		'event_table' => function($data, $options = []) { return true; },
 		'outcomes_expected_table' => function($data, $options = []) { return true; },
+		'event_decision_table' => function($data, $options = []) { return true; },
 		'meetings_table' => function($data, $options = []) { return true; },
 		'agenda_table' => function($data, $options = []) { return true; },
 		'decision_table' => function($data, $options = []) { return true; },

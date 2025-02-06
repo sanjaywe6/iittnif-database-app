@@ -77,6 +77,26 @@ function outcomes_expected_table_delete($selected_id, $AllowDeleteOfParents = fa
 			);
 	}
 
+	// child table: event_decision_table
+	$res = sql("SELECT `outcomes_expected_id` FROM `outcomes_expected_table` WHERE `outcomes_expected_id`='{$selected_id}'", $eo);
+	$outcomes_expected_id = db_fetch_row($res);
+	$rires = sql("SELECT COUNT(1) FROM `event_decision_table` WHERE `outcomes_expected_lookup`='" . makeSafe($outcomes_expected_id[0]) . "'", $eo);
+	$rirow = db_fetch_row($rires);
+	$childrenATag = '<a class="alert-link" href="event_decision_table_view.php?filterer_outcomes_expected_lookup=' . urlencode($outcomes_expected_id[0]) . '">%s</a>';
+	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation["couldn't delete"];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'event_decision_table'), $RetMsg);
+		return $RetMsg;
+	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation['confirm delete'];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'event_decision_table'), $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'outcomes_expected_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'outcomes_expected_table_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		return $RetMsg;
+	}
+
 	sql("DELETE FROM `outcomes_expected_table` WHERE `outcomes_expected_id`='{$selected_id}'", $eo);
 
 	// hook: outcomes_expected_table_after_delete

@@ -143,6 +143,13 @@
 					'group' => $tg[0],
 					'homepageShowCount' => 1
 				],
+				'event_decision_table' => [
+					'Caption' => 'Decision - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[0],
+					'homepageShowCount' => 1
+				],
 				'meetings_table' => [
 					'Caption' => 'Meetings - App',
 					'Description' => '<a href="https://lookerstudio.google.com/reporting/b7bf99ff-cb80-42d5-8c5e-9256eb638f3a"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Meetings App View</b></button></a>',
@@ -152,7 +159,7 @@
 				],
 				'agenda_table' => [
 					'Caption' => 'Agenda - App',
-					'Description' => 'Table imported using MySQL2AppGini on 2024-09-05',
+					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[0],
 					'homepageShowCount' => 1
@@ -611,8 +618,9 @@
 			'suggestion' => ['Suggestions - App', '', 'table.gif', 'Suggestions &amp; Other Apps'],
 			'event_table' => ['Event - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'outcomes_expected_table' => ['Outcomes Expected Table', '', 'table.gif', 'Events / Meetings / Goals Apps'],
+			'event_decision_table' => ['Decision - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'meetings_table' => ['Meetings - App', '<a href="https://lookerstudio.google.com/reporting/b7bf99ff-cb80-42d5-8c5e-9256eb638f3a"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Meetings App View</b></button></a>', 'table.gif', 'Events / Meetings / Goals Apps'],
-			'agenda_table' => ['Agenda - App', 'Table imported using MySQL2AppGini on 2024-09-05', 'table.gif', 'Events / Meetings / Goals Apps'],
+			'agenda_table' => ['Agenda - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'decision_table' => ['Decision - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'participants_table' => ['Participants / Speaker / VIP List - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'action_actor' => ['Action actor', '', 'table.gif', 'Events / Meetings / Goals Apps'],
@@ -1652,6 +1660,99 @@
 						'appgini' => "TEXT NULL",
 						'info' => [
 							'caption' => 'Outcomes expected str',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
+				'event_decision_table' => [
+					'decision_id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'outcomes_expected_lookup' => [
+						'appgini' => "INT(10) UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Expected Outcomes of Meeting',
+							'description' => '',
+						],
+					],
+					'decision_description' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Decision description',
+							'description' => '',
+						],
+					],
+					'decision_actor' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Decision actor',
+							'description' => '',
+						],
+					],
+					'action_taken_with_date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Action taken with date',
+							'description' => '',
+						],
+					],
+					'decision_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Yet to Start'",
+						'info' => [
+							'caption' => 'Decision status',
+							'description' => '',
+						],
+					],
+					'decision_status_update_date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Decision status update date',
+							'description' => '',
+						],
+					],
+					'decision_status_remarks_by_superior' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Decision status remarks by superior',
+							'description' => '',
+						],
+					],
+					'decision_str' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Decision str',
 							'description' => '',
 						],
 					],
@@ -9605,6 +9706,10 @@
 			'outcomes_expected_table' => [
 				'event_table' => ['event_lookup'],
 			],
+			'event_decision_table' => [
+				'outcomes_expected_table' => ['outcomes_expected_lookup'],
+				'user_table' => ['decision_actor'],
+			],
 			'meetings_table' => [
 				'visiting_card_table' => ['visiting_card_lookup'],
 				'event_table' => ['event_lookup'],
@@ -9775,6 +9880,7 @@
 			'suggestion' => [],
 			'event_table' => [],
 			'outcomes_expected_table' => [],
+			'event_decision_table' => [],
 			'meetings_table' => [],
 			'agenda_table' => [],
 			'decision_table' => [],
@@ -9970,6 +10076,10 @@
 			],
 			'outcomes_expected_table' => [
 				'event_lookup' => 'SELECT `event_table`.`event_id`, `event_table`.`event_str` FROM `event_table` ORDER BY 2',
+			],
+			'event_decision_table' => [
+				'outcomes_expected_lookup' => 'SELECT `outcomes_expected_table`.`outcomes_expected_id`, `outcomes_expected_table`.`outcomes_expected_str` FROM `outcomes_expected_table` LEFT JOIN `event_table` as event_table1 ON `event_table1`.`event_id`=`outcomes_expected_table`.`event_lookup` ORDER BY 2',
+				'decision_actor' => 'SELECT `user_table`.`user_id`, `user_table`.`memberID` FROM `user_table` ORDER BY 2',
 			],
 			'meetings_table' => [
 				'visiting_card_lookup' => 'SELECT `visiting_card_table`.`visiting_card_id`, `visiting_card_table`.`visiting_card_str` FROM `visiting_card_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`visiting_card_table`.`given_by` ORDER BY 2',

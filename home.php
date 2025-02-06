@@ -86,7 +86,7 @@
 			/* is the current table filter-first? */
 			$tChkFF = array_search($tn, []);
 			/* hide current table in homepage? */
-			$tChkHL = array_search($tn, ['user_table','action_actor','goal_progress_table','subtask_setting_table','star_pnt','asset_app','asset_billing_details','asset_allotment_table','it_inventory_billing_details','it_inventory_allotment_table','computer_usage_table','employees_designation_table','evaluation_table','problem_statement_table','evaluators_table','car_usage_table','file_table','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','project_details_tdp']);
+			$tChkHL = array_search($tn, ['user_table','outcomes_expected_table','event_decision_table','agenda_table','decision_table','participants_table','action_actor','goal_progress_table','subtask_setting_table','star_pnt','asset_app','asset_billing_details','asset_allotment_table','it_inventory_billing_details','it_inventory_allotment_table','computer_usage_table','employees_designation_table','evaluation_table','problem_statement_table','evaluators_table','car_usage_table','file_table','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','project_details_tdp']);
 			/* allow homepage 'add new' for current table? */
 			$tChkAHAN = array_search($tn, []);
 

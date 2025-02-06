@@ -481,6 +481,12 @@ function outcomes_expected_table_validateData(insertMode) {
 
 	return !errors;
 }
+function event_decision_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
 function meetings_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;

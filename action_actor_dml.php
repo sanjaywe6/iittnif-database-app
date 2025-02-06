@@ -17,7 +17,6 @@ function action_actor_insert(&$error_message = '') {
 
 	$data = [
 		'actor_ID' => Request::val('actor_ID', ''),
-		'action_str' => br2nl(Request::val('action_str', '')),
 		'actor' => Request::lookup('actor', ''),
 		'action_status' => Request::val('action_status', ''),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
@@ -89,7 +88,6 @@ function action_actor_update(&$selected_id, &$error_message = '') {
 
 	$data = [
 		'actor_ID' => Request::val('actor_ID', ''),
-		'action_str' => br2nl(Request::val('action_str', '')),
 		'actor' => Request::lookup('actor', ''),
 		'action_status' => Request::val('action_status', ''),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
@@ -394,7 +392,6 @@ function action_actor_form($selectedId = '', $allowUpdate = true, $allowInsert =
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
 		$jsReadOnly .= "\tjQuery('#actor_ID').replaceWith('<div class=\"form-control-static\" id=\"actor_ID\">' + (jQuery('#actor_ID').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#action_str').replaceWith('<div class=\"form-control-static\" id=\"action_str\">' + (jQuery('#action_str').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\tjQuery('#actor').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\tjQuery('#actor_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\tjQuery('#action_status').replaceWith('<div class=\"form-control-static\" id=\"action_status\">' + (jQuery('#action_status').val() || '') + '</div>');\n";

@@ -18,6 +18,9 @@
 		setupTable('outcomes_expected_table', []);
 		setupIndexes('outcomes_expected_table', ['event_lookup',]);
 
+		setupTable('event_decision_table', []);
+		setupIndexes('event_decision_table', ['outcomes_expected_lookup','decision_actor',]);
+
 		setupTable('meetings_table', []);
 		setupIndexes('meetings_table', ['visiting_card_lookup','event_lookup',]);
 

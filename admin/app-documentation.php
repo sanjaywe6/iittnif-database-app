@@ -13,6 +13,14 @@
 					<a href="#content-section"><?php echo APP_TITLE; ?></a>
 					<ul class="nav">
 						<li>
+							<a href="#table-event_decision_table">Decision - App</a>
+							<ul class="nav">
+								<li><a href="#field-event_decision_table-decision_id">ID</a></li>
+								<li><a href="#field-event_decision_table-decision_status">Decision status</a></li>
+								<li><a href="#field-event_decision_table-decision_status_remarks_by_superior">Decision status remarks by superior</a></li>
+							</ul>
+						</li>
+						<li>
 							<a href="#table-meetings_table">Meetings - App</a>
 							<ul class="nav">
 								<li><a href="#field-meetings_table-meetings_id">ID</a></li>
@@ -281,6 +289,31 @@
 
 		</p>
 
+		<h2 class="table-documentation" id="table-event_decision_table">Decision - App</h2>
+		<p class="table-documentation">
+
+
+
+		</p>
+
+		<h3 class="field-documentation" id="field-event_decision_table-decision_id">ID</h3>
+		<p class="field-documentation">
+
+agenda_decision_id int(10) unsigned NO PRI  auto_increment
+
+		</p>
+		<h3 class="field-documentation" id="field-event_decision_table-decision_status">Decision status</h3>
+		<p class="field-documentation">
+
+agenda_decision_status varchar(250) YES   
+
+		</p>
+		<h3 class="field-documentation" id="field-event_decision_table-decision_status_remarks_by_superior">Decision status remarks by superior</h3>
+		<p class="field-documentation">
+
+agenda_status_remarks_by_superior varchar(250) YES   
+
+		</p>
 		<h2 class="table-documentation" id="table-meetings_table">Meetings - App</h2>
 		<p class="table-documentation">
 

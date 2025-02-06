@@ -109,6 +109,7 @@
 			'suggestion' => "`suggestion`.`suggestion_id` as 'suggestion_id', `suggestion`.`suggestion` as 'suggestion', `suggestion`.`attachment` as 'attachment', `suggestion`.`created_by` as 'created_by', `suggestion`.`created_at` as 'created_at', `suggestion`.`last_updated_by` as 'last_updated_by', `suggestion`.`last_updated_at` as 'last_updated_at'",
 			'event_table' => "`event_table`.`event_id` as 'event_id', `event_table`.`event_name` as 'event_name', `event_table`.`participants` as 'participants', `event_table`.`venue` as 'venue', if(`event_table`.`event_from_date`,date_format(`event_table`.`event_from_date`,'%d/%m/%Y'),'') as 'event_from_date', if(`event_table`.`event_to_date`,date_format(`event_table`.`event_to_date`,'%d/%m/%Y'),'') as 'event_to_date', `event_table`.`event_str` as 'event_str', `event_table`.`created_by` as 'created_by', `event_table`.`created_at` as 'created_at', `event_table`.`last_updated_by` as 'last_updated_by', `event_table`.`last_updated_at` as 'last_updated_at'",
 			'outcomes_expected_table' => "`outcomes_expected_table`.`outcomes_expected_id` as 'outcomes_expected_id', IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') as 'event_lookup', `outcomes_expected_table`.`target_audience` as 'target_audience', `outcomes_expected_table`.`expected_outcomes` as 'expected_outcomes', `outcomes_expected_table`.`outcomes_expected_str` as 'outcomes_expected_str', `outcomes_expected_table`.`created_by` as 'created_by', `outcomes_expected_table`.`created_at` as 'created_at', `outcomes_expected_table`.`last_updated_by` as 'last_updated_by', `outcomes_expected_table`.`last_updated_at` as 'last_updated_at'",
+			'event_decision_table' => "`event_decision_table`.`decision_id` as 'decision_id', IF(    CHAR_LENGTH(`outcomes_expected_table1`.`outcomes_expected_str`), CONCAT_WS('',   `outcomes_expected_table1`.`outcomes_expected_str`), '') as 'outcomes_expected_lookup', `event_decision_table`.`decision_description` as 'decision_description', IF(    CHAR_LENGTH(`user_table1`.`memberID`), CONCAT_WS('',   `user_table1`.`memberID`), '') as 'decision_actor', if(`event_decision_table`.`action_taken_with_date`,date_format(`event_decision_table`.`action_taken_with_date`,'%d/%m/%Y'),'') as 'action_taken_with_date', `event_decision_table`.`decision_status` as 'decision_status', if(`event_decision_table`.`decision_status_update_date`,date_format(`event_decision_table`.`decision_status_update_date`,'%d/%m/%Y'),'') as 'decision_status_update_date', `event_decision_table`.`decision_status_remarks_by_superior` as 'decision_status_remarks_by_superior', `event_decision_table`.`decision_str` as 'decision_str', `event_decision_table`.`created_by` as 'created_by', `event_decision_table`.`created_at` as 'created_at', `event_decision_table`.`last_updated_by` as 'last_updated_by', `event_decision_table`.`last_updated_at` as 'last_updated_at'",
 			'meetings_table' => "`meetings_table`.`meetings_id` as 'meetings_id', IF(    CHAR_LENGTH(`visiting_card_table1`.`visiting_card_str`), CONCAT_WS('',   `visiting_card_table1`.`visiting_card_str`), '') as 'visiting_card_lookup', IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') as 'event_lookup', `meetings_table`.`meeting_title` as 'meeting_title', `meetings_table`.`participants` as 'participants', `meetings_table`.`venue` as 'venue', if(`meetings_table`.`meeting_from_date`,date_format(`meetings_table`.`meeting_from_date`,'%d/%m/%Y'),'') as 'meeting_from_date', if(`meetings_table`.`meeting_to_date`,date_format(`meetings_table`.`meeting_to_date`,'%d/%m/%Y'),'') as 'meeting_to_date', `meetings_table`.`meeting_str` as 'meeting_str', `meetings_table`.`created_by` as 'created_by', `meetings_table`.`created_at` as 'created_at', `meetings_table`.`last_updated_by` as 'last_updated_by', `meetings_table`.`last_updated_at` as 'last_updated_at'",
 			'agenda_table' => "`agenda_table`.`agenda_id` as 'agenda_id', IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') as 'meeting_lookup', `agenda_table`.`agenda_description` as 'agenda_description', `agenda_table`.`agenda_str` as 'agenda_str', `agenda_table`.`created_by` as 'created_by', `agenda_table`.`created_at` as 'created_at', `agenda_table`.`last_updated_by` as 'last_updated_by', `agenda_table`.`last_updated_at` as 'last_updated_at'",
 			'decision_table' => "`decision_table`.`decision_id` as 'decision_id', IF(    CHAR_LENGTH(`agenda_table1`.`agenda_str`), CONCAT_WS('',   `agenda_table1`.`agenda_str`), '') as 'agenda_lookup', `decision_table`.`decision_description` as 'decision_description', IF(    CHAR_LENGTH(`user_table1`.`memberID`), CONCAT_WS('',   `user_table1`.`memberID`), '') as 'decision_actor', if(`decision_table`.`action_taken_with_date`,date_format(`decision_table`.`action_taken_with_date`,'%d/%m/%Y'),'') as 'action_taken_with_date', `decision_table`.`decision_status` as 'decision_status', if(`decision_table`.`decision_status_update_date`,date_format(`decision_table`.`decision_status_update_date`,'%d/%m/%Y'),'') as 'decision_status_update_date', `decision_table`.`decision_status_remarks_by_superior` as 'decision_status_remarks_by_superior', `decision_table`.`decision_str` as 'decision_str', `decision_table`.`created_by` as 'created_by', `decision_table`.`created_at` as 'created_at', `decision_table`.`last_updated_by` as 'last_updated_by', `decision_table`.`last_updated_at` as 'last_updated_at'",
@@ -188,6 +189,7 @@
 			'suggestion' => "`suggestion` ",
 			'event_table' => "`event_table` ",
 			'outcomes_expected_table' => "`outcomes_expected_table` LEFT JOIN `event_table` as event_table1 ON `event_table1`.`event_id`=`outcomes_expected_table`.`event_lookup` ",
+			'event_decision_table' => "`event_decision_table` LEFT JOIN `outcomes_expected_table` as outcomes_expected_table1 ON `outcomes_expected_table1`.`outcomes_expected_id`=`event_decision_table`.`outcomes_expected_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`event_decision_table`.`decision_actor` ",
 			'meetings_table' => "`meetings_table` LEFT JOIN `visiting_card_table` as visiting_card_table1 ON `visiting_card_table1`.`visiting_card_id`=`meetings_table`.`visiting_card_lookup` LEFT JOIN `event_table` as event_table1 ON `event_table1`.`event_id`=`meetings_table`.`event_lookup` ",
 			'agenda_table' => "`agenda_table` LEFT JOIN `meetings_table` as meetings_table1 ON `meetings_table1`.`meetings_id`=`agenda_table`.`meeting_lookup` ",
 			'decision_table' => "`decision_table` LEFT JOIN `agenda_table` as agenda_table1 ON `agenda_table1`.`agenda_id`=`decision_table`.`agenda_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`decision_table`.`decision_actor` ",
@@ -259,6 +261,7 @@
 			'suggestion' => 'suggestion_id',
 			'event_table' => 'event_id',
 			'outcomes_expected_table' => 'outcomes_expected_id',
+			'event_decision_table' => 'decision_id',
 			'meetings_table' => 'meetings_id',
 			'agenda_table' => 'agenda_id',
 			'decision_table' => 'decision_id',
@@ -404,6 +407,21 @@
 				'target_audience' => '',
 				'expected_outcomes' => '',
 				'outcomes_expected_str' => '',
+				'created_by' => '',
+				'created_at' => '',
+				'last_updated_by' => '',
+				'last_updated_at' => '',
+			],
+			'event_decision_table' => [
+				'decision_id' => '',
+				'outcomes_expected_lookup' => '',
+				'decision_description' => '',
+				'decision_actor' => '',
+				'action_taken_with_date' => '',
+				'decision_status' => 'Yet to Start',
+				'decision_status_update_date' => '',
+				'decision_status_remarks_by_superior' => '',
+				'decision_str' => '',
 				'created_by' => '',
 				'created_at' => '',
 				'last_updated_by' => '',
@@ -2203,7 +2221,7 @@
 		if(is_array($arrTables)) {
 			foreach($arrTables as $tn => $tc) {
 				/* ---- list of tables where hide link in nav menu is set ---- */
-				$tChkHL = array_search($tn, ['user_table','suggestion','event_table','outcomes_expected_table','meetings_table','agenda_table','decision_table','participants_table','action_actor','visiting_card_table','mou_details_table','mou_company_area_details_table','goal_setting_table','goal_progress_table','task_setting_table','subtask_setting_table','internship_fellowship_details_app','star_pnt','hrd_sdp_events_table','training_program_on_geospatial_tchnologies_table','space_day_school_details_app','space_day_college_student_table','school_list','sdp_participants_college_details_table','asset_app','asset_billing_details','asset_table','asset_allotment_table','it_inventory_app','it_inventory_billing_details','it_inventory_allotment_table','computer_details_table','computer_usage_table','personal_data_table','employees_designation_table','attendence_details_table','leave_table','work_from_home_table','email_id_allocation_table','all_startup_data_table','shortlisted_startups_for_fund_table','shortlisted_startups_dd_and_agreement_table','vikas_startup_applications_table','programs_table','evaluation_table','problem_statement_table','evaluators_table','approval_table','all_bank_account_statement_table','payment_track_details_table','car_table','car_usage_table','travel_table','travel_cab_table','travel_flight_table','travel_hotel_table','operation_dronagiri_data_submission_app','file_table','panel_decision_table_tdp','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','summary_table_tdp','project_details_tdp']);
+				$tChkHL = array_search($tn, ['user_table','suggestion','event_table','outcomes_expected_table','event_decision_table','meetings_table','agenda_table','decision_table','participants_table','action_actor','visiting_card_table','mou_details_table','mou_company_area_details_table','goal_setting_table','goal_progress_table','task_setting_table','subtask_setting_table','internship_fellowship_details_app','star_pnt','hrd_sdp_events_table','training_program_on_geospatial_tchnologies_table','space_day_school_details_app','space_day_college_student_table','school_list','sdp_participants_college_details_table','asset_app','asset_billing_details','asset_table','asset_allotment_table','it_inventory_app','it_inventory_billing_details','it_inventory_allotment_table','computer_details_table','computer_usage_table','personal_data_table','employees_designation_table','attendence_details_table','leave_table','work_from_home_table','email_id_allocation_table','all_startup_data_table','shortlisted_startups_for_fund_table','shortlisted_startups_dd_and_agreement_table','vikas_startup_applications_table','programs_table','evaluation_table','problem_statement_table','evaluators_table','approval_table','all_bank_account_statement_table','payment_track_details_table','car_table','car_usage_table','travel_table','travel_cab_table','travel_flight_table','travel_hotel_table','operation_dronagiri_data_submission_app','file_table','panel_decision_table_tdp','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','summary_table_tdp','project_details_tdp']);
 
 				/* ---- list of tables where filter first is set ---- */
 				$tChkFF = array_search($tn, []);
@@ -2406,6 +2424,56 @@ EOT;
 					'query' => "SELECT `outcomes_expected_table`.`outcomes_expected_id` as 'outcomes_expected_id', IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') as 'event_lookup', `outcomes_expected_table`.`target_audience` as 'target_audience', `outcomes_expected_table`.`expected_outcomes` as 'expected_outcomes', `outcomes_expected_table`.`outcomes_expected_str` as 'outcomes_expected_str', `outcomes_expected_table`.`created_by` as 'created_by', `outcomes_expected_table`.`created_at` as 'created_at', `outcomes_expected_table`.`last_updated_by` as 'last_updated_by', `outcomes_expected_table`.`last_updated_at` as 'last_updated_at' FROM `outcomes_expected_table` LEFT JOIN `event_table` as event_table1 ON `event_table1`.`event_id`=`outcomes_expected_table`.`event_lookup` "
 				],
 			],
+			'event_decision_table' => [
+				'outcomes_expected_lookup' => [
+					'parent-table' => 'outcomes_expected_table',
+					'parent-primary-key' => 'outcomes_expected_id',
+					'child-primary-key' => 'decision_id',
+					'child-primary-key-index' => 0,
+					'tab-label' => 'Decision - App <span class="hidden child-label-event_decision_table child-field-caption">(Expected Outcomes of Meeting)</span>',
+					'auto-close' => false,
+					'table-icon' => 'table.gif',
+					'display-refresh' => true,
+					'display-add-new' => true,
+					'forced-where' => '',
+					'display-fields' => [0 => 'ID', 1 => 'Expected Outcomes of Meeting', 2 => 'Decision description', 3 => 'Decision actor', 4 => 'Action taken with date', 5 => 'Decision status', 6 => 'Decision status update date', 7 => 'Decision status remarks by superior', 9 => 'Created by', 10 => 'Created at', 11 => 'Last updated by', 12 => 'Last updated at'],
+					'display-field-names' => [0 => 'decision_id', 1 => 'outcomes_expected_lookup', 2 => 'decision_description', 3 => 'decision_actor', 4 => 'action_taken_with_date', 5 => 'decision_status', 6 => 'decision_status_update_date', 7 => 'decision_status_remarks_by_superior', 9 => 'created_by', 10 => 'created_at', 11 => 'last_updated_by', 12 => 'last_updated_at'],
+					'sortable-fields' => [0 => '`event_decision_table`.`decision_id`', 1 => '`outcomes_expected_table1`.`outcomes_expected_str`', 2 => 3, 3 => '`user_table1`.`memberID`', 4 => '`event_decision_table`.`action_taken_with_date`', 5 => 6, 6 => '`event_decision_table`.`decision_status_update_date`', 7 => 8, 8 => 9, 9 => 10, 10 => 11, 11 => 12, 12 => 13],
+					'records-per-page' => 10,
+					'default-sort-by' => 0,
+					'default-sort-direction' => 'desc',
+					'open-detail-view-on-click' => true,
+					'display-page-selector' => true,
+					'show-page-progress' => true,
+					'template' => 'children-event_decision_table',
+					'template-printable' => 'children-event_decision_table-printable',
+					'query' => "SELECT `event_decision_table`.`decision_id` as 'decision_id', IF(    CHAR_LENGTH(`outcomes_expected_table1`.`outcomes_expected_str`), CONCAT_WS('',   `outcomes_expected_table1`.`outcomes_expected_str`), '') as 'outcomes_expected_lookup', `event_decision_table`.`decision_description` as 'decision_description', IF(    CHAR_LENGTH(`user_table1`.`memberID`), CONCAT_WS('',   `user_table1`.`memberID`), '') as 'decision_actor', if(`event_decision_table`.`action_taken_with_date`,date_format(`event_decision_table`.`action_taken_with_date`,'%d/%m/%Y'),'') as 'action_taken_with_date', `event_decision_table`.`decision_status` as 'decision_status', if(`event_decision_table`.`decision_status_update_date`,date_format(`event_decision_table`.`decision_status_update_date`,'%d/%m/%Y'),'') as 'decision_status_update_date', `event_decision_table`.`decision_status_remarks_by_superior` as 'decision_status_remarks_by_superior', `event_decision_table`.`decision_str` as 'decision_str', `event_decision_table`.`created_by` as 'created_by', `event_decision_table`.`created_at` as 'created_at', `event_decision_table`.`last_updated_by` as 'last_updated_by', `event_decision_table`.`last_updated_at` as 'last_updated_at' FROM `event_decision_table` LEFT JOIN `outcomes_expected_table` as outcomes_expected_table1 ON `outcomes_expected_table1`.`outcomes_expected_id`=`event_decision_table`.`outcomes_expected_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`event_decision_table`.`decision_actor` "
+				],
+				'decision_actor' => [
+					'parent-table' => 'user_table',
+					'parent-primary-key' => 'user_id',
+					'child-primary-key' => 'decision_id',
+					'child-primary-key-index' => 0,
+					'tab-label' => 'Decision - App <span class="hidden child-label-event_decision_table child-field-caption">(Decision actor)</span>',
+					'auto-close' => false,
+					'table-icon' => 'table.gif',
+					'display-refresh' => true,
+					'display-add-new' => true,
+					'forced-where' => '',
+					'display-fields' => [0 => 'ID', 1 => 'Expected Outcomes of Meeting', 2 => 'Decision description', 3 => 'Decision actor', 4 => 'Action taken with date', 5 => 'Decision status', 6 => 'Decision status update date', 7 => 'Decision status remarks by superior', 9 => 'Created by', 10 => 'Created at', 11 => 'Last updated by', 12 => 'Last updated at'],
+					'display-field-names' => [0 => 'decision_id', 1 => 'outcomes_expected_lookup', 2 => 'decision_description', 3 => 'decision_actor', 4 => 'action_taken_with_date', 5 => 'decision_status', 6 => 'decision_status_update_date', 7 => 'decision_status_remarks_by_superior', 9 => 'created_by', 10 => 'created_at', 11 => 'last_updated_by', 12 => 'last_updated_at'],
+					'sortable-fields' => [0 => '`event_decision_table`.`decision_id`', 1 => '`outcomes_expected_table1`.`outcomes_expected_str`', 2 => 3, 3 => '`user_table1`.`memberID`', 4 => '`event_decision_table`.`action_taken_with_date`', 5 => 6, 6 => '`event_decision_table`.`decision_status_update_date`', 7 => 8, 8 => 9, 9 => 10, 10 => 11, 11 => 12, 12 => 13],
+					'records-per-page' => 10,
+					'default-sort-by' => 0,
+					'default-sort-direction' => 'desc',
+					'open-detail-view-on-click' => true,
+					'display-page-selector' => true,
+					'show-page-progress' => true,
+					'template' => 'children-event_decision_table',
+					'template-printable' => 'children-event_decision_table-printable',
+					'query' => "SELECT `event_decision_table`.`decision_id` as 'decision_id', IF(    CHAR_LENGTH(`outcomes_expected_table1`.`outcomes_expected_str`), CONCAT_WS('',   `outcomes_expected_table1`.`outcomes_expected_str`), '') as 'outcomes_expected_lookup', `event_decision_table`.`decision_description` as 'decision_description', IF(    CHAR_LENGTH(`user_table1`.`memberID`), CONCAT_WS('',   `user_table1`.`memberID`), '') as 'decision_actor', if(`event_decision_table`.`action_taken_with_date`,date_format(`event_decision_table`.`action_taken_with_date`,'%d/%m/%Y'),'') as 'action_taken_with_date', `event_decision_table`.`decision_status` as 'decision_status', if(`event_decision_table`.`decision_status_update_date`,date_format(`event_decision_table`.`decision_status_update_date`,'%d/%m/%Y'),'') as 'decision_status_update_date', `event_decision_table`.`decision_status_remarks_by_superior` as 'decision_status_remarks_by_superior', `event_decision_table`.`decision_str` as 'decision_str', `event_decision_table`.`created_by` as 'created_by', `event_decision_table`.`created_at` as 'created_at', `event_decision_table`.`last_updated_by` as 'last_updated_by', `event_decision_table`.`last_updated_at` as 'last_updated_at' FROM `event_decision_table` LEFT JOIN `outcomes_expected_table` as outcomes_expected_table1 ON `outcomes_expected_table1`.`outcomes_expected_id`=`event_decision_table`.`outcomes_expected_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`event_decision_table`.`decision_actor` "
+				],
+			],
 			'meetings_table' => [
 				'visiting_card_lookup' => [
 					'parent-table' => 'visiting_card_table',
@@ -2594,8 +2662,8 @@ EOT;
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => [0 => 'ID', 1 => 'Action str', 2 => 'Actor', 3 => 'Action status', 4 => 'Created by', 5 => 'Created at', 6 => 'Last updated by', 7 => 'Last updated at'],
-					'display-field-names' => [0 => 'actor_ID', 1 => 'action_str', 2 => 'actor', 3 => 'action_status', 4 => 'created_by', 5 => 'created_at', 6 => 'last_updated_by', 7 => 'last_updated_at'],
+					'display-fields' => [0 => 'ID', 2 => 'Actor', 3 => 'Action status', 4 => 'Created by', 5 => 'Created at', 6 => 'Last updated by', 7 => 'Last updated at'],
+					'display-field-names' => [0 => 'actor_ID', 2 => 'actor', 3 => 'action_status', 4 => 'created_by', 5 => 'created_at', 6 => 'last_updated_by', 7 => 'last_updated_at'],
 					'sortable-fields' => [0 => 1, 1 => 2, 2 => '`user_table1`.`memberID`', 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8],
 					'records-per-page' => 10,
 					'default-sort-by' => 0,
@@ -3923,7 +3991,7 @@ EOT;
 	#########################################################
 
 	function isDetailViewEnabled($tn) {
-		$tables = ['user_table', 'suggestion', 'event_table', 'outcomes_expected_table', 'meetings_table', 'agenda_table', 'decision_table', 'participants_table', 'action_actor', 'visiting_card_table', 'mou_details_table', 'mou_company_area_details_table', 'goal_setting_table', 'goal_progress_table', 'task_setting_table', 'subtask_setting_table', 'internship_fellowship_details_app', 'star_pnt', 'hrd_sdp_events_table', 'training_program_on_geospatial_tchnologies_table', 'space_day_school_details_app', 'space_day_college_student_table', 'school_list', 'sdp_participants_college_details_table', 'asset_app', 'asset_billing_details', 'asset_table', 'asset_allotment_table', 'it_inventory_app', 'it_inventory_billing_details', 'it_inventory_allotment_table', 'computer_details_table', 'computer_usage_table', 'personal_data_table', 'employees_designation_table', 'attendence_details_table', 'leave_table', 'work_from_home_table', 'email_id_allocation_table', 'all_startup_data_table', 'shortlisted_startups_for_fund_table', 'shortlisted_startups_dd_and_agreement_table', 'vikas_startup_applications_table', 'programs_table', 'evaluation_table', 'problem_statement_table', 'evaluators_table', 'approval_table', 'all_bank_account_statement_table', 'payment_track_details_table', 'car_table', 'car_usage_table', 'travel_table', 'travel_cab_table', 'travel_flight_table', 'travel_hotel_table', 'operation_dronagiri_data_submission_app', 'file_table', 'panel_decision_table_tdp', 'selected_proposals_final_tdp', 'stage_wise_budget_table_tdp', 'first_level_shortlisted_proposals_tdp', 'budget_table_tdp', 'panel_comments_tdp', 'selected_tdp', 'address_tdp', 'summary_table_tdp', 'project_details_tdp', ];
+		$tables = ['user_table', 'suggestion', 'event_table', 'outcomes_expected_table', 'event_decision_table', 'meetings_table', 'agenda_table', 'decision_table', 'participants_table', 'action_actor', 'visiting_card_table', 'mou_details_table', 'mou_company_area_details_table', 'goal_setting_table', 'goal_progress_table', 'task_setting_table', 'subtask_setting_table', 'internship_fellowship_details_app', 'star_pnt', 'hrd_sdp_events_table', 'training_program_on_geospatial_tchnologies_table', 'space_day_school_details_app', 'space_day_college_student_table', 'school_list', 'sdp_participants_college_details_table', 'asset_app', 'asset_billing_details', 'asset_table', 'asset_allotment_table', 'it_inventory_app', 'it_inventory_billing_details', 'it_inventory_allotment_table', 'computer_details_table', 'computer_usage_table', 'personal_data_table', 'employees_designation_table', 'attendence_details_table', 'leave_table', 'work_from_home_table', 'email_id_allocation_table', 'all_startup_data_table', 'shortlisted_startups_for_fund_table', 'shortlisted_startups_dd_and_agreement_table', 'vikas_startup_applications_table', 'programs_table', 'evaluation_table', 'problem_statement_table', 'evaluators_table', 'approval_table', 'all_bank_account_statement_table', 'payment_track_details_table', 'car_table', 'car_usage_table', 'travel_table', 'travel_cab_table', 'travel_flight_table', 'travel_hotel_table', 'operation_dronagiri_data_submission_app', 'file_table', 'panel_decision_table_tdp', 'selected_proposals_final_tdp', 'stage_wise_budget_table_tdp', 'first_level_shortlisted_proposals_tdp', 'budget_table_tdp', 'panel_comments_tdp', 'selected_tdp', 'address_tdp', 'summary_table_tdp', 'project_details_tdp', ];
 		return in_array($tn, $tables);
 	}
 

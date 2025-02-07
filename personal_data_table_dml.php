@@ -17,16 +17,14 @@ function personal_data_table_insert(&$error_message = '') {
 
 	$data = [
 		'name' => Request::val('name', ''),
-		'designation' => Request::val('designation', ''),
+		'employee_type' => Request::val('employee_type', ''),
 		'date_of_birth' => Request::dateComponents('date_of_birth', ''),
 		'blood_group' => Request::val('blood_group', ''),
 		'email' => Request::val('email', ''),
 		'phone_number' => Request::val('phone_number', ''),
-		'emp_id' => Request::val('emp_id', ''),
 		'date_of_joining' => Request::dateComponents('date_of_joining', ''),
 		'date_of_exit' => Request::dateComponents('date_of_exit', ''),
-		'type_of_vehicle' => Request::val('type_of_vehicle', ''),
-		'vehicle_number' => Request::val('vehicle_number', ''),
+		'active_status' => Request::val('active_status', ''),
 		'profile_photo' => Request::fileUpload('profile_photo', [
 			'maxSize' => 10240000,
 			'types' => 'jpg|jpeg|gif|png|webp',
@@ -59,7 +57,6 @@ function personal_data_table_insert(&$error_message = '') {
 				return existing_value('personal_data_table', 'signature', Request::val('SelectedID'));
 			},
 		]),
-		'active_status' => Request::val('active_status', ''),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
@@ -109,26 +106,6 @@ function personal_data_table_delete($selected_id, $AllowDeleteOfParents = false,
 			);
 	}
 
-	// child table: it_inventory_allotment_table
-	$res = sql("SELECT `personal_data_id` FROM `personal_data_table` WHERE `personal_data_id`='{$selected_id}'", $eo);
-	$personal_data_id = db_fetch_row($res);
-	$rires = sql("SELECT COUNT(1) FROM `it_inventory_allotment_table` WHERE `select_employee`='" . makeSafe($personal_data_id[0]) . "'", $eo);
-	$rirow = db_fetch_row($rires);
-	$childrenATag = '<a class="alert-link" href="it_inventory_allotment_table_view.php?filterer_select_employee=' . urlencode($personal_data_id[0]) . '">%s</a>';
-	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
-		$RetMsg = $Translation["couldn't delete"];
-		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
-		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'it_inventory_allotment_table'), $RetMsg);
-		return $RetMsg;
-	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
-		$RetMsg = $Translation['confirm delete'];
-		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
-		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'it_inventory_allotment_table'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'personal_data_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'personal_data_table_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
-		return $RetMsg;
-	}
-
 	// child table: employees_designation_table
 	$res = sql("SELECT `personal_data_id` FROM `personal_data_table` WHERE `personal_data_id`='{$selected_id}'", $eo);
 	$personal_data_id = db_fetch_row($res);
@@ -169,16 +146,14 @@ function personal_data_table_update(&$selected_id, &$error_message = '') {
 
 	$data = [
 		'name' => Request::val('name', ''),
-		'designation' => Request::val('designation', ''),
+		'employee_type' => Request::val('employee_type', ''),
 		'date_of_birth' => Request::dateComponents('date_of_birth', ''),
 		'blood_group' => Request::val('blood_group', ''),
 		'email' => Request::val('email', ''),
 		'phone_number' => Request::val('phone_number', ''),
-		'emp_id' => Request::val('emp_id', ''),
 		'date_of_joining' => Request::dateComponents('date_of_joining', ''),
 		'date_of_exit' => Request::dateComponents('date_of_exit', ''),
-		'type_of_vehicle' => Request::val('type_of_vehicle', ''),
-		'vehicle_number' => Request::val('vehicle_number', ''),
+		'active_status' => Request::val('active_status', ''),
 		'profile_photo' => Request::fileUpload('profile_photo', [
 			'maxSize' => 10240000,
 			'types' => 'jpg|jpeg|gif|png|webp',
@@ -217,7 +192,6 @@ function personal_data_table_update(&$selected_id, &$error_message = '') {
 				return existing_value('personal_data_table', 'signature', $selected_id);
 			},
 		]),
-		'active_status' => Request::val('active_status', ''),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 	];
@@ -312,6 +286,21 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 
 	// unique random identifier
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
+	// combobox: employee_type
+	$combo_employee_type = new Combo;
+	$combo_employee_type->ListType = 0;
+	$combo_employee_type->MultipleSeparator = ', ';
+	$combo_employee_type->ListBoxHeight = 10;
+	$combo_employee_type->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/personal_data_table.employee_type.csv')) {
+		$employee_type_data = addslashes(implode('', @file(__DIR__ . '/hooks/personal_data_table.employee_type.csv')));
+		$combo_employee_type->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($employee_type_data))));
+		$combo_employee_type->ListData = $combo_employee_type->ListItem;
+	} else {
+		$combo_employee_type->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Regular;;Adhoc;;Intern;;PostDoc;;Out Sourcing;;Support;;Board of Member;;Hub Governing Body"))));
+		$combo_employee_type->ListData = $combo_employee_type->ListItem;
+	}
+	$combo_employee_type->SelectName = 'employee_type';
 	// combobox: date_of_birth
 	$combo_date_of_birth = new DateCombo;
 	$combo_date_of_birth->DateFormat = "dmy";
@@ -347,7 +336,7 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 		$combo_active_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($active_status_data))));
 		$combo_active_status->ListData = $combo_active_status->ListItem;
 	} else {
-		$combo_active_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Active;;Not Active;;Relieved"))));
+		$combo_active_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Active;;Not Active"))));
 		$combo_active_status->ListData = $combo_active_status->ListItem;
 	}
 	$combo_active_status->SelectName = 'active_status';
@@ -356,6 +345,7 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 		if(!($row = getRecord('personal_data_table', $selectedId))) {
 			return error_message($Translation['No records found'], 'personal_data_table_view.php', false);
 		}
+		$combo_employee_type->SelectedData = $row['employee_type'];
 		$combo_date_of_birth->DefaultDate = $row['date_of_birth'];
 		$combo_date_of_joining->DefaultDate = $row['date_of_joining'];
 		$combo_date_of_exit->DefaultDate = $row['date_of_exit'];
@@ -366,8 +356,10 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_active_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '15' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_employee_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_active_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '10' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
+	$combo_employee_type->Render();
 	$combo_active_status->Render();
 
 	ob_start();
@@ -466,23 +458,20 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
 		$jsReadOnly .= "\tjQuery('#name').replaceWith('<div class=\"form-control-static\" id=\"name\">' + (jQuery('#name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#designation').replaceWith('<div class=\"form-control-static\" id=\"designation\">' + (jQuery('#designation').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\tjQuery('#employee_type').replaceWith('<div class=\"form-control-static\" id=\"employee_type\">' + (jQuery('#employee_type').val() || '') + '</div>'); jQuery('#employee_type-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\tjQuery('#date_of_birth').prop('readonly', true);\n";
 		$jsReadOnly .= "\tjQuery('#date_of_birthDay, #date_of_birthMonth, #date_of_birthYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\tjQuery('#blood_group').replaceWith('<div class=\"form-control-static\" id=\"blood_group\">' + (jQuery('#blood_group').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\tjQuery('#email').replaceWith('<div class=\"form-control-static\" id=\"email\">' + (jQuery('#email').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\tjQuery('#email, #email-edit-link').hide();\n";
 		$jsReadOnly .= "\tjQuery('#phone_number').replaceWith('<div class=\"form-control-static\" id=\"phone_number\">' + (jQuery('#phone_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#emp_id').replaceWith('<div class=\"form-control-static\" id=\"emp_id\">' + (jQuery('#emp_id').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\tjQuery('#date_of_joining').prop('readonly', true);\n";
 		$jsReadOnly .= "\tjQuery('#date_of_joiningDay, #date_of_joiningMonth, #date_of_joiningYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\tjQuery('#date_of_exit').prop('readonly', true);\n";
 		$jsReadOnly .= "\tjQuery('#date_of_exitDay, #date_of_exitMonth, #date_of_exitYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#type_of_vehicle').replaceWith('<div class=\"form-control-static\" id=\"type_of_vehicle\">' + (jQuery('#type_of_vehicle').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#vehicle_number').replaceWith('<div class=\"form-control-static\" id=\"vehicle_number\">' + (jQuery('#vehicle_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\tjQuery('#active_status').replaceWith('<div class=\"form-control-static\" id=\"active_status\">' + (jQuery('#active_status').val() || '') + '</div>'); jQuery('#active_status-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\tjQuery('#profile_photo').replaceWith('<div class=\"form-control-static\" id=\"profile_photo\">' + (jQuery('#profile_photo').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\tjQuery('#signature').replaceWith('<div class=\"form-control-static\" id=\"signature\">' + (jQuery('#signature').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#active_status').replaceWith('<div class=\"form-control-static\" id=\"active_status\">' + (jQuery('#active_status').val() || '') + '</div>'); jQuery('#active_status-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -493,6 +482,8 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 	}
 
 	// process combos
+	$templateCode = str_replace('<%%COMBO(employee_type)%%>', $combo_employee_type->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(employee_type)%%>', $combo_employee_type->SelectedData, $templateCode);
 	$templateCode = str_replace(
 		'<%%COMBO(date_of_birth)%%>', 
 		(!$fieldsAreEditable ? 
@@ -536,16 +527,14 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(personal_data_id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(name)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(designation)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(employee_type)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date_of_birth)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(blood_group)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(email)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(phone_number)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(emp_id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date_of_joining)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date_of_exit)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(type_of_vehicle)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(vehicle_number)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(active_status)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(profile_photo)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="profile_photo" id="profile_photo" data-filetypes="jpg|jpeg|gif|png|webp" data-maxsize="10240000" style="max-width: calc(100% - 1.5rem);" accept="capture=camera,image/*">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
 	if($allowUpdate && $row['profile_photo'] != '') {
 		$templateCode = str_replace('<%%REMOVEFILE(profile_photo)%%>', '<input type="checkbox" name="profile_photo_remove" id="profile_photo_remove" value="1"> <label for="profile_photo_remove" style="color: red; font-weight: bold;">'.$Translation['remove image'].'</label>', $templateCode);
@@ -558,7 +547,6 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 	} else {
 		$templateCode = str_replace('<%%REMOVEFILE(signature)%%>', '', $templateCode);
 	}
-	$templateCode = str_replace('<%%UPLOADFILE(active_status)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
@@ -571,9 +559,9 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(name)%%>', safe_html($urow['name']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(name)%%>', html_attr($row['name']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(name)%%>', urlencode($urow['name']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(designation)%%>', safe_html($urow['designation']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(designation)%%>', html_attr($row['designation']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(designation)%%>', urlencode($urow['designation']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(employee_type)%%>', safe_html($urow['employee_type']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(employee_type)%%>', html_attr($row['employee_type']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(employee_type)%%>', urlencode($urow['employee_type']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date_of_birth)%%>', app_datetime($row['date_of_birth']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date_of_birth)%%>', urlencode(app_datetime($urow['date_of_birth'])), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(blood_group)%%>', safe_html($urow['blood_group']), $templateCode);
@@ -585,19 +573,13 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(phone_number)%%>', safe_html($urow['phone_number']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(phone_number)%%>', html_attr($row['phone_number']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(phone_number)%%>', urlencode($urow['phone_number']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(emp_id)%%>', safe_html($urow['emp_id']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(emp_id)%%>', html_attr($row['emp_id']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(emp_id)%%>', urlencode($urow['emp_id']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date_of_joining)%%>', app_datetime($row['date_of_joining']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date_of_joining)%%>', urlencode(app_datetime($urow['date_of_joining'])), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date_of_exit)%%>', app_datetime($row['date_of_exit']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date_of_exit)%%>', urlencode(app_datetime($urow['date_of_exit'])), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(type_of_vehicle)%%>', safe_html($urow['type_of_vehicle']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(type_of_vehicle)%%>', html_attr($row['type_of_vehicle']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(type_of_vehicle)%%>', urlencode($urow['type_of_vehicle']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(vehicle_number)%%>', safe_html($urow['vehicle_number']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(vehicle_number)%%>', html_attr($row['vehicle_number']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(vehicle_number)%%>', urlencode($urow['vehicle_number']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(active_status)%%>', safe_html($urow['active_status']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(active_status)%%>', html_attr($row['active_status']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(active_status)%%>', urlencode($urow['active_status']), $templateCode);
 		$row['profile_photo'] = ($row['profile_photo'] != '' ? $row['profile_photo'] : 'blank.gif');
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(profile_photo)%%>', safe_html($urow['profile_photo']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(profile_photo)%%>', html_attr($row['profile_photo']), $templateCode);
@@ -606,9 +588,6 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(signature)%%>', safe_html($urow['signature']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(signature)%%>', html_attr($row['signature']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(signature)%%>', urlencode($urow['signature']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(active_status)%%>', safe_html($urow['active_status']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(active_status)%%>', html_attr($row['active_status']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(active_status)%%>', urlencode($urow['active_status']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
@@ -622,8 +601,8 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 		$templateCode = str_replace('<%%URLVALUE(personal_data_id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(name)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(name)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(designation)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(designation)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(employee_type)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(employee_type)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date_of_birth)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date_of_birth)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(blood_group)%%>', '', $templateCode);
@@ -632,20 +611,14 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 		$templateCode = str_replace('<%%URLVALUE(email)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(phone_number)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(phone_number)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(emp_id)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(emp_id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date_of_joining)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date_of_joining)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date_of_exit)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date_of_exit)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(type_of_vehicle)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(type_of_vehicle)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(vehicle_number)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(vehicle_number)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(profile_photo)%%>', 'blank.gif', $templateCode);
-		$templateCode = str_replace('<%%VALUE(signature)%%>', 'blank.gif', $templateCode);
 		$templateCode = str_replace('<%%VALUE(active_status)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(active_status)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(profile_photo)%%>', 'blank.gif', $templateCode);
+		$templateCode = str_replace('<%%VALUE(signature)%%>', 'blank.gif', $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);

@@ -20,28 +20,33 @@
 	$x->QueryFieldsTV = [
 		"`user_table`.`user_id`" => "user_id",
 		"`user_table`.`memberID`" => "memberID",
+		"`user_table`.`name`" => "name",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
 		1 => '`user_table`.`user_id`',
 		2 => 2,
+		3 => 3,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`user_table`.`user_id`" => "user_id",
 		"`user_table`.`memberID`" => "memberID",
+		"`user_table`.`name`" => "name",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`user_table`.`user_id`" => "ID",
 		"`user_table`.`memberID`" => "Member ID",
+		"`user_table`.`name`" => "Name",
 	];
 
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`user_table`.`user_id`" => "user_id",
 		"`user_table`.`memberID`" => "memberID",
+		"`user_table`.`name`" => "name",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -77,10 +82,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, ];
-	$x->ColCaption = ['ID', 'Member ID', ];
-	$x->ColFieldName = ['user_id', 'memberID', ];
-	$x->ColNumber  = [1, 2, ];
+	$x->ColWidth = [150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Member ID', 'Name', ];
+	$x->ColFieldName = ['user_id', 'memberID', 'name', ];
+	$x->ColNumber  = [1, 2, 3, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/user_table_templateTV.html';

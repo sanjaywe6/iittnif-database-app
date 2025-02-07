@@ -114,7 +114,6 @@
 							<ul class="nav">
 								<li><a href="#field-personal_data_table-personal_data_id">ID</a></li>
 								<li><a href="#field-personal_data_table-name">Name</a></li>
-								<li><a href="#field-personal_data_table-designation">Designation</a></li>
 							</ul>
 						</li>
 						<li>
@@ -543,12 +542,6 @@ tour_id int(10) unsigned NO PRI  auto_increment
 		<p class="field-documentation">
 
 tour_place varchar(250) YES   
-
-		</p>
-		<h3 class="field-documentation" id="field-personal_data_table-designation">Designation</h3>
-		<p class="field-documentation">
-
-tour_description text YES   
 
 		</p>
 		<h2 class="table-documentation" id="table-employees_designation_table">Employees designation table</h2>

@@ -221,7 +221,7 @@
 		},
 		'employees_designation_table' => function($data, $options = []) {
 			if(isset($data['employee_details'])) $data['employee_details'] = pkGivenLookupText($data['employee_details'], 'employees_designation_table', 'employee_details');
-			if(isset($data['date_of_appointment_to_new_designation'])) $data['date_of_appointment_to_new_designation'] = guessMySQLDateTime($data['date_of_appointment_to_new_designation']);
+			if(isset($data['date_of_appointment_to_designation'])) $data['date_of_appointment_to_designation'] = guessMySQLDateTime($data['date_of_appointment_to_designation']);
 
 			return $data;
 		},
@@ -233,7 +233,6 @@
 		'leave_table' => function($data, $options = []) {
 			if(isset($data['from_date'])) $data['from_date'] = guessMySQLDateTime($data['from_date']);
 			if(isset($data['to_date'])) $data['to_date'] = guessMySQLDateTime($data['to_date']);
-			if(isset($data['approved_by'])) $data['approved_by'] = pkGivenLookupText($data['approved_by'], 'leave_table', 'approved_by');
 
 			return $data;
 		},

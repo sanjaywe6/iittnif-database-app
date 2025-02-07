@@ -9,9 +9,6 @@
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
-			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="it_inventory_allotment_table_view.php?filterer_select_employee=<%%URLVALUE(personal_data_id)%%>&<%%EMBEDDED%%>" id="it_inventory_allotment_table_link"><img src="table.gif"> IT inventory allotment - App</a>
-			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="it_inventory_allotment_table_view.php?filterer_select_employee=<%%URLVALUE(personal_data_id)%%>&<%%EMBEDDED%%>" id="xs_it_inventory_allotment_table_link"><img src="table.gif"> IT inventory allotment - App</a>
-			<input type="hidden" id="it_inventory_allotment_table_hclink" value="it_inventory_allotment_table_view.php?filterer_select_employee=<%%URLVALUE(personal_data_id)%%>&<%%EMBEDDED%%>">
 			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="employees_designation_table_view.php?filterer_employee_details=<%%URLVALUE(personal_data_id)%%>&<%%EMBEDDED%%>" id="employees_designation_table_link"><img src="table.gif"> Employees designation table</a>
 			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="employees_designation_table_view.php?filterer_employee_details=<%%URLVALUE(personal_data_id)%%>&<%%EMBEDDED%%>" id="xs_employees_designation_table_link"><img src="table.gif"> Employees designation table</a>
 			<input type="hidden" id="employees_designation_table_hclink" value="employees_designation_table_view.php?filterer_employee_details=<%%URLVALUE(personal_data_id)%%>&<%%EMBEDDED%%>">
@@ -34,12 +31,12 @@
 					</div>
 				</div>
 
-				<!-- Field: Designation -->
-				<div class="form-group personal_data_table-designation">
+				<!-- Field: Employee type -->
+				<div class="form-group personal_data_table-employee_type">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="designation">Designation</label>
+					<label class="control-label col-lg-3" for="employee_type">Employee type</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="designation" id="designation" value="<%%VALUE(designation)%%>">
+						<%%COMBO(employee_type)%%>
 					</div>
 				</div>
 
@@ -84,15 +81,6 @@
 					</div>
 				</div>
 
-				<!-- Field: Emp id -->
-				<div class="form-group personal_data_table-emp_id">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="emp_id">Emp id</label>
-					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="emp_id" id="emp_id" value="<%%VALUE(emp_id)%%>">
-					</div>
-				</div>
-
 				<!-- Field: Date of joining -->
 				<div class="form-group personal_data_table-date_of_joining">
 					<hr class="hidden-md hidden-lg">
@@ -111,21 +99,12 @@
 					</div>
 				</div>
 
-				<!-- Field: Type of vehicle -->
-				<div class="form-group personal_data_table-type_of_vehicle">
+				<!-- Field: Active status -->
+				<div class="form-group personal_data_table-active_status">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="type_of_vehicle">Type of vehicle</label>
+					<label class="control-label col-lg-3" for="active_status">Active status</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="type_of_vehicle" id="type_of_vehicle" value="<%%VALUE(type_of_vehicle)%%>">
-					</div>
-				</div>
-
-				<!-- Field: Vehicle number -->
-				<div class="form-group personal_data_table-vehicle_number">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="vehicle_number">Vehicle number</label>
-					<div class="col-lg-9">
-						<input maxlength="40" type="text" class="form-control" name="vehicle_number" id="vehicle_number" value="<%%VALUE(vehicle_number)%%>">
+						<%%COMBO(active_status)%%>
 					</div>
 				</div>
 
@@ -170,15 +149,6 @@
 							</div>
 						</div>
 						<script>/* disable empty links */ $j(() => { const e_signature = '<%%VALUE(signature)%%>'; if(e_signature == '' || e_signature == '&nbsp;' || e_signature == 'blank.gif') { $j('#signature-link').hide(); $j('#signature-image').parents('a').attr('href', '').on('click', (e) => e.preventDefault()); } });</script>
-					</div>
-				</div>
-
-				<!-- Field: Active status -->
-				<div class="form-group personal_data_table-active_status">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="active_status">Active status</label>
-					<div class="col-lg-9">
-						<%%COMBO(active_status)%%>
 					</div>
 				</div>
 

@@ -119,7 +119,7 @@
 	$x->TableTitle = 'Event - App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`event_table`.`event_id`';
-	$x->DefaultSortField = '1';
+	$x->DefaultSortField = '`event_table`.`event_from_date`';
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];

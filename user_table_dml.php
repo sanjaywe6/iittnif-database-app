@@ -17,6 +17,7 @@ function user_table_insert(&$error_message = '') {
 
 	$data = [
 		'memberID' => Request::val('memberID', ''),
+		'name' => Request::val('name', ''),
 	];
 
 	// record owner is current user
@@ -387,9 +388,9 @@ function user_table_delete($selected_id, $AllowDeleteOfParents = false, $skipChe
 	// child table: it_inventory_allotment_table
 	$res = sql("SELECT `user_id` FROM `user_table` WHERE `user_id`='{$selected_id}'", $eo);
 	$user_id = db_fetch_row($res);
-	$rires = sql("SELECT COUNT(1) FROM `it_inventory_allotment_table` WHERE `alloted_by`='" . makeSafe($user_id[0]) . "'", $eo);
+	$rires = sql("SELECT COUNT(1) FROM `it_inventory_allotment_table` WHERE `select_employee`='" . makeSafe($user_id[0]) . "'", $eo);
 	$rirow = db_fetch_row($rires);
-	$childrenATag = '<a class="alert-link" href="it_inventory_allotment_table_view.php?filterer_alloted_by=' . urlencode($user_id[0]) . '">%s</a>';
+	$childrenATag = '<a class="alert-link" href="it_inventory_allotment_table_view.php?filterer_select_employee=' . urlencode($user_id[0]) . '">%s</a>';
 	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
 		$RetMsg = $Translation["couldn't delete"];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
@@ -404,21 +405,21 @@ function user_table_delete($selected_id, $AllowDeleteOfParents = false, $skipChe
 		return $RetMsg;
 	}
 
-	// child table: leave_table
+	// child table: it_inventory_allotment_table
 	$res = sql("SELECT `user_id` FROM `user_table` WHERE `user_id`='{$selected_id}'", $eo);
 	$user_id = db_fetch_row($res);
-	$rires = sql("SELECT COUNT(1) FROM `leave_table` WHERE `approved_by`='" . makeSafe($user_id[0]) . "'", $eo);
+	$rires = sql("SELECT COUNT(1) FROM `it_inventory_allotment_table` WHERE `alloted_by`='" . makeSafe($user_id[0]) . "'", $eo);
 	$rirow = db_fetch_row($rires);
-	$childrenATag = '<a class="alert-link" href="leave_table_view.php?filterer_approved_by=' . urlencode($user_id[0]) . '">%s</a>';
+	$childrenATag = '<a class="alert-link" href="it_inventory_allotment_table_view.php?filterer_alloted_by=' . urlencode($user_id[0]) . '">%s</a>';
 	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
 		$RetMsg = $Translation["couldn't delete"];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
-		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'leave_table'), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'it_inventory_allotment_table'), $RetMsg);
 		return $RetMsg;
 	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
-		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'leave_table'), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'it_inventory_allotment_table'), $RetMsg);
 		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'user_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
 		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'user_table_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
 		return $RetMsg;
@@ -524,6 +525,7 @@ function user_table_update(&$selected_id, &$error_message = '') {
 
 	$data = [
 		'memberID' => Request::val('memberID', ''),
+		'name' => Request::val('name', ''),
 	];
 
 	// get existing values
@@ -709,6 +711,7 @@ function user_table_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
 		$jsReadOnly .= "\tjQuery('#memberID').replaceWith('<div class=\"form-control-static\" id=\"memberID\">' + (jQuery('#memberID').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\tjQuery('#name').replaceWith('<div class=\"form-control-static\" id=\"name\">' + (jQuery('#name').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -739,6 +742,7 @@ function user_table_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(user_id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(memberID)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(name)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
@@ -747,11 +751,16 @@ function user_table_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(memberID)%%>', safe_html($urow['memberID']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(memberID)%%>', html_attr($row['memberID']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(memberID)%%>', urlencode($urow['memberID']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(name)%%>', safe_html($urow['name']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(name)%%>', html_attr($row['name']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(name)%%>', urlencode($urow['name']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(user_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(user_id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(memberID)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(memberID)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(name)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(name)%%>', urlencode(''), $templateCode);
 	}
 
 	// process translations

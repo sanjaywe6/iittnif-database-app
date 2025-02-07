@@ -131,7 +131,7 @@
 				],
 				'event_table' => [
 					'Caption' => 'Event - App',
-					'Description' => '',
+					'Description' => '<a href="https://lookerstudio.google.com/reporting/7a6332d1-62b0-4602-baf9-7da8e4033e98"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Event App View</b></button></a>',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[0],
 					'homepageShowCount' => 1
@@ -222,7 +222,7 @@
 				],
 				'task_setting_table' => [
 					'Caption' => 'Task setting - App',
-					'Description' => '',
+					'Description' => '<a href="https://lookerstudio.google.com/reporting/52ec0149-4f45-4041-92b6-afc26208458e"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Task Setting App View</b></button></a>',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[0],
 					'homepageShowCount' => 1
@@ -616,7 +616,7 @@
 			/* 'table_name' => ['table caption', 'homepage description', 'icon', 'table group name'] */   
 			'user_table' => ['User Table', '', 'table.gif', 'Suggestions &amp; Other Apps'],
 			'suggestion' => ['Suggestions - App', '', 'table.gif', 'Suggestions &amp; Other Apps'],
-			'event_table' => ['Event - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
+			'event_table' => ['Event - App', '<a href="https://lookerstudio.google.com/reporting/7a6332d1-62b0-4602-baf9-7da8e4033e98"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Event App View</b></button></a>', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'outcomes_expected_table' => ['Outcomes Expected Table', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'event_decision_table' => ['Decision - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'meetings_table' => ['Meetings - App', '<a href="https://lookerstudio.google.com/reporting/b7bf99ff-cb80-42d5-8c5e-9256eb638f3a"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Meetings App View</b></button></a>', 'table.gif', 'Events / Meetings / Goals Apps'],
@@ -629,7 +629,7 @@
 			'mou_company_area_details_table' => ['MoU company area details - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'goal_setting_table' => ['Goal setting - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'goal_progress_table' => ['Goal progress table', '', 'table.gif', 'Events / Meetings / Goals Apps'],
-			'task_setting_table' => ['Task setting - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
+			'task_setting_table' => ['Task setting - App', '<a href="https://lookerstudio.google.com/reporting/52ec0149-4f45-4041-92b6-afc26208458e"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Task Setting App View</b></button></a>', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'subtask_setting_table' => ['Subtask setting - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'internship_fellowship_details_app' => ['Internship/Fellowship details - App', 'HRD', 'table.gif', 'HRD Apps'],
 			'star_pnt' => ['Star-PNT - APP', 'HRD', 'table.gif', 'HRD Apps'],
@@ -1493,6 +1493,13 @@
 						'appgini' => "VARCHAR(255) NULL UNIQUE",
 						'info' => [
 							'caption' => 'Member ID',
+							'description' => '',
+						],
+					],
+					'name' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Name',
 							'description' => '',
 						],
 					],
@@ -4569,7 +4576,7 @@
 						],
 					],
 					'select_employee' => [
-						'appgini' => "INT(10) UNSIGNED NULL",
+						'appgini' => "INT UNSIGNED NULL",
 						'info' => [
 							'caption' => 'Select employee',
 							'description' => '',
@@ -4847,10 +4854,10 @@
 							'description' => '',
 						],
 					],
-					'designation' => [
+					'employee_type' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Designation',
+							'caption' => 'Employee type',
 							'description' => '',
 						],
 					],
@@ -4882,13 +4889,6 @@
 							'description' => '',
 						],
 					],
-					'emp_id' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Emp id',
-							'description' => '',
-						],
-					],
 					'date_of_joining' => [
 						'appgini' => "DATE NULL",
 						'info' => [
@@ -4903,17 +4903,10 @@
 							'description' => '',
 						],
 					],
-					'type_of_vehicle' => [
+					'active_status' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Type of vehicle',
-							'description' => '',
-						],
-					],
-					'vehicle_number' => [
-						'appgini' => "VARCHAR(40) NULL",
-						'info' => [
-							'caption' => 'Vehicle number',
+							'caption' => 'Active status',
 							'description' => '',
 						],
 					],
@@ -4929,13 +4922,6 @@
 						'info' => [
 							'caption' => 'Signature',
 							'description' => 'Maximum file size allowed: 10000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
-						],
-					],
-					'active_status' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Active status',
-							'description' => '',
 						],
 					],
 					'created_by' => [
@@ -4982,31 +4968,31 @@
 							'description' => '',
 						],
 					],
-					'new_designation' => [
+					'emp_id' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'New designation',
+							'caption' => 'Emp id',
 							'description' => '',
 						],
 					],
-					'date_of_appointment_to_new_designation' => [
+					'designation' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Designation',
+							'description' => '',
+						],
+					],
+					'date_of_appointment_to_designation' => [
 						'appgini' => "DATE NULL",
 						'info' => [
-							'caption' => 'Date of appointment to new designation',
+							'caption' => 'Date of appointment to designation',
 							'description' => '',
 						],
 					],
-					'previous_designation' => [
+					'active_status' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Previous designation (if available)',
-							'description' => '',
-						],
-					],
-					'date_of_resignation_from_previous_resignation' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Date of resignation from previous resignation',
+							'caption' => 'Active status',
 							'description' => '',
 						],
 					],
@@ -5165,13 +5151,6 @@
 						'appgini' => "DATETIME NOT NULL",
 						'info' => [
 							'caption' => 'To date',
-							'description' => '',
-						],
-					],
-					'approved_by' => [
-						'appgini' => "INT UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Approved by',
 							'description' => '',
 						],
 					],
@@ -9773,17 +9752,13 @@
 			],
 			'it_inventory_allotment_table' => [
 				'it_inventory_app' => ['it_inventory_lookup'],
-				'personal_data_table' => ['select_employee'],
-				'user_table' => ['alloted_by'],
+				'user_table' => ['alloted_by', 'select_employee'],
 			],
 			'computer_usage_table' => [
 				'computer_details_table' => ['pc_id'],
 			],
 			'employees_designation_table' => [
 				'personal_data_table' => ['employee_details'],
-			],
-			'leave_table' => [
-				'user_table' => ['approved_by'],
 			],
 			'work_from_home_table' => [
 				'user_table' => ['approved_by'],
@@ -10079,7 +10054,7 @@
 			],
 			'event_decision_table' => [
 				'outcomes_expected_lookup' => 'SELECT `outcomes_expected_table`.`outcomes_expected_id`, `outcomes_expected_table`.`outcomes_expected_str` FROM `outcomes_expected_table` LEFT JOIN `event_table` as event_table1 ON `event_table1`.`event_id`=`outcomes_expected_table`.`event_lookup` ORDER BY 2',
-				'decision_actor' => 'SELECT `user_table`.`user_id`, `user_table`.`memberID` FROM `user_table` ORDER BY 2',
+				'decision_actor' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'meetings_table' => [
 				'visiting_card_lookup' => 'SELECT `visiting_card_table`.`visiting_card_id`, `visiting_card_table`.`visiting_card_str` FROM `visiting_card_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`visiting_card_table`.`given_by` ORDER BY 2',
@@ -10090,41 +10065,41 @@
 			],
 			'decision_table' => [
 				'agenda_lookup' => 'SELECT `agenda_table`.`agenda_id`, `agenda_table`.`agenda_str` FROM `agenda_table` LEFT JOIN `meetings_table` as meetings_table1 ON `meetings_table1`.`meetings_id`=`agenda_table`.`meeting_lookup` ORDER BY 2',
-				'decision_actor' => 'SELECT `user_table`.`user_id`, `user_table`.`memberID` FROM `user_table` ORDER BY 2',
+				'decision_actor' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'participants_table' => [
 				'event_lookup' => 'SELECT `event_table`.`event_id`, `event_table`.`event_str` FROM `event_table` ORDER BY 2',
 				'meeting_lookup' => 'SELECT `meetings_table`.`meetings_id`, `meetings_table`.`meeting_str` FROM `meetings_table` LEFT JOIN `visiting_card_table` as visiting_card_table1 ON `visiting_card_table1`.`visiting_card_id`=`meetings_table`.`visiting_card_lookup` LEFT JOIN `event_table` as event_table1 ON `event_table1`.`event_id`=`meetings_table`.`event_lookup` ORDER BY 2',
 			],
 			'action_actor' => [
-				'actor' => 'SELECT `user_table`.`user_id`, `user_table`.`memberID` FROM `user_table` ORDER BY 2',
+				'actor' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'visiting_card_table' => [
-				'given_by' => 'SELECT `user_table`.`user_id`, `user_table`.`memberID` FROM `user_table` ORDER BY 2',
+				'given_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'mou_details_table' => [
 				'assigned_mou_to' => 'SELECT `user_table`.`user_id`, `user_table`.`memberID` FROM `user_table` ORDER BY 2',
 			],
 			'mou_company_area_details_table' => [
 				'name_of_the_company' => 'SELECT `mou_details_table`.`id`, `mou_details_table`.`company_name` FROM `mou_details_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`mou_details_table`.`assigned_mou_to` ORDER BY 2',
-				'assigned_mou_to' => 'SELECT `user_table`.`user_id`, `user_table`.`memberID` FROM `user_table` ORDER BY 2',
+				'assigned_mou_to' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'goal_setting_table' => [
-				'supervisor_name' => 'SELECT `user_table`.`user_id`, `user_table`.`memberID` FROM `user_table` ORDER BY 2',
-				'assigned_to' => 'SELECT `user_table`.`user_id`, `user_table`.`memberID` FROM `user_table` ORDER BY 2',
+				'supervisor_name' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+				'assigned_to' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'goal_progress_table' => [
 				'goal_lookup' => 'SELECT `goal_setting_table`.`goal_id`, IF(CHAR_LENGTH(`goal_setting_table`.`goal_description`) || CHAR_LENGTH(`goal_setting_table`.`goal_duration`), CONCAT_WS(\'\', `goal_setting_table`.`goal_description`, \'::\', `goal_setting_table`.`goal_duration`), \'\') FROM `goal_setting_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`goal_setting_table`.`supervisor_name` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`goal_setting_table`.`assigned_to` ORDER BY 2',
-				'remarks_by' => 'SELECT `user_table`.`user_id`, `user_table`.`memberID` FROM `user_table` ORDER BY 2',
+				'remarks_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'task_setting_table' => [
-				'supervisor_name' => 'SELECT `user_table`.`user_id`, `user_table`.`memberID` FROM `user_table` ORDER BY 2',
-				'assigned_to' => 'SELECT `user_table`.`user_id`, `user_table`.`memberID` FROM `user_table` ORDER BY 2',
+				'supervisor_name' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+				'assigned_to' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'subtask_setting_table' => [
-				'task_lookup' => 'SELECT `task_setting_table`.`task_id`, IF(CHAR_LENGTH(`task_setting_table`.`task_description`) || CHAR_LENGTH(`task_setting_table`.`assigned_to`), CONCAT_WS(\'\', `task_setting_table`.`task_description`, \'::\', IF(    CHAR_LENGTH(`user_table2`.`memberID`), CONCAT_WS(\'\',   `user_table2`.`memberID`), \'\')), \'\') FROM `task_setting_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`task_setting_table`.`supervisor_name` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`task_setting_table`.`assigned_to` ORDER BY 2',
-				'supervisor_name' => 'SELECT `user_table`.`user_id`, `user_table`.`memberID` FROM `user_table` ORDER BY 2',
-				'assigned_to' => 'SELECT `user_table`.`user_id`, `user_table`.`memberID` FROM `user_table` ORDER BY 2',
+				'task_lookup' => 'SELECT `task_setting_table`.`task_id`, IF(CHAR_LENGTH(`task_setting_table`.`task_description`) || CHAR_LENGTH(`task_setting_table`.`assigned_to`), CONCAT_WS(\'\', `task_setting_table`.`task_description`, \'::\', IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS(\'\',   `user_table2`.`memberID`, \'::\', `user_table2`.`name`), \'\')), \'\') FROM `task_setting_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`task_setting_table`.`supervisor_name` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`task_setting_table`.`assigned_to` ORDER BY 2',
+				'supervisor_name' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+				'assigned_to' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'internship_fellowship_details_app' => [
 			],
@@ -10144,7 +10119,7 @@
 			'sdp_participants_college_details_table' => [
 			],
 			'asset_app' => [
-				'sactioned_by' => 'SELECT `user_table`.`user_id`, `user_table`.`memberID` FROM `user_table` ORDER BY 2',
+				'sactioned_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'asset_billing_details' => [
 				'asset_lookup' => 'SELECT `asset_app`.`asset_id`, `asset_app`.`asset_str` FROM `asset_app` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`asset_app`.`sactioned_by` ORDER BY 2',
@@ -10153,18 +10128,18 @@
 			],
 			'asset_allotment_table' => [
 				'asset_lookup' => 'SELECT `asset_table`.`id`, IF(CHAR_LENGTH(`asset_table`.`AssetSerialNo`) || CHAR_LENGTH(`asset_table`.`ItemDescription`), CONCAT_WS(\'\', `asset_table`.`AssetSerialNo`, \'::\', `asset_table`.`ItemDescription`), \'\') FROM `asset_table` ORDER BY 2',
-				'alloted_by' => 'SELECT `user_table`.`user_id`, `user_table`.`memberID` FROM `user_table` ORDER BY 2',
+				'alloted_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'it_inventory_app' => [
-				'sactioned_by' => 'SELECT `user_table`.`user_id`, `user_table`.`memberID` FROM `user_table` ORDER BY 2',
+				'sactioned_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'it_inventory_billing_details' => [
 				'it_inventory_lookup' => 'SELECT `it_inventory_app`.`it_inventory_id`, IF(CHAR_LENGTH(`it_inventory_app`.`it_inventory_str`), CONCAT_WS(\'\', `it_inventory_app`.`it_inventory_str`, \'::\'), \'\') FROM `it_inventory_app` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`it_inventory_app`.`sactioned_by` ORDER BY 2',
 			],
 			'it_inventory_allotment_table' => [
 				'it_inventory_lookup' => 'SELECT `it_inventory_app`.`it_inventory_id`, `it_inventory_app`.`it_inventory_str` FROM `it_inventory_app` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`it_inventory_app`.`sactioned_by` ORDER BY 2',
-				'select_employee' => 'SELECT `personal_data_table`.`personal_data_id`, IF(CHAR_LENGTH(`personal_data_table`.`name`) || CHAR_LENGTH(`personal_data_table`.`emp_id`), CONCAT_WS(\'\', `personal_data_table`.`name`, \'::\', `personal_data_table`.`emp_id`), \'\') FROM `personal_data_table` ORDER BY 2',
-				'alloted_by' => 'SELECT `user_table`.`user_id`, `user_table`.`memberID` FROM `user_table` ORDER BY 2',
+				'select_employee' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+				'alloted_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'computer_details_table' => [
 			],
@@ -10174,12 +10149,11 @@
 			'personal_data_table' => [
 			],
 			'employees_designation_table' => [
-				'employee_details' => 'SELECT `personal_data_table`.`personal_data_id`, IF(CHAR_LENGTH(`personal_data_table`.`emp_id`) || CHAR_LENGTH(`personal_data_table`.`name`), CONCAT_WS(\'\', `personal_data_table`.`emp_id`, \'::\', `personal_data_table`.`name`), \'\') FROM `personal_data_table` ORDER BY 2',
+				'employee_details' => 'SELECT `personal_data_table`.`personal_data_id`, IF(CHAR_LENGTH(`personal_data_table`.`name`) || CHAR_LENGTH(`personal_data_table`.`employee_type`), CONCAT_WS(\'\', `personal_data_table`.`name`, \'::\', `personal_data_table`.`employee_type`), \'\') FROM `personal_data_table` ORDER BY 2',
 			],
 			'attendence_details_table' => [
 			],
 			'leave_table' => [
-				'approved_by' => 'SELECT `user_table`.`user_id`, `user_table`.`user_id` FROM `user_table` ORDER BY 2',
 			],
 			'work_from_home_table' => [
 				'approved_by' => 'SELECT `user_table`.`user_id`, `user_table`.`user_id` FROM `user_table` ORDER BY 2',
@@ -10209,7 +10183,7 @@
 				'evaluation_lookup' => 'SELECT `evaluation_table`.`evaluation_id`, `evaluation_table`.`evaluation_id` FROM `evaluation_table` LEFT JOIN `all_startup_data_table` as all_startup_data_table1 ON `all_startup_data_table1`.`id`=`evaluation_table`.`select_startup` ORDER BY 2',
 			],
 			'approval_table' => [
-				'person_responsbility' => 'SELECT `user_table`.`user_id`, `user_table`.`memberID` FROM `user_table` ORDER BY 2',
+				'person_responsbility' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'all_bank_account_statement_table' => [
 			],
@@ -10221,7 +10195,7 @@
 				'car_lookup' => 'SELECT `car_table`.`id`, IF(CHAR_LENGTH(`car_table`.`car_number`) || CHAR_LENGTH(`car_table`.`car_model`), CONCAT_WS(\'\', `car_table`.`car_number`, \'::\', `car_table`.`car_model`), \'\') FROM `car_table` ORDER BY 2',
 			],
 			'travel_table' => [
-				'approved_by' => 'SELECT `user_table`.`user_id`, `user_table`.`memberID` FROM `user_table` ORDER BY 2',
+				'approved_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'travel_cab_table' => [
 				'travel_details' => 'SELECT `travel_table`.`id`, IF(CHAR_LENGTH(`travel_table`.`first_name`) || CHAR_LENGTH(`travel_table`.`travel_description`), CONCAT_WS(\'\', `travel_table`.`first_name`, \'::\', `travel_table`.`travel_description`), \'\') FROM `travel_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`travel_table`.`approved_by` ORDER BY 2',

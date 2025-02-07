@@ -17,10 +17,10 @@ function employees_designation_table_insert(&$error_message = '') {
 
 	$data = [
 		'employee_details' => Request::lookup('employee_details', ''),
-		'new_designation' => Request::val('new_designation', ''),
-		'date_of_appointment_to_new_designation' => Request::dateComponents('date_of_appointment_to_new_designation', ''),
-		'previous_designation' => Request::val('previous_designation', ''),
-		'date_of_resignation_from_previous_resignation' => Request::val('date_of_resignation_from_previous_resignation', ''),
+		'emp_id' => Request::val('emp_id', ''),
+		'designation' => Request::val('designation', ''),
+		'date_of_appointment_to_designation' => Request::dateComponents('date_of_appointment_to_designation', ''),
+		'active_status' => Request::val('active_status', ''),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
@@ -90,10 +90,10 @@ function employees_designation_table_update(&$selected_id, &$error_message = '')
 
 	$data = [
 		'employee_details' => Request::lookup('employee_details', ''),
-		'new_designation' => Request::val('new_designation', ''),
-		'date_of_appointment_to_new_designation' => Request::dateComponents('date_of_appointment_to_new_designation', ''),
-		'previous_designation' => Request::val('previous_designation', ''),
-		'date_of_resignation_from_previous_resignation' => Request::val('date_of_resignation_from_previous_resignation', ''),
+		'emp_id' => Request::val('emp_id', ''),
+		'designation' => Request::val('designation', ''),
+		'date_of_appointment_to_designation' => Request::dateComponents('date_of_appointment_to_designation', ''),
+		'active_status' => Request::val('active_status', ''),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 	];
@@ -191,21 +191,37 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
 	// combobox: employee_details
 	$combo_employee_details = new DataCombo;
-	// combobox: date_of_appointment_to_new_designation
-	$combo_date_of_appointment_to_new_designation = new DateCombo;
-	$combo_date_of_appointment_to_new_designation->DateFormat = "dmy";
-	$combo_date_of_appointment_to_new_designation->MinYear = defined('employees_designation_table.date_of_appointment_to_new_designation.MinYear') ? constant('employees_designation_table.date_of_appointment_to_new_designation.MinYear') : 1900;
-	$combo_date_of_appointment_to_new_designation->MaxYear = defined('employees_designation_table.date_of_appointment_to_new_designation.MaxYear') ? constant('employees_designation_table.date_of_appointment_to_new_designation.MaxYear') : 2100;
-	$combo_date_of_appointment_to_new_designation->DefaultDate = parseMySQLDate('', '');
-	$combo_date_of_appointment_to_new_designation->MonthNames = $Translation['month names'];
-	$combo_date_of_appointment_to_new_designation->NamePrefix = 'date_of_appointment_to_new_designation';
+	// combobox: date_of_appointment_to_designation
+	$combo_date_of_appointment_to_designation = new DateCombo;
+	$combo_date_of_appointment_to_designation->DateFormat = "dmy";
+	$combo_date_of_appointment_to_designation->MinYear = defined('employees_designation_table.date_of_appointment_to_designation.MinYear') ? constant('employees_designation_table.date_of_appointment_to_designation.MinYear') : 1900;
+	$combo_date_of_appointment_to_designation->MaxYear = defined('employees_designation_table.date_of_appointment_to_designation.MaxYear') ? constant('employees_designation_table.date_of_appointment_to_designation.MaxYear') : 2100;
+	$combo_date_of_appointment_to_designation->DefaultDate = parseMySQLDate('', '');
+	$combo_date_of_appointment_to_designation->MonthNames = $Translation['month names'];
+	$combo_date_of_appointment_to_designation->NamePrefix = 'date_of_appointment_to_designation';
+	// combobox: active_status
+	$combo_active_status = new Combo;
+	$combo_active_status->ListType = 0;
+	$combo_active_status->MultipleSeparator = ', ';
+	$combo_active_status->ListBoxHeight = 10;
+	$combo_active_status->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/employees_designation_table.active_status.csv')) {
+		$active_status_data = addslashes(implode('', @file(__DIR__ . '/hooks/employees_designation_table.active_status.csv')));
+		$combo_active_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($active_status_data))));
+		$combo_active_status->ListData = $combo_active_status->ListItem;
+	} else {
+		$combo_active_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Active;;Not Active"))));
+		$combo_active_status->ListData = $combo_active_status->ListItem;
+	}
+	$combo_active_status->SelectName = 'active_status';
 
 	if($hasSelectedId) {
 		if(!($row = getRecord('employees_designation_table', $selectedId))) {
 			return error_message($Translation['No records found'], 'employees_designation_table_view.php', false);
 		}
 		$combo_employee_details->SelectedData = $row['employee_details'];
-		$combo_date_of_appointment_to_new_designation->DefaultDate = $row['date_of_appointment_to_new_designation'];
+		$combo_date_of_appointment_to_designation->DefaultDate = $row['date_of_appointment_to_designation'];
+		$combo_active_status->SelectedData = $row['active_status'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
 	} else {
@@ -213,9 +229,11 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
 		$combo_employee_details->SelectedData = $filterer_employee_details;
+		$combo_active_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '6' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
 	$combo_employee_details->HTML = '<span id="employee_details-container' . $rnd1 . '"></span><input type="hidden" name="employee_details" id="employee_details' . $rnd1 . '" value="' . html_attr($combo_employee_details->SelectedData) . '">';
 	$combo_employee_details->MatchText = '<span id="employee_details-container-readonly' . $rnd1 . '"></span><input type="hidden" name="employee_details" id="employee_details' . $rnd1 . '" value="' . html_attr($combo_employee_details->SelectedData) . '">';
+	$combo_active_status->Render();
 
 	ob_start();
 	?>
@@ -393,11 +411,11 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 		$jsReadOnly = '';
 		$jsReadOnly .= "\tjQuery('#employee_details').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\tjQuery('#employee_details_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\tjQuery('#new_designation').replaceWith('<div class=\"form-control-static\" id=\"new_designation\">' + (jQuery('#new_designation').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#date_of_appointment_to_new_designation').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#date_of_appointment_to_new_designationDay, #date_of_appointment_to_new_designationMonth, #date_of_appointment_to_new_designationYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#previous_designation').replaceWith('<div class=\"form-control-static\" id=\"previous_designation\">' + (jQuery('#previous_designation').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#date_of_resignation_from_previous_resignation').replaceWith('<div class=\"form-control-static\" id=\"date_of_resignation_from_previous_resignation\">' + (jQuery('#date_of_resignation_from_previous_resignation').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\tjQuery('#emp_id').replaceWith('<div class=\"form-control-static\" id=\"emp_id\">' + (jQuery('#emp_id').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\tjQuery('#designation').replaceWith('<div class=\"form-control-static\" id=\"designation\">' + (jQuery('#designation').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\tjQuery('#date_of_appointment_to_designation').prop('readonly', true);\n";
+		$jsReadOnly .= "\tjQuery('#date_of_appointment_to_designationDay, #date_of_appointment_to_designationMonth, #date_of_appointment_to_designationYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\tjQuery('#active_status').replaceWith('<div class=\"form-control-static\" id=\"active_status\">' + (jQuery('#active_status').val() || '') + '</div>'); jQuery('#active_status-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -412,12 +430,14 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 	$templateCode = str_replace('<%%COMBOTEXT(employee_details)%%>', $combo_employee_details->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(employee_details)%%>', urlencode($combo_employee_details->MatchText), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(date_of_appointment_to_new_designation)%%>', 
+		'<%%COMBO(date_of_appointment_to_designation)%%>', 
 		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_date_of_appointment_to_new_designation->GetHTML(true) . '</div>' : 
-			$combo_date_of_appointment_to_new_designation->GetHTML()
+			'<div class="form-control-static">' . $combo_date_of_appointment_to_designation->GetHTML(true) . '</div>' : 
+			$combo_date_of_appointment_to_designation->GetHTML()
 		), $templateCode);
-	$templateCode = str_replace('<%%COMBOTEXT(date_of_appointment_to_new_designation)%%>', $combo_date_of_appointment_to_new_designation->GetHTML(true), $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(date_of_appointment_to_designation)%%>', $combo_date_of_appointment_to_designation->GetHTML(true), $templateCode);
+	$templateCode = str_replace('<%%COMBO(active_status)%%>', $combo_active_status->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(active_status)%%>', $combo_active_status->SelectedData, $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
 	$lookup_fields = ['employee_details' => ['personal_data_table', 'Employee details'], ];
@@ -438,10 +458,10 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(employee_details)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(new_designation)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(date_of_appointment_to_new_designation)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(previous_designation)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(date_of_resignation_from_previous_resignation)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(emp_id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(designation)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(date_of_appointment_to_designation)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(active_status)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
@@ -454,17 +474,17 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(employee_details)%%>', safe_html($urow['employee_details']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(employee_details)%%>', html_attr($row['employee_details']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(employee_details)%%>', urlencode($urow['employee_details']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(new_designation)%%>', safe_html($urow['new_designation']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(new_designation)%%>', html_attr($row['new_designation']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(new_designation)%%>', urlencode($urow['new_designation']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(date_of_appointment_to_new_designation)%%>', app_datetime($row['date_of_appointment_to_new_designation']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(date_of_appointment_to_new_designation)%%>', urlencode(app_datetime($urow['date_of_appointment_to_new_designation'])), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(previous_designation)%%>', safe_html($urow['previous_designation']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(previous_designation)%%>', html_attr($row['previous_designation']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(previous_designation)%%>', urlencode($urow['previous_designation']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(date_of_resignation_from_previous_resignation)%%>', safe_html($urow['date_of_resignation_from_previous_resignation']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(date_of_resignation_from_previous_resignation)%%>', html_attr($row['date_of_resignation_from_previous_resignation']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(date_of_resignation_from_previous_resignation)%%>', urlencode($urow['date_of_resignation_from_previous_resignation']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(emp_id)%%>', safe_html($urow['emp_id']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(emp_id)%%>', html_attr($row['emp_id']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(emp_id)%%>', urlencode($urow['emp_id']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(designation)%%>', safe_html($urow['designation']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(designation)%%>', html_attr($row['designation']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(designation)%%>', urlencode($urow['designation']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(date_of_appointment_to_designation)%%>', app_datetime($row['date_of_appointment_to_designation']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(date_of_appointment_to_designation)%%>', urlencode(app_datetime($urow['date_of_appointment_to_designation'])), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(active_status)%%>', safe_html($urow['active_status']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(active_status)%%>', html_attr($row['active_status']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(active_status)%%>', urlencode($urow['active_status']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
@@ -478,14 +498,14 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(employee_details)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(employee_details)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(new_designation)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(new_designation)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(date_of_appointment_to_new_designation)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(date_of_appointment_to_new_designation)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(previous_designation)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(previous_designation)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(date_of_resignation_from_previous_resignation)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(date_of_resignation_from_previous_resignation)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(emp_id)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(emp_id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(designation)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(designation)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(date_of_appointment_to_designation)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(date_of_appointment_to_designation)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(active_status)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(active_status)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);

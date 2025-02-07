@@ -35,8 +35,9 @@
 			<input type="hidden" id="asset_app_hclink" value="asset_app_view.php?filterer_sactioned_by=<%%URLVALUE(user_id)%%>&<%%EMBEDDED%%>">
 			<input type="hidden" id="asset_allotment_table_hclink" value="asset_allotment_table_view.php?filterer_alloted_by=<%%URLVALUE(user_id)%%>&<%%EMBEDDED%%>">
 			<input type="hidden" id="it_inventory_app_hclink" value="it_inventory_app_view.php?filterer_sactioned_by=<%%URLVALUE(user_id)%%>&<%%EMBEDDED%%>">
-			<input type="hidden" id="it_inventory_allotment_table_hclink" value="it_inventory_allotment_table_view.php?filterer_alloted_by=<%%URLVALUE(user_id)%%>&<%%EMBEDDED%%>">
-			<input type="hidden" id="leave_table_hclink" value="leave_table_view.php?filterer_approved_by=<%%URLVALUE(user_id)%%>&<%%EMBEDDED%%>">
+			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="it_inventory_allotment_table_view.php?filterer_select_employee=<%%URLVALUE(user_id)%%>&<%%EMBEDDED%%>" id="it_inventory_allotment_table_link"><img src="table.gif"> IT inventory allotment - App</a>
+			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="it_inventory_allotment_table_view.php?filterer_select_employee=<%%URLVALUE(user_id)%%>&<%%EMBEDDED%%>" id="xs_it_inventory_allotment_table_link"><img src="table.gif"> IT inventory allotment - App</a>
+			<input type="hidden" id="it_inventory_allotment_table_hclink" value="it_inventory_allotment_table_view.php?filterer_select_employee=<%%URLVALUE(user_id)%%>&<%%EMBEDDED%%>">
 			<input type="hidden" id="work_from_home_table_hclink" value="work_from_home_table_view.php?filterer_approved_by=<%%URLVALUE(user_id)%%>&<%%EMBEDDED%%>">
 			<input type="hidden" id="email_id_allocation_table_hclink" value="email_id_allocation_table_view.php?filterer_reporting_manager=<%%URLVALUE(user_id)%%>&<%%EMBEDDED%%>">
 			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="approval_table_view.php?filterer_person_responsbility=<%%URLVALUE(user_id)%%>&<%%EMBEDDED%%>" id="approval_table_link"><img src="table.gif"> Approval - App</a>
@@ -70,6 +71,15 @@
 					<label class="control-label col-lg-3" for="memberID">Member ID</label>
 					<div class="col-lg-9">
 						<input maxlength="255" type="text" class="form-control" name="memberID" id="memberID" value="<%%VALUE(memberID)%%>"><div class="text-danger vspacer-md" id="memberID-uniqueness-note" style="display: none;"><%%TRANSLATION(unique field error)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Name -->
+				<div class="form-group user_table-name">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="name">Name</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="name" id="name" value="<%%VALUE(name)%%>">
 					</div>
 				</div>
 

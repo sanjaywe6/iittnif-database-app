@@ -382,7 +382,7 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 							});
 							$j('[name="select_employee"]').val(resp.results[0].id);
 							$j('[id=select_employee-container-readonly__RAND__]').html('<span class="match-text" id="select_employee-match-text">' + resp.results[0].text + '</span>');
-							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=personal_data_table_view_parent]').hide(); } else { $j('.btn[id=personal_data_table_view_parent]').show(); }
+							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
 
 
 							if(typeof(select_employee_update_autofills__RAND__) == 'function') select_employee_update_autofills__RAND__();
@@ -405,7 +405,7 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 				AppGini.current_select_employee__RAND__.value = e.added.id;
 				AppGini.current_select_employee__RAND__.text = e.added.text;
 				$j('[name="select_employee"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=personal_data_table_view_parent]').hide(); } else { $j('.btn[id=personal_data_table_view_parent]').show(); }
+				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
 
 
 				if(typeof(select_employee_update_autofills__RAND__) == 'function') select_employee_update_autofills__RAND__();
@@ -419,7 +419,7 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 					success: function(resp) {
 						$j('[name="select_employee"]').val(resp.results[0].id);
 						$j('[id=select_employee-container-readonly__RAND__]').html('<span class="match-text" id="select_employee-match-text">' + resp.results[0].text + '</span>');
-						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=personal_data_table_view_parent]').hide(); } else { $j('.btn[id=personal_data_table_view_parent]').show(); }
+						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
 
 						if(typeof(select_employee_update_autofills__RAND__) == 'function') select_employee_update_autofills__RAND__();
 					}
@@ -434,7 +434,7 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 				data: { id: AppGini.current_select_employee__RAND__.value, t: 'it_inventory_allotment_table', f: 'select_employee' },
 				success: function(resp) {
 					$j('[id=select_employee-container__RAND__], [id=select_employee-container-readonly__RAND__]').html('<span class="match-text" id="select_employee-match-text">' + resp.results[0].text + '</span>');
-					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=personal_data_table_view_parent]').hide(); } else { $j('.btn[id=personal_data_table_view_parent]').show(); }
+					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
 
 					if(typeof(select_employee_update_autofills__RAND__) == 'function') select_employee_update_autofills__RAND__();
 				}
@@ -652,7 +652,7 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 	$templateCode = str_replace('<%%COMBOTEXT(returned_date)%%>', $combo_returned_date->GetHTML(true), $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
-	$lookup_fields = ['it_inventory_lookup' => ['it_inventory_app', 'IT inventory '], 'select_employee' => ['personal_data_table', 'Select employee'], 'alloted_by' => ['user_table', 'Alloted by'], ];
+	$lookup_fields = ['it_inventory_lookup' => ['it_inventory_app', 'IT inventory '], 'select_employee' => ['user_table', 'Select employee'], 'alloted_by' => ['user_table', 'Alloted by'], ];
 	foreach($lookup_fields as $luf => $ptfc) {
 		$pt_perm = getTablePermissions($ptfc[0]);
 

@@ -20,7 +20,7 @@
 	$x->QueryFieldsTV = [
 		"`action_actor`.`actor_ID`" => "actor_ID",
 		"`action_actor`.`action_str`" => "action_str",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`), CONCAT_WS('',   `user_table1`.`memberID`), '') /* Actor */" => "actor",
+		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Actor */" => "actor",
 		"`action_actor`.`action_status`" => "action_status",
 		"`action_actor`.`created_by`" => "created_by",
 		"`action_actor`.`created_at`" => "created_at",
@@ -31,7 +31,7 @@
 	$x->SortFields = [
 		1 => 1,
 		2 => 2,
-		3 => '`user_table1`.`memberID`',
+		3 => 3,
 		4 => 4,
 		5 => 5,
 		6 => 6,
@@ -43,7 +43,7 @@
 	$x->QueryFieldsCSV = [
 		"`action_actor`.`actor_ID`" => "actor_ID",
 		"`action_actor`.`action_str`" => "action_str",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`), CONCAT_WS('',   `user_table1`.`memberID`), '') /* Actor */" => "actor",
+		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Actor */" => "actor",
 		"`action_actor`.`action_status`" => "action_status",
 		"`action_actor`.`created_by`" => "created_by",
 		"`action_actor`.`created_at`" => "created_at",
@@ -54,7 +54,7 @@
 	$x->QueryFieldsFilters = [
 		"`action_actor`.`actor_ID`" => "ID",
 		"`action_actor`.`action_str`" => "Action str",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`), CONCAT_WS('',   `user_table1`.`memberID`), '') /* Actor */" => "Actor",
+		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Actor */" => "Actor",
 		"`action_actor`.`action_status`" => "Action status",
 		"`action_actor`.`created_by`" => "Created by",
 		"`action_actor`.`created_at`" => "Created at",
@@ -66,7 +66,7 @@
 	$x->QueryFieldsQS = [
 		"`action_actor`.`actor_ID`" => "actor_ID",
 		"`action_actor`.`action_str`" => "action_str",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`), CONCAT_WS('',   `user_table1`.`memberID`), '') /* Actor */" => "actor",
+		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Actor */" => "actor",
 		"`action_actor`.`action_status`" => "action_status",
 		"`action_actor`.`created_by`" => "created_by",
 		"`action_actor`.`created_at`" => "created_at",

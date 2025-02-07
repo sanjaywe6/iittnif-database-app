@@ -20,19 +20,16 @@
 	$x->QueryFieldsTV = [
 		"`personal_data_table`.`personal_data_id`" => "personal_data_id",
 		"`personal_data_table`.`name`" => "name",
-		"`personal_data_table`.`designation`" => "designation",
+		"`personal_data_table`.`employee_type`" => "employee_type",
 		"if(`personal_data_table`.`date_of_birth`,date_format(`personal_data_table`.`date_of_birth`,'%d/%m/%Y'),'')" => "date_of_birth",
 		"`personal_data_table`.`blood_group`" => "blood_group",
 		"`personal_data_table`.`email`" => "email",
 		"`personal_data_table`.`phone_number`" => "phone_number",
-		"`personal_data_table`.`emp_id`" => "emp_id",
 		"if(`personal_data_table`.`date_of_joining`,date_format(`personal_data_table`.`date_of_joining`,'%d/%m/%Y'),'')" => "date_of_joining",
 		"if(`personal_data_table`.`date_of_exit`,date_format(`personal_data_table`.`date_of_exit`,'%d/%m/%Y'),'')" => "date_of_exit",
-		"`personal_data_table`.`type_of_vehicle`" => "type_of_vehicle",
-		"`personal_data_table`.`vehicle_number`" => "vehicle_number",
+		"`personal_data_table`.`active_status`" => "active_status",
 		"`personal_data_table`.`profile_photo`" => "profile_photo",
 		"`personal_data_table`.`signature`" => "signature",
-		"`personal_data_table`.`active_status`" => "active_status",
 		"`personal_data_table`.`created_by`" => "created_by",
 		"`personal_data_table`.`created_at`" => "created_at",
 		"`personal_data_table`.`last_updated_by`" => "last_updated_by",
@@ -47,37 +44,31 @@
 		5 => 5,
 		6 => 6,
 		7 => 7,
-		8 => 8,
-		9 => '`personal_data_table`.`date_of_joining`',
-		10 => '`personal_data_table`.`date_of_exit`',
+		8 => '`personal_data_table`.`date_of_joining`',
+		9 => '`personal_data_table`.`date_of_exit`',
+		10 => 10,
 		11 => 11,
 		12 => 12,
 		13 => 13,
 		14 => 14,
 		15 => 15,
 		16 => 16,
-		17 => 17,
-		18 => 18,
-		19 => 19,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`personal_data_table`.`personal_data_id`" => "personal_data_id",
 		"`personal_data_table`.`name`" => "name",
-		"`personal_data_table`.`designation`" => "designation",
+		"`personal_data_table`.`employee_type`" => "employee_type",
 		"if(`personal_data_table`.`date_of_birth`,date_format(`personal_data_table`.`date_of_birth`,'%d/%m/%Y'),'')" => "date_of_birth",
 		"`personal_data_table`.`blood_group`" => "blood_group",
 		"`personal_data_table`.`email`" => "email",
 		"`personal_data_table`.`phone_number`" => "phone_number",
-		"`personal_data_table`.`emp_id`" => "emp_id",
 		"if(`personal_data_table`.`date_of_joining`,date_format(`personal_data_table`.`date_of_joining`,'%d/%m/%Y'),'')" => "date_of_joining",
 		"if(`personal_data_table`.`date_of_exit`,date_format(`personal_data_table`.`date_of_exit`,'%d/%m/%Y'),'')" => "date_of_exit",
-		"`personal_data_table`.`type_of_vehicle`" => "type_of_vehicle",
-		"`personal_data_table`.`vehicle_number`" => "vehicle_number",
+		"`personal_data_table`.`active_status`" => "active_status",
 		"`personal_data_table`.`profile_photo`" => "profile_photo",
 		"`personal_data_table`.`signature`" => "signature",
-		"`personal_data_table`.`active_status`" => "active_status",
 		"`personal_data_table`.`created_by`" => "created_by",
 		"`personal_data_table`.`created_at`" => "created_at",
 		"`personal_data_table`.`last_updated_by`" => "last_updated_by",
@@ -87,16 +78,13 @@
 	$x->QueryFieldsFilters = [
 		"`personal_data_table`.`personal_data_id`" => "ID",
 		"`personal_data_table`.`name`" => "Name",
-		"`personal_data_table`.`designation`" => "Designation",
+		"`personal_data_table`.`employee_type`" => "Employee type",
 		"`personal_data_table`.`date_of_birth`" => "Date of birth",
 		"`personal_data_table`.`blood_group`" => "Blood group",
 		"`personal_data_table`.`email`" => "Email",
 		"`personal_data_table`.`phone_number`" => "Phone number",
-		"`personal_data_table`.`emp_id`" => "Emp id",
 		"`personal_data_table`.`date_of_joining`" => "Date of joining",
 		"`personal_data_table`.`date_of_exit`" => "Date of exit",
-		"`personal_data_table`.`type_of_vehicle`" => "Type of vehicle",
-		"`personal_data_table`.`vehicle_number`" => "Vehicle number",
 		"`personal_data_table`.`active_status`" => "Active status",
 		"`personal_data_table`.`created_by`" => "Created by",
 		"`personal_data_table`.`created_at`" => "Created at",
@@ -108,16 +96,13 @@
 	$x->QueryFieldsQS = [
 		"`personal_data_table`.`personal_data_id`" => "personal_data_id",
 		"`personal_data_table`.`name`" => "name",
-		"`personal_data_table`.`designation`" => "designation",
+		"`personal_data_table`.`employee_type`" => "employee_type",
 		"if(`personal_data_table`.`date_of_birth`,date_format(`personal_data_table`.`date_of_birth`,'%d/%m/%Y'),'')" => "date_of_birth",
 		"`personal_data_table`.`blood_group`" => "blood_group",
 		"`personal_data_table`.`email`" => "email",
 		"`personal_data_table`.`phone_number`" => "phone_number",
-		"`personal_data_table`.`emp_id`" => "emp_id",
 		"if(`personal_data_table`.`date_of_joining`,date_format(`personal_data_table`.`date_of_joining`,'%d/%m/%Y'),'')" => "date_of_joining",
 		"if(`personal_data_table`.`date_of_exit`,date_format(`personal_data_table`.`date_of_exit`,'%d/%m/%Y'),'')" => "date_of_exit",
-		"`personal_data_table`.`type_of_vehicle`" => "type_of_vehicle",
-		"`personal_data_table`.`vehicle_number`" => "vehicle_number",
 		"`personal_data_table`.`active_status`" => "active_status",
 		"`personal_data_table`.`created_by`" => "created_by",
 		"`personal_data_table`.`created_at`" => "created_at",
@@ -158,10 +143,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Name', 'Designation', 'Date of birth', 'Blood group', 'Email', 'Phone number', 'Emp id', 'Date of joining', 'Date of exit', 'Type of vehicle', 'Vehicle number', 'Profile photo', 'Signature', 'Active status', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['personal_data_id', 'name', 'designation', 'date_of_birth', 'blood_group', 'email', 'phone_number', 'emp_id', 'date_of_joining', 'date_of_exit', 'type_of_vehicle', 'vehicle_number', 'profile_photo', 'signature', 'active_status', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Name', 'Employee type', 'Date of birth', 'Blood group', 'Email', 'Phone number', 'Date of joining', 'Date of exit', 'Active status', 'Profile photo', 'Signature', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['personal_data_id', 'name', 'employee_type', 'date_of_birth', 'blood_group', 'email', 'phone_number', 'date_of_joining', 'date_of_exit', 'active_status', 'profile_photo', 'signature', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/personal_data_table_templateTV.html';

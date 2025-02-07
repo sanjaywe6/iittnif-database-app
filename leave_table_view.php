@@ -23,7 +23,6 @@
 		"`leave_table`.`purpose_of_leave`" => "purpose_of_leave",
 		"if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y %H:%i'),'')" => "from_date",
 		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y %H:%i'),'')" => "to_date",
-		"IF(    CHAR_LENGTH(`user_table1`.`user_id`), CONCAT_WS('',   `user_table1`.`user_id`), '') /* Approved by */" => "approved_by",
 		"`leave_table`.`created_by`" => "created_by",
 		"`leave_table`.`created_at`" => "created_at",
 		"`leave_table`.`last_updated_by`" => "last_updated_by",
@@ -36,11 +35,10 @@
 		3 => 3,
 		4 => '`leave_table`.`from_date`',
 		5 => '`leave_table`.`to_date`',
-		6 => '`user_table1`.`user_id`',
+		6 => 6,
 		7 => 7,
 		8 => 8,
 		9 => 9,
-		10 => 10,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -50,7 +48,6 @@
 		"`leave_table`.`purpose_of_leave`" => "purpose_of_leave",
 		"if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y %H:%i'),'')" => "from_date",
 		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y %H:%i'),'')" => "to_date",
-		"IF(    CHAR_LENGTH(`user_table1`.`user_id`), CONCAT_WS('',   `user_table1`.`user_id`), '') /* Approved by */" => "approved_by",
 		"`leave_table`.`created_by`" => "created_by",
 		"`leave_table`.`created_at`" => "created_at",
 		"`leave_table`.`last_updated_by`" => "last_updated_by",
@@ -63,7 +60,6 @@
 		"`leave_table`.`purpose_of_leave`" => "Purpose of leave",
 		"`leave_table`.`from_date`" => "From date",
 		"`leave_table`.`to_date`" => "To date",
-		"IF(    CHAR_LENGTH(`user_table1`.`user_id`), CONCAT_WS('',   `user_table1`.`user_id`), '') /* Approved by */" => "Approved by",
 		"`leave_table`.`created_by`" => "Created by",
 		"`leave_table`.`created_at`" => "Created at",
 		"`leave_table`.`last_updated_by`" => "Last updated by",
@@ -77,7 +73,6 @@
 		"`leave_table`.`purpose_of_leave`" => "purpose_of_leave",
 		"if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y %H:%i'),'')" => "from_date",
 		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y %H:%i'),'')" => "to_date",
-		"IF(    CHAR_LENGTH(`user_table1`.`user_id`), CONCAT_WS('',   `user_table1`.`user_id`), '') /* Approved by */" => "approved_by",
 		"`leave_table`.`created_by`" => "created_by",
 		"`leave_table`.`created_at`" => "created_at",
 		"`leave_table`.`last_updated_by`" => "last_updated_by",
@@ -85,9 +80,9 @@
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['approved_by' => 'Approved by', ];
+	$x->filterers = [];
 
-	$x->QueryFrom = "`leave_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`leave_table`.`approved_by` ";
+	$x->QueryFrom = "`leave_table` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -117,10 +112,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Leave type', 'Purpose of leave', 'From date', 'To date', 'Approved by', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['leave_id', 'leave_type', 'purpose_of_leave', 'from_date', 'to_date', 'approved_by', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Leave type', 'Purpose of leave', 'From date', 'To date', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['leave_id', 'leave_type', 'purpose_of_leave', 'from_date', 'to_date', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/leave_table_templateTV.html';

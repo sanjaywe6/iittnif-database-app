@@ -19,11 +19,11 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`employees_designation_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`personal_data_table1`.`emp_id`) || CHAR_LENGTH(`personal_data_table1`.`name`), CONCAT_WS('',   `personal_data_table1`.`emp_id`, '::', `personal_data_table1`.`name`), '') /* Employee details */" => "employee_details",
-		"`employees_designation_table`.`new_designation`" => "new_designation",
-		"if(`employees_designation_table`.`date_of_appointment_to_new_designation`,date_format(`employees_designation_table`.`date_of_appointment_to_new_designation`,'%d/%m/%Y'),'')" => "date_of_appointment_to_new_designation",
-		"`employees_designation_table`.`previous_designation`" => "previous_designation",
-		"`employees_designation_table`.`date_of_resignation_from_previous_resignation`" => "date_of_resignation_from_previous_resignation",
+		"IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`employee_type`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`employee_type`), '') /* Employee details */" => "employee_details",
+		"`employees_designation_table`.`emp_id`" => "emp_id",
+		"`employees_designation_table`.`designation`" => "designation",
+		"if(`employees_designation_table`.`date_of_appointment_to_designation`,date_format(`employees_designation_table`.`date_of_appointment_to_designation`,'%d/%m/%Y'),'')" => "date_of_appointment_to_designation",
+		"`employees_designation_table`.`active_status`" => "active_status",
 		"`employees_designation_table`.`created_by`" => "created_by",
 		"`employees_designation_table`.`created_at`" => "created_at",
 		"`employees_designation_table`.`last_updated_by`" => "last_updated_by",
@@ -34,8 +34,8 @@
 		1 => '`employees_designation_table`.`id`',
 		2 => 2,
 		3 => 3,
-		4 => '`employees_designation_table`.`date_of_appointment_to_new_designation`',
-		5 => 5,
+		4 => 4,
+		5 => '`employees_designation_table`.`date_of_appointment_to_designation`',
 		6 => 6,
 		7 => 7,
 		8 => 8,
@@ -46,11 +46,11 @@
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`employees_designation_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`personal_data_table1`.`emp_id`) || CHAR_LENGTH(`personal_data_table1`.`name`), CONCAT_WS('',   `personal_data_table1`.`emp_id`, '::', `personal_data_table1`.`name`), '') /* Employee details */" => "employee_details",
-		"`employees_designation_table`.`new_designation`" => "new_designation",
-		"if(`employees_designation_table`.`date_of_appointment_to_new_designation`,date_format(`employees_designation_table`.`date_of_appointment_to_new_designation`,'%d/%m/%Y'),'')" => "date_of_appointment_to_new_designation",
-		"`employees_designation_table`.`previous_designation`" => "previous_designation",
-		"`employees_designation_table`.`date_of_resignation_from_previous_resignation`" => "date_of_resignation_from_previous_resignation",
+		"IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`employee_type`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`employee_type`), '') /* Employee details */" => "employee_details",
+		"`employees_designation_table`.`emp_id`" => "emp_id",
+		"`employees_designation_table`.`designation`" => "designation",
+		"if(`employees_designation_table`.`date_of_appointment_to_designation`,date_format(`employees_designation_table`.`date_of_appointment_to_designation`,'%d/%m/%Y'),'')" => "date_of_appointment_to_designation",
+		"`employees_designation_table`.`active_status`" => "active_status",
 		"`employees_designation_table`.`created_by`" => "created_by",
 		"`employees_designation_table`.`created_at`" => "created_at",
 		"`employees_designation_table`.`last_updated_by`" => "last_updated_by",
@@ -59,11 +59,11 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`employees_designation_table`.`id`" => "ID",
-		"IF(    CHAR_LENGTH(`personal_data_table1`.`emp_id`) || CHAR_LENGTH(`personal_data_table1`.`name`), CONCAT_WS('',   `personal_data_table1`.`emp_id`, '::', `personal_data_table1`.`name`), '') /* Employee details */" => "Employee details",
-		"`employees_designation_table`.`new_designation`" => "New designation",
-		"`employees_designation_table`.`date_of_appointment_to_new_designation`" => "Date of appointment to new designation",
-		"`employees_designation_table`.`previous_designation`" => "Previous designation (if available)",
-		"`employees_designation_table`.`date_of_resignation_from_previous_resignation`" => "Date of resignation from previous resignation",
+		"IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`employee_type`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`employee_type`), '') /* Employee details */" => "Employee details",
+		"`employees_designation_table`.`emp_id`" => "Emp id",
+		"`employees_designation_table`.`designation`" => "Designation",
+		"`employees_designation_table`.`date_of_appointment_to_designation`" => "Date of appointment to designation",
+		"`employees_designation_table`.`active_status`" => "Active status",
 		"`employees_designation_table`.`created_by`" => "Created by",
 		"`employees_designation_table`.`created_at`" => "Created at",
 		"`employees_designation_table`.`last_updated_by`" => "Last updated by",
@@ -73,11 +73,11 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`employees_designation_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`personal_data_table1`.`emp_id`) || CHAR_LENGTH(`personal_data_table1`.`name`), CONCAT_WS('',   `personal_data_table1`.`emp_id`, '::', `personal_data_table1`.`name`), '') /* Employee details */" => "employee_details",
-		"`employees_designation_table`.`new_designation`" => "new_designation",
-		"if(`employees_designation_table`.`date_of_appointment_to_new_designation`,date_format(`employees_designation_table`.`date_of_appointment_to_new_designation`,'%d/%m/%Y'),'')" => "date_of_appointment_to_new_designation",
-		"`employees_designation_table`.`previous_designation`" => "previous_designation",
-		"`employees_designation_table`.`date_of_resignation_from_previous_resignation`" => "date_of_resignation_from_previous_resignation",
+		"IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`employee_type`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`employee_type`), '') /* Employee details */" => "employee_details",
+		"`employees_designation_table`.`emp_id`" => "emp_id",
+		"`employees_designation_table`.`designation`" => "designation",
+		"if(`employees_designation_table`.`date_of_appointment_to_designation`,date_format(`employees_designation_table`.`date_of_appointment_to_designation`,'%d/%m/%Y'),'')" => "date_of_appointment_to_designation",
+		"`employees_designation_table`.`active_status`" => "active_status",
 		"`employees_designation_table`.`created_by`" => "created_by",
 		"`employees_designation_table`.`created_at`" => "created_at",
 		"`employees_designation_table`.`last_updated_by`" => "last_updated_by",
@@ -118,8 +118,8 @@
 	$x->DefaultSortDirection = 'asc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Employee details', 'New designation', 'Date of appointment to new designation', 'Previous designation (if available)', 'Date of resignation from previous resignation', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'employee_details', 'new_designation', 'date_of_appointment_to_new_designation', 'previous_designation', 'date_of_resignation_from_previous_resignation', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColCaption = ['ID', 'Employee details', 'Emp id', 'Designation', 'Date of appointment to designation', 'Active status', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'employee_details', 'emp_id', 'designation', 'date_of_appointment_to_designation', 'active_status', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
 	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
 
 	// template paths below are based on the app main directory

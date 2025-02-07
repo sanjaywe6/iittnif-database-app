@@ -66,7 +66,7 @@
 			'decision_actor' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
-				'parent_caption' => '`user_table`.`memberID`',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
 				'parent_from' => '`user_table` ',
 				'filterers' => [],
 				'custom_query' => '',
@@ -127,7 +127,7 @@
 			'decision_actor' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
-				'parent_caption' => '`user_table`.`memberID`',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
 				'parent_from' => '`user_table` ',
 				'filterers' => [],
 				'custom_query' => '',
@@ -164,7 +164,7 @@
 			'actor' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
-				'parent_caption' => '`user_table`.`memberID`',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
 				'parent_from' => '`user_table` ',
 				'filterers' => [],
 				'custom_query' => '',
@@ -177,7 +177,7 @@
 			'given_by' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
-				'parent_caption' => '`user_table`.`memberID`',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
 				'parent_from' => '`user_table` ',
 				'filterers' => [],
 				'custom_query' => '',
@@ -214,7 +214,7 @@
 			'assigned_mou_to' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
-				'parent_caption' => '`user_table`.`memberID`',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
 				'parent_from' => '`user_table` ',
 				'filterers' => [],
 				'custom_query' => '',
@@ -227,7 +227,7 @@
 			'supervisor_name' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
-				'parent_caption' => '`user_table`.`memberID`',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
 				'parent_from' => '`user_table` ',
 				'filterers' => [],
 				'custom_query' => '',
@@ -238,7 +238,7 @@
 			'assigned_to' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
-				'parent_caption' => '`user_table`.`memberID`',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
 				'parent_from' => '`user_table` ',
 				'filterers' => [],
 				'custom_query' => '',
@@ -262,7 +262,7 @@
 			'remarks_by' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
-				'parent_caption' => '`user_table`.`memberID`',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
 				'parent_from' => '`user_table` ',
 				'filterers' => [],
 				'custom_query' => '',
@@ -275,7 +275,7 @@
 			'supervisor_name' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
-				'parent_caption' => '`user_table`.`memberID`',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
 				'parent_from' => '`user_table` ',
 				'filterers' => [],
 				'custom_query' => '',
@@ -286,7 +286,7 @@
 			'assigned_to' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
-				'parent_caption' => '`user_table`.`memberID`',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
 				'parent_from' => '`user_table` ',
 				'filterers' => [],
 				'custom_query' => '',
@@ -299,7 +299,7 @@
 			'task_lookup' => [
 				'parent_table' => 'task_setting_table',
 				'parent_pk_field' => 'task_id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`task_setting_table`.`task_description`) || CHAR_LENGTH(`task_setting_table`.`assigned_to`), CONCAT_WS(\'\', `task_setting_table`.`task_description`, \'::\', IF(    CHAR_LENGTH(`user_table2`.`memberID`), CONCAT_WS(\'\',   `user_table2`.`memberID`), \'\')), \'\')',
+				'parent_caption' => 'IF(CHAR_LENGTH(`task_setting_table`.`task_description`) || CHAR_LENGTH(`task_setting_table`.`assigned_to`), CONCAT_WS(\'\', `task_setting_table`.`task_description`, \'::\', IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS(\'\',   `user_table2`.`memberID`, \'::\', `user_table2`.`name`), \'\')), \'\')',
 				'parent_from' => '`task_setting_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`task_setting_table`.`supervisor_name` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`task_setting_table`.`assigned_to` ',
 				'filterers' => [],
 				'custom_query' => '',
@@ -310,7 +310,7 @@
 			'supervisor_name' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
-				'parent_caption' => '`user_table`.`memberID`',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
 				'parent_from' => '`user_table` ',
 				'filterers' => [],
 				'custom_query' => '',
@@ -321,7 +321,7 @@
 			'assigned_to' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
-				'parent_caption' => '`user_table`.`memberID`',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
 				'parent_from' => '`user_table` ',
 				'filterers' => [],
 				'custom_query' => '',
@@ -361,7 +361,7 @@
 			'sactioned_by' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
-				'parent_caption' => '`user_table`.`memberID`',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
 				'parent_from' => '`user_table` ',
 				'filterers' => [],
 				'custom_query' => '',
@@ -400,7 +400,7 @@
 			'alloted_by' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
-				'parent_caption' => '`user_table`.`memberID`',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
 				'parent_from' => '`user_table` ',
 				'filterers' => [],
 				'custom_query' => '',
@@ -413,7 +413,7 @@
 			'sactioned_by' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
-				'parent_caption' => '`user_table`.`memberID`',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
 				'parent_from' => '`user_table` ',
 				'filterers' => [],
 				'custom_query' => '',
@@ -448,10 +448,10 @@
 				'not_null' => false,
 			],
 			'select_employee' => [
-				'parent_table' => 'personal_data_table',
-				'parent_pk_field' => 'personal_data_id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`personal_data_table`.`name`) || CHAR_LENGTH(`personal_data_table`.`emp_id`), CONCAT_WS(\'\', `personal_data_table`.`name`, \'::\', `personal_data_table`.`emp_id`), \'\')',
-				'parent_from' => '`personal_data_table` ',
+				'parent_table' => 'user_table',
+				'parent_pk_field' => 'user_id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
+				'parent_from' => '`user_table` ',
 				'filterers' => [],
 				'custom_query' => '',
 				'inherit_permissions' => false,
@@ -461,7 +461,7 @@
 			'alloted_by' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
-				'parent_caption' => '`user_table`.`memberID`',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
 				'parent_from' => '`user_table` ',
 				'filterers' => [],
 				'custom_query' => '',
@@ -491,7 +491,7 @@
 			'employee_details' => [
 				'parent_table' => 'personal_data_table',
 				'parent_pk_field' => 'personal_data_id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`personal_data_table`.`emp_id`) || CHAR_LENGTH(`personal_data_table`.`name`), CONCAT_WS(\'\', `personal_data_table`.`emp_id`, \'::\', `personal_data_table`.`name`), \'\')',
+				'parent_caption' => 'IF(CHAR_LENGTH(`personal_data_table`.`name`) || CHAR_LENGTH(`personal_data_table`.`employee_type`), CONCAT_WS(\'\', `personal_data_table`.`name`, \'::\', `personal_data_table`.`employee_type`), \'\')',
 				'parent_from' => '`personal_data_table` ',
 				'filterers' => [],
 				'custom_query' => '',
@@ -503,17 +503,6 @@
 		'attendence_details_table' => [
 		],
 		'leave_table' => [
-			'approved_by' => [
-				'parent_table' => 'user_table',
-				'parent_pk_field' => 'user_id',
-				'parent_caption' => '`user_table`.`user_id`',
-				'parent_from' => '`user_table` ',
-				'filterers' => [],
-				'custom_query' => '',
-				'inherit_permissions' => false,
-				'list_type' => 0,
-				'not_null' => false,
-			],
 		],
 		'work_from_home_table' => [
 			'approved_by' => [
@@ -616,7 +605,7 @@
 			'person_responsbility' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
-				'parent_caption' => '`user_table`.`memberID`',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
 				'parent_from' => '`user_table` ',
 				'filterers' => [],
 				'custom_query' => '',
@@ -648,7 +637,7 @@
 			'approved_by' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
-				'parent_caption' => '`user_table`.`memberID`',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
 				'parent_from' => '`user_table` ',
 				'filterers' => [],
 				'custom_query' => '',

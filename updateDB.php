@@ -107,7 +107,6 @@
 		setupTable('attendence_details_table', []);
 
 		setupTable('leave_table', []);
-		setupIndexes('leave_table', ['approved_by',]);
 
 		setupTable('work_from_home_table', []);
 		setupIndexes('work_from_home_table', ['approved_by',]);

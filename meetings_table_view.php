@@ -129,7 +129,7 @@
 	$x->TableTitle = 'Meetings - App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`meetings_table`.`meetings_id`';
-	$x->DefaultSortField = '1';
+	$x->DefaultSortField = '`meetings_table`.`meeting_to_date`';
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];

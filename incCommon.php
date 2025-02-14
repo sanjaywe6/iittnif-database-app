@@ -3564,7 +3564,7 @@ EOT;
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => [0 => 'ID', 1 => 'Approval for', 2 => 'Description', 3 => 'Quantity', 4 => 'Full Estimated Value', 5 => 'Name of Vendor', 6 => 'Purpose', 7 => 'Requested Department/Appointment', 8 => 'Person Responsbility', 9 => 'Mode of Purchase', 11 => 'Approval Status', 12 => 'Upload Image if Any (Optional)', 13 => 'Upload Other File if Any (Optional)', 14 => 'Created By', 15 => 'Created At', 16 => 'Last Updated By', 17 => 'Last Updated At'],
+					'display-fields' => [0 => 'ID', 1 => 'Approval Type', 2 => 'Description', 3 => 'Quantity', 4 => 'Full Estimated Value', 5 => 'Name of Vendor', 6 => 'Purpose', 7 => 'Requested Department/Appointment', 8 => 'Person Responsbility', 9 => 'Mode of Purchase', 11 => 'Approval Status', 12 => 'Upload Image if Any (Optional)', 13 => 'Upload Other File if Any (Optional)', 14 => 'Created By', 15 => 'Created At', 16 => 'Last Updated By', 17 => 'Last Updated At'],
 					'display-field-names' => [0 => 'id', 1 => 'type', 2 => 'description', 3 => 'quantity', 4 => 'full_est_value', 5 => 'name_of_vendor', 6 => 'purpose', 7 => 'requested_department', 8 => 'person_responsbility', 9 => 'mode_of_purchase', 11 => 'approval_status', 12 => 'image', 13 => 'other_file', 14 => 'created_by', 15 => 'created_at', 16 => 'last_updated_by', 17 => 'last_updated_at'],
 					'sortable-fields' => [0 => '`approval_table`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => 9, 9 => 10, 10 => 11, 11 => 12, 12 => 13, 13 => 14, 14 => 15, 15 => 16, 16 => 17, 17 => 18],
 					'records-per-page' => 10,

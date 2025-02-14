@@ -6166,7 +6166,7 @@
 					'type' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Approval for',
+							'caption' => 'Approval Type',
 							'description' => '',
 						],
 					],

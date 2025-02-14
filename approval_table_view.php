@@ -83,7 +83,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`approval_table`.`id`" => "ID",
-		"`approval_table`.`type`" => "Approval for",
+		"`approval_table`.`type`" => "Approval Type",
 		"`approval_table`.`description`" => "Description",
 		"`approval_table`.`quantity`" => "Quantity",
 		"`approval_table`.`full_est_value`" => "Full Estimated Value",
@@ -156,7 +156,7 @@
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Approval for', 'Description', 'Quantity', 'Full Estimated Value', 'Name of Vendor', 'Purpose', 'Requested Department/Appointment', 'Person Responsbility', 'Mode of Purchase', 'Approval Status', 'Upload Image if Any (Optional)', 'Upload Other File if Any (Optional)', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', ];
+	$x->ColCaption = ['ID', 'Approval Type', 'Description', 'Quantity', 'Full Estimated Value', 'Name of Vendor', 'Purpose', 'Requested Department/Appointment', 'Person Responsbility', 'Mode of Purchase', 'Approval Status', 'Upload Image if Any (Optional)', 'Upload Other File if Any (Optional)', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', ];
 	$x->ColFieldName = ['id', 'type', 'description', 'quantity', 'full_est_value', 'name_of_vendor', 'purpose', 'requested_department', 'person_responsbility', 'mode_of_purchase', 'approval_status', 'image', 'other_file', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
 	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, ];
 

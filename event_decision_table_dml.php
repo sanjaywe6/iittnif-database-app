@@ -271,7 +271,7 @@ function event_decision_table_form($selectedId = '', $allowUpdate = true, $allow
 		AppGini.current_outcomes_expected_lookup__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['outcomes_expected_lookup'] : htmlspecialchars($filterer_outcomes_expected_lookup, ENT_QUOTES)); ?>"};
 		AppGini.current_decision_actor__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['decision_actor'] : htmlspecialchars($filterer_decision_actor, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(outcomes_expected_lookup_reload__RAND__) == 'function') outcomes_expected_lookup_reload__RAND__();
 				if(typeof(decision_actor_reload__RAND__) == 'function') decision_actor_reload__RAND__();
@@ -516,22 +516,22 @@ function event_decision_table_form($selectedId = '', $allowUpdate = true, $allow
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#decision_description').replaceWith('<div class=\"form-control-static\" id=\"decision_description\">' + (jQuery('#decision_description').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#decision_actor').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#decision_actor_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\tjQuery('#action_taken_with_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#action_taken_with_dateDay, #action_taken_with_dateMonth, #action_taken_with_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#decision_status').replaceWith('<div class=\"form-control-static\" id=\"decision_status\">' + (jQuery('#decision_status').val() || '') + '</div>'); jQuery('#decision_status-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#decision_status_update_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#decision_status_update_dateDay, #decision_status_update_dateMonth, #decision_status_update_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#decision_status_remarks_by_superior').replaceWith('<div class=\"form-control-static\" id=\"decision_status_remarks_by_superior\">' + (jQuery('#decision_status_remarks_by_superior').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#decision_description').replaceWith('<div class=\"form-control-static\" id=\"decision_description\">' + (\$j('#decision_description').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#decision_actor').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#decision_actor_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('#action_taken_with_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#action_taken_with_dateDay, #action_taken_with_dateMonth, #action_taken_with_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#decision_status').replaceWith('<div class=\"form-control-static\" id=\"decision_status\">' + (\$j('#decision_status').val() || '') + '</div>'); \$j('#decision_status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#decision_status_update_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#decision_status_update_dateDay, #decision_status_update_dateMonth, #decision_status_update_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#decision_status_remarks_by_superior').replaceWith('<div class=\"form-control-static\" id=\"decision_status_remarks_by_superior\">' + (\$j('#decision_status_remarks_by_superior').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

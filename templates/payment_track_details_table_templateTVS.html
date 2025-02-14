@@ -1,23 +1,58 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="16" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="payment_track_details_table-payment_track_details_id-caption field-caption-tv">ID</dt>
+					<dd id="payment_track_details_table-payment_track_details_id-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-payment_track_details_id text-right text-bold"><%%VALUE(payment_track_details_id)%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the payment_track_details_table_init() hook (in hooks/payment_track_details_table.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="payment_track_details_table-pfms_num-caption field-caption-tv">PFMS Num.</dt>
+					<dd id="payment_track_details_table-pfms_num-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-pfms_num text-bold"><%%VALUE(pfms_num)%%></dd>
 
-		<td id="payment_track_details_table-payment_track_details_id-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-payment_track_details_id text-right text-bold"><%%VALUE(payment_track_details_id)%%></td>
-		<td id="payment_track_details_table-pfms_num-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-pfms_num text-bold"><%%VALUE(pfms_num)%%></td>
-		<td id="payment_track_details_table-date-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-date text-bold"><%%VALUE(date)%%></td>
-		<td id="payment_track_details_table-description-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-description text-bold"><%%VALUE(description)%%></td>
-		<td id="payment_track_details_table-amount-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-amount text-bold"><%%VALUE(amount)%%></td>
-		<td id="payment_track_details_table-requested_by-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-requested_by text-bold"><%%VALUE(requested_by)%%></td>
-		<td id="payment_track_details_table-paid_to-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-paid_to text-bold"><%%VALUE(paid_to)%%></td>
-		<td id="payment_track_details_table-paid_status-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-paid_status text-bold"><%%VALUE(paid_status)%%></td>
-		<td id="payment_track_details_table-payment_date-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-payment_date text-bold"><%%VALUE(payment_date)%%></td>
-		<td id="payment_track_details_table-remarks-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-remarks text-bold"><%%VALUE(remarks)%%></td>
-		<td id="payment_track_details_table-upload_scanned_file_1-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-upload_scanned_file_1 text-bold"><img src="thumbnail.php?i=<%%VALUE(upload_scanned_file_1)%%>&t=payment_track_details_table&f=upload_scanned_file_1&v=tv" class="img-thumbnail"></td>
-		<td id="payment_track_details_table-upload_scanned_file_2-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-upload_scanned_file_2 text-bold"><img src="thumbnail.php?i=<%%VALUE(upload_scanned_file_2)%%>&t=payment_track_details_table&f=upload_scanned_file_2&v=tv" class="img-thumbnail"></td>
-		<td id="payment_track_details_table-created_by-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-created_by text-bold"><%%VALUE(created_by)%%></td>
-		<td id="payment_track_details_table-created_at-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-created_at text-bold"><%%VALUE(created_at)%%></td>
-		<td id="payment_track_details_table-last_updated_by-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
-		<td id="payment_track_details_table-last_updated_at-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>
+					<dt class="payment_track_details_table-date-caption field-caption-tv">Date</dt>
+					<dd id="payment_track_details_table-date-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-date text-bold"><%%VALUE(date)%%></dd>
+
+					<dt class="payment_track_details_table-description-caption field-caption-tv">Description</dt>
+					<dd id="payment_track_details_table-description-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-description text-bold"><%%VALUE(description)%%></dd>
+
+					<dt class="payment_track_details_table-amount-caption field-caption-tv">Amount (Rs.)</dt>
+					<dd id="payment_track_details_table-amount-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-amount text-bold"><%%VALUE(amount)%%></dd>
+
+					<dt class="payment_track_details_table-requested_by-caption field-caption-tv">Requested by</dt>
+					<dd id="payment_track_details_table-requested_by-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-requested_by text-bold"><%%VALUE(requested_by)%%></dd>
+
+					<dt class="payment_track_details_table-paid_to-caption field-caption-tv">Paid to</dt>
+					<dd id="payment_track_details_table-paid_to-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-paid_to text-bold"><%%VALUE(paid_to)%%></dd>
+
+					<dt class="payment_track_details_table-paid_status-caption field-caption-tv">Paid status</dt>
+					<dd id="payment_track_details_table-paid_status-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-paid_status text-bold"><%%VALUE(paid_status)%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="payment_track_details_table-payment_date-caption field-caption-tv">Payment date</dt>
+					<dd id="payment_track_details_table-payment_date-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-payment_date text-bold"><%%VALUE(payment_date)%%></dd>
+
+					<dt class="payment_track_details_table-remarks-caption field-caption-tv">Remarks (Recurring / Non-Recurring)</dt>
+					<dd id="payment_track_details_table-remarks-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-remarks text-bold"><%%VALUE(remarks)%%></dd>
+
+					<dt class="payment_track_details_table-upload_scanned_file_1-caption field-caption-tv">Upload scanned file (first)</dt>
+					<dd id="payment_track_details_table-upload_scanned_file_1-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-upload_scanned_file_1 text-bold"><img src="thumbnail.php?i=<%%VALUE(upload_scanned_file_1)%%>&t=payment_track_details_table&f=upload_scanned_file_1&v=tv" class="img-thumbnail"></dd>
+
+					<dt class="payment_track_details_table-upload_scanned_file_2-caption field-caption-tv">Upload scanned file (second)</dt>
+					<dd id="payment_track_details_table-upload_scanned_file_2-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-upload_scanned_file_2 text-bold"><img src="thumbnail.php?i=<%%VALUE(upload_scanned_file_2)%%>&t=payment_track_details_table&f=upload_scanned_file_2&v=tv" class="img-thumbnail"></dd>
+
+					<dt class="payment_track_details_table-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="payment_track_details_table-created_by-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-created_by text-bold"><%%VALUE(created_by)%%></dd>
+
+					<dt class="payment_track_details_table-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="payment_track_details_table-created_at-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-created_at text-bold"><%%VALUE(created_at)%%></dd>
+
+					<dt class="payment_track_details_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="payment_track_details_table-last_updated_by-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></dd>
+
+					<dt class="payment_track_details_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="payment_track_details_table-last_updated_at-<%%VALUE(payment_track_details_id)%%>" class="payment_track_details_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></dd>
+
+				</dl>
+			</div>
+		</td>

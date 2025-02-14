@@ -304,6 +304,7 @@
 				}
 			});
 
+			all_startup_data_tableUniqueFields.forEach(fieldName => enforce_uniqueness('all_startup_data_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -317,4 +318,7 @@
 				);
 			}
 		});
+
+		var all_startup_data_tableUniqueFields = [
+		];
 	</script>

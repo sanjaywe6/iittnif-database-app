@@ -135,7 +135,14 @@
 		setupTable('evaluators_table', []);
 		setupIndexes('evaluators_table', ['evaluation_lookup',]);
 
-		setupTable('approval_table', []);
+		setupTable('approval_table', [
+				"ALTER TABLE `approval_table` ADD UNIQUE `procurement_approval_id_unique` (`procurement_approval_id`)",
+				"ALTER TABLE `approval_table` DROP INDEX `procurement_approval_id_unique`",
+				"ALTER TABLE `approval_table` ADD UNIQUE `procurement_approval_id_unique` (`procurement_approval_id`)",
+				" ALTER TABLE `approval_table` CHANGE `procurement_approval_id` `procurement_approval_id` INT(10) NOT NULL AUTO_INCREMENT ",
+				" ALTER TABLE `approval_table` CHANGE `procurement_approval_id` `procurement_approval_id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT ",
+				"ALTER TABLE `approval_table` CHANGE `procurement_approval_id` `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT ",
+			]);
 		setupIndexes('approval_table', ['person_responsbility',]);
 
 		setupTable('all_bank_account_statement_table', []);

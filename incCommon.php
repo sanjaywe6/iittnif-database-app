@@ -24,7 +24,7 @@
 		error_message($msg[, $back_url]) -- returns html code for a styled error message .. pass explicit false in second param to suppress back button
 		toMySQLDate($formattedDate, $sep = datalist_date_separator, $ord = datalist_date_format)
 		reIndex(&$arr) -- returns a copy of the given array, with keys replaced by 1-based numeric indices, and values replaced by original keys
-		get_embed($provider, $url[, $width, $height, $retrieve]) -- returns embed code for a given url (supported providers: youtube, googlemap)
+		get_embed($provider, $url[, $width, $height, $retrieve]) -- returns embed code for a given url (supported providers: [auto-detect], or explicitly pass one of: youtube, vimeo, googlemap, dailymotion, videofileurl)
 		check_record_permission($table, $id, $perm = 'view') -- returns true if current user has the specified permission $perm ('view', 'edit' or 'delete') for the given recors, false otherwise
 		NavMenus($options) -- returns the HTML code for the top navigation menus. $options is not implemented currently.
 		StyleSheet() -- returns the HTML code for included style sheet files to be placed in the <head> section.
@@ -116,7 +116,7 @@
 			'participants_table' => "`participants_table`.`participants_id` as 'participants_id', IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') as 'event_lookup', IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') as 'meeting_lookup', `participants_table`.`name` as 'name', `participants_table`.`designation` as 'designation', `participants_table`.`participant_type` as 'participant_type', `participants_table`.`accepted_status` as 'accepted_status', if(`participants_table`.`status_date`,date_format(`participants_table`.`status_date`,'%d/%m/%Y'),'') as 'status_date', `participants_table`.`created_by` as 'created_by', `participants_table`.`created_at` as 'created_at', `participants_table`.`last_updated_by` as 'last_updated_by', `participants_table`.`last_updated_at` as 'last_updated_at'",
 			'action_actor' => "`action_actor`.`actor_ID` as 'actor_ID', `action_actor`.`action_str` as 'action_str', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'actor', `action_actor`.`action_status` as 'action_status', `action_actor`.`created_by` as 'created_by', `action_actor`.`created_at` as 'created_at', `action_actor`.`last_updated_by` as 'last_updated_by', `action_actor`.`last_updated_at` as 'last_updated_at'",
 			'visiting_card_table' => "`visiting_card_table`.`visiting_card_id` as 'visiting_card_id', `visiting_card_table`.`name` as 'name', `visiting_card_table`.`recommended_by` as 'recommended_by', `visiting_card_table`.`designation` as 'designation', `visiting_card_table`.`company_name` as 'company_name', `visiting_card_table`.`mobile_no` as 'mobile_no', `visiting_card_table`.`email` as 'email', `visiting_card_table`.`company_website_addr` as 'company_website_addr', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'given_by', `visiting_card_table`.`suggested_way_forward` as 'suggested_way_forward', `visiting_card_table`.`front_img` as 'front_img', `visiting_card_table`.`back_img` as 'back_img', `visiting_card_table`.`visiting_card_str` as 'visiting_card_str', `visiting_card_table`.`created_by` as 'created_by', `visiting_card_table`.`created_at` as 'created_at', `visiting_card_table`.`last_updated_by` as 'last_updated_by', `visiting_card_table`.`last_updated_at` as 'last_updated_at'",
-			'mou_details_table' => "`mou_details_table`.`id` as 'id', `mou_details_table`.`type` as 'type', `mou_details_table`.`company_name` as 'company_name', `mou_details_table`.`objective_of_mou` as 'objective_of_mou', `mou_details_table`.`agreement_period` as 'agreement_period', if(`mou_details_table`.`date_of_agreement`,date_format(`mou_details_table`.`date_of_agreement`,'%d/%m/%Y'),'') as 'date_of_agreement', if(`mou_details_table`.`date_of_expiry`,date_format(`mou_details_table`.`date_of_expiry`,'%d/%m/%Y'),'') as 'date_of_expiry', `mou_details_table`.`status` as 'status', `mou_details_table`.`point_of_contact` as 'point_of_contact', `mou_details_table`.`contact_number` as 'contact_number', `mou_details_table`.`contact_email_id` as 'contact_email_id', `mou_details_table`.`website_link` as 'website_link', `mou_details_table`.`country` as 'country', IF(    CHAR_LENGTH(`user_table1`.`memberID`), CONCAT_WS('',   `user_table1`.`memberID`), '') as 'assigned_mou_to', `mou_details_table`.`upload_mou` as 'upload_mou', `mou_details_table`.`created_at` as 'created_at', `mou_details_table`.`created_by` as 'created_by', `mou_details_table`.`last_updated_by` as 'last_updated_by', `mou_details_table`.`last_updated_at` as 'last_updated_at'",
+			'mou_details_table' => "`mou_details_table`.`id` as 'id', `mou_details_table`.`type` as 'type', `mou_details_table`.`company_name` as 'company_name', `mou_details_table`.`objective_of_mou` as 'objective_of_mou', `mou_details_table`.`agreement_period` as 'agreement_period', if(`mou_details_table`.`date_of_agreement`,date_format(`mou_details_table`.`date_of_agreement`,'%d/%m/%Y'),'') as 'date_of_agreement', if(`mou_details_table`.`date_of_expiry`,date_format(`mou_details_table`.`date_of_expiry`,'%d/%m/%Y'),'') as 'date_of_expiry', `mou_details_table`.`status` as 'status', `mou_details_table`.`point_of_contact` as 'point_of_contact', `mou_details_table`.`contact_number` as 'contact_number', `mou_details_table`.`contact_email_id` as 'contact_email_id', `mou_details_table`.`website_link` as 'website_link', `mou_details_table`.`country` as 'country', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'assigned_mou_to', `mou_details_table`.`upload_mou` as 'upload_mou', `mou_details_table`.`created_at` as 'created_at', `mou_details_table`.`created_by` as 'created_by', `mou_details_table`.`last_updated_by` as 'last_updated_by', `mou_details_table`.`last_updated_at` as 'last_updated_at'",
 			'mou_company_area_details_table' => "`mou_company_area_details_table`.`id` as 'id', IF(    CHAR_LENGTH(`mou_details_table1`.`company_name`), CONCAT_WS('',   `mou_details_table1`.`company_name`), '') as 'name_of_the_company', `mou_company_area_details_table`.`area` as 'area', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'assigned_mou_to', `mou_company_area_details_table`.`remarks` as 'remarks', `mou_company_area_details_table`.`created_by` as 'created_by', `mou_company_area_details_table`.`created_at` as 'created_at', `mou_company_area_details_table`.`last_updated_by` as 'last_updated_by', `mou_company_area_details_table`.`last_updated_at` as 'last_updated_at'",
 			'goal_setting_table' => "`goal_setting_table`.`goal_id` as 'goal_id', `goal_setting_table`.`goal_status` as 'goal_status', `goal_setting_table`.`goal_description` as 'goal_description', `goal_setting_table`.`goal_duration` as 'goal_duration', if(`goal_setting_table`.`goal_set_date`,date_format(`goal_setting_table`.`goal_set_date`,'%d/%m/%Y'),'') as 'goal_set_date', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'supervisor_name', IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') as 'assigned_to', `goal_setting_table`.`goal_setting_str` as 'goal_setting_str', `goal_setting_table`.`created_by` as 'created_by', `goal_setting_table`.`created_at` as 'created_at', `goal_setting_table`.`last_updated_by` as 'last_updated_by', `goal_setting_table`.`last_updated_at` as 'last_updated_at'",
 			'goal_progress_table' => "`goal_progress_table`.`id` as 'id', IF(    CHAR_LENGTH(`goal_setting_table1`.`goal_description`) || CHAR_LENGTH(`goal_setting_table1`.`goal_duration`), CONCAT_WS('',   `goal_setting_table1`.`goal_description`, '::', `goal_setting_table1`.`goal_duration`), '') as 'goal_lookup', `goal_progress_table`.`goal_progress` as 'goal_progress', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'remarks_by', `goal_progress_table`.`remarks` as 'remarks', `goal_progress_table`.`created_by` as 'created_by', `goal_progress_table`.`created_at` as 'created_at', `goal_progress_table`.`last_updated_by` as 'last_updated_by', `goal_progress_table`.`last_updated_at` as 'last_updated_at'",
@@ -153,7 +153,7 @@
 			'evaluation_table' => "`evaluation_table`.`evaluation_id` as 'evaluation_id', `evaluation_table`.`result` as 'result', IF(    CHAR_LENGTH(`all_startup_data_table1`.`name_of_the_company`), CONCAT_WS('',   `all_startup_data_table1`.`name_of_the_company`), '') as 'select_startup', `evaluation_table`.`recommendation` as 'recommendation', `evaluation_table`.`marks` as 'marks', `evaluation_table`.`reason_for_not_recommending` as 'reason_for_not_recommending', `evaluation_table`.`created_by` as 'created_by', `evaluation_table`.`created_at` as 'created_at', `evaluation_table`.`last_updated_by` as 'last_updated_by', `evaluation_table`.`last_updated_at` as 'last_updated_at'",
 			'problem_statement_table' => "`problem_statement_table`.`problem_statement_id` as 'problem_statement_id', IF(    CHAR_LENGTH(`programs_table1`.`title_of_the_program`), CONCAT_WS('',   `programs_table1`.`title_of_the_program`), '') as 'select_program_id', `problem_statement_table`.`program_description` as 'program_description', `problem_statement_table`.`remarks` as 'remarks', `problem_statement_table`.`created_by` as 'created_by', `problem_statement_table`.`created_at` as 'created_at', `problem_statement_table`.`last_updated_by` as 'last_updated_by', `problem_statement_table`.`last_updated_at` as 'last_updated_at'",
 			'evaluators_table' => "`evaluators_table`.`evaluator_id` as 'evaluator_id', IF(    CHAR_LENGTH(`evaluation_table1`.`evaluation_id`), CONCAT_WS('',   `evaluation_table1`.`evaluation_id`), '') as 'evaluation_lookup', `evaluators_table`.`name` as 'name', `evaluators_table`.`designation` as 'designation', `evaluators_table`.`qualification` as 'qualification', `evaluators_table`.`self_description` as 'self_description', `evaluators_table`.`role` as 'role', `evaluators_table`.`created_by` as 'created_by', `evaluators_table`.`created_at` as 'created_at', `evaluators_table`.`last_updated_by` as 'last_updated_by', `evaluators_table`.`last_updated_at` as 'last_updated_at'",
-			'approval_table' => "`approval_table`.`procurement_approval_id` as 'procurement_approval_id', `approval_table`.`type` as 'type', `approval_table`.`description` as 'description', `approval_table`.`quantity` as 'quantity', `approval_table`.`full_est_value` as 'full_est_value', `approval_table`.`name_of_vendor` as 'name_of_vendor', `approval_table`.`purpose` as 'purpose', `approval_table`.`requested_department` as 'requested_department', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'person_responsbility', `approval_table`.`mode_of_purchase` as 'mode_of_purchase', `approval_table`.`others_if_any` as 'others_if_any', `approval_table`.`approval_status` as 'approval_status', `approval_table`.`image` as 'image', `approval_table`.`other_file` as 'other_file', `approval_table`.`created_by` as 'created_by', `approval_table`.`created_at` as 'created_at', `approval_table`.`last_updated_by` as 'last_updated_by', `approval_table`.`last_updated_at` as 'last_updated_at'",
+			'approval_table' => "`approval_table`.`id` as 'id', `approval_table`.`type` as 'type', `approval_table`.`description` as 'description', `approval_table`.`quantity` as 'quantity', `approval_table`.`full_est_value` as 'full_est_value', `approval_table`.`name_of_vendor` as 'name_of_vendor', `approval_table`.`purpose` as 'purpose', `approval_table`.`requested_department` as 'requested_department', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'person_responsbility', `approval_table`.`mode_of_purchase` as 'mode_of_purchase', `approval_table`.`others_if_any` as 'others_if_any', `approval_table`.`approval_status` as 'approval_status', `approval_table`.`image` as 'image', `approval_table`.`other_file` as 'other_file', `approval_table`.`created_by` as 'created_by', `approval_table`.`created_at` as 'created_at', `approval_table`.`last_updated_by` as 'last_updated_by', `approval_table`.`last_updated_at` as 'last_updated_at'",
 			'all_bank_account_statement_table' => "`all_bank_account_statement_table`.`all_bank_account_statement_id` as 'all_bank_account_statement_id', `all_bank_account_statement_table`.`statement_type` as 'statement_type', if(`all_bank_account_statement_table`.`txn_date`,date_format(`all_bank_account_statement_table`.`txn_date`,'%d/%m/%Y'),'') as 'txn_date', if(`all_bank_account_statement_table`.`value_date`,date_format(`all_bank_account_statement_table`.`value_date`,'%d/%m/%Y'),'') as 'value_date', `all_bank_account_statement_table`.`description` as 'description', `all_bank_account_statement_table`.`ref_no_or_cheque_no` as 'ref_no_or_cheque_no', `all_bank_account_statement_table`.`branch_code` as 'branch_code', `all_bank_account_statement_table`.`debit` as 'debit', `all_bank_account_statement_table`.`credit` as 'credit', `all_bank_account_statement_table`.`balance_1` as 'balance_1', `all_bank_account_statement_table`.`balance_2` as 'balance_2', `all_bank_account_statement_table`.`remarks_1` as 'remarks_1', `all_bank_account_statement_table`.`remarks_2` as 'remarks_2', `all_bank_account_statement_table`.`category` as 'category', `all_bank_account_statement_table`.`created_by` as 'created_by', `all_bank_account_statement_table`.`created_at` as 'created_at', `all_bank_account_statement_table`.`last_updated_by` as 'last_updated_by', `all_bank_account_statement_table`.`last_updated_at` as 'last_updated_at'",
 			'payment_track_details_table' => "`payment_track_details_table`.`payment_track_details_id` as 'payment_track_details_id', `payment_track_details_table`.`pfms_num` as 'pfms_num', if(`payment_track_details_table`.`date`,date_format(`payment_track_details_table`.`date`,'%d/%m/%Y'),'') as 'date', `payment_track_details_table`.`description` as 'description', `payment_track_details_table`.`amount` as 'amount', `payment_track_details_table`.`requested_by` as 'requested_by', `payment_track_details_table`.`paid_to` as 'paid_to', `payment_track_details_table`.`paid_status` as 'paid_status', if(`payment_track_details_table`.`payment_date`,date_format(`payment_track_details_table`.`payment_date`,'%d/%m/%Y'),'') as 'payment_date', `payment_track_details_table`.`remarks` as 'remarks', `payment_track_details_table`.`upload_scanned_file_1` as 'upload_scanned_file_1', `payment_track_details_table`.`upload_scanned_file_2` as 'upload_scanned_file_2', `payment_track_details_table`.`created_by` as 'created_by', `payment_track_details_table`.`created_at` as 'created_at', `payment_track_details_table`.`last_updated_by` as 'last_updated_by', `payment_track_details_table`.`last_updated_at` as 'last_updated_at'",
 			'car_table' => "`car_table`.`id` as 'id', `car_table`.`car_number` as 'car_number', `car_table`.`registration_number` as 'registration_number', `car_table`.`car_model` as 'car_model', `car_table`.`car_vin` as 'car_vin', `car_table`.`fuel_type` as 'fuel_type', `car_table`.`seating_capacity` as 'seating_capacity', `car_table`.`car_color` as 'car_color', `car_table`.`rental_company_name` as 'rental_company_name', `car_table`.`contact_person` as 'contact_person', `car_table`.`contact_number_of_person` as 'contact_number_of_person', `car_table`.`rental_rate` as 'rental_rate', if(`car_table`.`rental_start_date`,date_format(`car_table`.`rental_start_date`,'%d/%m/%Y'),'') as 'rental_start_date', if(`car_table`.`rental_end_date`,date_format(`car_table`.`rental_end_date`,'%d/%m/%Y'),'') as 'rental_end_date', `car_table`.`purpose` as 'purpose', `car_table`.`created_by` as 'created_by', `car_table`.`created_at` as 'created_at', `car_table`.`last_updated_by` as 'last_updated_by', `car_table`.`last_updated_at` as 'last_updated_at'",
@@ -305,7 +305,7 @@
 			'evaluation_table' => 'evaluation_id',
 			'problem_statement_table' => 'problem_statement_id',
 			'evaluators_table' => 'evaluator_id',
-			'approval_table' => 'procurement_approval_id',
+			'approval_table' => 'id',
 			'all_bank_account_statement_table' => 'all_bank_account_statement_id',
 			'payment_track_details_table' => 'payment_track_details_id',
 			'car_table' => 'id',
@@ -1126,7 +1126,7 @@
 				'last_updated_at' => '',
 			],
 			'approval_table' => [
-				'procurement_approval_id' => '',
+				'id' => '',
 				'type' => '',
 				'description' => '',
 				'quantity' => '',
@@ -2024,15 +2024,27 @@
 		if(!$url) return '';
 
 		$providers = [
-			'youtube' => ['oembed' => 'https://www.youtube.com/oembed?'],
+			'youtube' => ['oembed' => 'https://www.youtube.com/oembed', 'regex' => '/^http.*(youtu\.be|youtube\.com)\/.*/i'],
+			'vimeo' => ['oembed' => 'https://vimeo.com/api/oembed.json', 'regex' => '/^http.*vimeo\.com\/.*/i'],
 			'googlemap' => ['oembed' => '', 'regex' => '/^http.*\.google\..*maps/i'],
+			'dailymotion' => ['oembed' => 'https://www.dailymotion.com/services/oembed', 'regex' => '/^http.*(dailymotion\.com|dai\.ly)\/.*/i'],
+			'videofileurl' => ['oembed' => '', 'regex' => '/\.(mp4|webm|ogg|ogv)$/i'],
 		];
 
 		if(!$max_height) $max_height = 360;
 		if(!$max_width) $max_width = 480;
 
 		if(!isset($providers[$provider])) {
-			return '<div class="text-danger">' . $Translation['invalid provider'] . '</div>';
+			// try detecting provider from URL based on regex
+			foreach($providers as $p => $opts) {
+				if(preg_match($opts['regex'], $url)) {
+					$provider = $p;
+					break;
+				}
+			}
+
+			if(!isset($providers[$provider]))
+				return '<div class="text-danger">' . $Translation['invalid provider'] . '</div>';
 		}
 
 		if(isset($providers[$provider]['regex']) && !preg_match($providers[$provider]['regex'], $url)) {
@@ -2040,7 +2052,7 @@
 		}
 
 		if($providers[$provider]['oembed']) {
-			$oembed = $providers[$provider]['oembed'] . 'url=' . urlencode($url) . "&amp;maxwidth={$max_width}&amp;maxheight={$max_height}&amp;format=json";
+			$oembed = $providers[$provider]['oembed'] . '?url=' . urlencode($url) . "&amp;maxwidth={$max_width}&amp;maxheight={$max_height}&amp;format=json";
 			$data_json = request_cache($oembed);
 
 			$data = json_decode($data_json, true);
@@ -2070,8 +2082,31 @@
 
 		/* special cases (where there is no oEmbed provider) */
 		if($provider == 'googlemap') return get_embed_googlemap($url, $max_width, $max_height, $retrieve);
+		if($provider == 'videofileurl') return get_embed_videofileurl($url, $max_width, $max_height, $retrieve);
 
-		return '<div class="text-danger">Invalid provider!</div>';
+		return '<div class="text-danger">' . $Translation['invalid provider'] . '</div>';
+	}
+
+	#########################################################
+
+	function get_embed_videofileurl($url, $max_width = '', $max_height = '', $retrieve = 'html') {
+		global $Translation;
+
+		$allowed_exts = ['mp4', 'webm', 'ogg', 'ogv'];
+		$ext = strtolower(pathinfo($url, PATHINFO_EXTENSION));
+
+		if(!in_array($ext, $allowed_exts)) {
+			return '<div class="text-danger">' . $Translation['invalid url'] . '</div>';
+		}
+
+		$video = "<video controls style=\"max-width: 100%%; height: auto;\" src=\"%s\"></video>";
+
+		switch($retrieve) {
+			case 'html':
+				return sprintf($video, $url);
+			default: // 'thumbnail'
+				return '';
+		}
 	}
 
 	#########################################################
@@ -2483,8 +2518,8 @@ EOT;
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => [0 => 'ID', 1 => 'Visiting card details', 2 => 'Event Details', 3 => 'Meeting title', 4 => 'Participants', 5 => 'Venue', 6 => 'Meeting from date', 7 => 'Meeting to date', 9 => 'Created by', 10 => 'Created at', 11 => 'Last updated by', 12 => 'Last updated at'],
-					'display-field-names' => [0 => 'meetings_id', 1 => 'visiting_card_lookup', 2 => 'event_lookup', 3 => 'meeting_title', 4 => 'participants', 5 => 'venue', 6 => 'meeting_from_date', 7 => 'meeting_to_date', 9 => 'created_by', 10 => 'created_at', 11 => 'last_updated_by', 12 => 'last_updated_at'],
+					'display-fields' => [0 => 'ID', 3 => 'Meeting title', 4 => 'Participants', 5 => 'Venue', 6 => 'Meeting from date', 7 => 'Meeting to date', 9 => 'Created by', 10 => 'Created at', 11 => 'Last updated by', 12 => 'Last updated at'],
+					'display-field-names' => [0 => 'meetings_id', 3 => 'meeting_title', 4 => 'participants', 5 => 'venue', 6 => 'meeting_from_date', 7 => 'meeting_to_date', 9 => 'created_by', 10 => 'created_at', 11 => 'last_updated_by', 12 => 'last_updated_at'],
 					'sortable-fields' => [0 => '`meetings_table`.`meetings_id`', 1 => '`visiting_card_table1`.`visiting_card_str`', 2 => '`event_table1`.`event_str`', 3 => 4, 4 => 5, 5 => 6, 6 => '`meetings_table`.`meeting_from_date`', 7 => '`meetings_table`.`meeting_to_date`', 8 => 9, 9 => 10, 10 => 11, 11 => 12, 12 => 13],
 					'records-per-page' => 10,
 					'default-sort-by' => 7,
@@ -2507,8 +2542,8 @@ EOT;
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => [0 => 'ID', 1 => 'Visiting card details', 2 => 'Event Details', 3 => 'Meeting title', 4 => 'Participants', 5 => 'Venue', 6 => 'Meeting from date', 7 => 'Meeting to date', 9 => 'Created by', 10 => 'Created at', 11 => 'Last updated by', 12 => 'Last updated at'],
-					'display-field-names' => [0 => 'meetings_id', 1 => 'visiting_card_lookup', 2 => 'event_lookup', 3 => 'meeting_title', 4 => 'participants', 5 => 'venue', 6 => 'meeting_from_date', 7 => 'meeting_to_date', 9 => 'created_by', 10 => 'created_at', 11 => 'last_updated_by', 12 => 'last_updated_at'],
+					'display-fields' => [0 => 'ID', 3 => 'Meeting title', 4 => 'Participants', 5 => 'Venue', 6 => 'Meeting from date', 7 => 'Meeting to date', 9 => 'Created by', 10 => 'Created at', 11 => 'Last updated by', 12 => 'Last updated at'],
+					'display-field-names' => [0 => 'meetings_id', 3 => 'meeting_title', 4 => 'participants', 5 => 'venue', 6 => 'meeting_from_date', 7 => 'meeting_to_date', 9 => 'created_by', 10 => 'created_at', 11 => 'last_updated_by', 12 => 'last_updated_at'],
 					'sortable-fields' => [0 => '`meetings_table`.`meetings_id`', 1 => '`visiting_card_table1`.`visiting_card_str`', 2 => '`event_table1`.`event_str`', 3 => 4, 4 => 5, 5 => 6, 6 => '`meetings_table`.`meeting_from_date`', 7 => '`meetings_table`.`meeting_to_date`', 8 => 9, 9 => 10, 10 => 11, 11 => 12, 12 => 13],
 					'records-per-page' => 10,
 					'default-sort-by' => 7,
@@ -2713,7 +2748,7 @@ EOT;
 					'forced-where' => '',
 					'display-fields' => [0 => 'ID', 1 => 'Type', 2 => 'Company name', 3 => 'Objectives/ Scope of the MOU', 4 => 'Agreement period (In Years)', 5 => 'Date of agreement', 6 => 'Date of expiry', 7 => 'Status', 8 => 'Point of contact (Name)', 9 => 'Contact number', 10 => 'Contact email id', 11 => 'Website link', 12 => 'Country', 13 => 'Assigned MoU to', 14 => 'Upload MoU (PDF or DOC format)', 15 => 'Created at', 16 => 'Created by', 17 => 'Last updated by', 18 => 'Last updated at'],
 					'display-field-names' => [0 => 'id', 1 => 'type', 2 => 'company_name', 3 => 'objective_of_mou', 4 => 'agreement_period', 5 => 'date_of_agreement', 6 => 'date_of_expiry', 7 => 'status', 8 => 'point_of_contact', 9 => 'contact_number', 10 => 'contact_email_id', 11 => 'website_link', 12 => 'country', 13 => 'assigned_mou_to', 14 => 'upload_mou', 15 => 'created_at', 16 => 'created_by', 17 => 'last_updated_by', 18 => 'last_updated_at'],
-					'sortable-fields' => [0 => '`mou_details_table`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => '`mou_details_table`.`date_of_agreement`', 6 => '`mou_details_table`.`date_of_expiry`', 7 => 8, 8 => 9, 9 => 10, 10 => 11, 11 => 12, 12 => 13, 13 => '`user_table1`.`memberID`', 14 => 15, 15 => 16, 16 => 17, 17 => 18, 18 => 19],
+					'sortable-fields' => [0 => '`mou_details_table`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => '`mou_details_table`.`date_of_agreement`', 6 => '`mou_details_table`.`date_of_expiry`', 7 => 8, 8 => 9, 9 => 10, 10 => 11, 11 => 12, 12 => 13, 13 => 14, 14 => 15, 15 => 16, 16 => 17, 17 => 18, 18 => 19],
 					'records-per-page' => 10,
 					'default-sort-by' => 0,
 					'default-sort-direction' => 'desc',
@@ -2722,7 +2757,7 @@ EOT;
 					'show-page-progress' => true,
 					'template' => 'children-mou_details_table',
 					'template-printable' => 'children-mou_details_table-printable',
-					'query' => "SELECT `mou_details_table`.`id` as 'id', `mou_details_table`.`type` as 'type', `mou_details_table`.`company_name` as 'company_name', `mou_details_table`.`objective_of_mou` as 'objective_of_mou', `mou_details_table`.`agreement_period` as 'agreement_period', if(`mou_details_table`.`date_of_agreement`,date_format(`mou_details_table`.`date_of_agreement`,'%d/%m/%Y'),'') as 'date_of_agreement', if(`mou_details_table`.`date_of_expiry`,date_format(`mou_details_table`.`date_of_expiry`,'%d/%m/%Y'),'') as 'date_of_expiry', `mou_details_table`.`status` as 'status', `mou_details_table`.`point_of_contact` as 'point_of_contact', `mou_details_table`.`contact_number` as 'contact_number', `mou_details_table`.`contact_email_id` as 'contact_email_id', `mou_details_table`.`website_link` as 'website_link', `mou_details_table`.`country` as 'country', IF(    CHAR_LENGTH(`user_table1`.`memberID`), CONCAT_WS('',   `user_table1`.`memberID`), '') as 'assigned_mou_to', `mou_details_table`.`upload_mou` as 'upload_mou', `mou_details_table`.`created_at` as 'created_at', `mou_details_table`.`created_by` as 'created_by', `mou_details_table`.`last_updated_by` as 'last_updated_by', `mou_details_table`.`last_updated_at` as 'last_updated_at' FROM `mou_details_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`mou_details_table`.`assigned_mou_to` "
+					'query' => "SELECT `mou_details_table`.`id` as 'id', `mou_details_table`.`type` as 'type', `mou_details_table`.`company_name` as 'company_name', `mou_details_table`.`objective_of_mou` as 'objective_of_mou', `mou_details_table`.`agreement_period` as 'agreement_period', if(`mou_details_table`.`date_of_agreement`,date_format(`mou_details_table`.`date_of_agreement`,'%d/%m/%Y'),'') as 'date_of_agreement', if(`mou_details_table`.`date_of_expiry`,date_format(`mou_details_table`.`date_of_expiry`,'%d/%m/%Y'),'') as 'date_of_expiry', `mou_details_table`.`status` as 'status', `mou_details_table`.`point_of_contact` as 'point_of_contact', `mou_details_table`.`contact_number` as 'contact_number', `mou_details_table`.`contact_email_id` as 'contact_email_id', `mou_details_table`.`website_link` as 'website_link', `mou_details_table`.`country` as 'country', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'assigned_mou_to', `mou_details_table`.`upload_mou` as 'upload_mou', `mou_details_table`.`created_at` as 'created_at', `mou_details_table`.`created_by` as 'created_by', `mou_details_table`.`last_updated_by` as 'last_updated_by', `mou_details_table`.`last_updated_at` as 'last_updated_at' FROM `mou_details_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`mou_details_table`.`assigned_mou_to` "
 				],
 			],
 			'mou_company_area_details_table' => [
@@ -3521,7 +3556,7 @@ EOT;
 				'person_responsbility' => [
 					'parent-table' => 'user_table',
 					'parent-primary-key' => 'user_id',
-					'child-primary-key' => 'procurement_approval_id',
+					'child-primary-key' => 'id',
 					'child-primary-key-index' => 0,
 					'tab-label' => 'Procurement approval - App <span class="hidden child-label-approval_table child-field-caption">(Person Responsbility)</span>',
 					'auto-close' => false,
@@ -3529,9 +3564,9 @@ EOT;
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => [0 => 'ID', 1 => 'Approval for', 2 => 'Description', 3 => 'Quantity', 4 => 'Full Estimated Value', 5 => 'Name of Vendor', 6 => 'Purpose', 7 => 'Requested Department', 8 => 'Person Responsbility', 9 => 'Mode of Purchase', 11 => 'Approval Status', 12 => 'Upload Image if Any (Optional)', 13 => 'Upload Other File if Any (Optional)', 14 => 'Created By', 15 => 'Created At', 16 => 'Last Updated By', 17 => 'Last Updated At'],
-					'display-field-names' => [0 => 'procurement_approval_id', 1 => 'type', 2 => 'description', 3 => 'quantity', 4 => 'full_est_value', 5 => 'name_of_vendor', 6 => 'purpose', 7 => 'requested_department', 8 => 'person_responsbility', 9 => 'mode_of_purchase', 11 => 'approval_status', 12 => 'image', 13 => 'other_file', 14 => 'created_by', 15 => 'created_at', 16 => 'last_updated_by', 17 => 'last_updated_at'],
-					'sortable-fields' => [0 => '`approval_table`.`procurement_approval_id`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => 9, 9 => 10, 10 => 11, 11 => 12, 12 => 13, 13 => 14, 14 => 15, 15 => 16, 16 => 17, 17 => 18],
+					'display-fields' => [0 => 'ID', 1 => 'Approval for', 2 => 'Description', 3 => 'Quantity', 4 => 'Full Estimated Value', 5 => 'Name of Vendor', 6 => 'Purpose', 7 => 'Requested Department/Appointment', 8 => 'Person Responsbility', 9 => 'Mode of Purchase', 11 => 'Approval Status', 12 => 'Upload Image if Any (Optional)', 13 => 'Upload Other File if Any (Optional)', 14 => 'Created By', 15 => 'Created At', 16 => 'Last Updated By', 17 => 'Last Updated At'],
+					'display-field-names' => [0 => 'id', 1 => 'type', 2 => 'description', 3 => 'quantity', 4 => 'full_est_value', 5 => 'name_of_vendor', 6 => 'purpose', 7 => 'requested_department', 8 => 'person_responsbility', 9 => 'mode_of_purchase', 11 => 'approval_status', 12 => 'image', 13 => 'other_file', 14 => 'created_by', 15 => 'created_at', 16 => 'last_updated_by', 17 => 'last_updated_at'],
+					'sortable-fields' => [0 => '`approval_table`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => 9, 9 => 10, 10 => 11, 11 => 12, 12 => 13, 13 => 14, 14 => 15, 15 => 16, 16 => 17, 17 => 18],
 					'records-per-page' => 10,
 					'default-sort-by' => 0,
 					'default-sort-direction' => 'desc',
@@ -3540,7 +3575,7 @@ EOT;
 					'show-page-progress' => true,
 					'template' => 'children-approval_table',
 					'template-printable' => 'children-approval_table-printable',
-					'query' => "SELECT `approval_table`.`procurement_approval_id` as 'procurement_approval_id', `approval_table`.`type` as 'type', `approval_table`.`description` as 'description', `approval_table`.`quantity` as 'quantity', `approval_table`.`full_est_value` as 'full_est_value', `approval_table`.`name_of_vendor` as 'name_of_vendor', `approval_table`.`purpose` as 'purpose', `approval_table`.`requested_department` as 'requested_department', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'person_responsbility', `approval_table`.`mode_of_purchase` as 'mode_of_purchase', `approval_table`.`others_if_any` as 'others_if_any', `approval_table`.`approval_status` as 'approval_status', `approval_table`.`image` as 'image', `approval_table`.`other_file` as 'other_file', `approval_table`.`created_by` as 'created_by', `approval_table`.`created_at` as 'created_at', `approval_table`.`last_updated_by` as 'last_updated_by', `approval_table`.`last_updated_at` as 'last_updated_at' FROM `approval_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`approval_table`.`person_responsbility` "
+					'query' => "SELECT `approval_table`.`id` as 'id', `approval_table`.`type` as 'type', `approval_table`.`description` as 'description', `approval_table`.`quantity` as 'quantity', `approval_table`.`full_est_value` as 'full_est_value', `approval_table`.`name_of_vendor` as 'name_of_vendor', `approval_table`.`purpose` as 'purpose', `approval_table`.`requested_department` as 'requested_department', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'person_responsbility', `approval_table`.`mode_of_purchase` as 'mode_of_purchase', `approval_table`.`others_if_any` as 'others_if_any', `approval_table`.`approval_status` as 'approval_status', `approval_table`.`image` as 'image', `approval_table`.`other_file` as 'other_file', `approval_table`.`created_by` as 'created_by', `approval_table`.`created_at` as 'created_at', `approval_table`.`last_updated_by` as 'last_updated_by', `approval_table`.`last_updated_at` as 'last_updated_at' FROM `approval_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`approval_table`.`person_responsbility` "
 				],
 			],
 			'all_bank_account_statement_table' => [
@@ -4077,5 +4112,15 @@ EOT;
 		$isAutoInc = sqlValue("SHOW COLUMNS FROM `$tn` WHERE Field='{$pk}' AND Extra LIKE '%auto_increment%'");
 		$cache[$tn] = $isAutoInc ? true : false;
 		return $cache[$tn];
+	}
+
+	#########################################################
+
+	/**
+	 * @return bool true if the current user is an admin and revealing SQL is allowed, false otherwise
+	 */
+	function showSQL() {
+		$allowAdminShowSQL = true;
+		return $allowAdminShowSQL && getLoggedAdmin() !== false;
 	}
 

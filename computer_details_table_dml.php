@@ -88,8 +88,8 @@ function computer_details_table_delete($selected_id, $AllowDeleteOfParents = fal
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'computer_usage_table'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'computer_details_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'computer_details_table_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `computer_details_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `computer_details_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -287,7 +287,7 @@ function computer_details_table_form($selectedId = '', $allowUpdate = true, $all
 	<script>
 		// initial lookup values
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
@@ -376,21 +376,21 @@ function computer_details_table_form($selectedId = '', $allowUpdate = true, $all
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#pc_number').replaceWith('<div class=\"form-control-static\" id=\"pc_number\">' + (jQuery('#pc_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#pc_hostname').replaceWith('<div class=\"form-control-static\" id=\"pc_hostname\">' + (jQuery('#pc_hostname').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#pc_mac_address').replaceWith('<div class=\"form-control-static\" id=\"pc_mac_address\">' + (jQuery('#pc_mac_address').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#room_number').replaceWith('<div class=\"form-control-static\" id=\"room_number\">' + (jQuery('#room_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#desk_number').replaceWith('<div class=\"form-control-static\" id=\"desk_number\">' + (jQuery('#desk_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#maintained_by').replaceWith('<div class=\"form-control-static\" id=\"maintained_by\">' + (jQuery('#maintained_by').val() || '') + '</div>'); jQuery('#maintained_by-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#assigned_to_user').replaceWith('<div class=\"form-control-static\" id=\"assigned_to_user\">' + (jQuery('#assigned_to_user').val() || '') + '</div>'); jQuery('#assigned_to_user-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#remote_access').replaceWith('<div class=\"form-control-static\" id=\"remote_access\">' + (jQuery('#remote_access').val() || '') + '</div>'); jQuery('#remote_access-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#pc_number').replaceWith('<div class=\"form-control-static\" id=\"pc_number\">' + (\$j('#pc_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#pc_hostname').replaceWith('<div class=\"form-control-static\" id=\"pc_hostname\">' + (\$j('#pc_hostname').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#pc_mac_address').replaceWith('<div class=\"form-control-static\" id=\"pc_mac_address\">' + (\$j('#pc_mac_address').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#room_number').replaceWith('<div class=\"form-control-static\" id=\"room_number\">' + (\$j('#room_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#desk_number').replaceWith('<div class=\"form-control-static\" id=\"desk_number\">' + (\$j('#desk_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#maintained_by').replaceWith('<div class=\"form-control-static\" id=\"maintained_by\">' + (\$j('#maintained_by').val() || '') + '</div>'); \$j('#maintained_by-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#assigned_to_user').replaceWith('<div class=\"form-control-static\" id=\"assigned_to_user\">' + (\$j('#assigned_to_user').val() || '') + '</div>'); \$j('#assigned_to_user-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#remote_access').replaceWith('<div class=\"form-control-static\" id=\"remote_access\">' + (\$j('#remote_access').val() || '') + '</div>'); \$j('#remote_access-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

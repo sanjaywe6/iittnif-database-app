@@ -249,7 +249,7 @@
 				}
 			});
 
-			enforce_uniqueness('user_table', 'memberID');
+			user_tableUniqueFields.forEach(fieldName => enforce_uniqueness('user_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -263,4 +263,8 @@
 				);
 			}
 		});
+
+		var user_tableUniqueFields = [
+			'memberID',
+		];
 	</script>

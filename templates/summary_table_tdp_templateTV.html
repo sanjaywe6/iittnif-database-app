@@ -1,36 +1,97 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="29" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="summary_table_tdp-id-caption field-caption-tv">ID</dt>
+					<dd id="summary_table_tdp-id-<%%VALUE(id)%%>" class="summary_table_tdp-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the summary_table_tdp_init() hook (in hooks/summary_table_tdp.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="summary_table_tdp-project_number-caption field-caption-tv">Project number</dt>
+					<dd id="summary_table_tdp-project_number-<%%VALUE(id)%%>" class="summary_table_tdp-project_number"><%%SELECT%%><%%VALUE(project_number)%%><%%ENDSELECT%%></dd>
 
-		<td id="summary_table_tdp-id-<%%VALUE(id)%%>" class="summary_table_tdp-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-project_number-<%%VALUE(id)%%>" class="summary_table_tdp-project_number"><%%SELECT%%><%%VALUE(project_number)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-project_title-<%%VALUE(id)%%>" class="summary_table_tdp-project_title"><%%SELECT%%><%%VALUE(project_title)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-year-<%%VALUE(id)%%>" class="summary_table_tdp-year"><%%SELECT%%><%%VALUE(year)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-pi-<%%VALUE(id)%%>" class="summary_table_tdp-pi"><%%SELECT%%><%%VALUE(pi)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-institute-<%%VALUE(id)%%>" class="summary_table_tdp-institute"><%%SELECT%%><%%VALUE(institute)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-duration_in_months-<%%VALUE(id)%%>" class="summary_table_tdp-duration_in_months"><%%SELECT%%><%%VALUE(duration_in_months)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-overall_budget-<%%VALUE(id)%%>" class="summary_table_tdp-overall_budget"><%%SELECT%%><%%VALUE(overall_budget)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-number_of_products-<%%VALUE(id)%%>" class="summary_table_tdp-number_of_products"><%%SELECT%%><%%VALUE(number_of_products)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-trl_status-<%%VALUE(id)%%>" class="summary_table_tdp-trl_status"><%%SELECT%%><%%VALUE(trl_status)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-sactioned_date-<%%VALUE(id)%%>" class="summary_table_tdp-sactioned_date"><%%SELECT%%><%%VALUE(sactioned_date)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-ongoing_month_of_project-<%%VALUE(id)%%>" class="summary_table_tdp-ongoing_month_of_project"><%%SELECT%%><%%VALUE(ongoing_month_of_project)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-last_monthly_report-<%%VALUE(id)%%>" class="summary_table_tdp-last_monthly_report"><%%SELECT%%><%%VALUE(last_monthly_report)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-no_of_ug-<%%VALUE(id)%%>" class="summary_table_tdp-no_of_ug"><%%SELECT%%><%%VALUE(no_of_ug)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-no_of_pg-<%%VALUE(id)%%>" class="summary_table_tdp-no_of_pg"><%%SELECT%%><%%VALUE(no_of_pg)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-no_of_phd-<%%VALUE(id)%%>" class="summary_table_tdp-no_of_phd"><%%SELECT%%><%%VALUE(no_of_phd)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-no_of_postdoc-<%%VALUE(id)%%>" class="summary_table_tdp-no_of_postdoc"><%%SELECT%%><%%VALUE(no_of_postdoc)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-first_milestone_amount_and_date-<%%VALUE(id)%%>" class="summary_table_tdp-first_milestone_amount_and_date"><%%SELECT%%><%%VALUE(first_milestone_amount_and_date)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-stage_I_completion-<%%VALUE(id)%%>" class="summary_table_tdp-stage_I_completion"><%%SELECT%%><%%VALUE(stage_I_completion)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-second_milestone_amount_and_date-<%%VALUE(id)%%>" class="summary_table_tdp-second_milestone_amount_and_date"><%%SELECT%%><%%VALUE(second_milestone_amount_and_date)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-stage_2_completion-<%%VALUE(id)%%>" class="summary_table_tdp-stage_2_completion"><%%SELECT%%><%%VALUE(stage_2_completion)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-third_milestone_amount_and_date-<%%VALUE(id)%%>" class="summary_table_tdp-third_milestone_amount_and_date"><%%SELECT%%><%%VALUE(third_milestone_amount_and_date)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-stage_3_completion-<%%VALUE(id)%%>" class="summary_table_tdp-stage_3_completion"><%%SELECT%%><%%VALUE(stage_3_completion)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-fourth_milestone_amount_and_date-<%%VALUE(id)%%>" class="summary_table_tdp-fourth_milestone_amount_and_date"><%%SELECT%%><%%VALUE(fourth_milestone_amount_and_date)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-stage_4_completion-<%%VALUE(id)%%>" class="summary_table_tdp-stage_4_completion"><%%SELECT%%><%%VALUE(stage_4_completion)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-created_by-<%%VALUE(id)%%>" class="summary_table_tdp-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-created_at-<%%VALUE(id)%%>" class="summary_table_tdp-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-last_updated_by-<%%VALUE(id)%%>" class="summary_table_tdp-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>
-		<td id="summary_table_tdp-last_updated_at-<%%VALUE(id)%%>" class="summary_table_tdp-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>
+					<dt class="summary_table_tdp-project_title-caption field-caption-tv">Project title</dt>
+					<dd id="summary_table_tdp-project_title-<%%VALUE(id)%%>" class="summary_table_tdp-project_title"><%%SELECT%%><%%VALUE(project_title)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-year-caption field-caption-tv">Year</dt>
+					<dd id="summary_table_tdp-year-<%%VALUE(id)%%>" class="summary_table_tdp-year"><%%SELECT%%><%%VALUE(year)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-pi-caption field-caption-tv">PI</dt>
+					<dd id="summary_table_tdp-pi-<%%VALUE(id)%%>" class="summary_table_tdp-pi"><%%SELECT%%><%%VALUE(pi)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-institute-caption field-caption-tv">Institute</dt>
+					<dd id="summary_table_tdp-institute-<%%VALUE(id)%%>" class="summary_table_tdp-institute"><%%SELECT%%><%%VALUE(institute)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-duration_in_months-caption field-caption-tv">Duration in months</dt>
+					<dd id="summary_table_tdp-duration_in_months-<%%VALUE(id)%%>" class="summary_table_tdp-duration_in_months"><%%SELECT%%><%%VALUE(duration_in_months)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-overall_budget-caption field-caption-tv">Overall budget in Rs.</dt>
+					<dd id="summary_table_tdp-overall_budget-<%%VALUE(id)%%>" class="summary_table_tdp-overall_budget"><%%SELECT%%><%%VALUE(overall_budget)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-number_of_products-caption field-caption-tv">Number of products</dt>
+					<dd id="summary_table_tdp-number_of_products-<%%VALUE(id)%%>" class="summary_table_tdp-number_of_products"><%%SELECT%%><%%VALUE(number_of_products)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-trl_status-caption field-caption-tv">TRL status</dt>
+					<dd id="summary_table_tdp-trl_status-<%%VALUE(id)%%>" class="summary_table_tdp-trl_status"><%%SELECT%%><%%VALUE(trl_status)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-sactioned_date-caption field-caption-tv">Sactioned date</dt>
+					<dd id="summary_table_tdp-sactioned_date-<%%VALUE(id)%%>" class="summary_table_tdp-sactioned_date"><%%SELECT%%><%%VALUE(sactioned_date)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-ongoing_month_of_project-caption field-caption-tv">Ongoing month of project</dt>
+					<dd id="summary_table_tdp-ongoing_month_of_project-<%%VALUE(id)%%>" class="summary_table_tdp-ongoing_month_of_project"><%%SELECT%%><%%VALUE(ongoing_month_of_project)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-last_monthly_report-caption field-caption-tv">Last monthly report</dt>
+					<dd id="summary_table_tdp-last_monthly_report-<%%VALUE(id)%%>" class="summary_table_tdp-last_monthly_report"><%%SELECT%%><%%VALUE(last_monthly_report)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-no_of_ug-caption field-caption-tv">No. of UG</dt>
+					<dd id="summary_table_tdp-no_of_ug-<%%VALUE(id)%%>" class="summary_table_tdp-no_of_ug"><%%SELECT%%><%%VALUE(no_of_ug)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-no_of_pg-caption field-caption-tv">No. of PG</dt>
+					<dd id="summary_table_tdp-no_of_pg-<%%VALUE(id)%%>" class="summary_table_tdp-no_of_pg"><%%SELECT%%><%%VALUE(no_of_pg)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="summary_table_tdp-no_of_phd-caption field-caption-tv">No. of PhD</dt>
+					<dd id="summary_table_tdp-no_of_phd-<%%VALUE(id)%%>" class="summary_table_tdp-no_of_phd"><%%SELECT%%><%%VALUE(no_of_phd)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-no_of_postdoc-caption field-caption-tv">No. of Post Doc</dt>
+					<dd id="summary_table_tdp-no_of_postdoc-<%%VALUE(id)%%>" class="summary_table_tdp-no_of_postdoc"><%%SELECT%%><%%VALUE(no_of_postdoc)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-first_milestone_amount_and_date-caption field-caption-tv">1st Milestone Amount & Date</dt>
+					<dd id="summary_table_tdp-first_milestone_amount_and_date-<%%VALUE(id)%%>" class="summary_table_tdp-first_milestone_amount_and_date"><%%SELECT%%><%%VALUE(first_milestone_amount_and_date)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-stage_I_completion-caption field-caption-tv">Stage 1 completion</dt>
+					<dd id="summary_table_tdp-stage_I_completion-<%%VALUE(id)%%>" class="summary_table_tdp-stage_I_completion"><%%SELECT%%><%%VALUE(stage_I_completion)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-second_milestone_amount_and_date-caption field-caption-tv">2nd Milestone Amount & Date</dt>
+					<dd id="summary_table_tdp-second_milestone_amount_and_date-<%%VALUE(id)%%>" class="summary_table_tdp-second_milestone_amount_and_date"><%%SELECT%%><%%VALUE(second_milestone_amount_and_date)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-stage_2_completion-caption field-caption-tv">Stage 2 completion</dt>
+					<dd id="summary_table_tdp-stage_2_completion-<%%VALUE(id)%%>" class="summary_table_tdp-stage_2_completion"><%%SELECT%%><%%VALUE(stage_2_completion)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-third_milestone_amount_and_date-caption field-caption-tv">3rd Milestone Amount & Date</dt>
+					<dd id="summary_table_tdp-third_milestone_amount_and_date-<%%VALUE(id)%%>" class="summary_table_tdp-third_milestone_amount_and_date"><%%SELECT%%><%%VALUE(third_milestone_amount_and_date)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-stage_3_completion-caption field-caption-tv">Stage 3 completion</dt>
+					<dd id="summary_table_tdp-stage_3_completion-<%%VALUE(id)%%>" class="summary_table_tdp-stage_3_completion"><%%SELECT%%><%%VALUE(stage_3_completion)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-fourth_milestone_amount_and_date-caption field-caption-tv">4th Milestone Amount & Date</dt>
+					<dd id="summary_table_tdp-fourth_milestone_amount_and_date-<%%VALUE(id)%%>" class="summary_table_tdp-fourth_milestone_amount_and_date"><%%SELECT%%><%%VALUE(fourth_milestone_amount_and_date)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-stage_4_completion-caption field-caption-tv">Stage 4 completion</dt>
+					<dd id="summary_table_tdp-stage_4_completion-<%%VALUE(id)%%>" class="summary_table_tdp-stage_4_completion"><%%SELECT%%><%%VALUE(stage_4_completion)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="summary_table_tdp-created_by-<%%VALUE(id)%%>" class="summary_table_tdp-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="summary_table_tdp-created_at-<%%VALUE(id)%%>" class="summary_table_tdp-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="summary_table_tdp-last_updated_by-<%%VALUE(id)%%>" class="summary_table_tdp-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="summary_table_tdp-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="summary_table_tdp-last_updated_at-<%%VALUE(id)%%>" class="summary_table_tdp-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+		</td>

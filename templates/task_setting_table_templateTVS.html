@@ -1,18 +1,43 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="11" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="task_setting_table-task_id-caption field-caption-tv">ID</dt>
+					<dd id="task_setting_table-task_id-<%%VALUE(task_id)%%>" class="task_setting_table-task_id text-right text-bold"><%%VALUE(task_id)%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the task_setting_table_init() hook (in hooks/task_setting_table.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="task_setting_table-task_status-caption field-caption-tv">Task status</dt>
+					<dd id="task_setting_table-task_status-<%%VALUE(task_id)%%>" class="task_setting_table-task_status text-bold"><%%VALUE(task_status)%%></dd>
 
-		<td id="task_setting_table-task_id-<%%VALUE(task_id)%%>" class="task_setting_table-task_id text-right text-bold"><%%VALUE(task_id)%%></td>
-		<td id="task_setting_table-task_status-<%%VALUE(task_id)%%>" class="task_setting_table-task_status text-bold"><%%VALUE(task_status)%%></td>
-		<td id="task_setting_table-task_description-<%%VALUE(task_id)%%>" class="task_setting_table-task_description text-bold"><%%VALUE(task_description)%%></td>
-		<td id="task_setting_table-task_duration-<%%VALUE(task_id)%%>" class="task_setting_table-task_duration text-bold"><%%VALUE(task_duration)%%></td>
-		<td id="task_setting_table-task_set_date-<%%VALUE(task_id)%%>" class="task_setting_table-task_set_date text-bold"><%%VALUE(task_set_date)%%></td>
-		<td id="task_setting_table-supervisor_name-<%%VALUE(task_id)%%>" class="task_setting_table-supervisor_name text-bold"><%%VALUE(supervisor_name)%%></td>
-		<td id="task_setting_table-assigned_to-<%%VALUE(task_id)%%>" class="task_setting_table-assigned_to text-bold"><%%VALUE(assigned_to)%%></td>
-		<td id="task_setting_table-created_by-<%%VALUE(task_id)%%>" class="task_setting_table-created_by text-bold"><%%VALUE(created_by)%%></td>
-		<td id="task_setting_table-created_at-<%%VALUE(task_id)%%>" class="task_setting_table-created_at text-bold"><%%VALUE(created_at)%%></td>
-		<td id="task_setting_table-last_updated_by-<%%VALUE(task_id)%%>" class="task_setting_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
-		<td id="task_setting_table-last_updated_at-<%%VALUE(task_id)%%>" class="task_setting_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>
+					<dt class="task_setting_table-task_description-caption field-caption-tv">Task description</dt>
+					<dd id="task_setting_table-task_description-<%%VALUE(task_id)%%>" class="task_setting_table-task_description text-bold"><%%VALUE(task_description)%%></dd>
+
+					<dt class="task_setting_table-task_duration-caption field-caption-tv">Task duration</dt>
+					<dd id="task_setting_table-task_duration-<%%VALUE(task_id)%%>" class="task_setting_table-task_duration text-bold"><%%VALUE(task_duration)%%></dd>
+
+					<dt class="task_setting_table-task_set_date-caption field-caption-tv">Task set date</dt>
+					<dd id="task_setting_table-task_set_date-<%%VALUE(task_id)%%>" class="task_setting_table-task_set_date text-bold"><%%VALUE(task_set_date)%%></dd>
+
+					<dt class="task_setting_table-supervisor_name-caption field-caption-tv">Supervisor name</dt>
+					<dd id="task_setting_table-supervisor_name-<%%VALUE(task_id)%%>" class="task_setting_table-supervisor_name text-bold"><%%VALUE(supervisor_name)%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="task_setting_table-assigned_to-caption field-caption-tv">Assigned to</dt>
+					<dd id="task_setting_table-assigned_to-<%%VALUE(task_id)%%>" class="task_setting_table-assigned_to text-bold"><%%VALUE(assigned_to)%%></dd>
+
+					<dt class="task_setting_table-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="task_setting_table-created_by-<%%VALUE(task_id)%%>" class="task_setting_table-created_by text-bold"><%%VALUE(created_by)%%></dd>
+
+					<dt class="task_setting_table-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="task_setting_table-created_at-<%%VALUE(task_id)%%>" class="task_setting_table-created_at text-bold"><%%VALUE(created_at)%%></dd>
+
+					<dt class="task_setting_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="task_setting_table-last_updated_by-<%%VALUE(task_id)%%>" class="task_setting_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></dd>
+
+					<dt class="task_setting_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="task_setting_table-last_updated_at-<%%VALUE(task_id)%%>" class="task_setting_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></dd>
+
+				</dl>
+			</div>
+		</td>

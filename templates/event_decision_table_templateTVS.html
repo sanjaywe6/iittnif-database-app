@@ -1,19 +1,46 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="12" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="event_decision_table-decision_id-caption field-caption-tv">ID</dt>
+					<dd id="event_decision_table-decision_id-<%%VALUE(decision_id)%%>" class="event_decision_table-decision_id text-right text-bold"><%%VALUE(decision_id)%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the event_decision_table_init() hook (in hooks/event_decision_table.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="event_decision_table-outcomes_expected_lookup-caption field-caption-tv">Expected Outcomes of Meeting</dt>
+					<dd id="event_decision_table-outcomes_expected_lookup-<%%VALUE(decision_id)%%>" class="event_decision_table-outcomes_expected_lookup text-bold"><%%VALUE(outcomes_expected_lookup)%%></dd>
 
-		<td id="event_decision_table-decision_id-<%%VALUE(decision_id)%%>" class="event_decision_table-decision_id text-right text-bold"><%%VALUE(decision_id)%%></td>
-		<td id="event_decision_table-outcomes_expected_lookup-<%%VALUE(decision_id)%%>" class="event_decision_table-outcomes_expected_lookup text-bold"><%%VALUE(outcomes_expected_lookup)%%></td>
-		<td id="event_decision_table-decision_description-<%%VALUE(decision_id)%%>" class="event_decision_table-decision_description text-bold"><%%VALUE(decision_description)%%></td>
-		<td id="event_decision_table-decision_actor-<%%VALUE(decision_id)%%>" class="event_decision_table-decision_actor text-bold"><%%VALUE(decision_actor)%%></td>
-		<td id="event_decision_table-action_taken_with_date-<%%VALUE(decision_id)%%>" class="event_decision_table-action_taken_with_date text-bold"><%%VALUE(action_taken_with_date)%%></td>
-		<td id="event_decision_table-decision_status-<%%VALUE(decision_id)%%>" class="event_decision_table-decision_status text-bold"><%%VALUE(decision_status)%%></td>
-		<td id="event_decision_table-decision_status_update_date-<%%VALUE(decision_id)%%>" class="event_decision_table-decision_status_update_date text-bold"><%%VALUE(decision_status_update_date)%%></td>
-		<td id="event_decision_table-decision_status_remarks_by_superior-<%%VALUE(decision_id)%%>" class="event_decision_table-decision_status_remarks_by_superior text-bold"><%%VALUE(decision_status_remarks_by_superior)%%></td>
-		<td id="event_decision_table-created_by-<%%VALUE(decision_id)%%>" class="event_decision_table-created_by text-bold"><%%VALUE(created_by)%%></td>
-		<td id="event_decision_table-created_at-<%%VALUE(decision_id)%%>" class="event_decision_table-created_at text-bold"><%%VALUE(created_at)%%></td>
-		<td id="event_decision_table-last_updated_by-<%%VALUE(decision_id)%%>" class="event_decision_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
-		<td id="event_decision_table-last_updated_at-<%%VALUE(decision_id)%%>" class="event_decision_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>
+					<dt class="event_decision_table-decision_description-caption field-caption-tv">Decision description</dt>
+					<dd id="event_decision_table-decision_description-<%%VALUE(decision_id)%%>" class="event_decision_table-decision_description text-bold"><%%VALUE(decision_description)%%></dd>
+
+					<dt class="event_decision_table-decision_actor-caption field-caption-tv">Decision actor</dt>
+					<dd id="event_decision_table-decision_actor-<%%VALUE(decision_id)%%>" class="event_decision_table-decision_actor text-bold"><%%VALUE(decision_actor)%%></dd>
+
+					<dt class="event_decision_table-action_taken_with_date-caption field-caption-tv">Action taken with date</dt>
+					<dd id="event_decision_table-action_taken_with_date-<%%VALUE(decision_id)%%>" class="event_decision_table-action_taken_with_date text-bold"><%%VALUE(action_taken_with_date)%%></dd>
+
+					<dt class="event_decision_table-decision_status-caption field-caption-tv">Decision status</dt>
+					<dd id="event_decision_table-decision_status-<%%VALUE(decision_id)%%>" class="event_decision_table-decision_status text-bold"><%%VALUE(decision_status)%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="event_decision_table-decision_status_update_date-caption field-caption-tv">Decision status update date</dt>
+					<dd id="event_decision_table-decision_status_update_date-<%%VALUE(decision_id)%%>" class="event_decision_table-decision_status_update_date text-bold"><%%VALUE(decision_status_update_date)%%></dd>
+
+					<dt class="event_decision_table-decision_status_remarks_by_superior-caption field-caption-tv">Decision status remarks by superior</dt>
+					<dd id="event_decision_table-decision_status_remarks_by_superior-<%%VALUE(decision_id)%%>" class="event_decision_table-decision_status_remarks_by_superior text-bold"><%%VALUE(decision_status_remarks_by_superior)%%></dd>
+
+					<dt class="event_decision_table-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="event_decision_table-created_by-<%%VALUE(decision_id)%%>" class="event_decision_table-created_by text-bold"><%%VALUE(created_by)%%></dd>
+
+					<dt class="event_decision_table-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="event_decision_table-created_at-<%%VALUE(decision_id)%%>" class="event_decision_table-created_at text-bold"><%%VALUE(created_at)%%></dd>
+
+					<dt class="event_decision_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="event_decision_table-last_updated_by-<%%VALUE(decision_id)%%>" class="event_decision_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></dd>
+
+					<dt class="event_decision_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="event_decision_table-last_updated_at-<%%VALUE(decision_id)%%>" class="event_decision_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></dd>
+
+				</dl>
+			</div>
+		</td>

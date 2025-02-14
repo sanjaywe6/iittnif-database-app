@@ -97,8 +97,8 @@ function panel_decision_table_tdp_delete($selected_id, $AllowDeleteOfParents = f
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'selected_proposals_final_tdp'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -117,8 +117,8 @@ function panel_decision_table_tdp_delete($selected_id, $AllowDeleteOfParents = f
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'stage_wise_budget_table_tdp'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -137,8 +137,8 @@ function panel_decision_table_tdp_delete($selected_id, $AllowDeleteOfParents = f
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'first_level_shortlisted_proposals_tdp'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -157,8 +157,8 @@ function panel_decision_table_tdp_delete($selected_id, $AllowDeleteOfParents = f
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'budget_table_tdp'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -177,8 +177,8 @@ function panel_decision_table_tdp_delete($selected_id, $AllowDeleteOfParents = f
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'panel_comments_tdp'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -197,8 +197,8 @@ function panel_decision_table_tdp_delete($selected_id, $AllowDeleteOfParents = f
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'selected_tdp'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -217,8 +217,8 @@ function panel_decision_table_tdp_delete($selected_id, $AllowDeleteOfParents = f
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'address_tdp'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `panel_decision_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -398,7 +398,7 @@ function panel_decision_table_tdp_form($selectedId = '', $allowUpdate = true, $a
 	<script>
 		// initial lookup values
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
@@ -487,30 +487,30 @@ function panel_decision_table_tdp_form($selectedId = '', $allowUpdate = true, $a
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#edition').replaceWith('<div class=\"form-control-static\" id=\"edition\">' + (jQuery('#edition').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#project_id').replaceWith('<div class=\"form-control-static\" id=\"project_id\">' + (jQuery('#project_id').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#date_of_presentation').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#date_of_presentationDay, #date_of_presentationMonth, #date_of_presentationYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#name_of_pi').replaceWith('<div class=\"form-control-static\" id=\"name_of_pi\">' + (jQuery('#name_of_pi').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#mobile_number').replaceWith('<div class=\"form-control-static\" id=\"mobile_number\">' + (jQuery('#mobile_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#institute').replaceWith('<div class=\"form-control-static\" id=\"institute\">' + (jQuery('#institute').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#budget_specified').replaceWith('<div class=\"form-control-static\" id=\"budget_specified\">' + (jQuery('#budget_specified').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#final_budget_to_be_allocated').replaceWith('<div class=\"form-control-static\" id=\"final_budget_to_be_allocated\">' + (jQuery('#final_budget_to_be_allocated').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#experts_comments').replaceWith('<div class=\"form-control-static\" id=\"experts_comments\">' + (jQuery('#experts_comments').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#trl').replaceWith('<div class=\"form-control-static\" id=\"trl\">' + (jQuery('#trl').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#proposal_link').replaceWith('<div class=\"form-control-static\" id=\"proposal_link\">' + (jQuery('#proposal_link').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#updated_proposal_link').replaceWith('<div class=\"form-control-static\" id=\"updated_proposal_link\">' + (jQuery('#updated_proposal_link').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#where_budget_need').replaceWith('<div class=\"form-control-static\" id=\"where_budget_need\">' + (jQuery('#where_budget_need').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#final_decision').replaceWith('<div class=\"form-control-static\" id=\"final_decision\">' + (jQuery('#final_decision').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#notification_mail').replaceWith('<div class=\"form-control-static\" id=\"notification_mail\">' + (jQuery('#notification_mail').val() || '') + '</div>'); jQuery('#notification_mail-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#call_done').replaceWith('<div class=\"form-control-static\" id=\"call_done\">' + (jQuery('#call_done').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#edition').replaceWith('<div class=\"form-control-static\" id=\"edition\">' + (\$j('#edition').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#project_id').replaceWith('<div class=\"form-control-static\" id=\"project_id\">' + (\$j('#project_id').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#date_of_presentation').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#date_of_presentationDay, #date_of_presentationMonth, #date_of_presentationYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#name_of_pi').replaceWith('<div class=\"form-control-static\" id=\"name_of_pi\">' + (\$j('#name_of_pi').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#mobile_number').replaceWith('<div class=\"form-control-static\" id=\"mobile_number\">' + (\$j('#mobile_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#institute').replaceWith('<div class=\"form-control-static\" id=\"institute\">' + (\$j('#institute').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#budget_specified').replaceWith('<div class=\"form-control-static\" id=\"budget_specified\">' + (\$j('#budget_specified').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#final_budget_to_be_allocated').replaceWith('<div class=\"form-control-static\" id=\"final_budget_to_be_allocated\">' + (\$j('#final_budget_to_be_allocated').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#experts_comments').replaceWith('<div class=\"form-control-static\" id=\"experts_comments\">' + (\$j('#experts_comments').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#trl').replaceWith('<div class=\"form-control-static\" id=\"trl\">' + (\$j('#trl').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#proposal_link').replaceWith('<div class=\"form-control-static\" id=\"proposal_link\">' + (\$j('#proposal_link').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#updated_proposal_link').replaceWith('<div class=\"form-control-static\" id=\"updated_proposal_link\">' + (\$j('#updated_proposal_link').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#where_budget_need').replaceWith('<div class=\"form-control-static\" id=\"where_budget_need\">' + (\$j('#where_budget_need').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#final_decision').replaceWith('<div class=\"form-control-static\" id=\"final_decision\">' + (\$j('#final_decision').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#notification_mail').replaceWith('<div class=\"form-control-static\" id=\"notification_mail\">' + (\$j('#notification_mail').val() || '') + '</div>'); \$j('#notification_mail-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#call_done').replaceWith('<div class=\"form-control-static\" id=\"call_done\">' + (\$j('#call_done').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

@@ -121,7 +121,7 @@
 	$x->AllowPrinting = 1;
 	$x->AllowPrintingDV = 1;
 	$x->AllowCSV = 1;
-	$x->AllowAdminShowSQL = 1;
+	$x->AllowAdminShowSQL = showSQL();
 	$x->RecordsPerPage = 100;
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
@@ -132,10 +132,10 @@
 	$x->DefaultSortField = '`meetings_table`.`meeting_to_date`';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Visiting card details', 'Event Details', 'Meeting title', 'Participants', 'Venue', 'Meeting from date', 'Meeting to date', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['meetings_id', 'visiting_card_lookup', 'event_lookup', 'meeting_title', 'participants', 'venue', 'meeting_from_date', 'meeting_to_date', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Meeting title', 'Participants', 'Venue', 'Meeting from date', 'Meeting to date', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['meetings_id', 'meeting_title', 'participants', 'venue', 'meeting_from_date', 'meeting_to_date', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 4, 5, 6, 7, 8, 10, 11, 12, 13, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/meetings_table_templateTV.html';
@@ -143,7 +143,7 @@
 	$x->TemplateDV = 'templates/meetings_table_templateDV.html';
 	$x->TemplateDVP = 'templates/meetings_table_templateDVP.html';
 
-	$x->ShowTableHeader = 1;
+	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
 	$x->HasCalculatedFields = false;

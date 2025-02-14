@@ -1,23 +1,58 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="16" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="panel_comments_tdp-id-caption field-caption-tv">ID</dt>
+					<dd id="panel_comments_tdp-id-<%%VALUE(id)%%>" class="panel_comments_tdp-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the panel_comments_tdp_init() hook (in hooks/panel_comments_tdp.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="panel_comments_tdp-project_id-caption field-caption-tv">Project ID::Title</dt>
+					<dd id="panel_comments_tdp-project_id-<%%VALUE(id)%%>" class="panel_comments_tdp-project_id"><%%SELECT%%><%%VALUE(project_id)%%><%%ENDSELECT%%></dd>
 
-		<td id="panel_comments_tdp-id-<%%VALUE(id)%%>" class="panel_comments_tdp-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></td>
-		<td id="panel_comments_tdp-project_id-<%%VALUE(id)%%>" class="panel_comments_tdp-project_id"><%%SELECT%%><%%VALUE(project_id)%%><%%ENDSELECT%%></td>
-		<td id="panel_comments_tdp-project_title-<%%VALUE(id)%%>" class="panel_comments_tdp-project_title"><%%SELECT%%><%%VALUE(project_title)%%><%%ENDSELECT%%></td>
-		<td id="panel_comments_tdp-name_of_pi-<%%VALUE(id)%%>" class="panel_comments_tdp-name_of_pi"><%%SELECT%%><%%VALUE(name_of_pi)%%><%%ENDSELECT%%></td>
-		<td id="panel_comments_tdp-institute-<%%VALUE(id)%%>" class="panel_comments_tdp-institute"><%%SELECT%%><%%VALUE(institute)%%><%%ENDSELECT%%></td>
-		<td id="panel_comments_tdp-final_budget-<%%VALUE(id)%%>" class="panel_comments_tdp-final_budget"><%%SELECT%%><%%VALUE(final_budget)%%><%%ENDSELECT%%></td>
-		<td id="panel_comments_tdp-comments_from_yvn_sir-<%%VALUE(id)%%>" class="panel_comments_tdp-comments_from_yvn_sir"><%%SELECT%%><%%VALUE(comments_from_yvn_sir)%%><%%ENDSELECT%%></td>
-		<td id="panel_comments_tdp-comments_from_ramakrishna_sir-<%%VALUE(id)%%>" class="panel_comments_tdp-comments_from_ramakrishna_sir"><%%SELECT%%><%%VALUE(comments_from_ramakrishna_sir)%%><%%ENDSELECT%%></td>
-		<td id="panel_comments_tdp-comments_from_bharat_lohani_sir-<%%VALUE(id)%%>" class="panel_comments_tdp-comments_from_bharat_lohani_sir"><%%SELECT%%><%%VALUE(comments_from_bharat_lohani_sir)%%><%%ENDSELECT%%></td>
-		<td id="panel_comments_tdp-remarks_1-<%%VALUE(id)%%>" class="panel_comments_tdp-remarks_1"><%%SELECT%%><%%VALUE(remarks_1)%%><%%ENDSELECT%%></td>
-		<td id="panel_comments_tdp-remarks_2-<%%VALUE(id)%%>" class="panel_comments_tdp-remarks_2"><%%SELECT%%><%%VALUE(remarks_2)%%><%%ENDSELECT%%></td>
-		<td id="panel_comments_tdp-finale_decision-<%%VALUE(id)%%>" class="panel_comments_tdp-finale_decision"><%%SELECT%%><%%VALUE(finale_decision)%%><%%ENDSELECT%%></td>
-		<td id="panel_comments_tdp-created_by-<%%VALUE(id)%%>" class="panel_comments_tdp-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
-		<td id="panel_comments_tdp-created_at-<%%VALUE(id)%%>" class="panel_comments_tdp-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
-		<td id="panel_comments_tdp-last_updated_by-<%%VALUE(id)%%>" class="panel_comments_tdp-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>
-		<td id="panel_comments_tdp-last_updated_at-<%%VALUE(id)%%>" class="panel_comments_tdp-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>
+					<dt class="panel_comments_tdp-project_title-caption field-caption-tv">Project title</dt>
+					<dd id="panel_comments_tdp-project_title-<%%VALUE(id)%%>" class="panel_comments_tdp-project_title"><%%SELECT%%><%%VALUE(project_title)%%><%%ENDSELECT%%></dd>
+
+					<dt class="panel_comments_tdp-name_of_pi-caption field-caption-tv">Name of PI</dt>
+					<dd id="panel_comments_tdp-name_of_pi-<%%VALUE(id)%%>" class="panel_comments_tdp-name_of_pi"><%%SELECT%%><%%VALUE(name_of_pi)%%><%%ENDSELECT%%></dd>
+
+					<dt class="panel_comments_tdp-institute-caption field-caption-tv">Institute</dt>
+					<dd id="panel_comments_tdp-institute-<%%VALUE(id)%%>" class="panel_comments_tdp-institute"><%%SELECT%%><%%VALUE(institute)%%><%%ENDSELECT%%></dd>
+
+					<dt class="panel_comments_tdp-final_budget-caption field-caption-tv">Final budget in Rs.</dt>
+					<dd id="panel_comments_tdp-final_budget-<%%VALUE(id)%%>" class="panel_comments_tdp-final_budget"><%%SELECT%%><%%VALUE(final_budget)%%><%%ENDSELECT%%></dd>
+
+					<dt class="panel_comments_tdp-comments_from_yvn_sir-caption field-caption-tv">Comments from YVN sir</dt>
+					<dd id="panel_comments_tdp-comments_from_yvn_sir-<%%VALUE(id)%%>" class="panel_comments_tdp-comments_from_yvn_sir"><%%SELECT%%><%%VALUE(comments_from_yvn_sir)%%><%%ENDSELECT%%></dd>
+
+					<dt class="panel_comments_tdp-comments_from_ramakrishna_sir-caption field-caption-tv">Comments from Ramakrishna sir</dt>
+					<dd id="panel_comments_tdp-comments_from_ramakrishna_sir-<%%VALUE(id)%%>" class="panel_comments_tdp-comments_from_ramakrishna_sir"><%%SELECT%%><%%VALUE(comments_from_ramakrishna_sir)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="panel_comments_tdp-comments_from_bharat_lohani_sir-caption field-caption-tv">Comments from Bharat Lohani sir</dt>
+					<dd id="panel_comments_tdp-comments_from_bharat_lohani_sir-<%%VALUE(id)%%>" class="panel_comments_tdp-comments_from_bharat_lohani_sir"><%%SELECT%%><%%VALUE(comments_from_bharat_lohani_sir)%%><%%ENDSELECT%%></dd>
+
+					<dt class="panel_comments_tdp-remarks_1-caption field-caption-tv">Remarks 1</dt>
+					<dd id="panel_comments_tdp-remarks_1-<%%VALUE(id)%%>" class="panel_comments_tdp-remarks_1"><%%SELECT%%><%%VALUE(remarks_1)%%><%%ENDSELECT%%></dd>
+
+					<dt class="panel_comments_tdp-remarks_2-caption field-caption-tv">Remarks 2</dt>
+					<dd id="panel_comments_tdp-remarks_2-<%%VALUE(id)%%>" class="panel_comments_tdp-remarks_2"><%%SELECT%%><%%VALUE(remarks_2)%%><%%ENDSELECT%%></dd>
+
+					<dt class="panel_comments_tdp-finale_decision-caption field-caption-tv">Finale decision</dt>
+					<dd id="panel_comments_tdp-finale_decision-<%%VALUE(id)%%>" class="panel_comments_tdp-finale_decision"><%%SELECT%%><%%VALUE(finale_decision)%%><%%ENDSELECT%%></dd>
+
+					<dt class="panel_comments_tdp-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="panel_comments_tdp-created_by-<%%VALUE(id)%%>" class="panel_comments_tdp-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="panel_comments_tdp-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="panel_comments_tdp-created_at-<%%VALUE(id)%%>" class="panel_comments_tdp-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="panel_comments_tdp-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="panel_comments_tdp-last_updated_by-<%%VALUE(id)%%>" class="panel_comments_tdp-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="panel_comments_tdp-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="panel_comments_tdp-last_updated_at-<%%VALUE(id)%%>" class="panel_comments_tdp-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+		</td>

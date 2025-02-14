@@ -258,7 +258,7 @@ function travel_flight_table_form($selectedId = '', $allowUpdate = true, $allowI
 		// initial lookup values
 		AppGini.current_travel_details__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['travel_details'] : htmlspecialchars($filterer_travel_details, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(travel_details_reload__RAND__) == 'function') travel_details_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
@@ -425,23 +425,23 @@ function travel_flight_table_form($selectedId = '', $allowUpdate = true, $allowI
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#flight_number').replaceWith('<div class=\"form-control-static\" id=\"flight_number\">' + (jQuery('#flight_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#travel_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#travel_dateDay, #travel_dateMonth, #travel_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#flight_time').replaceWith('<div class=\"form-control-static\" id=\"flight_time\">' + (jQuery('#flight_time').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#from').replaceWith('<div class=\"form-control-static\" id=\"from\">' + (jQuery('#from').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#to').replaceWith('<div class=\"form-control-static\" id=\"to\">' + (jQuery('#to').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#seat_preferance').replaceWith('<div class=\"form-control-static\" id=\"seat_preferance\">' + (jQuery('#seat_preferance').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#status').replaceWith('<div class=\"form-control-static\" id=\"status\">' + (jQuery('#status').val() || '') + '</div>'); jQuery('#status-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#remarks').replaceWith('<div class=\"form-control-static\" id=\"remarks\">' + (jQuery('#remarks').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#flight_number').replaceWith('<div class=\"form-control-static\" id=\"flight_number\">' + (\$j('#flight_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#travel_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#travel_dateDay, #travel_dateMonth, #travel_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#flight_time').replaceWith('<div class=\"form-control-static\" id=\"flight_time\">' + (\$j('#flight_time').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#from').replaceWith('<div class=\"form-control-static\" id=\"from\">' + (\$j('#from').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#to').replaceWith('<div class=\"form-control-static\" id=\"to\">' + (\$j('#to').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#seat_preferance').replaceWith('<div class=\"form-control-static\" id=\"seat_preferance\">' + (\$j('#seat_preferance').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#status').replaceWith('<div class=\"form-control-static\" id=\"status\">' + (\$j('#status').val() || '') + '</div>'); \$j('#status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#remarks').replaceWith('<div class=\"form-control-static\" id=\"remarks\">' + (\$j('#remarks').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('#flight_time').addClass('always_shown').timepicker({ defaultTime: false, showSeconds: true, showMeridian: false, showInputs: false, disableFocus: true, minuteStep: 5 });";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('#flight_time').addClass('always_shown').timepicker({ defaultTime: false, showSeconds: true, showMeridian: false, showInputs: false, disableFocus: true, minuteStep: 5 });";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

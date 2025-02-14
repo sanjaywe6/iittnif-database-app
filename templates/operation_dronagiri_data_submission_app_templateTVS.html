@@ -1,18 +1,43 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="11" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="operation_dronagiri_data_submission_app-data_id-caption field-caption-tv">ID</dt>
+					<dd id="operation_dronagiri_data_submission_app-data_id-<%%VALUE(data_id)%%>" class="operation_dronagiri_data_submission_app-data_id text-right text-bold"><%%VALUE(data_id)%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the operation_dronagiri_data_submission_app_init() hook (in hooks/operation_dronagiri_data_submission_app.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="operation_dronagiri_data_submission_app-name_of_the_department-caption field-caption-tv">Name of the department</dt>
+					<dd id="operation_dronagiri_data_submission_app-name_of_the_department-<%%VALUE(data_id)%%>" class="operation_dronagiri_data_submission_app-name_of_the_department text-bold"><%%VALUE(name_of_the_department)%%></dd>
 
-		<td id="operation_dronagiri_data_submission_app-data_id-<%%VALUE(data_id)%%>" class="operation_dronagiri_data_submission_app-data_id text-right text-bold"><%%VALUE(data_id)%%></td>
-		<td id="operation_dronagiri_data_submission_app-name_of_the_department-<%%VALUE(data_id)%%>" class="operation_dronagiri_data_submission_app-name_of_the_department text-bold"><%%VALUE(name_of_the_department)%%></td>
-		<td id="operation_dronagiri_data_submission_app-name_of_the_officer-<%%VALUE(data_id)%%>" class="operation_dronagiri_data_submission_app-name_of_the_officer text-bold"><%%VALUE(name_of_the_officer)%%></td>
-		<td id="operation_dronagiri_data_submission_app-designation-<%%VALUE(data_id)%%>" class="operation_dronagiri_data_submission_app-designation text-bold"><%%VALUE(designation)%%></td>
-		<td id="operation_dronagiri_data_submission_app-email_address-<%%VALUE(data_id)%%>" class="operation_dronagiri_data_submission_app-email_address text-bold"><%%VALUE(email_address)%%></td>
-		<td id="operation_dronagiri_data_submission_app-phone_number-<%%VALUE(data_id)%%>" class="operation_dronagiri_data_submission_app-phone_number text-bold"><%%VALUE(phone_number)%%></td>
-		<td id="operation_dronagiri_data_submission_app-submit_date-<%%VALUE(data_id)%%>" class="operation_dronagiri_data_submission_app-submit_date text-bold"><%%VALUE(submit_date)%%></td>
-		<td id="operation_dronagiri_data_submission_app-created_by-<%%VALUE(data_id)%%>" class="operation_dronagiri_data_submission_app-created_by text-bold"><%%VALUE(created_by)%%></td>
-		<td id="operation_dronagiri_data_submission_app-created_at-<%%VALUE(data_id)%%>" class="operation_dronagiri_data_submission_app-created_at text-bold"><%%VALUE(created_at)%%></td>
-		<td id="operation_dronagiri_data_submission_app-last_updated_by-<%%VALUE(data_id)%%>" class="operation_dronagiri_data_submission_app-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
-		<td id="operation_dronagiri_data_submission_app-last_updated_at-<%%VALUE(data_id)%%>" class="operation_dronagiri_data_submission_app-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>
+					<dt class="operation_dronagiri_data_submission_app-name_of_the_officer-caption field-caption-tv">Name of the officer</dt>
+					<dd id="operation_dronagiri_data_submission_app-name_of_the_officer-<%%VALUE(data_id)%%>" class="operation_dronagiri_data_submission_app-name_of_the_officer text-bold"><%%VALUE(name_of_the_officer)%%></dd>
+
+					<dt class="operation_dronagiri_data_submission_app-designation-caption field-caption-tv">Designation</dt>
+					<dd id="operation_dronagiri_data_submission_app-designation-<%%VALUE(data_id)%%>" class="operation_dronagiri_data_submission_app-designation text-bold"><%%VALUE(designation)%%></dd>
+
+					<dt class="operation_dronagiri_data_submission_app-email_address-caption field-caption-tv">Email address</dt>
+					<dd id="operation_dronagiri_data_submission_app-email_address-<%%VALUE(data_id)%%>" class="operation_dronagiri_data_submission_app-email_address text-bold"><%%VALUE(email_address)%%></dd>
+
+					<dt class="operation_dronagiri_data_submission_app-phone_number-caption field-caption-tv">Phone number</dt>
+					<dd id="operation_dronagiri_data_submission_app-phone_number-<%%VALUE(data_id)%%>" class="operation_dronagiri_data_submission_app-phone_number text-bold"><%%VALUE(phone_number)%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="operation_dronagiri_data_submission_app-submit_date-caption field-caption-tv">Submit date</dt>
+					<dd id="operation_dronagiri_data_submission_app-submit_date-<%%VALUE(data_id)%%>" class="operation_dronagiri_data_submission_app-submit_date text-bold"><%%VALUE(submit_date)%%></dd>
+
+					<dt class="operation_dronagiri_data_submission_app-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="operation_dronagiri_data_submission_app-created_by-<%%VALUE(data_id)%%>" class="operation_dronagiri_data_submission_app-created_by text-bold"><%%VALUE(created_by)%%></dd>
+
+					<dt class="operation_dronagiri_data_submission_app-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="operation_dronagiri_data_submission_app-created_at-<%%VALUE(data_id)%%>" class="operation_dronagiri_data_submission_app-created_at text-bold"><%%VALUE(created_at)%%></dd>
+
+					<dt class="operation_dronagiri_data_submission_app-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="operation_dronagiri_data_submission_app-last_updated_by-<%%VALUE(data_id)%%>" class="operation_dronagiri_data_submission_app-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></dd>
+
+					<dt class="operation_dronagiri_data_submission_app-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="operation_dronagiri_data_submission_app-last_updated_at-<%%VALUE(data_id)%%>" class="operation_dronagiri_data_submission_app-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></dd>
+
+				</dl>
+			</div>
+		</td>

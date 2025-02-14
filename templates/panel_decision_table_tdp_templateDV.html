@@ -355,6 +355,7 @@
 				}
 			});
 
+			panel_decision_table_tdpUniqueFields.forEach(fieldName => enforce_uniqueness('panel_decision_table_tdp', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -368,4 +369,7 @@
 				);
 			}
 		});
+
+		var panel_decision_table_tdpUniqueFields = [
+		];
 	</script>

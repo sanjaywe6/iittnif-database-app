@@ -182,6 +182,7 @@
 				}
 			});
 
+			goal_progress_tableUniqueFields.forEach(fieldName => enforce_uniqueness('goal_progress_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -195,4 +196,7 @@
 				);
 			}
 		});
+
+		var goal_progress_tableUniqueFields = [
+		];
 	</script>

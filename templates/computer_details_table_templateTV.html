@@ -1,20 +1,49 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="13" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="computer_details_table-id-caption field-caption-tv">ID</dt>
+					<dd id="computer_details_table-id-<%%VALUE(id)%%>" class="computer_details_table-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the computer_details_table_init() hook (in hooks/computer_details_table.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="computer_details_table-pc_number-caption field-caption-tv">PC number</dt>
+					<dd id="computer_details_table-pc_number-<%%VALUE(id)%%>" class="computer_details_table-pc_number"><%%SELECT%%><%%VALUE(pc_number)%%><%%ENDSELECT%%></dd>
 
-		<td id="computer_details_table-id-<%%VALUE(id)%%>" class="computer_details_table-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></td>
-		<td id="computer_details_table-pc_number-<%%VALUE(id)%%>" class="computer_details_table-pc_number"><%%SELECT%%><%%VALUE(pc_number)%%><%%ENDSELECT%%></td>
-		<td id="computer_details_table-pc_hostname-<%%VALUE(id)%%>" class="computer_details_table-pc_hostname"><%%SELECT%%><%%VALUE(pc_hostname)%%><%%ENDSELECT%%></td>
-		<td id="computer_details_table-pc_mac_address-<%%VALUE(id)%%>" class="computer_details_table-pc_mac_address"><%%SELECT%%><%%VALUE(pc_mac_address)%%><%%ENDSELECT%%></td>
-		<td id="computer_details_table-room_number-<%%VALUE(id)%%>" class="computer_details_table-room_number"><%%SELECT%%><%%VALUE(room_number)%%><%%ENDSELECT%%></td>
-		<td id="computer_details_table-desk_number-<%%VALUE(id)%%>" class="computer_details_table-desk_number"><%%SELECT%%><%%VALUE(desk_number)%%><%%ENDSELECT%%></td>
-		<td id="computer_details_table-maintained_by-<%%VALUE(id)%%>" class="computer_details_table-maintained_by"><%%SELECT%%><%%VALUE(maintained_by)%%><%%ENDSELECT%%></td>
-		<td id="computer_details_table-assigned_to_user-<%%VALUE(id)%%>" class="computer_details_table-assigned_to_user"><%%SELECT%%><%%VALUE(assigned_to_user)%%><%%ENDSELECT%%></td>
-		<td id="computer_details_table-remote_access-<%%VALUE(id)%%>" class="computer_details_table-remote_access"><%%SELECT%%><%%VALUE(remote_access)%%><%%ENDSELECT%%></td>
-		<td id="computer_details_table-created_by-<%%VALUE(id)%%>" class="computer_details_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
-		<td id="computer_details_table-created_at-<%%VALUE(id)%%>" class="computer_details_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
-		<td id="computer_details_table-last_updated_by-<%%VALUE(id)%%>" class="computer_details_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>
-		<td id="computer_details_table-last_updated_at-<%%VALUE(id)%%>" class="computer_details_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>
+					<dt class="computer_details_table-pc_hostname-caption field-caption-tv">PC hostname</dt>
+					<dd id="computer_details_table-pc_hostname-<%%VALUE(id)%%>" class="computer_details_table-pc_hostname"><%%SELECT%%><%%VALUE(pc_hostname)%%><%%ENDSELECT%%></dd>
+
+					<dt class="computer_details_table-pc_mac_address-caption field-caption-tv">PC MAC address</dt>
+					<dd id="computer_details_table-pc_mac_address-<%%VALUE(id)%%>" class="computer_details_table-pc_mac_address"><%%SELECT%%><%%VALUE(pc_mac_address)%%><%%ENDSELECT%%></dd>
+
+					<dt class="computer_details_table-room_number-caption field-caption-tv">Room number</dt>
+					<dd id="computer_details_table-room_number-<%%VALUE(id)%%>" class="computer_details_table-room_number"><%%SELECT%%><%%VALUE(room_number)%%><%%ENDSELECT%%></dd>
+
+					<dt class="computer_details_table-desk_number-caption field-caption-tv">Desk number</dt>
+					<dd id="computer_details_table-desk_number-<%%VALUE(id)%%>" class="computer_details_table-desk_number"><%%SELECT%%><%%VALUE(desk_number)%%><%%ENDSELECT%%></dd>
+
+					<dt class="computer_details_table-maintained_by-caption field-caption-tv">Maintained by</dt>
+					<dd id="computer_details_table-maintained_by-<%%VALUE(id)%%>" class="computer_details_table-maintained_by"><%%SELECT%%><%%VALUE(maintained_by)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="computer_details_table-assigned_to_user-caption field-caption-tv">Assigned to user</dt>
+					<dd id="computer_details_table-assigned_to_user-<%%VALUE(id)%%>" class="computer_details_table-assigned_to_user"><%%SELECT%%><%%VALUE(assigned_to_user)%%><%%ENDSELECT%%></dd>
+
+					<dt class="computer_details_table-remote_access-caption field-caption-tv">Remote access</dt>
+					<dd id="computer_details_table-remote_access-<%%VALUE(id)%%>" class="computer_details_table-remote_access"><%%SELECT%%><%%VALUE(remote_access)%%><%%ENDSELECT%%></dd>
+
+					<dt class="computer_details_table-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="computer_details_table-created_by-<%%VALUE(id)%%>" class="computer_details_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="computer_details_table-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="computer_details_table-created_at-<%%VALUE(id)%%>" class="computer_details_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="computer_details_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="computer_details_table-last_updated_by-<%%VALUE(id)%%>" class="computer_details_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="computer_details_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="computer_details_table-last_updated_at-<%%VALUE(id)%%>" class="computer_details_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+		</td>

@@ -225,7 +225,7 @@ function star_pnt_form($selectedId = '', $allowUpdate = true, $allowInsert = tru
 		// initial lookup values
 		AppGini.current_iittnif_id__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['iittnif_id'] : htmlspecialchars($filterer_iittnif_id, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(iittnif_id_reload__RAND__) == 'function') iittnif_id_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
@@ -392,18 +392,18 @@ function star_pnt_form($selectedId = '', $allowUpdate = true, $allowInsert = tru
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#name_of_the_candidate').replaceWith('<div class=\"form-control-static\" id=\"name_of_the_candidate\">' + (jQuery('#name_of_the_candidate').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#institute').replaceWith('<div class=\"form-control-static\" id=\"institute\">' + (jQuery('#institute').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#workspace').replaceWith('<div class=\"form-control-static\" id=\"workspace\">' + (jQuery('#workspace').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#year_and_department').replaceWith('<div class=\"form-control-static\" id=\"year_and_department\">' + (jQuery('#year_and_department').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#project_title').replaceWith('<div class=\"form-control-static\" id=\"project_title\">' + (jQuery('#project_title').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#name_of_the_candidate').replaceWith('<div class=\"form-control-static\" id=\"name_of_the_candidate\">' + (\$j('#name_of_the_candidate').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#institute').replaceWith('<div class=\"form-control-static\" id=\"institute\">' + (\$j('#institute').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#workspace').replaceWith('<div class=\"form-control-static\" id=\"workspace\">' + (\$j('#workspace').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#year_and_department').replaceWith('<div class=\"form-control-static\" id=\"year_and_department\">' + (\$j('#year_and_department').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#project_title').replaceWith('<div class=\"form-control-static\" id=\"project_title\">' + (\$j('#project_title').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

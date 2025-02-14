@@ -90,8 +90,8 @@ function travel_table_delete($selected_id, $AllowDeleteOfParents = false, $skipC
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'travel_cab_table'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'travel_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'travel_table_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `travel_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `travel_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -110,8 +110,8 @@ function travel_table_delete($selected_id, $AllowDeleteOfParents = false, $skipC
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'travel_flight_table'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'travel_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'travel_table_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `travel_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `travel_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -130,8 +130,8 @@ function travel_table_delete($selected_id, $AllowDeleteOfParents = false, $skipC
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'travel_hotel_table'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'travel_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'travel_table_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `travel_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `travel_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -321,7 +321,7 @@ function travel_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 		// initial lookup values
 		AppGini.current_approved_by__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['approved_by'] : htmlspecialchars($filterer_approved_by, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(approved_by_reload__RAND__) == 'function') approved_by_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
@@ -488,26 +488,26 @@ function travel_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#first_name').replaceWith('<div class=\"form-control-static\" id=\"first_name\">' + (jQuery('#first_name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#last_name').replaceWith('<div class=\"form-control-static\" id=\"last_name\">' + (jQuery('#last_name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#age').replaceWith('<div class=\"form-control-static\" id=\"age\">' + (jQuery('#age').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#gender').replaceWith('<div class=\"form-control-static\" id=\"gender\">' + (jQuery('#gender').val() || '') + '</div>'); jQuery('#gender-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#mobile_number').replaceWith('<div class=\"form-control-static\" id=\"mobile_number\">' + (jQuery('#mobile_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#date_from').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#date_fromDay, #date_fromMonth, #date_fromYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#date_to').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#date_toDay, #date_toMonth, #date_toYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#travel_description').replaceWith('<div class=\"form-control-static\" id=\"travel_description\">' + (jQuery('#travel_description').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#approved_by').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#approved_by_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\tjQuery('#remarks').replaceWith('<div class=\"form-control-static\" id=\"remarks\">' + (jQuery('#remarks').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#first_name').replaceWith('<div class=\"form-control-static\" id=\"first_name\">' + (\$j('#first_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#last_name').replaceWith('<div class=\"form-control-static\" id=\"last_name\">' + (\$j('#last_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#age').replaceWith('<div class=\"form-control-static\" id=\"age\">' + (\$j('#age').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#gender').replaceWith('<div class=\"form-control-static\" id=\"gender\">' + (\$j('#gender').val() || '') + '</div>'); \$j('#gender-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#mobile_number').replaceWith('<div class=\"form-control-static\" id=\"mobile_number\">' + (\$j('#mobile_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#date_from').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#date_fromDay, #date_fromMonth, #date_fromYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#date_to').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#date_toDay, #date_toMonth, #date_toYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#travel_description').replaceWith('<div class=\"form-control-static\" id=\"travel_description\">' + (\$j('#travel_description').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#approved_by').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#approved_by_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('#remarks').replaceWith('<div class=\"form-control-static\" id=\"remarks\">' + (\$j('#remarks').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

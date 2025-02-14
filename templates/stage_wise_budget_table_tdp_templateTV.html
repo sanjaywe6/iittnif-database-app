@@ -1,26 +1,67 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="19" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="stage_wise_budget_table_tdp-id-caption field-caption-tv">ID</dt>
+					<dd id="stage_wise_budget_table_tdp-id-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the stage_wise_budget_table_tdp_init() hook (in hooks/stage_wise_budget_table_tdp.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="stage_wise_budget_table_tdp-project_id-caption field-caption-tv">Project ID::Title</dt>
+					<dd id="stage_wise_budget_table_tdp-project_id-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-project_id"><%%SELECT%%><%%VALUE(project_id)%%><%%ENDSELECT%%></dd>
 
-		<td id="stage_wise_budget_table_tdp-id-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></td>
-		<td id="stage_wise_budget_table_tdp-project_id-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-project_id"><%%SELECT%%><%%VALUE(project_id)%%><%%ENDSELECT%%></td>
-		<td id="stage_wise_budget_table_tdp-project_title-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-project_title"><%%SELECT%%><%%VALUE(project_title)%%><%%ENDSELECT%%></td>
-		<td id="stage_wise_budget_table_tdp-name_of_pi-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-name_of_pi"><%%SELECT%%><%%VALUE(name_of_pi)%%><%%ENDSELECT%%></td>
-		<td id="stage_wise_budget_table_tdp-mobile_number-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-mobile_number"><%%SELECT%%><%%VALUE(mobile_number)%%><%%ENDSELECT%%></td>
-		<td id="stage_wise_budget_table_tdp-institute-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-institute"><%%SELECT%%><%%VALUE(institute)%%><%%ENDSELECT%%></td>
-		<td id="stage_wise_budget_table_tdp-duration_in_months-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-duration_in_months"><%%SELECT%%><%%VALUE(duration_in_months)%%><%%ENDSELECT%%></td>
-		<td id="stage_wise_budget_table_tdp-total_budget_specified-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-total_budget_specified"><%%SELECT%%><%%VALUE(total_budget_specified)%%><%%ENDSELECT%%></td>
-		<td id="stage_wise_budget_table_tdp-first_phase-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-first_phase"><%%SELECT%%><%%VALUE(first_phase)%%><%%ENDSELECT%%></td>
-		<td id="stage_wise_budget_table_tdp-second_phase-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-second_phase"><%%SELECT%%><%%VALUE(second_phase)%%><%%ENDSELECT%%></td>
-		<td id="stage_wise_budget_table_tdp-third_phase-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-third_phase"><%%SELECT%%><%%VALUE(third_phase)%%><%%ENDSELECT%%></td>
-		<td id="stage_wise_budget_table_tdp-fourth_phase-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-fourth_phase"><%%SELECT%%><%%VALUE(fourth_phase)%%><%%ENDSELECT%%></td>
-		<td id="stage_wise_budget_table_tdp-total-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-total"><%%SELECT%%><%%VALUE(total)%%><%%ENDSELECT%%></td>
-		<td id="stage_wise_budget_table_tdp-final_budget_to_be_allocated-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-final_budget_to_be_allocated"><%%SELECT%%><%%VALUE(final_budget_to_be_allocated)%%><%%ENDSELECT%%></td>
-		<td id="stage_wise_budget_table_tdp-proposal_link-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-proposal_link"><%%SELECT%%><%%VALUE(proposal_link)%%><%%ENDSELECT%%></td>
-		<td id="stage_wise_budget_table_tdp-created_by-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
-		<td id="stage_wise_budget_table_tdp-created_at-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
-		<td id="stage_wise_budget_table_tdp-last_updated_by-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>
-		<td id="stage_wise_budget_table_tdp-last_updated_at-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>
+					<dt class="stage_wise_budget_table_tdp-project_title-caption field-caption-tv">Project title</dt>
+					<dd id="stage_wise_budget_table_tdp-project_title-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-project_title"><%%SELECT%%><%%VALUE(project_title)%%><%%ENDSELECT%%></dd>
+
+					<dt class="stage_wise_budget_table_tdp-name_of_pi-caption field-caption-tv">Name of PI</dt>
+					<dd id="stage_wise_budget_table_tdp-name_of_pi-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-name_of_pi"><%%SELECT%%><%%VALUE(name_of_pi)%%><%%ENDSELECT%%></dd>
+
+					<dt class="stage_wise_budget_table_tdp-mobile_number-caption field-caption-tv">Mobile number</dt>
+					<dd id="stage_wise_budget_table_tdp-mobile_number-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-mobile_number"><%%SELECT%%><%%VALUE(mobile_number)%%><%%ENDSELECT%%></dd>
+
+					<dt class="stage_wise_budget_table_tdp-institute-caption field-caption-tv">Institute</dt>
+					<dd id="stage_wise_budget_table_tdp-institute-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-institute"><%%SELECT%%><%%VALUE(institute)%%><%%ENDSELECT%%></dd>
+
+					<dt class="stage_wise_budget_table_tdp-duration_in_months-caption field-caption-tv">Duration in months</dt>
+					<dd id="stage_wise_budget_table_tdp-duration_in_months-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-duration_in_months"><%%SELECT%%><%%VALUE(duration_in_months)%%><%%ENDSELECT%%></dd>
+
+					<dt class="stage_wise_budget_table_tdp-total_budget_specified-caption field-caption-tv">Budget specified in Rs.</dt>
+					<dd id="stage_wise_budget_table_tdp-total_budget_specified-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-total_budget_specified"><%%SELECT%%><%%VALUE(total_budget_specified)%%><%%ENDSELECT%%></dd>
+
+					<dt class="stage_wise_budget_table_tdp-first_phase-caption field-caption-tv">First phase</dt>
+					<dd id="stage_wise_budget_table_tdp-first_phase-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-first_phase"><%%SELECT%%><%%VALUE(first_phase)%%><%%ENDSELECT%%></dd>
+
+					<dt class="stage_wise_budget_table_tdp-second_phase-caption field-caption-tv">Second phase</dt>
+					<dd id="stage_wise_budget_table_tdp-second_phase-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-second_phase"><%%SELECT%%><%%VALUE(second_phase)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="stage_wise_budget_table_tdp-third_phase-caption field-caption-tv">Third phase</dt>
+					<dd id="stage_wise_budget_table_tdp-third_phase-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-third_phase"><%%SELECT%%><%%VALUE(third_phase)%%><%%ENDSELECT%%></dd>
+
+					<dt class="stage_wise_budget_table_tdp-fourth_phase-caption field-caption-tv">Fourth phase</dt>
+					<dd id="stage_wise_budget_table_tdp-fourth_phase-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-fourth_phase"><%%SELECT%%><%%VALUE(fourth_phase)%%><%%ENDSELECT%%></dd>
+
+					<dt class="stage_wise_budget_table_tdp-total-caption field-caption-tv">Total</dt>
+					<dd id="stage_wise_budget_table_tdp-total-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-total"><%%SELECT%%><%%VALUE(total)%%><%%ENDSELECT%%></dd>
+
+					<dt class="stage_wise_budget_table_tdp-final_budget_to_be_allocated-caption field-caption-tv">Final budget to be allocated Rs.</dt>
+					<dd id="stage_wise_budget_table_tdp-final_budget_to_be_allocated-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-final_budget_to_be_allocated"><%%SELECT%%><%%VALUE(final_budget_to_be_allocated)%%><%%ENDSELECT%%></dd>
+
+					<dt class="stage_wise_budget_table_tdp-proposal_link-caption field-caption-tv">Proposal link</dt>
+					<dd id="stage_wise_budget_table_tdp-proposal_link-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-proposal_link"><%%SELECT%%><%%VALUE(proposal_link)%%><%%ENDSELECT%%></dd>
+
+					<dt class="stage_wise_budget_table_tdp-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="stage_wise_budget_table_tdp-created_by-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="stage_wise_budget_table_tdp-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="stage_wise_budget_table_tdp-created_at-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="stage_wise_budget_table_tdp-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="stage_wise_budget_table_tdp-last_updated_by-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="stage_wise_budget_table_tdp-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="stage_wise_budget_table_tdp-last_updated_at-<%%VALUE(id)%%>" class="stage_wise_budget_table_tdp-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+		</td>

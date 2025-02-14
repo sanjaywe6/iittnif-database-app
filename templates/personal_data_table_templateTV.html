@@ -1,23 +1,58 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="16" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="personal_data_table-personal_data_id-caption field-caption-tv">ID</dt>
+					<dd id="personal_data_table-personal_data_id-<%%VALUE(personal_data_id)%%>" class="personal_data_table-personal_data_id text-right"><%%SELECT%%><%%VALUE(personal_data_id)%%><%%ENDSELECT%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the personal_data_table_init() hook (in hooks/personal_data_table.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="personal_data_table-name-caption field-caption-tv">Name</dt>
+					<dd id="personal_data_table-name-<%%VALUE(personal_data_id)%%>" class="personal_data_table-name"><%%SELECT%%><%%VALUE(name)%%><%%ENDSELECT%%></dd>
 
-		<td id="personal_data_table-personal_data_id-<%%VALUE(personal_data_id)%%>" class="personal_data_table-personal_data_id text-right"><%%SELECT%%><%%VALUE(personal_data_id)%%><%%ENDSELECT%%></td>
-		<td id="personal_data_table-name-<%%VALUE(personal_data_id)%%>" class="personal_data_table-name"><%%SELECT%%><%%VALUE(name)%%><%%ENDSELECT%%></td>
-		<td id="personal_data_table-employee_type-<%%VALUE(personal_data_id)%%>" class="personal_data_table-employee_type"><%%SELECT%%><%%VALUE(employee_type)%%><%%ENDSELECT%%></td>
-		<td id="personal_data_table-date_of_birth-<%%VALUE(personal_data_id)%%>" class="personal_data_table-date_of_birth"><%%SELECT%%><%%VALUE(date_of_birth)%%><%%ENDSELECT%%></td>
-		<td id="personal_data_table-blood_group-<%%VALUE(personal_data_id)%%>" class="personal_data_table-blood_group"><%%SELECT%%><%%VALUE(blood_group)%%><%%ENDSELECT%%></td>
-		<td id="personal_data_table-email-<%%VALUE(personal_data_id)%%>" class="personal_data_table-email"><a href="mailto:<%%VALUE(email)%%>" title="<%%VALUE(email)%%>" class="btn btn-default"><i class="glyphicon glyphicon-envelope text-info"></i></a></td>
-		<td id="personal_data_table-phone_number-<%%VALUE(personal_data_id)%%>" class="personal_data_table-phone_number"><%%SELECT%%><%%VALUE(phone_number)%%><%%ENDSELECT%%></td>
-		<td id="personal_data_table-date_of_joining-<%%VALUE(personal_data_id)%%>" class="personal_data_table-date_of_joining"><%%SELECT%%><%%VALUE(date_of_joining)%%><%%ENDSELECT%%></td>
-		<td id="personal_data_table-date_of_exit-<%%VALUE(personal_data_id)%%>" class="personal_data_table-date_of_exit"><%%SELECT%%><%%VALUE(date_of_exit)%%><%%ENDSELECT%%></td>
-		<td id="personal_data_table-active_status-<%%VALUE(personal_data_id)%%>" class="personal_data_table-active_status"><%%SELECT%%><%%VALUE(active_status)%%><%%ENDSELECT%%></td>
-		<td id="personal_data_table-profile_photo-<%%VALUE(personal_data_id)%%>" class="personal_data_table-profile_photo"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(profile_photo)%%>" data-lightbox="personal_data_table-profile_photo"><img src="thumbnail.php?i=<%%VALUE(profile_photo)%%>&t=personal_data_table&f=profile_photo&v=tv" class="img-thumbnail"></a></td>
-		<td id="personal_data_table-signature-<%%VALUE(personal_data_id)%%>" class="personal_data_table-signature"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(signature)%%>" data-lightbox="personal_data_table-signature"><img src="thumbnail.php?i=<%%VALUE(signature)%%>&t=personal_data_table&f=signature&v=tv" class="img-thumbnail"></a></td>
-		<td id="personal_data_table-created_by-<%%VALUE(personal_data_id)%%>" class="personal_data_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
-		<td id="personal_data_table-created_at-<%%VALUE(personal_data_id)%%>" class="personal_data_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
-		<td id="personal_data_table-last_updated_by-<%%VALUE(personal_data_id)%%>" class="personal_data_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>
-		<td id="personal_data_table-last_updated_at-<%%VALUE(personal_data_id)%%>" class="personal_data_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>
+					<dt class="personal_data_table-employee_type-caption field-caption-tv">Employee type</dt>
+					<dd id="personal_data_table-employee_type-<%%VALUE(personal_data_id)%%>" class="personal_data_table-employee_type"><%%SELECT%%><%%VALUE(employee_type)%%><%%ENDSELECT%%></dd>
+
+					<dt class="personal_data_table-date_of_birth-caption field-caption-tv">Date of birth</dt>
+					<dd id="personal_data_table-date_of_birth-<%%VALUE(personal_data_id)%%>" class="personal_data_table-date_of_birth"><%%SELECT%%><%%VALUE(date_of_birth)%%><%%ENDSELECT%%></dd>
+
+					<dt class="personal_data_table-blood_group-caption field-caption-tv">Blood group</dt>
+					<dd id="personal_data_table-blood_group-<%%VALUE(personal_data_id)%%>" class="personal_data_table-blood_group"><%%SELECT%%><%%VALUE(blood_group)%%><%%ENDSELECT%%></dd>
+
+					<dt class="personal_data_table-email-caption field-caption-tv">Email</dt>
+					<dd id="personal_data_table-email-<%%VALUE(personal_data_id)%%>" class="personal_data_table-email"><a href="mailto:<%%VALUE(email)%%>" title="<%%VALUE(email)%%>" class="btn btn-default"><i class="glyphicon glyphicon-envelope text-info"></i></a></dd>
+
+					<dt class="personal_data_table-phone_number-caption field-caption-tv">Phone number</dt>
+					<dd id="personal_data_table-phone_number-<%%VALUE(personal_data_id)%%>" class="personal_data_table-phone_number"><%%SELECT%%><%%VALUE(phone_number)%%><%%ENDSELECT%%></dd>
+
+					<dt class="personal_data_table-date_of_joining-caption field-caption-tv">Date of joining</dt>
+					<dd id="personal_data_table-date_of_joining-<%%VALUE(personal_data_id)%%>" class="personal_data_table-date_of_joining"><%%SELECT%%><%%VALUE(date_of_joining)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="personal_data_table-date_of_exit-caption field-caption-tv">Date of exit</dt>
+					<dd id="personal_data_table-date_of_exit-<%%VALUE(personal_data_id)%%>" class="personal_data_table-date_of_exit"><%%SELECT%%><%%VALUE(date_of_exit)%%><%%ENDSELECT%%></dd>
+
+					<dt class="personal_data_table-active_status-caption field-caption-tv">Active status</dt>
+					<dd id="personal_data_table-active_status-<%%VALUE(personal_data_id)%%>" class="personal_data_table-active_status"><%%SELECT%%><%%VALUE(active_status)%%><%%ENDSELECT%%></dd>
+
+					<dt class="personal_data_table-profile_photo-caption field-caption-tv">Profile photo</dt>
+					<dd id="personal_data_table-profile_photo-<%%VALUE(personal_data_id)%%>" class="personal_data_table-profile_photo"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(profile_photo)%%>" data-lightbox="personal_data_table-profile_photo"><img src="thumbnail.php?i=<%%VALUE(profile_photo)%%>&t=personal_data_table&f=profile_photo&v=tv" class="img-thumbnail"></a></dd>
+
+					<dt class="personal_data_table-signature-caption field-caption-tv">Signature</dt>
+					<dd id="personal_data_table-signature-<%%VALUE(personal_data_id)%%>" class="personal_data_table-signature"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(signature)%%>" data-lightbox="personal_data_table-signature"><img src="thumbnail.php?i=<%%VALUE(signature)%%>&t=personal_data_table&f=signature&v=tv" class="img-thumbnail"></a></dd>
+
+					<dt class="personal_data_table-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="personal_data_table-created_by-<%%VALUE(personal_data_id)%%>" class="personal_data_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="personal_data_table-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="personal_data_table-created_at-<%%VALUE(personal_data_id)%%>" class="personal_data_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="personal_data_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="personal_data_table-last_updated_by-<%%VALUE(personal_data_id)%%>" class="personal_data_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="personal_data_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="personal_data_table-last_updated_at-<%%VALUE(personal_data_id)%%>" class="personal_data_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+		</td>

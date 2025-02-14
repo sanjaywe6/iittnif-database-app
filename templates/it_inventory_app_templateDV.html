@@ -321,6 +321,7 @@
 				}
 			});
 
+			it_inventory_appUniqueFields.forEach(fieldName => enforce_uniqueness('it_inventory_app', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -334,4 +335,7 @@
 				);
 			}
 		});
+
+		var it_inventory_appUniqueFields = [
+		];
 	</script>

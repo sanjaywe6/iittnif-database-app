@@ -1,14 +1,31 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="7" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="programs_table-programs_id-caption field-caption-tv">ID</dt>
+					<dd id="programs_table-programs_id-<%%VALUE(programs_id)%%>" class="programs_table-programs_id text-right text-bold"><%%VALUE(programs_id)%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the programs_table_init() hook (in hooks/programs_table.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="programs_table-title_of_the_program-caption field-caption-tv">Title of the program</dt>
+					<dd id="programs_table-title_of_the_program-<%%VALUE(programs_id)%%>" class="programs_table-title_of_the_program text-bold"><%%VALUE(title_of_the_program)%%></dd>
 
-		<td id="programs_table-programs_id-<%%VALUE(programs_id)%%>" class="programs_table-programs_id text-right text-bold"><%%VALUE(programs_id)%%></td>
-		<td id="programs_table-title_of_the_program-<%%VALUE(programs_id)%%>" class="programs_table-title_of_the_program text-bold"><%%VALUE(title_of_the_program)%%></td>
-		<td id="programs_table-target_startup-<%%VALUE(programs_id)%%>" class="programs_table-target_startup text-bold"><%%VALUE(target_startup)%%></td>
-		<td id="programs_table-created_by-<%%VALUE(programs_id)%%>" class="programs_table-created_by text-bold"><%%VALUE(created_by)%%></td>
-		<td id="programs_table-created_at-<%%VALUE(programs_id)%%>" class="programs_table-created_at text-bold"><%%VALUE(created_at)%%></td>
-		<td id="programs_table-last_updated_by-<%%VALUE(programs_id)%%>" class="programs_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
-		<td id="programs_table-last_updated_at-<%%VALUE(programs_id)%%>" class="programs_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>
+					<dt class="programs_table-target_startup-caption field-caption-tv">Target startup</dt>
+					<dd id="programs_table-target_startup-<%%VALUE(programs_id)%%>" class="programs_table-target_startup text-bold"><%%VALUE(target_startup)%%></dd>
+
+					<dt class="programs_table-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="programs_table-created_by-<%%VALUE(programs_id)%%>" class="programs_table-created_by text-bold"><%%VALUE(created_by)%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="programs_table-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="programs_table-created_at-<%%VALUE(programs_id)%%>" class="programs_table-created_at text-bold"><%%VALUE(created_at)%%></dd>
+
+					<dt class="programs_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="programs_table-last_updated_by-<%%VALUE(programs_id)%%>" class="programs_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></dd>
+
+					<dt class="programs_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="programs_table-last_updated_at-<%%VALUE(programs_id)%%>" class="programs_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></dd>
+
+				</dl>
+			</div>
+		</td>

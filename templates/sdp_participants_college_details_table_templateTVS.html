@@ -1,21 +1,52 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="14" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="sdp_participants_college_details_table-id-caption field-caption-tv">ID</dt>
+					<dd id="sdp_participants_college_details_table-id-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-id text-right text-bold"><%%VALUE(id)%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the sdp_participants_college_details_table_init() hook (in hooks/sdp_participants_college_details_table.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="sdp_participants_college_details_table-participants_type-caption field-caption-tv">Participants type</dt>
+					<dd id="sdp_participants_college_details_table-participants_type-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-participants_type text-bold"><%%VALUE(participants_type)%%></dd>
 
-		<td id="sdp_participants_college_details_table-id-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-id text-right text-bold"><%%VALUE(id)%%></td>
-		<td id="sdp_participants_college_details_table-participants_type-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-participants_type text-bold"><%%VALUE(participants_type)%%></td>
-		<td id="sdp_participants_college_details_table-school_college_name-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-school_college_name text-bold"><%%VALUE(school_college_name)%%></td>
-		<td id="sdp_participants_college_details_table-location-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-location text-bold"><%%VALUE(location)%%></td>
-		<td id="sdp_participants_college_details_table-latitude-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-latitude text-bold"><%%VALUE(latitude)%%></td>
-		<td id="sdp_participants_college_details_table-longitude-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-longitude text-bold"><%%VALUE(longitude)%%></td>
-		<td id="sdp_participants_college_details_table-number_of_participants-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-number_of_participants text-bold"><%%VALUE(number_of_participants)%%></td>
-		<td id="sdp_participants_college_details_table-start_date-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-start_date text-bold"><%%VALUE(start_date)%%></td>
-		<td id="sdp_participants_college_details_table-end_date-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-end_date text-bold"><%%VALUE(end_date)%%></td>
-		<td id="sdp_participants_college_details_table-state-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-state text-bold"><%%VALUE(state)%%></td>
-		<td id="sdp_participants_college_details_table-created_by-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-created_by text-bold"><%%VALUE(created_by)%%></td>
-		<td id="sdp_participants_college_details_table-created_at-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-created_at text-bold"><%%VALUE(created_at)%%></td>
-		<td id="sdp_participants_college_details_table-last_updated_by-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
-		<td id="sdp_participants_college_details_table-last_updated_at-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>
+					<dt class="sdp_participants_college_details_table-school_college_name-caption field-caption-tv">School/College name</dt>
+					<dd id="sdp_participants_college_details_table-school_college_name-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-school_college_name text-bold"><%%VALUE(school_college_name)%%></dd>
+
+					<dt class="sdp_participants_college_details_table-location-caption field-caption-tv">Location</dt>
+					<dd id="sdp_participants_college_details_table-location-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-location text-bold"><%%VALUE(location)%%></dd>
+
+					<dt class="sdp_participants_college_details_table-latitude-caption field-caption-tv">Latitude</dt>
+					<dd id="sdp_participants_college_details_table-latitude-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-latitude text-bold"><%%VALUE(latitude)%%></dd>
+
+					<dt class="sdp_participants_college_details_table-longitude-caption field-caption-tv">Longitude</dt>
+					<dd id="sdp_participants_college_details_table-longitude-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-longitude text-bold"><%%VALUE(longitude)%%></dd>
+
+					<dt class="sdp_participants_college_details_table-number_of_participants-caption field-caption-tv">Number of participants</dt>
+					<dd id="sdp_participants_college_details_table-number_of_participants-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-number_of_participants text-bold"><%%VALUE(number_of_participants)%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="sdp_participants_college_details_table-start_date-caption field-caption-tv">Start date</dt>
+					<dd id="sdp_participants_college_details_table-start_date-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-start_date text-bold"><%%VALUE(start_date)%%></dd>
+
+					<dt class="sdp_participants_college_details_table-end_date-caption field-caption-tv">End date</dt>
+					<dd id="sdp_participants_college_details_table-end_date-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-end_date text-bold"><%%VALUE(end_date)%%></dd>
+
+					<dt class="sdp_participants_college_details_table-state-caption field-caption-tv">State</dt>
+					<dd id="sdp_participants_college_details_table-state-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-state text-bold"><%%VALUE(state)%%></dd>
+
+					<dt class="sdp_participants_college_details_table-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="sdp_participants_college_details_table-created_by-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-created_by text-bold"><%%VALUE(created_by)%%></dd>
+
+					<dt class="sdp_participants_college_details_table-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="sdp_participants_college_details_table-created_at-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-created_at text-bold"><%%VALUE(created_at)%%></dd>
+
+					<dt class="sdp_participants_college_details_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="sdp_participants_college_details_table-last_updated_by-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></dd>
+
+					<dt class="sdp_participants_college_details_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="sdp_participants_college_details_table-last_updated_at-<%%VALUE(id)%%>" class="sdp_participants_college_details_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></dd>
+
+				</dl>
+			</div>
+		</td>

@@ -300,7 +300,7 @@ function file_table_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 		// initial lookup values
 		AppGini.current_data_str_key__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['data_str_key'] : htmlspecialchars($filterer_data_str_key, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(data_str_key_reload__RAND__) == 'function') data_str_key_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
@@ -467,20 +467,19 @@ function file_table_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#name_title_of_the_dataset').replaceWith('<div class=\"form-control-static\" id=\"name_title_of_the_dataset\">' + (jQuery('#name_title_of_the_dataset').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#category_of_the_dataset').replaceWith('<div class=\"form-control-static\" id=\"category_of_the_dataset\">' + (jQuery('#category_of_the_dataset').val() || '') + '</div>'); jQuery('#category_of_the_dataset-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#description_of_the_dataset').replaceWith('<div class=\"form-control-static\" id=\"description_of_the_dataset\">' + (jQuery('#description_of_the_dataset').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#geographic_coverage').replaceWith('<div class=\"form-control-static\" id=\"geographic_coverage\">' + (jQuery('#geographic_coverage').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#format_of_the_dataset').replaceWith('<div class=\"form-control-static\" id=\"format_of_the_dataset\">' + (jQuery('#format_of_the_dataset').val() || '') + '</div>'); jQuery('#format_of_the_dataset-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#upload_file').replaceWith('<div class=\"form-control-static\" id=\"upload_file\">' + (jQuery('#upload_file').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#upload_file, #upload_file-edit-link').hide();\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#name_title_of_the_dataset').replaceWith('<div class=\"form-control-static\" id=\"name_title_of_the_dataset\">' + (\$j('#name_title_of_the_dataset').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#category_of_the_dataset').replaceWith('<div class=\"form-control-static\" id=\"category_of_the_dataset\">' + (\$j('#category_of_the_dataset').val() || '') + '</div>'); \$j('#category_of_the_dataset-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#description_of_the_dataset').replaceWith('<div class=\"form-control-static\" id=\"description_of_the_dataset\">' + (\$j('#description_of_the_dataset').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#geographic_coverage').replaceWith('<div class=\"form-control-static\" id=\"geographic_coverage\">' + (\$j('#geographic_coverage').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#format_of_the_dataset').replaceWith('<div class=\"form-control-static\" id=\"format_of_the_dataset\">' + (\$j('#format_of_the_dataset').val() || '') + '</div>'); \$j('#format_of_the_dataset-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#upload_file').parent().replaceWith(`<div class=\"form-control-static\" id=\"upload_file\">\${\$j('#upload_file').val() || ''}\${\$j('#upload_file').val() ? '<a target=\"_blank\" class=\"hspacer-lg\" href=\"' + \$j('#upload_file').val() + '\" target=\"_blank\"><i class=\"glyphicon glyphicon-globe\"></i></a>' : ''}</div>`);\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

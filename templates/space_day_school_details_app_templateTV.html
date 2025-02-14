@@ -1,18 +1,43 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="11" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="space_day_school_details_app-id-caption field-caption-tv">ID</dt>
+					<dd id="space_day_school_details_app-id-<%%VALUE(id)%%>" class="space_day_school_details_app-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the space_day_school_details_app_init() hook (in hooks/space_day_school_details_app.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="space_day_school_details_app-school_name-caption field-caption-tv">School name</dt>
+					<dd id="space_day_school_details_app-school_name-<%%VALUE(id)%%>" class="space_day_school_details_app-school_name"><%%SELECT%%><%%VALUE(school_name)%%><%%ENDSELECT%%></dd>
 
-		<td id="space_day_school_details_app-id-<%%VALUE(id)%%>" class="space_day_school_details_app-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></td>
-		<td id="space_day_school_details_app-school_name-<%%VALUE(id)%%>" class="space_day_school_details_app-school_name"><%%SELECT%%><%%VALUE(school_name)%%><%%ENDSELECT%%></td>
-		<td id="space_day_school_details_app-profile_type-<%%VALUE(id)%%>" class="space_day_school_details_app-profile_type"><%%SELECT%%><%%VALUE(profile_type)%%><%%ENDSELECT%%></td>
-		<td id="space_day_school_details_app-name_of_student_teacher-<%%VALUE(id)%%>" class="space_day_school_details_app-name_of_student_teacher"><%%SELECT%%><%%VALUE(name_of_student_teacher)%%><%%ENDSELECT%%></td>
-		<td id="space_day_school_details_app-gender-<%%VALUE(id)%%>" class="space_day_school_details_app-gender"><%%SELECT%%><%%VALUE(gender)%%><%%ENDSELECT%%></td>
-		<td id="space_day_school_details_app-class_subject-<%%VALUE(id)%%>" class="space_day_school_details_app-class_subject"><%%SELECT%%><%%VALUE(class_subject)%%><%%ENDSELECT%%></td>
-		<td id="space_day_school_details_app-contact_number-<%%VALUE(id)%%>" class="space_day_school_details_app-contact_number"><%%SELECT%%><%%VALUE(contact_number)%%><%%ENDSELECT%%></td>
-		<td id="space_day_school_details_app-created_by-<%%VALUE(id)%%>" class="space_day_school_details_app-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
-		<td id="space_day_school_details_app-created_at-<%%VALUE(id)%%>" class="space_day_school_details_app-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
-		<td id="space_day_school_details_app-last_updated_by-<%%VALUE(id)%%>" class="space_day_school_details_app-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>
-		<td id="space_day_school_details_app-last_updated_at-<%%VALUE(id)%%>" class="space_day_school_details_app-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>
+					<dt class="space_day_school_details_app-profile_type-caption field-caption-tv">Profile type</dt>
+					<dd id="space_day_school_details_app-profile_type-<%%VALUE(id)%%>" class="space_day_school_details_app-profile_type"><%%SELECT%%><%%VALUE(profile_type)%%><%%ENDSELECT%%></dd>
+
+					<dt class="space_day_school_details_app-name_of_student_teacher-caption field-caption-tv">Name of Student/Teacher</dt>
+					<dd id="space_day_school_details_app-name_of_student_teacher-<%%VALUE(id)%%>" class="space_day_school_details_app-name_of_student_teacher"><%%SELECT%%><%%VALUE(name_of_student_teacher)%%><%%ENDSELECT%%></dd>
+
+					<dt class="space_day_school_details_app-gender-caption field-caption-tv">Gender</dt>
+					<dd id="space_day_school_details_app-gender-<%%VALUE(id)%%>" class="space_day_school_details_app-gender"><%%SELECT%%><%%VALUE(gender)%%><%%ENDSELECT%%></dd>
+
+					<dt class="space_day_school_details_app-class_subject-caption field-caption-tv">Class(If student) / Subject Handled (If Teacher)</dt>
+					<dd id="space_day_school_details_app-class_subject-<%%VALUE(id)%%>" class="space_day_school_details_app-class_subject"><%%SELECT%%><%%VALUE(class_subject)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="space_day_school_details_app-contact_number-caption field-caption-tv">Contact number</dt>
+					<dd id="space_day_school_details_app-contact_number-<%%VALUE(id)%%>" class="space_day_school_details_app-contact_number"><%%SELECT%%><%%VALUE(contact_number)%%><%%ENDSELECT%%></dd>
+
+					<dt class="space_day_school_details_app-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="space_day_school_details_app-created_by-<%%VALUE(id)%%>" class="space_day_school_details_app-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="space_day_school_details_app-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="space_day_school_details_app-created_at-<%%VALUE(id)%%>" class="space_day_school_details_app-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="space_day_school_details_app-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="space_day_school_details_app-last_updated_by-<%%VALUE(id)%%>" class="space_day_school_details_app-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="space_day_school_details_app-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="space_day_school_details_app-last_updated_at-<%%VALUE(id)%%>" class="space_day_school_details_app-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+		</td>

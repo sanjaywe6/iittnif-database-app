@@ -1,20 +1,49 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="13" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="shortlisted_startups_dd_and_agreement_table-id-caption field-caption-tv">ID</dt>
+					<dd id="shortlisted_startups_dd_and_agreement_table-id-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-id text-right text-bold"><%%VALUE(id)%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the shortlisted_startups_dd_and_agreement_table_init() hook (in hooks/shortlisted_startups_dd_and_agreement_table.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="shortlisted_startups_dd_and_agreement_table-startup-caption field-caption-tv">Startup</dt>
+					<dd id="shortlisted_startups_dd_and_agreement_table-startup-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-startup text-bold"><%%VALUE(startup)%%></dd>
 
-		<td id="shortlisted_startups_dd_and_agreement_table-id-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-id text-right text-bold"><%%VALUE(id)%%></td>
-		<td id="shortlisted_startups_dd_and_agreement_table-startup-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-startup text-bold"><%%VALUE(startup)%%></td>
-		<td id="shortlisted_startups_dd_and_agreement_table-documents-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-documents text-bold"><%%VALUE(documents)%%></td>
-		<td id="shortlisted_startups_dd_and_agreement_table-status_1-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-status_1 text-bold"><%%VALUE(status_1)%%></td>
-		<td id="shortlisted_startups_dd_and_agreement_table-comment_1-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-comment_1 text-bold"><%%VALUE(comment_1)%%></td>
-		<td id="shortlisted_startups_dd_and_agreement_table-link_to_ddr-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-link_to_ddr text-bold"><%%VALUE(link_to_ddr)%%></td>
-		<td id="shortlisted_startups_dd_and_agreement_table-status_2-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-status_2 text-bold"><%%VALUE(status_2)%%></td>
-		<td id="shortlisted_startups_dd_and_agreement_table-comment_2-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-comment_2 text-bold"><%%VALUE(comment_2)%%></td>
-		<td id="shortlisted_startups_dd_and_agreement_table-link_to_agreement-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-link_to_agreement text-bold"><%%VALUE(link_to_agreement)%%></td>
-		<td id="shortlisted_startups_dd_and_agreement_table-created_by-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-created_by text-bold"><%%VALUE(created_by)%%></td>
-		<td id="shortlisted_startups_dd_and_agreement_table-created_at-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-created_at text-bold"><%%VALUE(created_at)%%></td>
-		<td id="shortlisted_startups_dd_and_agreement_table-last_updated_by-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
-		<td id="shortlisted_startups_dd_and_agreement_table-last_updated_at-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>
+					<dt class="shortlisted_startups_dd_and_agreement_table-documents-caption field-caption-tv">Documents</dt>
+					<dd id="shortlisted_startups_dd_and_agreement_table-documents-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-documents text-bold"><%%VALUE(documents)%%></dd>
+
+					<dt class="shortlisted_startups_dd_and_agreement_table-status_1-caption field-caption-tv">Status</dt>
+					<dd id="shortlisted_startups_dd_and_agreement_table-status_1-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-status_1 text-bold"><%%VALUE(status_1)%%></dd>
+
+					<dt class="shortlisted_startups_dd_and_agreement_table-comment_1-caption field-caption-tv">Comment</dt>
+					<dd id="shortlisted_startups_dd_and_agreement_table-comment_1-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-comment_1 text-bold"><%%VALUE(comment_1)%%></dd>
+
+					<dt class="shortlisted_startups_dd_and_agreement_table-link_to_ddr-caption field-caption-tv">Link to DDR</dt>
+					<dd id="shortlisted_startups_dd_and_agreement_table-link_to_ddr-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-link_to_ddr text-bold"><%%VALUE(link_to_ddr)%%></dd>
+
+					<dt class="shortlisted_startups_dd_and_agreement_table-status_2-caption field-caption-tv">Status</dt>
+					<dd id="shortlisted_startups_dd_and_agreement_table-status_2-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-status_2 text-bold"><%%VALUE(status_2)%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="shortlisted_startups_dd_and_agreement_table-comment_2-caption field-caption-tv">Comment</dt>
+					<dd id="shortlisted_startups_dd_and_agreement_table-comment_2-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-comment_2 text-bold"><%%VALUE(comment_2)%%></dd>
+
+					<dt class="shortlisted_startups_dd_and_agreement_table-link_to_agreement-caption field-caption-tv">Link to agreement</dt>
+					<dd id="shortlisted_startups_dd_and_agreement_table-link_to_agreement-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-link_to_agreement text-bold"><%%VALUE(link_to_agreement)%%></dd>
+
+					<dt class="shortlisted_startups_dd_and_agreement_table-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="shortlisted_startups_dd_and_agreement_table-created_by-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-created_by text-bold"><%%VALUE(created_by)%%></dd>
+
+					<dt class="shortlisted_startups_dd_and_agreement_table-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="shortlisted_startups_dd_and_agreement_table-created_at-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-created_at text-bold"><%%VALUE(created_at)%%></dd>
+
+					<dt class="shortlisted_startups_dd_and_agreement_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="shortlisted_startups_dd_and_agreement_table-last_updated_by-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></dd>
+
+					<dt class="shortlisted_startups_dd_and_agreement_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="shortlisted_startups_dd_and_agreement_table-last_updated_at-<%%VALUE(id)%%>" class="shortlisted_startups_dd_and_agreement_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></dd>
+
+				</dl>
+			</div>
+		</td>

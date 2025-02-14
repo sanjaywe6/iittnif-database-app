@@ -1,23 +1,73 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="16" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="all_startup_data_table-id-caption field-caption-tv">ID</dt>
+					<dd id="all_startup_data_table-id-<%%VALUE(id)%%>" class="all_startup_data_table-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the all_startup_data_table_init() hook (in hooks/all_startup_data_table.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="all_startup_data_table-company_id-caption field-caption-tv">Company id</dt>
+					<dd id="all_startup_data_table-company_id-<%%VALUE(id)%%>" class="all_startup_data_table-company_id"><%%SELECT%%><%%VALUE(company_id)%%><%%ENDSELECT%%></dd>
 
-		<td id="all_startup_data_table-id-<%%VALUE(id)%%>" class="all_startup_data_table-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></td>
-		<td id="all_startup_data_table-company_id-<%%VALUE(id)%%>" class="all_startup_data_table-company_id"><%%SELECT%%><%%VALUE(company_id)%%><%%ENDSELECT%%></td>
-		<td id="all_startup_data_table-name_of_the_company-<%%VALUE(id)%%>" class="all_startup_data_table-name_of_the_company"><%%SELECT%%><%%VALUE(name_of_the_company)%%><%%ENDSELECT%%></td>
-		<td id="all_startup_data_table-business_sector-<%%VALUE(id)%%>" class="all_startup_data_table-business_sector"><%%SELECT%%><%%VALUE(business_sector)%%><%%ENDSELECT%%></td>
-		<td id="all_startup_data_table-name_of_the_person-<%%VALUE(id)%%>" class="all_startup_data_table-name_of_the_person"><%%SELECT%%><%%VALUE(name_of_the_person)%%><%%ENDSELECT%%></td>
-		<td id="all_startup_data_table-mobile_number-<%%VALUE(id)%%>" class="all_startup_data_table-mobile_number"><%%SELECT%%><%%VALUE(mobile_number)%%><%%ENDSELECT%%></td>
-		<td id="all_startup_data_table-email_id-<%%VALUE(id)%%>" class="all_startup_data_table-email_id"><%%SELECT%%><%%VALUE(email_id)%%><%%ENDSELECT%%></td>
-		<td id="all_startup_data_table-mode_of_incubation-<%%VALUE(id)%%>" class="all_startup_data_table-mode_of_incubation"><%%SELECT%%><%%VALUE(mode_of_incubation)%%><%%ENDSELECT%%></td>
-		<td id="all_startup_data_table-date_of_incubation-<%%VALUE(id)%%>" class="all_startup_data_table-date_of_incubation"><%%SELECT%%><%%VALUE(date_of_incubation)%%><%%ENDSELECT%%></td>
-		<td id="all_startup_data_table-shortlisted_for_fund-<%%VALUE(id)%%>" class="all_startup_data_table-shortlisted_for_fund"><%%SELECT%%><%%VALUE(shortlisted_for_fund)%%><%%ENDSELECT%%></td>
-		<td id="all_startup_data_table-website_link-<%%VALUE(id)%%>" class="all_startup_data_table-website_link"><%%SELECT%%><%%VALUE(website_link)%%><%%ENDSELECT%%></td>
-		<td id="all_startup_data_table-company_logo-<%%VALUE(id)%%>" class="all_startup_data_table-company_logo"><%%SELECT%%><%%VALUE(company_logo)%%><%%ENDSELECT%%></td>
-		<td id="all_startup_data_table-created_by-<%%VALUE(id)%%>" class="all_startup_data_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
-		<td id="all_startup_data_table-created_at-<%%VALUE(id)%%>" class="all_startup_data_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
-		<td id="all_startup_data_table-last_updated_by-<%%VALUE(id)%%>" class="all_startup_data_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>
-		<td id="all_startup_data_table-last_updated_at-<%%VALUE(id)%%>" class="all_startup_data_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>
+					<dt class="all_startup_data_table-name_of_the_company-caption field-caption-tv">Name of the company</dt>
+					<dd id="all_startup_data_table-name_of_the_company-<%%VALUE(id)%%>" class="all_startup_data_table-name_of_the_company"><%%SELECT%%><%%VALUE(name_of_the_company)%%><%%ENDSELECT%%></dd>
+
+					<dt class="all_startup_data_table-business_sector-caption field-caption-tv">Business sector</dt>
+					<dd id="all_startup_data_table-business_sector-<%%VALUE(id)%%>" class="all_startup_data_table-business_sector"><%%SELECT%%><%%VALUE(business_sector)%%><%%ENDSELECT%%></dd>
+
+					<dt class="all_startup_data_table-name_of_the_person-caption field-caption-tv">Name of the person</dt>
+					<dd id="all_startup_data_table-name_of_the_person-<%%VALUE(id)%%>" class="all_startup_data_table-name_of_the_person"><%%SELECT%%><%%VALUE(name_of_the_person)%%><%%ENDSELECT%%></dd>
+
+					<dt class="all_startup_data_table-mobile_number-caption field-caption-tv">Mobile number</dt>
+					<dd id="all_startup_data_table-mobile_number-<%%VALUE(id)%%>" class="all_startup_data_table-mobile_number"><%%SELECT%%><%%VALUE(mobile_number)%%><%%ENDSELECT%%></dd>
+
+					<dt class="all_startup_data_table-email_id-caption field-caption-tv">Email id</dt>
+					<dd id="all_startup_data_table-email_id-<%%VALUE(id)%%>" class="all_startup_data_table-email_id"><%%SELECT%%><%%VALUE(email_id)%%><%%ENDSELECT%%></dd>
+
+					<dt class="all_startup_data_table-mode_of_incubation-caption field-caption-tv">Mode of incubation</dt>
+					<dd id="all_startup_data_table-mode_of_incubation-<%%VALUE(id)%%>" class="all_startup_data_table-mode_of_incubation"><%%SELECT%%><%%VALUE(mode_of_incubation)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="all_startup_data_table-date_of_incubation-caption field-caption-tv">Date of incubation</dt>
+					<dd id="all_startup_data_table-date_of_incubation-<%%VALUE(id)%%>" class="all_startup_data_table-date_of_incubation"><%%SELECT%%><%%VALUE(date_of_incubation)%%><%%ENDSELECT%%></dd>
+
+					<dt class="all_startup_data_table-shortlisted_for_fund-caption field-caption-tv">Shortlisted for fund</dt>
+					<dd id="all_startup_data_table-shortlisted_for_fund-<%%VALUE(id)%%>" class="all_startup_data_table-shortlisted_for_fund"><%%SELECT%%><%%VALUE(shortlisted_for_fund)%%><%%ENDSELECT%%></dd>
+
+					<dt class="all_startup_data_table-website_link-caption field-caption-tv">Website link</dt>
+					<dd id="all_startup_data_table-website_link-<%%VALUE(id)%%>" class="all_startup_data_table-website_link"><%%SELECT%%><%%VALUE(website_link)%%><%%ENDSELECT%%></dd>
+
+					<dt class="all_startup_data_table-company_logo-caption field-caption-tv">Company logo</dt>
+					<dd id="all_startup_data_table-company_logo-<%%VALUE(id)%%>" class="all_startup_data_table-company_logo"><%%SELECT%%><%%VALUE(company_logo)%%><%%ENDSELECT%%></dd>
+
+					<dt class="all_startup_data_table-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="all_startup_data_table-created_by-<%%VALUE(id)%%>" class="all_startup_data_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="all_startup_data_table-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="all_startup_data_table-created_at-<%%VALUE(id)%%>" class="all_startup_data_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="all_startup_data_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="all_startup_data_table-last_updated_by-<%%VALUE(id)%%>" class="all_startup_data_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="all_startup_data_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="all_startup_data_table-last_updated_at-<%%VALUE(id)%%>" class="all_startup_data_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></dd>
+
+				<dt class="child-evaluation_table-select_startup-caption field-caption-tv" title="Evaluation table">Evaluation table</dt>
+				<dd class="child-evaluation_table-select_startup child-records-info" data-id="<%%VALUE(id)%%>" data-table="evaluation_table" data-lookup-field="select_startup">
+					<a href="evaluation_table_view.php?filterer_select_startup=<%%VALUE(id)%%>&Embedded=1" target="_blank" title="<%%TRANSLATION(view)%%> (Evaluation table)" class="modal-link children-count" style="visibility: hidden;"><span class="count-children">0</span> <i class="glyphicon glyphicon-new-window"></i></a>
+					<a href="evaluation_table_view.php?filterer_select_startup=<%%VALUE(id)%%>&addNew_x=1&Embedded=1" target="_blank" class="modal-link new-child" title="<%%TRANSLATION(Add New)%%> (Evaluation table)" style="visibility: hidden;"><i class="text-success glyphicon glyphicon-plus"></i></a>
+				</dd>
+				<dt class="child-shortlisted_startups_for_fund_table-startup-caption field-caption-tv" title="Shortlisted startups for fund - App">Shortlisted startups for fund - App</dt>
+				<dd class="child-shortlisted_startups_for_fund_table-startup child-records-info" data-id="<%%VALUE(id)%%>" data-table="shortlisted_startups_for_fund_table" data-lookup-field="startup">
+					<a href="shortlisted_startups_for_fund_table_view.php?filterer_startup=<%%VALUE(id)%%>&Embedded=1" target="_blank" title="<%%TRANSLATION(view)%%> (Shortlisted startups for fund - App)" class="modal-link children-count" style="visibility: hidden;"><span class="count-children">0</span> <i class="glyphicon glyphicon-new-window"></i></a>
+					<a href="shortlisted_startups_for_fund_table_view.php?filterer_startup=<%%VALUE(id)%%>&addNew_x=1&Embedded=1" target="_blank" class="modal-link new-child" title="<%%TRANSLATION(Add New)%%> (Shortlisted startups for fund - App)" style="visibility: hidden;"><i class="text-success glyphicon glyphicon-plus"></i></a>
+				</dd>
+				<dt class="child-shortlisted_startups_dd_and_agreement_table-startup-caption field-caption-tv" title="Shortlisted startups DD and Agreement - App">Shortlisted startups DD and Agreement - App</dt>
+				<dd class="child-shortlisted_startups_dd_and_agreement_table-startup child-records-info" data-id="<%%VALUE(id)%%>" data-table="shortlisted_startups_dd_and_agreement_table" data-lookup-field="startup">
+					<a href="shortlisted_startups_dd_and_agreement_table_view.php?filterer_startup=<%%VALUE(id)%%>&Embedded=1" target="_blank" title="<%%TRANSLATION(view)%%> (Shortlisted startups DD and Agreement - App)" class="modal-link children-count" style="visibility: hidden;"><span class="count-children">0</span> <i class="glyphicon glyphicon-new-window"></i></a>
+					<a href="shortlisted_startups_dd_and_agreement_table_view.php?filterer_startup=<%%VALUE(id)%%>&addNew_x=1&Embedded=1" target="_blank" class="modal-link new-child" title="<%%TRANSLATION(Add New)%%> (Shortlisted startups DD and Agreement - App)" style="visibility: hidden;"><i class="text-success glyphicon glyphicon-plus"></i></a>
+				</dd>
+				</dl>
+			</div>
+		</td>

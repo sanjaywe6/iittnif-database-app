@@ -18,7 +18,7 @@
 
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
-		"`approval_table`.`procurement_approval_id`" => "procurement_approval_id",
+		"`approval_table`.`id`" => "id",
 		"`approval_table`.`type`" => "type",
 		"`approval_table`.`description`" => "description",
 		"`approval_table`.`quantity`" => "quantity",
@@ -39,7 +39,7 @@
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
-		1 => '`approval_table`.`procurement_approval_id`',
+		1 => '`approval_table`.`id`',
 		2 => 2,
 		3 => 3,
 		4 => 4,
@@ -61,7 +61,7 @@
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
-		"`approval_table`.`procurement_approval_id`" => "procurement_approval_id",
+		"`approval_table`.`id`" => "id",
 		"`approval_table`.`type`" => "type",
 		"`approval_table`.`description`" => "description",
 		"`approval_table`.`quantity`" => "quantity",
@@ -82,14 +82,14 @@
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
-		"`approval_table`.`procurement_approval_id`" => "ID",
+		"`approval_table`.`id`" => "ID",
 		"`approval_table`.`type`" => "Approval for",
 		"`approval_table`.`description`" => "Description",
 		"`approval_table`.`quantity`" => "Quantity",
 		"`approval_table`.`full_est_value`" => "Full Estimated Value",
 		"`approval_table`.`name_of_vendor`" => "Name of Vendor",
 		"`approval_table`.`purpose`" => "Purpose",
-		"`approval_table`.`requested_department`" => "Requested Department",
+		"`approval_table`.`requested_department`" => "Requested Department/Appointment",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Person Responsbility */" => "Person Responsbility",
 		"`approval_table`.`mode_of_purchase`" => "Mode of Purchase",
 		"`approval_table`.`others_if_any`" => "Others if Any",
@@ -103,7 +103,7 @@
 
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
-		"`approval_table`.`procurement_approval_id`" => "procurement_approval_id",
+		"`approval_table`.`id`" => "id",
 		"`approval_table`.`type`" => "type",
 		"`approval_table`.`description`" => "description",
 		"`approval_table`.`quantity`" => "quantity",
@@ -144,20 +144,20 @@
 	$x->AllowPrinting = 1;
 	$x->AllowPrintingDV = 1;
 	$x->AllowCSV = 1;
-	$x->AllowAdminShowSQL = 1;
+	$x->AllowAdminShowSQL = showSQL();
 	$x->RecordsPerPage = 100;
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'approval_table_view.php';
 	$x->TableTitle = 'Approval - App';
 	$x->TableIcon = 'table.gif';
-	$x->PrimaryKey = '`approval_table`.`procurement_approval_id`';
+	$x->PrimaryKey = '`approval_table`.`id`';
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Approval for', 'Description', 'Quantity', 'Full Estimated Value', 'Name of Vendor', 'Purpose', 'Requested Department', 'Person Responsbility', 'Mode of Purchase', 'Approval Status', 'Upload Image if Any (Optional)', 'Upload Other File if Any (Optional)', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', ];
-	$x->ColFieldName = ['procurement_approval_id', 'type', 'description', 'quantity', 'full_est_value', 'name_of_vendor', 'purpose', 'requested_department', 'person_responsbility', 'mode_of_purchase', 'approval_status', 'image', 'other_file', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColCaption = ['ID', 'Approval for', 'Description', 'Quantity', 'Full Estimated Value', 'Name of Vendor', 'Purpose', 'Requested Department/Appointment', 'Person Responsbility', 'Mode of Purchase', 'Approval Status', 'Upload Image if Any (Optional)', 'Upload Other File if Any (Optional)', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', ];
+	$x->ColFieldName = ['id', 'type', 'description', 'quantity', 'full_est_value', 'name_of_vendor', 'purpose', 'requested_department', 'person_responsbility', 'mode_of_purchase', 'approval_status', 'image', 'other_file', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
 	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, ];
 
 	// template paths below are based on the app main directory
@@ -166,7 +166,7 @@
 	$x->TemplateDV = 'templates/approval_table_templateDV.html';
 	$x->TemplateDVP = 'templates/approval_table_templateDVP.html';
 
-	$x->ShowTableHeader = 1;
+	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
 	$x->HasCalculatedFields = false;

@@ -1,29 +1,70 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="19" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="mou_details_table-id-caption field-caption-tv">ID</dt>
+					<dd id="mou_details_table-id-<%%VALUE(id)%%>" class="mou_details_table-id text-right text-bold"><%%VALUE(id)%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the mou_details_table_init() hook (in hooks/mou_details_table.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="mou_details_table-type-caption field-caption-tv">Type</dt>
+					<dd id="mou_details_table-type-<%%VALUE(id)%%>" class="mou_details_table-type text-bold"><%%VALUE(type)%%></dd>
 
-		<td id="mou_details_table-id-<%%VALUE(id)%%>" class="mou_details_table-id text-right text-bold"><%%VALUE(id)%%></td>
-		<td id="mou_details_table-type-<%%VALUE(id)%%>" class="mou_details_table-type text-bold"><%%VALUE(type)%%></td>
-		<td id="mou_details_table-company_name-<%%VALUE(id)%%>" class="mou_details_table-company_name text-bold"><%%VALUE(company_name)%%></td>
-		<td id="mou_details_table-objective_of_mou-<%%VALUE(id)%%>" class="mou_details_table-objective_of_mou text-bold"><%%VALUE(objective_of_mou)%%></td>
-		<td id="mou_details_table-agreement_period-<%%VALUE(id)%%>" class="mou_details_table-agreement_period text-bold"><%%VALUE(agreement_period)%%></td>
-		<td id="mou_details_table-date_of_agreement-<%%VALUE(id)%%>" class="mou_details_table-date_of_agreement text-bold"><%%VALUE(date_of_agreement)%%></td>
-		<td id="mou_details_table-date_of_expiry-<%%VALUE(id)%%>" class="mou_details_table-date_of_expiry text-bold"><%%VALUE(date_of_expiry)%%></td>
-		<td id="mou_details_table-status-<%%VALUE(id)%%>" class="mou_details_table-status text-bold"><%%VALUE(status)%%></td>
-		<td id="mou_details_table-point_of_contact-<%%VALUE(id)%%>" class="mou_details_table-point_of_contact text-bold"><%%VALUE(point_of_contact)%%></td>
-		<td id="mou_details_table-contact_number-<%%VALUE(id)%%>" class="mou_details_table-contact_number text-bold"><%%VALUE(contact_number)%%></td>
-		<td id="mou_details_table-contact_email_id-<%%VALUE(id)%%>" class="mou_details_table-contact_email_id text-bold"><%%VALUE(contact_email_id)%%></td>
-		<td id="mou_details_table-website_link-<%%VALUE(id)%%>" class="mou_details_table-website_link text-bold"><%%VALUE(website_link)%%></td>
-		<td id="mou_details_table-country-<%%VALUE(id)%%>" class="mou_details_table-country text-bold"><%%VALUE(country)%%></td>
-		<td id="mou_details_table-assigned_mou_to-<%%VALUE(id)%%>" class="mou_details_table-assigned_mou_to text-bold"><%%VALUE(assigned_mou_to)%%></td>
-		<td id="mou_details_table-upload_mou-<%%VALUE(id)%%>" class="mou_details_table-upload_mou text-bold"><a href="link.php?t=mou_details_table&f=upload_mou&i=<%%VALUE(id)%%>" target="_blank" title="<%%VALUE(upload_mou)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-file text-info"></i></a></td>
-		<td id="mou_details_table-created_at-<%%VALUE(id)%%>" class="mou_details_table-created_at text-bold"><%%VALUE(created_at)%%></td>
-		<td id="mou_details_table-created_by-<%%VALUE(id)%%>" class="mou_details_table-created_by text-bold"><%%VALUE(created_by)%%></td>
-		<td id="mou_details_table-last_updated_by-<%%VALUE(id)%%>" class="mou_details_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
-		<td id="mou_details_table-last_updated_at-<%%VALUE(id)%%>" class="mou_details_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>
+					<dt class="mou_details_table-company_name-caption field-caption-tv">Company name</dt>
+					<dd id="mou_details_table-company_name-<%%VALUE(id)%%>" class="mou_details_table-company_name text-bold"><%%VALUE(company_name)%%></dd>
+
+					<dt class="mou_details_table-objective_of_mou-caption field-caption-tv">Objectives/ Scope of the MOU</dt>
+					<dd id="mou_details_table-objective_of_mou-<%%VALUE(id)%%>" class="mou_details_table-objective_of_mou text-bold"><%%VALUE(objective_of_mou)%%></dd>
+
+					<dt class="mou_details_table-agreement_period-caption field-caption-tv">Agreement period (In Years)</dt>
+					<dd id="mou_details_table-agreement_period-<%%VALUE(id)%%>" class="mou_details_table-agreement_period text-bold"><%%VALUE(agreement_period)%%></dd>
+
+					<dt class="mou_details_table-date_of_agreement-caption field-caption-tv">Date of agreement</dt>
+					<dd id="mou_details_table-date_of_agreement-<%%VALUE(id)%%>" class="mou_details_table-date_of_agreement text-bold"><%%VALUE(date_of_agreement)%%></dd>
+
+					<dt class="mou_details_table-date_of_expiry-caption field-caption-tv">Date of expiry</dt>
+					<dd id="mou_details_table-date_of_expiry-<%%VALUE(id)%%>" class="mou_details_table-date_of_expiry text-bold"><%%VALUE(date_of_expiry)%%></dd>
+
+					<dt class="mou_details_table-status-caption field-caption-tv">Status</dt>
+					<dd id="mou_details_table-status-<%%VALUE(id)%%>" class="mou_details_table-status text-bold"><%%VALUE(status)%%></dd>
+
+					<dt class="mou_details_table-point_of_contact-caption field-caption-tv">Point of contact (Name)</dt>
+					<dd id="mou_details_table-point_of_contact-<%%VALUE(id)%%>" class="mou_details_table-point_of_contact text-bold"><%%VALUE(point_of_contact)%%></dd>
+
+					<dt class="mou_details_table-contact_number-caption field-caption-tv">Contact number</dt>
+					<dd id="mou_details_table-contact_number-<%%VALUE(id)%%>" class="mou_details_table-contact_number text-bold"><%%VALUE(contact_number)%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="mou_details_table-contact_email_id-caption field-caption-tv">Contact email id</dt>
+					<dd id="mou_details_table-contact_email_id-<%%VALUE(id)%%>" class="mou_details_table-contact_email_id text-bold"><%%VALUE(contact_email_id)%%></dd>
+
+					<dt class="mou_details_table-website_link-caption field-caption-tv">Website link</dt>
+					<dd id="mou_details_table-website_link-<%%VALUE(id)%%>" class="mou_details_table-website_link text-bold"><%%VALUE(website_link)%%></dd>
+
+					<dt class="mou_details_table-country-caption field-caption-tv">Country</dt>
+					<dd id="mou_details_table-country-<%%VALUE(id)%%>" class="mou_details_table-country text-bold"><%%VALUE(country)%%></dd>
+
+					<dt class="mou_details_table-assigned_mou_to-caption field-caption-tv">Assigned MoU to</dt>
+					<dd id="mou_details_table-assigned_mou_to-<%%VALUE(id)%%>" class="mou_details_table-assigned_mou_to text-bold"><%%VALUE(assigned_mou_to)%%></dd>
+
+					<dt class="mou_details_table-upload_mou-caption field-caption-tv">Upload MoU (PDF or DOC format)</dt>
+					<dd id="mou_details_table-upload_mou-<%%VALUE(id)%%>" class="mou_details_table-upload_mou text-bold"><a href="link.php?t=mou_details_table&f=upload_mou&i=<%%VALUE(id)%%>" target="_blank" title="<%%VALUE(upload_mou)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-file text-info"></i></a></dd>
+
+					<dt class="mou_details_table-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="mou_details_table-created_at-<%%VALUE(id)%%>" class="mou_details_table-created_at text-bold"><%%VALUE(created_at)%%></dd>
+
+					<dt class="mou_details_table-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="mou_details_table-created_by-<%%VALUE(id)%%>" class="mou_details_table-created_by text-bold"><%%VALUE(created_by)%%></dd>
+
+					<dt class="mou_details_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="mou_details_table-last_updated_by-<%%VALUE(id)%%>" class="mou_details_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></dd>
+
+					<dt class="mou_details_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="mou_details_table-last_updated_at-<%%VALUE(id)%%>" class="mou_details_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></dd>
+
+				</dl>
+			</div>
+		</td>
 		<script>$j(function() {
 			var e_upload_mou = '<%%VALUE(upload_mou)%%>'; if(e_upload_mou == '' || e_upload_mou == '&nbsp;') $j(/*<*/ '#mou_details_table-upload_mou-<%%VALUE(id)%%>' /*>*/).html('');
 		});</script>

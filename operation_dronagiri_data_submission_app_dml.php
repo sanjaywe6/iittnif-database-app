@@ -86,8 +86,8 @@ function operation_dronagiri_data_submission_app_delete($selected_id, $AllowDele
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'file_table'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'operation_dronagiri_data_submission_app_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'operation_dronagiri_data_submission_app_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `operation_dronagiri_data_submission_app_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `operation_dronagiri_data_submission_app_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -262,7 +262,7 @@ function operation_dronagiri_data_submission_app_form($selectedId = '', $allowUp
 	<script>
 		// initial lookup values
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
@@ -351,18 +351,18 @@ function operation_dronagiri_data_submission_app_form($selectedId = '', $allowUp
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#name_of_the_department').replaceWith('<div class=\"form-control-static\" id=\"name_of_the_department\">' + (jQuery('#name_of_the_department').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#name_of_the_officer').replaceWith('<div class=\"form-control-static\" id=\"name_of_the_officer\">' + (jQuery('#name_of_the_officer').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#designation').replaceWith('<div class=\"form-control-static\" id=\"designation\">' + (jQuery('#designation').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#email_address').replaceWith('<div class=\"form-control-static\" id=\"email_address\">' + (jQuery('#email_address').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#phone_number').replaceWith('<div class=\"form-control-static\" id=\"phone_number\">' + (jQuery('#phone_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#name_of_the_department').replaceWith('<div class=\"form-control-static\" id=\"name_of_the_department\">' + (\$j('#name_of_the_department').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#name_of_the_officer').replaceWith('<div class=\"form-control-static\" id=\"name_of_the_officer\">' + (\$j('#name_of_the_officer').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#designation').replaceWith('<div class=\"form-control-static\" id=\"designation\">' + (\$j('#designation').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#email_address').replaceWith('<div class=\"form-control-static\" id=\"email_address\">' + (\$j('#email_address').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#phone_number').replaceWith('<div class=\"form-control-static\" id=\"phone_number\">' + (\$j('#phone_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

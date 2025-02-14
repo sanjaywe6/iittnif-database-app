@@ -3,7 +3,7 @@
 	@define('SESSION_NAME', 'TIH_Apps');
 	@define('APP_TITLE', 'TIH Apps');
 	@define('APP_DIR', __DIR__);
-	@define('APP_VERSION', '24.19');
+	@define('APP_VERSION', '25.10');
 	@define('maxSortBy', 4);
 	@define('empty_lookup_value', '{empty_value}');
 	@define('MULTIPLE_SUPER_ADMINS', false);

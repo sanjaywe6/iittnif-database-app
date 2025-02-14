@@ -189,6 +189,7 @@
 				}
 			});
 
+			evaluators_tableUniqueFields.forEach(fieldName => enforce_uniqueness('evaluators_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -202,4 +203,7 @@
 				);
 			}
 		});
+
+		var evaluators_tableUniqueFields = [
+		];
 	</script>

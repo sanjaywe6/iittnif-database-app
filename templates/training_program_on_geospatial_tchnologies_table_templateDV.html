@@ -395,6 +395,7 @@
 				}
 			});
 
+			training_program_on_geospatial_tchnologies_tableUniqueFields.forEach(fieldName => enforce_uniqueness('training_program_on_geospatial_tchnologies_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -408,4 +409,7 @@
 				);
 			}
 		});
+
+		var training_program_on_geospatial_tchnologies_tableUniqueFields = [
+		];
 	</script>

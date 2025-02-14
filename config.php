@@ -1,0 +1,47 @@
+<?php
+	$dbServer = 'localhost';
+	$dbUsername = 'admin';
+	$dbPassword = 'admin';
+	$dbDatabase = 'iittnif_app_db';
+	$dbPort = '3306';
+	$appURI = '';
+	$host = '172.26.60.42';
+
+	$adminConfig = [
+		'adminUsername' => "admin",
+		'adminPassword' => "\$2y\$10\$jnEPv9nwTd4F13Dig0tsx.quvO5Kq1iDu1Zf9Xw5mOkrOXOrwXyba",
+		'notifyAdminNewMembers' => "0",
+		'defaultSignUp' => "1",
+		'anonymousGroup' => "anonymous",
+		'anonymousMember' => "guest",
+		'groupsPerPage' => "10",
+		'membersPerPage' => "10",
+		'recordsPerPage' => "10",
+		'custom1' => "Full Name",
+		'custom2' => "Address",
+		'custom3' => "City",
+		'custom4' => "State",
+		'MySQLDateFormat' => "%d/%m/%Y",
+		'PHPDateFormat' => "j/n/Y",
+		'PHPDateTimeFormat' => "d/m/Y, h:i a",
+		'senderName' => "Membership management",
+		'senderEmail' => "sanjay@iittnif.com",
+		'approvalSubject' => "Your membership is now approved",
+		'approvalMessage' => "Dear member,\r\n\r\nYour membership is now approved by the admin. You can log in to your account here:\r\nhttp://172.26.60.42\r\n\r\nRegards,\r\nAdmin",
+		'hide_twitter_feed' => "",
+		'maintenance_mode_message' => "<b>Our website is currently down for maintenance</b><br>\r\nWe expect to be back in a couple hours. Thanks for your patience.",
+		'mail_function' => "mail",
+		'smtp_server' => "",
+		'smtp_encryption' => "",
+		'smtp_port' => "25",
+		'smtp_user' => "",
+		'smtp_pass' => "",
+		'googleAPIKey' => "",
+		'baseUploadPath' => "images",
+		'loginMethod' => "",
+		'ldapServer' => "",
+		'ldapVersion' => "",
+		'ldapUsernamePrefix' => "",
+		'ldapUsernameSuffix' => "",
+		'ldapDefaultUserGroup' => "",
+	];

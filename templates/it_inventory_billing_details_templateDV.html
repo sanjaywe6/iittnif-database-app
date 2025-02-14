@@ -258,6 +258,7 @@
 				}
 			});
 
+			it_inventory_billing_detailsUniqueFields.forEach(fieldName => enforce_uniqueness('it_inventory_billing_details', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -271,4 +272,7 @@
 				);
 			}
 		});
+
+		var it_inventory_billing_detailsUniqueFields = [
+		];
 	</script>

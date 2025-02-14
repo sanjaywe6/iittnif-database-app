@@ -321,7 +321,7 @@ function payment_track_details_table_form($selectedId = '', $allowUpdate = true,
 	<script>
 		// initial lookup values
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
@@ -410,25 +410,25 @@ function payment_track_details_table_form($selectedId = '', $allowUpdate = true,
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#pfms_num').replaceWith('<div class=\"form-control-static\" id=\"pfms_num\">' + (jQuery('#pfms_num').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#dateDay, #dateMonth, #dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#description').replaceWith('<div class=\"form-control-static\" id=\"description\">' + (jQuery('#description').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#amount').replaceWith('<div class=\"form-control-static\" id=\"amount\">' + (jQuery('#amount').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#requested_by').replaceWith('<div class=\"form-control-static\" id=\"requested_by\">' + (jQuery('#requested_by').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#paid_to').replaceWith('<div class=\"form-control-static\" id=\"paid_to\">' + (jQuery('#paid_to').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#paid_status').replaceWith('<div class=\"form-control-static\" id=\"paid_status\">' + (jQuery('#paid_status').val() || '') + '</div>'); jQuery('#paid_status-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#payment_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#payment_dateDay, #payment_dateMonth, #payment_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#upload_scanned_file_1').replaceWith('<div class=\"form-control-static\" id=\"upload_scanned_file_1\">' + (jQuery('#upload_scanned_file_1').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#upload_scanned_file_2').replaceWith('<div class=\"form-control-static\" id=\"upload_scanned_file_2\">' + (jQuery('#upload_scanned_file_2').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#pfms_num').replaceWith('<div class=\"form-control-static\" id=\"pfms_num\">' + (\$j('#pfms_num').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#dateDay, #dateMonth, #dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#description').replaceWith('<div class=\"form-control-static\" id=\"description\">' + (\$j('#description').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#amount').replaceWith('<div class=\"form-control-static\" id=\"amount\">' + (\$j('#amount').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#requested_by').replaceWith('<div class=\"form-control-static\" id=\"requested_by\">' + (\$j('#requested_by').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#paid_to').replaceWith('<div class=\"form-control-static\" id=\"paid_to\">' + (\$j('#paid_to').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#paid_status').replaceWith('<div class=\"form-control-static\" id=\"paid_status\">' + (\$j('#paid_status').val() || '') + '</div>'); \$j('#paid_status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#payment_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#payment_dateDay, #payment_dateMonth, #payment_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#upload_scanned_file_1').replaceWith('<div class=\"form-control-static\" id=\"upload_scanned_file_1\">' + (\$j('#upload_scanned_file_1').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#upload_scanned_file_2').replaceWith('<div class=\"form-control-static\" id=\"upload_scanned_file_2\">' + (\$j('#upload_scanned_file_2').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

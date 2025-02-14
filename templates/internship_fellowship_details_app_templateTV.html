@@ -1,30 +1,79 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="23" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="internship_fellowship_details_app-id-caption field-caption-tv">ID</dt>
+					<dd id="internship_fellowship_details_app-id-<%%VALUE(id)%%>" class="internship_fellowship_details_app-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the internship_fellowship_details_app_init() hook (in hooks/internship_fellowship_details_app.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="internship_fellowship_details_app-standard-caption field-caption-tv">Standard</dt>
+					<dd id="internship_fellowship_details_app-standard-<%%VALUE(id)%%>" class="internship_fellowship_details_app-standard"><%%SELECT%%><%%VALUE(standard)%%><%%ENDSELECT%%></dd>
 
-		<td id="internship_fellowship_details_app-id-<%%VALUE(id)%%>" class="internship_fellowship_details_app-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></td>
-		<td id="internship_fellowship_details_app-standard-<%%VALUE(id)%%>" class="internship_fellowship_details_app-standard"><%%SELECT%%><%%VALUE(standard)%%><%%ENDSELECT%%></td>
-		<td id="internship_fellowship_details_app-iittnif_id-<%%VALUE(id)%%>" class="internship_fellowship_details_app-iittnif_id"><%%SELECT%%><%%VALUE(iittnif_id)%%><%%ENDSELECT%%></td>
-		<td id="internship_fellowship_details_app-name_of_the_candidate-<%%VALUE(id)%%>" class="internship_fellowship_details_app-name_of_the_candidate"><%%SELECT%%><%%VALUE(name_of_the_candidate)%%><%%ENDSELECT%%></td>
-		<td id="internship_fellowship_details_app-type_of_internship_fellowship-<%%VALUE(id)%%>" class="internship_fellowship_details_app-type_of_internship_fellowship"><%%SELECT%%><%%VALUE(type_of_internship_fellowship)%%><%%ENDSELECT%%></td>
-		<td id="internship_fellowship_details_app-year-<%%VALUE(id)%%>" class="internship_fellowship_details_app-year"><%%SELECT%%><%%VALUE(year)%%><%%ENDSELECT%%></td>
-		<td id="internship_fellowship_details_app-project_title-<%%VALUE(id)%%>" class="internship_fellowship_details_app-project_title"><%%SELECT%%><%%VALUE(project_title)%%><%%ENDSELECT%%></td>
-		<td id="internship_fellowship_details_app-gender-<%%VALUE(id)%%>" class="internship_fellowship_details_app-gender"><%%SELECT%%><%%VALUE(gender)%%><%%ENDSELECT%%></td>
-		<td id="internship_fellowship_details_app-department-<%%VALUE(id)%%>" class="internship_fellowship_details_app-department"><%%SELECT%%><%%VALUE(department)%%><%%ENDSELECT%%></td>
-		<td id="internship_fellowship_details_app-institute_id_number-<%%VALUE(id)%%>" class="internship_fellowship_details_app-institute_id_number"><%%SELECT%%><%%VALUE(institute_id_number)%%><%%ENDSELECT%%></td>
-		<td id="internship_fellowship_details_app-institute-<%%VALUE(id)%%>" class="internship_fellowship_details_app-institute"><%%SELECT%%><%%VALUE(institute)%%><%%ENDSELECT%%></td>
-		<td id="internship_fellowship_details_app-latitude-<%%VALUE(id)%%>" class="internship_fellowship_details_app-latitude"><%%SELECT%%><%%VALUE(latitude)%%><%%ENDSELECT%%></td>
-		<td id="internship_fellowship_details_app-longitude-<%%VALUE(id)%%>" class="internship_fellowship_details_app-longitude"><%%SELECT%%><%%VALUE(longitude)%%><%%ENDSELECT%%></td>
-		<td id="internship_fellowship_details_app-start_date-<%%VALUE(id)%%>" class="internship_fellowship_details_app-start_date"><%%SELECT%%><%%VALUE(start_date)%%><%%ENDSELECT%%></td>
-		<td id="internship_fellowship_details_app-end_date-<%%VALUE(id)%%>" class="internship_fellowship_details_app-end_date"><%%SELECT%%><%%VALUE(end_date)%%><%%ENDSELECT%%></td>
-		<td id="internship_fellowship_details_app-status-<%%VALUE(id)%%>" class="internship_fellowship_details_app-status"><%%SELECT%%><%%VALUE(status)%%><%%ENDSELECT%%></td>
-		<td id="internship_fellowship_details_app-cotegory-<%%VALUE(id)%%>" class="internship_fellowship_details_app-cotegory"><%%SELECT%%><%%VALUE(cotegory)%%><%%ENDSELECT%%></td>
-		<td id="internship_fellowship_details_app-report_link-<%%VALUE(id)%%>" class="internship_fellowship_details_app-report_link"><%%SELECT%%><%%VALUE(report_link)%%><%%ENDSELECT%%></td>
-		<td id="internship_fellowship_details_app-outcomes-<%%VALUE(id)%%>" class="internship_fellowship_details_app-outcomes"><%%SELECT%%><%%VALUE(outcomes)%%><%%ENDSELECT%%></td>
-		<td id="internship_fellowship_details_app-created_by-<%%VALUE(id)%%>" class="internship_fellowship_details_app-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
-		<td id="internship_fellowship_details_app-created_at-<%%VALUE(id)%%>" class="internship_fellowship_details_app-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
-		<td id="internship_fellowship_details_app-last_updated_by-<%%VALUE(id)%%>" class="internship_fellowship_details_app-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>
-		<td id="internship_fellowship_details_app-last_updated_at-<%%VALUE(id)%%>" class="internship_fellowship_details_app-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>
+					<dt class="internship_fellowship_details_app-iittnif_id-caption field-caption-tv">IITTNiF id</dt>
+					<dd id="internship_fellowship_details_app-iittnif_id-<%%VALUE(id)%%>" class="internship_fellowship_details_app-iittnif_id"><%%SELECT%%><%%VALUE(iittnif_id)%%><%%ENDSELECT%%></dd>
+
+					<dt class="internship_fellowship_details_app-name_of_the_candidate-caption field-caption-tv">Name of the Candidate</dt>
+					<dd id="internship_fellowship_details_app-name_of_the_candidate-<%%VALUE(id)%%>" class="internship_fellowship_details_app-name_of_the_candidate"><%%SELECT%%><%%VALUE(name_of_the_candidate)%%><%%ENDSELECT%%></dd>
+
+					<dt class="internship_fellowship_details_app-type_of_internship_fellowship-caption field-caption-tv">Type of Internship/Fellowship</dt>
+					<dd id="internship_fellowship_details_app-type_of_internship_fellowship-<%%VALUE(id)%%>" class="internship_fellowship_details_app-type_of_internship_fellowship"><%%SELECT%%><%%VALUE(type_of_internship_fellowship)%%><%%ENDSELECT%%></dd>
+
+					<dt class="internship_fellowship_details_app-year-caption field-caption-tv">Year</dt>
+					<dd id="internship_fellowship_details_app-year-<%%VALUE(id)%%>" class="internship_fellowship_details_app-year"><%%SELECT%%><%%VALUE(year)%%><%%ENDSELECT%%></dd>
+
+					<dt class="internship_fellowship_details_app-project_title-caption field-caption-tv">Project title</dt>
+					<dd id="internship_fellowship_details_app-project_title-<%%VALUE(id)%%>" class="internship_fellowship_details_app-project_title"><%%SELECT%%><%%VALUE(project_title)%%><%%ENDSELECT%%></dd>
+
+					<dt class="internship_fellowship_details_app-gender-caption field-caption-tv">Gender</dt>
+					<dd id="internship_fellowship_details_app-gender-<%%VALUE(id)%%>" class="internship_fellowship_details_app-gender"><%%SELECT%%><%%VALUE(gender)%%><%%ENDSELECT%%></dd>
+
+					<dt class="internship_fellowship_details_app-department-caption field-caption-tv">Department</dt>
+					<dd id="internship_fellowship_details_app-department-<%%VALUE(id)%%>" class="internship_fellowship_details_app-department"><%%SELECT%%><%%VALUE(department)%%><%%ENDSELECT%%></dd>
+
+					<dt class="internship_fellowship_details_app-institute_id_number-caption field-caption-tv">Institute ID number</dt>
+					<dd id="internship_fellowship_details_app-institute_id_number-<%%VALUE(id)%%>" class="internship_fellowship_details_app-institute_id_number"><%%SELECT%%><%%VALUE(institute_id_number)%%><%%ENDSELECT%%></dd>
+
+					<dt class="internship_fellowship_details_app-institute-caption field-caption-tv">Institute</dt>
+					<dd id="internship_fellowship_details_app-institute-<%%VALUE(id)%%>" class="internship_fellowship_details_app-institute"><%%SELECT%%><%%VALUE(institute)%%><%%ENDSELECT%%></dd>
+
+					<dt class="internship_fellowship_details_app-latitude-caption field-caption-tv">Latitude</dt>
+					<dd id="internship_fellowship_details_app-latitude-<%%VALUE(id)%%>" class="internship_fellowship_details_app-latitude"><%%SELECT%%><%%VALUE(latitude)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="internship_fellowship_details_app-longitude-caption field-caption-tv">Longitude</dt>
+					<dd id="internship_fellowship_details_app-longitude-<%%VALUE(id)%%>" class="internship_fellowship_details_app-longitude"><%%SELECT%%><%%VALUE(longitude)%%><%%ENDSELECT%%></dd>
+
+					<dt class="internship_fellowship_details_app-start_date-caption field-caption-tv">Start date</dt>
+					<dd id="internship_fellowship_details_app-start_date-<%%VALUE(id)%%>" class="internship_fellowship_details_app-start_date"><%%SELECT%%><%%VALUE(start_date)%%><%%ENDSELECT%%></dd>
+
+					<dt class="internship_fellowship_details_app-end_date-caption field-caption-tv">End date</dt>
+					<dd id="internship_fellowship_details_app-end_date-<%%VALUE(id)%%>" class="internship_fellowship_details_app-end_date"><%%SELECT%%><%%VALUE(end_date)%%><%%ENDSELECT%%></dd>
+
+					<dt class="internship_fellowship_details_app-status-caption field-caption-tv">Status</dt>
+					<dd id="internship_fellowship_details_app-status-<%%VALUE(id)%%>" class="internship_fellowship_details_app-status"><%%SELECT%%><%%VALUE(status)%%><%%ENDSELECT%%></dd>
+
+					<dt class="internship_fellowship_details_app-cotegory-caption field-caption-tv">Cotegory</dt>
+					<dd id="internship_fellowship_details_app-cotegory-<%%VALUE(id)%%>" class="internship_fellowship_details_app-cotegory"><%%SELECT%%><%%VALUE(cotegory)%%><%%ENDSELECT%%></dd>
+
+					<dt class="internship_fellowship_details_app-report_link-caption field-caption-tv">Report link</dt>
+					<dd id="internship_fellowship_details_app-report_link-<%%VALUE(id)%%>" class="internship_fellowship_details_app-report_link"><%%SELECT%%><%%VALUE(report_link)%%><%%ENDSELECT%%></dd>
+
+					<dt class="internship_fellowship_details_app-outcomes-caption field-caption-tv">Outcomes</dt>
+					<dd id="internship_fellowship_details_app-outcomes-<%%VALUE(id)%%>" class="internship_fellowship_details_app-outcomes"><%%SELECT%%><%%VALUE(outcomes)%%><%%ENDSELECT%%></dd>
+
+					<dt class="internship_fellowship_details_app-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="internship_fellowship_details_app-created_by-<%%VALUE(id)%%>" class="internship_fellowship_details_app-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="internship_fellowship_details_app-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="internship_fellowship_details_app-created_at-<%%VALUE(id)%%>" class="internship_fellowship_details_app-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="internship_fellowship_details_app-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="internship_fellowship_details_app-last_updated_by-<%%VALUE(id)%%>" class="internship_fellowship_details_app-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="internship_fellowship_details_app-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="internship_fellowship_details_app-last_updated_at-<%%VALUE(id)%%>" class="internship_fellowship_details_app-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+		</td>

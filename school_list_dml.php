@@ -209,7 +209,7 @@ function school_list_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	<script>
 		// initial lookup values
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
@@ -298,19 +298,19 @@ function school_list_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#district_name').replaceWith('<div class=\"form-control-static\" id=\"district_name\">' + (jQuery('#district_name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#school_code').replaceWith('<div class=\"form-control-static\" id=\"school_code\">' + (jQuery('#school_code').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#school_name').replaceWith('<div class=\"form-control-static\" id=\"school_name\">' + (jQuery('#school_name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#pincode').replaceWith('<div class=\"form-control-static\" id=\"pincode\">' + (jQuery('#pincode').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#school_type').replaceWith('<div class=\"form-control-static\" id=\"school_type\">' + (jQuery('#school_type').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#school_phone_number').replaceWith('<div class=\"form-control-static\" id=\"school_phone_number\">' + (jQuery('#school_phone_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#district_name').replaceWith('<div class=\"form-control-static\" id=\"district_name\">' + (\$j('#district_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#school_code').replaceWith('<div class=\"form-control-static\" id=\"school_code\">' + (\$j('#school_code').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#school_name').replaceWith('<div class=\"form-control-static\" id=\"school_name\">' + (\$j('#school_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#pincode').replaceWith('<div class=\"form-control-static\" id=\"pincode\">' + (\$j('#pincode').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#school_type').replaceWith('<div class=\"form-control-static\" id=\"school_type\">' + (\$j('#school_type').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#school_phone_number').replaceWith('<div class=\"form-control-static\" id=\"school_phone_number\">' + (\$j('#school_phone_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

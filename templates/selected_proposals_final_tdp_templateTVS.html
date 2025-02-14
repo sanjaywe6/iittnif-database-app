@@ -1,29 +1,76 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="22" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="selected_proposals_final_tdp-selected_proposals_id-caption field-caption-tv">ID</dt>
+					<dd id="selected_proposals_final_tdp-selected_proposals_id-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-selected_proposals_id text-right text-bold"><%%VALUE(selected_proposals_id)%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the selected_proposals_final_tdp_init() hook (in hooks/selected_proposals_final_tdp.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="selected_proposals_final_tdp-project_id-caption field-caption-tv">Project ID::Title</dt>
+					<dd id="selected_proposals_final_tdp-project_id-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-project_id text-bold"><%%VALUE(project_id)%%></dd>
 
-		<td id="selected_proposals_final_tdp-selected_proposals_id-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-selected_proposals_id text-right text-bold"><%%VALUE(selected_proposals_id)%%></td>
-		<td id="selected_proposals_final_tdp-project_id-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-project_id text-bold"><%%VALUE(project_id)%%></td>
-		<td id="selected_proposals_final_tdp-breakthrough-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-breakthrough text-bold"><%%VALUE(breakthrough)%%></td>
-		<td id="selected_proposals_final_tdp-project_title-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-project_title text-bold"><%%VALUE(project_title)%%></td>
-		<td id="selected_proposals_final_tdp-short_name-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-short_name text-bold"><%%VALUE(short_name)%%></td>
-		<td id="selected_proposals_final_tdp-duration_in_months-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-duration_in_months text-bold"><%%VALUE(duration_in_months)%%></td>
-		<td id="selected_proposals_final_tdp-name_of_pi-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-name_of_pi text-bold"><%%VALUE(name_of_pi)%%></td>
-		<td id="selected_proposals_final_tdp-mobile_number-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-mobile_number text-bold"><%%VALUE(mobile_number)%%></td>
-		<td id="selected_proposals_final_tdp-institute-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-institute text-bold"><%%VALUE(institute)%%></td>
-		<td id="selected_proposals_final_tdp-stage_1-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-stage_1 text-bold"><%%VALUE(stage_1)%%></td>
-		<td id="selected_proposals_final_tdp-stage_2-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-stage_2 text-bold"><%%VALUE(stage_2)%%></td>
-		<td id="selected_proposals_final_tdp-stage_3-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-stage_3 text-bold"><%%VALUE(stage_3)%%></td>
-		<td id="selected_proposals_final_tdp-stage_4-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-stage_4 text-bold"><%%VALUE(stage_4)%%></td>
-		<td id="selected_proposals_final_tdp-total_budget_specified-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-total_budget_specified text-bold"><%%VALUE(total_budget_specified)%%></td>
-		<td id="selected_proposals_final_tdp-one_slide_ppt_link-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-one_slide_ppt_link text-bold"><%%VALUE(one_slide_ppt_link)%%></td>
-		<td id="selected_proposals_final_tdp-proposal_link-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-proposal_link text-bold"><%%VALUE(proposal_link)%%></td>
-		<td id="selected_proposals_final_tdp-existing_trl-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-existing_trl text-bold"><%%VALUE(existing_trl)%%></td>
-		<td id="selected_proposals_final_tdp-expected_trl-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-expected_trl text-bold"><%%VALUE(expected_trl)%%></td>
-		<td id="selected_proposals_final_tdp-created_by-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-created_by text-bold"><%%VALUE(created_by)%%></td>
-		<td id="selected_proposals_final_tdp-created_at-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-created_at text-bold"><%%VALUE(created_at)%%></td>
-		<td id="selected_proposals_final_tdp-last_updated_by-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
-		<td id="selected_proposals_final_tdp-last_updated_at-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>
+					<dt class="selected_proposals_final_tdp-breakthrough-caption field-caption-tv">Breakthrough / Novel</dt>
+					<dd id="selected_proposals_final_tdp-breakthrough-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-breakthrough text-bold"><%%VALUE(breakthrough)%%></dd>
+
+					<dt class="selected_proposals_final_tdp-project_title-caption field-caption-tv">Project title</dt>
+					<dd id="selected_proposals_final_tdp-project_title-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-project_title text-bold"><%%VALUE(project_title)%%></dd>
+
+					<dt class="selected_proposals_final_tdp-short_name-caption field-caption-tv">Short name</dt>
+					<dd id="selected_proposals_final_tdp-short_name-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-short_name text-bold"><%%VALUE(short_name)%%></dd>
+
+					<dt class="selected_proposals_final_tdp-duration_in_months-caption field-caption-tv">Duration in months</dt>
+					<dd id="selected_proposals_final_tdp-duration_in_months-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-duration_in_months text-bold"><%%VALUE(duration_in_months)%%></dd>
+
+					<dt class="selected_proposals_final_tdp-name_of_pi-caption field-caption-tv">Name of PI</dt>
+					<dd id="selected_proposals_final_tdp-name_of_pi-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-name_of_pi text-bold"><%%VALUE(name_of_pi)%%></dd>
+
+					<dt class="selected_proposals_final_tdp-mobile_number-caption field-caption-tv">Mobile number</dt>
+					<dd id="selected_proposals_final_tdp-mobile_number-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-mobile_number text-bold"><%%VALUE(mobile_number)%%></dd>
+
+					<dt class="selected_proposals_final_tdp-institute-caption field-caption-tv">Institute</dt>
+					<dd id="selected_proposals_final_tdp-institute-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-institute text-bold"><%%VALUE(institute)%%></dd>
+
+					<dt class="selected_proposals_final_tdp-stage_1-caption field-caption-tv">Stage 1 in Rs.</dt>
+					<dd id="selected_proposals_final_tdp-stage_1-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-stage_1 text-bold"><%%VALUE(stage_1)%%></dd>
+
+					<dt class="selected_proposals_final_tdp-stage_2-caption field-caption-tv">Stage 2 in Rs.</dt>
+					<dd id="selected_proposals_final_tdp-stage_2-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-stage_2 text-bold"><%%VALUE(stage_2)%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="selected_proposals_final_tdp-stage_3-caption field-caption-tv">Stage 3 in Rs.</dt>
+					<dd id="selected_proposals_final_tdp-stage_3-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-stage_3 text-bold"><%%VALUE(stage_3)%%></dd>
+
+					<dt class="selected_proposals_final_tdp-stage_4-caption field-caption-tv">Stage 4 in Rs.</dt>
+					<dd id="selected_proposals_final_tdp-stage_4-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-stage_4 text-bold"><%%VALUE(stage_4)%%></dd>
+
+					<dt class="selected_proposals_final_tdp-total_budget_specified-caption field-caption-tv">Total budget specified in Rs.</dt>
+					<dd id="selected_proposals_final_tdp-total_budget_specified-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-total_budget_specified text-bold"><%%VALUE(total_budget_specified)%%></dd>
+
+					<dt class="selected_proposals_final_tdp-one_slide_ppt_link-caption field-caption-tv">One slide PPT link</dt>
+					<dd id="selected_proposals_final_tdp-one_slide_ppt_link-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-one_slide_ppt_link text-bold"><%%VALUE(one_slide_ppt_link)%%></dd>
+
+					<dt class="selected_proposals_final_tdp-proposal_link-caption field-caption-tv">Proposal link</dt>
+					<dd id="selected_proposals_final_tdp-proposal_link-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-proposal_link text-bold"><%%VALUE(proposal_link)%%></dd>
+
+					<dt class="selected_proposals_final_tdp-existing_trl-caption field-caption-tv">Existing TRL</dt>
+					<dd id="selected_proposals_final_tdp-existing_trl-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-existing_trl text-bold"><%%VALUE(existing_trl)%%></dd>
+
+					<dt class="selected_proposals_final_tdp-expected_trl-caption field-caption-tv">Expected TRL</dt>
+					<dd id="selected_proposals_final_tdp-expected_trl-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-expected_trl text-bold"><%%VALUE(expected_trl)%%></dd>
+
+					<dt class="selected_proposals_final_tdp-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="selected_proposals_final_tdp-created_by-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-created_by text-bold"><%%VALUE(created_by)%%></dd>
+
+					<dt class="selected_proposals_final_tdp-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="selected_proposals_final_tdp-created_at-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-created_at text-bold"><%%VALUE(created_at)%%></dd>
+
+					<dt class="selected_proposals_final_tdp-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="selected_proposals_final_tdp-last_updated_by-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></dd>
+
+					<dt class="selected_proposals_final_tdp-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="selected_proposals_final_tdp-last_updated_at-<%%VALUE(selected_proposals_id)%%>" class="selected_proposals_final_tdp-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></dd>
+
+				</dl>
+			</div>
+		</td>

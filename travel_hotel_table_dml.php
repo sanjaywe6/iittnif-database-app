@@ -245,7 +245,7 @@ function travel_hotel_table_form($selectedId = '', $allowUpdate = true, $allowIn
 		// initial lookup values
 		AppGini.current_travel_details__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['travel_details'] : htmlspecialchars($filterer_travel_details, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(travel_details_reload__RAND__) == 'function') travel_details_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
@@ -412,21 +412,21 @@ function travel_hotel_table_form($selectedId = '', $allowUpdate = true, $allowIn
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#hotel_name').replaceWith('<div class=\"form-control-static\" id=\"hotel_name\">' + (jQuery('#hotel_name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#destination_city').replaceWith('<div class=\"form-control-static\" id=\"destination_city\">' + (jQuery('#destination_city').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#checkin_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#checkin_dateDay, #checkin_dateMonth, #checkin_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#checkout_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#checkout_dateDay, #checkout_dateMonth, #checkout_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#room_preferance').replaceWith('<div class=\"form-control-static\" id=\"room_preferance\">' + (jQuery('#room_preferance').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#remarks').replaceWith('<div class=\"form-control-static\" id=\"remarks\">' + (jQuery('#remarks').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#hotel_name').replaceWith('<div class=\"form-control-static\" id=\"hotel_name\">' + (\$j('#hotel_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#destination_city').replaceWith('<div class=\"form-control-static\" id=\"destination_city\">' + (\$j('#destination_city').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#checkin_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#checkin_dateDay, #checkin_dateMonth, #checkin_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#checkout_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#checkout_dateDay, #checkout_dateMonth, #checkout_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#room_preferance').replaceWith('<div class=\"form-control-static\" id=\"room_preferance\">' + (\$j('#room_preferance').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#remarks').replaceWith('<div class=\"form-control-static\" id=\"remarks\">' + (\$j('#remarks').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

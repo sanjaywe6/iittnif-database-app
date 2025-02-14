@@ -277,6 +277,7 @@
 				}
 			});
 
+			payment_track_details_tableUniqueFields.forEach(fieldName => enforce_uniqueness('payment_track_details_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -290,4 +291,7 @@
 				);
 			}
 		});
+
+		var payment_track_details_tableUniqueFields = [
+		];
 	</script>

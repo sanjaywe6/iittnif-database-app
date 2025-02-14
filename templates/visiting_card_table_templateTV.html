@@ -1,23 +1,58 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="16" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="visiting_card_table-visiting_card_id-caption field-caption-tv">ID</dt>
+					<dd id="visiting_card_table-visiting_card_id-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-visiting_card_id text-right"><%%SELECT%%><%%VALUE(visiting_card_id)%%><%%ENDSELECT%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the visiting_card_table_init() hook (in hooks/visiting_card_table.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="visiting_card_table-name-caption field-caption-tv">Name</dt>
+					<dd id="visiting_card_table-name-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-name"><%%SELECT%%><%%VALUE(name)%%><%%ENDSELECT%%></dd>
 
-		<td id="visiting_card_table-visiting_card_id-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-visiting_card_id text-right"><%%SELECT%%><%%VALUE(visiting_card_id)%%><%%ENDSELECT%%></td>
-		<td id="visiting_card_table-name-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-name"><%%SELECT%%><%%VALUE(name)%%><%%ENDSELECT%%></td>
-		<td id="visiting_card_table-recommended_by-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-recommended_by"><%%SELECT%%><%%VALUE(recommended_by)%%><%%ENDSELECT%%></td>
-		<td id="visiting_card_table-designation-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-designation"><%%SELECT%%><%%VALUE(designation)%%><%%ENDSELECT%%></td>
-		<td id="visiting_card_table-company_name-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-company_name"><%%SELECT%%><%%VALUE(company_name)%%><%%ENDSELECT%%></td>
-		<td id="visiting_card_table-mobile_no-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-mobile_no"><%%SELECT%%><%%VALUE(mobile_no)%%><%%ENDSELECT%%></td>
-		<td id="visiting_card_table-email-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-email"><a href="mailto:<%%VALUE(email)%%>" title="<%%VALUE(email)%%>" class="btn btn-default"><i class="glyphicon glyphicon-envelope text-info"></i></a></td>
-		<td id="visiting_card_table-company_website_addr-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-company_website_addr"><%%SELECT%%><%%VALUE(company_website_addr)%%><%%ENDSELECT%%></td>
-		<td id="visiting_card_table-given_by-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-given_by"><%%SELECT%%><%%VALUE(given_by)%%><%%ENDSELECT%%></td>
-		<td id="visiting_card_table-suggested_way_forward-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-suggested_way_forward"><%%SELECT%%><%%VALUE(suggested_way_forward)%%><%%ENDSELECT%%></td>
-		<td id="visiting_card_table-front_img-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-front_img"><%%SELECT%%><img src="thumbnail.php?i=<%%VALUE(front_img)%%>&t=visiting_card_table&f=front_img&v=tv" class="img-thumbnail"><%%ENDSELECT%%></td>
-		<td id="visiting_card_table-back_img-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-back_img"><%%SELECT%%><img src="thumbnail.php?i=<%%VALUE(back_img)%%>&t=visiting_card_table&f=back_img&v=tv" class="img-thumbnail"><%%ENDSELECT%%></td>
-		<td id="visiting_card_table-created_by-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
-		<td id="visiting_card_table-created_at-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
-		<td id="visiting_card_table-last_updated_by-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>
-		<td id="visiting_card_table-last_updated_at-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>
+					<dt class="visiting_card_table-recommended_by-caption field-caption-tv">Recommended by</dt>
+					<dd id="visiting_card_table-recommended_by-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-recommended_by"><%%SELECT%%><%%VALUE(recommended_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="visiting_card_table-designation-caption field-caption-tv">Designation</dt>
+					<dd id="visiting_card_table-designation-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-designation"><%%SELECT%%><%%VALUE(designation)%%><%%ENDSELECT%%></dd>
+
+					<dt class="visiting_card_table-company_name-caption field-caption-tv">Company name</dt>
+					<dd id="visiting_card_table-company_name-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-company_name"><%%SELECT%%><%%VALUE(company_name)%%><%%ENDSELECT%%></dd>
+
+					<dt class="visiting_card_table-mobile_no-caption field-caption-tv">Mobile no</dt>
+					<dd id="visiting_card_table-mobile_no-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-mobile_no"><%%SELECT%%><%%VALUE(mobile_no)%%><%%ENDSELECT%%></dd>
+
+					<dt class="visiting_card_table-email-caption field-caption-tv">Email</dt>
+					<dd id="visiting_card_table-email-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-email"><a href="mailto:<%%VALUE(email)%%>" title="<%%VALUE(email)%%>" class="btn btn-default"><i class="glyphicon glyphicon-envelope text-info"></i></a></dd>
+
+					<dt class="visiting_card_table-company_website_addr-caption field-caption-tv">Company website address</dt>
+					<dd id="visiting_card_table-company_website_addr-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-company_website_addr"><%%SELECT%%><%%VALUE(company_website_addr)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="visiting_card_table-given_by-caption field-caption-tv">Given by</dt>
+					<dd id="visiting_card_table-given_by-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-given_by"><%%SELECT%%><%%VALUE(given_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="visiting_card_table-suggested_way_forward-caption field-caption-tv">Suggested way forward</dt>
+					<dd id="visiting_card_table-suggested_way_forward-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-suggested_way_forward"><%%SELECT%%><%%VALUE(suggested_way_forward)%%><%%ENDSELECT%%></dd>
+
+					<dt class="visiting_card_table-front_img-caption field-caption-tv">Front img</dt>
+					<dd id="visiting_card_table-front_img-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-front_img"><%%SELECT%%><img src="thumbnail.php?i=<%%VALUE(front_img)%%>&t=visiting_card_table&f=front_img&v=tv" class="img-thumbnail"><%%ENDSELECT%%></dd>
+
+					<dt class="visiting_card_table-back_img-caption field-caption-tv">Back img</dt>
+					<dd id="visiting_card_table-back_img-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-back_img"><%%SELECT%%><img src="thumbnail.php?i=<%%VALUE(back_img)%%>&t=visiting_card_table&f=back_img&v=tv" class="img-thumbnail"><%%ENDSELECT%%></dd>
+
+					<dt class="visiting_card_table-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="visiting_card_table-created_by-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="visiting_card_table-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="visiting_card_table-created_at-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="visiting_card_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="visiting_card_table-last_updated_by-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="visiting_card_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="visiting_card_table-last_updated_at-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+		</td>

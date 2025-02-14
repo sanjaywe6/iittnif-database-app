@@ -206,6 +206,7 @@
 				}
 			});
 
+			email_id_allocation_tableUniqueFields.forEach(fieldName => enforce_uniqueness('email_id_allocation_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -219,4 +220,7 @@
 				);
 			}
 		});
+
+		var email_id_allocation_tableUniqueFields = [
+		];
 	</script>

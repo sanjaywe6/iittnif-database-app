@@ -85,8 +85,8 @@ function evaluation_table_delete($selected_id, $AllowDeleteOfParents = false, $s
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'evaluators_table'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'evaluation_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'evaluation_table_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `evaluation_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `evaluation_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -271,7 +271,7 @@ function evaluation_table_form($selectedId = '', $allowUpdate = true, $allowInse
 		// initial lookup values
 		AppGini.current_select_startup__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['select_startup'] : htmlspecialchars($filterer_select_startup, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(select_startup_reload__RAND__) == 'function') select_startup_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
@@ -438,19 +438,19 @@ function evaluation_table_form($selectedId = '', $allowUpdate = true, $allowInse
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#result').replaceWith('<div class=\"form-control-static\" id=\"result\">' + (jQuery('#result').val() || '') + '</div>'); jQuery('#result-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#select_startup').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#select_startup_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\tjQuery('#recommendation').replaceWith('<div class=\"form-control-static\" id=\"recommendation\">' + (jQuery('#recommendation').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#marks').replaceWith('<div class=\"form-control-static\" id=\"marks\">' + (jQuery('#marks').val() || '') + '</div>'); jQuery('#marks-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#reason_for_not_recommending').replaceWith('<div class=\"form-control-static\" id=\"reason_for_not_recommending\">' + (jQuery('#reason_for_not_recommending').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#result').replaceWith('<div class=\"form-control-static\" id=\"result\">' + (\$j('#result').val() || '') + '</div>'); \$j('#result-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#select_startup').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#select_startup_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('#recommendation').replaceWith('<div class=\"form-control-static\" id=\"recommendation\">' + (\$j('#recommendation').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#marks').replaceWith('<div class=\"form-control-static\" id=\"marks\">' + (\$j('#marks').val() || '') + '</div>'); \$j('#marks-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#reason_for_not_recommending').replaceWith('<div class=\"form-control-static\" id=\"reason_for_not_recommending\">' + (\$j('#reason_for_not_recommending').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

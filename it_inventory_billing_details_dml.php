@@ -286,7 +286,7 @@ function it_inventory_billing_details_form($selectedId = '', $allowUpdate = true
 		// initial lookup values
 		AppGini.current_it_inventory_lookup__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['it_inventory_lookup'] : htmlspecialchars($filterer_it_inventory_lookup, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(it_inventory_lookup_reload__RAND__) == 'function') it_inventory_lookup_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
@@ -453,25 +453,25 @@ function it_inventory_billing_details_form($selectedId = '', $allowUpdate = true
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#po_no').replaceWith('<div class=\"form-control-static\" id=\"po_no\">' + (jQuery('#po_no').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#po_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#po_dateDay, #po_dateMonth, #po_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#particulars_of_supplier').replaceWith('<div class=\"form-control-static\" id=\"particulars_of_supplier\">' + (jQuery('#particulars_of_supplier').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#item_description').replaceWith('<div class=\"form-control-static\" id=\"item_description\">' + (jQuery('#item_description').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#bill_no').replaceWith('<div class=\"form-control-static\" id=\"bill_no\">' + (jQuery('#bill_no').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#bill_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#bill_dateDay, #bill_dateMonth, #bill_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#quantity').replaceWith('<div class=\"form-control-static\" id=\"quantity\">' + (jQuery('#quantity').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#total_invoice_value').replaceWith('<div class=\"form-control-static\" id=\"total_invoice_value\">' + (jQuery('#total_invoice_value').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#cost_of_the_asset').replaceWith('<div class=\"form-control-static\" id=\"cost_of_the_asset\">' + (jQuery('#cost_of_the_asset').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#image').replaceWith('<div class=\"form-control-static\" id=\"image\">' + (jQuery('#image').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#po_no').replaceWith('<div class=\"form-control-static\" id=\"po_no\">' + (\$j('#po_no').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#po_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#po_dateDay, #po_dateMonth, #po_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#particulars_of_supplier').replaceWith('<div class=\"form-control-static\" id=\"particulars_of_supplier\">' + (\$j('#particulars_of_supplier').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#item_description').replaceWith('<div class=\"form-control-static\" id=\"item_description\">' + (\$j('#item_description').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#bill_no').replaceWith('<div class=\"form-control-static\" id=\"bill_no\">' + (\$j('#bill_no').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#bill_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#bill_dateDay, #bill_dateMonth, #bill_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#quantity').replaceWith('<div class=\"form-control-static\" id=\"quantity\">' + (\$j('#quantity').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#total_invoice_value').replaceWith('<div class=\"form-control-static\" id=\"total_invoice_value\">' + (\$j('#total_invoice_value').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#cost_of_the_asset').replaceWith('<div class=\"form-control-static\" id=\"cost_of_the_asset\">' + (\$j('#cost_of_the_asset').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#image').replaceWith('<div class=\"form-control-static\" id=\"image\">' + (\$j('#image').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

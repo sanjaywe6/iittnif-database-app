@@ -217,7 +217,7 @@ function address_tdp_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 		// initial lookup values
 		AppGini.current_project_id__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['project_id'] : htmlspecialchars($filterer_project_id, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(project_id_reload__RAND__) == 'function') project_id_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
@@ -384,20 +384,20 @@ function address_tdp_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#project_id').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#project_id_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\tjQuery('#project_title').replaceWith('<div class=\"form-control-static\" id=\"project_title\">' + (jQuery('#project_title').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#short_name').replaceWith('<div class=\"form-control-static\" id=\"short_name\">' + (jQuery('#short_name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#pincode').replaceWith('<div class=\"form-control-static\" id=\"pincode\">' + (jQuery('#pincode').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#lattitude').replaceWith('<div class=\"form-control-static\" id=\"lattitude\">' + (jQuery('#lattitude').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#longitude').replaceWith('<div class=\"form-control-static\" id=\"longitude\">' + (jQuery('#longitude').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#project_id').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#project_id_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('#project_title').replaceWith('<div class=\"form-control-static\" id=\"project_title\">' + (\$j('#project_title').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#short_name').replaceWith('<div class=\"form-control-static\" id=\"short_name\">' + (\$j('#short_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#pincode').replaceWith('<div class=\"form-control-static\" id=\"pincode\">' + (\$j('#pincode').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#lattitude').replaceWith('<div class=\"form-control-static\" id=\"lattitude\">' + (\$j('#lattitude').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#longitude').replaceWith('<div class=\"form-control-static\" id=\"longitude\">' + (\$j('#longitude').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

@@ -1,19 +1,46 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="12" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="project_details_tdp-id-caption field-caption-tv">ID</dt>
+					<dd id="project_details_tdp-id-<%%VALUE(id)%%>" class="project_details_tdp-id text-right text-bold"><%%VALUE(id)%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the project_details_tdp_init() hook (in hooks/project_details_tdp.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="project_details_tdp-project_number-caption field-caption-tv">Project number</dt>
+					<dd id="project_details_tdp-project_number-<%%VALUE(id)%%>" class="project_details_tdp-project_number text-bold"><%%VALUE(project_number)%%></dd>
 
-		<td id="project_details_tdp-id-<%%VALUE(id)%%>" class="project_details_tdp-id text-right text-bold"><%%VALUE(id)%%></td>
-		<td id="project_details_tdp-project_number-<%%VALUE(id)%%>" class="project_details_tdp-project_number text-bold"><%%VALUE(project_number)%%></td>
-		<td id="project_details_tdp-stage_1-<%%VALUE(id)%%>" class="project_details_tdp-stage_1 text-bold"><%%VALUE(stage_1)%%></td>
-		<td id="project_details_tdp-stage_2-<%%VALUE(id)%%>" class="project_details_tdp-stage_2 text-bold"><%%VALUE(stage_2)%%></td>
-		<td id="project_details_tdp-stage_3-<%%VALUE(id)%%>" class="project_details_tdp-stage_3 text-bold"><%%VALUE(stage_3)%%></td>
-		<td id="project_details_tdp-stage_4-<%%VALUE(id)%%>" class="project_details_tdp-stage_4 text-bold"><%%VALUE(stage_4)%%></td>
-		<td id="project_details_tdp-total-<%%VALUE(id)%%>" class="project_details_tdp-total text-bold"><%%VALUE(total)%%></td>
-		<td id="project_details_tdp-details-<%%VALUE(id)%%>" class="project_details_tdp-details text-bold"><%%VALUE(details)%%></td>
-		<td id="project_details_tdp-created_by-<%%VALUE(id)%%>" class="project_details_tdp-created_by text-bold"><%%VALUE(created_by)%%></td>
-		<td id="project_details_tdp-created_at-<%%VALUE(id)%%>" class="project_details_tdp-created_at text-bold"><%%VALUE(created_at)%%></td>
-		<td id="project_details_tdp-last_updated_by-<%%VALUE(id)%%>" class="project_details_tdp-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
-		<td id="project_details_tdp-last_updated_at-<%%VALUE(id)%%>" class="project_details_tdp-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>
+					<dt class="project_details_tdp-stage_1-caption field-caption-tv">Stage 1st (12 Months)</dt>
+					<dd id="project_details_tdp-stage_1-<%%VALUE(id)%%>" class="project_details_tdp-stage_1 text-bold"><%%VALUE(stage_1)%%></dd>
+
+					<dt class="project_details_tdp-stage_2-caption field-caption-tv">Stage 2nd (12 Months)</dt>
+					<dd id="project_details_tdp-stage_2-<%%VALUE(id)%%>" class="project_details_tdp-stage_2 text-bold"><%%VALUE(stage_2)%%></dd>
+
+					<dt class="project_details_tdp-stage_3-caption field-caption-tv">Stage 3rd (12 Months)</dt>
+					<dd id="project_details_tdp-stage_3-<%%VALUE(id)%%>" class="project_details_tdp-stage_3 text-bold"><%%VALUE(stage_3)%%></dd>
+
+					<dt class="project_details_tdp-stage_4-caption field-caption-tv">Stage 4th (12 Months)</dt>
+					<dd id="project_details_tdp-stage_4-<%%VALUE(id)%%>" class="project_details_tdp-stage_4 text-bold"><%%VALUE(stage_4)%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="project_details_tdp-total-caption field-caption-tv">Total in Rs.</dt>
+					<dd id="project_details_tdp-total-<%%VALUE(id)%%>" class="project_details_tdp-total text-bold"><%%VALUE(total)%%></dd>
+
+					<dt class="project_details_tdp-details-caption field-caption-tv">Details</dt>
+					<dd id="project_details_tdp-details-<%%VALUE(id)%%>" class="project_details_tdp-details text-bold"><%%VALUE(details)%%></dd>
+
+					<dt class="project_details_tdp-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="project_details_tdp-created_by-<%%VALUE(id)%%>" class="project_details_tdp-created_by text-bold"><%%VALUE(created_by)%%></dd>
+
+					<dt class="project_details_tdp-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="project_details_tdp-created_at-<%%VALUE(id)%%>" class="project_details_tdp-created_at text-bold"><%%VALUE(created_at)%%></dd>
+
+					<dt class="project_details_tdp-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="project_details_tdp-last_updated_by-<%%VALUE(id)%%>" class="project_details_tdp-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></dd>
+
+					<dt class="project_details_tdp-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="project_details_tdp-last_updated_at-<%%VALUE(id)%%>" class="project_details_tdp-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></dd>
+
+				</dl>
+			</div>
+		</td>

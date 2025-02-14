@@ -284,7 +284,7 @@ function vikas_startup_applications_table_form($selectedId = '', $allowUpdate = 
 	<script>
 		// initial lookup values
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
@@ -373,38 +373,37 @@ function vikas_startup_applications_table_form($selectedId = '', $allowUpdate = 
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#startup_name').replaceWith('<div class=\"form-control-static\" id=\"startup_name\">' + (jQuery('#startup_name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#email').replaceWith('<div class=\"form-control-static\" id=\"email\">' + (jQuery('#email').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#email, #email-edit-link').hide();\n";
-		$jsReadOnly .= "\tjQuery('#incorporation_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#incorporation_dateDay, #incorporation_dateMonth, #incorporation_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#website_url').replaceWith('<div class=\"form-control-static\" id=\"website_url\">' + (jQuery('#website_url').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#physical_address').replaceWith('<div class=\"form-control-static\" id=\"physical_address\">' + (jQuery('#physical_address').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#primary_contact_name').replaceWith('<div class=\"form-control-static\" id=\"primary_contact_name\">' + (jQuery('#primary_contact_name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#email_1').replaceWith('<div class=\"form-control-static\" id=\"email_1\">' + (jQuery('#email_1').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#mobile_number').replaceWith('<div class=\"form-control-static\" id=\"mobile_number\">' + (jQuery('#mobile_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#name_of_founders').replaceWith('<div class=\"form-control-static\" id=\"name_of_founders\">' + (jQuery('#name_of_founders').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#number_of_founders').replaceWith('<div class=\"form-control-static\" id=\"number_of_founders\">' + (jQuery('#number_of_founders').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#email_of_founders').replaceWith('<div class=\"form-control-static\" id=\"email_of_founders\">' + (jQuery('#email_of_founders').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#business_sector').replaceWith('<div class=\"form-control-static\" id=\"business_sector\">' + (jQuery('#business_sector').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#number_of_employees').replaceWith('<div class=\"form-control-static\" id=\"number_of_employees\">' + (jQuery('#number_of_employees').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#brief_description_of_service').replaceWith('<div class=\"form-control-static\" id=\"brief_description_of_service\">' + (jQuery('#brief_description_of_service').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#mode_of_incubation').replaceWith('<div class=\"form-control-static\" id=\"mode_of_incubation\">' + (jQuery('#mode_of_incubation').val() || '') + '</div>'); jQuery('#mode_of_incubation-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#type_of_workspace_desired').replaceWith('<div class=\"form-control-static\" id=\"type_of_workspace_desired\">' + (jQuery('#type_of_workspace_desired').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#key_areas_of_support').replaceWith('<div class=\"form-control-static\" id=\"key_areas_of_support\">' + (jQuery('#key_areas_of_support').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#declaration_form_link').replaceWith('<div class=\"form-control-static\" id=\"declaration_form_link\">' + (jQuery('#declaration_form_link').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#is_your_start_up_dpiit_registered').replaceWith('<div class=\"form-control-static\" id=\"is_your_start_up_dpiit_registered\">' + (jQuery('#is_your_start_up_dpiit_registered').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#incubation_status').replaceWith('<div class=\"form-control-static\" id=\"incubation_status\">' + (jQuery('#incubation_status').val() || '') + '</div>'); jQuery('#incubation_status-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#datetime').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"datetime\">' + (jQuery('#datetime').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#startup_name').replaceWith('<div class=\"form-control-static\" id=\"startup_name\">' + (\$j('#startup_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#email').parent().replaceWith(`<div class=\"form-control-static\" id=\"email\">\${\$j('#email').val() || ''}\${\$j('#email').val() ? '<a target=\"_blank\" class=\"hspacer-lg\" href=\"mailto:' + \$j('#email').val() + '\" target=\"_blank\"><i class=\"glyphicon glyphicon-envelope\"></i></a>' : ''}</div>`);\n";
+		$jsReadOnly .= "\t\$j('#incorporation_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#incorporation_dateDay, #incorporation_dateMonth, #incorporation_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#website_url').replaceWith('<div class=\"form-control-static\" id=\"website_url\">' + (\$j('#website_url').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#physical_address').replaceWith('<div class=\"form-control-static\" id=\"physical_address\">' + (\$j('#physical_address').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#primary_contact_name').replaceWith('<div class=\"form-control-static\" id=\"primary_contact_name\">' + (\$j('#primary_contact_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#email_1').replaceWith('<div class=\"form-control-static\" id=\"email_1\">' + (\$j('#email_1').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#mobile_number').replaceWith('<div class=\"form-control-static\" id=\"mobile_number\">' + (\$j('#mobile_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#name_of_founders').replaceWith('<div class=\"form-control-static\" id=\"name_of_founders\">' + (\$j('#name_of_founders').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#number_of_founders').replaceWith('<div class=\"form-control-static\" id=\"number_of_founders\">' + (\$j('#number_of_founders').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#email_of_founders').replaceWith('<div class=\"form-control-static\" id=\"email_of_founders\">' + (\$j('#email_of_founders').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#business_sector').replaceWith('<div class=\"form-control-static\" id=\"business_sector\">' + (\$j('#business_sector').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#number_of_employees').replaceWith('<div class=\"form-control-static\" id=\"number_of_employees\">' + (\$j('#number_of_employees').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#brief_description_of_service').replaceWith('<div class=\"form-control-static\" id=\"brief_description_of_service\">' + (\$j('#brief_description_of_service').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#mode_of_incubation').replaceWith('<div class=\"form-control-static\" id=\"mode_of_incubation\">' + (\$j('#mode_of_incubation').val() || '') + '</div>'); \$j('#mode_of_incubation-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#type_of_workspace_desired').replaceWith('<div class=\"form-control-static\" id=\"type_of_workspace_desired\">' + (\$j('#type_of_workspace_desired').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#key_areas_of_support').replaceWith('<div class=\"form-control-static\" id=\"key_areas_of_support\">' + (\$j('#key_areas_of_support').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#declaration_form_link').replaceWith('<div class=\"form-control-static\" id=\"declaration_form_link\">' + (\$j('#declaration_form_link').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#is_your_start_up_dpiit_registered').replaceWith('<div class=\"form-control-static\" id=\"is_your_start_up_dpiit_registered\">' + (\$j('#is_your_start_up_dpiit_registered').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#incubation_status').replaceWith('<div class=\"form-control-static\" id=\"incubation_status\">' + (\$j('#incubation_status').val() || '') + '</div>'); \$j('#incubation_status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#datetime').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"datetime\">' + (\$j('#datetime').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
 		$locale = isset($Translation['datetimepicker locale']) ? ", locale: '{$Translation['datetimepicker locale']}'" : '';
-		$jsEditable .= "\tjQuery('#datetime').addClass('always_shown').parents('.input-group').datetimepicker({ toolbarPlacement: 'top', sideBySide: true, showClear: true, showTodayButton: true, showClose: true, icons: { close: 'glyphicon glyphicon-ok' }, format: AppGini.datetimeFormat('dt') {$locale} });";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable .= "\t\$j('#datetime').addClass('always_shown').parents('.input-group').datetimepicker({ toolbarPlacement: 'top', sideBySide: true, showClear: true, showTodayButton: true, showClose: true, icons: { close: 'glyphicon glyphicon-ok' }, format: AppGini.datetimeFormat('dt') {$locale} });";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos
@@ -609,8 +608,6 @@ function vikas_startup_applications_table_form($selectedId = '', $allowUpdate = 
 		$templateCode .= $jsEditable;
 
 		if(!$hasSelectedId) {
-			$templateCode.="\n\tif(document.getElementById('emailEdit')) { document.getElementById('emailEdit').style.display='inline'; }";
-			$templateCode.="\n\tif(document.getElementById('emailEditLink')) { document.getElementById('emailEditLink').style.display='none'; }";
 		}
 
 		$templateCode.="\n});</script>\n";

@@ -224,6 +224,7 @@
 				}
 			});
 
+			hrd_sdp_events_tableUniqueFields.forEach(fieldName => enforce_uniqueness('hrd_sdp_events_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -237,4 +238,7 @@
 				);
 			}
 		});
+
+		var hrd_sdp_events_tableUniqueFields = [
+		];
 	</script>

@@ -1,22 +1,55 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="15" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="travel_cab_table-id-caption field-caption-tv">ID</dt>
+					<dd id="travel_cab_table-id-<%%VALUE(id)%%>" class="travel_cab_table-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the travel_cab_table_init() hook (in hooks/travel_cab_table.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="travel_cab_table-travel_details-caption field-caption-tv">Travel details</dt>
+					<dd id="travel_cab_table-travel_details-<%%VALUE(id)%%>" class="travel_cab_table-travel_details"><%%SELECT%%><%%VALUE(travel_details)%%><%%ENDSELECT%%></dd>
 
-		<td id="travel_cab_table-id-<%%VALUE(id)%%>" class="travel_cab_table-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></td>
-		<td id="travel_cab_table-travel_details-<%%VALUE(id)%%>" class="travel_cab_table-travel_details"><%%SELECT%%><%%VALUE(travel_details)%%><%%ENDSELECT%%></td>
-		<td id="travel_cab_table-date-<%%VALUE(id)%%>" class="travel_cab_table-date"><%%SELECT%%><%%VALUE(date)%%><%%ENDSELECT%%></td>
-		<td id="travel_cab_table-from-<%%VALUE(id)%%>" class="travel_cab_table-from"><%%SELECT%%><%%VALUE(from)%%><%%ENDSELECT%%></td>
-		<td id="travel_cab_table-to-<%%VALUE(id)%%>" class="travel_cab_table-to"><%%SELECT%%><%%VALUE(to)%%><%%ENDSELECT%%></td>
-		<td id="travel_cab_table-vendor_name-<%%VALUE(id)%%>" class="travel_cab_table-vendor_name"><%%SELECT%%><%%VALUE(vendor_name)%%><%%ENDSELECT%%></td>
-		<td id="travel_cab_table-vendor_contact_number-<%%VALUE(id)%%>" class="travel_cab_table-vendor_contact_number"><%%SELECT%%><%%VALUE(vendor_contact_number)%%><%%ENDSELECT%%></td>
-		<td id="travel_cab_table-driver_contact_number-<%%VALUE(id)%%>" class="travel_cab_table-driver_contact_number"><%%SELECT%%><%%VALUE(driver_contact_number)%%><%%ENDSELECT%%></td>
-		<td id="travel_cab_table-driver_name-<%%VALUE(id)%%>" class="travel_cab_table-driver_name"><%%SELECT%%><%%VALUE(driver_name)%%><%%ENDSELECT%%></td>
-		<td id="travel_cab_table-payment_status-<%%VALUE(id)%%>" class="travel_cab_table-payment_status"><%%SELECT%%><%%VALUE(payment_status)%%><%%ENDSELECT%%></td>
-		<td id="travel_cab_table-remarks-<%%VALUE(id)%%>" class="travel_cab_table-remarks"><%%SELECT%%><%%VALUE(remarks)%%><%%ENDSELECT%%></td>
-		<td id="travel_cab_table-created_by-<%%VALUE(id)%%>" class="travel_cab_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
-		<td id="travel_cab_table-created_at-<%%VALUE(id)%%>" class="travel_cab_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
-		<td id="travel_cab_table-last_updated_by-<%%VALUE(id)%%>" class="travel_cab_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>
-		<td id="travel_cab_table-last_updated_at-<%%VALUE(id)%%>" class="travel_cab_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>
+					<dt class="travel_cab_table-date-caption field-caption-tv">Date</dt>
+					<dd id="travel_cab_table-date-<%%VALUE(id)%%>" class="travel_cab_table-date"><%%SELECT%%><%%VALUE(date)%%><%%ENDSELECT%%></dd>
+
+					<dt class="travel_cab_table-from-caption field-caption-tv">From</dt>
+					<dd id="travel_cab_table-from-<%%VALUE(id)%%>" class="travel_cab_table-from"><%%SELECT%%><%%VALUE(from)%%><%%ENDSELECT%%></dd>
+
+					<dt class="travel_cab_table-to-caption field-caption-tv">To</dt>
+					<dd id="travel_cab_table-to-<%%VALUE(id)%%>" class="travel_cab_table-to"><%%SELECT%%><%%VALUE(to)%%><%%ENDSELECT%%></dd>
+
+					<dt class="travel_cab_table-vendor_name-caption field-caption-tv">Vendor name</dt>
+					<dd id="travel_cab_table-vendor_name-<%%VALUE(id)%%>" class="travel_cab_table-vendor_name"><%%SELECT%%><%%VALUE(vendor_name)%%><%%ENDSELECT%%></dd>
+
+					<dt class="travel_cab_table-vendor_contact_number-caption field-caption-tv">Vendor contact number</dt>
+					<dd id="travel_cab_table-vendor_contact_number-<%%VALUE(id)%%>" class="travel_cab_table-vendor_contact_number"><%%SELECT%%><%%VALUE(vendor_contact_number)%%><%%ENDSELECT%%></dd>
+
+					<dt class="travel_cab_table-driver_contact_number-caption field-caption-tv">Driver contact number</dt>
+					<dd id="travel_cab_table-driver_contact_number-<%%VALUE(id)%%>" class="travel_cab_table-driver_contact_number"><%%SELECT%%><%%VALUE(driver_contact_number)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="travel_cab_table-driver_name-caption field-caption-tv">Driver name</dt>
+					<dd id="travel_cab_table-driver_name-<%%VALUE(id)%%>" class="travel_cab_table-driver_name"><%%SELECT%%><%%VALUE(driver_name)%%><%%ENDSELECT%%></dd>
+
+					<dt class="travel_cab_table-payment_status-caption field-caption-tv">Payment status</dt>
+					<dd id="travel_cab_table-payment_status-<%%VALUE(id)%%>" class="travel_cab_table-payment_status"><%%SELECT%%><%%VALUE(payment_status)%%><%%ENDSELECT%%></dd>
+
+					<dt class="travel_cab_table-remarks-caption field-caption-tv">Remarks</dt>
+					<dd id="travel_cab_table-remarks-<%%VALUE(id)%%>" class="travel_cab_table-remarks"><%%SELECT%%><%%VALUE(remarks)%%><%%ENDSELECT%%></dd>
+
+					<dt class="travel_cab_table-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="travel_cab_table-created_by-<%%VALUE(id)%%>" class="travel_cab_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="travel_cab_table-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="travel_cab_table-created_at-<%%VALUE(id)%%>" class="travel_cab_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="travel_cab_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="travel_cab_table-last_updated_by-<%%VALUE(id)%%>" class="travel_cab_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="travel_cab_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="travel_cab_table-last_updated_at-<%%VALUE(id)%%>" class="travel_cab_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+		</td>

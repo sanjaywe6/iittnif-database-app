@@ -233,6 +233,7 @@
 				}
 			});
 
+			shortlisted_startups_dd_and_agreement_tableUniqueFields.forEach(fieldName => enforce_uniqueness('shortlisted_startups_dd_and_agreement_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -246,4 +247,7 @@
 				);
 			}
 		});
+
+		var shortlisted_startups_dd_and_agreement_tableUniqueFields = [
+		];
 	</script>

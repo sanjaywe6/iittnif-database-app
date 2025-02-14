@@ -1,17 +1,40 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="10" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="evaluation_table-evaluation_id-caption field-caption-tv">ID</dt>
+					<dd id="evaluation_table-evaluation_id-<%%VALUE(evaluation_id)%%>" class="evaluation_table-evaluation_id text-right text-bold"><%%VALUE(evaluation_id)%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the evaluation_table_init() hook (in hooks/evaluation_table.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="evaluation_table-result-caption field-caption-tv">Result</dt>
+					<dd id="evaluation_table-result-<%%VALUE(evaluation_id)%%>" class="evaluation_table-result text-bold"><%%VALUE(result)%%></dd>
 
-		<td id="evaluation_table-evaluation_id-<%%VALUE(evaluation_id)%%>" class="evaluation_table-evaluation_id text-right text-bold"><%%VALUE(evaluation_id)%%></td>
-		<td id="evaluation_table-result-<%%VALUE(evaluation_id)%%>" class="evaluation_table-result text-bold"><%%VALUE(result)%%></td>
-		<td id="evaluation_table-select_startup-<%%VALUE(evaluation_id)%%>" class="evaluation_table-select_startup text-bold"><%%VALUE(select_startup)%%></td>
-		<td id="evaluation_table-recommendation-<%%VALUE(evaluation_id)%%>" class="evaluation_table-recommendation text-bold"><%%VALUE(recommendation)%%></td>
-		<td id="evaluation_table-marks-<%%VALUE(evaluation_id)%%>" class="evaluation_table-marks text-bold"><%%VALUE(marks)%%></td>
-		<td id="evaluation_table-reason_for_not_recommending-<%%VALUE(evaluation_id)%%>" class="evaluation_table-reason_for_not_recommending text-bold"><%%VALUE(reason_for_not_recommending)%%></td>
-		<td id="evaluation_table-created_by-<%%VALUE(evaluation_id)%%>" class="evaluation_table-created_by text-bold"><%%VALUE(created_by)%%></td>
-		<td id="evaluation_table-created_at-<%%VALUE(evaluation_id)%%>" class="evaluation_table-created_at text-bold"><%%VALUE(created_at)%%></td>
-		<td id="evaluation_table-last_updated_by-<%%VALUE(evaluation_id)%%>" class="evaluation_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
-		<td id="evaluation_table-last_updated_at-<%%VALUE(evaluation_id)%%>" class="evaluation_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>
+					<dt class="evaluation_table-select_startup-caption field-caption-tv">Select startup</dt>
+					<dd id="evaluation_table-select_startup-<%%VALUE(evaluation_id)%%>" class="evaluation_table-select_startup text-bold"><%%VALUE(select_startup)%%></dd>
+
+					<dt class="evaluation_table-recommendation-caption field-caption-tv">Recommendation</dt>
+					<dd id="evaluation_table-recommendation-<%%VALUE(evaluation_id)%%>" class="evaluation_table-recommendation text-bold"><%%VALUE(recommendation)%%></dd>
+
+					<dt class="evaluation_table-marks-caption field-caption-tv">Marks</dt>
+					<dd id="evaluation_table-marks-<%%VALUE(evaluation_id)%%>" class="evaluation_table-marks text-bold"><%%VALUE(marks)%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="evaluation_table-reason_for_not_recommending-caption field-caption-tv">Reason for not recommending</dt>
+					<dd id="evaluation_table-reason_for_not_recommending-<%%VALUE(evaluation_id)%%>" class="evaluation_table-reason_for_not_recommending text-bold"><%%VALUE(reason_for_not_recommending)%%></dd>
+
+					<dt class="evaluation_table-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="evaluation_table-created_by-<%%VALUE(evaluation_id)%%>" class="evaluation_table-created_by text-bold"><%%VALUE(created_by)%%></dd>
+
+					<dt class="evaluation_table-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="evaluation_table-created_at-<%%VALUE(evaluation_id)%%>" class="evaluation_table-created_at text-bold"><%%VALUE(created_at)%%></dd>
+
+					<dt class="evaluation_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="evaluation_table-last_updated_by-<%%VALUE(evaluation_id)%%>" class="evaluation_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></dd>
+
+					<dt class="evaluation_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="evaluation_table-last_updated_at-<%%VALUE(evaluation_id)%%>" class="evaluation_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></dd>
+
+				</dl>
+			</div>
+		</td>

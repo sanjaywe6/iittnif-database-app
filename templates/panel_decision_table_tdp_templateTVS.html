@@ -1,29 +1,76 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="22" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="panel_decision_table_tdp-panel_decision_id-caption field-caption-tv">ID</dt>
+					<dd id="panel_decision_table_tdp-panel_decision_id-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-panel_decision_id text-right text-bold"><%%VALUE(panel_decision_id)%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the panel_decision_table_tdp_init() hook (in hooks/panel_decision_table_tdp.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="panel_decision_table_tdp-edition-caption field-caption-tv">Edition</dt>
+					<dd id="panel_decision_table_tdp-edition-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-edition text-bold"><%%VALUE(edition)%%></dd>
 
-		<td id="panel_decision_table_tdp-panel_decision_id-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-panel_decision_id text-right text-bold"><%%VALUE(panel_decision_id)%%></td>
-		<td id="panel_decision_table_tdp-edition-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-edition text-bold"><%%VALUE(edition)%%></td>
-		<td id="panel_decision_table_tdp-project_id-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-project_id text-bold"><%%VALUE(project_id)%%></td>
-		<td id="panel_decision_table_tdp-date_of_presentation-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-date_of_presentation text-bold"><%%VALUE(date_of_presentation)%%></td>
-		<td id="panel_decision_table_tdp-project_title-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-project_title text-bold"><%%VALUE(project_title)%%></td>
-		<td id="panel_decision_table_tdp-name_of_pi-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-name_of_pi text-bold"><%%VALUE(name_of_pi)%%></td>
-		<td id="panel_decision_table_tdp-mobile_number-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-mobile_number text-bold"><%%VALUE(mobile_number)%%></td>
-		<td id="panel_decision_table_tdp-institute-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-institute text-bold"><%%VALUE(institute)%%></td>
-		<td id="panel_decision_table_tdp-budget_specified-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-budget_specified text-bold"><%%VALUE(budget_specified)%%></td>
-		<td id="panel_decision_table_tdp-final_budget_to_be_allocated-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-final_budget_to_be_allocated text-bold"><%%VALUE(final_budget_to_be_allocated)%%></td>
-		<td id="panel_decision_table_tdp-experts_comments-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-experts_comments text-bold"><%%VALUE(experts_comments)%%></td>
-		<td id="panel_decision_table_tdp-trl-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-trl text-bold"><%%VALUE(trl)%%></td>
-		<td id="panel_decision_table_tdp-proposal_link-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-proposal_link text-bold"><%%VALUE(proposal_link)%%></td>
-		<td id="panel_decision_table_tdp-updated_proposal_link-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-updated_proposal_link text-bold"><%%VALUE(updated_proposal_link)%%></td>
-		<td id="panel_decision_table_tdp-where_budget_need-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-where_budget_need text-bold"><%%VALUE(where_budget_need)%%></td>
-		<td id="panel_decision_table_tdp-final_decision-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-final_decision text-bold"><%%VALUE(final_decision)%%></td>
-		<td id="panel_decision_table_tdp-notification_mail-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-notification_mail text-bold"><%%VALUE(notification_mail)%%></td>
-		<td id="panel_decision_table_tdp-call_done-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-call_done text-bold"><%%VALUE(call_done)%%></td>
-		<td id="panel_decision_table_tdp-created_by-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-created_by text-bold"><%%VALUE(created_by)%%></td>
-		<td id="panel_decision_table_tdp-created_at-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-created_at text-bold"><%%VALUE(created_at)%%></td>
-		<td id="panel_decision_table_tdp-last_updated_by-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
-		<td id="panel_decision_table_tdp-last_updated_at-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>
+					<dt class="panel_decision_table_tdp-project_id-caption field-caption-tv">Project ID</dt>
+					<dd id="panel_decision_table_tdp-project_id-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-project_id text-bold"><%%VALUE(project_id)%%></dd>
+
+					<dt class="panel_decision_table_tdp-date_of_presentation-caption field-caption-tv">Date of presentation</dt>
+					<dd id="panel_decision_table_tdp-date_of_presentation-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-date_of_presentation text-bold"><%%VALUE(date_of_presentation)%%></dd>
+
+					<dt class="panel_decision_table_tdp-project_title-caption field-caption-tv">Project title</dt>
+					<dd id="panel_decision_table_tdp-project_title-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-project_title text-bold"><%%VALUE(project_title)%%></dd>
+
+					<dt class="panel_decision_table_tdp-name_of_pi-caption field-caption-tv">Name of PI</dt>
+					<dd id="panel_decision_table_tdp-name_of_pi-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-name_of_pi text-bold"><%%VALUE(name_of_pi)%%></dd>
+
+					<dt class="panel_decision_table_tdp-mobile_number-caption field-caption-tv">Mobile number</dt>
+					<dd id="panel_decision_table_tdp-mobile_number-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-mobile_number text-bold"><%%VALUE(mobile_number)%%></dd>
+
+					<dt class="panel_decision_table_tdp-institute-caption field-caption-tv">Institute</dt>
+					<dd id="panel_decision_table_tdp-institute-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-institute text-bold"><%%VALUE(institute)%%></dd>
+
+					<dt class="panel_decision_table_tdp-budget_specified-caption field-caption-tv">Budget specified in Rs.</dt>
+					<dd id="panel_decision_table_tdp-budget_specified-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-budget_specified text-bold"><%%VALUE(budget_specified)%%></dd>
+
+					<dt class="panel_decision_table_tdp-final_budget_to_be_allocated-caption field-caption-tv">Final budget to be allocated in Rs.</dt>
+					<dd id="panel_decision_table_tdp-final_budget_to_be_allocated-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-final_budget_to_be_allocated text-bold"><%%VALUE(final_budget_to_be_allocated)%%></dd>
+
+					<dt class="panel_decision_table_tdp-experts_comments-caption field-caption-tv">Experts comments (Consolidated)</dt>
+					<dd id="panel_decision_table_tdp-experts_comments-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-experts_comments text-bold"><%%VALUE(experts_comments)%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="panel_decision_table_tdp-trl-caption field-caption-tv">TRL</dt>
+					<dd id="panel_decision_table_tdp-trl-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-trl text-bold"><%%VALUE(trl)%%></dd>
+
+					<dt class="panel_decision_table_tdp-proposal_link-caption field-caption-tv">Proposal link</dt>
+					<dd id="panel_decision_table_tdp-proposal_link-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-proposal_link text-bold"><%%VALUE(proposal_link)%%></dd>
+
+					<dt class="panel_decision_table_tdp-updated_proposal_link-caption field-caption-tv">Updated proposal link</dt>
+					<dd id="panel_decision_table_tdp-updated_proposal_link-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-updated_proposal_link text-bold"><%%VALUE(updated_proposal_link)%%></dd>
+
+					<dt class="panel_decision_table_tdp-where_budget_need-caption field-caption-tv">Where budget need / can be revised</dt>
+					<dd id="panel_decision_table_tdp-where_budget_need-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-where_budget_need text-bold"><%%VALUE(where_budget_need)%%></dd>
+
+					<dt class="panel_decision_table_tdp-final_decision-caption field-caption-tv">Final decision</dt>
+					<dd id="panel_decision_table_tdp-final_decision-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-final_decision text-bold"><%%VALUE(final_decision)%%></dd>
+
+					<dt class="panel_decision_table_tdp-notification_mail-caption field-caption-tv">Notification mail</dt>
+					<dd id="panel_decision_table_tdp-notification_mail-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-notification_mail text-bold"><%%VALUE(notification_mail)%%></dd>
+
+					<dt class="panel_decision_table_tdp-call_done-caption field-caption-tv">Call done</dt>
+					<dd id="panel_decision_table_tdp-call_done-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-call_done text-bold"><%%VALUE(call_done)%%></dd>
+
+					<dt class="panel_decision_table_tdp-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="panel_decision_table_tdp-created_by-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-created_by text-bold"><%%VALUE(created_by)%%></dd>
+
+					<dt class="panel_decision_table_tdp-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="panel_decision_table_tdp-created_at-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-created_at text-bold"><%%VALUE(created_at)%%></dd>
+
+					<dt class="panel_decision_table_tdp-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="panel_decision_table_tdp-last_updated_by-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></dd>
+
+					<dt class="panel_decision_table_tdp-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="panel_decision_table_tdp-last_updated_at-<%%VALUE(panel_decision_id)%%>" class="panel_decision_table_tdp-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></dd>
+
+				</dl>
+			</div>
+		</td>

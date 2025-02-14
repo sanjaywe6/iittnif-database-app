@@ -31,7 +31,7 @@
 		"`mou_details_table`.`contact_email_id`" => "contact_email_id",
 		"`mou_details_table`.`website_link`" => "website_link",
 		"`mou_details_table`.`country`" => "country",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`), CONCAT_WS('',   `user_table1`.`memberID`), '') /* Assigned MoU to */" => "assigned_mou_to",
+		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Assigned MoU to */" => "assigned_mou_to",
 		"`mou_details_table`.`upload_mou`" => "upload_mou",
 		"`mou_details_table`.`created_at`" => "created_at",
 		"`mou_details_table`.`created_by`" => "created_by",
@@ -53,7 +53,7 @@
 		11 => 11,
 		12 => 12,
 		13 => 13,
-		14 => '`user_table1`.`memberID`',
+		14 => 14,
 		15 => 15,
 		16 => 16,
 		17 => 17,
@@ -76,7 +76,7 @@
 		"`mou_details_table`.`contact_email_id`" => "contact_email_id",
 		"`mou_details_table`.`website_link`" => "website_link",
 		"`mou_details_table`.`country`" => "country",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`), CONCAT_WS('',   `user_table1`.`memberID`), '') /* Assigned MoU to */" => "assigned_mou_to",
+		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Assigned MoU to */" => "assigned_mou_to",
 		"`mou_details_table`.`upload_mou`" => "upload_mou",
 		"`mou_details_table`.`created_at`" => "created_at",
 		"`mou_details_table`.`created_by`" => "created_by",
@@ -98,7 +98,7 @@
 		"`mou_details_table`.`contact_email_id`" => "Contact email id",
 		"`mou_details_table`.`website_link`" => "Website link",
 		"`mou_details_table`.`country`" => "Country",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`), CONCAT_WS('',   `user_table1`.`memberID`), '') /* Assigned MoU to */" => "Assigned MoU to",
+		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Assigned MoU to */" => "Assigned MoU to",
 		"`mou_details_table`.`upload_mou`" => "Upload MoU (PDF or DOC format)",
 		"`mou_details_table`.`created_at`" => "Created at",
 		"`mou_details_table`.`created_by`" => "Created by",
@@ -121,7 +121,7 @@
 		"`mou_details_table`.`contact_email_id`" => "contact_email_id",
 		"`mou_details_table`.`website_link`" => "website_link",
 		"`mou_details_table`.`country`" => "country",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`), CONCAT_WS('',   `user_table1`.`memberID`), '') /* Assigned MoU to */" => "assigned_mou_to",
+		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Assigned MoU to */" => "assigned_mou_to",
 		"`mou_details_table`.`upload_mou`" => "upload_mou",
 		"`mou_details_table`.`created_at`" => "created_at",
 		"`mou_details_table`.`created_by`" => "created_by",
@@ -151,7 +151,7 @@
 	$x->AllowPrinting = 1;
 	$x->AllowPrintingDV = 1;
 	$x->AllowCSV = 1;
-	$x->AllowAdminShowSQL = 1;
+	$x->AllowAdminShowSQL = showSQL();
 	$x->RecordsPerPage = 100;
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
@@ -173,7 +173,7 @@
 	$x->TemplateDV = 'templates/mou_details_table_templateDV.html';
 	$x->TemplateDVP = 'templates/mou_details_table_templateDVP.html';
 
-	$x->ShowTableHeader = 1;
+	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
 	$x->HasCalculatedFields = false;

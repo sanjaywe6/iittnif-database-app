@@ -48,7 +48,7 @@
 		'approval_table' => [
 			'image' => getUploadDir(''),
 			'other_file' => getUploadDir(''),
-			'primary key' => 'procurement_approval_id'
+			'primary key' => 'id'
 		],
 		'payment_track_details_table' => [
 			'upload_scanned_file_1' => getUploadDir(''),

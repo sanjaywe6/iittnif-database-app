@@ -179,6 +179,7 @@
 				}
 			});
 
+			work_from_home_tableUniqueFields.forEach(fieldName => enforce_uniqueness('work_from_home_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -192,4 +193,7 @@
 				);
 			}
 		});
+
+		var work_from_home_tableUniqueFields = [
+		];
 	</script>

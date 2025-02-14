@@ -239,7 +239,7 @@ function selected_proposals_final_tdp_form($selectedId = '', $allowUpdate = true
 		// initial lookup values
 		AppGini.current_project_id__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['project_id'] : htmlspecialchars($filterer_project_id, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(project_id_reload__RAND__) == 'function') project_id_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
@@ -406,31 +406,31 @@ function selected_proposals_final_tdp_form($selectedId = '', $allowUpdate = true
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#project_id').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#project_id_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\tjQuery('#breakthrough').replaceWith('<div class=\"form-control-static\" id=\"breakthrough\">' + (jQuery('#breakthrough').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#project_title').replaceWith('<div class=\"form-control-static\" id=\"project_title\">' + (jQuery('#project_title').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#short_name').replaceWith('<div class=\"form-control-static\" id=\"short_name\">' + (jQuery('#short_name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#duration_in_months').replaceWith('<div class=\"form-control-static\" id=\"duration_in_months\">' + (jQuery('#duration_in_months').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#name_of_pi').replaceWith('<div class=\"form-control-static\" id=\"name_of_pi\">' + (jQuery('#name_of_pi').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#mobile_number').replaceWith('<div class=\"form-control-static\" id=\"mobile_number\">' + (jQuery('#mobile_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#institute').replaceWith('<div class=\"form-control-static\" id=\"institute\">' + (jQuery('#institute').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#stage_1').replaceWith('<div class=\"form-control-static\" id=\"stage_1\">' + (jQuery('#stage_1').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#stage_2').replaceWith('<div class=\"form-control-static\" id=\"stage_2\">' + (jQuery('#stage_2').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#stage_3').replaceWith('<div class=\"form-control-static\" id=\"stage_3\">' + (jQuery('#stage_3').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#stage_4').replaceWith('<div class=\"form-control-static\" id=\"stage_4\">' + (jQuery('#stage_4').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#total_budget_specified').replaceWith('<div class=\"form-control-static\" id=\"total_budget_specified\">' + (jQuery('#total_budget_specified').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#one_slide_ppt_link').replaceWith('<div class=\"form-control-static\" id=\"one_slide_ppt_link\">' + (jQuery('#one_slide_ppt_link').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#proposal_link').replaceWith('<div class=\"form-control-static\" id=\"proposal_link\">' + (jQuery('#proposal_link').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#existing_trl').replaceWith('<div class=\"form-control-static\" id=\"existing_trl\">' + (jQuery('#existing_trl').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#expected_trl').replaceWith('<div class=\"form-control-static\" id=\"expected_trl\">' + (jQuery('#expected_trl').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#project_id').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#project_id_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('#breakthrough').replaceWith('<div class=\"form-control-static\" id=\"breakthrough\">' + (\$j('#breakthrough').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#project_title').replaceWith('<div class=\"form-control-static\" id=\"project_title\">' + (\$j('#project_title').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#short_name').replaceWith('<div class=\"form-control-static\" id=\"short_name\">' + (\$j('#short_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#duration_in_months').replaceWith('<div class=\"form-control-static\" id=\"duration_in_months\">' + (\$j('#duration_in_months').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#name_of_pi').replaceWith('<div class=\"form-control-static\" id=\"name_of_pi\">' + (\$j('#name_of_pi').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#mobile_number').replaceWith('<div class=\"form-control-static\" id=\"mobile_number\">' + (\$j('#mobile_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#institute').replaceWith('<div class=\"form-control-static\" id=\"institute\">' + (\$j('#institute').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#stage_1').replaceWith('<div class=\"form-control-static\" id=\"stage_1\">' + (\$j('#stage_1').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#stage_2').replaceWith('<div class=\"form-control-static\" id=\"stage_2\">' + (\$j('#stage_2').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#stage_3').replaceWith('<div class=\"form-control-static\" id=\"stage_3\">' + (\$j('#stage_3').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#stage_4').replaceWith('<div class=\"form-control-static\" id=\"stage_4\">' + (\$j('#stage_4').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#total_budget_specified').replaceWith('<div class=\"form-control-static\" id=\"total_budget_specified\">' + (\$j('#total_budget_specified').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#one_slide_ppt_link').replaceWith('<div class=\"form-control-static\" id=\"one_slide_ppt_link\">' + (\$j('#one_slide_ppt_link').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#proposal_link').replaceWith('<div class=\"form-control-static\" id=\"proposal_link\">' + (\$j('#proposal_link').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#existing_trl').replaceWith('<div class=\"form-control-static\" id=\"existing_trl\">' + (\$j('#existing_trl').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#expected_trl').replaceWith('<div class=\"form-control-static\" id=\"expected_trl\">' + (\$j('#expected_trl').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

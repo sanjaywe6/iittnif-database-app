@@ -289,7 +289,7 @@ function training_program_on_geospatial_tchnologies_table_form($selectedId = '',
 	<script>
 		// initial lookup values
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
@@ -378,43 +378,43 @@ function training_program_on_geospatial_tchnologies_table_form($selectedId = '',
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#certificate_number').replaceWith('<div class=\"form-control-static\" id=\"certificate_number\">' + (jQuery('#certificate_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#datetime').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#datetimeDay, #datetimeMonth, #datetimeYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#salutation').replaceWith('<div class=\"form-control-static\" id=\"salutation\">' + (jQuery('#salutation').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#name').replaceWith('<div class=\"form-control-static\" id=\"name\">' + (jQuery('#name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#email_id').replaceWith('<div class=\"form-control-static\" id=\"email_id\">' + (jQuery('#email_id').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#secondary_email_id').replaceWith('<div class=\"form-control-static\" id=\"secondary_email_id\">' + (jQuery('#secondary_email_id').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#mobile_number').replaceWith('<div class=\"form-control-static\" id=\"mobile_number\">' + (jQuery('#mobile_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#whatsapp_number').replaceWith('<div class=\"form-control-static\" id=\"whatsapp_number\">' + (jQuery('#whatsapp_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#gender').replaceWith('<div class=\"form-control-static\" id=\"gender\">' + (jQuery('#gender').val() || '') + '</div>'); jQuery('#gender-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#social_media_link').replaceWith('<div class=\"form-control-static\" id=\"social_media_link\">' + (jQuery('#social_media_link').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#education_qualification').replaceWith('<div class=\"form-control-static\" id=\"education_qualification\">' + (jQuery('#education_qualification').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#profession').replaceWith('<div class=\"form-control-static\" id=\"profession\">' + (jQuery('#profession').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#school_name').replaceWith('<div class=\"form-control-static\" id=\"school_name\">' + (jQuery('#school_name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#parents_name').replaceWith('<div class=\"form-control-static\" id=\"parents_name\">' + (jQuery('#parents_name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#parents_contact_number').replaceWith('<div class=\"form-control-static\" id=\"parents_contact_number\">' + (jQuery('#parents_contact_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#parents_email_id').replaceWith('<div class=\"form-control-static\" id=\"parents_email_id\">' + (jQuery('#parents_email_id').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#residential_address').replaceWith('<div class=\"form-control-static\" id=\"residential_address\">' + (jQuery('#residential_address').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#parents_designation').replaceWith('<div class=\"form-control-static\" id=\"parents_designation\">' + (jQuery('#parents_designation').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#parents_school_name').replaceWith('<div class=\"form-control-static\" id=\"parents_school_name\">' + (jQuery('#parents_school_name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#teaching_subject').replaceWith('<div class=\"form-control-static\" id=\"teaching_subject\">' + (jQuery('#teaching_subject').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#address_line_2').replaceWith('<div class=\"form-control-static\" id=\"address_line_2\">' + (jQuery('#address_line_2').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#city').replaceWith('<div class=\"form-control-static\" id=\"city\">' + (jQuery('#city').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#state_region_province').replaceWith('<div class=\"form-control-static\" id=\"state_region_province\">' + (jQuery('#state_region_province').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#zip_code').replaceWith('<div class=\"form-control-static\" id=\"zip_code\">' + (jQuery('#zip_code').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#country').replaceWith('<div class=\"form-control-static\" id=\"country\">' + (jQuery('#country').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#how_did_you_know').replaceWith('<div class=\"form-control-static\" id=\"how_did_you_know\">' + (jQuery('#how_did_you_know').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#attended_training_school').replaceWith('<div class=\"form-control-static\" id=\"attended_training_school\">' + (jQuery('#attended_training_school').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#attended_training_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#attended_training_dateDay, #attended_training_dateMonth, #attended_training_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#certificate_number').replaceWith('<div class=\"form-control-static\" id=\"certificate_number\">' + (\$j('#certificate_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#datetime').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#datetimeDay, #datetimeMonth, #datetimeYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#salutation').replaceWith('<div class=\"form-control-static\" id=\"salutation\">' + (\$j('#salutation').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#name').replaceWith('<div class=\"form-control-static\" id=\"name\">' + (\$j('#name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#email_id').replaceWith('<div class=\"form-control-static\" id=\"email_id\">' + (\$j('#email_id').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#secondary_email_id').replaceWith('<div class=\"form-control-static\" id=\"secondary_email_id\">' + (\$j('#secondary_email_id').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#mobile_number').replaceWith('<div class=\"form-control-static\" id=\"mobile_number\">' + (\$j('#mobile_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#whatsapp_number').replaceWith('<div class=\"form-control-static\" id=\"whatsapp_number\">' + (\$j('#whatsapp_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#gender').replaceWith('<div class=\"form-control-static\" id=\"gender\">' + (\$j('#gender').val() || '') + '</div>'); \$j('#gender-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#social_media_link').replaceWith('<div class=\"form-control-static\" id=\"social_media_link\">' + (\$j('#social_media_link').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#education_qualification').replaceWith('<div class=\"form-control-static\" id=\"education_qualification\">' + (\$j('#education_qualification').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#profession').replaceWith('<div class=\"form-control-static\" id=\"profession\">' + (\$j('#profession').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#school_name').replaceWith('<div class=\"form-control-static\" id=\"school_name\">' + (\$j('#school_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#parents_name').replaceWith('<div class=\"form-control-static\" id=\"parents_name\">' + (\$j('#parents_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#parents_contact_number').replaceWith('<div class=\"form-control-static\" id=\"parents_contact_number\">' + (\$j('#parents_contact_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#parents_email_id').replaceWith('<div class=\"form-control-static\" id=\"parents_email_id\">' + (\$j('#parents_email_id').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#residential_address').replaceWith('<div class=\"form-control-static\" id=\"residential_address\">' + (\$j('#residential_address').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#parents_designation').replaceWith('<div class=\"form-control-static\" id=\"parents_designation\">' + (\$j('#parents_designation').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#parents_school_name').replaceWith('<div class=\"form-control-static\" id=\"parents_school_name\">' + (\$j('#parents_school_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#teaching_subject').replaceWith('<div class=\"form-control-static\" id=\"teaching_subject\">' + (\$j('#teaching_subject').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#address_line_2').replaceWith('<div class=\"form-control-static\" id=\"address_line_2\">' + (\$j('#address_line_2').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#city').replaceWith('<div class=\"form-control-static\" id=\"city\">' + (\$j('#city').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#state_region_province').replaceWith('<div class=\"form-control-static\" id=\"state_region_province\">' + (\$j('#state_region_province').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#zip_code').replaceWith('<div class=\"form-control-static\" id=\"zip_code\">' + (\$j('#zip_code').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#country').replaceWith('<div class=\"form-control-static\" id=\"country\">' + (\$j('#country').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#how_did_you_know').replaceWith('<div class=\"form-control-static\" id=\"how_did_you_know\">' + (\$j('#how_did_you_know').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#attended_training_school').replaceWith('<div class=\"form-control-static\" id=\"attended_training_school\">' + (\$j('#attended_training_school').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#attended_training_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#attended_training_dateDay, #attended_training_dateMonth, #attended_training_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

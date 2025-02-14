@@ -307,6 +307,7 @@
 				}
 			});
 
+			asset_appUniqueFields.forEach(fieldName => enforce_uniqueness('asset_app', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -320,4 +321,7 @@
 				);
 			}
 		});
+
+		var asset_appUniqueFields = [
+		];
 	</script>

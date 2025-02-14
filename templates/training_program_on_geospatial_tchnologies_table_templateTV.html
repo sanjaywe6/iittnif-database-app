@@ -1,40 +1,109 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="33" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="training_program_on_geospatial_tchnologies_table-id-caption field-caption-tv">ID</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-id-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the training_program_on_geospatial_tchnologies_table_init() hook (in hooks/training_program_on_geospatial_tchnologies_table.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="training_program_on_geospatial_tchnologies_table-certificate_number-caption field-caption-tv">Certificate No.</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-certificate_number-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-certificate_number"><%%SELECT%%><%%VALUE(certificate_number)%%><%%ENDSELECT%%></dd>
 
-		<td id="training_program_on_geospatial_tchnologies_table-id-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-certificate_number-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-certificate_number"><%%SELECT%%><%%VALUE(certificate_number)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-datetime-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-datetime"><%%SELECT%%><%%VALUE(datetime)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-salutation-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-salutation"><%%SELECT%%><%%VALUE(salutation)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-name-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-name"><%%SELECT%%><%%VALUE(name)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-email_id-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-email_id"><%%SELECT%%><%%VALUE(email_id)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-secondary_email_id-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-secondary_email_id"><%%SELECT%%><%%VALUE(secondary_email_id)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-mobile_number-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-mobile_number"><%%SELECT%%><%%VALUE(mobile_number)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-whatsapp_number-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-whatsapp_number"><%%SELECT%%><%%VALUE(whatsapp_number)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-gender-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-gender"><%%SELECT%%><%%VALUE(gender)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-social_media_link-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-social_media_link"><%%SELECT%%><%%VALUE(social_media_link)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-education_qualification-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-education_qualification"><%%SELECT%%><%%VALUE(education_qualification)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-profession-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-profession"><%%SELECT%%><%%VALUE(profession)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-school_name-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-school_name"><%%SELECT%%><%%VALUE(school_name)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-parents_name-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-parents_name"><%%SELECT%%><%%VALUE(parents_name)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-parents_contact_number-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-parents_contact_number"><%%SELECT%%><%%VALUE(parents_contact_number)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-parents_email_id-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-parents_email_id"><%%SELECT%%><%%VALUE(parents_email_id)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-residential_address-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-residential_address"><%%SELECT%%><%%VALUE(residential_address)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-parents_designation-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-parents_designation"><%%SELECT%%><%%VALUE(parents_designation)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-parents_school_name-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-parents_school_name"><%%SELECT%%><%%VALUE(parents_school_name)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-teaching_subject-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-teaching_subject"><%%SELECT%%><%%VALUE(teaching_subject)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-address_line_2-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-address_line_2"><%%SELECT%%><%%VALUE(address_line_2)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-city-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-city"><%%SELECT%%><%%VALUE(city)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-state_region_province-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-state_region_province"><%%SELECT%%><%%VALUE(state_region_province)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-zip_code-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-zip_code"><%%SELECT%%><%%VALUE(zip_code)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-country-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-country"><%%SELECT%%><%%VALUE(country)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-how_did_you_know-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-how_did_you_know"><%%SELECT%%><%%VALUE(how_did_you_know)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-attended_training_school-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-attended_training_school"><%%SELECT%%><%%VALUE(attended_training_school)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-attended_training_date-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-attended_training_date"><%%SELECT%%><%%VALUE(attended_training_date)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-created_by-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-created_at-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-last_updated_by-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>
-		<td id="training_program_on_geospatial_tchnologies_table-last_updated_at-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>
+					<dt class="training_program_on_geospatial_tchnologies_table-datetime-caption field-caption-tv">Datetime</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-datetime-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-datetime"><%%SELECT%%><%%VALUE(datetime)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-salutation-caption field-caption-tv">Salutation</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-salutation-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-salutation"><%%SELECT%%><%%VALUE(salutation)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-name-caption field-caption-tv">Name</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-name-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-name"><%%SELECT%%><%%VALUE(name)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-email_id-caption field-caption-tv">Email id</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-email_id-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-email_id"><%%SELECT%%><%%VALUE(email_id)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-secondary_email_id-caption field-caption-tv">Secondary email id</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-secondary_email_id-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-secondary_email_id"><%%SELECT%%><%%VALUE(secondary_email_id)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-mobile_number-caption field-caption-tv">Mobile number</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-mobile_number-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-mobile_number"><%%SELECT%%><%%VALUE(mobile_number)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-whatsapp_number-caption field-caption-tv">Whatsapp number</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-whatsapp_number-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-whatsapp_number"><%%SELECT%%><%%VALUE(whatsapp_number)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-gender-caption field-caption-tv">Gender</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-gender-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-gender"><%%SELECT%%><%%VALUE(gender)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-social_media_link-caption field-caption-tv">Social media link</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-social_media_link-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-social_media_link"><%%SELECT%%><%%VALUE(social_media_link)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-education_qualification-caption field-caption-tv">Educational Qualification</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-education_qualification-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-education_qualification"><%%SELECT%%><%%VALUE(education_qualification)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-profession-caption field-caption-tv">Profession</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-profession-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-profession"><%%SELECT%%><%%VALUE(profession)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-school_name-caption field-caption-tv">School/Institute Name</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-school_name-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-school_name"><%%SELECT%%><%%VALUE(school_name)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-parents_name-caption field-caption-tv">Parent's Name</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-parents_name-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-parents_name"><%%SELECT%%><%%VALUE(parents_name)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-parents_contact_number-caption field-caption-tv">Parent's Contact No.</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-parents_contact_number-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-parents_contact_number"><%%SELECT%%><%%VALUE(parents_contact_number)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-parents_email_id-caption field-caption-tv">Parents email id</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-parents_email_id-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-parents_email_id"><%%SELECT%%><%%VALUE(parents_email_id)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="training_program_on_geospatial_tchnologies_table-residential_address-caption field-caption-tv">Residential address</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-residential_address-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-residential_address"><%%SELECT%%><%%VALUE(residential_address)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-parents_designation-caption field-caption-tv">Designation</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-parents_designation-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-parents_designation"><%%SELECT%%><%%VALUE(parents_designation)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-parents_school_name-caption field-caption-tv">Parents school name</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-parents_school_name-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-parents_school_name"><%%SELECT%%><%%VALUE(parents_school_name)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-teaching_subject-caption field-caption-tv">Teaching subject</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-teaching_subject-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-teaching_subject"><%%SELECT%%><%%VALUE(teaching_subject)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-address_line_2-caption field-caption-tv">Address line 2</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-address_line_2-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-address_line_2"><%%SELECT%%><%%VALUE(address_line_2)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-city-caption field-caption-tv">City</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-city-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-city"><%%SELECT%%><%%VALUE(city)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-state_region_province-caption field-caption-tv">State/Region/Province</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-state_region_province-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-state_region_province"><%%SELECT%%><%%VALUE(state_region_province)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-zip_code-caption field-caption-tv">Zip code</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-zip_code-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-zip_code"><%%SELECT%%><%%VALUE(zip_code)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-country-caption field-caption-tv">Country</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-country-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-country"><%%SELECT%%><%%VALUE(country)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-how_did_you_know-caption field-caption-tv">How did you know about the Training/Workshop?</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-how_did_you_know-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-how_did_you_know"><%%SELECT%%><%%VALUE(how_did_you_know)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-attended_training_school-caption field-caption-tv">Training/Workshop attended at school/Institute name.</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-attended_training_school-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-attended_training_school"><%%SELECT%%><%%VALUE(attended_training_school)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-attended_training_date-caption field-caption-tv">Attended training date</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-attended_training_date-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-attended_training_date"><%%SELECT%%><%%VALUE(attended_training_date)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-created_by-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-created_at-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-last_updated_by-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="training_program_on_geospatial_tchnologies_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="training_program_on_geospatial_tchnologies_table-last_updated_at-<%%VALUE(id)%%>" class="training_program_on_geospatial_tchnologies_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+		</td>

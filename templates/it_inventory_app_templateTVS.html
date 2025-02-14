@@ -1,26 +1,67 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="19" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="it_inventory_app-it_inventory_id-caption field-caption-tv">ID</dt>
+					<dd id="it_inventory_app-it_inventory_id-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-it_inventory_id text-right text-bold"><%%VALUE(it_inventory_id)%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the it_inventory_app_init() hook (in hooks/it_inventory_app.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="it_inventory_app-date-caption field-caption-tv">Date</dt>
+					<dd id="it_inventory_app-date-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-date text-bold"><%%VALUE(date)%%></dd>
 
-		<td id="it_inventory_app-it_inventory_id-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-it_inventory_id text-right text-bold"><%%VALUE(it_inventory_id)%%></td>
-		<td id="it_inventory_app-date-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-date text-bold"><%%VALUE(date)%%></td>
-		<td id="it_inventory_app-description-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-description text-bold"><%%VALUE(description)%%></td>
-		<td id="it_inventory_app-classification_of_asset-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-classification_of_asset text-bold"><%%VALUE(classification_of_asset)%%></td>
-		<td id="it_inventory_app-sub_category-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-sub_category text-bold"><%%VALUE(sub_category)%%></td>
-		<td id="it_inventory_app-asset_serial_number-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-asset_serial_number text-bold"><%%VALUE(asset_serial_number)%%></td>
-		<td id="it_inventory_app-qr_and_bar_code-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-qr_and_bar_code text-bold"><%%VALUE(qr_and_bar_code)%%></td>
-		<td id="it_inventory_app-custody_department-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-custody_department text-bold"><%%VALUE(custody_department)%%></td>
-		<td id="it_inventory_app-custodian-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-custodian text-bold"><%%VALUE(custodian)%%></td>
-		<td id="it_inventory_app-custodian_signature-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-custodian_signature text-bold"><img src="thumbnail.php?i=<%%VALUE(custodian_signature)%%>&t=it_inventory_app&f=custodian_signature&v=tv" class="img-thumbnail"></td>
-		<td id="it_inventory_app-no_of_years_useful_life_of_assets-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-no_of_years_useful_life_of_assets text-bold"><%%VALUE(no_of_years_useful_life_of_assets)%%></td>
-		<td id="it_inventory_app-date_of_useful_life_of_assets_ends-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-date_of_useful_life_of_assets_ends text-bold"><%%VALUE(date_of_useful_life_of_assets_ends)%%></td>
-		<td id="it_inventory_app-remarks-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-remarks text-bold"><%%VALUE(remarks)%%></td>
-		<td id="it_inventory_app-sactioned_by-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-sactioned_by text-bold"><%%VALUE(sactioned_by)%%></td>
-		<td id="it_inventory_app-it_inventory_str-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-it_inventory_str text-bold"><%%VALUE(it_inventory_str)%%></td>
-		<td id="it_inventory_app-created_by-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-created_by text-bold"><%%VALUE(created_by)%%></td>
-		<td id="it_inventory_app-created_at-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-created_at text-bold"><%%VALUE(created_at)%%></td>
-		<td id="it_inventory_app-last_updated_by-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
-		<td id="it_inventory_app-last_updated_at-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>
+					<dt class="it_inventory_app-description-caption field-caption-tv">Description</dt>
+					<dd id="it_inventory_app-description-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-description text-bold"><%%VALUE(description)%%></dd>
+
+					<dt class="it_inventory_app-classification_of_asset-caption field-caption-tv">Classification of asset</dt>
+					<dd id="it_inventory_app-classification_of_asset-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-classification_of_asset text-bold"><%%VALUE(classification_of_asset)%%></dd>
+
+					<dt class="it_inventory_app-sub_category-caption field-caption-tv">Sub category</dt>
+					<dd id="it_inventory_app-sub_category-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-sub_category text-bold"><%%VALUE(sub_category)%%></dd>
+
+					<dt class="it_inventory_app-asset_serial_number-caption field-caption-tv">Asset serial number</dt>
+					<dd id="it_inventory_app-asset_serial_number-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-asset_serial_number text-bold"><%%VALUE(asset_serial_number)%%></dd>
+
+					<dt class="it_inventory_app-qr_and_bar_code-caption field-caption-tv">Qr and bar code</dt>
+					<dd id="it_inventory_app-qr_and_bar_code-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-qr_and_bar_code text-bold"><%%VALUE(qr_and_bar_code)%%></dd>
+
+					<dt class="it_inventory_app-custody_department-caption field-caption-tv">Custody department</dt>
+					<dd id="it_inventory_app-custody_department-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-custody_department text-bold"><%%VALUE(custody_department)%%></dd>
+
+					<dt class="it_inventory_app-custodian-caption field-caption-tv">Custodian</dt>
+					<dd id="it_inventory_app-custodian-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-custodian text-bold"><%%VALUE(custodian)%%></dd>
+
+					<dt class="it_inventory_app-custodian_signature-caption field-caption-tv">Custodian signature</dt>
+					<dd id="it_inventory_app-custodian_signature-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-custodian_signature text-bold"><img src="thumbnail.php?i=<%%VALUE(custodian_signature)%%>&t=it_inventory_app&f=custodian_signature&v=tv" class="img-thumbnail"></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="it_inventory_app-no_of_years_useful_life_of_assets-caption field-caption-tv">Number of years useful life of assets</dt>
+					<dd id="it_inventory_app-no_of_years_useful_life_of_assets-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-no_of_years_useful_life_of_assets text-bold"><%%VALUE(no_of_years_useful_life_of_assets)%%></dd>
+
+					<dt class="it_inventory_app-date_of_useful_life_of_assets_ends-caption field-caption-tv">Date of useful life of assets ends</dt>
+					<dd id="it_inventory_app-date_of_useful_life_of_assets_ends-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-date_of_useful_life_of_assets_ends text-bold"><%%VALUE(date_of_useful_life_of_assets_ends)%%></dd>
+
+					<dt class="it_inventory_app-remarks-caption field-caption-tv">Remarks</dt>
+					<dd id="it_inventory_app-remarks-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-remarks text-bold"><%%VALUE(remarks)%%></dd>
+
+					<dt class="it_inventory_app-sactioned_by-caption field-caption-tv">Sactioned by</dt>
+					<dd id="it_inventory_app-sactioned_by-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-sactioned_by text-bold"><%%VALUE(sactioned_by)%%></dd>
+
+					<dt class="it_inventory_app-it_inventory_str-caption field-caption-tv">It inventory str</dt>
+					<dd id="it_inventory_app-it_inventory_str-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-it_inventory_str text-bold"><%%VALUE(it_inventory_str)%%></dd>
+
+					<dt class="it_inventory_app-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="it_inventory_app-created_by-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-created_by text-bold"><%%VALUE(created_by)%%></dd>
+
+					<dt class="it_inventory_app-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="it_inventory_app-created_at-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-created_at text-bold"><%%VALUE(created_at)%%></dd>
+
+					<dt class="it_inventory_app-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="it_inventory_app-last_updated_by-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></dd>
+
+					<dt class="it_inventory_app-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="it_inventory_app-last_updated_at-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></dd>
+
+				</dl>
+			</div>
+		</td>

@@ -227,6 +227,7 @@
 				}
 			});
 
+			subtask_setting_tableUniqueFields.forEach(fieldName => enforce_uniqueness('subtask_setting_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -240,4 +241,7 @@
 				);
 			}
 		});
+
+		var subtask_setting_tableUniqueFields = [
+		];
 	</script>

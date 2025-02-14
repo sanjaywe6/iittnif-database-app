@@ -278,6 +278,7 @@
 				}
 			});
 
+			all_bank_account_statement_tableUniqueFields.forEach(fieldName => enforce_uniqueness('all_bank_account_statement_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -291,4 +292,7 @@
 				);
 			}
 		});
+
+		var all_bank_account_statement_tableUniqueFields = [
+		];
 	</script>

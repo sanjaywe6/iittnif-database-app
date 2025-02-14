@@ -1,21 +1,52 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="14" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="hrd_sdp_events_table-id-caption field-caption-tv">ID</dt>
+					<dd id="hrd_sdp_events_table-id-<%%VALUE(id)%%>" class="hrd_sdp_events_table-id text-right text-bold"><%%VALUE(id)%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the hrd_sdp_events_table_init() hook (in hooks/hrd_sdp_events_table.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="hrd_sdp_events_table-year-caption field-caption-tv">Year</dt>
+					<dd id="hrd_sdp_events_table-year-<%%VALUE(id)%%>" class="hrd_sdp_events_table-year text-bold"><%%VALUE(year)%%></dd>
 
-		<td id="hrd_sdp_events_table-id-<%%VALUE(id)%%>" class="hrd_sdp_events_table-id text-right text-bold"><%%VALUE(id)%%></td>
-		<td id="hrd_sdp_events_table-year-<%%VALUE(id)%%>" class="hrd_sdp_events_table-year text-bold"><%%VALUE(year)%%></td>
-		<td id="hrd_sdp_events_table-program_name-<%%VALUE(id)%%>" class="hrd_sdp_events_table-program_name text-bold"><%%VALUE(program_name)%%></td>
-		<td id="hrd_sdp_events_table-area_of_workshop-<%%VALUE(id)%%>" class="hrd_sdp_events_table-area_of_workshop text-bold"><%%VALUE(area_of_workshop)%%></td>
-		<td id="hrd_sdp_events_table-host_name-<%%VALUE(id)%%>" class="hrd_sdp_events_table-host_name text-bold"><%%VALUE(host_name)%%></td>
-		<td id="hrd_sdp_events_table-location-<%%VALUE(id)%%>" class="hrd_sdp_events_table-location text-bold"><%%VALUE(location)%%></td>
-		<td id="hrd_sdp_events_table-start_date-<%%VALUE(id)%%>" class="hrd_sdp_events_table-start_date text-bold"><%%VALUE(start_date)%%></td>
-		<td id="hrd_sdp_events_table-end_date-<%%VALUE(id)%%>" class="hrd_sdp_events_table-end_date text-bold"><%%VALUE(end_date)%%></td>
-		<td id="hrd_sdp_events_table-number_of_participants-<%%VALUE(id)%%>" class="hrd_sdp_events_table-number_of_participants text-bold"><%%VALUE(number_of_participants)%%></td>
-		<td id="hrd_sdp_events_table-more_details-<%%VALUE(id)%%>" class="hrd_sdp_events_table-more_details text-bold"><%%VALUE(more_details)%%></td>
-		<td id="hrd_sdp_events_table-created_by-<%%VALUE(id)%%>" class="hrd_sdp_events_table-created_by text-bold"><%%VALUE(created_by)%%></td>
-		<td id="hrd_sdp_events_table-created_at-<%%VALUE(id)%%>" class="hrd_sdp_events_table-created_at text-bold"><%%VALUE(created_at)%%></td>
-		<td id="hrd_sdp_events_table-last_updated_by-<%%VALUE(id)%%>" class="hrd_sdp_events_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
-		<td id="hrd_sdp_events_table-last_updated_at-<%%VALUE(id)%%>" class="hrd_sdp_events_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>
+					<dt class="hrd_sdp_events_table-program_name-caption field-caption-tv">Program name</dt>
+					<dd id="hrd_sdp_events_table-program_name-<%%VALUE(id)%%>" class="hrd_sdp_events_table-program_name text-bold"><%%VALUE(program_name)%%></dd>
+
+					<dt class="hrd_sdp_events_table-area_of_workshop-caption field-caption-tv">Topic/Area of Workshop</dt>
+					<dd id="hrd_sdp_events_table-area_of_workshop-<%%VALUE(id)%%>" class="hrd_sdp_events_table-area_of_workshop text-bold"><%%VALUE(area_of_workshop)%%></dd>
+
+					<dt class="hrd_sdp_events_table-host_name-caption field-caption-tv">Host name</dt>
+					<dd id="hrd_sdp_events_table-host_name-<%%VALUE(id)%%>" class="hrd_sdp_events_table-host_name text-bold"><%%VALUE(host_name)%%></dd>
+
+					<dt class="hrd_sdp_events_table-location-caption field-caption-tv">Location</dt>
+					<dd id="hrd_sdp_events_table-location-<%%VALUE(id)%%>" class="hrd_sdp_events_table-location text-bold"><%%VALUE(location)%%></dd>
+
+					<dt class="hrd_sdp_events_table-start_date-caption field-caption-tv">Start date</dt>
+					<dd id="hrd_sdp_events_table-start_date-<%%VALUE(id)%%>" class="hrd_sdp_events_table-start_date text-bold"><%%VALUE(start_date)%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="hrd_sdp_events_table-end_date-caption field-caption-tv">End date</dt>
+					<dd id="hrd_sdp_events_table-end_date-<%%VALUE(id)%%>" class="hrd_sdp_events_table-end_date text-bold"><%%VALUE(end_date)%%></dd>
+
+					<dt class="hrd_sdp_events_table-number_of_participants-caption field-caption-tv">Number of participants</dt>
+					<dd id="hrd_sdp_events_table-number_of_participants-<%%VALUE(id)%%>" class="hrd_sdp_events_table-number_of_participants text-bold"><%%VALUE(number_of_participants)%%></dd>
+
+					<dt class="hrd_sdp_events_table-more_details-caption field-caption-tv">More details</dt>
+					<dd id="hrd_sdp_events_table-more_details-<%%VALUE(id)%%>" class="hrd_sdp_events_table-more_details text-bold"><%%VALUE(more_details)%%></dd>
+
+					<dt class="hrd_sdp_events_table-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="hrd_sdp_events_table-created_by-<%%VALUE(id)%%>" class="hrd_sdp_events_table-created_by text-bold"><%%VALUE(created_by)%%></dd>
+
+					<dt class="hrd_sdp_events_table-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="hrd_sdp_events_table-created_at-<%%VALUE(id)%%>" class="hrd_sdp_events_table-created_at text-bold"><%%VALUE(created_at)%%></dd>
+
+					<dt class="hrd_sdp_events_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="hrd_sdp_events_table-last_updated_by-<%%VALUE(id)%%>" class="hrd_sdp_events_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></dd>
+
+					<dt class="hrd_sdp_events_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="hrd_sdp_events_table-last_updated_at-<%%VALUE(id)%%>" class="hrd_sdp_events_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></dd>
+
+				</dl>
+			</div>
+		</td>

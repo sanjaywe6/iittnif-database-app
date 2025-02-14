@@ -260,7 +260,7 @@ function travel_cab_table_form($selectedId = '', $allowUpdate = true, $allowInse
 		// initial lookup values
 		AppGini.current_travel_details__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['travel_details'] : htmlspecialchars($filterer_travel_details, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(travel_details_reload__RAND__) == 'function') travel_details_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
@@ -427,23 +427,23 @@ function travel_cab_table_form($selectedId = '', $allowUpdate = true, $allowInse
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#dateDay, #dateMonth, #dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#from').replaceWith('<div class=\"form-control-static\" id=\"from\">' + (jQuery('#from').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#to').replaceWith('<div class=\"form-control-static\" id=\"to\">' + (jQuery('#to').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#vendor_name').replaceWith('<div class=\"form-control-static\" id=\"vendor_name\">' + (jQuery('#vendor_name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#vendor_contact_number').replaceWith('<div class=\"form-control-static\" id=\"vendor_contact_number\">' + (jQuery('#vendor_contact_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#driver_contact_number').replaceWith('<div class=\"form-control-static\" id=\"driver_contact_number\">' + (jQuery('#driver_contact_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#driver_name').replaceWith('<div class=\"form-control-static\" id=\"driver_name\">' + (jQuery('#driver_name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#payment_status').replaceWith('<div class=\"form-control-static\" id=\"payment_status\">' + (jQuery('#payment_status').val() || '') + '</div>'); jQuery('#payment_status-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#remarks').replaceWith('<div class=\"form-control-static\" id=\"remarks\">' + (jQuery('#remarks').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#dateDay, #dateMonth, #dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#from').replaceWith('<div class=\"form-control-static\" id=\"from\">' + (\$j('#from').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#to').replaceWith('<div class=\"form-control-static\" id=\"to\">' + (\$j('#to').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#vendor_name').replaceWith('<div class=\"form-control-static\" id=\"vendor_name\">' + (\$j('#vendor_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#vendor_contact_number').replaceWith('<div class=\"form-control-static\" id=\"vendor_contact_number\">' + (\$j('#vendor_contact_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#driver_contact_number').replaceWith('<div class=\"form-control-static\" id=\"driver_contact_number\">' + (\$j('#driver_contact_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#driver_name').replaceWith('<div class=\"form-control-static\" id=\"driver_name\">' + (\$j('#driver_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#payment_status').replaceWith('<div class=\"form-control-static\" id=\"payment_status\">' + (\$j('#payment_status').val() || '') + '</div>'); \$j('#payment_status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#remarks').replaceWith('<div class=\"form-control-static\" id=\"remarks\">' + (\$j('#remarks').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

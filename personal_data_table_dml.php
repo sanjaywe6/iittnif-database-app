@@ -121,8 +121,8 @@ function personal_data_table_delete($selected_id, $AllowDeleteOfParents = false,
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'employees_designation_table'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'personal_data_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'personal_data_table_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `personal_data_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `personal_data_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -368,7 +368,7 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 	<script>
 		// initial lookup values
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
@@ -457,28 +457,27 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#name').replaceWith('<div class=\"form-control-static\" id=\"name\">' + (jQuery('#name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#employee_type').replaceWith('<div class=\"form-control-static\" id=\"employee_type\">' + (jQuery('#employee_type').val() || '') + '</div>'); jQuery('#employee_type-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#date_of_birth').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#date_of_birthDay, #date_of_birthMonth, #date_of_birthYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#blood_group').replaceWith('<div class=\"form-control-static\" id=\"blood_group\">' + (jQuery('#blood_group').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#email').replaceWith('<div class=\"form-control-static\" id=\"email\">' + (jQuery('#email').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#email, #email-edit-link').hide();\n";
-		$jsReadOnly .= "\tjQuery('#phone_number').replaceWith('<div class=\"form-control-static\" id=\"phone_number\">' + (jQuery('#phone_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#date_of_joining').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#date_of_joiningDay, #date_of_joiningMonth, #date_of_joiningYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#date_of_exit').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#date_of_exitDay, #date_of_exitMonth, #date_of_exitYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#active_status').replaceWith('<div class=\"form-control-static\" id=\"active_status\">' + (jQuery('#active_status').val() || '') + '</div>'); jQuery('#active_status-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#profile_photo').replaceWith('<div class=\"form-control-static\" id=\"profile_photo\">' + (jQuery('#profile_photo').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#signature').replaceWith('<div class=\"form-control-static\" id=\"signature\">' + (jQuery('#signature').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#name').replaceWith('<div class=\"form-control-static\" id=\"name\">' + (\$j('#name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#employee_type').replaceWith('<div class=\"form-control-static\" id=\"employee_type\">' + (\$j('#employee_type').val() || '') + '</div>'); \$j('#employee_type-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#date_of_birth').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#date_of_birthDay, #date_of_birthMonth, #date_of_birthYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#blood_group').replaceWith('<div class=\"form-control-static\" id=\"blood_group\">' + (\$j('#blood_group').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#email').parent().replaceWith(`<div class=\"form-control-static\" id=\"email\">\${\$j('#email').val() || ''}\${\$j('#email').val() ? '<a target=\"_blank\" class=\"hspacer-lg\" href=\"mailto:' + \$j('#email').val() + '\" target=\"_blank\"><i class=\"glyphicon glyphicon-envelope\"></i></a>' : ''}</div>`);\n";
+		$jsReadOnly .= "\t\$j('#phone_number').replaceWith('<div class=\"form-control-static\" id=\"phone_number\">' + (\$j('#phone_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#date_of_joining').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#date_of_joiningDay, #date_of_joiningMonth, #date_of_joiningYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#date_of_exit').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#date_of_exitDay, #date_of_exitMonth, #date_of_exitYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#active_status').replaceWith('<div class=\"form-control-static\" id=\"active_status\">' + (\$j('#active_status').val() || '') + '</div>'); \$j('#active_status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#profile_photo').replaceWith('<div class=\"form-control-static\" id=\"profile_photo\">' + (\$j('#profile_photo').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#signature').replaceWith('<div class=\"form-control-static\" id=\"signature\">' + (\$j('#signature').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos
@@ -649,8 +648,6 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 		$templateCode .= $jsEditable;
 
 		if(!$hasSelectedId) {
-			$templateCode.="\n\tif(document.getElementById('emailEdit')) { document.getElementById('emailEdit').style.display='inline'; }";
-			$templateCode.="\n\tif(document.getElementById('emailEditLink')) { document.getElementById('emailEditLink').style.display='none'; }";
 		}
 
 		$templateCode.="\n});</script>\n";

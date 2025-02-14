@@ -211,6 +211,7 @@
 				}
 			});
 
+			file_tableUniqueFields.forEach(fieldName => enforce_uniqueness('file_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -224,4 +225,7 @@
 				);
 			}
 		});
+
+		var file_tableUniqueFields = [
+		];
 	</script>

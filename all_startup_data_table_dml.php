@@ -104,8 +104,8 @@ function all_startup_data_table_delete($selected_id, $AllowDeleteOfParents = fal
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'shortlisted_startups_for_fund_table'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'all_startup_data_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'all_startup_data_table_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `all_startup_data_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `all_startup_data_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -124,8 +124,8 @@ function all_startup_data_table_delete($selected_id, $AllowDeleteOfParents = fal
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'shortlisted_startups_dd_and_agreement_table'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'all_startup_data_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'all_startup_data_table_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `all_startup_data_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `all_startup_data_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -144,8 +144,8 @@ function all_startup_data_table_delete($selected_id, $AllowDeleteOfParents = fal
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'evaluation_table'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'all_startup_data_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'all_startup_data_table_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `all_startup_data_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `all_startup_data_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -353,7 +353,7 @@ function all_startup_data_table_form($selectedId = '', $allowUpdate = true, $all
 	<script>
 		// initial lookup values
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
@@ -442,25 +442,25 @@ function all_startup_data_table_form($selectedId = '', $allowUpdate = true, $all
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#company_id').replaceWith('<div class=\"form-control-static\" id=\"company_id\">' + (jQuery('#company_id').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#name_of_the_company').replaceWith('<div class=\"form-control-static\" id=\"name_of_the_company\">' + (jQuery('#name_of_the_company').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#business_sector').replaceWith('<div class=\"form-control-static\" id=\"business_sector\">' + (jQuery('#business_sector').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#name_of_the_person').replaceWith('<div class=\"form-control-static\" id=\"name_of_the_person\">' + (jQuery('#name_of_the_person').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#mobile_number').replaceWith('<div class=\"form-control-static\" id=\"mobile_number\">' + (jQuery('#mobile_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#email_id').replaceWith('<div class=\"form-control-static\" id=\"email_id\">' + (jQuery('#email_id').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#mode_of_incubation').replaceWith('<div class=\"form-control-static\" id=\"mode_of_incubation\">' + (jQuery('#mode_of_incubation').val() || '') + '</div>'); jQuery('#mode_of_incubation-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#date_of_incubation').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#date_of_incubationDay, #date_of_incubationMonth, #date_of_incubationYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#shortlisted_for_fund').replaceWith('<div class=\"form-control-static\" id=\"shortlisted_for_fund\">' + (jQuery('#shortlisted_for_fund').val() || '') + '</div>'); jQuery('#shortlisted_for_fund-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#website_link').replaceWith('<div class=\"form-control-static\" id=\"website_link\">' + (jQuery('#website_link').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#company_logo').replaceWith('<div class=\"form-control-static\" id=\"company_logo\">' + (jQuery('#company_logo').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#company_id').replaceWith('<div class=\"form-control-static\" id=\"company_id\">' + (\$j('#company_id').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#name_of_the_company').replaceWith('<div class=\"form-control-static\" id=\"name_of_the_company\">' + (\$j('#name_of_the_company').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#business_sector').replaceWith('<div class=\"form-control-static\" id=\"business_sector\">' + (\$j('#business_sector').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#name_of_the_person').replaceWith('<div class=\"form-control-static\" id=\"name_of_the_person\">' + (\$j('#name_of_the_person').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#mobile_number').replaceWith('<div class=\"form-control-static\" id=\"mobile_number\">' + (\$j('#mobile_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#email_id').replaceWith('<div class=\"form-control-static\" id=\"email_id\">' + (\$j('#email_id').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#mode_of_incubation').replaceWith('<div class=\"form-control-static\" id=\"mode_of_incubation\">' + (\$j('#mode_of_incubation').val() || '') + '</div>'); \$j('#mode_of_incubation-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#date_of_incubation').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#date_of_incubationDay, #date_of_incubationMonth, #date_of_incubationYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#shortlisted_for_fund').replaceWith('<div class=\"form-control-static\" id=\"shortlisted_for_fund\">' + (\$j('#shortlisted_for_fund').val() || '') + '</div>'); \$j('#shortlisted_for_fund-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#website_link').replaceWith('<div class=\"form-control-static\" id=\"website_link\">' + (\$j('#website_link').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#company_logo').replaceWith('<div class=\"form-control-static\" id=\"company_logo\">' + (\$j('#company_logo').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

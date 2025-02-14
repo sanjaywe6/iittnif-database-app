@@ -206,6 +206,7 @@
 				}
 			});
 
+			employees_designation_tableUniqueFields.forEach(fieldName => enforce_uniqueness('employees_designation_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -219,4 +220,7 @@
 				);
 			}
 		});
+
+		var employees_designation_tableUniqueFields = [
+		];
 	</script>

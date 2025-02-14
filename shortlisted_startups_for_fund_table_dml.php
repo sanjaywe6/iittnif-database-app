@@ -261,7 +261,7 @@ function shortlisted_startups_for_fund_table_form($selectedId = '', $allowUpdate
 		// initial lookup values
 		AppGini.current_startup__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['startup'] : htmlspecialchars($filterer_startup, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(startup_reload__RAND__) == 'function') startup_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
@@ -428,33 +428,33 @@ function shortlisted_startups_for_fund_table_form($selectedId = '', $allowUpdate
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#startup').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#startup_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\tjQuery('#scheme').replaceWith('<div class=\"form-control-static\" id=\"scheme\">' + (jQuery('#scheme').val() || '') + '</div>'); jQuery('#scheme-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#recommended_fund').replaceWith('<div class=\"form-control-static\" id=\"recommended_fund\">' + (jQuery('#recommended_fund').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#name_of_founder').replaceWith('<div class=\"form-control-static\" id=\"name_of_founder\">' + (jQuery('#name_of_founder').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#email_of_founder').replaceWith('<div class=\"form-control-static\" id=\"email_of_founder\">' + (jQuery('#email_of_founder').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#phone_number_of_founder').replaceWith('<div class=\"form-control-static\" id=\"phone_number_of_founder\">' + (jQuery('#phone_number_of_founder').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#due_diligence_start').replaceWith('<div class=\"form-control-static\" id=\"due_diligence_start\">' + (jQuery('#due_diligence_start').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#terms_agreed').replaceWith('<div class=\"form-control-static\" id=\"terms_agreed\">' + (jQuery('#terms_agreed').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#grant_amount').replaceWith('<div class=\"form-control-static\" id=\"grant_amount\">' + (jQuery('#grant_amount').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#debt_amount').replaceWith('<div class=\"form-control-static\" id=\"debt_amount\">' + (jQuery('#debt_amount').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#ocd_or_ccd_amount').replaceWith('<div class=\"form-control-static\" id=\"ocd_or_ccd_amount\">' + (jQuery('#ocd_or_ccd_amount').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#equity_amount').replaceWith('<div class=\"form-control-static\" id=\"equity_amount\">' + (jQuery('#equity_amount').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#interest_rate').replaceWith('<div class=\"form-control-static\" id=\"interest_rate\">' + (jQuery('#interest_rate').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#period').replaceWith('<div class=\"form-control-static\" id=\"period\">' + (jQuery('#period').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#conversion_formula').replaceWith('<div class=\"form-control-static\" id=\"conversion_formula\">' + (jQuery('#conversion_formula').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#equity_diluted').replaceWith('<div class=\"form-control-static\" id=\"equity_diluted\">' + (jQuery('#equity_diluted').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#comments').replaceWith('<div class=\"form-control-static\" id=\"comments\">' + (jQuery('#comments').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#remarks_1').replaceWith('<div class=\"form-control-static\" id=\"remarks_1\">' + (jQuery('#remarks_1').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#remarks_2').replaceWith('<div class=\"form-control-static\" id=\"remarks_2\">' + (jQuery('#remarks_2').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#startup').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#startup_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('#scheme').replaceWith('<div class=\"form-control-static\" id=\"scheme\">' + (\$j('#scheme').val() || '') + '</div>'); \$j('#scheme-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#recommended_fund').replaceWith('<div class=\"form-control-static\" id=\"recommended_fund\">' + (\$j('#recommended_fund').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#name_of_founder').replaceWith('<div class=\"form-control-static\" id=\"name_of_founder\">' + (\$j('#name_of_founder').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#email_of_founder').replaceWith('<div class=\"form-control-static\" id=\"email_of_founder\">' + (\$j('#email_of_founder').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#phone_number_of_founder').replaceWith('<div class=\"form-control-static\" id=\"phone_number_of_founder\">' + (\$j('#phone_number_of_founder').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#due_diligence_start').replaceWith('<div class=\"form-control-static\" id=\"due_diligence_start\">' + (\$j('#due_diligence_start').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#terms_agreed').replaceWith('<div class=\"form-control-static\" id=\"terms_agreed\">' + (\$j('#terms_agreed').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#grant_amount').replaceWith('<div class=\"form-control-static\" id=\"grant_amount\">' + (\$j('#grant_amount').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#debt_amount').replaceWith('<div class=\"form-control-static\" id=\"debt_amount\">' + (\$j('#debt_amount').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#ocd_or_ccd_amount').replaceWith('<div class=\"form-control-static\" id=\"ocd_or_ccd_amount\">' + (\$j('#ocd_or_ccd_amount').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#equity_amount').replaceWith('<div class=\"form-control-static\" id=\"equity_amount\">' + (\$j('#equity_amount').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#interest_rate').replaceWith('<div class=\"form-control-static\" id=\"interest_rate\">' + (\$j('#interest_rate').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#period').replaceWith('<div class=\"form-control-static\" id=\"period\">' + (\$j('#period').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#conversion_formula').replaceWith('<div class=\"form-control-static\" id=\"conversion_formula\">' + (\$j('#conversion_formula').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#equity_diluted').replaceWith('<div class=\"form-control-static\" id=\"equity_diluted\">' + (\$j('#equity_diluted').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#comments').replaceWith('<div class=\"form-control-static\" id=\"comments\">' + (\$j('#comments').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#remarks_1').replaceWith('<div class=\"form-control-static\" id=\"remarks_1\">' + (\$j('#remarks_1').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#remarks_2').replaceWith('<div class=\"form-control-static\" id=\"remarks_2\">' + (\$j('#remarks_2').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

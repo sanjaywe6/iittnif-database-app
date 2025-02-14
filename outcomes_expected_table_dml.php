@@ -92,8 +92,8 @@ function outcomes_expected_table_delete($selected_id, $AllowDeleteOfParents = fa
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'event_decision_table'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'outcomes_expected_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'outcomes_expected_table_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `outcomes_expected_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `outcomes_expected_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -239,7 +239,7 @@ function outcomes_expected_table_form($selectedId = '', $allowUpdate = true, $al
 		// initial lookup values
 		AppGini.current_event_lookup__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['event_lookup'] : htmlspecialchars($filterer_event_lookup, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(event_lookup_reload__RAND__) == 'function') event_lookup_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
@@ -406,15 +406,15 @@ function outcomes_expected_table_form($selectedId = '', $allowUpdate = true, $al
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#target_audience').replaceWith('<div class=\"form-control-static\" id=\"target_audience\">' + (jQuery('#target_audience').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#expected_outcomes').replaceWith('<div class=\"form-control-static\" id=\"expected_outcomes\">' + (jQuery('#expected_outcomes').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#target_audience').replaceWith('<div class=\"form-control-static\" id=\"target_audience\">' + (\$j('#target_audience').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#expected_outcomes').replaceWith('<div class=\"form-control-static\" id=\"expected_outcomes\">' + (\$j('#expected_outcomes').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

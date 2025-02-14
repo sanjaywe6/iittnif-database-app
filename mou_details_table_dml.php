@@ -107,8 +107,8 @@ function mou_details_table_delete($selected_id, $AllowDeleteOfParents = false, $
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'mou_company_area_details_table'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'mou_details_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'mou_details_table_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `mou_details_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `mou_details_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -336,7 +336,7 @@ function mou_details_table_form($selectedId = '', $allowUpdate = true, $allowIns
 		// initial lookup values
 		AppGini.current_assigned_mou_to__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['assigned_mou_to'] : htmlspecialchars($filterer_assigned_mou_to, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(assigned_mou_to_reload__RAND__) == 'function') assigned_mou_to_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
@@ -503,31 +503,30 @@ function mou_details_table_form($selectedId = '', $allowUpdate = true, $allowIns
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#type').replaceWith('<div class=\"form-control-static\" id=\"type\">' + (jQuery('#type').val() || '') + '</div>'); jQuery('#type-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#company_name').replaceWith('<div class=\"form-control-static\" id=\"company_name\">' + (jQuery('#company_name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#objective_of_mou').replaceWith('<div class=\"form-control-static\" id=\"objective_of_mou\">' + (jQuery('#objective_of_mou').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#agreement_period').replaceWith('<div class=\"form-control-static\" id=\"agreement_period\">' + (jQuery('#agreement_period').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#date_of_agreement').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#date_of_agreementDay, #date_of_agreementMonth, #date_of_agreementYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#date_of_expiry').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#date_of_expiryDay, #date_of_expiryMonth, #date_of_expiryYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#status').replaceWith('<div class=\"form-control-static\" id=\"status\">' + (jQuery('#status').val() || '') + '</div>'); jQuery('#status-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#point_of_contact').replaceWith('<div class=\"form-control-static\" id=\"point_of_contact\">' + (jQuery('#point_of_contact').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#contact_number').replaceWith('<div class=\"form-control-static\" id=\"contact_number\">' + (jQuery('#contact_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#contact_email_id').replaceWith('<div class=\"form-control-static\" id=\"contact_email_id\">' + (jQuery('#contact_email_id').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#website_link').replaceWith('<div class=\"form-control-static\" id=\"website_link\">' + (jQuery('#website_link').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#country').replaceWith('<div class=\"form-control-static\" id=\"country\">' + (jQuery('#country').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#assigned_mou_to').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#assigned_mou_to_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\tjQuery('#upload_mou').replaceWith('<div class=\"form-control-static\" id=\"upload_mou\">' + (jQuery('#upload_mou').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#upload_mou, #upload_mou-edit-link').hide();\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#type').replaceWith('<div class=\"form-control-static\" id=\"type\">' + (\$j('#type').val() || '') + '</div>'); \$j('#type-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#company_name').replaceWith('<div class=\"form-control-static\" id=\"company_name\">' + (\$j('#company_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#objective_of_mou').replaceWith('<div class=\"form-control-static\" id=\"objective_of_mou\">' + (\$j('#objective_of_mou').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#agreement_period').replaceWith('<div class=\"form-control-static\" id=\"agreement_period\">' + (\$j('#agreement_period').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#date_of_agreement').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#date_of_agreementDay, #date_of_agreementMonth, #date_of_agreementYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#date_of_expiry').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#date_of_expiryDay, #date_of_expiryMonth, #date_of_expiryYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#status').replaceWith('<div class=\"form-control-static\" id=\"status\">' + (\$j('#status').val() || '') + '</div>'); \$j('#status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#point_of_contact').replaceWith('<div class=\"form-control-static\" id=\"point_of_contact\">' + (\$j('#point_of_contact').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#contact_number').replaceWith('<div class=\"form-control-static\" id=\"contact_number\">' + (\$j('#contact_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#contact_email_id').replaceWith('<div class=\"form-control-static\" id=\"contact_email_id\">' + (\$j('#contact_email_id').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#website_link').replaceWith('<div class=\"form-control-static\" id=\"website_link\">' + (\$j('#website_link').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#country').replaceWith('<div class=\"form-control-static\" id=\"country\">' + (\$j('#country').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#assigned_mou_to').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#assigned_mou_to_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('#upload_mou').parent().replaceWith(`<div class=\"form-control-static\" id=\"upload_mou\">\${\$j('#upload_mou').val() || ''}\${\$j('#upload_mou').val() ? '<a target=\"_blank\" class=\"hspacer-lg\" href=\"' + \$j('#upload_mou').val() + '\" target=\"_blank\"><i class=\"glyphicon glyphicon-globe\"></i></a>' : ''}</div>`);\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

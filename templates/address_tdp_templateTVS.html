@@ -1,18 +1,43 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="11" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="address_tdp-id-caption field-caption-tv">ID</dt>
+					<dd id="address_tdp-id-<%%VALUE(id)%%>" class="address_tdp-id text-right text-bold"><%%VALUE(id)%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the address_tdp_init() hook (in hooks/address_tdp.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="address_tdp-project_id-caption field-caption-tv">Project ID::Title</dt>
+					<dd id="address_tdp-project_id-<%%VALUE(id)%%>" class="address_tdp-project_id text-bold"><%%VALUE(project_id)%%></dd>
 
-		<td id="address_tdp-id-<%%VALUE(id)%%>" class="address_tdp-id text-right text-bold"><%%VALUE(id)%%></td>
-		<td id="address_tdp-project_id-<%%VALUE(id)%%>" class="address_tdp-project_id text-bold"><%%VALUE(project_id)%%></td>
-		<td id="address_tdp-project_title-<%%VALUE(id)%%>" class="address_tdp-project_title text-bold"><%%VALUE(project_title)%%></td>
-		<td id="address_tdp-short_name-<%%VALUE(id)%%>" class="address_tdp-short_name text-bold"><%%VALUE(short_name)%%></td>
-		<td id="address_tdp-pincode-<%%VALUE(id)%%>" class="address_tdp-pincode text-bold"><%%VALUE(pincode)%%></td>
-		<td id="address_tdp-lattitude-<%%VALUE(id)%%>" class="address_tdp-lattitude text-bold"><%%VALUE(lattitude)%%></td>
-		<td id="address_tdp-longitude-<%%VALUE(id)%%>" class="address_tdp-longitude text-bold"><%%VALUE(longitude)%%></td>
-		<td id="address_tdp-created_by-<%%VALUE(id)%%>" class="address_tdp-created_by text-bold"><%%VALUE(created_by)%%></td>
-		<td id="address_tdp-created_at-<%%VALUE(id)%%>" class="address_tdp-created_at text-bold"><%%VALUE(created_at)%%></td>
-		<td id="address_tdp-last_updated_by-<%%VALUE(id)%%>" class="address_tdp-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
-		<td id="address_tdp-last_updated_at-<%%VALUE(id)%%>" class="address_tdp-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>
+					<dt class="address_tdp-project_title-caption field-caption-tv">Project title</dt>
+					<dd id="address_tdp-project_title-<%%VALUE(id)%%>" class="address_tdp-project_title text-bold"><%%VALUE(project_title)%%></dd>
+
+					<dt class="address_tdp-short_name-caption field-caption-tv">Short name</dt>
+					<dd id="address_tdp-short_name-<%%VALUE(id)%%>" class="address_tdp-short_name text-bold"><%%VALUE(short_name)%%></dd>
+
+					<dt class="address_tdp-pincode-caption field-caption-tv">Pincode</dt>
+					<dd id="address_tdp-pincode-<%%VALUE(id)%%>" class="address_tdp-pincode text-bold"><%%VALUE(pincode)%%></dd>
+
+					<dt class="address_tdp-lattitude-caption field-caption-tv">Lattitude</dt>
+					<dd id="address_tdp-lattitude-<%%VALUE(id)%%>" class="address_tdp-lattitude text-bold"><%%VALUE(lattitude)%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="address_tdp-longitude-caption field-caption-tv">Longitude</dt>
+					<dd id="address_tdp-longitude-<%%VALUE(id)%%>" class="address_tdp-longitude text-bold"><%%VALUE(longitude)%%></dd>
+
+					<dt class="address_tdp-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="address_tdp-created_by-<%%VALUE(id)%%>" class="address_tdp-created_by text-bold"><%%VALUE(created_by)%%></dd>
+
+					<dt class="address_tdp-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="address_tdp-created_at-<%%VALUE(id)%%>" class="address_tdp-created_at text-bold"><%%VALUE(created_at)%%></dd>
+
+					<dt class="address_tdp-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="address_tdp-last_updated_by-<%%VALUE(id)%%>" class="address_tdp-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></dd>
+
+					<dt class="address_tdp-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="address_tdp-last_updated_at-<%%VALUE(id)%%>" class="address_tdp-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></dd>
+
+				</dl>
+			</div>
+		</td>

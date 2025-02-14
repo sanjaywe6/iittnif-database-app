@@ -170,7 +170,7 @@
 				}
 			});
 
-			enforce_uniqueness('action_actor', 'actor_ID');
+			action_actorUniqueFields.forEach(fieldName => enforce_uniqueness('action_actor', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -184,4 +184,8 @@
 				);
 			}
 		});
+
+		var action_actorUniqueFields = [
+			'actor_ID',
+		];
 	</script>

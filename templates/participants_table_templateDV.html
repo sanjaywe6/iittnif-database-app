@@ -212,6 +212,7 @@
 				}
 			});
 
+			participants_tableUniqueFields.forEach(fieldName => enforce_uniqueness('participants_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -225,4 +226,7 @@
 				);
 			}
 		});
+
+		var participants_tableUniqueFields = [
+		];
 	</script>

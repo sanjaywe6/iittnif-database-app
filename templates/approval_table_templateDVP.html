@@ -14,13 +14,6 @@
 
 <div class="panel-body">
 	<fieldset class="form-horizontal">
-		<!-- Field: ID -->
-		<div class="form-group approval_table-procurement_approval_id" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">ID</label>
-			<div class="col-xs-9">
-				<div class="form-control-static"><%%VALUE(procurement_approval_id)%%></div>
-			</div>
-		</div>
 		<!-- Field: Approval for -->
 		<div class="form-group approval_table-type" style="border-bottom: dotted 1px #DDD;">
 			<label class="col-xs-3 control-label">Approval for</label>
@@ -63,9 +56,9 @@
 				<div class="form-control-static"><%%VALUE(purpose)%%></div>
 			</div>
 		</div>
-		<!-- Field: Requested Department -->
+		<!-- Field: Requested Department/Appointment -->
 		<div class="form-group approval_table-requested_department" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Requested Department</label>
+			<label class="col-xs-3 control-label">Requested Department/Appointment</label>
 			<div class="col-xs-9">
 				<div class="form-control-static"><%%VALUE(requested_department)%%></div>
 			</div>
@@ -113,7 +106,7 @@
 		<div class="form-group approval_table-other_file" style="border-bottom: dotted 1px #DDD;">
 			<label class="col-xs-3 control-label">Upload Other File if Any (Optional)</label>
 			<div class="col-xs-9">
-				<div class="form-control-static"><a id="other_file-link" href="link.php?t=approval_table&f=other_file&i=<%%VALUE(procurement_approval_id)%%>" target="_blank"><i class="glyphicon glyphicon-lg glyphicon-file" title="<%%VALUE(other_file)%%>"></i></a><script>jQuery(function() { var e_other_file = '<%%VALUE(other_file)%%>'; if(e_other_file == '' || e_other_file == '&nbsp;' || e_other_file == 'blank.gif') jQuery('#other_file-link').hide(); });</script></div>
+				<div class="form-control-static"><a id="other_file-link" href="link.php?t=approval_table&f=other_file&i=<%%VALUE(id)%%>" target="_blank"><i class="glyphicon glyphicon-lg glyphicon-file" title="<%%VALUE(other_file)%%>"></i></a><script>$j(function() { var e_other_file = '<%%VALUE(other_file)%%>'; if(e_other_file == '' || e_other_file == '&nbsp;' || e_other_file == 'blank.gif') $j('#other_file-link').hide(); });</script></div>
 			</div>
 		</div>
 	</fieldset>

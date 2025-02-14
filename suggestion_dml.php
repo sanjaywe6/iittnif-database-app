@@ -321,16 +321,15 @@ function suggestion_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#suggestion').replaceWith('<div class=\"form-control-static\" id=\"suggestion\">' + (jQuery('#suggestion').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#attachment').replaceWith('<div class=\"form-control-static\" id=\"attachment\">' + (jQuery('#attachment').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#attachment, #attachment-edit-link').hide();\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#suggestion').replaceWith('<div class=\"form-control-static\" id=\"suggestion\">' + (\$j('#suggestion').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#attachment').parent().replaceWith(`<div class=\"form-control-static\" id=\"attachment\">\${\$j('#attachment').val() || ''}\${\$j('#attachment').val() ? '<a target=\"_blank\" class=\"hspacer-lg\" href=\"' + \$j('#attachment').val() + '\" target=\"_blank\"><i class=\"glyphicon glyphicon-globe\"></i></a>' : ''}</div>`);\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

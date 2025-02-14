@@ -233,7 +233,7 @@ function space_day_college_student_table_form($selectedId = '', $allowUpdate = t
 	<script>
 		// initial lookup values
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
@@ -322,22 +322,22 @@ function space_day_college_student_table_form($selectedId = '', $allowUpdate = t
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#name_of_student').replaceWith('<div class=\"form-control-static\" id=\"name_of_student\">' + (jQuery('#name_of_student').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#registration_number').replaceWith('<div class=\"form-control-static\" id=\"registration_number\">' + (jQuery('#registration_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#degree_department').replaceWith('<div class=\"form-control-static\" id=\"degree_department\">' + (jQuery('#degree_department').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#gender').replaceWith('<div class=\"form-control-static\" id=\"gender\">' + (jQuery('#gender').val() || '') + '</div>'); jQuery('#gender-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#home_address').replaceWith('<div class=\"form-control-static\" id=\"home_address\">' + (jQuery('#home_address').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#email_id').replaceWith('<div class=\"form-control-static\" id=\"email_id\">' + (jQuery('#email_id').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#contact_number').replaceWith('<div class=\"form-control-static\" id=\"contact_number\">' + (jQuery('#contact_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#interest').replaceWith('<div class=\"form-control-static\" id=\"interest\">' + (jQuery('#interest').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#college_name').replaceWith('<div class=\"form-control-static\" id=\"college_name\">' + (jQuery('#college_name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#name_of_student').replaceWith('<div class=\"form-control-static\" id=\"name_of_student\">' + (\$j('#name_of_student').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#registration_number').replaceWith('<div class=\"form-control-static\" id=\"registration_number\">' + (\$j('#registration_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#degree_department').replaceWith('<div class=\"form-control-static\" id=\"degree_department\">' + (\$j('#degree_department').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#gender').replaceWith('<div class=\"form-control-static\" id=\"gender\">' + (\$j('#gender').val() || '') + '</div>'); \$j('#gender-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#home_address').replaceWith('<div class=\"form-control-static\" id=\"home_address\">' + (\$j('#home_address').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#email_id').replaceWith('<div class=\"form-control-static\" id=\"email_id\">' + (\$j('#email_id').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#contact_number').replaceWith('<div class=\"form-control-static\" id=\"contact_number\">' + (\$j('#contact_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#interest').replaceWith('<div class=\"form-control-static\" id=\"interest\">' + (\$j('#interest').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#college_name').replaceWith('<div class=\"form-control-static\" id=\"college_name\">' + (\$j('#college_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

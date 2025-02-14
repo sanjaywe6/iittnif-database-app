@@ -94,8 +94,8 @@ function car_table_delete($selected_id, $AllowDeleteOfParents = false, $skipChec
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'car_usage_table'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'car_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'car_table_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `car_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `car_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -281,7 +281,7 @@ function car_table_form($selectedId = '', $allowUpdate = true, $allowInsert = tr
 	<script>
 		// initial lookup values
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
@@ -370,29 +370,29 @@ function car_table_form($selectedId = '', $allowUpdate = true, $allowInsert = tr
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#car_number').replaceWith('<div class=\"form-control-static\" id=\"car_number\">' + (jQuery('#car_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#registration_number').replaceWith('<div class=\"form-control-static\" id=\"registration_number\">' + (jQuery('#registration_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#car_model').replaceWith('<div class=\"form-control-static\" id=\"car_model\">' + (jQuery('#car_model').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#car_vin').replaceWith('<div class=\"form-control-static\" id=\"car_vin\">' + (jQuery('#car_vin').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#fuel_type').replaceWith('<div class=\"form-control-static\" id=\"fuel_type\">' + (jQuery('#fuel_type').val() || '') + '</div>'); jQuery('#fuel_type-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#seating_capacity').replaceWith('<div class=\"form-control-static\" id=\"seating_capacity\">' + (jQuery('#seating_capacity').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#car_color').replaceWith('<div class=\"form-control-static\" id=\"car_color\">' + (jQuery('#car_color').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#rental_company_name').replaceWith('<div class=\"form-control-static\" id=\"rental_company_name\">' + (jQuery('#rental_company_name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#contact_person').replaceWith('<div class=\"form-control-static\" id=\"contact_person\">' + (jQuery('#contact_person').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#contact_number_of_person').replaceWith('<div class=\"form-control-static\" id=\"contact_number_of_person\">' + (jQuery('#contact_number_of_person').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#rental_rate').replaceWith('<div class=\"form-control-static\" id=\"rental_rate\">' + (jQuery('#rental_rate').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#rental_start_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#rental_start_dateDay, #rental_start_dateMonth, #rental_start_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#rental_end_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#rental_end_dateDay, #rental_end_dateMonth, #rental_end_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#purpose').replaceWith('<div class=\"form-control-static\" id=\"purpose\">' + (jQuery('#purpose').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#car_number').replaceWith('<div class=\"form-control-static\" id=\"car_number\">' + (\$j('#car_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#registration_number').replaceWith('<div class=\"form-control-static\" id=\"registration_number\">' + (\$j('#registration_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#car_model').replaceWith('<div class=\"form-control-static\" id=\"car_model\">' + (\$j('#car_model').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#car_vin').replaceWith('<div class=\"form-control-static\" id=\"car_vin\">' + (\$j('#car_vin').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#fuel_type').replaceWith('<div class=\"form-control-static\" id=\"fuel_type\">' + (\$j('#fuel_type').val() || '') + '</div>'); \$j('#fuel_type-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#seating_capacity').replaceWith('<div class=\"form-control-static\" id=\"seating_capacity\">' + (\$j('#seating_capacity').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#car_color').replaceWith('<div class=\"form-control-static\" id=\"car_color\">' + (\$j('#car_color').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#rental_company_name').replaceWith('<div class=\"form-control-static\" id=\"rental_company_name\">' + (\$j('#rental_company_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#contact_person').replaceWith('<div class=\"form-control-static\" id=\"contact_person\">' + (\$j('#contact_person').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#contact_number_of_person').replaceWith('<div class=\"form-control-static\" id=\"contact_number_of_person\">' + (\$j('#contact_number_of_person').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#rental_rate').replaceWith('<div class=\"form-control-static\" id=\"rental_rate\">' + (\$j('#rental_rate').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#rental_start_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#rental_start_dateDay, #rental_start_dateMonth, #rental_start_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#rental_end_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#rental_end_dateDay, #rental_end_dateMonth, #rental_end_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#purpose').replaceWith('<div class=\"form-control-static\" id=\"purpose\">' + (\$j('#purpose').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

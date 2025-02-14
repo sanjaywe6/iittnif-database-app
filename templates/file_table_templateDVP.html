@@ -53,7 +53,7 @@
 		<div class="form-group file_table-upload_file" style="border-bottom: dotted 1px #DDD;">
 			<label class="col-xs-3 control-label">Upload file</label>
 			<div class="col-xs-9">
-				<div class="form-control-static"><a id="upload_file-link" href="link.php?t=file_table&f=upload_file&i=<%%VALUE(file_id)%%>" target="_blank"><i class="glyphicon glyphicon-lg glyphicon-picture" title="<%%VALUE(upload_file)%%>"></i></a><script>jQuery(function() { var e_upload_file = '<%%VALUE(upload_file)%%>'; if(e_upload_file == '' || e_upload_file == '&nbsp;' || e_upload_file == 'blank.gif') jQuery('#upload_file-link').hide(); });</script></div>
+				<div class="form-control-static"><a id="upload_file-link" href="link.php?t=file_table&f=upload_file&i=<%%VALUE(file_id)%%>" target="_blank"><i class="glyphicon glyphicon-lg glyphicon-picture" title="<%%VALUE(upload_file)%%>"></i></a><script>$j(function() { var e_upload_file = '<%%VALUE(upload_file)%%>'; if(e_upload_file == '' || e_upload_file == '&nbsp;' || e_upload_file == 'blank.gif') $j('#upload_file-link').hide(); });</script></div>
 			</div>
 		</div>
 	</fieldset>

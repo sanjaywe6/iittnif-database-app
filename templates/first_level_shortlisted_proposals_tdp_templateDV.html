@@ -215,6 +215,7 @@
 				}
 			});
 
+			first_level_shortlisted_proposals_tdpUniqueFields.forEach(fieldName => enforce_uniqueness('first_level_shortlisted_proposals_tdp', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -228,4 +229,7 @@
 				);
 			}
 		});
+
+		var first_level_shortlisted_proposals_tdpUniqueFields = [
+		];
 	</script>

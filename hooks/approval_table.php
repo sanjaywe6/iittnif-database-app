@@ -9,6 +9,15 @@
 	function approval_table_header($contentType, $memberInfo, &$args) {
 		$header='';
 
+
+		// foreach ($memberInfo as $key => $val ){
+		// 	WindowMessages::add($key."~".$val);
+		// }
+
+		// foreach ($contentType as $key => $val ){
+		// 	WindowMessages::add($key."~".$val);
+		// }
+
 		switch($contentType) {
 			case 'tableview':
 				$header='';
@@ -72,7 +81,24 @@
 
 	function approval_table_before_insert(&$data, $memberInfo, &$args) {
 
-		return TRUE;
+		// capturing the post request data
+		$formData = $_POST;
+
+		// loop to verify the valid user for approval
+		if ($formData["approval_status"]=="Approved by CEO" xor $formData["approval_status"]=="Not Approved by CEO" xor $formData["approval_status"]=="Approved by PD" xor $formData["approval_status"]=="Not Approved by PD" ){
+			if ($memberInfo["groupID"] == 3){
+				return TRUE;
+			}
+			else{
+				WindowMessages::add("Sorry! You don't have permission to Approve or Disapprove the approval. For more information, Please contact admin.");
+				return FALSE;
+			}
+		}
+
+		else{
+			return TRUE;
+		}
+
 	}
 
 	function approval_table_after_insert($data, $memberInfo, &$args) {
@@ -82,7 +108,37 @@
 
 	function approval_table_before_update(&$data, $memberInfo, &$args) {
 
-		return TRUE;
+		// capturing the post request data
+		$formData = $_POST;
+
+		// loop to verify the valid user for approval
+		if ($formData["approval_status"]=="Approved by CEO" xor $formData["approval_status"]=="Not Approved by CEO" xor $formData["approval_status"]=="Approved by PD" xor $formData["approval_status"]=="Not Approved by PD" ){
+			if ($memberInfo["groupID"] == 3){
+				return TRUE;
+			}
+			else{
+				WindowMessages::add("Sorry! You don't have permission to Approve or Disapprove the approval. For more information, Please contact admin.");
+				return FALSE;
+			}
+		}
+
+		else{
+			// filter data with id from existing database
+			$id = makeSafe($formData["SelectedID"]);
+			$sql_querry = "SELECT * FROM approval_table WHERE id='{$id}'";
+			$result = sql($sql_querry,$eo);
+			if($row = db_fetch_assoc($result)){
+				// if already approved then block the update
+				if ($row["approval_status"] == "Approved by CEO" xor $row["approval_status"] == "Not Approved by CEO" xor $row["approval_status"] == "Approved by PD" xor $row["approval_status"] == "Not Approved by PD"){
+					WindowMessages::add("Sorry! Update failed. Approval status can not be changed. For more information, Please contact admin.");
+					return FALSE;
+				}
+				else{
+					return TRUE;
+				}
+			}
+		}
+
 	}
 
 	function approval_table_after_update($data, $memberInfo, &$args) {

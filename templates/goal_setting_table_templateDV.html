@@ -260,6 +260,7 @@
 				}
 			});
 
+			goal_setting_tableUniqueFields.forEach(fieldName => enforce_uniqueness('goal_setting_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -273,4 +274,7 @@
 				);
 			}
 		});
+
+		var goal_setting_tableUniqueFields = [
+		];
 	</script>

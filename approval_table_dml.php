@@ -107,7 +107,7 @@ function approval_table_delete($selected_id, $AllowDeleteOfParents = false, $ski
 	}
 
 	// delete file stored in the 'image' field
-	$res = sql("SELECT `image` FROM `approval_table` WHERE `procurement_approval_id`='{$selected_id}'", $eo);
+	$res = sql("SELECT `image` FROM `approval_table` WHERE `id`='{$selected_id}'", $eo);
 	if($row = @db_fetch_row($res)) {
 		if($row[0] != '') {
 			@unlink(getUploadDir('') . $row[0]);
@@ -119,14 +119,14 @@ function approval_table_delete($selected_id, $AllowDeleteOfParents = false, $ski
 	}
 
 	// delete file stored in the 'other_file' field
-	$res = sql("SELECT `other_file` FROM `approval_table` WHERE `procurement_approval_id`='{$selected_id}'", $eo);
+	$res = sql("SELECT `other_file` FROM `approval_table` WHERE `id`='{$selected_id}'", $eo);
 	if($row = @db_fetch_row($res)) {
 		if($row[0] != '') {
 			@unlink(getUploadDir('') . $row[0]);
 		}
 	}
 
-	sql("DELETE FROM `approval_table` WHERE `procurement_approval_id`='{$selected_id}'", $eo);
+	sql("DELETE FROM `approval_table` WHERE `id`='{$selected_id}'", $eo);
 
 	// hook: approval_table_after_delete
 	if(function_exists('approval_table_after_delete')) {
@@ -239,7 +239,7 @@ function approval_table_update(&$selected_id, &$error_message = '') {
 	if(!update(
 		'approval_table', 
 		backtick_keys_once($set), 
-		['`procurement_approval_id`' => $selected_id], 
+		['`id`' => $selected_id], 
 		$error_message
 	)) {
 		echo $error_message;
@@ -254,7 +254,7 @@ function approval_table_update(&$selected_id, &$error_message = '') {
 	if(function_exists('approval_table_after_update')) {
 		if($row = getRecord('approval_table', $data['selectedID'])) $data = array_map('makeSafe', $row);
 
-		$data['selectedID'] = $data['procurement_approval_id'];
+		$data['selectedID'] = $data['id'];
 		$args = ['old_data' => $old_data];
 		if(!approval_table_after_update($data, getMemberInfo(), $args)) return;
 	}
@@ -327,7 +327,7 @@ Seminar;;
 
 Conference;;
 
-Skill&#160;Development"))));
+Skill&#160;Development;;Business Development"))));
 		$combo_type->ListData = $combo_type->ListItem;
 	}
 	$combo_type->SelectName = 'type';
@@ -396,7 +396,7 @@ Skill&#160;Development"))));
 		// initial lookup values
 		AppGini.current_person_responsbility__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['person_responsbility'] : htmlspecialchars($filterer_person_responsbility, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(person_responsbility_reload__RAND__) == 'function') person_responsbility_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
@@ -563,28 +563,27 @@ Skill&#160;Development"))));
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#type').replaceWith('<div class=\"form-control-static\" id=\"type\">' + (jQuery('#type').val() || '') + '</div>'); jQuery('#type-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#description').replaceWith('<div class=\"form-control-static\" id=\"description\">' + (jQuery('#description').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#quantity').replaceWith('<div class=\"form-control-static\" id=\"quantity\">' + (jQuery('#quantity').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#full_est_value').replaceWith('<div class=\"form-control-static\" id=\"full_est_value\">' + (jQuery('#full_est_value').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#name_of_vendor').replaceWith('<div class=\"form-control-static\" id=\"name_of_vendor\">' + (jQuery('#name_of_vendor').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#purpose').replaceWith('<div class=\"form-control-static\" id=\"purpose\">' + (jQuery('#purpose').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#requested_department').replaceWith('<div class=\"form-control-static\" id=\"requested_department\">' + (jQuery('#requested_department').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#person_responsbility').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#person_responsbility_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\tjQuery('#mode_of_purchase').replaceWith('<div class=\"form-control-static\" id=\"mode_of_purchase\">' + (jQuery('#mode_of_purchase').val() || '') + '</div>'); jQuery('#mode_of_purchase-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#others_if_any').replaceWith('<div class=\"form-control-static\" id=\"others_if_any\">' + (jQuery('#others_if_any').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#approval_status').replaceWith('<div class=\"form-control-static\" id=\"approval_status\">' + (jQuery('#approval_status').val() || '') + '</div>'); jQuery('#approval_status-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#image').replaceWith('<div class=\"form-control-static\" id=\"image\">' + (jQuery('#image').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#other_file').replaceWith('<div class=\"form-control-static\" id=\"other_file\">' + (jQuery('#other_file').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#other_file, #other_file-edit-link').hide();\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#type').replaceWith('<div class=\"form-control-static\" id=\"type\">' + (\$j('#type').val() || '') + '</div>'); \$j('#type-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#description').replaceWith('<div class=\"form-control-static\" id=\"description\">' + (\$j('#description').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#quantity').replaceWith('<div class=\"form-control-static\" id=\"quantity\">' + (\$j('#quantity').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#full_est_value').replaceWith('<div class=\"form-control-static\" id=\"full_est_value\">' + (\$j('#full_est_value').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#name_of_vendor').replaceWith('<div class=\"form-control-static\" id=\"name_of_vendor\">' + (\$j('#name_of_vendor').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#purpose').replaceWith('<div class=\"form-control-static\" id=\"purpose\">' + (\$j('#purpose').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#requested_department').replaceWith('<div class=\"form-control-static\" id=\"requested_department\">' + (\$j('#requested_department').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#person_responsbility').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#person_responsbility_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('#mode_of_purchase').replaceWith('<div class=\"form-control-static\" id=\"mode_of_purchase\">' + (\$j('#mode_of_purchase').val() || '') + '</div>'); \$j('#mode_of_purchase-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#others_if_any').replaceWith('<div class=\"form-control-static\" id=\"others_if_any\">' + (\$j('#others_if_any').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#approval_status').replaceWith('<div class=\"form-control-static\" id=\"approval_status\">' + (\$j('#approval_status').val() || '') + '</div>'); \$j('#approval_status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#image').replaceWith('<div class=\"form-control-static\" id=\"image\">' + (\$j('#image').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#other_file').parent().replaceWith(`<div class=\"form-control-static\" id=\"other_file\">\${\$j('#other_file').val() || ''}\${\$j('#other_file').val() ? '<a target=\"_blank\" class=\"hspacer-lg\" href=\"' + \$j('#other_file').val() + '\" target=\"_blank\"><i class=\"glyphicon glyphicon-globe\"></i></a>' : ''}</div>`);\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos
@@ -615,7 +614,7 @@ Skill&#160;Development"))));
 	}
 
 	// process images
-	$templateCode = str_replace('<%%UPLOADFILE(procurement_approval_id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(type)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(description)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(quantity)%%>', '', $templateCode);
@@ -646,8 +645,8 @@ Skill&#160;Development"))));
 
 	// process values
 	if($hasSelectedId) {
-		$templateCode = str_replace('<%%VALUE(procurement_approval_id)%%>', safe_html($urow['procurement_approval_id']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(procurement_approval_id)%%>', urlencode($urow['procurement_approval_id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(type)%%>', safe_html($urow['type']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(type)%%>', html_attr($row['type']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(type)%%>', urlencode($urow['type']), $templateCode);
@@ -694,8 +693,8 @@ Skill&#160;Development"))));
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
 	} else {
-		$templateCode = str_replace('<%%VALUE(procurement_approval_id)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(procurement_approval_id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(type)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(type)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(description)%%>', '', $templateCode);

@@ -1,33 +1,88 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="26" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="vikas_startup_applications_table-id-caption field-caption-tv">ID</dt>
+					<dd id="vikas_startup_applications_table-id-<%%VALUE(id)%%>" class="vikas_startup_applications_table-id text-right text-bold"><%%VALUE(id)%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the vikas_startup_applications_table_init() hook (in hooks/vikas_startup_applications_table.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="vikas_startup_applications_table-startup_name-caption field-caption-tv">Startup name</dt>
+					<dd id="vikas_startup_applications_table-startup_name-<%%VALUE(id)%%>" class="vikas_startup_applications_table-startup_name text-bold"><%%VALUE(startup_name)%%></dd>
 
-		<td id="vikas_startup_applications_table-id-<%%VALUE(id)%%>" class="vikas_startup_applications_table-id text-right text-bold"><%%VALUE(id)%%></td>
-		<td id="vikas_startup_applications_table-startup_name-<%%VALUE(id)%%>" class="vikas_startup_applications_table-startup_name text-bold"><%%VALUE(startup_name)%%></td>
-		<td id="vikas_startup_applications_table-email-<%%VALUE(id)%%>" class="vikas_startup_applications_table-email text-bold"><a href="mailto:<%%VALUE(email)%%>" title="<%%VALUE(email)%%>" class="btn btn-default"><i class="glyphicon glyphicon-envelope text-info"></i></a></td>
-		<td id="vikas_startup_applications_table-incorporation_date-<%%VALUE(id)%%>" class="vikas_startup_applications_table-incorporation_date text-bold"><%%VALUE(incorporation_date)%%></td>
-		<td id="vikas_startup_applications_table-website_url-<%%VALUE(id)%%>" class="vikas_startup_applications_table-website_url text-bold"><%%VALUE(website_url)%%></td>
-		<td id="vikas_startup_applications_table-physical_address-<%%VALUE(id)%%>" class="vikas_startup_applications_table-physical_address text-bold"><%%VALUE(physical_address)%%></td>
-		<td id="vikas_startup_applications_table-primary_contact_name-<%%VALUE(id)%%>" class="vikas_startup_applications_table-primary_contact_name text-bold"><%%VALUE(primary_contact_name)%%></td>
-		<td id="vikas_startup_applications_table-email_1-<%%VALUE(id)%%>" class="vikas_startup_applications_table-email_1 text-bold"><%%VALUE(email_1)%%></td>
-		<td id="vikas_startup_applications_table-mobile_number-<%%VALUE(id)%%>" class="vikas_startup_applications_table-mobile_number text-bold"><%%VALUE(mobile_number)%%></td>
-		<td id="vikas_startup_applications_table-name_of_founders-<%%VALUE(id)%%>" class="vikas_startup_applications_table-name_of_founders text-bold"><%%VALUE(name_of_founders)%%></td>
-		<td id="vikas_startup_applications_table-number_of_founders-<%%VALUE(id)%%>" class="vikas_startup_applications_table-number_of_founders text-bold"><%%VALUE(number_of_founders)%%></td>
-		<td id="vikas_startup_applications_table-email_of_founders-<%%VALUE(id)%%>" class="vikas_startup_applications_table-email_of_founders text-bold"><%%VALUE(email_of_founders)%%></td>
-		<td id="vikas_startup_applications_table-business_sector-<%%VALUE(id)%%>" class="vikas_startup_applications_table-business_sector text-bold"><%%VALUE(business_sector)%%></td>
-		<td id="vikas_startup_applications_table-number_of_employees-<%%VALUE(id)%%>" class="vikas_startup_applications_table-number_of_employees text-bold"><%%VALUE(number_of_employees)%%></td>
-		<td id="vikas_startup_applications_table-brief_description_of_service-<%%VALUE(id)%%>" class="vikas_startup_applications_table-brief_description_of_service text-bold"><%%VALUE(brief_description_of_service)%%></td>
-		<td id="vikas_startup_applications_table-mode_of_incubation-<%%VALUE(id)%%>" class="vikas_startup_applications_table-mode_of_incubation text-bold"><%%VALUE(mode_of_incubation)%%></td>
-		<td id="vikas_startup_applications_table-type_of_workspace_desired-<%%VALUE(id)%%>" class="vikas_startup_applications_table-type_of_workspace_desired text-bold"><%%VALUE(type_of_workspace_desired)%%></td>
-		<td id="vikas_startup_applications_table-key_areas_of_support-<%%VALUE(id)%%>" class="vikas_startup_applications_table-key_areas_of_support text-bold"><%%VALUE(key_areas_of_support)%%></td>
-		<td id="vikas_startup_applications_table-declaration_form_link-<%%VALUE(id)%%>" class="vikas_startup_applications_table-declaration_form_link text-bold"><%%VALUE(declaration_form_link)%%></td>
-		<td id="vikas_startup_applications_table-is_your_start_up_dpiit_registered-<%%VALUE(id)%%>" class="vikas_startup_applications_table-is_your_start_up_dpiit_registered text-bold"><%%VALUE(is_your_start_up_dpiit_registered)%%></td>
-		<td id="vikas_startup_applications_table-incubation_status-<%%VALUE(id)%%>" class="vikas_startup_applications_table-incubation_status text-bold"><%%VALUE(incubation_status)%%></td>
-		<td id="vikas_startup_applications_table-datetime-<%%VALUE(id)%%>" class="vikas_startup_applications_table-datetime text-bold"><%%VALUE(datetime)%%></td>
-		<td id="vikas_startup_applications_table-created_by-<%%VALUE(id)%%>" class="vikas_startup_applications_table-created_by text-bold"><%%VALUE(created_by)%%></td>
-		<td id="vikas_startup_applications_table-created_at-<%%VALUE(id)%%>" class="vikas_startup_applications_table-created_at text-bold"><%%VALUE(created_at)%%></td>
-		<td id="vikas_startup_applications_table-last_updated_by-<%%VALUE(id)%%>" class="vikas_startup_applications_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
-		<td id="vikas_startup_applications_table-last_updated_at-<%%VALUE(id)%%>" class="vikas_startup_applications_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>
+					<dt class="vikas_startup_applications_table-email-caption field-caption-tv">Email</dt>
+					<dd id="vikas_startup_applications_table-email-<%%VALUE(id)%%>" class="vikas_startup_applications_table-email text-bold"><a href="mailto:<%%VALUE(email)%%>" title="<%%VALUE(email)%%>" class="btn btn-default"><i class="glyphicon glyphicon-envelope text-info"></i></a></dd>
+
+					<dt class="vikas_startup_applications_table-incorporation_date-caption field-caption-tv">Incorporation date</dt>
+					<dd id="vikas_startup_applications_table-incorporation_date-<%%VALUE(id)%%>" class="vikas_startup_applications_table-incorporation_date text-bold"><%%VALUE(incorporation_date)%%></dd>
+
+					<dt class="vikas_startup_applications_table-website_url-caption field-caption-tv">Website URL (in any)</dt>
+					<dd id="vikas_startup_applications_table-website_url-<%%VALUE(id)%%>" class="vikas_startup_applications_table-website_url text-bold"><%%VALUE(website_url)%%></dd>
+
+					<dt class="vikas_startup_applications_table-physical_address-caption field-caption-tv">Physical address</dt>
+					<dd id="vikas_startup_applications_table-physical_address-<%%VALUE(id)%%>" class="vikas_startup_applications_table-physical_address text-bold"><%%VALUE(physical_address)%%></dd>
+
+					<dt class="vikas_startup_applications_table-primary_contact_name-caption field-caption-tv">Primary contact name</dt>
+					<dd id="vikas_startup_applications_table-primary_contact_name-<%%VALUE(id)%%>" class="vikas_startup_applications_table-primary_contact_name text-bold"><%%VALUE(primary_contact_name)%%></dd>
+
+					<dt class="vikas_startup_applications_table-email_1-caption field-caption-tv">Primary Contact Email</dt>
+					<dd id="vikas_startup_applications_table-email_1-<%%VALUE(id)%%>" class="vikas_startup_applications_table-email_1 text-bold"><%%VALUE(email_1)%%></dd>
+
+					<dt class="vikas_startup_applications_table-mobile_number-caption field-caption-tv">Mobile number</dt>
+					<dd id="vikas_startup_applications_table-mobile_number-<%%VALUE(id)%%>" class="vikas_startup_applications_table-mobile_number text-bold"><%%VALUE(mobile_number)%%></dd>
+
+					<dt class="vikas_startup_applications_table-name_of_founders-caption field-caption-tv">Name(s) of Founders(s)</dt>
+					<dd id="vikas_startup_applications_table-name_of_founders-<%%VALUE(id)%%>" class="vikas_startup_applications_table-name_of_founders text-bold"><%%VALUE(name_of_founders)%%></dd>
+
+					<dt class="vikas_startup_applications_table-number_of_founders-caption field-caption-tv">Founder(s) Mobile Number(s)</dt>
+					<dd id="vikas_startup_applications_table-number_of_founders-<%%VALUE(id)%%>" class="vikas_startup_applications_table-number_of_founders text-bold"><%%VALUE(number_of_founders)%%></dd>
+
+					<dt class="vikas_startup_applications_table-email_of_founders-caption field-caption-tv">Founders(s) Email Address(es)</dt>
+					<dd id="vikas_startup_applications_table-email_of_founders-<%%VALUE(id)%%>" class="vikas_startup_applications_table-email_of_founders text-bold"><%%VALUE(email_of_founders)%%></dd>
+
+					<dt class="vikas_startup_applications_table-business_sector-caption field-caption-tv">Business Sector/Industry</dt>
+					<dd id="vikas_startup_applications_table-business_sector-<%%VALUE(id)%%>" class="vikas_startup_applications_table-business_sector text-bold"><%%VALUE(business_sector)%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="vikas_startup_applications_table-number_of_employees-caption field-caption-tv">Number of employees</dt>
+					<dd id="vikas_startup_applications_table-number_of_employees-<%%VALUE(id)%%>" class="vikas_startup_applications_table-number_of_employees text-bold"><%%VALUE(number_of_employees)%%></dd>
+
+					<dt class="vikas_startup_applications_table-brief_description_of_service-caption field-caption-tv">Brief Description of Product/Service</dt>
+					<dd id="vikas_startup_applications_table-brief_description_of_service-<%%VALUE(id)%%>" class="vikas_startup_applications_table-brief_description_of_service text-bold"><%%VALUE(brief_description_of_service)%%></dd>
+
+					<dt class="vikas_startup_applications_table-mode_of_incubation-caption field-caption-tv">Preferred Mode of Participation: (Please select one)</dt>
+					<dd id="vikas_startup_applications_table-mode_of_incubation-<%%VALUE(id)%%>" class="vikas_startup_applications_table-mode_of_incubation text-bold"><%%VALUE(mode_of_incubation)%%></dd>
+
+					<dt class="vikas_startup_applications_table-type_of_workspace_desired-caption field-caption-tv">Type of Workspace Desired</dt>
+					<dd id="vikas_startup_applications_table-type_of_workspace_desired-<%%VALUE(id)%%>" class="vikas_startup_applications_table-type_of_workspace_desired text-bold"><%%VALUE(type_of_workspace_desired)%%></dd>
+
+					<dt class="vikas_startup_applications_table-key_areas_of_support-caption field-caption-tv">Key areas of support</dt>
+					<dd id="vikas_startup_applications_table-key_areas_of_support-<%%VALUE(id)%%>" class="vikas_startup_applications_table-key_areas_of_support text-bold"><%%VALUE(key_areas_of_support)%%></dd>
+
+					<dt class="vikas_startup_applications_table-declaration_form_link-caption field-caption-tv">Declaration form link</dt>
+					<dd id="vikas_startup_applications_table-declaration_form_link-<%%VALUE(id)%%>" class="vikas_startup_applications_table-declaration_form_link text-bold"><%%VALUE(declaration_form_link)%%></dd>
+
+					<dt class="vikas_startup_applications_table-is_your_start_up_dpiit_registered-caption field-caption-tv">Is your start up DPIIT registered</dt>
+					<dd id="vikas_startup_applications_table-is_your_start_up_dpiit_registered-<%%VALUE(id)%%>" class="vikas_startup_applications_table-is_your_start_up_dpiit_registered text-bold"><%%VALUE(is_your_start_up_dpiit_registered)%%></dd>
+
+					<dt class="vikas_startup_applications_table-incubation_status-caption field-caption-tv">Incubation status</dt>
+					<dd id="vikas_startup_applications_table-incubation_status-<%%VALUE(id)%%>" class="vikas_startup_applications_table-incubation_status text-bold"><%%VALUE(incubation_status)%%></dd>
+
+					<dt class="vikas_startup_applications_table-datetime-caption field-caption-tv">Datetime</dt>
+					<dd id="vikas_startup_applications_table-datetime-<%%VALUE(id)%%>" class="vikas_startup_applications_table-datetime text-bold"><%%VALUE(datetime)%%></dd>
+
+					<dt class="vikas_startup_applications_table-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="vikas_startup_applications_table-created_by-<%%VALUE(id)%%>" class="vikas_startup_applications_table-created_by text-bold"><%%VALUE(created_by)%%></dd>
+
+					<dt class="vikas_startup_applications_table-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="vikas_startup_applications_table-created_at-<%%VALUE(id)%%>" class="vikas_startup_applications_table-created_at text-bold"><%%VALUE(created_at)%%></dd>
+
+					<dt class="vikas_startup_applications_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="vikas_startup_applications_table-last_updated_by-<%%VALUE(id)%%>" class="vikas_startup_applications_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></dd>
+
+					<dt class="vikas_startup_applications_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="vikas_startup_applications_table-last_updated_at-<%%VALUE(id)%%>" class="vikas_startup_applications_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></dd>
+
+				</dl>
+			</div>
+		</td>

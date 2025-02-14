@@ -98,8 +98,8 @@ function internship_fellowship_details_app_delete($selected_id, $AllowDeleteOfPa
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'star_pnt'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'internship_fellowship_details_app_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'internship_fellowship_details_app_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `internship_fellowship_details_app_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `internship_fellowship_details_app_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -253,7 +253,7 @@ function internship_fellowship_details_app_form($selectedId = '', $allowUpdate =
 	<script>
 		// initial lookup values
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
@@ -342,31 +342,31 @@ function internship_fellowship_details_app_form($selectedId = '', $allowUpdate =
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#standard').replaceWith('<div class=\"form-control-static\" id=\"standard\">' + (jQuery('#standard').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#iittnif_id').replaceWith('<div class=\"form-control-static\" id=\"iittnif_id\">' + (jQuery('#iittnif_id').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#name_of_the_candidate').replaceWith('<div class=\"form-control-static\" id=\"name_of_the_candidate\">' + (jQuery('#name_of_the_candidate').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#type_of_internship_fellowship').replaceWith('<div class=\"form-control-static\" id=\"type_of_internship_fellowship\">' + (jQuery('#type_of_internship_fellowship').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#year').replaceWith('<div class=\"form-control-static\" id=\"year\">' + (jQuery('#year').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#project_title').replaceWith('<div class=\"form-control-static\" id=\"project_title\">' + (jQuery('#project_title').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#gender').replaceWith('<div class=\"form-control-static\" id=\"gender\">' + (jQuery('#gender').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#department').replaceWith('<div class=\"form-control-static\" id=\"department\">' + (jQuery('#department').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#institute_id_number').replaceWith('<div class=\"form-control-static\" id=\"institute_id_number\">' + (jQuery('#institute_id_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#institute').replaceWith('<div class=\"form-control-static\" id=\"institute\">' + (jQuery('#institute').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#latitude').replaceWith('<div class=\"form-control-static\" id=\"latitude\">' + (jQuery('#latitude').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#longitude').replaceWith('<div class=\"form-control-static\" id=\"longitude\">' + (jQuery('#longitude').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#start_date').replaceWith('<div class=\"form-control-static\" id=\"start_date\">' + (jQuery('#start_date').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#end_date').replaceWith('<div class=\"form-control-static\" id=\"end_date\">' + (jQuery('#end_date').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#status').replaceWith('<div class=\"form-control-static\" id=\"status\">' + (jQuery('#status').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#cotegory').replaceWith('<div class=\"form-control-static\" id=\"cotegory\">' + (jQuery('#cotegory').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#report_link').replaceWith('<div class=\"form-control-static\" id=\"report_link\">' + (jQuery('#report_link').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#outcomes').replaceWith('<div class=\"form-control-static\" id=\"outcomes\">' + (jQuery('#outcomes').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#standard').replaceWith('<div class=\"form-control-static\" id=\"standard\">' + (\$j('#standard').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#iittnif_id').replaceWith('<div class=\"form-control-static\" id=\"iittnif_id\">' + (\$j('#iittnif_id').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#name_of_the_candidate').replaceWith('<div class=\"form-control-static\" id=\"name_of_the_candidate\">' + (\$j('#name_of_the_candidate').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#type_of_internship_fellowship').replaceWith('<div class=\"form-control-static\" id=\"type_of_internship_fellowship\">' + (\$j('#type_of_internship_fellowship').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#year').replaceWith('<div class=\"form-control-static\" id=\"year\">' + (\$j('#year').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#project_title').replaceWith('<div class=\"form-control-static\" id=\"project_title\">' + (\$j('#project_title').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#gender').replaceWith('<div class=\"form-control-static\" id=\"gender\">' + (\$j('#gender').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#department').replaceWith('<div class=\"form-control-static\" id=\"department\">' + (\$j('#department').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#institute_id_number').replaceWith('<div class=\"form-control-static\" id=\"institute_id_number\">' + (\$j('#institute_id_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#institute').replaceWith('<div class=\"form-control-static\" id=\"institute\">' + (\$j('#institute').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#latitude').replaceWith('<div class=\"form-control-static\" id=\"latitude\">' + (\$j('#latitude').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#longitude').replaceWith('<div class=\"form-control-static\" id=\"longitude\">' + (\$j('#longitude').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#start_date').replaceWith('<div class=\"form-control-static\" id=\"start_date\">' + (\$j('#start_date').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#end_date').replaceWith('<div class=\"form-control-static\" id=\"end_date\">' + (\$j('#end_date').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#status').replaceWith('<div class=\"form-control-static\" id=\"status\">' + (\$j('#status').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#cotegory').replaceWith('<div class=\"form-control-static\" id=\"cotegory\">' + (\$j('#cotegory').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#report_link').replaceWith('<div class=\"form-control-static\" id=\"report_link\">' + (\$j('#report_link').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#outcomes').replaceWith('<div class=\"form-control-static\" id=\"outcomes\">' + (\$j('#outcomes').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

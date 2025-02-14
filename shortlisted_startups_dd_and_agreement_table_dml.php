@@ -221,7 +221,7 @@ function shortlisted_startups_dd_and_agreement_table_form($selectedId = '', $all
 		// initial lookup values
 		AppGini.current_startup__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['startup'] : htmlspecialchars($filterer_startup, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(startup_reload__RAND__) == 'function') startup_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
@@ -388,22 +388,22 @@ function shortlisted_startups_dd_and_agreement_table_form($selectedId = '', $all
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#startup').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#startup_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\tjQuery('#documents').replaceWith('<div class=\"form-control-static\" id=\"documents\">' + (jQuery('#documents').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#status_1').replaceWith('<div class=\"form-control-static\" id=\"status_1\">' + (jQuery('#status_1').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#comment_1').replaceWith('<div class=\"form-control-static\" id=\"comment_1\">' + (jQuery('#comment_1').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#link_to_ddr').replaceWith('<div class=\"form-control-static\" id=\"link_to_ddr\">' + (jQuery('#link_to_ddr').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#status_2').replaceWith('<div class=\"form-control-static\" id=\"status_2\">' + (jQuery('#status_2').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#comment_2').replaceWith('<div class=\"form-control-static\" id=\"comment_2\">' + (jQuery('#comment_2').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#link_to_agreement').replaceWith('<div class=\"form-control-static\" id=\"link_to_agreement\">' + (jQuery('#link_to_agreement').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#startup').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#startup_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('#documents').replaceWith('<div class=\"form-control-static\" id=\"documents\">' + (\$j('#documents').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#status_1').replaceWith('<div class=\"form-control-static\" id=\"status_1\">' + (\$j('#status_1').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#comment_1').replaceWith('<div class=\"form-control-static\" id=\"comment_1\">' + (\$j('#comment_1').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#link_to_ddr').replaceWith('<div class=\"form-control-static\" id=\"link_to_ddr\">' + (\$j('#link_to_ddr').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#status_2').replaceWith('<div class=\"form-control-static\" id=\"status_2\">' + (\$j('#status_2').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#comment_2').replaceWith('<div class=\"form-control-static\" id=\"comment_2\">' + (\$j('#comment_2').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#link_to_agreement').replaceWith('<div class=\"form-control-static\" id=\"link_to_agreement\">' + (\$j('#link_to_agreement').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

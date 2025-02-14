@@ -222,7 +222,7 @@ function attendence_details_table_form($selectedId = '', $allowUpdate = true, $a
 	<script>
 		// initial lookup values
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
@@ -311,24 +311,24 @@ function attendence_details_table_form($selectedId = '', $allowUpdate = true, $a
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#enrollment_no').replaceWith('<div class=\"form-control-static\" id=\"enrollment_no\">' + (jQuery('#enrollment_no').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#name').replaceWith('<div class=\"form-control-static\" id=\"name\">' + (jQuery('#name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#mode').replaceWith('<div class=\"form-control-static\" id=\"mode\">' + (jQuery('#mode').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#dateDay, #dateMonth, #dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#in_time').replaceWith('<div class=\"form-control-static\" id=\"in_time\">' + (jQuery('#in_time').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#out_time').replaceWith('<div class=\"form-control-static\" id=\"out_time\">' + (jQuery('#out_time').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#working_hours').replaceWith('<div class=\"form-control-static\" id=\"working_hours\">' + (jQuery('#working_hours').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#remarks').replaceWith('<div class=\"form-control-static\" id=\"remarks\">' + (jQuery('#remarks').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#enrollment_no').replaceWith('<div class=\"form-control-static\" id=\"enrollment_no\">' + (\$j('#enrollment_no').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#name').replaceWith('<div class=\"form-control-static\" id=\"name\">' + (\$j('#name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#mode').replaceWith('<div class=\"form-control-static\" id=\"mode\">' + (\$j('#mode').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#dateDay, #dateMonth, #dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#in_time').replaceWith('<div class=\"form-control-static\" id=\"in_time\">' + (\$j('#in_time').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#out_time').replaceWith('<div class=\"form-control-static\" id=\"out_time\">' + (\$j('#out_time').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#working_hours').replaceWith('<div class=\"form-control-static\" id=\"working_hours\">' + (\$j('#working_hours').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#remarks').replaceWith('<div class=\"form-control-static\" id=\"remarks\">' + (\$j('#remarks').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('#in_time').addClass('always_shown').timepicker({ defaultTime: false, showSeconds: true, showMeridian: false, showInputs: false, disableFocus: true, minuteStep: 5 });";
-		$jsEditable .= "\tjQuery('#out_time').addClass('always_shown').timepicker({ defaultTime: false, showSeconds: true, showMeridian: false, showInputs: false, disableFocus: true, minuteStep: 5 });";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('#in_time').addClass('always_shown').timepicker({ defaultTime: false, showSeconds: true, showMeridian: false, showInputs: false, disableFocus: true, minuteStep: 5 });";
+		$jsEditable .= "\t\$j('#out_time').addClass('always_shown').timepicker({ defaultTime: false, showSeconds: true, showMeridian: false, showInputs: false, disableFocus: true, minuteStep: 5 });";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

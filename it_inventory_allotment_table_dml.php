@@ -281,7 +281,7 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 		AppGini.current_select_employee__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['select_employee'] : htmlspecialchars($filterer_select_employee, ENT_QUOTES)); ?>"};
 		AppGini.current_alloted_by__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['alloted_by'] : htmlspecialchars($filterer_alloted_by, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(it_inventory_lookup_reload__RAND__) == 'function') it_inventory_lookup_reload__RAND__();
 				if(typeof(select_employee_reload__RAND__) == 'function') select_employee_reload__RAND__();
@@ -604,24 +604,24 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#select_employee').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#select_employee_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\tjQuery('#department').replaceWith('<div class=\"form-control-static\" id=\"department\">' + (jQuery('#department').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#dateDay, #dateMonth, #dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#purpose').replaceWith('<div class=\"form-control-static\" id=\"purpose\">' + (jQuery('#purpose').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#alloted_by').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#alloted_by_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\tjQuery('#status').replaceWith('<div class=\"form-control-static\" id=\"status\">' + (jQuery('#status').val() || '') + '</div>'); jQuery('#status-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#returned_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#returned_dateDay, #returned_dateMonth, #returned_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#select_employee').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#select_employee_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('#department').replaceWith('<div class=\"form-control-static\" id=\"department\">' + (\$j('#department').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#dateDay, #dateMonth, #dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#purpose').replaceWith('<div class=\"form-control-static\" id=\"purpose\">' + (\$j('#purpose').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#alloted_by').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#alloted_by_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('#status').replaceWith('<div class=\"form-control-static\" id=\"status\">' + (\$j('#status').val() || '') + '</div>'); \$j('#status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#returned_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#returned_dateDay, #returned_dateMonth, #returned_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

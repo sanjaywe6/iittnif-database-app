@@ -233,7 +233,7 @@ function sdp_participants_college_details_table_form($selectedId = '', $allowUpd
 	<script>
 		// initial lookup values
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
@@ -322,24 +322,24 @@ function sdp_participants_college_details_table_form($selectedId = '', $allowUpd
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#participants_type').replaceWith('<div class=\"form-control-static\" id=\"participants_type\">' + (jQuery('#participants_type').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#school_college_name').replaceWith('<div class=\"form-control-static\" id=\"school_college_name\">' + (jQuery('#school_college_name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#location').replaceWith('<div class=\"form-control-static\" id=\"location\">' + (jQuery('#location').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#latitude').replaceWith('<div class=\"form-control-static\" id=\"latitude\">' + (jQuery('#latitude').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#longitude').replaceWith('<div class=\"form-control-static\" id=\"longitude\">' + (jQuery('#longitude').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#number_of_participants').replaceWith('<div class=\"form-control-static\" id=\"number_of_participants\">' + (jQuery('#number_of_participants').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#start_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#start_dateDay, #start_dateMonth, #start_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#end_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#end_dateDay, #end_dateMonth, #end_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#state').replaceWith('<div class=\"form-control-static\" id=\"state\">' + (jQuery('#state').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#participants_type').replaceWith('<div class=\"form-control-static\" id=\"participants_type\">' + (\$j('#participants_type').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#school_college_name').replaceWith('<div class=\"form-control-static\" id=\"school_college_name\">' + (\$j('#school_college_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#location').replaceWith('<div class=\"form-control-static\" id=\"location\">' + (\$j('#location').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#latitude').replaceWith('<div class=\"form-control-static\" id=\"latitude\">' + (\$j('#latitude').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#longitude').replaceWith('<div class=\"form-control-static\" id=\"longitude\">' + (\$j('#longitude').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#number_of_participants').replaceWith('<div class=\"form-control-static\" id=\"number_of_participants\">' + (\$j('#number_of_participants').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#start_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#start_dateDay, #start_dateMonth, #start_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#end_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#end_dateDay, #end_dateMonth, #end_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#state').replaceWith('<div class=\"form-control-static\" id=\"state\">' + (\$j('#state').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

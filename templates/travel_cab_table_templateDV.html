@@ -236,6 +236,7 @@
 				}
 			});
 
+			travel_cab_tableUniqueFields.forEach(fieldName => enforce_uniqueness('travel_cab_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -249,4 +250,7 @@
 				);
 			}
 		});
+
+		var travel_cab_tableUniqueFields = [
+		];
 	</script>

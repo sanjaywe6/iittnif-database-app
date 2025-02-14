@@ -224,6 +224,7 @@
 				}
 			});
 
+			sdp_participants_college_details_tableUniqueFields.forEach(fieldName => enforce_uniqueness('sdp_participants_college_details_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -237,4 +238,7 @@
 				);
 			}
 		});
+
+		var sdp_participants_college_details_tableUniqueFields = [
+		];
 	</script>

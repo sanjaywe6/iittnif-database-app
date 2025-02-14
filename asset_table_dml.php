@@ -116,8 +116,8 @@ function asset_table_delete($selected_id, $AllowDeleteOfParents = false, $skipCh
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'asset_allotment_table'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'asset_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'asset_table_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `asset_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `asset_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -319,7 +319,7 @@ function asset_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	<script>
 		// initial lookup values
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
@@ -408,39 +408,39 @@ function asset_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#Date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#DateDay, #DateMonth, #DateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#ClassificationofAssest').replaceWith('<div class=\"form-control-static\" id=\"ClassificationofAssest\">' + (jQuery('#ClassificationofAssest').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#SubCategory').replaceWith('<div class=\"form-control-static\" id=\"SubCategory\">' + (jQuery('#SubCategory').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#AssetSerialNo').replaceWith('<div class=\"form-control-static\" id=\"AssetSerialNo\">' + (jQuery('#AssetSerialNo').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#QRBarCode').replaceWith('<div class=\"form-control-static\" id=\"QRBarCode\">' + (jQuery('#QRBarCode').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#AssetNo').replaceWith('<div class=\"form-control-static\" id=\"AssetNo\">' + (jQuery('#AssetNo').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#PONO').replaceWith('<div class=\"form-control-static\" id=\"PONO\">' + (jQuery('#PONO').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#PODATE').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#PODATEDay, #PODATEMonth, #PODATEYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS').replaceWith('<div class=\"form-control-static\" id=\"PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS\">' + (jQuery('#PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#ItemDescription').replaceWith('<div class=\"form-control-static\" id=\"ItemDescription\">' + (jQuery('#ItemDescription').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#BillNo').replaceWith('<div class=\"form-control-static\" id=\"BillNo\">' + (jQuery('#BillNo').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#BillDate').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#BillDateDay, #BillDateMonth, #BillDateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#QUANTITY').replaceWith('<div class=\"form-control-static\" id=\"QUANTITY\">' + (jQuery('#QUANTITY').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#CostoftheAsset').replaceWith('<div class=\"form-control-static\" id=\"CostoftheAsset\">' + (jQuery('#CostoftheAsset').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#image').replaceWith('<div class=\"form-control-static\" id=\"image\">' + (jQuery('#image').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#TotalInvoiceValue').replaceWith('<div class=\"form-control-static\" id=\"TotalInvoiceValue\">' + (jQuery('#TotalInvoiceValue').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#CustodyDepartment').replaceWith('<div class=\"form-control-static\" id=\"CustodyDepartment\">' + (jQuery('#CustodyDepartment').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#Custodian').replaceWith('<div class=\"form-control-static\" id=\"Custodian\">' + (jQuery('#Custodian').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#CustodianSignature').replaceWith('<div class=\"form-control-static\" id=\"CustodianSignature\">' + (jQuery('#CustodianSignature').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#noofyearsUsefulLifeofAssets').replaceWith('<div class=\"form-control-static\" id=\"noofyearsUsefulLifeofAssets\">' + (jQuery('#noofyearsUsefulLifeofAssets').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#DateofusefullifeofAssetsends').replaceWith('<div class=\"form-control-static\" id=\"DateofusefullifeofAssetsends\">' + (jQuery('#DateofusefullifeofAssetsends').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#PVStatus').replaceWith('<div class=\"form-control-static\" id=\"PVStatus\">' + (jQuery('#PVStatus').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#Remarks').replaceWith('<div class=\"form-control-static\" id=\"Remarks\">' + (jQuery('#Remarks').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#Date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#DateDay, #DateMonth, #DateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#ClassificationofAssest').replaceWith('<div class=\"form-control-static\" id=\"ClassificationofAssest\">' + (\$j('#ClassificationofAssest').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#SubCategory').replaceWith('<div class=\"form-control-static\" id=\"SubCategory\">' + (\$j('#SubCategory').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#AssetSerialNo').replaceWith('<div class=\"form-control-static\" id=\"AssetSerialNo\">' + (\$j('#AssetSerialNo').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#QRBarCode').replaceWith('<div class=\"form-control-static\" id=\"QRBarCode\">' + (\$j('#QRBarCode').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#AssetNo').replaceWith('<div class=\"form-control-static\" id=\"AssetNo\">' + (\$j('#AssetNo').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#PONO').replaceWith('<div class=\"form-control-static\" id=\"PONO\">' + (\$j('#PONO').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#PODATE').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#PODATEDay, #PODATEMonth, #PODATEYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS').replaceWith('<div class=\"form-control-static\" id=\"PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS\">' + (\$j('#PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#ItemDescription').replaceWith('<div class=\"form-control-static\" id=\"ItemDescription\">' + (\$j('#ItemDescription').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#BillNo').replaceWith('<div class=\"form-control-static\" id=\"BillNo\">' + (\$j('#BillNo').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#BillDate').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#BillDateDay, #BillDateMonth, #BillDateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#QUANTITY').replaceWith('<div class=\"form-control-static\" id=\"QUANTITY\">' + (\$j('#QUANTITY').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#CostoftheAsset').replaceWith('<div class=\"form-control-static\" id=\"CostoftheAsset\">' + (\$j('#CostoftheAsset').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#image').replaceWith('<div class=\"form-control-static\" id=\"image\">' + (\$j('#image').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#TotalInvoiceValue').replaceWith('<div class=\"form-control-static\" id=\"TotalInvoiceValue\">' + (\$j('#TotalInvoiceValue').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#CustodyDepartment').replaceWith('<div class=\"form-control-static\" id=\"CustodyDepartment\">' + (\$j('#CustodyDepartment').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#Custodian').replaceWith('<div class=\"form-control-static\" id=\"Custodian\">' + (\$j('#Custodian').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#CustodianSignature').replaceWith('<div class=\"form-control-static\" id=\"CustodianSignature\">' + (\$j('#CustodianSignature').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#noofyearsUsefulLifeofAssets').replaceWith('<div class=\"form-control-static\" id=\"noofyearsUsefulLifeofAssets\">' + (\$j('#noofyearsUsefulLifeofAssets').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#DateofusefullifeofAssetsends').replaceWith('<div class=\"form-control-static\" id=\"DateofusefullifeofAssetsends\">' + (\$j('#DateofusefullifeofAssetsends').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#PVStatus').replaceWith('<div class=\"form-control-static\" id=\"PVStatus\">' + (\$j('#PVStatus').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#Remarks').replaceWith('<div class=\"form-control-static\" id=\"Remarks\">' + (\$j('#Remarks').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

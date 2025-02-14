@@ -1,16 +1,37 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="9" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="work_from_home_table-work_from_home_id-caption field-caption-tv">ID</dt>
+					<dd id="work_from_home_table-work_from_home_id-<%%VALUE(work_from_home_id)%%>" class="work_from_home_table-work_from_home_id text-right"><%%SELECT%%><%%VALUE(work_from_home_id)%%><%%ENDSELECT%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the work_from_home_table_init() hook (in hooks/work_from_home_table.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="work_from_home_table-work_from_home_purpose-caption field-caption-tv">Purpose work from home</dt>
+					<dd id="work_from_home_table-work_from_home_purpose-<%%VALUE(work_from_home_id)%%>" class="work_from_home_table-work_from_home_purpose"><%%SELECT%%><%%VALUE(work_from_home_purpose)%%><%%ENDSELECT%%></dd>
 
-		<td id="work_from_home_table-work_from_home_id-<%%VALUE(work_from_home_id)%%>" class="work_from_home_table-work_from_home_id text-right"><%%SELECT%%><%%VALUE(work_from_home_id)%%><%%ENDSELECT%%></td>
-		<td id="work_from_home_table-work_from_home_purpose-<%%VALUE(work_from_home_id)%%>" class="work_from_home_table-work_from_home_purpose"><%%SELECT%%><%%VALUE(work_from_home_purpose)%%><%%ENDSELECT%%></td>
-		<td id="work_from_home_table-from_date-<%%VALUE(work_from_home_id)%%>" class="work_from_home_table-from_date"><%%SELECT%%><%%VALUE(from_date)%%><%%ENDSELECT%%></td>
-		<td id="work_from_home_table-to_date-<%%VALUE(work_from_home_id)%%>" class="work_from_home_table-to_date"><%%SELECT%%><%%VALUE(to_date)%%><%%ENDSELECT%%></td>
-		<td id="work_from_home_table-approved_by-<%%VALUE(work_from_home_id)%%>" class="work_from_home_table-approved_by"><%%SELECT%%><%%VALUE(approved_by)%%><%%ENDSELECT%%></td>
-		<td id="work_from_home_table-created_by-<%%VALUE(work_from_home_id)%%>" class="work_from_home_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
-		<td id="work_from_home_table-created_at-<%%VALUE(work_from_home_id)%%>" class="work_from_home_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
-		<td id="work_from_home_table-last_updated_by-<%%VALUE(work_from_home_id)%%>" class="work_from_home_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>
-		<td id="work_from_home_table-last_updated_at-<%%VALUE(work_from_home_id)%%>" class="work_from_home_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>
+					<dt class="work_from_home_table-from_date-caption field-caption-tv">From date</dt>
+					<dd id="work_from_home_table-from_date-<%%VALUE(work_from_home_id)%%>" class="work_from_home_table-from_date"><%%SELECT%%><%%VALUE(from_date)%%><%%ENDSELECT%%></dd>
+
+					<dt class="work_from_home_table-to_date-caption field-caption-tv">To date</dt>
+					<dd id="work_from_home_table-to_date-<%%VALUE(work_from_home_id)%%>" class="work_from_home_table-to_date"><%%SELECT%%><%%VALUE(to_date)%%><%%ENDSELECT%%></dd>
+
+					<dt class="work_from_home_table-approved_by-caption field-caption-tv">Approved by</dt>
+					<dd id="work_from_home_table-approved_by-<%%VALUE(work_from_home_id)%%>" class="work_from_home_table-approved_by"><%%SELECT%%><%%VALUE(approved_by)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="work_from_home_table-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="work_from_home_table-created_by-<%%VALUE(work_from_home_id)%%>" class="work_from_home_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="work_from_home_table-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="work_from_home_table-created_at-<%%VALUE(work_from_home_id)%%>" class="work_from_home_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="work_from_home_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="work_from_home_table-last_updated_by-<%%VALUE(work_from_home_id)%%>" class="work_from_home_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="work_from_home_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="work_from_home_table-last_updated_at-<%%VALUE(work_from_home_id)%%>" class="work_from_home_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+		</td>

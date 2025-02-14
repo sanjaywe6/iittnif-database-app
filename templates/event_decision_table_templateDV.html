@@ -209,6 +209,7 @@
 				}
 			});
 
+			event_decision_tableUniqueFields.forEach(fieldName => enforce_uniqueness('event_decision_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -222,4 +223,7 @@
 				);
 			}
 		});
+
+		var event_decision_tableUniqueFields = [
+		];
 	</script>

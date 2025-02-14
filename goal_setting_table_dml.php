@@ -86,8 +86,8 @@ function goal_setting_table_delete($selected_id, $AllowDeleteOfParents = false, 
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'goal_progress_table'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'goal_setting_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'goal_setting_table_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `goal_setting_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `goal_setting_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -290,7 +290,7 @@ function goal_setting_table_form($selectedId = '', $allowUpdate = true, $allowIn
 		AppGini.current_supervisor_name__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['supervisor_name'] : htmlspecialchars($filterer_supervisor_name, ENT_QUOTES)); ?>"};
 		AppGini.current_assigned_to__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['assigned_to'] : htmlspecialchars($filterer_assigned_to, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(supervisor_name_reload__RAND__) == 'function') supervisor_name_reload__RAND__();
 				if(typeof(assigned_to_reload__RAND__) == 'function') assigned_to_reload__RAND__();
@@ -535,22 +535,22 @@ function goal_setting_table_form($selectedId = '', $allowUpdate = true, $allowIn
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#goal_status').replaceWith('<div class=\"form-control-static\" id=\"goal_status\">' + (jQuery('#goal_status').val() || '') + '</div>'); jQuery('#goal_status-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#goal_description').replaceWith('<div class=\"form-control-static\" id=\"goal_description\">' + (jQuery('#goal_description').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#goal_duration').replaceWith('<div class=\"form-control-static\" id=\"goal_duration\">' + (jQuery('#goal_duration').val() || '') + '</div>'); jQuery('#goal_duration-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#goal_set_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#goal_set_dateDay, #goal_set_dateMonth, #goal_set_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#supervisor_name').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#supervisor_name_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\tjQuery('#assigned_to').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#assigned_to_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#goal_status').replaceWith('<div class=\"form-control-static\" id=\"goal_status\">' + (\$j('#goal_status').val() || '') + '</div>'); \$j('#goal_status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#goal_description').replaceWith('<div class=\"form-control-static\" id=\"goal_description\">' + (\$j('#goal_description').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#goal_duration').replaceWith('<div class=\"form-control-static\" id=\"goal_duration\">' + (\$j('#goal_duration').val() || '') + '</div>'); \$j('#goal_duration-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#goal_set_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#goal_set_dateDay, #goal_set_dateMonth, #goal_set_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#supervisor_name').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#supervisor_name_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('#assigned_to').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#assigned_to_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

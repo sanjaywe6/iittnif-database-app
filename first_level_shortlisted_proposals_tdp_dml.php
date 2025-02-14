@@ -217,7 +217,7 @@ function first_level_shortlisted_proposals_tdp_form($selectedId = '', $allowUpda
 		// initial lookup values
 		AppGini.current_project_id__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['project_id'] : htmlspecialchars($filterer_project_id, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(project_id_reload__RAND__) == 'function') project_id_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
@@ -384,20 +384,20 @@ function first_level_shortlisted_proposals_tdp_form($selectedId = '', $allowUpda
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#project_id').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#project_id_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\tjQuery('#name').replaceWith('<div class=\"form-control-static\" id=\"name\">' + (jQuery('#name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#institution').replaceWith('<div class=\"form-control-static\" id=\"institution\">' + (jQuery('#institution').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#domain_of_interest').replaceWith('<div class=\"form-control-static\" id=\"domain_of_interest\">' + (jQuery('#domain_of_interest').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#proposal_link').replaceWith('<div class=\"form-control-static\" id=\"proposal_link\">' + (jQuery('#proposal_link').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#first_level_comment').replaceWith('<div class=\"form-control-static\" id=\"first_level_comment\">' + (jQuery('#first_level_comment').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#project_id').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#project_id_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('#name').replaceWith('<div class=\"form-control-static\" id=\"name\">' + (\$j('#name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#institution').replaceWith('<div class=\"form-control-static\" id=\"institution\">' + (\$j('#institution').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#domain_of_interest').replaceWith('<div class=\"form-control-static\" id=\"domain_of_interest\">' + (\$j('#domain_of_interest').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#proposal_link').replaceWith('<div class=\"form-control-static\" id=\"proposal_link\">' + (\$j('#proposal_link').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#first_level_comment').replaceWith('<div class=\"form-control-static\" id=\"first_level_comment\">' + (\$j('#first_level_comment').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

@@ -104,8 +104,8 @@ function summary_table_tdp_delete($selected_id, $AllowDeleteOfParents = false, $
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'project_details_tdp'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'summary_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'summary_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `summary_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `summary_table_tdp_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -346,7 +346,7 @@ function summary_table_tdp_form($selectedId = '', $allowUpdate = true, $allowIns
 	<script>
 		// initial lookup values
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
@@ -435,46 +435,46 @@ function summary_table_tdp_form($selectedId = '', $allowUpdate = true, $allowIns
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#project_number').replaceWith('<div class=\"form-control-static\" id=\"project_number\">' + (jQuery('#project_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#project_title').replaceWith('<div class=\"form-control-static\" id=\"project_title\">' + (jQuery('#project_title').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#year').replaceWith('<div class=\"form-control-static\" id=\"year\">' + (jQuery('#year').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#pi').replaceWith('<div class=\"form-control-static\" id=\"pi\">' + (jQuery('#pi').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#institute').replaceWith('<div class=\"form-control-static\" id=\"institute\">' + (jQuery('#institute').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#duration_in_months').replaceWith('<div class=\"form-control-static\" id=\"duration_in_months\">' + (jQuery('#duration_in_months').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#overall_budget').replaceWith('<div class=\"form-control-static\" id=\"overall_budget\">' + (jQuery('#overall_budget').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#number_of_products').replaceWith('<div class=\"form-control-static\" id=\"number_of_products\">' + (jQuery('#number_of_products').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#trl_status').replaceWith('<div class=\"form-control-static\" id=\"trl_status\">' + (jQuery('#trl_status').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#sactioned_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#sactioned_dateDay, #sactioned_dateMonth, #sactioned_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#ongoing_month_of_project').replaceWith('<div class=\"form-control-static\" id=\"ongoing_month_of_project\">' + (jQuery('#ongoing_month_of_project').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#last_monthly_report').replaceWith('<div class=\"form-control-static\" id=\"last_monthly_report\">' + (jQuery('#last_monthly_report').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#no_of_ug').replaceWith('<div class=\"form-control-static\" id=\"no_of_ug\">' + (jQuery('#no_of_ug').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#no_of_pg').replaceWith('<div class=\"form-control-static\" id=\"no_of_pg\">' + (jQuery('#no_of_pg').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#no_of_phd').replaceWith('<div class=\"form-control-static\" id=\"no_of_phd\">' + (jQuery('#no_of_phd').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#no_of_postdoc').replaceWith('<div class=\"form-control-static\" id=\"no_of_postdoc\">' + (jQuery('#no_of_postdoc').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#first_milestone_amount_and_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#first_milestone_amount_and_dateDay, #first_milestone_amount_and_dateMonth, #first_milestone_amount_and_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#stage_I_completion').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#stage_I_completionDay, #stage_I_completionMonth, #stage_I_completionYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#second_milestone_amount_and_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#second_milestone_amount_and_dateDay, #second_milestone_amount_and_dateMonth, #second_milestone_amount_and_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#stage_2_completion').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#stage_2_completionDay, #stage_2_completionMonth, #stage_2_completionYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#third_milestone_amount_and_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#third_milestone_amount_and_dateDay, #third_milestone_amount_and_dateMonth, #third_milestone_amount_and_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#stage_3_completion').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#stage_3_completionDay, #stage_3_completionMonth, #stage_3_completionYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#fourth_milestone_amount_and_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#fourth_milestone_amount_and_dateDay, #fourth_milestone_amount_and_dateMonth, #fourth_milestone_amount_and_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#stage_4_completion').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#stage_4_completionDay, #stage_4_completionMonth, #stage_4_completionYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#project_number').replaceWith('<div class=\"form-control-static\" id=\"project_number\">' + (\$j('#project_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#project_title').replaceWith('<div class=\"form-control-static\" id=\"project_title\">' + (\$j('#project_title').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#year').replaceWith('<div class=\"form-control-static\" id=\"year\">' + (\$j('#year').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#pi').replaceWith('<div class=\"form-control-static\" id=\"pi\">' + (\$j('#pi').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#institute').replaceWith('<div class=\"form-control-static\" id=\"institute\">' + (\$j('#institute').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#duration_in_months').replaceWith('<div class=\"form-control-static\" id=\"duration_in_months\">' + (\$j('#duration_in_months').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#overall_budget').replaceWith('<div class=\"form-control-static\" id=\"overall_budget\">' + (\$j('#overall_budget').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#number_of_products').replaceWith('<div class=\"form-control-static\" id=\"number_of_products\">' + (\$j('#number_of_products').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#trl_status').replaceWith('<div class=\"form-control-static\" id=\"trl_status\">' + (\$j('#trl_status').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#sactioned_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#sactioned_dateDay, #sactioned_dateMonth, #sactioned_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#ongoing_month_of_project').replaceWith('<div class=\"form-control-static\" id=\"ongoing_month_of_project\">' + (\$j('#ongoing_month_of_project').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#last_monthly_report').replaceWith('<div class=\"form-control-static\" id=\"last_monthly_report\">' + (\$j('#last_monthly_report').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#no_of_ug').replaceWith('<div class=\"form-control-static\" id=\"no_of_ug\">' + (\$j('#no_of_ug').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#no_of_pg').replaceWith('<div class=\"form-control-static\" id=\"no_of_pg\">' + (\$j('#no_of_pg').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#no_of_phd').replaceWith('<div class=\"form-control-static\" id=\"no_of_phd\">' + (\$j('#no_of_phd').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#no_of_postdoc').replaceWith('<div class=\"form-control-static\" id=\"no_of_postdoc\">' + (\$j('#no_of_postdoc').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#first_milestone_amount_and_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#first_milestone_amount_and_dateDay, #first_milestone_amount_and_dateMonth, #first_milestone_amount_and_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#stage_I_completion').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#stage_I_completionDay, #stage_I_completionMonth, #stage_I_completionYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#second_milestone_amount_and_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#second_milestone_amount_and_dateDay, #second_milestone_amount_and_dateMonth, #second_milestone_amount_and_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#stage_2_completion').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#stage_2_completionDay, #stage_2_completionMonth, #stage_2_completionYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#third_milestone_amount_and_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#third_milestone_amount_and_dateDay, #third_milestone_amount_and_dateMonth, #third_milestone_amount_and_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#stage_3_completion').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#stage_3_completionDay, #stage_3_completionMonth, #stage_3_completionYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#fourth_milestone_amount_and_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#fourth_milestone_amount_and_dateDay, #fourth_milestone_amount_and_dateMonth, #fourth_milestone_amount_and_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#stage_4_completion').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#stage_4_completionDay, #stage_4_completionMonth, #stage_4_completionYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

@@ -233,7 +233,7 @@ function stage_wise_budget_table_tdp_form($selectedId = '', $allowUpdate = true,
 		// initial lookup values
 		AppGini.current_project_id__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['project_id'] : htmlspecialchars($filterer_project_id, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(project_id_reload__RAND__) == 'function') project_id_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
@@ -400,28 +400,28 @@ function stage_wise_budget_table_tdp_form($selectedId = '', $allowUpdate = true,
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#project_id').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#project_id_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\tjQuery('#project_title').replaceWith('<div class=\"form-control-static\" id=\"project_title\">' + (jQuery('#project_title').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#name_of_pi').replaceWith('<div class=\"form-control-static\" id=\"name_of_pi\">' + (jQuery('#name_of_pi').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#mobile_number').replaceWith('<div class=\"form-control-static\" id=\"mobile_number\">' + (jQuery('#mobile_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#institute').replaceWith('<div class=\"form-control-static\" id=\"institute\">' + (jQuery('#institute').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#duration_in_months').replaceWith('<div class=\"form-control-static\" id=\"duration_in_months\">' + (jQuery('#duration_in_months').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#total_budget_specified').replaceWith('<div class=\"form-control-static\" id=\"total_budget_specified\">' + (jQuery('#total_budget_specified').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#first_phase').replaceWith('<div class=\"form-control-static\" id=\"first_phase\">' + (jQuery('#first_phase').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#second_phase').replaceWith('<div class=\"form-control-static\" id=\"second_phase\">' + (jQuery('#second_phase').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#third_phase').replaceWith('<div class=\"form-control-static\" id=\"third_phase\">' + (jQuery('#third_phase').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#fourth_phase').replaceWith('<div class=\"form-control-static\" id=\"fourth_phase\">' + (jQuery('#fourth_phase').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#total').replaceWith('<div class=\"form-control-static\" id=\"total\">' + (jQuery('#total').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#final_budget_to_be_allocated').replaceWith('<div class=\"form-control-static\" id=\"final_budget_to_be_allocated\">' + (jQuery('#final_budget_to_be_allocated').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#proposal_link').replaceWith('<div class=\"form-control-static\" id=\"proposal_link\">' + (jQuery('#proposal_link').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#project_id').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#project_id_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('#project_title').replaceWith('<div class=\"form-control-static\" id=\"project_title\">' + (\$j('#project_title').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#name_of_pi').replaceWith('<div class=\"form-control-static\" id=\"name_of_pi\">' + (\$j('#name_of_pi').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#mobile_number').replaceWith('<div class=\"form-control-static\" id=\"mobile_number\">' + (\$j('#mobile_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#institute').replaceWith('<div class=\"form-control-static\" id=\"institute\">' + (\$j('#institute').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#duration_in_months').replaceWith('<div class=\"form-control-static\" id=\"duration_in_months\">' + (\$j('#duration_in_months').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#total_budget_specified').replaceWith('<div class=\"form-control-static\" id=\"total_budget_specified\">' + (\$j('#total_budget_specified').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#first_phase').replaceWith('<div class=\"form-control-static\" id=\"first_phase\">' + (\$j('#first_phase').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#second_phase').replaceWith('<div class=\"form-control-static\" id=\"second_phase\">' + (\$j('#second_phase').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#third_phase').replaceWith('<div class=\"form-control-static\" id=\"third_phase\">' + (\$j('#third_phase').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#fourth_phase').replaceWith('<div class=\"form-control-static\" id=\"fourth_phase\">' + (\$j('#fourth_phase').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#total').replaceWith('<div class=\"form-control-static\" id=\"total\">' + (\$j('#total').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#final_budget_to_be_allocated').replaceWith('<div class=\"form-control-static\" id=\"final_budget_to_be_allocated\">' + (\$j('#final_budget_to_be_allocated').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#proposal_link').replaceWith('<div class=\"form-control-static\" id=\"proposal_link\">' + (\$j('#proposal_link').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

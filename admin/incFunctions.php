@@ -131,7 +131,7 @@
 				],
 				'event_table' => [
 					'Caption' => 'Event - App',
-					'Description' => '<a href="https://lookerstudio.google.com/reporting/7a6332d1-62b0-4602-baf9-7da8e4033e98"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Event App View</b></button></a>',
+					'Description' => '<a href="https://lookerstudio.google.com/reporting/7a6332d1-62b0-4602-baf9-7da8e4033e98"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Event App Report</b></button></a>',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[0],
 					'homepageShowCount' => 1
@@ -152,7 +152,7 @@
 				],
 				'meetings_table' => [
 					'Caption' => 'Meetings - App',
-					'Description' => '<a href="https://lookerstudio.google.com/reporting/b7bf99ff-cb80-42d5-8c5e-9256eb638f3a"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Meetings App View</b></button></a>',
+					'Description' => '<a href="https://lookerstudio.google.com/reporting/b7bf99ff-cb80-42d5-8c5e-9256eb638f3a"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Meetings App Report</b></button></a>',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[0],
 					'homepageShowCount' => 1
@@ -222,7 +222,7 @@
 				],
 				'task_setting_table' => [
 					'Caption' => 'Task setting - App',
-					'Description' => '<a href="https://lookerstudio.google.com/reporting/52ec0149-4f45-4041-92b6-afc26208458e"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Task Setting App View</b></button></a>',
+					'Description' => '<a href="https://lookerstudio.google.com/reporting/52ec0149-4f45-4041-92b6-afc26208458e"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Task Setting App Report</b></button></a>',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[0],
 					'homepageShowCount' => 1
@@ -341,7 +341,7 @@
 				],
 				'computer_details_table' => [
 					'Caption' => 'Computer lab PC list - App',
-					'Description' => '',
+					'Description' => '<a href="https://lookerstudio.google.com/reporting/3dc9dac5-3945-4853-91cc-12e26b865666"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Computer lab PC Report</b></button></a>',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[7],
 					'homepageShowCount' => 1
@@ -355,7 +355,7 @@
 				],
 				'personal_data_table' => [
 					'Caption' => 'Employee personal data - App',
-					'Description' => '',
+					'Description' => '<a href="https://lookerstudio.google.com/reporting/e46f3806-e78c-4f09-8417-049568d4783d"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Employee Details App Report</b></button></a>',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[6],
 					'homepageShowCount' => 1
@@ -474,7 +474,7 @@
 				],
 				'car_table' => [
 					'Caption' => 'Car - App',
-					'Description' => '',
+					'Description' => '<a href="https://lookerstudio.google.com/reporting/58f87367-3f09-42c0-a288-cf75f313cbed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Car App Report</b></button></a>',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[9],
 					'homepageShowCount' => 1
@@ -616,10 +616,10 @@
 			/* 'table_name' => ['table caption', 'homepage description', 'icon', 'table group name'] */   
 			'user_table' => ['User Table', '', 'table.gif', 'Suggestions &amp; Other Apps'],
 			'suggestion' => ['Suggestions - App', '', 'table.gif', 'Suggestions &amp; Other Apps'],
-			'event_table' => ['Event - App', '<a href="https://lookerstudio.google.com/reporting/7a6332d1-62b0-4602-baf9-7da8e4033e98"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Event App View</b></button></a>', 'table.gif', 'Events / Meetings / Goals Apps'],
+			'event_table' => ['Event - App', '<a href="https://lookerstudio.google.com/reporting/7a6332d1-62b0-4602-baf9-7da8e4033e98"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Event App Report</b></button></a>', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'outcomes_expected_table' => ['Outcomes Expected Table', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'event_decision_table' => ['Decision - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
-			'meetings_table' => ['Meetings - App', '<a href="https://lookerstudio.google.com/reporting/b7bf99ff-cb80-42d5-8c5e-9256eb638f3a"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Meetings App View</b></button></a>', 'table.gif', 'Events / Meetings / Goals Apps'],
+			'meetings_table' => ['Meetings - App', '<a href="https://lookerstudio.google.com/reporting/b7bf99ff-cb80-42d5-8c5e-9256eb638f3a"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Meetings App Report</b></button></a>', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'agenda_table' => ['Agenda - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'decision_table' => ['Decision - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'participants_table' => ['Participants / Speaker / VIP List - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
@@ -629,7 +629,7 @@
 			'mou_company_area_details_table' => ['MoU company area details - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'goal_setting_table' => ['Goal setting - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'goal_progress_table' => ['Goal progress table', '', 'table.gif', 'Events / Meetings / Goals Apps'],
-			'task_setting_table' => ['Task setting - App', '<a href="https://lookerstudio.google.com/reporting/52ec0149-4f45-4041-92b6-afc26208458e"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Task Setting App View</b></button></a>', 'table.gif', 'Events / Meetings / Goals Apps'],
+			'task_setting_table' => ['Task setting - App', '<a href="https://lookerstudio.google.com/reporting/52ec0149-4f45-4041-92b6-afc26208458e"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Task Setting App Report</b></button></a>', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'subtask_setting_table' => ['Subtask setting - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'internship_fellowship_details_app' => ['Internship/Fellowship details - App', 'HRD', 'table.gif', 'HRD Apps'],
 			'star_pnt' => ['Star-PNT - APP', 'HRD', 'table.gif', 'HRD Apps'],
@@ -646,9 +646,9 @@
 			'it_inventory_app' => ['IT inventory - App', '', 'table.gif', 'Asset Management Apps'],
 			'it_inventory_billing_details' => ['IT inventory billing details - App', '', 'table.gif', 'Asset Management Apps'],
 			'it_inventory_allotment_table' => ['IT inventory allotment - App', '', 'table.gif', 'Asset Management Apps'],
-			'computer_details_table' => ['Computer lab PC list - App', '', 'table.gif', 'Asset Management Apps'],
+			'computer_details_table' => ['Computer lab PC list - App', '<a href="https://lookerstudio.google.com/reporting/3dc9dac5-3945-4853-91cc-12e26b865666"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Computer lab PC Report</b></button></a>', 'table.gif', 'Asset Management Apps'],
 			'computer_usage_table' => ['Computer usage table', '', 'table.gif', 'Asset Management Apps'],
-			'personal_data_table' => ['Employee personal data - App', '', 'table.gif', 'Employee Data Management Apps'],
+			'personal_data_table' => ['Employee personal data - App', '<a href="https://lookerstudio.google.com/reporting/e46f3806-e78c-4f09-8417-049568d4783d"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Employee Details App Report</b></button></a>', 'table.gif', 'Employee Data Management Apps'],
 			'employees_designation_table' => ['Employees designation table', '', 'table.gif', 'Employee Data Management Apps'],
 			'attendence_details_table' => ['Attendence details - App', '<a href="https://lookerstudio.google.com/reporting/dd61ce5a-ccb5-4d55-b0a4-5233454f4b2c"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Attendence App View</b></button></a>', 'table.gif', 'Employee Data Management Apps'],
 			'leave_table' => ['Leave - App', '', 'table.gif', 'Employee Data Management Apps'],
@@ -665,7 +665,7 @@
 			'approval_table' => ['Approval - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'all_bank_account_statement_table' => ['All bank account statement - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'payment_track_details_table' => ['Payment track details - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
-			'car_table' => ['Car - App', '', 'table.gif', 'Transport Apps'],
+			'car_table' => ['Car - App', '<a href="https://lookerstudio.google.com/reporting/58f87367-3f09-42c0-a288-cf75f313cbed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Car App Report</b></button></a>', 'table.gif', 'Transport Apps'],
 			'car_usage_table' => ['Car usage table', '', 'table.gif', 'Transport Apps'],
 			'travel_table' => ['Travel - App', '', 'table.gif', 'Transport Apps'],
 			'travel_cab_table' => ['Travel cab details - App', '', 'table.gif', 'Transport Apps'],
@@ -6156,7 +6156,7 @@
 					],
 				],
 				'approval_table' => [
-					'procurement_approval_id' => [
+					'id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
@@ -6208,7 +6208,7 @@
 					'requested_department' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Requested Department',
+							'caption' => 'Requested Department/Appointment',
 							'description' => '',
 						],
 					],
@@ -10078,7 +10078,7 @@
 				'given_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'mou_details_table' => [
-				'assigned_mou_to' => 'SELECT `user_table`.`user_id`, `user_table`.`memberID` FROM `user_table` ORDER BY 2',
+				'assigned_mou_to' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'mou_company_area_details_table' => [
 				'name_of_the_company' => 'SELECT `mou_details_table`.`id`, `mou_details_table`.`company_name` FROM `mou_details_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`mou_details_table`.`assigned_mou_to` ORDER BY 2',

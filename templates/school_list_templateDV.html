@@ -197,6 +197,7 @@
 				}
 			});
 
+			school_listUniqueFields.forEach(fieldName => enforce_uniqueness('school_list', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -210,4 +211,7 @@
 				);
 			}
 		});
+
+		var school_listUniqueFields = [
+		];
 	</script>

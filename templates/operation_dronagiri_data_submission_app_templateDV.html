@@ -231,6 +231,7 @@
 				}
 			});
 
+			operation_dronagiri_data_submission_appUniqueFields.forEach(fieldName => enforce_uniqueness('operation_dronagiri_data_submission_app', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -244,4 +245,7 @@
 				);
 			}
 		});
+
+		var operation_dronagiri_data_submission_appUniqueFields = [
+		];
 	</script>

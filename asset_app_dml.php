@@ -107,8 +107,8 @@ function asset_app_delete($selected_id, $AllowDeleteOfParents = false, $skipChec
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'asset_billing_details'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'asset_app_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'asset_app_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `asset_app_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `asset_app_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -300,7 +300,7 @@ function asset_app_form($selectedId = '', $allowUpdate = true, $allowInsert = tr
 		// initial lookup values
 		AppGini.current_sactioned_by__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['sactioned_by'] : htmlspecialchars($filterer_sactioned_by, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(sactioned_by_reload__RAND__) == 'function') sactioned_by_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
@@ -467,28 +467,28 @@ function asset_app_form($selectedId = '', $allowUpdate = true, $allowInsert = tr
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#dateDay, #dateMonth, #dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#classification_of_asset').replaceWith('<div class=\"form-control-static\" id=\"classification_of_asset\">' + (jQuery('#classification_of_asset').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#sub_category').replaceWith('<div class=\"form-control-static\" id=\"sub_category\">' + (jQuery('#sub_category').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#asset_serial_number').replaceWith('<div class=\"form-control-static\" id=\"asset_serial_number\">' + (jQuery('#asset_serial_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#qr_and_bar_code').replaceWith('<div class=\"form-control-static\" id=\"qr_and_bar_code\">' + (jQuery('#qr_and_bar_code').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#custody_department').replaceWith('<div class=\"form-control-static\" id=\"custody_department\">' + (jQuery('#custody_department').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#custodian').replaceWith('<div class=\"form-control-static\" id=\"custodian\">' + (jQuery('#custodian').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#custodian_signature').replaceWith('<div class=\"form-control-static\" id=\"custodian_signature\">' + (jQuery('#custodian_signature').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#no_of_years_useful_life_of_assets').replaceWith('<div class=\"form-control-static\" id=\"no_of_years_useful_life_of_assets\">' + (jQuery('#no_of_years_useful_life_of_assets').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#date_of_useful_life_of_assets_ends').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#date_of_useful_life_of_assets_endsDay, #date_of_useful_life_of_assets_endsMonth, #date_of_useful_life_of_assets_endsYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#remarks').replaceWith('<div class=\"form-control-static\" id=\"remarks\">' + (jQuery('#remarks').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#sactioned_by').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#sactioned_by_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#dateDay, #dateMonth, #dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#classification_of_asset').replaceWith('<div class=\"form-control-static\" id=\"classification_of_asset\">' + (\$j('#classification_of_asset').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#sub_category').replaceWith('<div class=\"form-control-static\" id=\"sub_category\">' + (\$j('#sub_category').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#asset_serial_number').replaceWith('<div class=\"form-control-static\" id=\"asset_serial_number\">' + (\$j('#asset_serial_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#qr_and_bar_code').replaceWith('<div class=\"form-control-static\" id=\"qr_and_bar_code\">' + (\$j('#qr_and_bar_code').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#custody_department').replaceWith('<div class=\"form-control-static\" id=\"custody_department\">' + (\$j('#custody_department').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#custodian').replaceWith('<div class=\"form-control-static\" id=\"custodian\">' + (\$j('#custodian').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#custodian_signature').replaceWith('<div class=\"form-control-static\" id=\"custodian_signature\">' + (\$j('#custodian_signature').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#no_of_years_useful_life_of_assets').replaceWith('<div class=\"form-control-static\" id=\"no_of_years_useful_life_of_assets\">' + (\$j('#no_of_years_useful_life_of_assets').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#date_of_useful_life_of_assets_ends').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#date_of_useful_life_of_assets_endsDay, #date_of_useful_life_of_assets_endsMonth, #date_of_useful_life_of_assets_endsYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#remarks').replaceWith('<div class=\"form-control-static\" id=\"remarks\">' + (\$j('#remarks').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#sactioned_by').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#sactioned_by_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

@@ -350,6 +350,7 @@
 				}
 			});
 
+			internship_fellowship_details_appUniqueFields.forEach(fieldName => enforce_uniqueness('internship_fellowship_details_app', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -363,4 +364,7 @@
 				);
 			}
 		});
+
+		var internship_fellowship_details_appUniqueFields = [
+		];
 	</script>

@@ -247,7 +247,7 @@ function computer_usage_table_form($selectedId = '', $allowUpdate = true, $allow
 		// initial lookup values
 		AppGini.current_pc_id__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['pc_id'] : htmlspecialchars($filterer_pc_id, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(pc_id_reload__RAND__) == 'function') pc_id_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
@@ -414,24 +414,24 @@ function computer_usage_table_form($selectedId = '', $allowUpdate = true, $allow
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#name_of_user').replaceWith('<div class=\"form-control-static\" id=\"name_of_user\">' + (jQuery('#name_of_user').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#role').replaceWith('<div class=\"form-control-static\" id=\"role\">' + (jQuery('#role').val() || '') + '</div>'); jQuery('#role-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#from_date').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"from_date\">' + (jQuery('#from_date').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#to_date').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"to_date\">' + (jQuery('#to_date').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#purpose').replaceWith('<div class=\"form-control-static\" id=\"purpose\">' + (jQuery('#purpose').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#email_d').replaceWith('<div class=\"form-control-static\" id=\"email_d\">' + (jQuery('#email_d').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#mobile_number').replaceWith('<div class=\"form-control-static\" id=\"mobile_number\">' + (jQuery('#mobile_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#name_of_user').replaceWith('<div class=\"form-control-static\" id=\"name_of_user\">' + (\$j('#name_of_user').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#role').replaceWith('<div class=\"form-control-static\" id=\"role\">' + (\$j('#role').val() || '') + '</div>'); \$j('#role-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#from_date').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"from_date\">' + (\$j('#from_date').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#to_date').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"to_date\">' + (\$j('#to_date').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#purpose').replaceWith('<div class=\"form-control-static\" id=\"purpose\">' + (\$j('#purpose').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#email_d').replaceWith('<div class=\"form-control-static\" id=\"email_d\">' + (\$j('#email_d').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#mobile_number').replaceWith('<div class=\"form-control-static\" id=\"mobile_number\">' + (\$j('#mobile_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
 		$locale = isset($Translation['datetimepicker locale']) ? ", locale: '{$Translation['datetimepicker locale']}'" : '';
-		$jsEditable .= "\tjQuery('#from_date').addClass('always_shown').parents('.input-group').datetimepicker({ toolbarPlacement: 'top', sideBySide: true, showClear: true, showTodayButton: true, showClose: true, icons: { close: 'glyphicon glyphicon-ok' }, format: AppGini.datetimeFormat('dt') {$locale} });";
+		$jsEditable .= "\t\$j('#from_date').addClass('always_shown').parents('.input-group').datetimepicker({ toolbarPlacement: 'top', sideBySide: true, showClear: true, showTodayButton: true, showClose: true, icons: { close: 'glyphicon glyphicon-ok' }, format: AppGini.datetimeFormat('dt') {$locale} });";
 		$locale = isset($Translation['datetimepicker locale']) ? ", locale: '{$Translation['datetimepicker locale']}'" : '';
-		$jsEditable .= "\tjQuery('#to_date').addClass('always_shown').parents('.input-group').datetimepicker({ toolbarPlacement: 'top', sideBySide: true, showClear: true, showTodayButton: true, showClose: true, icons: { close: 'glyphicon glyphicon-ok' }, format: AppGini.datetimeFormat('dt') {$locale} });";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable .= "\t\$j('#to_date').addClass('always_shown').parents('.input-group').datetimepicker({ toolbarPlacement: 'top', sideBySide: true, showClear: true, showTodayButton: true, showClose: true, icons: { close: 'glyphicon glyphicon-ok' }, format: AppGini.datetimeFormat('dt') {$locale} });";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

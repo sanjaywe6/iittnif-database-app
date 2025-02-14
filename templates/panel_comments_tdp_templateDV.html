@@ -260,6 +260,7 @@
 				}
 			});
 
+			panel_comments_tdpUniqueFields.forEach(fieldName => enforce_uniqueness('panel_comments_tdp', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -273,4 +274,7 @@
 				);
 			}
 		});
+
+		var panel_comments_tdpUniqueFields = [
+		];
 	</script>

@@ -182,6 +182,7 @@
 				}
 			});
 
+			mou_company_area_details_tableUniqueFields.forEach(fieldName => enforce_uniqueness('mou_company_area_details_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -195,4 +196,7 @@
 				);
 			}
 		});
+
+		var mou_company_area_details_tableUniqueFields = [
+		];
 	</script>

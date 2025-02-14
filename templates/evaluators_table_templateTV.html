@@ -1,17 +1,40 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="10" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="evaluators_table-evaluator_id-caption field-caption-tv">ID</dt>
+					<dd id="evaluators_table-evaluator_id-<%%VALUE(evaluator_id)%%>" class="evaluators_table-evaluator_id text-right"><%%SELECT%%><%%VALUE(evaluator_id)%%><%%ENDSELECT%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the evaluators_table_init() hook (in hooks/evaluators_table.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="evaluators_table-name-caption field-caption-tv">Name</dt>
+					<dd id="evaluators_table-name-<%%VALUE(evaluator_id)%%>" class="evaluators_table-name"><%%SELECT%%><%%VALUE(name)%%><%%ENDSELECT%%></dd>
 
-		<td id="evaluators_table-evaluator_id-<%%VALUE(evaluator_id)%%>" class="evaluators_table-evaluator_id text-right"><%%SELECT%%><%%VALUE(evaluator_id)%%><%%ENDSELECT%%></td>
-		<td id="evaluators_table-name-<%%VALUE(evaluator_id)%%>" class="evaluators_table-name"><%%SELECT%%><%%VALUE(name)%%><%%ENDSELECT%%></td>
-		<td id="evaluators_table-designation-<%%VALUE(evaluator_id)%%>" class="evaluators_table-designation"><%%SELECT%%><%%VALUE(designation)%%><%%ENDSELECT%%></td>
-		<td id="evaluators_table-qualification-<%%VALUE(evaluator_id)%%>" class="evaluators_table-qualification"><%%SELECT%%><%%VALUE(qualification)%%><%%ENDSELECT%%></td>
-		<td id="evaluators_table-self_description-<%%VALUE(evaluator_id)%%>" class="evaluators_table-self_description"><%%SELECT%%><%%VALUE(self_description)%%><%%ENDSELECT%%></td>
-		<td id="evaluators_table-role-<%%VALUE(evaluator_id)%%>" class="evaluators_table-role"><%%SELECT%%><%%VALUE(role)%%><%%ENDSELECT%%></td>
-		<td id="evaluators_table-created_by-<%%VALUE(evaluator_id)%%>" class="evaluators_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
-		<td id="evaluators_table-created_at-<%%VALUE(evaluator_id)%%>" class="evaluators_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
-		<td id="evaluators_table-last_updated_by-<%%VALUE(evaluator_id)%%>" class="evaluators_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>
-		<td id="evaluators_table-last_updated_at-<%%VALUE(evaluator_id)%%>" class="evaluators_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>
+					<dt class="evaluators_table-designation-caption field-caption-tv">Designation</dt>
+					<dd id="evaluators_table-designation-<%%VALUE(evaluator_id)%%>" class="evaluators_table-designation"><%%SELECT%%><%%VALUE(designation)%%><%%ENDSELECT%%></dd>
+
+					<dt class="evaluators_table-qualification-caption field-caption-tv">Qualification</dt>
+					<dd id="evaluators_table-qualification-<%%VALUE(evaluator_id)%%>" class="evaluators_table-qualification"><%%SELECT%%><%%VALUE(qualification)%%><%%ENDSELECT%%></dd>
+
+					<dt class="evaluators_table-self_description-caption field-caption-tv">Self description</dt>
+					<dd id="evaluators_table-self_description-<%%VALUE(evaluator_id)%%>" class="evaluators_table-self_description"><%%SELECT%%><%%VALUE(self_description)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="evaluators_table-role-caption field-caption-tv">Role</dt>
+					<dd id="evaluators_table-role-<%%VALUE(evaluator_id)%%>" class="evaluators_table-role"><%%SELECT%%><%%VALUE(role)%%><%%ENDSELECT%%></dd>
+
+					<dt class="evaluators_table-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="evaluators_table-created_by-<%%VALUE(evaluator_id)%%>" class="evaluators_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="evaluators_table-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="evaluators_table-created_at-<%%VALUE(evaluator_id)%%>" class="evaluators_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="evaluators_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="evaluators_table-last_updated_by-<%%VALUE(evaluator_id)%%>" class="evaluators_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="evaluators_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="evaluators_table-last_updated_at-<%%VALUE(evaluator_id)%%>" class="evaluators_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+		</td>

@@ -246,7 +246,7 @@ function email_id_allocation_table_form($selectedId = '', $allowUpdate = true, $
 		// initial lookup values
 		AppGini.current_reporting_manager__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['reporting_manager'] : htmlspecialchars($filterer_reporting_manager, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(reporting_manager_reload__RAND__) == 'function') reporting_manager_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
@@ -413,22 +413,22 @@ function email_id_allocation_table_form($selectedId = '', $allowUpdate = true, $
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#name_of_person').replaceWith('<div class=\"form-control-static\" id=\"name_of_person\">' + (jQuery('#name_of_person').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#allocated_email_id').replaceWith('<div class=\"form-control-static\" id=\"allocated_email_id\">' + (jQuery('#allocated_email_id').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#alternative_email_id').replaceWith('<div class=\"form-control-static\" id=\"alternative_email_id\">' + (jQuery('#alternative_email_id').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#date_of_allocation').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#date_of_allocationDay, #date_of_allocationMonth, #date_of_allocationYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#status').replaceWith('<div class=\"form-control-static\" id=\"status\">' + (jQuery('#status').val() || '') + '</div>'); jQuery('#status-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#reporting_manager').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#reporting_manager_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\tjQuery('#remarks').replaceWith('<div class=\"form-control-static\" id=\"remarks\">' + (jQuery('#remarks').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#name_of_person').replaceWith('<div class=\"form-control-static\" id=\"name_of_person\">' + (\$j('#name_of_person').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#allocated_email_id').replaceWith('<div class=\"form-control-static\" id=\"allocated_email_id\">' + (\$j('#allocated_email_id').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#alternative_email_id').replaceWith('<div class=\"form-control-static\" id=\"alternative_email_id\">' + (\$j('#alternative_email_id').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#date_of_allocation').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#date_of_allocationDay, #date_of_allocationMonth, #date_of_allocationYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#status').replaceWith('<div class=\"form-control-static\" id=\"status\">' + (\$j('#status').val() || '') + '</div>'); \$j('#status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#reporting_manager').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#reporting_manager_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('#remarks').replaceWith('<div class=\"form-control-static\" id=\"remarks\">' + (\$j('#remarks').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

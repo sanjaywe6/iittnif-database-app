@@ -1,23 +1,58 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="16" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="it_inventory_billing_details-it_inventory_biling_details_id-caption field-caption-tv">ID</dt>
+					<dd id="it_inventory_billing_details-it_inventory_biling_details_id-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-it_inventory_biling_details_id text-right"><%%SELECT%%><%%VALUE(it_inventory_biling_details_id)%%><%%ENDSELECT%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the it_inventory_billing_details_init() hook (in hooks/it_inventory_billing_details.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="it_inventory_billing_details-it_inventory_lookup-caption field-caption-tv">IT inventory </dt>
+					<dd id="it_inventory_billing_details-it_inventory_lookup-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-it_inventory_lookup"><%%SELECT%%><%%VALUE(it_inventory_lookup)%%><%%ENDSELECT%%></dd>
 
-		<td id="it_inventory_billing_details-it_inventory_biling_details_id-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-it_inventory_biling_details_id text-right"><%%SELECT%%><%%VALUE(it_inventory_biling_details_id)%%><%%ENDSELECT%%></td>
-		<td id="it_inventory_billing_details-it_inventory_lookup-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-it_inventory_lookup"><%%SELECT%%><%%VALUE(it_inventory_lookup)%%><%%ENDSELECT%%></td>
-		<td id="it_inventory_billing_details-po_no-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-po_no"><%%SELECT%%><%%VALUE(po_no)%%><%%ENDSELECT%%></td>
-		<td id="it_inventory_billing_details-po_date-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-po_date"><%%SELECT%%><%%VALUE(po_date)%%><%%ENDSELECT%%></td>
-		<td id="it_inventory_billing_details-particulars_of_supplier-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-particulars_of_supplier"><%%SELECT%%><%%VALUE(particulars_of_supplier)%%><%%ENDSELECT%%></td>
-		<td id="it_inventory_billing_details-item_description-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-item_description"><%%SELECT%%><%%VALUE(item_description)%%><%%ENDSELECT%%></td>
-		<td id="it_inventory_billing_details-bill_no-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-bill_no"><%%SELECT%%><%%VALUE(bill_no)%%><%%ENDSELECT%%></td>
-		<td id="it_inventory_billing_details-bill_date-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-bill_date"><%%SELECT%%><%%VALUE(bill_date)%%><%%ENDSELECT%%></td>
-		<td id="it_inventory_billing_details-quantity-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-quantity"><%%SELECT%%><%%VALUE(quantity)%%><%%ENDSELECT%%></td>
-		<td id="it_inventory_billing_details-total_invoice_value-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-total_invoice_value"><%%SELECT%%><%%VALUE(total_invoice_value)%%><%%ENDSELECT%%></td>
-		<td id="it_inventory_billing_details-cost_of_the_asset-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-cost_of_the_asset"><%%SELECT%%><%%VALUE(cost_of_the_asset)%%><%%ENDSELECT%%></td>
-		<td id="it_inventory_billing_details-image-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-image"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(image)%%>" data-lightbox="it_inventory_billing_details-image"><img src="thumbnail.php?i=<%%VALUE(image)%%>&t=it_inventory_billing_details&f=image&v=tv" class="img-thumbnail"></a></td>
-		<td id="it_inventory_billing_details-created_by-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
-		<td id="it_inventory_billing_details-created_at-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
-		<td id="it_inventory_billing_details-last_updated_by-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>
-		<td id="it_inventory_billing_details-last_updated_at-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>
+					<dt class="it_inventory_billing_details-po_no-caption field-caption-tv">PO Number</dt>
+					<dd id="it_inventory_billing_details-po_no-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-po_no"><%%SELECT%%><%%VALUE(po_no)%%><%%ENDSELECT%%></dd>
+
+					<dt class="it_inventory_billing_details-po_date-caption field-caption-tv">PO Date</dt>
+					<dd id="it_inventory_billing_details-po_date-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-po_date"><%%SELECT%%><%%VALUE(po_date)%%><%%ENDSELECT%%></dd>
+
+					<dt class="it_inventory_billing_details-particulars_of_supplier-caption field-caption-tv">Particulars of supplier</dt>
+					<dd id="it_inventory_billing_details-particulars_of_supplier-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-particulars_of_supplier"><%%SELECT%%><%%VALUE(particulars_of_supplier)%%><%%ENDSELECT%%></dd>
+
+					<dt class="it_inventory_billing_details-item_description-caption field-caption-tv">Item description</dt>
+					<dd id="it_inventory_billing_details-item_description-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-item_description"><%%SELECT%%><%%VALUE(item_description)%%><%%ENDSELECT%%></dd>
+
+					<dt class="it_inventory_billing_details-bill_no-caption field-caption-tv">Bill no</dt>
+					<dd id="it_inventory_billing_details-bill_no-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-bill_no"><%%SELECT%%><%%VALUE(bill_no)%%><%%ENDSELECT%%></dd>
+
+					<dt class="it_inventory_billing_details-bill_date-caption field-caption-tv">Bill date</dt>
+					<dd id="it_inventory_billing_details-bill_date-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-bill_date"><%%SELECT%%><%%VALUE(bill_date)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="it_inventory_billing_details-quantity-caption field-caption-tv">Quantity</dt>
+					<dd id="it_inventory_billing_details-quantity-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-quantity"><%%SELECT%%><%%VALUE(quantity)%%><%%ENDSELECT%%></dd>
+
+					<dt class="it_inventory_billing_details-total_invoice_value-caption field-caption-tv">Total invoice value</dt>
+					<dd id="it_inventory_billing_details-total_invoice_value-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-total_invoice_value"><%%SELECT%%><%%VALUE(total_invoice_value)%%><%%ENDSELECT%%></dd>
+
+					<dt class="it_inventory_billing_details-cost_of_the_asset-caption field-caption-tv">Cost of the asset</dt>
+					<dd id="it_inventory_billing_details-cost_of_the_asset-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-cost_of_the_asset"><%%SELECT%%><%%VALUE(cost_of_the_asset)%%><%%ENDSELECT%%></dd>
+
+					<dt class="it_inventory_billing_details-image-caption field-caption-tv">Image</dt>
+					<dd id="it_inventory_billing_details-image-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-image"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(image)%%>" data-lightbox="it_inventory_billing_details-image"><img src="thumbnail.php?i=<%%VALUE(image)%%>&t=it_inventory_billing_details&f=image&v=tv" class="img-thumbnail"></a></dd>
+
+					<dt class="it_inventory_billing_details-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="it_inventory_billing_details-created_by-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="it_inventory_billing_details-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="it_inventory_billing_details-created_at-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="it_inventory_billing_details-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="it_inventory_billing_details-last_updated_by-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="it_inventory_billing_details-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="it_inventory_billing_details-last_updated_at-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+		</td>

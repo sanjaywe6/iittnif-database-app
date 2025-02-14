@@ -229,7 +229,7 @@ function mou_company_area_details_table_form($selectedId = '', $allowUpdate = tr
 		AppGini.current_name_of_the_company__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['name_of_the_company'] : htmlspecialchars($filterer_name_of_the_company, ENT_QUOTES)); ?>"};
 		AppGini.current_assigned_mou_to__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['assigned_mou_to'] : htmlspecialchars($filterer_assigned_mou_to, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(name_of_the_company_reload__RAND__) == 'function') name_of_the_company_reload__RAND__();
 				if(typeof(assigned_mou_to_reload__RAND__) == 'function') assigned_mou_to_reload__RAND__();
@@ -474,17 +474,17 @@ function mou_company_area_details_table_form($selectedId = '', $allowUpdate = tr
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#area').replaceWith('<div class=\"form-control-static\" id=\"area\">' + (jQuery('#area').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#assigned_mou_to').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#assigned_mou_to_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\tjQuery('#remarks').replaceWith('<div class=\"form-control-static\" id=\"remarks\">' + (jQuery('#remarks').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#area').replaceWith('<div class=\"form-control-static\" id=\"area\">' + (\$j('#area').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#assigned_mou_to').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#assigned_mou_to_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('#remarks').replaceWith('<div class=\"form-control-static\" id=\"remarks\">' + (\$j('#remarks').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

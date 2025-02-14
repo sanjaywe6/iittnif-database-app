@@ -238,7 +238,7 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	<script>
 		// initial lookup values
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
@@ -327,21 +327,21 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#leave_type').replaceWith('<div class=\"form-control-static\" id=\"leave_type\">' + (jQuery('#leave_type').val() || '') + '</div>'); jQuery('#leave_type-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#purpose_of_leave').replaceWith('<div class=\"form-control-static\" id=\"purpose_of_leave\">' + (jQuery('#purpose_of_leave').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#from_date').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"from_date\">' + (jQuery('#from_date').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#to_date').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"to_date\">' + (jQuery('#to_date').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#leave_type').replaceWith('<div class=\"form-control-static\" id=\"leave_type\">' + (\$j('#leave_type').val() || '') + '</div>'); \$j('#leave_type-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#purpose_of_leave').replaceWith('<div class=\"form-control-static\" id=\"purpose_of_leave\">' + (\$j('#purpose_of_leave').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#from_date').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"from_date\">' + (\$j('#from_date').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#to_date').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"to_date\">' + (\$j('#to_date').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
 		$locale = isset($Translation['datetimepicker locale']) ? ", locale: '{$Translation['datetimepicker locale']}'" : '';
-		$jsEditable .= "\tjQuery('#from_date').addClass('always_shown').parents('.input-group').datetimepicker({ toolbarPlacement: 'top', sideBySide: true, showClear: true, showTodayButton: true, showClose: true, icons: { close: 'glyphicon glyphicon-ok' }, format: AppGini.datetimeFormat('dt') {$locale} });";
+		$jsEditable .= "\t\$j('#from_date').addClass('always_shown').parents('.input-group').datetimepicker({ toolbarPlacement: 'top', sideBySide: true, showClear: true, showTodayButton: true, showClose: true, icons: { close: 'glyphicon glyphicon-ok' }, format: AppGini.datetimeFormat('dt') {$locale} });";
 		$locale = isset($Translation['datetimepicker locale']) ? ", locale: '{$Translation['datetimepicker locale']}'" : '';
-		$jsEditable .= "\tjQuery('#to_date').addClass('always_shown').parents('.input-group').datetimepicker({ toolbarPlacement: 'top', sideBySide: true, showClear: true, showTodayButton: true, showClose: true, icons: { close: 'glyphicon glyphicon-ok' }, format: AppGini.datetimeFormat('dt') {$locale} });";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable .= "\t\$j('#to_date').addClass('always_shown').parents('.input-group').datetimepicker({ toolbarPlacement: 'top', sideBySide: true, showClear: true, showTodayButton: true, showClose: true, icons: { close: 'glyphicon glyphicon-ok' }, format: AppGini.datetimeFormat('dt') {$locale} });";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

@@ -227,6 +227,7 @@
 				}
 			});
 
+			travel_flight_tableUniqueFields.forEach(fieldName => enforce_uniqueness('travel_flight_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
@@ -240,4 +241,7 @@
 				);
 			}
 		});
+
+		var travel_flight_tableUniqueFields = [
+		];
 	</script>

@@ -121,8 +121,8 @@ function visiting_card_table_delete($selected_id, $AllowDeleteOfParents = false,
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'meetings_table'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = \'visiting_card_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . '\';">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = \'visiting_card_table_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `visiting_card_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `visiting_card_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
@@ -349,7 +349,7 @@ function visiting_card_table_form($selectedId = '', $allowUpdate = true, $allowI
 		// initial lookup values
 		AppGini.current_given_by__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['given_by'] : htmlspecialchars($filterer_given_by, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(given_by_reload__RAND__) == 'function') given_by_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
@@ -516,26 +516,25 @@ function visiting_card_table_form($selectedId = '', $allowUpdate = true, $allowI
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#name').replaceWith('<div class=\"form-control-static\" id=\"name\">' + (jQuery('#name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#recommended_by').replaceWith('<div class=\"form-control-static\" id=\"recommended_by\">' + (jQuery('#recommended_by').val() || '') + '</div>'); jQuery('#recommended_by-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#designation').replaceWith('<div class=\"form-control-static\" id=\"designation\">' + (jQuery('#designation').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#company_name').replaceWith('<div class=\"form-control-static\" id=\"company_name\">' + (jQuery('#company_name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#mobile_no').replaceWith('<div class=\"form-control-static\" id=\"mobile_no\">' + (jQuery('#mobile_no').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#email').replaceWith('<div class=\"form-control-static\" id=\"email\">' + (jQuery('#email').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#email, #email-edit-link').hide();\n";
-		$jsReadOnly .= "\tjQuery('#company_website_addr').replaceWith('<div class=\"form-control-static\" id=\"company_website_addr\">' + (jQuery('#company_website_addr').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#given_by').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#given_by_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\tjQuery('#suggested_way_forward').replaceWith('<div class=\"form-control-static\" id=\"suggested_way_forward\">' + (jQuery('#suggested_way_forward').val() || '') + '</div>'); jQuery('#suggested_way_forward-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#front_img').replaceWith('<div class=\"form-control-static\" id=\"front_img\">' + (jQuery('#front_img').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#back_img').replaceWith('<div class=\"form-control-static\" id=\"back_img\">' + (jQuery('#back_img').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#name').replaceWith('<div class=\"form-control-static\" id=\"name\">' + (\$j('#name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#recommended_by').replaceWith('<div class=\"form-control-static\" id=\"recommended_by\">' + (\$j('#recommended_by').val() || '') + '</div>'); \$j('#recommended_by-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#designation').replaceWith('<div class=\"form-control-static\" id=\"designation\">' + (\$j('#designation').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#company_name').replaceWith('<div class=\"form-control-static\" id=\"company_name\">' + (\$j('#company_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#mobile_no').replaceWith('<div class=\"form-control-static\" id=\"mobile_no\">' + (\$j('#mobile_no').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#email').parent().replaceWith(`<div class=\"form-control-static\" id=\"email\">\${\$j('#email').val() || ''}\${\$j('#email').val() ? '<a target=\"_blank\" class=\"hspacer-lg\" href=\"mailto:' + \$j('#email').val() + '\" target=\"_blank\"><i class=\"glyphicon glyphicon-envelope\"></i></a>' : ''}</div>`);\n";
+		$jsReadOnly .= "\t\$j('#company_website_addr').replaceWith('<div class=\"form-control-static\" id=\"company_website_addr\">' + (\$j('#company_website_addr').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#given_by').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#given_by_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('#suggested_way_forward').replaceWith('<div class=\"form-control-static\" id=\"suggested_way_forward\">' + (\$j('#suggested_way_forward').val() || '') + '</div>'); \$j('#suggested_way_forward-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#front_img').replaceWith('<div class=\"form-control-static\" id=\"front_img\">' + (\$j('#front_img').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#back_img').replaceWith('<div class=\"form-control-static\" id=\"back_img\">' + (\$j('#back_img').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos
@@ -696,8 +695,6 @@ function visiting_card_table_form($selectedId = '', $allowUpdate = true, $allowI
 		$templateCode .= $jsEditable;
 
 		if(!$hasSelectedId) {
-			$templateCode.="\n\tif(document.getElementById('emailEdit')) { document.getElementById('emailEdit').style.display='inline'; }";
-			$templateCode.="\n\tif(document.getElementById('emailEditLink')) { document.getElementById('emailEditLink').style.display='none'; }";
 		}
 
 		$templateCode.="\n});</script>\n";

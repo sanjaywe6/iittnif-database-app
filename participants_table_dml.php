@@ -288,7 +288,7 @@ function participants_table_form($selectedId = '', $allowUpdate = true, $allowIn
 		AppGini.current_event_lookup__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['event_lookup'] : htmlspecialchars($filterer_event_lookup, ENT_QUOTES)); ?>"};
 		AppGini.current_meeting_lookup__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['meeting_lookup'] : htmlspecialchars($filterer_meeting_lookup, ENT_QUOTES)); ?>"};
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 				if(typeof(event_lookup_reload__RAND__) == 'function') event_lookup_reload__RAND__();
 				if(typeof(meeting_lookup_reload__RAND__) == 'function') meeting_lookup_reload__RAND__();
@@ -533,19 +533,19 @@ function participants_table_form($selectedId = '', $allowUpdate = true, $allowIn
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#name').replaceWith('<div class=\"form-control-static\" id=\"name\">' + (jQuery('#name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#designation').replaceWith('<div class=\"form-control-static\" id=\"designation\">' + (jQuery('#designation').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#participant_type').replaceWith('<div class=\"form-control-static\" id=\"participant_type\">' + (jQuery('#participant_type').val() || '') + '</div>'); jQuery('#participant_type-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#accepted_status').replaceWith('<div class=\"form-control-static\" id=\"accepted_status\">' + (jQuery('#accepted_status').val() || '') + '</div>'); jQuery('#accepted_status-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#status_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#status_dateDay, #status_dateMonth, #status_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#name').replaceWith('<div class=\"form-control-static\" id=\"name\">' + (\$j('#name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#designation').replaceWith('<div class=\"form-control-static\" id=\"designation\">' + (\$j('#designation').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#participant_type').replaceWith('<div class=\"form-control-static\" id=\"participant_type\">' + (\$j('#participant_type').val() || '') + '</div>'); \$j('#participant_type-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#accepted_status').replaceWith('<div class=\"form-control-static\" id=\"accepted_status\">' + (\$j('#accepted_status').val() || '') + '</div>'); \$j('#accepted_status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#status_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#status_dateDay, #status_dateMonth, #status_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

@@ -1,19 +1,46 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="12" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="participants_table-participants_id-caption field-caption-tv">ID</dt>
+					<dd id="participants_table-participants_id-<%%VALUE(participants_id)%%>" class="participants_table-participants_id text-right"><%%SELECT%%><%%VALUE(participants_id)%%><%%ENDSELECT%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the participants_table_init() hook (in hooks/participants_table.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="participants_table-event_lookup-caption field-caption-tv">Event</dt>
+					<dd id="participants_table-event_lookup-<%%VALUE(participants_id)%%>" class="participants_table-event_lookup"><%%SELECT%%><%%VALUE(event_lookup)%%><%%ENDSELECT%%></dd>
 
-		<td id="participants_table-participants_id-<%%VALUE(participants_id)%%>" class="participants_table-participants_id text-right"><%%SELECT%%><%%VALUE(participants_id)%%><%%ENDSELECT%%></td>
-		<td id="participants_table-event_lookup-<%%VALUE(participants_id)%%>" class="participants_table-event_lookup"><%%SELECT%%><%%VALUE(event_lookup)%%><%%ENDSELECT%%></td>
-		<td id="participants_table-meeting_lookup-<%%VALUE(participants_id)%%>" class="participants_table-meeting_lookup"><%%SELECT%%><%%VALUE(meeting_lookup)%%><%%ENDSELECT%%></td>
-		<td id="participants_table-name-<%%VALUE(participants_id)%%>" class="participants_table-name"><%%SELECT%%><%%VALUE(name)%%><%%ENDSELECT%%></td>
-		<td id="participants_table-designation-<%%VALUE(participants_id)%%>" class="participants_table-designation"><%%SELECT%%><%%VALUE(designation)%%><%%ENDSELECT%%></td>
-		<td id="participants_table-participant_type-<%%VALUE(participants_id)%%>" class="participants_table-participant_type"><%%SELECT%%><%%VALUE(participant_type)%%><%%ENDSELECT%%></td>
-		<td id="participants_table-accepted_status-<%%VALUE(participants_id)%%>" class="participants_table-accepted_status"><%%SELECT%%><%%VALUE(accepted_status)%%><%%ENDSELECT%%></td>
-		<td id="participants_table-status_date-<%%VALUE(participants_id)%%>" class="participants_table-status_date"><%%SELECT%%><%%VALUE(status_date)%%><%%ENDSELECT%%></td>
-		<td id="participants_table-created_by-<%%VALUE(participants_id)%%>" class="participants_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
-		<td id="participants_table-created_at-<%%VALUE(participants_id)%%>" class="participants_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
-		<td id="participants_table-last_updated_by-<%%VALUE(participants_id)%%>" class="participants_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>
-		<td id="participants_table-last_updated_at-<%%VALUE(participants_id)%%>" class="participants_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>
+					<dt class="participants_table-meeting_lookup-caption field-caption-tv">Meeting</dt>
+					<dd id="participants_table-meeting_lookup-<%%VALUE(participants_id)%%>" class="participants_table-meeting_lookup"><%%SELECT%%><%%VALUE(meeting_lookup)%%><%%ENDSELECT%%></dd>
+
+					<dt class="participants_table-name-caption field-caption-tv">Name</dt>
+					<dd id="participants_table-name-<%%VALUE(participants_id)%%>" class="participants_table-name"><%%SELECT%%><%%VALUE(name)%%><%%ENDSELECT%%></dd>
+
+					<dt class="participants_table-designation-caption field-caption-tv">Designation</dt>
+					<dd id="participants_table-designation-<%%VALUE(participants_id)%%>" class="participants_table-designation"><%%SELECT%%><%%VALUE(designation)%%><%%ENDSELECT%%></dd>
+
+					<dt class="participants_table-participant_type-caption field-caption-tv">Participant type</dt>
+					<dd id="participants_table-participant_type-<%%VALUE(participants_id)%%>" class="participants_table-participant_type"><%%SELECT%%><%%VALUE(participant_type)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="participants_table-accepted_status-caption field-caption-tv">Accepted status</dt>
+					<dd id="participants_table-accepted_status-<%%VALUE(participants_id)%%>" class="participants_table-accepted_status"><%%SELECT%%><%%VALUE(accepted_status)%%><%%ENDSELECT%%></dd>
+
+					<dt class="participants_table-status_date-caption field-caption-tv">Status date</dt>
+					<dd id="participants_table-status_date-<%%VALUE(participants_id)%%>" class="participants_table-status_date"><%%SELECT%%><%%VALUE(status_date)%%><%%ENDSELECT%%></dd>
+
+					<dt class="participants_table-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="participants_table-created_by-<%%VALUE(participants_id)%%>" class="participants_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="participants_table-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="participants_table-created_at-<%%VALUE(participants_id)%%>" class="participants_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="participants_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="participants_table-last_updated_by-<%%VALUE(participants_id)%%>" class="participants_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="participants_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="participants_table-last_updated_at-<%%VALUE(participants_id)%%>" class="participants_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+		</td>

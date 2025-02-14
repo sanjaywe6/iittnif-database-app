@@ -1,16 +1,37 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="9" class="row">
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="leave_table-leave_id-caption field-caption-tv">ID</dt>
+					<dd id="leave_table-leave_id-<%%VALUE(leave_id)%%>" class="leave_table-leave_id text-right text-bold"><%%VALUE(leave_id)%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the leave_table_init() hook (in hooks/leave_table.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="leave_table-leave_type-caption field-caption-tv">Leave type</dt>
+					<dd id="leave_table-leave_type-<%%VALUE(leave_id)%%>" class="leave_table-leave_type text-bold"><%%VALUE(leave_type)%%></dd>
 
-		<td id="leave_table-leave_id-<%%VALUE(leave_id)%%>" class="leave_table-leave_id text-right text-bold"><%%VALUE(leave_id)%%></td>
-		<td id="leave_table-leave_type-<%%VALUE(leave_id)%%>" class="leave_table-leave_type text-bold"><%%VALUE(leave_type)%%></td>
-		<td id="leave_table-purpose_of_leave-<%%VALUE(leave_id)%%>" class="leave_table-purpose_of_leave text-bold"><%%VALUE(purpose_of_leave)%%></td>
-		<td id="leave_table-from_date-<%%VALUE(leave_id)%%>" class="leave_table-from_date text-bold"><%%VALUE(from_date)%%></td>
-		<td id="leave_table-to_date-<%%VALUE(leave_id)%%>" class="leave_table-to_date text-bold"><%%VALUE(to_date)%%></td>
-		<td id="leave_table-created_by-<%%VALUE(leave_id)%%>" class="leave_table-created_by text-bold"><%%VALUE(created_by)%%></td>
-		<td id="leave_table-created_at-<%%VALUE(leave_id)%%>" class="leave_table-created_at text-bold"><%%VALUE(created_at)%%></td>
-		<td id="leave_table-last_updated_by-<%%VALUE(leave_id)%%>" class="leave_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
-		<td id="leave_table-last_updated_at-<%%VALUE(leave_id)%%>" class="leave_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>
+					<dt class="leave_table-purpose_of_leave-caption field-caption-tv">Purpose of leave</dt>
+					<dd id="leave_table-purpose_of_leave-<%%VALUE(leave_id)%%>" class="leave_table-purpose_of_leave text-bold"><%%VALUE(purpose_of_leave)%%></dd>
+
+					<dt class="leave_table-from_date-caption field-caption-tv">From date</dt>
+					<dd id="leave_table-from_date-<%%VALUE(leave_id)%%>" class="leave_table-from_date text-bold"><%%VALUE(from_date)%%></dd>
+
+					<dt class="leave_table-to_date-caption field-caption-tv">To date</dt>
+					<dd id="leave_table-to_date-<%%VALUE(leave_id)%%>" class="leave_table-to_date text-bold"><%%VALUE(to_date)%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="leave_table-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="leave_table-created_by-<%%VALUE(leave_id)%%>" class="leave_table-created_by text-bold"><%%VALUE(created_by)%%></dd>
+
+					<dt class="leave_table-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="leave_table-created_at-<%%VALUE(leave_id)%%>" class="leave_table-created_at text-bold"><%%VALUE(created_at)%%></dd>
+
+					<dt class="leave_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="leave_table-last_updated_by-<%%VALUE(leave_id)%%>" class="leave_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></dd>
+
+					<dt class="leave_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="leave_table-last_updated_at-<%%VALUE(leave_id)%%>" class="leave_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></dd>
+
+				</dl>
+			</div>
+		</td>

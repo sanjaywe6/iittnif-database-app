@@ -259,7 +259,7 @@ function all_bank_account_statement_table_form($selectedId = '', $allowUpdate = 
 	<script>
 		// initial lookup values
 
-		jQuery(function() {
+		$j(function() {
 			setTimeout(function() {
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
@@ -348,28 +348,28 @@ function all_bank_account_statement_table_form($selectedId = '', $allowUpdate = 
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#statement_type').replaceWith('<div class=\"form-control-static\" id=\"statement_type\">' + (jQuery('#statement_type').val() || '') + '</div>'); jQuery('#statement_type-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\tjQuery('#txn_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#txn_dateDay, #txn_dateMonth, #txn_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#value_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\tjQuery('#value_dateDay, #value_dateMonth, #value_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#description').replaceWith('<div class=\"form-control-static\" id=\"description\">' + (jQuery('#description').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#ref_no_or_cheque_no').replaceWith('<div class=\"form-control-static\" id=\"ref_no_or_cheque_no\">' + (jQuery('#ref_no_or_cheque_no').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#branch_code').replaceWith('<div class=\"form-control-static\" id=\"branch_code\">' + (jQuery('#branch_code').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#debit').replaceWith('<div class=\"form-control-static\" id=\"debit\">' + (jQuery('#debit').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#credit').replaceWith('<div class=\"form-control-static\" id=\"credit\">' + (jQuery('#credit').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#balance_1').replaceWith('<div class=\"form-control-static\" id=\"balance_1\">' + (jQuery('#balance_1').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#balance_2').replaceWith('<div class=\"form-control-static\" id=\"balance_2\">' + (jQuery('#balance_2').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#remarks_1').replaceWith('<div class=\"form-control-static\" id=\"remarks_1\">' + (jQuery('#remarks_1').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#remarks_2').replaceWith('<div class=\"form-control-static\" id=\"remarks_2\">' + (jQuery('#remarks_2').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('#category').replaceWith('<div class=\"form-control-static\" id=\"category\">' + (jQuery('#category').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
+		$jsReadOnly .= "\t\$j('#statement_type').replaceWith('<div class=\"form-control-static\" id=\"statement_type\">' + (\$j('#statement_type').val() || '') + '</div>'); \$j('#statement_type-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#txn_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#txn_dateDay, #txn_dateMonth, #txn_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#value_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#value_dateDay, #value_dateMonth, #value_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#description').replaceWith('<div class=\"form-control-static\" id=\"description\">' + (\$j('#description').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#ref_no_or_cheque_no').replaceWith('<div class=\"form-control-static\" id=\"ref_no_or_cheque_no\">' + (\$j('#ref_no_or_cheque_no').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#branch_code').replaceWith('<div class=\"form-control-static\" id=\"branch_code\">' + (\$j('#branch_code').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#debit').replaceWith('<div class=\"form-control-static\" id=\"debit\">' + (\$j('#debit').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#credit').replaceWith('<div class=\"form-control-static\" id=\"credit\">' + (\$j('#credit').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#balance_1').replaceWith('<div class=\"form-control-static\" id=\"balance_1\">' + (\$j('#balance_1').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#balance_2').replaceWith('<div class=\"form-control-static\" id=\"balance_2\">' + (\$j('#balance_2').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#remarks_1').replaceWith('<div class=\"form-control-static\" id=\"remarks_1\">' + (\$j('#remarks_1').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#remarks_2').replaceWith('<div class=\"form-control-static\" id=\"remarks_2\">' + (\$j('#remarks_2').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#category').replaceWith('<div class=\"form-control-static\" id=\"category\">' + (\$j('#category').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
-		$jsEditable = "\tjQuery('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\tjQuery('form').eq(0).data('already_changed', false);"; // re-enable form change handler
+		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos

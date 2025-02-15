@@ -8,7 +8,7 @@
 
 	function agenda_table_header($contentType, $memberInfo, &$args) {
 		$header='';
-
+		// hi
 		switch($contentType) {
 			case 'tableview':
 				$header='';

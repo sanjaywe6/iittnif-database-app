@@ -16,16 +16,8 @@
 			'upload_mou' => getUploadDir(''),
 			'primary key' => 'id'
 		],
-		'asset_app' => [
-			'custodian_signature' => getUploadDir(''),
-			'primary key' => 'asset_id'
-		],
-		'asset_billing_details' => [
-			'image' => getUploadDir(''),
-			'primary key' => 'asset_biling_details_id'
-		],
 		'asset_table' => [
-			'image' => getUploadDir(''),
+			'CustodianSignature' => getUploadDir(''),
 			'primary key' => 'id'
 		],
 		'it_inventory_app' => [

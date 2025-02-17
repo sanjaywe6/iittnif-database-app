@@ -1,9 +1,7 @@
-		<td colspan="28" class="row">
+		<td colspan="24" class="row">
+			<div id="asset_table-id-<%%VALUE(id)%%>" class="asset_table-id col-sm-12 h5 text-bold"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="asset_table-id-caption field-caption-tv">ID</dt>
-					<dd id="asset_table-id-<%%VALUE(id)%%>" class="asset_table-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></dd>
-
 					<dt class="asset_table-Date-caption field-caption-tv">Date</dt>
 					<dd id="asset_table-Date-<%%VALUE(id)%%>" class="asset_table-Date"><%%SELECT%%><%%VALUE(Date)%%><%%ENDSELECT%%></dd>
 
@@ -25,57 +23,45 @@
 					<dt class="asset_table-PONO-caption field-caption-tv">PO. NO.</dt>
 					<dd id="asset_table-PONO-<%%VALUE(id)%%>" class="asset_table-PONO"><%%SELECT%%><%%VALUE(PONO)%%><%%ENDSELECT%%></dd>
 
-					<dt class="asset_table-PODATE-caption field-caption-tv">P.O DATE</dt>
+					<dt class="asset_table-PODATE-caption field-caption-tv">P/O Date</dt>
 					<dd id="asset_table-PODATE-<%%VALUE(id)%%>" class="asset_table-PODATE"><%%SELECT%%><%%VALUE(PODATE)%%><%%ENDSELECT%%></dd>
 
-					<dt class="asset_table-PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS-caption field-caption-tv">PARTICULARS OF SUPPLIER VENDOR NAME AND ADDRESS</dt>
-					<dd id="asset_table-PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS-<%%VALUE(id)%%>" class="asset_table-PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS"><%%SELECT%%><%%VALUE(PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS)%%><%%ENDSELECT%%></dd>
+					<dt class="asset_table-particulars_of_supplier_name_address-caption field-caption-tv">Partculars of Supplier Vendor Name & Address</dt>
+					<dd id="asset_table-particulars_of_supplier_name_address-<%%VALUE(id)%%>" class="asset_table-particulars_of_supplier_name_address"><%%SELECT%%><%%VALUE(particulars_of_supplier_name_address)%%><%%ENDSELECT%%></dd>
 
 					<dt class="asset_table-ItemDescription-caption field-caption-tv">Item Description</dt>
 					<dd id="asset_table-ItemDescription-<%%VALUE(id)%%>" class="asset_table-ItemDescription"><%%SELECT%%><%%VALUE(ItemDescription)%%><%%ENDSELECT%%></dd>
 
-					<dt class="asset_table-BillNo-caption field-caption-tv">Bill No. </dt>
+					<dt class="asset_table-BillNo-caption field-caption-tv">Bill No.</dt>
 					<dd id="asset_table-BillNo-<%%VALUE(id)%%>" class="asset_table-BillNo"><%%SELECT%%><%%VALUE(BillNo)%%><%%ENDSELECT%%></dd>
 
 					<dt class="asset_table-BillDate-caption field-caption-tv">Bill Date</dt>
 					<dd id="asset_table-BillDate-<%%VALUE(id)%%>" class="asset_table-BillDate"><%%SELECT%%><%%VALUE(BillDate)%%><%%ENDSELECT%%></dd>
 
-					<dt class="asset_table-QUANTITY-caption field-caption-tv">QUANTITY</dt>
-					<dd id="asset_table-QUANTITY-<%%VALUE(id)%%>" class="asset_table-QUANTITY"><%%SELECT%%><%%VALUE(QUANTITY)%%><%%ENDSELECT%%></dd>
-
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="asset_table-CostoftheAsset-caption field-caption-tv">Cost of the Asset in INR</dt>
-					<dd id="asset_table-CostoftheAsset-<%%VALUE(id)%%>" class="asset_table-CostoftheAsset"><%%SELECT%%><%%VALUE(CostoftheAsset)%%><%%ENDSELECT%%></dd>
+					<dt class="asset_table-QUANTITY-caption field-caption-tv">Quantity</dt>
+					<dd id="asset_table-QUANTITY-<%%VALUE(id)%%>" class="asset_table-QUANTITY"><%%SELECT%%><%%VALUE(QUANTITY)%%><%%ENDSELECT%%></dd>
 
-					<dt class="asset_table-image-caption field-caption-tv">Image</dt>
-					<dd id="asset_table-image-<%%VALUE(id)%%>" class="asset_table-image"><%%SELECT%%><%%VALUE(image)%%><%%ENDSELECT%%></dd>
+					<dt class="asset_table-CostoftheAssetinINR-caption field-caption-tv">Cost of the Asset (in INR)</dt>
+					<dd id="asset_table-CostoftheAssetinINR-<%%VALUE(id)%%>" class="asset_table-CostoftheAssetinINR"><%%SELECT%%><%%VALUE(CostoftheAssetinINR)%%><%%ENDSELECT%%></dd>
 
-					<dt class="asset_table-TotalInvoiceValue-caption field-caption-tv">Total Invoice Value in INR</dt>
-					<dd id="asset_table-TotalInvoiceValue-<%%VALUE(id)%%>" class="asset_table-TotalInvoiceValue"><%%SELECT%%><%%VALUE(TotalInvoiceValue)%%><%%ENDSELECT%%></dd>
+					<dt class="asset_table-TotalInvoiceValueinINR-caption field-caption-tv">Total Invoice Value (in INR)</dt>
+					<dd id="asset_table-TotalInvoiceValueinINR-<%%VALUE(id)%%>" class="asset_table-TotalInvoiceValueinINR"><%%SELECT%%><%%VALUE(TotalInvoiceValueinINR)%%><%%ENDSELECT%%></dd>
 
 					<dt class="asset_table-CustodyDepartment-caption field-caption-tv">Custody Department</dt>
 					<dd id="asset_table-CustodyDepartment-<%%VALUE(id)%%>" class="asset_table-CustodyDepartment"><%%SELECT%%><%%VALUE(CustodyDepartment)%%><%%ENDSELECT%%></dd>
 
-					<dt class="asset_table-Custodian-caption field-caption-tv">Custodian</dt>
-					<dd id="asset_table-Custodian-<%%VALUE(id)%%>" class="asset_table-Custodian"><%%SELECT%%><%%VALUE(Custodian)%%><%%ENDSELECT%%></dd>
+					<dt class="asset_table-custodian-caption field-caption-tv">Custodian</dt>
+					<dd id="asset_table-custodian-<%%VALUE(id)%%>" class="asset_table-custodian"><%%SELECT%%><%%VALUE(custodian)%%><%%ENDSELECT%%></dd>
 
 					<dt class="asset_table-CustodianSignature-caption field-caption-tv">Custodian Signature</dt>
 					<dd id="asset_table-CustodianSignature-<%%VALUE(id)%%>" class="asset_table-CustodianSignature"><%%SELECT%%><%%VALUE(CustodianSignature)%%><%%ENDSELECT%%></dd>
 
-					<dt class="asset_table-noofyearsUsefulLifeofAssets-caption field-caption-tv">No of years Useful Life of Assets</dt>
-					<dd id="asset_table-noofyearsUsefulLifeofAssets-<%%VALUE(id)%%>" class="asset_table-noofyearsUsefulLifeofAssets"><%%SELECT%%><%%VALUE(noofyearsUsefulLifeofAssets)%%><%%ENDSELECT%%></dd>
-
-					<dt class="asset_table-DateofusefullifeofAssetsends-caption field-caption-tv">Date of useful life of Assets ends</dt>
-					<dd id="asset_table-DateofusefullifeofAssetsends-<%%VALUE(id)%%>" class="asset_table-DateofusefullifeofAssetsends"><%%SELECT%%><%%VALUE(DateofusefullifeofAssetsends)%%><%%ENDSELECT%%></dd>
-
-					<dt class="asset_table-PVStatus-caption field-caption-tv">PV Status</dt>
-					<dd id="asset_table-PVStatus-<%%VALUE(id)%%>" class="asset_table-PVStatus"><%%SELECT%%><%%VALUE(PVStatus)%%><%%ENDSELECT%%></dd>
-
-					<dt class="asset_table-Remarks-caption field-caption-tv">Remarks</dt>
-					<dd id="asset_table-Remarks-<%%VALUE(id)%%>" class="asset_table-Remarks"><%%SELECT%%><%%VALUE(Remarks)%%><%%ENDSELECT%%></dd>
+					<dt class="asset_table-remarks-caption field-caption-tv">Remarks</dt>
+					<dd id="asset_table-remarks-<%%VALUE(id)%%>" class="asset_table-remarks"><%%SELECT%%><%%VALUE(remarks)%%><%%ENDSELECT%%></dd>
 
 					<dt class="asset_table-created_by-caption field-caption-tv">Created by</dt>
 					<dd id="asset_table-created_by-<%%VALUE(id)%%>" class="asset_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>

@@ -16,33 +16,38 @@ function asset_app_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'date' => Request::dateComponents('date', '1'),
-		'classification_of_asset' => Request::val('classification_of_asset', ''),
-		'sub_category' => Request::val('sub_category', ''),
-		'asset_serial_number' => Request::val('asset_serial_number', ''),
-		'qr_and_bar_code' => Request::val('qr_and_bar_code', ''),
-		'custody_department' => Request::val('custody_department', ''),
+		'Date' => Request::dateComponents('Date', ''),
+		'ClassificationofAssest' => Request::val('ClassificationofAssest', ''),
+		'SubCategory' => Request::val('SubCategory', ''),
+		'AssetSerialNo' => Request::val('AssetSerialNo', ''),
+		'QRBarCode' => Request::val('QRBarCode', ''),
+		'AssetNo' => Request::val('AssetNo', ''),
+		'PONO' => Request::val('PONO', ''),
+		'PODATE' => Request::dateComponents('PODATE', ''),
+		'PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS' => br2nl(Request::val('PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS', '')),
+		'ItemDescription' => br2nl(Request::val('ItemDescription', '')),
+		'BillNo' => Request::val('BillNo', ''),
+		'BillDate' => Request::dateComponents('BillDate', ''),
+		'QUANTITY' => Request::val('QUANTITY', ''),
+		'CostoftheAssetinINR' => Request::val('CostoftheAssetinINR', ''),
+		'TotalInvoiceValueinINR' => Request::val('TotalInvoiceValueinINR', ''),
+		'CustodyDepartment' => Request::val('CustodyDepartment', ''),
 		'custodian' => Request::val('custodian', ''),
-		'custodian_signature' => Request::fileUpload('custodian_signature', [
-			'maxSize' => 10240000,
+		'CustodianSignature' => Request::fileUpload('CustodianSignature', [
+			'maxSize' => 102400,
 			'types' => 'jpg|jpeg|gif|png|webp',
 			'noRename' => false,
 			'dir' => '',
 			'success' => function($name, $selected_id) {
-				Thumbnail::create($name, getThumbnailSpecs('asset_app', 'custodian_signature', 'tv'));
-				Thumbnail::create($name, getThumbnailSpecs('asset_app', 'custodian_signature', 'dv'));
 			},
 			'failure' => function($selected_id, $fileRemoved) {
 				if(!strlen(Request::val('SelectedID'))) return '';
 
 				/* for empty upload fields, when saving a copy of an existing record, copy the original upload field */
-				return existing_value('asset_app', 'custodian_signature', Request::val('SelectedID'));
+				return existing_value('asset_app', 'CustodianSignature', Request::val('SelectedID'));
 			},
 		]),
-		'no_of_years_useful_life_of_assets' => Request::val('no_of_years_useful_life_of_assets', ''),
-		'date_of_useful_life_of_assets_ends' => Request::dateComponents('date_of_useful_life_of_assets_ends', ''),
-		'remarks' => Request::val('remarks', ''),
-		'sactioned_by' => Request::lookup('sactioned_by', ''),
+		'remarks' => br2nl(Request::val('remarks', '')),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
@@ -92,27 +97,15 @@ function asset_app_delete($selected_id, $AllowDeleteOfParents = false, $skipChec
 			);
 	}
 
-	// child table: asset_billing_details
-	$res = sql("SELECT `asset_id` FROM `asset_app` WHERE `asset_id`='{$selected_id}'", $eo);
-	$asset_id = db_fetch_row($res);
-	$rires = sql("SELECT COUNT(1) FROM `asset_billing_details` WHERE `asset_lookup`='" . makeSafe($asset_id[0]) . "'", $eo);
-	$rirow = db_fetch_row($rires);
-	$childrenATag = '<a class="alert-link" href="asset_billing_details_view.php?filterer_asset_lookup=' . urlencode($asset_id[0]) . '">%s</a>';
-	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
-		$RetMsg = $Translation["couldn't delete"];
-		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
-		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'asset_billing_details'), $RetMsg);
-		return $RetMsg;
-	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
-		$RetMsg = $Translation['confirm delete'];
-		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
-		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'asset_billing_details'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `asset_app_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `asset_app_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
-		return $RetMsg;
+	// delete file stored in the 'CustodianSignature' field
+	$res = sql("SELECT `CustodianSignature` FROM `asset_app` WHERE `id`='{$selected_id}'", $eo);
+	if($row = @db_fetch_row($res)) {
+		if($row[0] != '') {
+			@unlink(getUploadDir('') . $row[0]);
+		}
 	}
 
-	sql("DELETE FROM `asset_app` WHERE `asset_id`='{$selected_id}'", $eo);
+	sql("DELETE FROM `asset_app` WHERE `id`='{$selected_id}'", $eo);
 
 	// hook: asset_app_after_delete
 	if(function_exists('asset_app_after_delete')) {
@@ -131,36 +124,46 @@ function asset_app_update(&$selected_id, &$error_message = '') {
 	if(!check_record_permission('asset_app', $selected_id, 'edit')) return false;
 
 	$data = [
-		'date' => Request::dateComponents('date', ''),
-		'classification_of_asset' => Request::val('classification_of_asset', ''),
-		'sub_category' => Request::val('sub_category', ''),
-		'asset_serial_number' => Request::val('asset_serial_number', ''),
-		'qr_and_bar_code' => Request::val('qr_and_bar_code', ''),
-		'custody_department' => Request::val('custody_department', ''),
+		'Date' => Request::dateComponents('Date', ''),
+		'ClassificationofAssest' => Request::val('ClassificationofAssest', ''),
+		'SubCategory' => Request::val('SubCategory', ''),
+		'AssetSerialNo' => Request::val('AssetSerialNo', ''),
+		'QRBarCode' => Request::val('QRBarCode', ''),
+		'AssetNo' => Request::val('AssetNo', ''),
+		'PONO' => Request::val('PONO', ''),
+		'PODATE' => Request::dateComponents('PODATE', ''),
+		'PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS' => br2nl(Request::val('PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS', '')),
+		'ItemDescription' => br2nl(Request::val('ItemDescription', '')),
+		'BillNo' => Request::val('BillNo', ''),
+		'BillDate' => Request::dateComponents('BillDate', ''),
+		'QUANTITY' => Request::val('QUANTITY', ''),
+		'CostoftheAssetinINR' => Request::val('CostoftheAssetinINR', ''),
+		'TotalInvoiceValueinINR' => Request::val('TotalInvoiceValueinINR', ''),
+		'CustodyDepartment' => Request::val('CustodyDepartment', ''),
 		'custodian' => Request::val('custodian', ''),
-		'custodian_signature' => Request::fileUpload('custodian_signature', [
-			'maxSize' => 10240000,
+		'CustodianSignature' => Request::fileUpload('CustodianSignature', [
+			'maxSize' => 102400,
 			'types' => 'jpg|jpeg|gif|png|webp',
 			'noRename' => false,
 			'dir' => '',
 			'id' => $selected_id,
 			'success' => function($name, $selected_id) {
-				Thumbnail::create($name, getThumbnailSpecs('asset_app', 'custodian_signature', 'tv'));
-				Thumbnail::create($name, getThumbnailSpecs('asset_app', 'custodian_signature', 'dv'));
 			},
+			'removeOnSuccess' => true,
 			'removeOnRequest' => true,
 			'remove' => function($selected_id) {
-				// do nothing: preserve removed files on server.
+				// delete old file from server
+				$oldFile = existing_value('asset_app', 'CustodianSignature', $selected_id);
+				if(!$oldFile) return;
+
+				@unlink(getUploadDir('') . $oldFile);
 			},
 			'failure' => function($selected_id, $fileRemoved) {
 				if($fileRemoved) return '';
-				return existing_value('asset_app', 'custodian_signature', $selected_id);
+				return existing_value('asset_app', 'CustodianSignature', $selected_id);
 			},
 		]),
-		'no_of_years_useful_life_of_assets' => Request::val('no_of_years_useful_life_of_assets', ''),
-		'date_of_useful_life_of_assets_ends' => Request::dateComponents('date_of_useful_life_of_assets_ends', ''),
-		'remarks' => Request::val('remarks', ''),
-		'sactioned_by' => Request::lookup('sactioned_by', ''),
+		'remarks' => br2nl(Request::val('remarks', '')),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 	];
@@ -191,7 +194,7 @@ function asset_app_update(&$selected_id, &$error_message = '') {
 	if(!update(
 		'asset_app', 
 		backtick_keys_once($set), 
-		['`asset_id`' => $selected_id], 
+		['`id`' => $selected_id], 
 		$error_message
 	)) {
 		echo $error_message;
@@ -206,7 +209,7 @@ function asset_app_update(&$selected_id, &$error_message = '') {
 	if(function_exists('asset_app_after_update')) {
 		if($row = getRecord('asset_app', $data['selectedID'])) $data = array_map('makeSafe', $row);
 
-		$data['selectedID'] = $data['asset_id'];
+		$data['selectedID'] = $data['id'];
 		$args = ['old_data' => $old_data];
 		if(!asset_app_after_update($data, getMemberInfo(), $args)) return;
 	}
@@ -250,138 +253,61 @@ function asset_app_form($selectedId = '', $allowUpdate = true, $allowInsert = tr
 	$showSaveAsCopy = !$dvprint && ($allowInsert && $hasSelectedId && !$noSaveAsCopy);
 	$fieldsAreEditable = !$dvprint && (($allowInsert && !$hasSelectedId) || ($allowUpdate && $hasSelectedId) || $showSaveAsCopy);
 
-	$filterer_sactioned_by = Request::val('filterer_sactioned_by');
 
 	// populate filterers, starting from children to grand-parents
 
 	// unique random identifier
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
-	// combobox: date
-	$combo_date = new DateCombo;
-	$combo_date->DateFormat = "dmy";
-	$combo_date->MinYear = defined('asset_app.date.MinYear') ? constant('asset_app.date.MinYear') : 1900;
-	$combo_date->MaxYear = defined('asset_app.date.MaxYear') ? constant('asset_app.date.MaxYear') : 2100;
-	$combo_date->DefaultDate = parseMySQLDate('1', '1');
-	$combo_date->MonthNames = $Translation['month names'];
-	$combo_date->NamePrefix = 'date';
-	// combobox: date_of_useful_life_of_assets_ends
-	$combo_date_of_useful_life_of_assets_ends = new DateCombo;
-	$combo_date_of_useful_life_of_assets_ends->DateFormat = "dmy";
-	$combo_date_of_useful_life_of_assets_ends->MinYear = defined('asset_app.date_of_useful_life_of_assets_ends.MinYear') ? constant('asset_app.date_of_useful_life_of_assets_ends.MinYear') : 1900;
-	$combo_date_of_useful_life_of_assets_ends->MaxYear = defined('asset_app.date_of_useful_life_of_assets_ends.MaxYear') ? constant('asset_app.date_of_useful_life_of_assets_ends.MaxYear') : 2100;
-	$combo_date_of_useful_life_of_assets_ends->DefaultDate = parseMySQLDate('', '');
-	$combo_date_of_useful_life_of_assets_ends->MonthNames = $Translation['month names'];
-	$combo_date_of_useful_life_of_assets_ends->NamePrefix = 'date_of_useful_life_of_assets_ends';
-	// combobox: sactioned_by
-	$combo_sactioned_by = new DataCombo;
+	// combobox: Date
+	$combo_Date = new DateCombo;
+	$combo_Date->DateFormat = "dmy";
+	$combo_Date->MinYear = defined('asset_app.Date.MinYear') ? constant('asset_app.Date.MinYear') : 1900;
+	$combo_Date->MaxYear = defined('asset_app.Date.MaxYear') ? constant('asset_app.Date.MaxYear') : 2100;
+	$combo_Date->DefaultDate = parseMySQLDate('', '');
+	$combo_Date->MonthNames = $Translation['month names'];
+	$combo_Date->NamePrefix = 'Date';
+	// combobox: PODATE
+	$combo_PODATE = new DateCombo;
+	$combo_PODATE->DateFormat = "dmy";
+	$combo_PODATE->MinYear = defined('asset_app.PODATE.MinYear') ? constant('asset_app.PODATE.MinYear') : 1900;
+	$combo_PODATE->MaxYear = defined('asset_app.PODATE.MaxYear') ? constant('asset_app.PODATE.MaxYear') : 2100;
+	$combo_PODATE->DefaultDate = parseMySQLDate('', '');
+	$combo_PODATE->MonthNames = $Translation['month names'];
+	$combo_PODATE->NamePrefix = 'PODATE';
+	// combobox: BillDate
+	$combo_BillDate = new DateCombo;
+	$combo_BillDate->DateFormat = "dmy";
+	$combo_BillDate->MinYear = defined('asset_app.BillDate.MinYear') ? constant('asset_app.BillDate.MinYear') : 1900;
+	$combo_BillDate->MaxYear = defined('asset_app.BillDate.MaxYear') ? constant('asset_app.BillDate.MaxYear') : 2100;
+	$combo_BillDate->DefaultDate = parseMySQLDate('', '');
+	$combo_BillDate->MonthNames = $Translation['month names'];
+	$combo_BillDate->NamePrefix = 'BillDate';
 
 	if($hasSelectedId) {
 		if(!($row = getRecord('asset_app', $selectedId))) {
 			return error_message($Translation['No records found'], 'asset_app_view.php', false);
 		}
-		$combo_date->DefaultDate = $row['date'];
-		$combo_date_of_useful_life_of_assets_ends->DefaultDate = $row['date_of_useful_life_of_assets_ends'];
-		$combo_sactioned_by->SelectedData = $row['sactioned_by'];
+		$combo_Date->DefaultDate = $row['Date'];
+		$combo_PODATE->DefaultDate = $row['PODATE'];
+		$combo_BillDate->DefaultDate = $row['BillDate'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
 	} else {
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_sactioned_by->SelectedData = $filterer_sactioned_by;
 	}
-	$combo_sactioned_by->HTML = '<span id="sactioned_by-container' . $rnd1 . '"></span><input type="hidden" name="sactioned_by" id="sactioned_by' . $rnd1 . '" value="' . html_attr($combo_sactioned_by->SelectedData) . '">';
-	$combo_sactioned_by->MatchText = '<span id="sactioned_by-container-readonly' . $rnd1 . '"></span><input type="hidden" name="sactioned_by" id="sactioned_by' . $rnd1 . '" value="' . html_attr($combo_sactioned_by->SelectedData) . '">';
 
 	ob_start();
 	?>
 
 	<script>
 		// initial lookup values
-		AppGini.current_sactioned_by__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['sactioned_by'] : htmlspecialchars($filterer_sactioned_by, ENT_QUOTES)); ?>"};
 
 		$j(function() {
 			setTimeout(function() {
-				if(typeof(sactioned_by_reload__RAND__) == 'function') sactioned_by_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
-		function sactioned_by_reload__RAND__() {
-		<?php if($fieldsAreEditable) { ?>
-
-			$j("#sactioned_by-container__RAND__").select2({
-				/* initial default value */
-				initSelection: function(e, c) {
-					$j.ajax({
-						url: 'ajax_combo.php',
-						dataType: 'json',
-						data: { id: AppGini.current_sactioned_by__RAND__.value, t: 'asset_app', f: 'sactioned_by' },
-						success: function(resp) {
-							c({
-								id: resp.results[0].id,
-								text: resp.results[0].text
-							});
-							$j('[name="sactioned_by"]').val(resp.results[0].id);
-							$j('[id=sactioned_by-container-readonly__RAND__]').html('<span class="match-text" id="sactioned_by-match-text">' + resp.results[0].text + '</span>');
-							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
-
-
-							if(typeof(sactioned_by_update_autofills__RAND__) == 'function') sactioned_by_update_autofills__RAND__();
-						}
-					});
-				},
-				width: '100%',
-				formatNoMatches: function(term) { return '<?php echo addslashes($Translation['No matches found!']); ?>'; },
-				minimumResultsForSearch: 5,
-				loadMorePadding: 200,
-				ajax: {
-					url: 'ajax_combo.php',
-					dataType: 'json',
-					cache: true,
-					data: function(term, page) { return { s: term, p: page, t: 'asset_app', f: 'sactioned_by' }; },
-					results: function(resp, page) { return resp; }
-				},
-				escapeMarkup: function(str) { return str; }
-			}).on('change', function(e) {
-				AppGini.current_sactioned_by__RAND__.value = e.added.id;
-				AppGini.current_sactioned_by__RAND__.text = e.added.text;
-				$j('[name="sactioned_by"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
-
-
-				if(typeof(sactioned_by_update_autofills__RAND__) == 'function') sactioned_by_update_autofills__RAND__();
-			});
-
-			if(!$j("#sactioned_by-container__RAND__").length) {
-				$j.ajax({
-					url: 'ajax_combo.php',
-					dataType: 'json',
-					data: { id: AppGini.current_sactioned_by__RAND__.value, t: 'asset_app', f: 'sactioned_by' },
-					success: function(resp) {
-						$j('[name="sactioned_by"]').val(resp.results[0].id);
-						$j('[id=sactioned_by-container-readonly__RAND__]').html('<span class="match-text" id="sactioned_by-match-text">' + resp.results[0].text + '</span>');
-						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
-
-						if(typeof(sactioned_by_update_autofills__RAND__) == 'function') sactioned_by_update_autofills__RAND__();
-					}
-				});
-			}
-
-		<?php } else { ?>
-
-			$j.ajax({
-				url: 'ajax_combo.php',
-				dataType: 'json',
-				data: { id: AppGini.current_sactioned_by__RAND__.value, t: 'asset_app', f: 'sactioned_by' },
-				success: function(resp) {
-					$j('[id=sactioned_by-container__RAND__], [id=sactioned_by-container-readonly__RAND__]').html('<span class="match-text" id="sactioned_by-match-text">' + resp.results[0].text + '</span>');
-					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
-
-					if(typeof(sactioned_by_update_autofills__RAND__) == 'function') sactioned_by_update_autofills__RAND__();
-				}
-			});
-		<?php } ?>
-
-		}
 	</script>
 	<?php
 
@@ -400,7 +326,7 @@ function asset_app_form($selectedId = '', $allowUpdate = true, $allowInsert = tr
 	}
 
 	// process form title
-	$templateCode = str_replace('<%%DETAIL_VIEW_TITLE%%>', 'Asset table details', $templateCode);
+	$templateCode = str_replace('<%%DETAIL_VIEW_TITLE%%>', 'Asset app details', $templateCode);
 	$templateCode = str_replace('<%%RND1%%>', $rnd1, $templateCode);
 	$templateCode = str_replace('<%%EMBEDDED%%>', (Request::val('Embedded') ? 'Embedded=1' : ''), $templateCode);
 	// process buttons
@@ -467,21 +393,28 @@ function asset_app_form($selectedId = '', $allowUpdate = true, $allowInsert = tr
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\t\$j('#date').prop('readonly', true);\n";
-		$jsReadOnly .= "\t\$j('#dateDay, #dateMonth, #dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\t\$j('#classification_of_asset').replaceWith('<div class=\"form-control-static\" id=\"classification_of_asset\">' + (\$j('#classification_of_asset').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#sub_category').replaceWith('<div class=\"form-control-static\" id=\"sub_category\">' + (\$j('#sub_category').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#asset_serial_number').replaceWith('<div class=\"form-control-static\" id=\"asset_serial_number\">' + (\$j('#asset_serial_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#qr_and_bar_code').replaceWith('<div class=\"form-control-static\" id=\"qr_and_bar_code\">' + (\$j('#qr_and_bar_code').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#custody_department').replaceWith('<div class=\"form-control-static\" id=\"custody_department\">' + (\$j('#custody_department').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#Date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#DateDay, #DateMonth, #DateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#ClassificationofAssest').replaceWith('<div class=\"form-control-static\" id=\"ClassificationofAssest\">' + (\$j('#ClassificationofAssest').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#SubCategory').replaceWith('<div class=\"form-control-static\" id=\"SubCategory\">' + (\$j('#SubCategory').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#AssetSerialNo').replaceWith('<div class=\"form-control-static\" id=\"AssetSerialNo\">' + (\$j('#AssetSerialNo').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#QRBarCode').replaceWith('<div class=\"form-control-static\" id=\"QRBarCode\">' + (\$j('#QRBarCode').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#AssetNo').replaceWith('<div class=\"form-control-static\" id=\"AssetNo\">' + (\$j('#AssetNo').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#PONO').replaceWith('<div class=\"form-control-static\" id=\"PONO\">' + (\$j('#PONO').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#PODATE').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#PODATEDay, #PODATEMonth, #PODATEYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS').replaceWith('<div class=\"form-control-static\" id=\"PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS\">' + (\$j('#PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#ItemDescription').replaceWith('<div class=\"form-control-static\" id=\"ItemDescription\">' + (\$j('#ItemDescription').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#BillNo').replaceWith('<div class=\"form-control-static\" id=\"BillNo\">' + (\$j('#BillNo').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#BillDate').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#BillDateDay, #BillDateMonth, #BillDateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#QUANTITY').replaceWith('<div class=\"form-control-static\" id=\"QUANTITY\">' + (\$j('#QUANTITY').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#CostoftheAssetinINR').replaceWith('<div class=\"form-control-static\" id=\"CostoftheAssetinINR\">' + (\$j('#CostoftheAssetinINR').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#TotalInvoiceValueinINR').replaceWith('<div class=\"form-control-static\" id=\"TotalInvoiceValueinINR\">' + (\$j('#TotalInvoiceValueinINR').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#CustodyDepartment').replaceWith('<div class=\"form-control-static\" id=\"CustodyDepartment\">' + (\$j('#CustodyDepartment').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#custodian').replaceWith('<div class=\"form-control-static\" id=\"custodian\">' + (\$j('#custodian').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#custodian_signature').replaceWith('<div class=\"form-control-static\" id=\"custodian_signature\">' + (\$j('#custodian_signature').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#no_of_years_useful_life_of_assets').replaceWith('<div class=\"form-control-static\" id=\"no_of_years_useful_life_of_assets\">' + (\$j('#no_of_years_useful_life_of_assets').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#date_of_useful_life_of_assets_ends').prop('readonly', true);\n";
-		$jsReadOnly .= "\t\$j('#date_of_useful_life_of_assets_endsDay, #date_of_useful_life_of_assets_endsMonth, #date_of_useful_life_of_assets_endsYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#CustodianSignature').replaceWith('<div class=\"form-control-static\" id=\"CustodianSignature\">' + (\$j('#CustodianSignature').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#remarks').replaceWith('<div class=\"form-control-static\" id=\"remarks\">' + (\$j('#remarks').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#sactioned_by').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\t\$j('#sactioned_by_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -493,25 +426,29 @@ function asset_app_form($selectedId = '', $allowUpdate = true, $allowInsert = tr
 
 	// process combos
 	$templateCode = str_replace(
-		'<%%COMBO(date)%%>', 
+		'<%%COMBO(Date)%%>', 
 		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_date->GetHTML(true) . '</div>' : 
-			$combo_date->GetHTML()
+			'<div class="form-control-static">' . $combo_Date->GetHTML(true) . '</div>' : 
+			$combo_Date->GetHTML()
 		), $templateCode);
-	$templateCode = str_replace('<%%COMBOTEXT(date)%%>', $combo_date->GetHTML(true), $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(Date)%%>', $combo_Date->GetHTML(true), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(date_of_useful_life_of_assets_ends)%%>', 
+		'<%%COMBO(PODATE)%%>', 
 		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_date_of_useful_life_of_assets_ends->GetHTML(true) . '</div>' : 
-			$combo_date_of_useful_life_of_assets_ends->GetHTML()
+			'<div class="form-control-static">' . $combo_PODATE->GetHTML(true) . '</div>' : 
+			$combo_PODATE->GetHTML()
 		), $templateCode);
-	$templateCode = str_replace('<%%COMBOTEXT(date_of_useful_life_of_assets_ends)%%>', $combo_date_of_useful_life_of_assets_ends->GetHTML(true), $templateCode);
-	$templateCode = str_replace('<%%COMBO(sactioned_by)%%>', $combo_sactioned_by->HTML, $templateCode);
-	$templateCode = str_replace('<%%COMBOTEXT(sactioned_by)%%>', $combo_sactioned_by->MatchText, $templateCode);
-	$templateCode = str_replace('<%%URLCOMBOTEXT(sactioned_by)%%>', urlencode($combo_sactioned_by->MatchText), $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(PODATE)%%>', $combo_PODATE->GetHTML(true), $templateCode);
+	$templateCode = str_replace(
+		'<%%COMBO(BillDate)%%>', 
+		(!$fieldsAreEditable ? 
+			'<div class="form-control-static">' . $combo_BillDate->GetHTML(true) . '</div>' : 
+			$combo_BillDate->GetHTML()
+		), $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(BillDate)%%>', $combo_BillDate->GetHTML(true), $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
-	$lookup_fields = ['sactioned_by' => ['user_table', 'Sactioned by'], ];
+	$lookup_fields = [];
 	foreach($lookup_fields as $luf => $ptfc) {
 		$pt_perm = getTablePermissions($ptfc[0]);
 
@@ -527,25 +464,26 @@ function asset_app_form($selectedId = '', $allowUpdate = true, $allowInsert = tr
 	}
 
 	// process images
-	$templateCode = str_replace('<%%UPLOADFILE(asset_id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(date)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(classification_of_asset)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(sub_category)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(asset_serial_number)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(qr_and_bar_code)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(custody_department)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(Date)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(ClassificationofAssest)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(SubCategory)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(AssetSerialNo)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(QRBarCode)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(AssetNo)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(PONO)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(PODATE)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(ItemDescription)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(BillNo)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(BillDate)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(QUANTITY)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(CostoftheAssetinINR)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(TotalInvoiceValueinINR)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(CustodyDepartment)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(custodian)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(custodian_signature)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="custodian_signature" id="custodian_signature" data-filetypes="jpg|jpeg|gif|png|webp" data-maxsize="10240000" style="max-width: calc(100% - 1.5rem);" accept="capture=camera,image/*">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
-	if($allowUpdate && $row['custodian_signature'] != '') {
-		$templateCode = str_replace('<%%REMOVEFILE(custodian_signature)%%>', '<input type="checkbox" name="custodian_signature_remove" id="custodian_signature_remove" value="1"> <label for="custodian_signature_remove" style="color: red; font-weight: bold;">'.$Translation['remove image'].'</label>', $templateCode);
-	} else {
-		$templateCode = str_replace('<%%REMOVEFILE(custodian_signature)%%>', '', $templateCode);
-	}
-	$templateCode = str_replace('<%%UPLOADFILE(no_of_years_useful_life_of_assets)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(date_of_useful_life_of_assets_ends)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(CustodianSignature)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="CustodianSignature" id="CustodianSignature" data-filetypes="jpg|jpeg|gif|png|webp" data-maxsize="102400" style="max-width: calc(100% - 1.5rem);" accept="capture=camera,image/*">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(remarks)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(sactioned_by)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(asset_str)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
@@ -553,45 +491,59 @@ function asset_app_form($selectedId = '', $allowUpdate = true, $allowInsert = tr
 
 	// process values
 	if($hasSelectedId) {
-		$templateCode = str_replace('<%%VALUE(asset_id)%%>', safe_html($urow['asset_id']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(asset_id)%%>', urlencode($urow['asset_id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(date)%%>', app_datetime($row['date']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(date)%%>', urlencode(app_datetime($urow['date'])), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(classification_of_asset)%%>', safe_html($urow['classification_of_asset']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(classification_of_asset)%%>', html_attr($row['classification_of_asset']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(classification_of_asset)%%>', urlencode($urow['classification_of_asset']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(sub_category)%%>', safe_html($urow['sub_category']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(sub_category)%%>', html_attr($row['sub_category']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(sub_category)%%>', urlencode($urow['sub_category']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(asset_serial_number)%%>', safe_html($urow['asset_serial_number']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(asset_serial_number)%%>', html_attr($row['asset_serial_number']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(asset_serial_number)%%>', urlencode($urow['asset_serial_number']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(qr_and_bar_code)%%>', safe_html($urow['qr_and_bar_code']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(qr_and_bar_code)%%>', html_attr($row['qr_and_bar_code']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(qr_and_bar_code)%%>', urlencode($urow['qr_and_bar_code']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(custody_department)%%>', safe_html($urow['custody_department']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(custody_department)%%>', html_attr($row['custody_department']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(custody_department)%%>', urlencode($urow['custody_department']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(Date)%%>', app_datetime($row['Date']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(Date)%%>', urlencode(app_datetime($urow['Date'])), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(ClassificationofAssest)%%>', safe_html($urow['ClassificationofAssest']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(ClassificationofAssest)%%>', html_attr($row['ClassificationofAssest']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(ClassificationofAssest)%%>', urlencode($urow['ClassificationofAssest']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(SubCategory)%%>', safe_html($urow['SubCategory']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(SubCategory)%%>', html_attr($row['SubCategory']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(SubCategory)%%>', urlencode($urow['SubCategory']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(AssetSerialNo)%%>', safe_html($urow['AssetSerialNo']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(AssetSerialNo)%%>', html_attr($row['AssetSerialNo']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(AssetSerialNo)%%>', urlencode($urow['AssetSerialNo']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(QRBarCode)%%>', safe_html($urow['QRBarCode']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(QRBarCode)%%>', html_attr($row['QRBarCode']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(QRBarCode)%%>', urlencode($urow['QRBarCode']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(AssetNo)%%>', safe_html($urow['AssetNo']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(AssetNo)%%>', html_attr($row['AssetNo']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(AssetNo)%%>', urlencode($urow['AssetNo']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(PONO)%%>', safe_html($urow['PONO']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(PONO)%%>', html_attr($row['PONO']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(PONO)%%>', urlencode($urow['PONO']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(PODATE)%%>', app_datetime($row['PODATE']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(PODATE)%%>', urlencode(app_datetime($urow['PODATE'])), $templateCode);
+		$templateCode = str_replace('<%%VALUE(PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS)%%>', safe_html($urow['PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS'], $fieldsAreEditable), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS)%%>', urlencode($urow['PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(ItemDescription)%%>', safe_html($urow['ItemDescription'], $fieldsAreEditable), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(ItemDescription)%%>', urlencode($urow['ItemDescription']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(BillNo)%%>', safe_html($urow['BillNo']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(BillNo)%%>', html_attr($row['BillNo']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(BillNo)%%>', urlencode($urow['BillNo']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(BillDate)%%>', app_datetime($row['BillDate']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(BillDate)%%>', urlencode(app_datetime($urow['BillDate'])), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(QUANTITY)%%>', safe_html($urow['QUANTITY']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(QUANTITY)%%>', html_attr($row['QUANTITY']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(QUANTITY)%%>', urlencode($urow['QUANTITY']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(CostoftheAssetinINR)%%>', safe_html($urow['CostoftheAssetinINR']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(CostoftheAssetinINR)%%>', html_attr($row['CostoftheAssetinINR']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(CostoftheAssetinINR)%%>', urlencode($urow['CostoftheAssetinINR']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(TotalInvoiceValueinINR)%%>', safe_html($urow['TotalInvoiceValueinINR']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(TotalInvoiceValueinINR)%%>', html_attr($row['TotalInvoiceValueinINR']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(TotalInvoiceValueinINR)%%>', urlencode($urow['TotalInvoiceValueinINR']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(CustodyDepartment)%%>', safe_html($urow['CustodyDepartment']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(CustodyDepartment)%%>', html_attr($row['CustodyDepartment']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(CustodyDepartment)%%>', urlencode($urow['CustodyDepartment']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(custodian)%%>', safe_html($urow['custodian']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(custodian)%%>', html_attr($row['custodian']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(custodian)%%>', urlencode($urow['custodian']), $templateCode);
-		$row['custodian_signature'] = ($row['custodian_signature'] != '' ? $row['custodian_signature'] : 'blank.gif');
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(custodian_signature)%%>', safe_html($urow['custodian_signature']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(custodian_signature)%%>', html_attr($row['custodian_signature']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(custodian_signature)%%>', urlencode($urow['custodian_signature']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(no_of_years_useful_life_of_assets)%%>', safe_html($urow['no_of_years_useful_life_of_assets']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(no_of_years_useful_life_of_assets)%%>', html_attr($row['no_of_years_useful_life_of_assets']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(no_of_years_useful_life_of_assets)%%>', urlencode($urow['no_of_years_useful_life_of_assets']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(date_of_useful_life_of_assets_ends)%%>', app_datetime($row['date_of_useful_life_of_assets_ends']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(date_of_useful_life_of_assets_ends)%%>', urlencode(app_datetime($urow['date_of_useful_life_of_assets_ends'])), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(remarks)%%>', safe_html($urow['remarks']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(remarks)%%>', html_attr($row['remarks']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(CustodianSignature)%%>', safe_html($urow['CustodianSignature']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(CustodianSignature)%%>', html_attr($row['CustodianSignature']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(CustodianSignature)%%>', urlencode($urow['CustodianSignature']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(remarks)%%>', safe_html($urow['remarks'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(remarks)%%>', urlencode($urow['remarks']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(sactioned_by)%%>', safe_html($urow['sactioned_by']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(sactioned_by)%%>', html_attr($row['sactioned_by']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(sactioned_by)%%>', urlencode($urow['sactioned_by']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(asset_str)%%>', safe_html($urow['asset_str']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(asset_str)%%>', urlencode($urow['asset_str']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
@@ -601,33 +553,46 @@ function asset_app_form($selectedId = '', $allowUpdate = true, $allowInsert = tr
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
 	} else {
-		$templateCode = str_replace('<%%VALUE(asset_id)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(asset_id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(date)%%>', '1', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(date)%%>', urlencode('1'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(classification_of_asset)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(classification_of_asset)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(sub_category)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(sub_category)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(asset_serial_number)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(asset_serial_number)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(qr_and_bar_code)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(qr_and_bar_code)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(custody_department)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(custody_department)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(Date)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(Date)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(ClassificationofAssest)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(ClassificationofAssest)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(SubCategory)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(SubCategory)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(AssetSerialNo)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(AssetSerialNo)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(QRBarCode)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(QRBarCode)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(AssetNo)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(AssetNo)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(PONO)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(PONO)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(PODATE)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(PODATE)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(ItemDescription)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(ItemDescription)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(BillNo)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(BillNo)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(BillDate)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(BillDate)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(QUANTITY)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(QUANTITY)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(CostoftheAssetinINR)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(CostoftheAssetinINR)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(TotalInvoiceValueinINR)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(TotalInvoiceValueinINR)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(CustodyDepartment)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(CustodyDepartment)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(custodian)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(custodian)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(custodian_signature)%%>', 'blank.gif', $templateCode);
-		$templateCode = str_replace('<%%VALUE(no_of_years_useful_life_of_assets)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(no_of_years_useful_life_of_assets)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(date_of_useful_life_of_assets_ends)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(date_of_useful_life_of_assets_ends)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(CustodianSignature)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(CustodianSignature)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(remarks)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(remarks)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(sactioned_by)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(sactioned_by)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(asset_str)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(asset_str)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);

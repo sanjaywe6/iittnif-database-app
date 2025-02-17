@@ -74,16 +74,7 @@
 
 		setupTable('sdp_participants_college_details_table', []);
 
-		setupTable('asset_app', []);
-		setupIndexes('asset_app', ['sactioned_by',]);
-
-		setupTable('asset_billing_details', []);
-		setupIndexes('asset_billing_details', ['asset_lookup',]);
-
 		setupTable('asset_table', []);
-
-		setupTable('asset_allotment_table', []);
-		setupIndexes('asset_allotment_table', ['asset_lookup','alloted_by',]);
 
 		setupTable('it_inventory_app', []);
 		setupIndexes('it_inventory_app', ['sactioned_by',]);

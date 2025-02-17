@@ -357,57 +357,7 @@
 		],
 		'sdp_participants_college_details_table' => [
 		],
-		'asset_app' => [
-			'sactioned_by' => [
-				'parent_table' => 'user_table',
-				'parent_pk_field' => 'user_id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
-				'parent_from' => '`user_table` ',
-				'filterers' => [],
-				'custom_query' => '',
-				'inherit_permissions' => false,
-				'list_type' => 0,
-				'not_null' => false,
-			],
-		],
-		'asset_billing_details' => [
-			'asset_lookup' => [
-				'parent_table' => 'asset_app',
-				'parent_pk_field' => 'asset_id',
-				'parent_caption' => '`asset_app`.`asset_str`',
-				'parent_from' => '`asset_app` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`asset_app`.`sactioned_by` ',
-				'filterers' => [],
-				'custom_query' => '',
-				'inherit_permissions' => false,
-				'list_type' => 0,
-				'not_null' => false,
-			],
-		],
 		'asset_table' => [
-		],
-		'asset_allotment_table' => [
-			'asset_lookup' => [
-				'parent_table' => 'asset_table',
-				'parent_pk_field' => 'id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`asset_table`.`AssetSerialNo`) || CHAR_LENGTH(`asset_table`.`ItemDescription`), CONCAT_WS(\'\', `asset_table`.`AssetSerialNo`, \'::\', `asset_table`.`ItemDescription`), \'\')',
-				'parent_from' => '`asset_table` ',
-				'filterers' => [],
-				'custom_query' => '',
-				'inherit_permissions' => false,
-				'list_type' => 0,
-				'not_null' => false,
-			],
-			'alloted_by' => [
-				'parent_table' => 'user_table',
-				'parent_pk_field' => 'user_id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
-				'parent_from' => '`user_table` ',
-				'filterers' => [],
-				'custom_query' => '',
-				'inherit_permissions' => false,
-				'list_type' => 0,
-				'not_null' => false,
-			],
 		],
 		'it_inventory_app' => [
 			'sactioned_by' => [

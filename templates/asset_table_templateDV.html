@@ -9,9 +9,6 @@
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
-			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="asset_allotment_table_view.php?filterer_asset_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="asset_allotment_table_link"><img src="table.gif"> Asset allotment - App</a>
-			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="asset_allotment_table_view.php?filterer_asset_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_asset_allotment_table_link"><img src="table.gif"> Asset allotment - App</a>
-			<input type="hidden" id="asset_allotment_table_hclink" value="asset_allotment_table_view.php?filterer_asset_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -21,6 +18,15 @@
 		<!-- form inputs -->
 		<div class="col-md-8 col-lg-10" id="asset_table_dv_form">
 			<fieldset class="form-horizontal">
+
+				<!-- Field: ID -->
+				<div class="form-group asset_table-id">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">ID</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="id"><%%VALUE(id)%%></div>
+					</div>
+				</div>
 
 				<!-- Field: Date -->
 				<div class="form-group asset_table-Date">
@@ -85,21 +91,21 @@
 					</div>
 				</div>
 
-				<!-- Field: P.O DATE -->
+				<!-- Field: P/O Date -->
 				<div class="form-group asset_table-PODATE">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="PODATE-dd">P.O DATE</label>
+					<label class="control-label col-lg-3" for="PODATE-dd">P/O Date</label>
 					<div class="col-lg-9">
 						<%%COMBO(PODATE)%%>
 					</div>
 				</div>
 
-				<!-- Field: PARTICULARS OF SUPPLIER VENDOR NAME AND ADDRESS -->
-				<div class="form-group asset_table-PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS">
+				<!-- Field: Partculars of Supplier Vendor Name & Address -->
+				<div class="form-group asset_table-particulars_of_supplier_name_address">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS">PARTICULARS OF SUPPLIER VENDOR NAME AND ADDRESS</label>
+					<label class="control-label col-lg-3" for="particulars_of_supplier_name_address">Partculars of Supplier Vendor Name & Address</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS" id="PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS" value="<%%VALUE(PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS)%%>">
+						<textarea class="form-control" name="particulars_of_supplier_name_address" id="particulars_of_supplier_name_address" rows=" 5"><%%VALUE(particulars_of_supplier_name_address)%%></textarea>
 					</div>
 				</div>
 
@@ -108,14 +114,14 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="ItemDescription">Item Description</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="ItemDescription" id="ItemDescription" value="<%%VALUE(ItemDescription)%%>">
+						<textarea class="form-control" name="ItemDescription" id="ItemDescription" rows=" 5"><%%VALUE(ItemDescription)%%></textarea>
 					</div>
 				</div>
 
-				<!-- Field: Bill No.  -->
+				<!-- Field: Bill No. -->
 				<div class="form-group asset_table-BillNo">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="BillNo">Bill No. </label>
+					<label class="control-label col-lg-3" for="BillNo">Bill No.</label>
 					<div class="col-lg-9">
 						<input maxlength="255" type="text" class="form-control" name="BillNo" id="BillNo" value="<%%VALUE(BillNo)%%>">
 					</div>
@@ -130,52 +136,30 @@
 					</div>
 				</div>
 
-				<!-- Field: QUANTITY -->
+				<!-- Field: Quantity -->
 				<div class="form-group asset_table-QUANTITY">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="QUANTITY">QUANTITY</label>
+					<label class="control-label col-lg-3" for="QUANTITY">Quantity</label>
 					<div class="col-lg-9">
 						<input maxlength="255" type="text" class="form-control" name="QUANTITY" id="QUANTITY" value="<%%VALUE(QUANTITY)%%>">
 					</div>
 				</div>
 
-				<!-- Field: Cost of the Asset in INR -->
-				<div class="form-group asset_table-CostoftheAsset">
+				<!-- Field: Cost of the Asset (in INR) -->
+				<div class="form-group asset_table-CostoftheAssetinINR">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="CostoftheAsset">Cost of the Asset in INR</label>
+					<label class="control-label col-lg-3" for="CostoftheAssetinINR">Cost of the Asset (in INR)</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="CostoftheAsset" id="CostoftheAsset" value="<%%VALUE(CostoftheAsset)%%>">
+						<input maxlength="255" type="text" class="form-control" name="CostoftheAssetinINR" id="CostoftheAssetinINR" value="<%%VALUE(CostoftheAssetinINR)%%>">
 					</div>
 				</div>
 
-				<!-- Field: Image -->
-				<div class="form-group asset_table-image">
+				<!-- Field: Total Invoice Value (in INR) -->
+				<div class="form-group asset_table-TotalInvoiceValueinINR">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3">Image <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#image-description"></i></label>
+					<label class="control-label col-lg-3" for="TotalInvoiceValueinINR">Total Invoice Value (in INR)</label>
 					<div class="col-lg-9">
-						<span class="help-block bspacer-xs collapse" id="image-description"><div class="alert alert-info bspacer-xs">Maximum file size allowed: 1000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp</div></span>
-						<div class="form-control-static well well-sm">
-							<div class="row" style="margin-right: 0; margin-left: 0;">
-								<div class="col-lg-8 col-md-6" style="padding-left: 0;"></div>
-								<div class="hidden-md hidden-lg vspacer-lg"></div>
-								<div class="col-lg-4 col-md-6 well upload-toolbox">
-									<%%REMOVEFILE(image)%%>
-									<%%UPLOADFILE(image)%%>
-									<div class="text-bold text-danger file-type-error hidden"><%%TRANSLATION(invalid file type)%%></div>
-									<div class="text-bold text-danger file-size-error hidden"><%%TRANSLATION(file too large)%%></div>
-								</div>
-							</div>
-						</div>
-						<script>/* disable empty links */ $j(() => { const e_image = '<%%VALUE(image)%%>'; if(e_image == '' || e_image == '&nbsp;' || e_image == 'blank.gif') { $j('#image-link').hide(); $j('#image-image').parents('a').attr('href', '').on('click', (e) => e.preventDefault()); } });</script>
-					</div>
-				</div>
-
-				<!-- Field: Total Invoice Value in INR -->
-				<div class="form-group asset_table-TotalInvoiceValue">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="TotalInvoiceValue">Total Invoice Value in INR</label>
-					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="TotalInvoiceValue" id="TotalInvoiceValue" value="<%%VALUE(TotalInvoiceValue)%%>">
+						<input maxlength="255" type="text" class="form-control" name="TotalInvoiceValueinINR" id="TotalInvoiceValueinINR" value="<%%VALUE(TotalInvoiceValueinINR)%%>">
 					</div>
 				</div>
 
@@ -189,56 +173,42 @@
 				</div>
 
 				<!-- Field: Custodian -->
-				<div class="form-group asset_table-Custodian">
+				<div class="form-group asset_table-custodian">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="Custodian">Custodian</label>
+					<label class="control-label col-lg-3" for="custodian">Custodian</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="Custodian" id="Custodian" value="<%%VALUE(Custodian)%%>">
+						<input maxlength="255" type="text" class="form-control" name="custodian" id="custodian" value="<%%VALUE(custodian)%%>">
 					</div>
 				</div>
 
 				<!-- Field: Custodian Signature -->
 				<div class="form-group asset_table-CustodianSignature">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="CustodianSignature">Custodian Signature</label>
+					<label class="control-label col-lg-3">Custodian Signature <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#CustodianSignature-description"></i></label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="CustodianSignature" id="CustodianSignature" value="<%%VALUE(CustodianSignature)%%>">
-					</div>
-				</div>
-
-				<!-- Field: No of years Useful Life of Assets -->
-				<div class="form-group asset_table-noofyearsUsefulLifeofAssets">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="noofyearsUsefulLifeofAssets">No of years Useful Life of Assets</label>
-					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="noofyearsUsefulLifeofAssets" id="noofyearsUsefulLifeofAssets" value="<%%VALUE(noofyearsUsefulLifeofAssets)%%>">
-					</div>
-				</div>
-
-				<!-- Field: Date of useful life of Assets ends -->
-				<div class="form-group asset_table-DateofusefullifeofAssetsends">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="DateofusefullifeofAssetsends">Date of useful life of Assets ends</label>
-					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="DateofusefullifeofAssetsends" id="DateofusefullifeofAssetsends" value="<%%VALUE(DateofusefullifeofAssetsends)%%>">
-					</div>
-				</div>
-
-				<!-- Field: PV Status -->
-				<div class="form-group asset_table-PVStatus">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="PVStatus">PV Status</label>
-					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="PVStatus" id="PVStatus" value="<%%VALUE(PVStatus)%%>">
+						<span class="help-block bspacer-xs collapse" id="CustodianSignature-description"><div class="alert alert-info bspacer-xs">Maximum file size allowed: 100 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp</div></span>
+						<div class="form-control-static well well-sm">
+							<div class="row" style="margin-right: 0; margin-left: 0;">
+								<div class="col-lg-8 col-md-6" style="padding-left: 0;"></div>
+								<div class="hidden-md hidden-lg vspacer-lg"></div>
+								<div class="col-lg-4 col-md-6 well upload-toolbox">
+									<%%REMOVEFILE(CustodianSignature)%%>
+									<%%UPLOADFILE(CustodianSignature)%%>
+									<div class="text-bold text-danger file-type-error hidden"><%%TRANSLATION(invalid file type)%%></div>
+									<div class="text-bold text-danger file-size-error hidden"><%%TRANSLATION(file too large)%%></div>
+								</div>
+							</div>
+						</div>
+						<script>/* disable empty links */ $j(() => { const e_CustodianSignature = '<%%VALUE(CustodianSignature)%%>'; if(e_CustodianSignature == '' || e_CustodianSignature == '&nbsp;' || e_CustodianSignature == 'blank.gif') { $j('#CustodianSignature-link').hide(); $j('#CustodianSignature-image').parents('a').attr('href', '').on('click', (e) => e.preventDefault()); } });</script>
 					</div>
 				</div>
 
 				<!-- Field: Remarks -->
-				<div class="form-group asset_table-Remarks">
+				<div class="form-group asset_table-remarks">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="Remarks">Remarks</label>
+					<label class="control-label col-lg-3" for="remarks">Remarks</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="Remarks" id="Remarks" value="<%%VALUE(Remarks)%%>">
+						<textarea class="form-control" name="remarks" id="remarks" rows=" 5"><%%VALUE(remarks)%%></textarea>
 					</div>
 				</div>
 
@@ -265,16 +235,6 @@
 	</div>
 
 
-	<!-- child records -->
-	<hr>
-	<div class="row">
-		<div class="col-lg-10 col-lg-offset-1">
-			<div id="asset_table-children" class="children-tabs">
-				<div class="text-center"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
-			</div>
-		</div>
-	</div>
-
 </div><!-- /div class="panel-body" -->
 	<script>
 		$j(function() {
@@ -299,38 +259,6 @@
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 
-			if(embedded_mode) {
-				/* hide links to children tables in embedded mode */
-				$j('.detail_view a[id$=_link]').remove();
-
-				/* append embedded mode to all links */
-				var append_embedded = function() {
-					$j('a[href]:not([href^="#"]):not([href^="javascript"]):not([href$="Embedded=1"]):not([href*="link.php?t="]):not([href^="mailto:"]):not([href$=".jpg"]):not([href$=".png"]):not([href$=".gif"])').each(
-						function() {
-							$j(this).attr('href', $j(this).attr('href') + '&Embedded=1');
-						}
-					);
-				}
-				setTimeout(append_embedded, 500);
-				setTimeout(append_embedded, 1500);
-				setTimeout(append_embedded, 2500);
-				setTimeout(append_embedded, 3500);
-			}
-
-			/* when no record is selected ('add new' mode) */
-			if(add_new_mode) {
-				/* hide links to children tables */
-				$j('.detail_view a[id$=_link]').remove();
-			} else {
-				post(
-					'parent-children.php', {
-						ParentTable: 'asset_table',
-						SelectedID: '<%%VALUE(id)%%>',
-						Operation: 'show-children'
-					},
-					'asset_table-children'
-				);
-			}
 
 			if(true /* !embedded_mode */) {
 				$j('.add_new_parent').click(function() {

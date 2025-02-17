@@ -639,45 +639,15 @@ function sdp_participants_college_details_table_validateData(insertMode) {
 
 	return !errors;
 }
-function asset_app_validateData(insertMode) {
-	$j('.has-error').removeClass('has-error');
-	var errors = false;
-
-	// check file uploads (file type and size)
-	if($j('#custodian_signature').val() && !AppGini.checkFileUpload('custodian_signature', 'jpg|jpeg|gif|png|webp', 10240000)) {
-		AppGini.scrollTo('custodian_signature');
-		return false;
-	}
-
-	return !errors;
-}
-function asset_billing_details_validateData(insertMode) {
-	$j('.has-error').removeClass('has-error');
-	var errors = false;
-
-	// check file uploads (file type and size)
-	if($j('#image').val() && !AppGini.checkFileUpload('image', 'jpg|jpeg|gif|png|webp', 10240000)) {
-		AppGini.scrollTo('image');
-		return false;
-	}
-
-	return !errors;
-}
 function asset_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
 
 	// check file uploads (file type and size)
-	if($j('#image').val() && !AppGini.checkFileUpload('image', 'jpg|jpeg|gif|png|webp', 1024000)) {
-		AppGini.scrollTo('image');
+	if($j('#CustodianSignature').val() && !AppGini.checkFileUpload('CustodianSignature', 'jpg|jpeg|gif|png|webp', 102400)) {
+		AppGini.scrollTo('CustodianSignature');
 		return false;
 	}
-
-	return !errors;
-}
-function asset_allotment_table_validateData(insertMode) {
-	$j('.has-error').removeClass('has-error');
-	var errors = false;
 
 	return !errors;
 }

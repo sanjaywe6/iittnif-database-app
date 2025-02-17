@@ -9,12 +9,6 @@
 			'front_img' => getUploadDir(''),
 			'back_img' => getUploadDir(''),
 		],
-		'asset_app' => [
-			'custodian_signature' => getUploadDir(''),
-		],
-		'asset_billing_details' => [
-			'image' => getUploadDir(''),
-		],
 		'it_inventory_app' => [
 			'custodian_signature' => getUploadDir(''),
 		],

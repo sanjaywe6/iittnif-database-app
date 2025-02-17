@@ -18,20 +18,26 @@
 
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
-		"`asset_app`.`asset_id`" => "asset_id",
-		"if(`asset_app`.`date`,date_format(`asset_app`.`date`,'%d/%m/%Y'),'')" => "date",
-		"`asset_app`.`classification_of_asset`" => "classification_of_asset",
-		"`asset_app`.`sub_category`" => "sub_category",
-		"`asset_app`.`asset_serial_number`" => "asset_serial_number",
-		"`asset_app`.`qr_and_bar_code`" => "qr_and_bar_code",
-		"`asset_app`.`custody_department`" => "custody_department",
+		"`asset_app`.`id`" => "id",
+		"if(`asset_app`.`Date`,date_format(`asset_app`.`Date`,'%d/%m/%Y'),'')" => "Date",
+		"`asset_app`.`ClassificationofAssest`" => "ClassificationofAssest",
+		"`asset_app`.`SubCategory`" => "SubCategory",
+		"`asset_app`.`AssetSerialNo`" => "AssetSerialNo",
+		"`asset_app`.`QRBarCode`" => "QRBarCode",
+		"`asset_app`.`AssetNo`" => "AssetNo",
+		"`asset_app`.`PONO`" => "PONO",
+		"if(`asset_app`.`PODATE`,date_format(`asset_app`.`PODATE`,'%d/%m/%Y'),'')" => "PODATE",
+		"`asset_app`.`PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS`" => "PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS",
+		"`asset_app`.`ItemDescription`" => "ItemDescription",
+		"`asset_app`.`BillNo`" => "BillNo",
+		"if(`asset_app`.`BillDate`,date_format(`asset_app`.`BillDate`,'%d/%m/%Y'),'')" => "BillDate",
+		"`asset_app`.`QUANTITY`" => "QUANTITY",
+		"`asset_app`.`CostoftheAssetinINR`" => "CostoftheAssetinINR",
+		"`asset_app`.`TotalInvoiceValueinINR`" => "TotalInvoiceValueinINR",
+		"`asset_app`.`CustodyDepartment`" => "CustodyDepartment",
 		"`asset_app`.`custodian`" => "custodian",
-		"`asset_app`.`custodian_signature`" => "custodian_signature",
-		"`asset_app`.`no_of_years_useful_life_of_assets`" => "no_of_years_useful_life_of_assets",
-		"if(`asset_app`.`date_of_useful_life_of_assets_ends`,date_format(`asset_app`.`date_of_useful_life_of_assets_ends`,'%d/%m/%Y'),'')" => "date_of_useful_life_of_assets_ends",
+		"`asset_app`.`CustodianSignature`" => "CustodianSignature",
 		"`asset_app`.`remarks`" => "remarks",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Sactioned by */" => "sactioned_by",
-		"`asset_app`.`asset_str`" => "asset_str",
 		"`asset_app`.`created_by`" => "created_by",
 		"`asset_app`.`created_at`" => "created_at",
 		"`asset_app`.`last_updated_by`" => "last_updated_by",
@@ -39,42 +45,54 @@
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
-		1 => '`asset_app`.`asset_id`',
-		2 => '`asset_app`.`date`',
+		1 => '`asset_app`.`id`',
+		2 => '`asset_app`.`Date`',
 		3 => 3,
 		4 => 4,
 		5 => 5,
 		6 => 6,
 		7 => 7,
 		8 => 8,
-		9 => 9,
+		9 => '`asset_app`.`PODATE`',
 		10 => 10,
-		11 => '`asset_app`.`date_of_useful_life_of_assets_ends`',
+		11 => 11,
 		12 => 12,
-		13 => 13,
+		13 => '`asset_app`.`BillDate`',
 		14 => 14,
 		15 => 15,
 		16 => 16,
 		17 => 17,
 		18 => 18,
+		19 => 19,
+		20 => 20,
+		21 => 21,
+		22 => 22,
+		23 => 23,
+		24 => 24,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
-		"`asset_app`.`asset_id`" => "asset_id",
-		"if(`asset_app`.`date`,date_format(`asset_app`.`date`,'%d/%m/%Y'),'')" => "date",
-		"`asset_app`.`classification_of_asset`" => "classification_of_asset",
-		"`asset_app`.`sub_category`" => "sub_category",
-		"`asset_app`.`asset_serial_number`" => "asset_serial_number",
-		"`asset_app`.`qr_and_bar_code`" => "qr_and_bar_code",
-		"`asset_app`.`custody_department`" => "custody_department",
+		"`asset_app`.`id`" => "id",
+		"if(`asset_app`.`Date`,date_format(`asset_app`.`Date`,'%d/%m/%Y'),'')" => "Date",
+		"`asset_app`.`ClassificationofAssest`" => "ClassificationofAssest",
+		"`asset_app`.`SubCategory`" => "SubCategory",
+		"`asset_app`.`AssetSerialNo`" => "AssetSerialNo",
+		"`asset_app`.`QRBarCode`" => "QRBarCode",
+		"`asset_app`.`AssetNo`" => "AssetNo",
+		"`asset_app`.`PONO`" => "PONO",
+		"if(`asset_app`.`PODATE`,date_format(`asset_app`.`PODATE`,'%d/%m/%Y'),'')" => "PODATE",
+		"`asset_app`.`PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS`" => "PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS",
+		"`asset_app`.`ItemDescription`" => "ItemDescription",
+		"`asset_app`.`BillNo`" => "BillNo",
+		"if(`asset_app`.`BillDate`,date_format(`asset_app`.`BillDate`,'%d/%m/%Y'),'')" => "BillDate",
+		"`asset_app`.`QUANTITY`" => "QUANTITY",
+		"`asset_app`.`CostoftheAssetinINR`" => "CostoftheAssetinINR",
+		"`asset_app`.`TotalInvoiceValueinINR`" => "TotalInvoiceValueinINR",
+		"`asset_app`.`CustodyDepartment`" => "CustodyDepartment",
 		"`asset_app`.`custodian`" => "custodian",
-		"`asset_app`.`custodian_signature`" => "custodian_signature",
-		"`asset_app`.`no_of_years_useful_life_of_assets`" => "no_of_years_useful_life_of_assets",
-		"if(`asset_app`.`date_of_useful_life_of_assets_ends`,date_format(`asset_app`.`date_of_useful_life_of_assets_ends`,'%d/%m/%Y'),'')" => "date_of_useful_life_of_assets_ends",
+		"`asset_app`.`CustodianSignature`" => "CustodianSignature",
 		"`asset_app`.`remarks`" => "remarks",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Sactioned by */" => "sactioned_by",
-		"`asset_app`.`asset_str`" => "asset_str",
 		"`asset_app`.`created_by`" => "created_by",
 		"`asset_app`.`created_at`" => "created_at",
 		"`asset_app`.`last_updated_by`" => "last_updated_by",
@@ -82,19 +100,26 @@
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
-		"`asset_app`.`asset_id`" => "ID",
-		"`asset_app`.`date`" => "Date",
-		"`asset_app`.`classification_of_asset`" => "Classification of asset",
-		"`asset_app`.`sub_category`" => "Sub category",
-		"`asset_app`.`asset_serial_number`" => "Asset serial number",
-		"`asset_app`.`qr_and_bar_code`" => "Qr and bar code",
-		"`asset_app`.`custody_department`" => "Custody department",
+		"`asset_app`.`id`" => "ID",
+		"`asset_app`.`Date`" => "Date",
+		"`asset_app`.`ClassificationofAssest`" => "Classification of Assest",
+		"`asset_app`.`SubCategory`" => "Sub Category",
+		"`asset_app`.`AssetSerialNo`" => "Asset Serial No",
+		"`asset_app`.`QRBarCode`" => "QR & Bar Code",
+		"`asset_app`.`AssetNo`" => "Asset No",
+		"`asset_app`.`PONO`" => "PO. NO.",
+		"`asset_app`.`PODATE`" => "P/O Date",
+		"`asset_app`.`PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS`" => "Partculars of Supplier Vendor Name & Address",
+		"`asset_app`.`ItemDescription`" => "Item Description",
+		"`asset_app`.`BillNo`" => "Bill No.",
+		"`asset_app`.`BillDate`" => "Bill Date",
+		"`asset_app`.`QUANTITY`" => "Quantity",
+		"`asset_app`.`CostoftheAssetinINR`" => "Cost of the Asset (in INR)",
+		"`asset_app`.`TotalInvoiceValueinINR`" => "Total Invoice Value (in INR)",
+		"`asset_app`.`CustodyDepartment`" => "Custody Department",
 		"`asset_app`.`custodian`" => "Custodian",
-		"`asset_app`.`no_of_years_useful_life_of_assets`" => "Number of years useful life of assets",
-		"`asset_app`.`date_of_useful_life_of_assets_ends`" => "Date of useful life of assets ends",
+		"`asset_app`.`CustodianSignature`" => "Custodian Signature",
 		"`asset_app`.`remarks`" => "Remarks",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Sactioned by */" => "Sactioned by",
-		"`asset_app`.`asset_str`" => "Asset str",
 		"`asset_app`.`created_by`" => "Created by",
 		"`asset_app`.`created_at`" => "Created at",
 		"`asset_app`.`last_updated_by`" => "Last updated by",
@@ -103,19 +128,26 @@
 
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
-		"`asset_app`.`asset_id`" => "asset_id",
-		"if(`asset_app`.`date`,date_format(`asset_app`.`date`,'%d/%m/%Y'),'')" => "date",
-		"`asset_app`.`classification_of_asset`" => "classification_of_asset",
-		"`asset_app`.`sub_category`" => "sub_category",
-		"`asset_app`.`asset_serial_number`" => "asset_serial_number",
-		"`asset_app`.`qr_and_bar_code`" => "qr_and_bar_code",
-		"`asset_app`.`custody_department`" => "custody_department",
+		"`asset_app`.`id`" => "id",
+		"if(`asset_app`.`Date`,date_format(`asset_app`.`Date`,'%d/%m/%Y'),'')" => "Date",
+		"`asset_app`.`ClassificationofAssest`" => "ClassificationofAssest",
+		"`asset_app`.`SubCategory`" => "SubCategory",
+		"`asset_app`.`AssetSerialNo`" => "AssetSerialNo",
+		"`asset_app`.`QRBarCode`" => "QRBarCode",
+		"`asset_app`.`AssetNo`" => "AssetNo",
+		"`asset_app`.`PONO`" => "PONO",
+		"if(`asset_app`.`PODATE`,date_format(`asset_app`.`PODATE`,'%d/%m/%Y'),'')" => "PODATE",
+		"`asset_app`.`PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS`" => "PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS",
+		"`asset_app`.`ItemDescription`" => "ItemDescription",
+		"`asset_app`.`BillNo`" => "BillNo",
+		"if(`asset_app`.`BillDate`,date_format(`asset_app`.`BillDate`,'%d/%m/%Y'),'')" => "BillDate",
+		"`asset_app`.`QUANTITY`" => "QUANTITY",
+		"`asset_app`.`CostoftheAssetinINR`" => "CostoftheAssetinINR",
+		"`asset_app`.`TotalInvoiceValueinINR`" => "TotalInvoiceValueinINR",
+		"`asset_app`.`CustodyDepartment`" => "CustodyDepartment",
 		"`asset_app`.`custodian`" => "custodian",
-		"`asset_app`.`no_of_years_useful_life_of_assets`" => "no_of_years_useful_life_of_assets",
-		"if(`asset_app`.`date_of_useful_life_of_assets_ends`,date_format(`asset_app`.`date_of_useful_life_of_assets_ends`,'%d/%m/%Y'),'')" => "date_of_useful_life_of_assets_ends",
+		"`asset_app`.`CustodianSignature`" => "CustodianSignature",
 		"`asset_app`.`remarks`" => "remarks",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Sactioned by */" => "sactioned_by",
-		"`asset_app`.`asset_str`" => "asset_str",
 		"`asset_app`.`created_by`" => "created_by",
 		"`asset_app`.`created_at`" => "created_at",
 		"`asset_app`.`last_updated_by`" => "last_updated_by",
@@ -123,9 +155,9 @@
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['sactioned_by' => 'Sactioned by', ];
+	$x->filterers = [];
 
-	$x->QueryFrom = "`asset_app` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`asset_app`.`sactioned_by` ";
+	$x->QueryFrom = "`asset_app` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -135,7 +167,7 @@
 	$x->AllowMassDelete = (getLoggedAdmin() !== false);
 	$x->AllowInsert = $perm['insert'];
 	$x->AllowUpdate = $perm['edit'];
-	$x->SeparateDV = 1;
+	$x->SeparateDV = 0;
 	$x->AllowDeleteOfParents = 0;
 	$x->AllowFilters = 1;
 	$x->AllowSavingFilters = (getLoggedAdmin() !== false);
@@ -145,20 +177,20 @@
 	$x->AllowPrintingDV = 1;
 	$x->AllowCSV = 1;
 	$x->AllowAdminShowSQL = showSQL();
-	$x->RecordsPerPage = 100;
+	$x->RecordsPerPage = 10;
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'asset_app_view.php';
-	$x->TableTitle = 'Asset - App';
+	$x->TableTitle = 'Asset app';
 	$x->TableIcon = 'table.gif';
-	$x->PrimaryKey = '`asset_app`.`asset_id`';
+	$x->PrimaryKey = '`asset_app`.`id`';
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Date', 'Classification of asset', 'Sub category', 'Asset serial number', 'Qr and bar code', 'Custody department', 'Custodian', 'Custodian signature', 'Number of years useful life of assets', 'Date of useful life of assets ends', 'Remarks', 'Sactioned by', 'Asset str', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['asset_id', 'date', 'classification_of_asset', 'sub_category', 'asset_serial_number', 'qr_and_bar_code', 'custody_department', 'custodian', 'custodian_signature', 'no_of_years_useful_life_of_assets', 'date_of_useful_life_of_assets_ends', 'remarks', 'sactioned_by', 'asset_str', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Date', 'Classification of Assest', 'Sub Category', 'Asset Serial No', 'QR & Bar Code', 'Asset No', 'PO. NO.', 'P/O Date', 'Partculars of Supplier Vendor Name & Address', 'Item Description', 'Bill No.', 'Bill Date', 'Quantity', 'Cost of the Asset (in INR)', 'Total Invoice Value (in INR)', 'Custody Department', 'Custodian', 'Custodian Signature', 'Remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'Date', 'ClassificationofAssest', 'SubCategory', 'AssetSerialNo', 'QRBarCode', 'AssetNo', 'PONO', 'PODATE', 'PARTICULARSOFSUPPLIERVENDORNAMEANDADDRESS', 'ItemDescription', 'BillNo', 'BillDate', 'QUANTITY', 'CostoftheAssetinINR', 'TotalInvoiceValueinINR', 'CustodyDepartment', 'custodian', 'CustodianSignature', 'remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/asset_app_templateTV.html';

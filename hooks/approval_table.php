@@ -15,7 +15,7 @@
 		// }
 
 		// foreach ($contentType as $key => $val ){
-		// 	WindowMessages::add($key."~".$val);
+		WindowMessages::add("This is test message");
 		// }
 
 		switch($contentType) {

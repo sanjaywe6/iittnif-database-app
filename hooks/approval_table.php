@@ -9,15 +9,6 @@
 	function approval_table_header($contentType, $memberInfo, &$args) {
 		$header='';
 
-
-		// foreach ($memberInfo as $key => $val ){
-		// 	WindowMessages::add($key."~".$val);
-		// }
-
-		// foreach ($contentType as $key => $val ){
-		WindowMessages::add("This is test message");
-		// }
-
 		switch($contentType) {
 			case 'tableview':
 				$header='';

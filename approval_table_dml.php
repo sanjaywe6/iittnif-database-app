@@ -327,7 +327,7 @@ Seminar;;
 
 Conference;;
 
-Skill&#160;Development;;Business Development"))));
+Skill&#160;Development;;Business Development;;Startups"))));
 		$combo_type->ListData = $combo_type->ListItem;
 	}
 	$combo_type->SelectName = 'type';

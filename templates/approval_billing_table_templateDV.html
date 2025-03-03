@@ -19,6 +19,18 @@
 		<div class="col-md-8 col-lg-10" id="approval_billing_table_dv_form">
 			<fieldset class="form-horizontal">
 
+				<!-- Field: Approval Details -->
+				<div class="form-group approval_billing_table-approval_lookup">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Approval Details</label>
+					<div class="col-lg-9">
+						<div class="form-control-static">
+							<span id="approval_lookup-readonly"><%%COMBOTEXT(approval_lookup)%%></span>
+							<%%PLINK(approval_lookup)%%>
+						</div>
+					</div>
+				</div>
+
 				<!-- Field: Date of Purchase -->
 				<div class="form-group approval_billing_table-date_of_purchase">
 					<hr class="hidden-md hidden-lg">
@@ -119,15 +131,6 @@
 							</div>
 						</div>
 						<script>/* disable empty links */ $j(() => { const e_attach_bill_3 = '<%%VALUE(attach_bill_3)%%>'; if(e_attach_bill_3 == '' || e_attach_bill_3 == '&nbsp;' || e_attach_bill_3 == 'blank.gif') { $j('#attach_bill_3-link').hide(); $j('#attach_bill_3-image').parents('a').attr('href', '').on('click', (e) => e.preventDefault()); } });</script>
-					</div>
-				</div>
-
-				<!-- Field: Approval lookup -->
-				<div class="form-group approval_billing_table-approval_lookup">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="approval_lookup" data-parent_link="view_parent_modal">Approval lookup</label>
-					<div class="col-lg-9">
-						<div class="lookup-flex"><%%COMBO(approval_lookup)%%><%%PLINK(approval_lookup)%%><%%ADDNEW(approval_table)%%></div>
 					</div>
 				</div>
 

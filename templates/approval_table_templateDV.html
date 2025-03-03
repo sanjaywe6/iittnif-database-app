@@ -9,8 +9,6 @@
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
-			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="approval_billing_table_view.php?filterer_approval_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="approval_billing_table_link"><img src="table.gif"> Approval billing table</a>
-			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="approval_billing_table_view.php?filterer_approval_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_approval_billing_table_link"><img src="table.gif"> Approval billing table</a>
 			<input type="hidden" id="approval_billing_table_hclink" value="approval_billing_table_view.php?filterer_approval_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
 			<div class="clearfix"></div>
 		</div>
@@ -171,6 +169,15 @@
 							</div>
 						</div>
 						<script>/* disable empty links */ $j(() => { const e_other_file = '<%%VALUE(other_file)%%>'; if(e_other_file == '' || e_other_file == '&nbsp;' || e_other_file == 'blank.gif') { $j('#other_file-link').hide(); $j('#other_file-image').parents('a').attr('href', '').on('click', (e) => e.preventDefault()); } });</script>
+					</div>
+				</div>
+
+				<!-- Field: Approved At -->
+				<div class="form-group approval_table-last_updated_at">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Approved At</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="last_updated_at"><%%VALUE(last_updated_at)%%></div>
 					</div>
 				</div>
 

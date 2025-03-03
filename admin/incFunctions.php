@@ -5884,7 +5884,7 @@
 					'last_updated_at' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Last Updated At',
+							'caption' => 'Approved At',
 							'description' => '',
 						],
 					],

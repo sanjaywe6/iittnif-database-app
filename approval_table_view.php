@@ -102,7 +102,7 @@
 		"`approval_table`.`created_by`" => "Created By",
 		"`approval_table`.`created_at`" => "Created At",
 		"`approval_table`.`last_updated_by`" => "Last Updated By",
-		"`approval_table`.`last_updated_at`" => "Last Updated At",
+		"`approval_table`.`last_updated_at`" => "Approved At",
 	];
 
 	// Fields that can be quick searched
@@ -161,7 +161,7 @@
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Approval Type', 'Description', 'Quantity', 'Full Estimated Value', 'Name of Vendor', 'Purpose', 'Requested Department/Appointment', 'Person Responsbility', 'Mode of Purchase', 'Approval Status', 'Remarks for Approval', 'Upload Image if Any (Optional)', 'Upload Other File if Any (Optional)', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', ];
+	$x->ColCaption = ['ID', 'Approval Type', 'Description', 'Quantity', 'Full Estimated Value', 'Name of Vendor', 'Purpose', 'Requested Department/Appointment', 'Person Responsbility', 'Mode of Purchase', 'Approval Status', 'Remarks for Approval', 'Upload Image if Any (Optional)', 'Upload Other File if Any (Optional)', 'Created By', 'Created At', 'Last Updated By', 'Approved At', ];
 	$x->ColFieldName = ['id', 'type', 'description', 'quantity', 'full_est_value', 'name_of_vendor', 'purpose', 'requested_department', 'person_responsbility', 'mode_of_purchase', 'approval_status', 'remarks_for_approval', 'image', 'other_file', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
 	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, ];
 

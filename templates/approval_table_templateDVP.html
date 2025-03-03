@@ -116,6 +116,13 @@
 				<div class="form-control-static"><a id="other_file-link" href="link.php?t=approval_table&f=other_file&i=<%%VALUE(id)%%>" target="_blank"><i class="glyphicon glyphicon-lg glyphicon-file" title="<%%VALUE(other_file)%%>"></i></a><script>$j(function() { var e_other_file = '<%%VALUE(other_file)%%>'; if(e_other_file == '' || e_other_file == '&nbsp;' || e_other_file == 'blank.gif') $j('#other_file-link').hide(); });</script></div>
 			</div>
 		</div>
+		<!-- Field: Approved At -->
+		<div class="form-group approval_table-last_updated_at" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Approved At</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(last_updated_at)%%></div>
+			</div>
+		</div>
 	</fieldset>
 </div>
 <script>

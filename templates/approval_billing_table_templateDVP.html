@@ -14,6 +14,13 @@
 
 <div class="panel-body">
 	<fieldset class="form-horizontal">
+		<!-- Field: Approval Details -->
+		<div class="form-group approval_billing_table-approval_lookup" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Approval Details</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="approval_lookup-readonly<%%RND1%%>"><%%COMBOTEXT(approval_lookup)%%></span></div>
+			</div>
+		</div>
 		<!-- Field: Date of Purchase -->
 		<div class="form-group approval_billing_table-date_of_purchase" style="border-bottom: dotted 1px #DDD;">
 			<label class="col-xs-3 control-label">Date of Purchase</label>
@@ -61,13 +68,6 @@
 			<label class="col-xs-3 control-label">Attach bill 3</label>
 			<div class="col-xs-9">
 				<div class="form-control-static"><%%VALUE(attach_bill_3)%%></div>
-			</div>
-		</div>
-		<!-- Field: Approval lookup -->
-		<div class="form-group approval_billing_table-approval_lookup" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Approval lookup</label>
-			<div class="col-xs-9">
-				<div class="form-control-static"><span id="approval_lookup<%%RND1%%>"><%%COMBOTEXT(approval_lookup)%%></span></div>
 			</div>
 		</div>
 	</fieldset>

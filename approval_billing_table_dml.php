@@ -15,8 +15,12 @@ function approval_billing_table_insert(&$error_message = '') {
 		return false;
 	}
 
+	// automatic approval_lookup if passed as filterer
+	if(Request::val('filterer_approval_lookup')) {
+		$_REQUEST['approval_lookup'] = Request::val('filterer_approval_lookup');
+	}
+
 	$data = [
-		'approval_lookup' => Request::lookup('approval_lookup', ''),
 		'date_of_purchase' => Request::dateComponents('date_of_purchase', ''),
 		'total_amount_of_bill' => Request::val('total_amount_of_bill', ''),
 		'items_list' => br2nl(Request::val('items_list', '')),
@@ -67,6 +71,11 @@ function approval_billing_table_insert(&$error_message = '') {
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
 
+
+	// automatic approval_lookup if passed as filterer
+	if(Request::val('filterer_approval_lookup')) {
+		$data['approval_lookup'] = Request::val('filterer_approval_lookup');
+	}
 	// record owner is current user
 	$recordOwner = getLoggedMemberID();
 
@@ -155,7 +164,6 @@ function approval_billing_table_update(&$selected_id, &$error_message = '') {
 	if(!check_record_permission('approval_billing_table', $selected_id, 'edit')) return false;
 
 	$data = [
-		'approval_lookup' => Request::lookup('approval_lookup', ''),
 		'date_of_purchase' => Request::dateComponents('date_of_purchase', ''),
 		'total_amount_of_bill' => Request::val('total_amount_of_bill', ''),
 		'items_list' => br2nl(Request::val('items_list', '')),
@@ -609,8 +617,6 @@ function approval_billing_table_form($selectedId = '', $allowUpdate = true, $all
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\t\$j('#approval_lookup').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\t\$j('#approval_lookup_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\t\$j('#date_of_purchase').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#date_of_purchaseDay, #date_of_purchaseMonth, #date_of_purchaseYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#total_amount_of_bill').replaceWith('<div class=\"form-control-static\" id=\"total_amount_of_bill\">' + (\$j('#total_amount_of_bill').val() || '') + '</div>');\n";
@@ -689,8 +695,7 @@ function approval_billing_table_form($selectedId = '', $allowUpdate = true, $all
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_lookup)%%>', safe_html($urow['approval_lookup']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_lookup)%%>', html_attr($row['approval_lookup']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_lookup)%%>', safe_html($urow['approval_lookup']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_lookup)%%>', urlencode($urow['approval_lookup']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date_of_purchase)%%>', app_datetime($row['date_of_purchase']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date_of_purchase)%%>', urlencode(app_datetime($urow['date_of_purchase'])), $templateCode);
@@ -786,6 +791,8 @@ function approval_billing_table_form($selectedId = '', $allowUpdate = true, $all
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
+	if(isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>')
+		$templateCode.="\n<input type=hidden name=approval_lookup value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery
 	$templateCode = preg_replace('/blank.gif" data-lightbox=".*?"/', 'blank.gif"', $templateCode);

@@ -27,6 +27,7 @@ function approval_table_insert(&$error_message = '') {
 		'mode_of_purchase' => Request::val('mode_of_purchase', ''),
 		'others_if_any' => br2nl(Request::val('others_if_any', '')),
 		'approval_status' => Request::val('approval_status', 'Under Consideration'),
+		'remarks_for_approval' => br2nl(Request::val('remarks_for_approval', 'None')),
 		'image' => Request::fileUpload('image', [
 			'maxSize' => 1024000,
 			'types' => 'jpg|jpeg|gif|png|webp',
@@ -106,6 +107,26 @@ function approval_table_delete($selected_id, $AllowDeleteOfParents = false, $ski
 			);
 	}
 
+	// child table: approval_billing_table
+	$res = sql("SELECT `id` FROM `approval_table` WHERE `id`='{$selected_id}'", $eo);
+	$id = db_fetch_row($res);
+	$rires = sql("SELECT COUNT(1) FROM `approval_billing_table` WHERE `approval_lookup`='" . makeSafe($id[0]) . "'", $eo);
+	$rirow = db_fetch_row($rires);
+	$childrenATag = '<a class="alert-link" href="approval_billing_table_view.php?filterer_approval_lookup=' . urlencode($id[0]) . '">%s</a>';
+	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation["couldn't delete"];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'approval_billing_table'), $RetMsg);
+		return $RetMsg;
+	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation['confirm delete'];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'approval_billing_table'), $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `approval_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `approval_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		return $RetMsg;
+	}
+
 	// delete file stored in the 'image' field
 	$res = sql("SELECT `image` FROM `approval_table` WHERE `id`='{$selected_id}'", $eo);
 	if($row = @db_fetch_row($res)) {
@@ -156,6 +177,7 @@ function approval_table_update(&$selected_id, &$error_message = '') {
 		'mode_of_purchase' => Request::val('mode_of_purchase', ''),
 		'others_if_any' => br2nl(Request::val('others_if_any', '')),
 		'approval_status' => Request::val('approval_status', ''),
+		'remarks_for_approval' => br2nl(Request::val('remarks_for_approval', '')),
 		'image' => Request::fileUpload('image', [
 			'maxSize' => 1024000,
 			'types' => 'jpg|jpeg|gif|png|webp',
@@ -575,6 +597,7 @@ Skill&#160;Development;;Business Development;;Startups;;Training"))));
 		$jsReadOnly .= "\t\$j('#mode_of_purchase').replaceWith('<div class=\"form-control-static\" id=\"mode_of_purchase\">' + (\$j('#mode_of_purchase').val() || '') + '</div>'); \$j('#mode_of_purchase-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#others_if_any').replaceWith('<div class=\"form-control-static\" id=\"others_if_any\">' + (\$j('#others_if_any').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#approval_status').replaceWith('<div class=\"form-control-static\" id=\"approval_status\">' + (\$j('#approval_status').val() || '') + '</div>'); \$j('#approval_status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#remarks_for_approval').replaceWith('<div class=\"form-control-static\" id=\"remarks_for_approval\">' + (\$j('#remarks_for_approval').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#image').replaceWith('<div class=\"form-control-static\" id=\"image\">' + (\$j('#image').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#other_file').parent().replaceWith(`<div class=\"form-control-static\" id=\"other_file\">\${\$j('#other_file').val() || ''}\${\$j('#other_file').val() ? '<a target=\"_blank\" class=\"hspacer-lg\" href=\"' + \$j('#other_file').val() + '\" target=\"_blank\"><i class=\"glyphicon glyphicon-globe\"></i></a>' : ''}</div>`);\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
@@ -626,6 +649,7 @@ Skill&#160;Development;;Business Development;;Startups;;Training"))));
 	$templateCode = str_replace('<%%UPLOADFILE(mode_of_purchase)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(others_if_any)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(approval_status)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(remarks_for_approval)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(image)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="image" id="image" data-filetypes="jpg|jpeg|gif|png|webp" data-maxsize="1024000" style="max-width: calc(100% - 1.5rem);" accept="capture=camera,image/*">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
 	if($allowUpdate && $row['image'] != '') {
 		$templateCode = str_replace('<%%REMOVEFILE(image)%%>', '<input type="checkbox" name="image_remove" id="image_remove" value="1"> <label for="image_remove" style="color: red; font-weight: bold;">'.$Translation['remove image'].'</label>', $templateCode);
@@ -677,6 +701,8 @@ Skill&#160;Development;;Business Development;;Startups;;Training"))));
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', safe_html($urow['approval_status']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', html_attr($row['approval_status']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode($urow['approval_status']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(remarks_for_approval)%%>', safe_html($urow['remarks_for_approval'], $fieldsAreEditable), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(remarks_for_approval)%%>', urlencode($urow['remarks_for_approval']), $templateCode);
 		$row['image'] = ($row['image'] != '' ? $row['image'] : 'blank.gif');
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(image)%%>', safe_html($urow['image']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(image)%%>', html_attr($row['image']), $templateCode);
@@ -717,6 +743,8 @@ Skill&#160;Development;;Business Development;;Startups;;Training"))));
 		$templateCode = str_replace('<%%URLVALUE(others_if_any)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(approval_status)%%>', 'Under Consideration', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode('Under Consideration'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(remarks_for_approval)%%>', 'None', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(remarks_for_approval)%%>', urlencode('None'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(image)%%>', 'blank.gif', $templateCode);
 		$templateCode = str_replace('<%%VALUE(other_file)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(other_file)%%>', urlencode(''), $templateCode);

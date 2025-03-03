@@ -437,6 +437,13 @@
 					'group' => $tg[8],
 					'homepageShowCount' => 1
 				],
+				'approval_billing_table' => [
+					'Caption' => 'Approval billing table',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[8],
+					'homepageShowCount' => 1
+				],
 				'all_bank_account_statement_table' => [
 					'Caption' => 'All bank account statement - App',
 					'Description' => '',
@@ -639,6 +646,7 @@
 			'problem_statement_table' => ['Problem statement - App', '', 'table.gif', 'Program Apps'],
 			'evaluators_table' => ['Evaluators table', '', 'table.gif', 'Program Apps'],
 			'approval_table' => ['Approval - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
+			'approval_billing_table' => ['Approval billing table', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'all_bank_account_statement_table' => ['All bank account statement - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'payment_track_details_table' => ['Payment track details - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'car_table' => ['Car - App', '<a href="https://lookerstudio.google.com/reporting/58f87367-3f09-42c0-a288-cf75f313cbed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Car App Report</b></button></a>', 'table.gif', 'Transport Apps'],
@@ -5831,6 +5839,13 @@
 							'description' => '',
 						],
 					],
+					'remarks_for_approval' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Remarks for Approval',
+							'description' => '',
+						],
+					],
 					'image' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
@@ -5843,6 +5858,99 @@
 						'info' => [
 							'caption' => 'Upload Other File if Any (Optional)',
 							'description' => 'Maximum file size allowed: 1000 KB.<br>Allowed file types: txt, doc, docx, docm, odt, pdf, rtf',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created At',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+				],
+				'approval_billing_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'approval_lookup' => [
+						'appgini' => "INT(10) UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Approval Details',
+							'description' => '',
+						],
+					],
+					'date_of_purchase' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Date of Purchase',
+							'description' => '',
+						],
+					],
+					'total_amount_of_bill' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Total Amount of Bill',
+							'description' => '',
+						],
+					],
+					'items_list' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Items List',
+							'description' => 'Example: Pens-6,Paper-2 reams etc',
+						],
+					],
+					'paid_by' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Paid by',
+							'description' => '',
+						],
+					],
+					'attach_bill_1' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Attach bill 1',
+							'description' => 'Maximum file size allowed: 150 KB.<br>Allowed file types: txt, doc, docx, docm, odt, pdf, rtf',
+						],
+					],
+					'attach_bill_2' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Attach bill 2',
+							'description' => 'Maximum file size allowed: 150 KB.<br>Allowed file types: txt, doc, docx, docm, odt, pdf, rtf',
+						],
+					],
+					'attach_bill_3' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Attach bill 3',
+							'description' => 'Maximum file size allowed: 150 KB.<br>Allowed file types: txt, doc, docx, docm, odt, pdf, rtf',
 						],
 					],
 					'created_by' => [
@@ -9365,6 +9473,10 @@
 			'approval_table' => [
 				'user_table' => ['person_responsbility'],
 			],
+			'approval_billing_table' => [
+				'approval_table' => ['approval_lookup'],
+				'user_table' => ['paid_by'],
+			],
 			'car_usage_table' => [
 				'car_table' => ['car_lookup'],
 			],
@@ -9478,6 +9590,7 @@
 			'problem_statement_table' => [],
 			'evaluators_table' => [],
 			'approval_table' => [],
+			'approval_billing_table' => [],
 			'all_bank_account_statement_table' => [],
 			'payment_track_details_table' => [],
 			'car_table' => [],
@@ -9752,6 +9865,10 @@
 			],
 			'approval_table' => [
 				'person_responsbility' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+			],
+			'approval_billing_table' => [
+				'approval_lookup' => 'SELECT `approval_table`.`id`, IF(CHAR_LENGTH(`approval_table`.`type`) || CHAR_LENGTH(`approval_table`.`description`), CONCAT_WS(\'\', `approval_table`.`type`, \'::\', `approval_table`.`description`), \'\') FROM `approval_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`approval_table`.`person_responsbility` ORDER BY 2',
+				'paid_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'all_bank_account_statement_table' => [
 			],

@@ -1,0 +1,275 @@
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/approval_billing_table-dv.js rather than editing this file -->
+
+<div id="detail-view"></div>
+<div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
+
+<div id="approval_billing_table_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+
+<div class="panel-body hidden" id="approval_billing_table_dv_container">
+	<!-- child links -->
+	<div class="row vspacer-md">
+		<div class="col-xs-12 children-links">
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<hr class="hidden-xs hidden-sm">
+
+	<div class="row">
+		<!-- form inputs -->
+		<div class="col-md-8 col-lg-10" id="approval_billing_table_dv_form">
+			<fieldset class="form-horizontal">
+
+				<!-- Field: Date of Purchase -->
+				<div class="form-group approval_billing_table-date_of_purchase">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="date_of_purchase-dd">Date of Purchase</label>
+					<div class="col-lg-9">
+						<%%COMBO(date_of_purchase)%%>
+					</div>
+				</div>
+
+				<!-- Field: Total Amount of Bill -->
+				<div class="form-group approval_billing_table-total_amount_of_bill">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="total_amount_of_bill">Total Amount of Bill</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="total_amount_of_bill" id="total_amount_of_bill" value="<%%VALUE(total_amount_of_bill)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Items List -->
+				<div class="form-group approval_billing_table-items_list">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="items_list">Items List <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#items_list-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="items_list-description"><div class="alert alert-info bspacer-xs">Example: Pens-6,Paper-2 reams etc</div></span>
+						<textarea class="form-control" name="items_list" id="items_list" rows=" 5"><%%VALUE(items_list)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Paid by -->
+				<div class="form-group approval_billing_table-paid_by">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="paid_by" data-parent_link="view_parent_modal">Paid by</label>
+					<div class="col-lg-9">
+						<div class="lookup-flex"><%%COMBO(paid_by)%%><%%PLINK(paid_by)%%><%%ADDNEW(user_table)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Attach bill 1 -->
+				<div class="form-group approval_billing_table-attach_bill_1">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Attach bill 1 <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#attach_bill_1-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="attach_bill_1-description"><div class="alert alert-info bspacer-xs">Maximum file size allowed: 150 KB.<br>Allowed file types: txt, doc, docx, docm, odt, pdf, rtf</div></span>
+						<div class="form-control-static well well-sm">
+							<div class="row" style="margin-right: 0; margin-left: 0;">
+								<div class="col-lg-8 col-md-6" style="padding-left: 0;"></div>
+								<div class="hidden-md hidden-lg vspacer-lg"></div>
+								<div class="col-lg-4 col-md-6 well upload-toolbox">
+									<%%REMOVEFILE(attach_bill_1)%%>
+									<%%UPLOADFILE(attach_bill_1)%%>
+									<div class="text-bold text-danger file-type-error hidden"><%%TRANSLATION(invalid file type)%%></div>
+									<div class="text-bold text-danger file-size-error hidden"><%%TRANSLATION(file too large)%%></div>
+								</div>
+							</div>
+						</div>
+						<script>/* disable empty links */ $j(() => { const e_attach_bill_1 = '<%%VALUE(attach_bill_1)%%>'; if(e_attach_bill_1 == '' || e_attach_bill_1 == '&nbsp;' || e_attach_bill_1 == 'blank.gif') { $j('#attach_bill_1-link').hide(); $j('#attach_bill_1-image').parents('a').attr('href', '').on('click', (e) => e.preventDefault()); } });</script>
+					</div>
+				</div>
+
+				<!-- Field: Attach bill 2 -->
+				<div class="form-group approval_billing_table-attach_bill_2">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Attach bill 2 <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#attach_bill_2-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="attach_bill_2-description"><div class="alert alert-info bspacer-xs">Maximum file size allowed: 150 KB.<br>Allowed file types: txt, doc, docx, docm, odt, pdf, rtf</div></span>
+						<div class="form-control-static well well-sm">
+							<div class="row" style="margin-right: 0; margin-left: 0;">
+								<div class="col-lg-8 col-md-6" style="padding-left: 0;"></div>
+								<div class="hidden-md hidden-lg vspacer-lg"></div>
+								<div class="col-lg-4 col-md-6 well upload-toolbox">
+									<%%REMOVEFILE(attach_bill_2)%%>
+									<%%UPLOADFILE(attach_bill_2)%%>
+									<div class="text-bold text-danger file-type-error hidden"><%%TRANSLATION(invalid file type)%%></div>
+									<div class="text-bold text-danger file-size-error hidden"><%%TRANSLATION(file too large)%%></div>
+								</div>
+							</div>
+						</div>
+						<script>/* disable empty links */ $j(() => { const e_attach_bill_2 = '<%%VALUE(attach_bill_2)%%>'; if(e_attach_bill_2 == '' || e_attach_bill_2 == '&nbsp;' || e_attach_bill_2 == 'blank.gif') { $j('#attach_bill_2-link').hide(); $j('#attach_bill_2-image').parents('a').attr('href', '').on('click', (e) => e.preventDefault()); } });</script>
+					</div>
+				</div>
+
+				<!-- Field: Attach bill 3 -->
+				<div class="form-group approval_billing_table-attach_bill_3">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Attach bill 3 <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#attach_bill_3-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="attach_bill_3-description"><div class="alert alert-info bspacer-xs">Maximum file size allowed: 150 KB.<br>Allowed file types: txt, doc, docx, docm, odt, pdf, rtf</div></span>
+						<div class="form-control-static well well-sm">
+							<div class="row" style="margin-right: 0; margin-left: 0;">
+								<div class="col-lg-8 col-md-6" style="padding-left: 0;"></div>
+								<div class="hidden-md hidden-lg vspacer-lg"></div>
+								<div class="col-lg-4 col-md-6 well upload-toolbox">
+									<%%REMOVEFILE(attach_bill_3)%%>
+									<%%UPLOADFILE(attach_bill_3)%%>
+									<div class="text-bold text-danger file-type-error hidden"><%%TRANSLATION(invalid file type)%%></div>
+									<div class="text-bold text-danger file-size-error hidden"><%%TRANSLATION(file too large)%%></div>
+								</div>
+							</div>
+						</div>
+						<script>/* disable empty links */ $j(() => { const e_attach_bill_3 = '<%%VALUE(attach_bill_3)%%>'; if(e_attach_bill_3 == '' || e_attach_bill_3 == '&nbsp;' || e_attach_bill_3 == 'blank.gif') { $j('#attach_bill_3-link').hide(); $j('#attach_bill_3-image').parents('a').attr('href', '').on('click', (e) => e.preventDefault()); } });</script>
+					</div>
+				</div>
+
+				<!-- Field: Approval lookup -->
+				<div class="form-group approval_billing_table-approval_lookup">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="approval_lookup" data-parent_link="view_parent_modal">Approval lookup</label>
+					<div class="col-lg-9">
+						<div class="lookup-flex"><%%COMBO(approval_lookup)%%><%%PLINK(approval_lookup)%%><%%ADDNEW(approval_table)%%></div>
+					</div>
+				</div>
+
+			</fieldset>
+		</div>
+
+		<!-- DV action buttons -->
+		<hr class="hidden-md hidden-lg">
+		<div class="col-md-4 col-lg-2" id="approval_billing_table_dv_action_buttons">
+			<div class="btn-toolbar">
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%UPDATE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%DESELECT_BUTTON%%>
+					<%%DVPRINT_BUTTON%%>
+					<%%DELETE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%INSERT_BUTTON%%>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div><!-- /div class="panel-body" -->
+	<script>
+		$j(function() {
+			var add_new_mode = (!$j('input[name=SelectedID]').val());
+			var embedded_mode = ($j('input[name=Embedded]').val() == 1);
+
+			/* auto-close embedded page? */
+			var autoclose_mode = ($j('input[name=AutoClose]').val() == 1);
+			var record_added_ok = (location.search.split('record-added-ok=').length == 2);
+			var record_updated_ok = (location.search.split('record-updated-ok=').length == 2);
+			if((record_added_ok || record_updated_ok) && embedded_mode && autoclose_mode) {
+				setTimeout(AppGini.closeParentModal, 2000);
+			}
+
+
+			/* enable DV action buttons to float on scrolling down the form */
+			enable_dvab_floating();
+
+			$j('#approval_billing_table_dv_container-loading').addClass('hidden');
+			$j('#approval_billing_table_dv_container').removeClass('hidden');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('approval_billing_table', 'date_of_purchase');
+
+			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
+
+
+			if(true /* !embedded_mode */) {
+				$j('.add_new_parent').click(function() {
+					var pt = $j(this).attr('id').replace(/_add_new$/, '');
+					modal_window({
+						url: pt + '_view.php?addNew_x=1&Embedded=1',
+						close: function() {
+							var field_id = $j('#' + pt + '_add_new').prevAll('input:hidden').eq(0).attr('id');
+							$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+							/* if a new parent was added, select it */
+							var new_id = localStorage.getItem(pt + '_last_added_id');
+							if(new_id === null) return;
+
+							localStorage.removeItem(pt + '_last_added_id');
+							AppGini.lookupText({
+								id: new_id,
+								table: 'approval_billing_table',
+								field: field_id,
+								callback: function(data) {
+									$j('#' + field_id + '-container').select2('data', data, true);
+								}
+							});
+						},
+						size: 'full',
+						title: $j(this).attr('title')
+					});
+				});
+			}
+
+			AppGini.hideViewParentLinks();
+
+			$j('form').on('click', '.view_parent', function() {
+				var pt = $j(this).attr('id').replace(/_view_parent$/, '');
+				if($j(this).prevAll('input:hidden').length) {
+					var parent_id = $j(this).prevAll('input:hidden').eq(0).val();
+				} else {
+					var parent_id = $j(this).prevAll().children('input:hidden').eq(0).val();
+				}
+
+				/* handle radio lookups */
+				if($j(this).prevAll('[type=radio]').length) {
+					parent_id = $j(this).prevAll('[type=radio]').eq(0).val();
+				}
+
+				if(parent_id != '{empty_value}' && parent_id != undefined && parent_id != '') {
+					var parent_link = $j(this).parents('.form-group').children('label').data('parent_link');
+					switch(parent_link) {
+						case 'view_parent_hidden':
+							break;
+						case 'view_parent_modal':
+							modal_window({
+								url: pt + '_view.php?Embedded=1&SelectedID=' + encodeURIComponent(parent_id),
+								close: function() {
+									var field_id = $j('#' + pt + '_view_parent').prevAll('input:hidden').eq(0).attr('id');
+									$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+									// in case the parent record was updated, we should update auto-fills
+									var updaterName = field_id + '_update_autofills';
+									if(typeof(window[updaterName]) == 'function')
+										window[updaterName]();
+								},
+								size: 'full',
+								title: $j(this).attr('title')
+							});
+							break;
+						case 'view_parent_same_window':
+							window.location = pt + '_view.php?Embedded=' + (embedded_mode ? '1' : '') + '&SelectedID=' + encodeURIComponent(parent_id);
+							break;
+						case 'view_parent_new_window':
+							window.open(pt + '_view.php?SelectedID=' + encodeURIComponent(parent_id));
+							break;
+					}
+
+				}
+			});
+
+			approval_billing_tableUniqueFields.forEach(fieldName => enforce_uniqueness('approval_billing_table', fieldName));
+
+			/* load admin tools for admin user */
+			if(!add_new_mode) {
+				$j('body').append('<div id="admin-tools-appendix"></div>');
+				$j('#admin-tools-appendix').load(
+					'ajax_admin_tools.php?table=approval_billing_table&id=<%%URLVALUE(id)%%>',
+					function(resp) {
+						if(!resp.length) return;
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=approval_billing_table&id=<%%URLVALUE(id)%%>');
+					}
+				);
+			}
+		});
+
+		var approval_billing_tableUniqueFields = [
+		];
+	</script>

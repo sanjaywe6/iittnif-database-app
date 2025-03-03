@@ -1,9 +1,7 @@
-		<td colspan="17" class="row">
+		<td colspan="18" class="row">
+			<div id="approval_table-id-<%%VALUE(id)%%>" class="approval_table-id col-sm-12 h5 text-bold"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="approval_table-id-caption field-caption-tv">ID</dt>
-					<dd id="approval_table-id-<%%VALUE(id)%%>" class="approval_table-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></dd>
-
 					<dt class="approval_table-type-caption field-caption-tv">Approval Type</dt>
 					<dd id="approval_table-type-<%%VALUE(id)%%>" class="approval_table-type"><%%SELECT%%><%%VALUE(type)%%><%%ENDSELECT%%></dd>
 
@@ -28,15 +26,18 @@
 					<dt class="approval_table-person_responsbility-caption field-caption-tv">Person Responsbility</dt>
 					<dd id="approval_table-person_responsbility-<%%VALUE(id)%%>" class="approval_table-person_responsbility"><%%SELECT%%><%%VALUE(person_responsbility)%%><%%ENDSELECT%%></dd>
 
+					<dt class="approval_table-mode_of_purchase-caption field-caption-tv">Mode of Purchase</dt>
+					<dd id="approval_table-mode_of_purchase-<%%VALUE(id)%%>" class="approval_table-mode_of_purchase"><%%SELECT%%><%%VALUE(mode_of_purchase)%%><%%ENDSELECT%%></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="approval_table-mode_of_purchase-caption field-caption-tv">Mode of Purchase</dt>
-					<dd id="approval_table-mode_of_purchase-<%%VALUE(id)%%>" class="approval_table-mode_of_purchase"><%%SELECT%%><%%VALUE(mode_of_purchase)%%><%%ENDSELECT%%></dd>
-
 					<dt class="approval_table-approval_status-caption field-caption-tv">Approval Status</dt>
 					<dd id="approval_table-approval_status-<%%VALUE(id)%%>" class="approval_table-approval_status"><%%SELECT%%><%%VALUE(approval_status)%%><%%ENDSELECT%%></dd>
+
+					<dt class="approval_table-remarks_for_approval-caption field-caption-tv">Remarks for Approval</dt>
+					<dd id="approval_table-remarks_for_approval-<%%VALUE(id)%%>" class="approval_table-remarks_for_approval"><%%SELECT%%><%%VALUE(remarks_for_approval)%%><%%ENDSELECT%%></dd>
 
 					<dt class="approval_table-image-caption field-caption-tv">Upload Image if Any (Optional)</dt>
 					<dd id="approval_table-image-<%%VALUE(id)%%>" class="approval_table-image"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(image)%%>" data-lightbox="approval_table-image"><img src="thumbnail.php?i=<%%VALUE(image)%%>&t=approval_table&f=image&v=tv" class="img-thumbnail"></a></dd>

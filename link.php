@@ -42,6 +42,12 @@
 			'other_file' => getUploadDir(''),
 			'primary key' => 'id'
 		],
+		'approval_billing_table' => [
+			'attach_bill_1' => getUploadDir(''),
+			'attach_bill_2' => getUploadDir(''),
+			'attach_bill_3' => getUploadDir(''),
+			'primary key' => 'id'
+		],
 		'payment_track_details_table' => [
 			'upload_scanned_file_1' => getUploadDir(''),
 			'upload_scanned_file_2' => getUploadDir(''),

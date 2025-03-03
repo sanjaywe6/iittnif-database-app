@@ -129,6 +129,9 @@
 		setupTable('approval_table', []);
 		setupIndexes('approval_table', ['person_responsbility',]);
 
+		setupTable('approval_billing_table', []);
+		setupIndexes('approval_billing_table', ['approval_lookup','paid_by',]);
+
 		setupTable('all_bank_account_statement_table', []);
 
 		setupTable('payment_track_details_table', []);

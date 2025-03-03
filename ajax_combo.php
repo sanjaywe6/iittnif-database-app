@@ -564,6 +564,30 @@
 				'not_null' => false,
 			],
 		],
+		'approval_billing_table' => [
+			'approval_lookup' => [
+				'parent_table' => 'approval_table',
+				'parent_pk_field' => 'id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`approval_table`.`type`) || CHAR_LENGTH(`approval_table`.`description`), CONCAT_WS(\'\', `approval_table`.`type`, \'::\', `approval_table`.`description`), \'\')',
+				'parent_from' => '`approval_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`approval_table`.`person_responsbility` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
+			'paid_by' => [
+				'parent_table' => 'user_table',
+				'parent_pk_field' => 'user_id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
+				'parent_from' => '`user_table` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
+		],
 		'all_bank_account_statement_table' => [
 		],
 		'payment_track_details_table' => [

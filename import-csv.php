@@ -272,6 +272,13 @@
 
 			return $data;
 		},
+		'approval_billing_table' => function($data, $options = []) {
+			if(isset($data['approval_lookup'])) $data['approval_lookup'] = pkGivenLookupText($data['approval_lookup'], 'approval_billing_table', 'approval_lookup');
+			if(isset($data['date_of_purchase'])) $data['date_of_purchase'] = guessMySQLDateTime($data['date_of_purchase']);
+			if(isset($data['paid_by'])) $data['paid_by'] = pkGivenLookupText($data['paid_by'], 'approval_billing_table', 'paid_by');
+
+			return $data;
+		},
 		'all_bank_account_statement_table' => function($data, $options = []) {
 			if(isset($data['txn_date'])) $data['txn_date'] = guessMySQLDateTime($data['txn_date']);
 			if(isset($data['value_date'])) $data['value_date'] = guessMySQLDateTime($data['value_date']);
@@ -442,6 +449,7 @@
 		'problem_statement_table' => function($data, $options = []) { return true; },
 		'evaluators_table' => function($data, $options = []) { return true; },
 		'approval_table' => function($data, $options = []) { return true; },
+		'approval_billing_table' => function($data, $options = []) { return true; },
 		'all_bank_account_statement_table' => function($data, $options = []) { return true; },
 		'payment_track_details_table' => function($data, $options = []) { return true; },
 		'car_table' => function($data, $options = []) { return true; },

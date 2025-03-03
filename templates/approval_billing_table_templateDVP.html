@@ -1,0 +1,85 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Date of Purchase -->
+		<div class="form-group approval_billing_table-date_of_purchase" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Date of Purchase</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(date_of_purchase)%%></div>
+			</div>
+		</div>
+		<!-- Field: Total Amount of Bill -->
+		<div class="form-group approval_billing_table-total_amount_of_bill" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Total Amount of Bill</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(total_amount_of_bill)%%></div>
+			</div>
+		</div>
+		<!-- Field: Items List -->
+		<div class="form-group approval_billing_table-items_list" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Items List</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(items_list)%%></div>
+			</div>
+		</div>
+		<!-- Field: Paid by -->
+		<div class="form-group approval_billing_table-paid_by" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Paid by</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="paid_by<%%RND1%%>"><%%COMBOTEXT(paid_by)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Attach bill 1 -->
+		<div class="form-group approval_billing_table-attach_bill_1" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Attach bill 1</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(attach_bill_1)%%></div>
+			</div>
+		</div>
+		<!-- Field: Attach bill 2 -->
+		<div class="form-group approval_billing_table-attach_bill_2" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Attach bill 2</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(attach_bill_2)%%></div>
+			</div>
+		</div>
+		<!-- Field: Attach bill 3 -->
+		<div class="form-group approval_billing_table-attach_bill_3" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Attach bill 3</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(attach_bill_3)%%></div>
+			</div>
+		</div>
+		<!-- Field: Approval lookup -->
+		<div class="form-group approval_billing_table-approval_lookup" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Approval lookup</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="approval_lookup<%%RND1%%>"><%%COMBOTEXT(approval_lookup)%%></span></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

@@ -843,6 +843,26 @@ function approval_table_validateData(insertMode) {
 
 	return !errors;
 }
+function approval_billing_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	// check file uploads (file type and size)
+	if($j('#attach_bill_1').val() && !AppGini.checkFileUpload('attach_bill_1', 'txt|doc|docx|docm|odt|pdf|rtf', 153600)) {
+		AppGini.scrollTo('attach_bill_1');
+		return false;
+	}
+	if($j('#attach_bill_2').val() && !AppGini.checkFileUpload('attach_bill_2', 'txt|doc|docx|docm|odt|pdf|rtf', 153600)) {
+		AppGini.scrollTo('attach_bill_2');
+		return false;
+	}
+	if($j('#attach_bill_3').val() && !AppGini.checkFileUpload('attach_bill_3', 'txt|doc|docx|docm|odt|pdf|rtf', 153600)) {
+		AppGini.scrollTo('attach_bill_3');
+		return false;
+	}
+
+	return !errors;
+}
 function all_bank_account_statement_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;

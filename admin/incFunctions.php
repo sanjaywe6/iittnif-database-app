@@ -444,6 +444,13 @@
 					'group' => $tg[8],
 					'homepageShowCount' => 1
 				],
+				'honorarium_claim_table' => [
+					'Caption' => 'Honorarium - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[8],
+					'homepageShowCount' => 1
+				],
 				'all_bank_account_statement_table' => [
 					'Caption' => 'All bank account statement - App',
 					'Description' => '',
@@ -647,6 +654,7 @@
 			'evaluators_table' => ['Evaluators table', '', 'table.gif', 'Program Apps'],
 			'approval_table' => ['Approval - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'approval_billing_table' => ['Approval billing table', '', 'table.gif', 'Accounts &amp; Finance Apps'],
+			'honorarium_claim_table' => ['Honorarium - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'all_bank_account_statement_table' => ['All bank account statement - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'payment_track_details_table' => ['Payment track details - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'car_table' => ['Car - App', '<a href="https://lookerstudio.google.com/reporting/58f87367-3f09-42c0-a288-cf75f313cbed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Car App Report</b></button></a>', 'table.gif', 'Transport Apps'],
@@ -5982,6 +5990,155 @@
 						],
 					],
 				],
+				'honorarium_claim_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'name_of_advisor' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Name of Advisor/Consultant',
+							'description' => '',
+						],
+					],
+					'email_advisor' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Eamil ID of Advisor/Consultant',
+							'description' => '',
+						],
+					],
+					'department_of_tih' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Department of TIH',
+							'description' => '',
+						],
+					],
+					'bank_account_no' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Bank Account No.',
+							'description' => '',
+						],
+					],
+					'ifsc_code' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'IFSC Code',
+							'description' => '',
+						],
+					],
+					'bank_name' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Bank Name',
+							'description' => '',
+						],
+					],
+					'pan' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'PAN',
+							'description' => '',
+						],
+					],
+					'place_of_work_1' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Place of work (Visit) / Online [Date & Hours] - 1',
+							'description' => '',
+						],
+					],
+					'place_of_work_2' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Place of work (Visit) / Online [Date & Hours] - 1',
+							'description' => '',
+						],
+					],
+					'place_of_work_3' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Place of work (Visit) / Online [Date & Hours] - 1',
+							'description' => '',
+						],
+					],
+					'place_of_work_4' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Place of work (Visit) / Online [Date & Hours] - 1',
+							'description' => '',
+						],
+					],
+					'place_of_work_5' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Place of work (Visit) / Online [Date & Hours] - 5',
+							'description' => '',
+						],
+					],
+					'total_no_of_days' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Total No. of Days',
+							'description' => '',
+						],
+					],
+					'total_no_of_hours' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Total no of hours',
+							'description' => '',
+						],
+					],
+					'case_reference_email_subject' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Case Reference Email Subject (If Any)',
+							'description' => '',
+						],
+					],
+					'activities' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Activities/Deliverables',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created At',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+				],
 				'all_bank_account_statement_table' => [
 					'all_bank_account_statement_id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
@@ -9591,6 +9748,7 @@
 			'evaluators_table' => [],
 			'approval_table' => [],
 			'approval_billing_table' => [],
+			'honorarium_claim_table' => [],
 			'all_bank_account_statement_table' => [],
 			'payment_track_details_table' => [],
 			'car_table' => [],
@@ -9869,6 +10027,8 @@
 			'approval_billing_table' => [
 				'approval_lookup' => 'SELECT `approval_table`.`id`, IF(CHAR_LENGTH(`approval_table`.`type`) || CHAR_LENGTH(`approval_table`.`description`), CONCAT_WS(\'\', `approval_table`.`type`, \'::\', `approval_table`.`description`), \'\') FROM `approval_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`approval_table`.`person_responsbility` ORDER BY 2',
 				'paid_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+			],
+			'honorarium_claim_table' => [
 			],
 			'all_bank_account_statement_table' => [
 			],

@@ -279,6 +279,10 @@
 
 			return $data;
 		},
+		'honorarium_claim_table' => function($data, $options = []) {
+
+			return $data;
+		},
 		'all_bank_account_statement_table' => function($data, $options = []) {
 			if(isset($data['txn_date'])) $data['txn_date'] = guessMySQLDateTime($data['txn_date']);
 			if(isset($data['value_date'])) $data['value_date'] = guessMySQLDateTime($data['value_date']);
@@ -450,6 +454,7 @@
 		'evaluators_table' => function($data, $options = []) { return true; },
 		'approval_table' => function($data, $options = []) { return true; },
 		'approval_billing_table' => function($data, $options = []) { return true; },
+		'honorarium_claim_table' => function($data, $options = []) { return true; },
 		'all_bank_account_statement_table' => function($data, $options = []) { return true; },
 		'payment_track_details_table' => function($data, $options = []) { return true; },
 		'car_table' => function($data, $options = []) { return true; },

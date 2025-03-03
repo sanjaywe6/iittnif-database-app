@@ -588,6 +588,8 @@
 				'not_null' => false,
 			],
 		],
+		'honorarium_claim_table' => [
+		],
 		'all_bank_account_statement_table' => [
 		],
 		'payment_track_details_table' => [

@@ -6047,38 +6047,80 @@
 							'description' => '',
 						],
 					],
-					'place_of_work_1' => [
+					'place_of_work' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Place of work (Visit) / Online [Date & Hours] - 1',
+							'caption' => 'Place of work (Visit) / Online',
 							'description' => '',
 						],
 					],
-					'place_of_work_2' => [
-						'appgini' => "VARCHAR(255) NULL",
+					'date_1' => [
+						'appgini' => "DATE NULL",
 						'info' => [
-							'caption' => 'Place of work (Visit) / Online [Date & Hours] - 1',
+							'caption' => 'Day 1 Date',
 							'description' => '',
 						],
 					],
-					'place_of_work_3' => [
-						'appgini' => "VARCHAR(255) NULL",
+					'hours_1' => [
+						'appgini' => "VARCHAR(40) NULL",
 						'info' => [
-							'caption' => 'Place of work (Visit) / Online [Date & Hours] - 1',
+							'caption' => 'No. Hours',
 							'description' => '',
 						],
 					],
-					'place_of_work_4' => [
-						'appgini' => "VARCHAR(255) NULL",
+					'date_2' => [
+						'appgini' => "DATE NULL",
 						'info' => [
-							'caption' => 'Place of work (Visit) / Online [Date & Hours] - 1',
+							'caption' => 'Day 2 Date',
 							'description' => '',
 						],
 					],
-					'place_of_work_5' => [
-						'appgini' => "VARCHAR(255) NULL",
+					'hours_2' => [
+						'appgini' => "VARCHAR(40) NULL",
 						'info' => [
-							'caption' => 'Place of work (Visit) / Online [Date & Hours] - 5',
+							'caption' => 'No. Hours',
+							'description' => '',
+						],
+					],
+					'date_3' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Day 3 Date',
+							'description' => '',
+						],
+					],
+					'hours_3' => [
+						'appgini' => "VARCHAR(40) NULL",
+						'info' => [
+							'caption' => 'No. Hours',
+							'description' => '',
+						],
+					],
+					'date_4' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Day 4 Date',
+							'description' => '',
+						],
+					],
+					'hours_4' => [
+						'appgini' => "VARCHAR(40) NULL",
+						'info' => [
+							'caption' => 'No. Hours',
+							'description' => '',
+						],
+					],
+					'date_5' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Day 5 Date',
+							'description' => '',
+						],
+					],
+					'hours_5' => [
+						'appgini' => "VARCHAR(40) NULL",
+						'info' => [
+							'caption' => 'No. Hours',
 							'description' => '',
 						],
 					],

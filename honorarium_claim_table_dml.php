@@ -23,11 +23,17 @@ function honorarium_claim_table_insert(&$error_message = '') {
 		'ifsc_code' => Request::val('ifsc_code', ''),
 		'bank_name' => Request::val('bank_name', ''),
 		'pan' => Request::val('pan', ''),
-		'place_of_work_1' => Request::val('place_of_work_1', ''),
-		'place_of_work_2' => Request::val('place_of_work_2', ''),
-		'place_of_work_3' => Request::val('place_of_work_3', ''),
-		'place_of_work_4' => Request::val('place_of_work_4', ''),
-		'place_of_work_5' => Request::val('place_of_work_5', ''),
+		'place_of_work' => Request::val('place_of_work', ''),
+		'date_1' => Request::dateComponents('date_1', ''),
+		'hours_1' => Request::val('hours_1', ''),
+		'date_2' => Request::dateComponents('date_2', ''),
+		'hours_2' => Request::val('hours_2', ''),
+		'date_3' => Request::dateComponents('date_3', ''),
+		'hours_3' => Request::val('hours_3', ''),
+		'date_4' => Request::dateComponents('date_4', ''),
+		'hours_4' => Request::val('hours_4', ''),
+		'date_5' => Request::dateComponents('date_5', ''),
+		'hours_5' => Request::val('hours_5', ''),
 		'total_no_of_days' => Request::val('total_no_of_days', ''),
 		'total_no_of_hours' => Request::val('total_no_of_hours', ''),
 		'case_reference_email_subject' => Request::val('case_reference_email_subject', ''),
@@ -107,11 +113,17 @@ function honorarium_claim_table_update(&$selected_id, &$error_message = '') {
 		'ifsc_code' => Request::val('ifsc_code', ''),
 		'bank_name' => Request::val('bank_name', ''),
 		'pan' => Request::val('pan', ''),
-		'place_of_work_1' => Request::val('place_of_work_1', ''),
-		'place_of_work_2' => Request::val('place_of_work_2', ''),
-		'place_of_work_3' => Request::val('place_of_work_3', ''),
-		'place_of_work_4' => Request::val('place_of_work_4', ''),
-		'place_of_work_5' => Request::val('place_of_work_5', ''),
+		'place_of_work' => Request::val('place_of_work', ''),
+		'date_1' => Request::dateComponents('date_1', ''),
+		'hours_1' => Request::val('hours_1', ''),
+		'date_2' => Request::dateComponents('date_2', ''),
+		'hours_2' => Request::val('hours_2', ''),
+		'date_3' => Request::dateComponents('date_3', ''),
+		'hours_3' => Request::val('hours_3', ''),
+		'date_4' => Request::dateComponents('date_4', ''),
+		'hours_4' => Request::val('hours_4', ''),
+		'date_5' => Request::dateComponents('date_5', ''),
+		'hours_5' => Request::val('hours_5', ''),
 		'total_no_of_days' => Request::val('total_no_of_days', ''),
 		'total_no_of_hours' => Request::val('total_no_of_hours', ''),
 		'case_reference_email_subject' => Request::val('case_reference_email_subject', ''),
@@ -210,11 +222,56 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 
 	// unique random identifier
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
+	// combobox: date_1
+	$combo_date_1 = new DateCombo;
+	$combo_date_1->DateFormat = "dmy";
+	$combo_date_1->MinYear = defined('honorarium_claim_table.date_1.MinYear') ? constant('honorarium_claim_table.date_1.MinYear') : 1900;
+	$combo_date_1->MaxYear = defined('honorarium_claim_table.date_1.MaxYear') ? constant('honorarium_claim_table.date_1.MaxYear') : 2100;
+	$combo_date_1->DefaultDate = parseMySQLDate('', '');
+	$combo_date_1->MonthNames = $Translation['month names'];
+	$combo_date_1->NamePrefix = 'date_1';
+	// combobox: date_2
+	$combo_date_2 = new DateCombo;
+	$combo_date_2->DateFormat = "dmy";
+	$combo_date_2->MinYear = defined('honorarium_claim_table.date_2.MinYear') ? constant('honorarium_claim_table.date_2.MinYear') : 1900;
+	$combo_date_2->MaxYear = defined('honorarium_claim_table.date_2.MaxYear') ? constant('honorarium_claim_table.date_2.MaxYear') : 2100;
+	$combo_date_2->DefaultDate = parseMySQLDate('', '');
+	$combo_date_2->MonthNames = $Translation['month names'];
+	$combo_date_2->NamePrefix = 'date_2';
+	// combobox: date_3
+	$combo_date_3 = new DateCombo;
+	$combo_date_3->DateFormat = "dmy";
+	$combo_date_3->MinYear = defined('honorarium_claim_table.date_3.MinYear') ? constant('honorarium_claim_table.date_3.MinYear') : 1900;
+	$combo_date_3->MaxYear = defined('honorarium_claim_table.date_3.MaxYear') ? constant('honorarium_claim_table.date_3.MaxYear') : 2100;
+	$combo_date_3->DefaultDate = parseMySQLDate('', '');
+	$combo_date_3->MonthNames = $Translation['month names'];
+	$combo_date_3->NamePrefix = 'date_3';
+	// combobox: date_4
+	$combo_date_4 = new DateCombo;
+	$combo_date_4->DateFormat = "dmy";
+	$combo_date_4->MinYear = defined('honorarium_claim_table.date_4.MinYear') ? constant('honorarium_claim_table.date_4.MinYear') : 1900;
+	$combo_date_4->MaxYear = defined('honorarium_claim_table.date_4.MaxYear') ? constant('honorarium_claim_table.date_4.MaxYear') : 2100;
+	$combo_date_4->DefaultDate = parseMySQLDate('', '');
+	$combo_date_4->MonthNames = $Translation['month names'];
+	$combo_date_4->NamePrefix = 'date_4';
+	// combobox: date_5
+	$combo_date_5 = new DateCombo;
+	$combo_date_5->DateFormat = "dmy";
+	$combo_date_5->MinYear = defined('honorarium_claim_table.date_5.MinYear') ? constant('honorarium_claim_table.date_5.MinYear') : 1900;
+	$combo_date_5->MaxYear = defined('honorarium_claim_table.date_5.MaxYear') ? constant('honorarium_claim_table.date_5.MaxYear') : 2100;
+	$combo_date_5->DefaultDate = parseMySQLDate('', '');
+	$combo_date_5->MonthNames = $Translation['month names'];
+	$combo_date_5->NamePrefix = 'date_5';
 
 	if($hasSelectedId) {
 		if(!($row = getRecord('honorarium_claim_table', $selectedId))) {
 			return error_message($Translation['No records found'], 'honorarium_claim_table_view.php', false);
 		}
+		$combo_date_1->DefaultDate = $row['date_1'];
+		$combo_date_2->DefaultDate = $row['date_2'];
+		$combo_date_3->DefaultDate = $row['date_3'];
+		$combo_date_4->DefaultDate = $row['date_4'];
+		$combo_date_5->DefaultDate = $row['date_5'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
 	} else {
@@ -325,11 +382,22 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 		$jsReadOnly .= "\t\$j('#ifsc_code').replaceWith('<div class=\"form-control-static\" id=\"ifsc_code\">' + (\$j('#ifsc_code').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#bank_name').replaceWith('<div class=\"form-control-static\" id=\"bank_name\">' + (\$j('#bank_name').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#pan').replaceWith('<div class=\"form-control-static\" id=\"pan\">' + (\$j('#pan').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#place_of_work_1').replaceWith('<div class=\"form-control-static\" id=\"place_of_work_1\">' + (\$j('#place_of_work_1').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#place_of_work_2').replaceWith('<div class=\"form-control-static\" id=\"place_of_work_2\">' + (\$j('#place_of_work_2').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#place_of_work_3').replaceWith('<div class=\"form-control-static\" id=\"place_of_work_3\">' + (\$j('#place_of_work_3').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#place_of_work_4').replaceWith('<div class=\"form-control-static\" id=\"place_of_work_4\">' + (\$j('#place_of_work_4').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#place_of_work_5').replaceWith('<div class=\"form-control-static\" id=\"place_of_work_5\">' + (\$j('#place_of_work_5').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#place_of_work').replaceWith('<div class=\"form-control-static\" id=\"place_of_work\">' + (\$j('#place_of_work').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#date_1').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#date_1Day, #date_1Month, #date_1Year').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#hours_1').replaceWith('<div class=\"form-control-static\" id=\"hours_1\">' + (\$j('#hours_1').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#date_2').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#date_2Day, #date_2Month, #date_2Year').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#hours_2').replaceWith('<div class=\"form-control-static\" id=\"hours_2\">' + (\$j('#hours_2').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#date_3').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#date_3Day, #date_3Month, #date_3Year').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#hours_3').replaceWith('<div class=\"form-control-static\" id=\"hours_3\">' + (\$j('#hours_3').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#date_4').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#date_4Day, #date_4Month, #date_4Year').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#hours_4').replaceWith('<div class=\"form-control-static\" id=\"hours_4\">' + (\$j('#hours_4').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#date_5').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#date_5Day, #date_5Month, #date_5Year').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#hours_5').replaceWith('<div class=\"form-control-static\" id=\"hours_5\">' + (\$j('#hours_5').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#total_no_of_days').replaceWith('<div class=\"form-control-static\" id=\"total_no_of_days\">' + (\$j('#total_no_of_days').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#total_no_of_hours').replaceWith('<div class=\"form-control-static\" id=\"total_no_of_hours\">' + (\$j('#total_no_of_hours').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#case_reference_email_subject').replaceWith('<div class=\"form-control-static\" id=\"case_reference_email_subject\">' + (\$j('#case_reference_email_subject').val() || '') + '</div>');\n";
@@ -344,6 +412,41 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 	}
 
 	// process combos
+	$templateCode = str_replace(
+		'<%%COMBO(date_1)%%>', 
+		(!$fieldsAreEditable ? 
+			'<div class="form-control-static">' . $combo_date_1->GetHTML(true) . '</div>' : 
+			$combo_date_1->GetHTML()
+		), $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(date_1)%%>', $combo_date_1->GetHTML(true), $templateCode);
+	$templateCode = str_replace(
+		'<%%COMBO(date_2)%%>', 
+		(!$fieldsAreEditable ? 
+			'<div class="form-control-static">' . $combo_date_2->GetHTML(true) . '</div>' : 
+			$combo_date_2->GetHTML()
+		), $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(date_2)%%>', $combo_date_2->GetHTML(true), $templateCode);
+	$templateCode = str_replace(
+		'<%%COMBO(date_3)%%>', 
+		(!$fieldsAreEditable ? 
+			'<div class="form-control-static">' . $combo_date_3->GetHTML(true) . '</div>' : 
+			$combo_date_3->GetHTML()
+		), $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(date_3)%%>', $combo_date_3->GetHTML(true), $templateCode);
+	$templateCode = str_replace(
+		'<%%COMBO(date_4)%%>', 
+		(!$fieldsAreEditable ? 
+			'<div class="form-control-static">' . $combo_date_4->GetHTML(true) . '</div>' : 
+			$combo_date_4->GetHTML()
+		), $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(date_4)%%>', $combo_date_4->GetHTML(true), $templateCode);
+	$templateCode = str_replace(
+		'<%%COMBO(date_5)%%>', 
+		(!$fieldsAreEditable ? 
+			'<div class="form-control-static">' . $combo_date_5->GetHTML(true) . '</div>' : 
+			$combo_date_5->GetHTML()
+		), $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(date_5)%%>', $combo_date_5->GetHTML(true), $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
 	$lookup_fields = [];
@@ -370,11 +473,17 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 	$templateCode = str_replace('<%%UPLOADFILE(ifsc_code)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(bank_name)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(pan)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(place_of_work_1)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(place_of_work_2)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(place_of_work_3)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(place_of_work_4)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(place_of_work_5)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(place_of_work)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(date_1)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(hours_1)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(date_2)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(hours_2)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(date_3)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(hours_3)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(date_4)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(hours_4)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(date_5)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(hours_5)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(total_no_of_days)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(total_no_of_hours)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(case_reference_email_subject)%%>', '', $templateCode);
@@ -409,21 +518,34 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(pan)%%>', safe_html($urow['pan']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(pan)%%>', html_attr($row['pan']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(pan)%%>', urlencode($urow['pan']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(place_of_work_1)%%>', safe_html($urow['place_of_work_1']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(place_of_work_1)%%>', html_attr($row['place_of_work_1']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(place_of_work_1)%%>', urlencode($urow['place_of_work_1']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(place_of_work_2)%%>', safe_html($urow['place_of_work_2']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(place_of_work_2)%%>', html_attr($row['place_of_work_2']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(place_of_work_2)%%>', urlencode($urow['place_of_work_2']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(place_of_work_3)%%>', safe_html($urow['place_of_work_3']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(place_of_work_3)%%>', html_attr($row['place_of_work_3']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(place_of_work_3)%%>', urlencode($urow['place_of_work_3']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(place_of_work_4)%%>', safe_html($urow['place_of_work_4']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(place_of_work_4)%%>', html_attr($row['place_of_work_4']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(place_of_work_4)%%>', urlencode($urow['place_of_work_4']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(place_of_work_5)%%>', safe_html($urow['place_of_work_5']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(place_of_work_5)%%>', html_attr($row['place_of_work_5']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(place_of_work_5)%%>', urlencode($urow['place_of_work_5']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(place_of_work)%%>', safe_html($urow['place_of_work']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(place_of_work)%%>', html_attr($row['place_of_work']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(place_of_work)%%>', urlencode($urow['place_of_work']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(date_1)%%>', app_datetime($row['date_1']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(date_1)%%>', urlencode(app_datetime($urow['date_1'])), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(hours_1)%%>', safe_html($urow['hours_1']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(hours_1)%%>', html_attr($row['hours_1']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(hours_1)%%>', urlencode($urow['hours_1']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(date_2)%%>', app_datetime($row['date_2']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(date_2)%%>', urlencode(app_datetime($urow['date_2'])), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(hours_2)%%>', safe_html($urow['hours_2']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(hours_2)%%>', html_attr($row['hours_2']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(hours_2)%%>', urlencode($urow['hours_2']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(date_3)%%>', app_datetime($row['date_3']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(date_3)%%>', urlencode(app_datetime($urow['date_3'])), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(hours_3)%%>', safe_html($urow['hours_3']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(hours_3)%%>', html_attr($row['hours_3']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(hours_3)%%>', urlencode($urow['hours_3']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(date_4)%%>', app_datetime($row['date_4']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(date_4)%%>', urlencode(app_datetime($urow['date_4'])), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(hours_4)%%>', safe_html($urow['hours_4']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(hours_4)%%>', html_attr($row['hours_4']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(hours_4)%%>', urlencode($urow['hours_4']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(date_5)%%>', app_datetime($row['date_5']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(date_5)%%>', urlencode(app_datetime($urow['date_5'])), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(hours_5)%%>', safe_html($urow['hours_5']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(hours_5)%%>', html_attr($row['hours_5']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(hours_5)%%>', urlencode($urow['hours_5']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(total_no_of_days)%%>', safe_html($urow['total_no_of_days']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(total_no_of_days)%%>', html_attr($row['total_no_of_days']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(total_no_of_days)%%>', urlencode($urow['total_no_of_days']), $templateCode);
@@ -460,16 +582,28 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 		$templateCode = str_replace('<%%URLVALUE(bank_name)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(pan)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(pan)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(place_of_work_1)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(place_of_work_1)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(place_of_work_2)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(place_of_work_2)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(place_of_work_3)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(place_of_work_3)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(place_of_work_4)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(place_of_work_4)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(place_of_work_5)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(place_of_work_5)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(place_of_work)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(place_of_work)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(date_1)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(date_1)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(hours_1)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(hours_1)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(date_2)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(date_2)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(hours_2)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(hours_2)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(date_3)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(date_3)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(hours_3)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(hours_3)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(date_4)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(date_4)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(hours_4)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(hours_4)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(date_5)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(date_5)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(hours_5)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(hours_5)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(total_no_of_days)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(total_no_of_days)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(total_no_of_hours)%%>', '', $templateCode);

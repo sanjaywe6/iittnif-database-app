@@ -106,6 +106,66 @@ img[src="blank.gif"] { max-height: 10px !important; }
 	-webkit-overflow-scrolling: touch !important;
 }
 
+th.honorarium_claim_table-date_1, td.honorarium_claim_table-date_1 {
+	white-space: normal !important;
+	width: 100px !important;
+	min-width: 100px !important;
+	overflow: hidden;
+}
+th.honorarium_claim_table-hours_1, td.honorarium_claim_table-hours_1 {
+	white-space: normal !important;
+	width: 100px !important;
+	min-width: 100px !important;
+	overflow: hidden;
+}
+th.honorarium_claim_table-date_2, td.honorarium_claim_table-date_2 {
+	white-space: normal !important;
+	width: 100px !important;
+	min-width: 100px !important;
+	overflow: hidden;
+}
+th.honorarium_claim_table-hours_2, td.honorarium_claim_table-hours_2 {
+	white-space: normal !important;
+	width: 100px !important;
+	min-width: 100px !important;
+	overflow: hidden;
+}
+th.honorarium_claim_table-date_3, td.honorarium_claim_table-date_3 {
+	white-space: normal !important;
+	width: 100px !important;
+	min-width: 100px !important;
+	overflow: hidden;
+}
+th.honorarium_claim_table-hours_3, td.honorarium_claim_table-hours_3 {
+	white-space: normal !important;
+	width: 100px !important;
+	min-width: 100px !important;
+	overflow: hidden;
+}
+th.honorarium_claim_table-date_4, td.honorarium_claim_table-date_4 {
+	white-space: normal !important;
+	width: 100px !important;
+	min-width: 100px !important;
+	overflow: hidden;
+}
+th.honorarium_claim_table-hours_4, td.honorarium_claim_table-hours_4 {
+	white-space: normal !important;
+	width: 100px !important;
+	min-width: 100px !important;
+	overflow: hidden;
+}
+th.honorarium_claim_table-date_5, td.honorarium_claim_table-date_5 {
+	white-space: normal !important;
+	width: 100px !important;
+	min-width: 100px !important;
+	overflow: hidden;
+}
+th.honorarium_claim_table-hours_5, td.honorarium_claim_table-hours_5 {
+	white-space: normal !important;
+	width: 100px !important;
+	min-width: 100px !important;
+	overflow: hidden;
+}
 
 /* fixes for glyph icons in some themes */
 .glyphicon-camera:before { content: "\e046"; }

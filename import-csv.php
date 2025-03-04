@@ -280,6 +280,11 @@
 			return $data;
 		},
 		'honorarium_claim_table' => function($data, $options = []) {
+			if(isset($data['date_1'])) $data['date_1'] = guessMySQLDateTime($data['date_1']);
+			if(isset($data['date_2'])) $data['date_2'] = guessMySQLDateTime($data['date_2']);
+			if(isset($data['date_3'])) $data['date_3'] = guessMySQLDateTime($data['date_3']);
+			if(isset($data['date_4'])) $data['date_4'] = guessMySQLDateTime($data['date_4']);
+			if(isset($data['date_5'])) $data['date_5'] = guessMySQLDateTime($data['date_5']);
 
 			return $data;
 		},

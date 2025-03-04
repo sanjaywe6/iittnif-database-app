@@ -217,6 +217,69 @@
 					</div>
 				</div>
 
+				<!-- Field: Coordinated by TIH User (For Office Use of TIH) -->
+				<div class="form-group honorarium_claim_table-coordinated_by_tih_user">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="coordinated_by_tih_user" data-parent_link="view_parent_modal">Coordinated by TIH User (For Office Use of TIH)</label>
+					<div class="col-lg-9">
+						<div class="lookup-flex"><%%COMBO(coordinated_by_tih_user)%%><%%PLINK(coordinated_by_tih_user)%%><%%ADDNEW(user_table)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Payment date (For Office Use of TIH) -->
+				<div class="form-group honorarium_claim_table-payment_date">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="payment_date-dd">Payment date (For Office Use of TIH)</label>
+					<div class="col-lg-9">
+						<%%COMBO(payment_date)%%>
+					</div>
+				</div>
+
+				<!-- Field: Amount paid (For Office Use of TIH) -->
+				<div class="form-group honorarium_claim_table-amount_paid">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="amount_paid">Amount paid (For Office Use of TIH)</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="amount_paid" id="amount_paid" value="<%%VALUE(amount_paid)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Transaction details (For Office Use of TIH) -->
+				<div class="form-group honorarium_claim_table-transaction_details">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="transaction_details">Transaction details (For Office Use of TIH)</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="transaction_details" id="transaction_details" value="<%%VALUE(transaction_details)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Approval Status (For Office Use of TIH) -->
+				<div class="form-group honorarium_claim_table-approval_status">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="approval_status">Approval Status (For Office Use of TIH)</label>
+					<div class="col-lg-9">
+						<%%COMBO(approval_status)%%>
+					</div>
+				</div>
+
+				<!-- Field: Remarks for Approval (For Office Use of TIH) -->
+				<div class="form-group honorarium_claim_table-remarks_for_approval">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="remarks_for_approval">Remarks for Approval (For Office Use of TIH)</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="remarks_for_approval" id="remarks_for_approval" rows=" 5"><%%VALUE(remarks_for_approval)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Approved At -->
+				<div class="form-group honorarium_claim_table-last_updated_at">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Approved At</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="last_updated_at"><%%VALUE(last_updated_at)%%></div>
+					</div>
+				</div>
+
 			</fieldset>
 		</div>
 

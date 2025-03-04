@@ -38,6 +38,12 @@ function honorarium_claim_table_insert(&$error_message = '') {
 		'total_no_of_hours' => Request::val('total_no_of_hours', ''),
 		'case_reference_email_subject' => Request::val('case_reference_email_subject', ''),
 		'activities' => br2nl(Request::val('activities', '')),
+		'coordinated_by_tih_user' => Request::lookup('coordinated_by_tih_user', ''),
+		'payment_date' => Request::dateComponents('payment_date', ''),
+		'amount_paid' => Request::val('amount_paid', ''),
+		'transaction_details' => Request::val('transaction_details', ''),
+		'approval_status' => Request::val('approval_status', 'Under Consideration'),
+		'remarks_for_approval' => br2nl(Request::val('remarks_for_approval', 'None')),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
@@ -128,6 +134,12 @@ function honorarium_claim_table_update(&$selected_id, &$error_message = '') {
 		'total_no_of_hours' => Request::val('total_no_of_hours', ''),
 		'case_reference_email_subject' => Request::val('case_reference_email_subject', ''),
 		'activities' => br2nl(Request::val('activities', '')),
+		'coordinated_by_tih_user' => Request::lookup('coordinated_by_tih_user', ''),
+		'payment_date' => Request::dateComponents('payment_date', ''),
+		'amount_paid' => Request::val('amount_paid', ''),
+		'transaction_details' => Request::val('transaction_details', ''),
+		'approval_status' => Request::val('approval_status', ''),
+		'remarks_for_approval' => br2nl(Request::val('remarks_for_approval', '')),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 	];
@@ -217,6 +229,7 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 	$showSaveAsCopy = !$dvprint && ($allowInsert && $hasSelectedId && !$noSaveAsCopy);
 	$fieldsAreEditable = !$dvprint && (($allowInsert && !$hasSelectedId) || ($allowUpdate && $hasSelectedId) || $showSaveAsCopy);
 
+	$filterer_coordinated_by_tih_user = Request::val('filterer_coordinated_by_tih_user');
 
 	// populate filterers, starting from children to grand-parents
 
@@ -262,6 +275,31 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 	$combo_date_5->DefaultDate = parseMySQLDate('', '');
 	$combo_date_5->MonthNames = $Translation['month names'];
 	$combo_date_5->NamePrefix = 'date_5';
+	// combobox: coordinated_by_tih_user
+	$combo_coordinated_by_tih_user = new DataCombo;
+	// combobox: payment_date
+	$combo_payment_date = new DateCombo;
+	$combo_payment_date->DateFormat = "dmy";
+	$combo_payment_date->MinYear = defined('honorarium_claim_table.payment_date.MinYear') ? constant('honorarium_claim_table.payment_date.MinYear') : 1900;
+	$combo_payment_date->MaxYear = defined('honorarium_claim_table.payment_date.MaxYear') ? constant('honorarium_claim_table.payment_date.MaxYear') : 2100;
+	$combo_payment_date->DefaultDate = parseMySQLDate('', '');
+	$combo_payment_date->MonthNames = $Translation['month names'];
+	$combo_payment_date->NamePrefix = 'payment_date';
+	// combobox: approval_status
+	$combo_approval_status = new Combo;
+	$combo_approval_status->ListType = 0;
+	$combo_approval_status->MultipleSeparator = ', ';
+	$combo_approval_status->ListBoxHeight = 10;
+	$combo_approval_status->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/honorarium_claim_table.approval_status.csv')) {
+		$approval_status_data = addslashes(implode('', @file(__DIR__ . '/hooks/honorarium_claim_table.approval_status.csv')));
+		$combo_approval_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($approval_status_data))));
+		$combo_approval_status->ListData = $combo_approval_status->ListItem;
+	} else {
+		$combo_approval_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Approved by CEO;;Not Approved by CEO;;Approved by PD;;Not Approved by PD;;Under Consideration"))));
+		$combo_approval_status->ListData = $combo_approval_status->ListItem;
+	}
+	$combo_approval_status->SelectName = 'approval_status';
 
 	if($hasSelectedId) {
 		if(!($row = getRecord('honorarium_claim_table', $selectedId))) {
@@ -272,24 +310,111 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 		$combo_date_3->DefaultDate = $row['date_3'];
 		$combo_date_4->DefaultDate = $row['date_4'];
 		$combo_date_5->DefaultDate = $row['date_5'];
+		$combo_coordinated_by_tih_user->SelectedData = $row['coordinated_by_tih_user'];
+		$combo_payment_date->DefaultDate = $row['payment_date'];
+		$combo_approval_status->SelectedData = $row['approval_status'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
 	} else {
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
+		$combo_coordinated_by_tih_user->SelectedData = $filterer_coordinated_by_tih_user;
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '28' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 	}
+	$combo_coordinated_by_tih_user->HTML = '<span id="coordinated_by_tih_user-container' . $rnd1 . '"></span><input type="hidden" name="coordinated_by_tih_user" id="coordinated_by_tih_user' . $rnd1 . '" value="' . html_attr($combo_coordinated_by_tih_user->SelectedData) . '">';
+	$combo_coordinated_by_tih_user->MatchText = '<span id="coordinated_by_tih_user-container-readonly' . $rnd1 . '"></span><input type="hidden" name="coordinated_by_tih_user" id="coordinated_by_tih_user' . $rnd1 . '" value="' . html_attr($combo_coordinated_by_tih_user->SelectedData) . '">';
+	$combo_approval_status->Render();
 
 	ob_start();
 	?>
 
 	<script>
 		// initial lookup values
+		AppGini.current_coordinated_by_tih_user__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['coordinated_by_tih_user'] : htmlspecialchars($filterer_coordinated_by_tih_user, ENT_QUOTES)); ?>"};
 
 		$j(function() {
 			setTimeout(function() {
+				if(typeof(coordinated_by_tih_user_reload__RAND__) == 'function') coordinated_by_tih_user_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
+		function coordinated_by_tih_user_reload__RAND__() {
+		<?php if($fieldsAreEditable) { ?>
+
+			$j("#coordinated_by_tih_user-container__RAND__").select2({
+				/* initial default value */
+				initSelection: function(e, c) {
+					$j.ajax({
+						url: 'ajax_combo.php',
+						dataType: 'json',
+						data: { id: AppGini.current_coordinated_by_tih_user__RAND__.value, t: 'honorarium_claim_table', f: 'coordinated_by_tih_user' },
+						success: function(resp) {
+							c({
+								id: resp.results[0].id,
+								text: resp.results[0].text
+							});
+							$j('[name="coordinated_by_tih_user"]').val(resp.results[0].id);
+							$j('[id=coordinated_by_tih_user-container-readonly__RAND__]').html('<span class="match-text" id="coordinated_by_tih_user-match-text">' + resp.results[0].text + '</span>');
+							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
+
+
+							if(typeof(coordinated_by_tih_user_update_autofills__RAND__) == 'function') coordinated_by_tih_user_update_autofills__RAND__();
+						}
+					});
+				},
+				width: '100%',
+				formatNoMatches: function(term) { return '<?php echo addslashes($Translation['No matches found!']); ?>'; },
+				minimumResultsForSearch: 5,
+				loadMorePadding: 200,
+				ajax: {
+					url: 'ajax_combo.php',
+					dataType: 'json',
+					cache: true,
+					data: function(term, page) { return { s: term, p: page, t: 'honorarium_claim_table', f: 'coordinated_by_tih_user' }; },
+					results: function(resp, page) { return resp; }
+				},
+				escapeMarkup: function(str) { return str; }
+			}).on('change', function(e) {
+				AppGini.current_coordinated_by_tih_user__RAND__.value = e.added.id;
+				AppGini.current_coordinated_by_tih_user__RAND__.text = e.added.text;
+				$j('[name="coordinated_by_tih_user"]').val(e.added.id);
+				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
+
+
+				if(typeof(coordinated_by_tih_user_update_autofills__RAND__) == 'function') coordinated_by_tih_user_update_autofills__RAND__();
+			});
+
+			if(!$j("#coordinated_by_tih_user-container__RAND__").length) {
+				$j.ajax({
+					url: 'ajax_combo.php',
+					dataType: 'json',
+					data: { id: AppGini.current_coordinated_by_tih_user__RAND__.value, t: 'honorarium_claim_table', f: 'coordinated_by_tih_user' },
+					success: function(resp) {
+						$j('[name="coordinated_by_tih_user"]').val(resp.results[0].id);
+						$j('[id=coordinated_by_tih_user-container-readonly__RAND__]').html('<span class="match-text" id="coordinated_by_tih_user-match-text">' + resp.results[0].text + '</span>');
+						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
+
+						if(typeof(coordinated_by_tih_user_update_autofills__RAND__) == 'function') coordinated_by_tih_user_update_autofills__RAND__();
+					}
+				});
+			}
+
+		<?php } else { ?>
+
+			$j.ajax({
+				url: 'ajax_combo.php',
+				dataType: 'json',
+				data: { id: AppGini.current_coordinated_by_tih_user__RAND__.value, t: 'honorarium_claim_table', f: 'coordinated_by_tih_user' },
+				success: function(resp) {
+					$j('[id=coordinated_by_tih_user-container__RAND__], [id=coordinated_by_tih_user-container-readonly__RAND__]').html('<span class="match-text" id="coordinated_by_tih_user-match-text">' + resp.results[0].text + '</span>');
+					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
+
+					if(typeof(coordinated_by_tih_user_update_autofills__RAND__) == 'function') coordinated_by_tih_user_update_autofills__RAND__();
+				}
+			});
+		<?php } ?>
+
+		}
 	</script>
 	<?php
 
@@ -402,6 +527,14 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 		$jsReadOnly .= "\t\$j('#total_no_of_hours').replaceWith('<div class=\"form-control-static\" id=\"total_no_of_hours\">' + (\$j('#total_no_of_hours').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#case_reference_email_subject').replaceWith('<div class=\"form-control-static\" id=\"case_reference_email_subject\">' + (\$j('#case_reference_email_subject').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#activities').replaceWith('<div class=\"form-control-static\" id=\"activities\">' + (\$j('#activities').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#coordinated_by_tih_user').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#coordinated_by_tih_user_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('#payment_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#payment_dateDay, #payment_dateMonth, #payment_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#amount_paid').replaceWith('<div class=\"form-control-static\" id=\"amount_paid\">' + (\$j('#amount_paid').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#transaction_details').replaceWith('<div class=\"form-control-static\" id=\"transaction_details\">' + (\$j('#transaction_details').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#approval_status').replaceWith('<div class=\"form-control-static\" id=\"approval_status\">' + (\$j('#approval_status').val() || '') + '</div>'); \$j('#approval_status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#remarks_for_approval').replaceWith('<div class=\"form-control-static\" id=\"remarks_for_approval\">' + (\$j('#remarks_for_approval').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -447,9 +580,21 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 			$combo_date_5->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(date_5)%%>', $combo_date_5->GetHTML(true), $templateCode);
+	$templateCode = str_replace('<%%COMBO(coordinated_by_tih_user)%%>', $combo_coordinated_by_tih_user->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(coordinated_by_tih_user)%%>', $combo_coordinated_by_tih_user->MatchText, $templateCode);
+	$templateCode = str_replace('<%%URLCOMBOTEXT(coordinated_by_tih_user)%%>', urlencode($combo_coordinated_by_tih_user->MatchText), $templateCode);
+	$templateCode = str_replace(
+		'<%%COMBO(payment_date)%%>', 
+		(!$fieldsAreEditable ? 
+			'<div class="form-control-static">' . $combo_payment_date->GetHTML(true) . '</div>' : 
+			$combo_payment_date->GetHTML()
+		), $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(payment_date)%%>', $combo_payment_date->GetHTML(true), $templateCode);
+	$templateCode = str_replace('<%%COMBO(approval_status)%%>', $combo_approval_status->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(approval_status)%%>', $combo_approval_status->SelectedData, $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
-	$lookup_fields = [];
+	$lookup_fields = ['coordinated_by_tih_user' => ['user_table', 'Coordinated by TIH User (For Office Use of TIH)'], ];
 	foreach($lookup_fields as $luf => $ptfc) {
 		$pt_perm = getTablePermissions($ptfc[0]);
 
@@ -488,6 +633,12 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 	$templateCode = str_replace('<%%UPLOADFILE(total_no_of_hours)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(case_reference_email_subject)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(activities)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(coordinated_by_tih_user)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(payment_date)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(amount_paid)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(transaction_details)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approval_status)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(remarks_for_approval)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
@@ -557,6 +708,22 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 		$templateCode = str_replace('<%%URLVALUE(case_reference_email_subject)%%>', urlencode($urow['case_reference_email_subject']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(activities)%%>', safe_html($urow['activities'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(activities)%%>', urlencode($urow['activities']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(coordinated_by_tih_user)%%>', safe_html($urow['coordinated_by_tih_user']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(coordinated_by_tih_user)%%>', html_attr($row['coordinated_by_tih_user']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(coordinated_by_tih_user)%%>', urlencode($urow['coordinated_by_tih_user']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(payment_date)%%>', app_datetime($row['payment_date']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(payment_date)%%>', urlencode(app_datetime($urow['payment_date'])), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(amount_paid)%%>', safe_html($urow['amount_paid']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(amount_paid)%%>', html_attr($row['amount_paid']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(amount_paid)%%>', urlencode($urow['amount_paid']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(transaction_details)%%>', safe_html($urow['transaction_details']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(transaction_details)%%>', html_attr($row['transaction_details']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(transaction_details)%%>', urlencode($urow['transaction_details']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', safe_html($urow['approval_status']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', html_attr($row['approval_status']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode($urow['approval_status']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(remarks_for_approval)%%>', safe_html($urow['remarks_for_approval'], $fieldsAreEditable), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(remarks_for_approval)%%>', urlencode($urow['remarks_for_approval']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
@@ -612,6 +779,18 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 		$templateCode = str_replace('<%%URLVALUE(case_reference_email_subject)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(activities)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(activities)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(coordinated_by_tih_user)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(coordinated_by_tih_user)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(payment_date)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(payment_date)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(amount_paid)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(amount_paid)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(transaction_details)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(transaction_details)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_status)%%>', 'Under Consideration', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode('Under Consideration'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(remarks_for_approval)%%>', 'None', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(remarks_for_approval)%%>', urlencode('None'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);

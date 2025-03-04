@@ -285,6 +285,8 @@
 			if(isset($data['date_3'])) $data['date_3'] = guessMySQLDateTime($data['date_3']);
 			if(isset($data['date_4'])) $data['date_4'] = guessMySQLDateTime($data['date_4']);
 			if(isset($data['date_5'])) $data['date_5'] = guessMySQLDateTime($data['date_5']);
+			if(isset($data['coordinated_by_tih_user'])) $data['coordinated_by_tih_user'] = pkGivenLookupText($data['coordinated_by_tih_user'], 'honorarium_claim_table', 'coordinated_by_tih_user');
+			if(isset($data['payment_date'])) $data['payment_date'] = guessMySQLDateTime($data['payment_date']);
 
 			return $data;
 		},

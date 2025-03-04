@@ -6152,6 +6152,48 @@
 							'description' => '',
 						],
 					],
+					'coordinated_by_tih_user' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Coordinated by TIH User (For Office Use of TIH)',
+							'description' => '',
+						],
+					],
+					'payment_date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Payment date (For Office Use of TIH)',
+							'description' => '',
+						],
+					],
+					'amount_paid' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Amount paid (For Office Use of TIH)',
+							'description' => '',
+						],
+					],
+					'transaction_details' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Transaction details (For Office Use of TIH)',
+							'description' => '',
+						],
+					],
+					'approval_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Under Consideration'",
+						'info' => [
+							'caption' => 'Approval Status (For Office Use of TIH)',
+							'description' => '',
+						],
+					],
+					'remarks_for_approval' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Remarks for Approval (For Office Use of TIH)',
+							'description' => '',
+						],
+					],
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
@@ -6176,7 +6218,7 @@
 					'last_updated_at' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Last Updated At',
+							'caption' => 'Approved At',
 							'description' => '',
 						],
 					],
@@ -9676,6 +9718,9 @@
 				'approval_table' => ['approval_lookup'],
 				'user_table' => ['paid_by'],
 			],
+			'honorarium_claim_table' => [
+				'user_table' => ['coordinated_by_tih_user'],
+			],
 			'car_usage_table' => [
 				'car_table' => ['car_lookup'],
 			],
@@ -10071,6 +10116,7 @@
 				'paid_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'honorarium_claim_table' => [
+				'coordinated_by_tih_user' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'all_bank_account_statement_table' => [
 			],

@@ -349,7 +349,7 @@ Seminar;;
 
 Conference;;
 
-Skill&#160;Development;;Business Development;;Startups;;Training"))));
+Skill&#160;Development;;Business Development;;Startups;;Training;;Operation Dronagiri"))));
 		$combo_type->ListData = $combo_type->ListItem;
 	}
 	$combo_type->SelectName = 'type';

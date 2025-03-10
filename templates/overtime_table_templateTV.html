@@ -1,0 +1,16 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the overtime_table_init() hook (in hooks/overtime_table.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="overtime_table-id-<%%VALUE(id)%%>" class="overtime_table-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></td>
+		<td id="overtime_table-select_employee-<%%VALUE(id)%%>" class="overtime_table-select_employee"><%%SELECT%%><%%VALUE(select_employee)%%><%%ENDSELECT%%></td>
+		<td id="overtime_table-start_datetime-<%%VALUE(id)%%>" class="overtime_table-start_datetime"><%%SELECT%%><%%VALUE(start_datetime)%%><%%ENDSELECT%%></td>
+		<td id="overtime_table-end_datetime-<%%VALUE(id)%%>" class="overtime_table-end_datetime"><%%SELECT%%><%%VALUE(end_datetime)%%><%%ENDSELECT%%></td>
+		<td id="overtime_table-number_of_hours-<%%VALUE(id)%%>" class="overtime_table-number_of_hours"><%%SELECT%%><%%VALUE(number_of_hours)%%><%%ENDSELECT%%></td>
+		<td id="overtime_table-approval_status-<%%VALUE(id)%%>" class="overtime_table-approval_status"><%%SELECT%%><%%VALUE(approval_status)%%><%%ENDSELECT%%></td>
+		<td id="overtime_table-reson_for_overtime-<%%VALUE(id)%%>" class="overtime_table-reson_for_overtime"><%%SELECT%%><%%VALUE(reson_for_overtime)%%><%%ENDSELECT%%></td>
+		<td id="overtime_table-approval_remarks-<%%VALUE(id)%%>" class="overtime_table-approval_remarks"><%%SELECT%%><%%VALUE(approval_remarks)%%><%%ENDSELECT%%></td>
+		<td id="overtime_table-approved_by-<%%VALUE(id)%%>" class="overtime_table-approved_by"><%%SELECT%%><%%VALUE(approved_by)%%><%%ENDSELECT%%></td>

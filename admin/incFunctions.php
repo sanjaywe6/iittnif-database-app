@@ -591,6 +591,13 @@
 					'group' => $tg[4],
 					'homepageShowCount' => 1
 				],
+				'overtime_table' => [
+					'Caption' => 'Overtime - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[6],
+					'homepageShowCount' => 1
+				],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) return $all_tables;
@@ -675,6 +682,7 @@
 			'address_tdp' => ['Address Details - App', '', 'table.gif', 'Technology Development Apps'],
 			'summary_table_tdp' => ['Summary - App', '', 'table.gif', 'Technology Development Apps'],
 			'project_details_tdp' => ['Project details - App', '', 'table.gif', 'Technology Development Apps'],
+			'overtime_table' => ['Overtime - App', '', 'table.gif', 'Employee Data Management Apps'],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) {
@@ -8454,6 +8462,99 @@
 						],
 					],
 				],
+				'overtime_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'select_employee' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Select Employee',
+							'description' => '',
+						],
+					],
+					'start_datetime' => [
+						'appgini' => "DATETIME NULL",
+						'info' => [
+							'caption' => 'Start Date & Time',
+							'description' => '',
+						],
+					],
+					'end_datetime' => [
+						'appgini' => "DATETIME NULL",
+						'info' => [
+							'caption' => 'End Date & Time',
+							'description' => '',
+						],
+					],
+					'number_of_hours' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Number of hours',
+							'description' => '',
+						],
+					],
+					'reson_for_overtime' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Reson for overtime',
+							'description' => '',
+						],
+					],
+					'approval_status' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Approval status',
+							'description' => '',
+						],
+					],
+					'approval_remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Approval remarks',
+							'description' => '',
+						],
+					],
+					'approved_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Approved by',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
 			];
 
 			$internalTablesSimple = [
@@ -9763,6 +9864,9 @@
 			'project_details_tdp' => [
 				'summary_table_tdp' => ['project_number'],
 			],
+			'overtime_table' => [
+				'user_table' => ['select_employee'],
+			],
 		];
 
 		return isset($parents[$table]) ? $parents[$table] : [];
@@ -9856,6 +9960,12 @@
 			'address_tdp' => [],
 			'summary_table_tdp' => [],
 			'project_details_tdp' => [],
+			'overtime_table' => [
+				'number_of_hours' => 'SELECT 
+					    TIMESTAMPDIFF(SECOND, `overtime_table`.`start_datetime`, `overtime_table`.`end_datetime`)/3600 AS DifferenceInSeconds
+					FROM overtime_table
+					WHERE id = 1;',
+			],
 		];
 	}
 	#########################################################
@@ -10171,6 +10281,9 @@
 			],
 			'project_details_tdp' => [
 				'project_number' => 'SELECT `summary_table_tdp`.`id`, `summary_table_tdp`.`project_number` FROM `summary_table_tdp` ORDER BY 2',
+			],
+			'overtime_table' => [
+				'select_employee' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 		];
 

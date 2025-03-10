@@ -121,8 +121,18 @@
 			if($row = db_fetch_assoc($result)){
 				// if already approved then block the update
 				if ($row["approval_status"] == "Approved by CEO" xor $row["approval_status"] == "Not Approved by CEO" xor $row["approval_status"] == "Approved by PD" xor $row["approval_status"] == "Not Approved by PD"){
-					WindowMessages::add("Sorry! Update failed. Approval status can not be changed. For more information, Please contact admin.");
-					return FALSE;
+
+					if ($memberInfo["groupID"] == 3){
+						return TRUE;
+					}
+					else{
+						WindowMessages::add("Sorry! You don't have permission to Approve or Disapprove the approval. For more information, Please contact admin.");
+						return FALSE;
+					}
+
+
+				// 	WindowMessages::add("Sorry! Update failed. Approval status can not be changed. For more information, Please contact admin.");
+				// 	return FALSE;
 				}
 				else{
 					return TRUE;

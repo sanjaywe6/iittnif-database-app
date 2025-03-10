@@ -189,6 +189,9 @@
 		setupTable('project_details_tdp', []);
 		setupIndexes('project_details_tdp', ['project_number',]);
 
+		setupTable('overtime_table', []);
+		setupIndexes('overtime_table', ['select_employee',]);
+
 
 
 		// set up internal tables

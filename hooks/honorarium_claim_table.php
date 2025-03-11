@@ -72,7 +72,7 @@
 
 	function honorarium_claim_table_before_insert(&$data, $memberInfo, &$args) {
 
-		return TRUE;
+		return approvalBeforeInsert($data, $memberInfo);
 
 	}
 
@@ -83,7 +83,7 @@
 
 	function honorarium_claim_table_before_update(&$data, $memberInfo, &$args) {
 
-		return TRUE;
+		return approvalBeforeUpdate($data, $memberInfo);
 
 	}
 

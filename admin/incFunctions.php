@@ -591,8 +591,8 @@
 					'group' => $tg[4],
 					'homepageShowCount' => 1
 				],
-				'overtime_table' => [
-					'Caption' => 'Overtime - App',
+				'beyond_working_hours_table' => [
+					'Caption' => 'Beyond Working Hours Working Approval - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[6],
@@ -682,7 +682,7 @@
 			'address_tdp' => ['Address Details - App', '', 'table.gif', 'Technology Development Apps'],
 			'summary_table_tdp' => ['Summary - App', '', 'table.gif', 'Technology Development Apps'],
 			'project_details_tdp' => ['Project details - App', '', 'table.gif', 'Technology Development Apps'],
-			'overtime_table' => ['Overtime - App', '', 'table.gif', 'Employee Data Management Apps'],
+			'beyond_working_hours_table' => ['Beyond Working Hours Working Approval - App', '', 'table.gif', 'Employee Data Management Apps'],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) {
@@ -8462,7 +8462,7 @@
 						],
 					],
 				],
-				'overtime_table' => [
+				'beyond_working_hours_table' => [
 					'id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
@@ -8474,6 +8474,13 @@
 						'appgini' => "INT UNSIGNED NULL",
 						'info' => [
 							'caption' => 'Select Employee',
+							'description' => '',
+						],
+					],
+					'reson_for_overtime' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Reson for overtime',
 							'description' => '',
 						],
 					],
@@ -8495,13 +8502,6 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Number of hours',
-							'description' => '',
-						],
-					],
-					'reson_for_overtime' => [
-						'appgini' => "TEXT NULL",
-						'info' => [
-							'caption' => 'Reson for overtime',
 							'description' => '',
 						],
 					],
@@ -9864,7 +9864,7 @@
 			'project_details_tdp' => [
 				'summary_table_tdp' => ['project_number'],
 			],
-			'overtime_table' => [
+			'beyond_working_hours_table' => [
 				'user_table' => ['select_employee'],
 			],
 		];
@@ -9960,7 +9960,7 @@
 			'address_tdp' => [],
 			'summary_table_tdp' => [],
 			'project_details_tdp' => [],
-			'overtime_table' => [
+			'beyond_working_hours_table' => [
 				'number_of_hours' => 'SELECT 
 					    TIMESTAMPDIFF(SECOND, `overtime_table`.`start_datetime`, `overtime_table`.`end_datetime`)/3600 AS DifferenceInSeconds
 					FROM overtime_table
@@ -10282,7 +10282,7 @@
 			'project_details_tdp' => [
 				'project_number' => 'SELECT `summary_table_tdp`.`id`, `summary_table_tdp`.`project_number` FROM `summary_table_tdp` ORDER BY 2',
 			],
-			'overtime_table' => [
+			'beyond_working_hours_table' => [
 				'select_employee' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 		];

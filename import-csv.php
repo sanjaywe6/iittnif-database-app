@@ -410,8 +410,8 @@
 
 			return $data;
 		},
-		'overtime_table' => function($data, $options = []) {
-			if(isset($data['select_employee'])) $data['select_employee'] = pkGivenLookupText($data['select_employee'], 'overtime_table', 'select_employee');
+		'beyond_working_hours_table' => function($data, $options = []) {
+			if(isset($data['select_employee'])) $data['select_employee'] = pkGivenLookupText($data['select_employee'], 'beyond_working_hours_table', 'select_employee');
 			if(isset($data['start_datetime'])) $data['start_datetime'] = guessMySQLDateTime($data['start_datetime']);
 			if(isset($data['end_datetime'])) $data['end_datetime'] = guessMySQLDateTime($data['end_datetime']);
 
@@ -489,7 +489,7 @@
 		'address_tdp' => function($data, $options = []) { return true; },
 		'summary_table_tdp' => function($data, $options = []) { return true; },
 		'project_details_tdp' => function($data, $options = []) { return true; },
-		'overtime_table' => function($data, $options = []) { return true; },
+		'beyond_working_hours_table' => function($data, $options = []) { return true; },
 	];
 
 	/*

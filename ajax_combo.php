@@ -795,7 +795,7 @@
 				'not_null' => false,
 			],
 		],
-		'overtime_table' => [
+		'beyond_working_hours_table' => [
 			'select_employee' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',

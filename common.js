@@ -1039,7 +1039,7 @@ function project_details_tdp_validateData(insertMode) {
 
 	return !errors;
 }
-function overtime_table_validateData(insertMode) {
+function beyond_working_hours_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
 

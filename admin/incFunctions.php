@@ -200,7 +200,7 @@
 					'homepageShowCount' => 1
 				],
 				'mou_company_area_details_table' => [
-					'Caption' => 'MoU company area details - App',
+					'Caption' => 'MoU Scope - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[0],
@@ -633,7 +633,7 @@
 			'action_actor' => ['Action actor', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'visiting_card_table' => ['Visiting card - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'mou_details_table' => ['MoU details - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
-			'mou_company_area_details_table' => ['MoU company area details - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
+			'mou_company_area_details_table' => ['MoU Scope - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'goal_setting_table' => ['Goal setting - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'goal_progress_table' => ['Goal progress table', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'task_setting_table' => ['Task setting - App', '<a href="https://lookerstudio.google.com/reporting/52ec0149-4f45-4041-92b6-afc26208458e"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Task Setting App Report</b></button></a>', 'table.gif', 'Events / Meetings / Goals Apps'],
@@ -2454,7 +2454,7 @@
 					'area' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
-							'caption' => 'Area',
+							'caption' => 'Area / Scope',
 							'description' => '',
 						],
 					],

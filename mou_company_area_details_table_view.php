@@ -57,7 +57,7 @@
 	$x->QueryFieldsFilters = [
 		"`mou_company_area_details_table`.`id`" => "ID",
 		"IF(    CHAR_LENGTH(`mou_details_table1`.`company_name`), CONCAT_WS('',   `mou_details_table1`.`company_name`), '') /* Name of the company */" => "Name of the company",
-		"`mou_company_area_details_table`.`area`" => "Area",
+		"`mou_company_area_details_table`.`area`" => "Area / Scope",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Assigned MoU to */" => "Assigned MoU to",
 		"`mou_company_area_details_table`.`remarks`" => "Remarks",
 		"`mou_company_area_details_table`.`created_by`" => "Created by",
@@ -106,14 +106,14 @@
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'mou_company_area_details_table_view.php';
-	$x->TableTitle = 'MoU company area details - App';
+	$x->TableTitle = 'MoU Scope - App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`mou_company_area_details_table`.`id`';
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Name of the company', 'Area', 'Assigned MoU to', 'Remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColCaption = ['ID', 'Name of the company', 'Area / Scope', 'Assigned MoU to', 'Remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
 	$x->ColFieldName = ['id', 'name_of_the_company', 'area', 'assigned_mou_to', 'remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
 	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
 

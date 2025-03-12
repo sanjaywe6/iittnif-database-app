@@ -126,7 +126,7 @@
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'beyond_workingHours_table_view.php';
-	$x->TableTitle = 'Beyond Working Hours Working Approval - App';
+	$x->TableTitle = 'Beyond Working Hours Approval - App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`beyond_workingHours_table`.`id`';
 	$x->DefaultSortField = '1';

@@ -452,7 +452,7 @@
 					'homepageShowCount' => 1
 				],
 				'beyond_workingHours_table' => [
-					'Caption' => 'Beyond Working Hours Working Approval - App',
+					'Caption' => 'Beyond Working Hours Approval - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[6],
@@ -662,7 +662,7 @@
 			'approval_table' => ['Approval - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'approval_billing_table' => ['Approval billing table', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'honorarium_claim_table' => ['Honorarium - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
-			'beyond_workingHours_table' => ['Beyond Working Hours Working Approval - App', '', 'table.gif', 'Employee Data Management Apps'],
+			'beyond_workingHours_table' => ['Beyond Working Hours Approval - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'all_bank_account_statement_table' => ['All bank account statement - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'payment_track_details_table' => ['Payment track details - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'car_table' => ['Car - App', '<a href="https://lookerstudio.google.com/reporting/58f87367-3f09-42c0-a288-cf75f313cbed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Car App Report</b></button></a>', 'table.gif', 'Transport Apps'],

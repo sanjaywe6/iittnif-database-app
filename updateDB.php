@@ -135,6 +135,9 @@
 		setupTable('honorarium_claim_table', []);
 		setupIndexes('honorarium_claim_table', ['coordinated_by_tih_user',]);
 
+		setupTable('beyond_workingHours_table', []);
+		setupIndexes('beyond_workingHours_table', ['select_employee',]);
+
 		setupTable('all_bank_account_statement_table', []);
 
 		setupTable('payment_track_details_table', []);
@@ -188,14 +191,6 @@
 
 		setupTable('project_details_tdp', []);
 		setupIndexes('project_details_tdp', ['project_number',]);
-
-		setupTable('beyond_working_hours_table', [
-				"ALTER TABLE `overtime_table` RENAME `beyond_working_hours_table`",
-				"UPDATE `membership_userrecords` SET `tableName`='beyond_working_hours_table' WHERE `tableName`='overtime_table'",
-				"UPDATE `membership_userpermissions` SET `tableName`='beyond_working_hours_table' WHERE `tableName`='overtime_table'",
-				"UPDATE `membership_grouppermissions` SET `tableName`='beyond_working_hours_table' WHERE `tableName`='overtime_table'",
-			]);
-		setupIndexes('beyond_working_hours_table', ['select_employee',]);
 
 
 

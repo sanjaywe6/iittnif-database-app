@@ -59,7 +59,7 @@
 	
 	}
 
-	function approvalBeforeUpdate($data, $memberInfo){
+	function approvalBeforeUpdate($data, $memberInfo, $tablename){
 
 
 		// capturing the post request data
@@ -79,7 +79,7 @@
 		else{
 			// filter data with id from existing database
 			$id = makeSafe($formData["SelectedID"]);
-			$sql_querry = "SELECT * FROM approval_table WHERE id='{$id}'";
+			$sql_querry = "SELECT * FROM {$tablename} WHERE id='{$id}'";
 			$result = sql($sql_querry,$eo);
 			if($row = db_fetch_assoc($result)){
 				// if already approved then block the update

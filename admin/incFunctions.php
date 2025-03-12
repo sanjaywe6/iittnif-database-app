@@ -451,6 +451,13 @@
 					'group' => $tg[8],
 					'homepageShowCount' => 1
 				],
+				'beyond_workingHours_table' => [
+					'Caption' => 'Beyond Working Hours Working Approval - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[6],
+					'homepageShowCount' => 1
+				],
 				'all_bank_account_statement_table' => [
 					'Caption' => 'All bank account statement - App',
 					'Description' => '',
@@ -591,13 +598,6 @@
 					'group' => $tg[4],
 					'homepageShowCount' => 1
 				],
-				'beyond_working_hours_table' => [
-					'Caption' => 'Beyond Working Hours Working Approval - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[6],
-					'homepageShowCount' => 1
-				],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) return $all_tables;
@@ -662,6 +662,7 @@
 			'approval_table' => ['Approval - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'approval_billing_table' => ['Approval billing table', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'honorarium_claim_table' => ['Honorarium - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
+			'beyond_workingHours_table' => ['Beyond Working Hours Working Approval - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'all_bank_account_statement_table' => ['All bank account statement - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'payment_track_details_table' => ['Payment track details - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'car_table' => ['Car - App', '<a href="https://lookerstudio.google.com/reporting/58f87367-3f09-42c0-a288-cf75f313cbed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Car App Report</b></button></a>', 'table.gif', 'Transport Apps'],
@@ -682,7 +683,6 @@
 			'address_tdp' => ['Address Details - App', '', 'table.gif', 'Technology Development Apps'],
 			'summary_table_tdp' => ['Summary - App', '', 'table.gif', 'Technology Development Apps'],
 			'project_details_tdp' => ['Project details - App', '', 'table.gif', 'Technology Development Apps'],
-			'beyond_working_hours_table' => ['Beyond Working Hours Working Approval - App', '', 'table.gif', 'Employee Data Management Apps'],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) {
@@ -6231,6 +6231,99 @@
 						],
 					],
 				],
+				'beyond_workingHours_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'select_employee' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Select Employee',
+							'description' => '',
+						],
+					],
+					'reson_for_overtime' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Reson for overtime',
+							'description' => '',
+						],
+					],
+					'start_datetime' => [
+						'appgini' => "DATETIME NULL",
+						'info' => [
+							'caption' => 'Start Date & Time',
+							'description' => '',
+						],
+					],
+					'end_datetime' => [
+						'appgini' => "DATETIME NULL",
+						'info' => [
+							'caption' => 'End Date & Time',
+							'description' => '',
+						],
+					],
+					'number_of_hours' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Number of hours',
+							'description' => '',
+						],
+					],
+					'approval_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Under Consideration'",
+						'info' => [
+							'caption' => 'Approval status',
+							'description' => '',
+						],
+					],
+					'approval_remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Approval remarks',
+							'description' => '',
+						],
+					],
+					'approved_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Approved by',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
 				'all_bank_account_statement_table' => [
 					'all_bank_account_statement_id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
@@ -8462,99 +8555,6 @@
 						],
 					],
 				],
-				'beyond_working_hours_table' => [
-					'id' => [
-						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
-						'info' => [
-							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'select_employee' => [
-						'appgini' => "INT UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Select Employee',
-							'description' => '',
-						],
-					],
-					'reson_for_overtime' => [
-						'appgini' => "TEXT NULL",
-						'info' => [
-							'caption' => 'Reson for overtime',
-							'description' => '',
-						],
-					],
-					'start_datetime' => [
-						'appgini' => "DATETIME NULL",
-						'info' => [
-							'caption' => 'Start Date & Time',
-							'description' => '',
-						],
-					],
-					'end_datetime' => [
-						'appgini' => "DATETIME NULL",
-						'info' => [
-							'caption' => 'End Date & Time',
-							'description' => '',
-						],
-					],
-					'number_of_hours' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Number of hours',
-							'description' => '',
-						],
-					],
-					'approval_status' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Approval status',
-							'description' => '',
-						],
-					],
-					'approval_remarks' => [
-						'appgini' => "TEXT NULL",
-						'info' => [
-							'caption' => 'Approval remarks',
-							'description' => '',
-						],
-					],
-					'approved_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Approved by',
-							'description' => '',
-						],
-					],
-					'created_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created by',
-							'description' => '',
-						],
-					],
-					'created_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created at',
-							'description' => '',
-						],
-					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated by',
-							'description' => '',
-						],
-					],
-					'last_updated_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated at',
-							'description' => '',
-						],
-					],
-				],
 			];
 
 			$internalTablesSimple = [
@@ -9822,6 +9822,9 @@
 			'honorarium_claim_table' => [
 				'user_table' => ['coordinated_by_tih_user'],
 			],
+			'beyond_workingHours_table' => [
+				'user_table' => ['select_employee'],
+			],
 			'car_usage_table' => [
 				'car_table' => ['car_lookup'],
 			],
@@ -9863,9 +9866,6 @@
 			],
 			'project_details_tdp' => [
 				'summary_table_tdp' => ['project_number'],
-			],
-			'beyond_working_hours_table' => [
-				'user_table' => ['select_employee'],
 			],
 		];
 
@@ -9940,6 +9940,12 @@
 			'approval_table' => [],
 			'approval_billing_table' => [],
 			'honorarium_claim_table' => [],
+			'beyond_workingHours_table' => [
+				'number_of_hours' => 'SELECT 
+					    TIMESTAMPDIFF(SECOND, `overtime_table`.`start_datetime`, `overtime_table`.`end_datetime`)/3600 AS DifferenceInSeconds
+					FROM overtime_table
+					WHERE id = 1;',
+			],
 			'all_bank_account_statement_table' => [],
 			'payment_track_details_table' => [],
 			'car_table' => [],
@@ -9960,12 +9966,6 @@
 			'address_tdp' => [],
 			'summary_table_tdp' => [],
 			'project_details_tdp' => [],
-			'beyond_working_hours_table' => [
-				'number_of_hours' => 'SELECT 
-					    TIMESTAMPDIFF(SECOND, `overtime_table`.`start_datetime`, `overtime_table`.`end_datetime`)/3600 AS DifferenceInSeconds
-					FROM overtime_table
-					WHERE id = 1;',
-			],
 		];
 	}
 	#########################################################
@@ -10228,6 +10228,9 @@
 			'honorarium_claim_table' => [
 				'coordinated_by_tih_user' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
+			'beyond_workingHours_table' => [
+				'select_employee' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+			],
 			'all_bank_account_statement_table' => [
 			],
 			'payment_track_details_table' => [
@@ -10281,9 +10284,6 @@
 			],
 			'project_details_tdp' => [
 				'project_number' => 'SELECT `summary_table_tdp`.`id`, `summary_table_tdp`.`project_number` FROM `summary_table_tdp` ORDER BY 2',
-			],
-			'beyond_working_hours_table' => [
-				'select_employee' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 		];
 

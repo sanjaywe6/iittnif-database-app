@@ -81,7 +81,7 @@
 
 	function approval_table_before_update(&$data, $memberInfo, &$args) {
 
-		return approvalBeforeUpdate($data, $memberInfo);
+		return approvalBeforeUpdate($data, $memberInfo, "approval_table");
 	}
 
 	function approval_table_after_update($data, $memberInfo, &$args) {

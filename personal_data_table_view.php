@@ -21,6 +21,7 @@
 		"`personal_data_table`.`personal_data_id`" => "personal_data_id",
 		"`personal_data_table`.`name`" => "name",
 		"`personal_data_table`.`employee_type`" => "employee_type",
+		"`personal_data_table`.`emp_id`" => "emp_id",
 		"if(`personal_data_table`.`date_of_birth`,date_format(`personal_data_table`.`date_of_birth`,'%d/%m/%Y'),'')" => "date_of_birth",
 		"`personal_data_table`.`blood_group`" => "blood_group",
 		"`personal_data_table`.`email`" => "email",
@@ -40,19 +41,20 @@
 		1 => '`personal_data_table`.`personal_data_id`',
 		2 => 2,
 		3 => 3,
-		4 => '`personal_data_table`.`date_of_birth`',
-		5 => 5,
+		4 => 4,
+		5 => '`personal_data_table`.`date_of_birth`',
 		6 => 6,
 		7 => 7,
-		8 => '`personal_data_table`.`date_of_joining`',
-		9 => '`personal_data_table`.`date_of_exit`',
-		10 => 10,
+		8 => 8,
+		9 => '`personal_data_table`.`date_of_joining`',
+		10 => '`personal_data_table`.`date_of_exit`',
 		11 => 11,
 		12 => 12,
 		13 => 13,
 		14 => 14,
 		15 => 15,
 		16 => 16,
+		17 => 17,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -60,6 +62,7 @@
 		"`personal_data_table`.`personal_data_id`" => "personal_data_id",
 		"`personal_data_table`.`name`" => "name",
 		"`personal_data_table`.`employee_type`" => "employee_type",
+		"`personal_data_table`.`emp_id`" => "emp_id",
 		"if(`personal_data_table`.`date_of_birth`,date_format(`personal_data_table`.`date_of_birth`,'%d/%m/%Y'),'')" => "date_of_birth",
 		"`personal_data_table`.`blood_group`" => "blood_group",
 		"`personal_data_table`.`email`" => "email",
@@ -79,6 +82,7 @@
 		"`personal_data_table`.`personal_data_id`" => "ID",
 		"`personal_data_table`.`name`" => "Name",
 		"`personal_data_table`.`employee_type`" => "Employee type",
+		"`personal_data_table`.`emp_id`" => "Emp id",
 		"`personal_data_table`.`date_of_birth`" => "Date of birth",
 		"`personal_data_table`.`blood_group`" => "Blood group",
 		"`personal_data_table`.`email`" => "Email",
@@ -97,6 +101,7 @@
 		"`personal_data_table`.`personal_data_id`" => "personal_data_id",
 		"`personal_data_table`.`name`" => "name",
 		"`personal_data_table`.`employee_type`" => "employee_type",
+		"`personal_data_table`.`emp_id`" => "emp_id",
 		"if(`personal_data_table`.`date_of_birth`,date_format(`personal_data_table`.`date_of_birth`,'%d/%m/%Y'),'')" => "date_of_birth",
 		"`personal_data_table`.`blood_group`" => "blood_group",
 		"`personal_data_table`.`email`" => "email",
@@ -143,10 +148,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Name', 'Employee type', 'Date of birth', 'Blood group', 'Email', 'Phone number', 'Date of joining', 'Date of exit', 'Active status', 'Profile photo', 'Signature', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['personal_data_id', 'name', 'employee_type', 'date_of_birth', 'blood_group', 'email', 'phone_number', 'date_of_joining', 'date_of_exit', 'active_status', 'profile_photo', 'signature', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Name', 'Employee type', 'Emp id', 'Date of birth', 'Blood group', 'Email', 'Phone number', 'Date of joining', 'Date of exit', 'Active status', 'Profile photo', 'Signature', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['personal_data_id', 'name', 'employee_type', 'emp_id', 'date_of_birth', 'blood_group', 'email', 'phone_number', 'date_of_joining', 'date_of_exit', 'active_status', 'profile_photo', 'signature', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/personal_data_table_templateTV.html';

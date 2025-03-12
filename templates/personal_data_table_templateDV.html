@@ -12,6 +12,7 @@
 			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="employees_designation_table_view.php?filterer_employee_details=<%%URLVALUE(personal_data_id)%%>&<%%EMBEDDED%%>" id="employees_designation_table_link"><img src="table.gif"> Employees designation table</a>
 			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="employees_designation_table_view.php?filterer_employee_details=<%%URLVALUE(personal_data_id)%%>&<%%EMBEDDED%%>" id="xs_employees_designation_table_link"><img src="table.gif"> Employees designation table</a>
 			<input type="hidden" id="employees_designation_table_hclink" value="employees_designation_table_view.php?filterer_employee_details=<%%URLVALUE(personal_data_id)%%>&<%%EMBEDDED%%>">
+			<input type="hidden" id="employee_appraisal_table_hclink" value="employee_appraisal_table_view.php?filterer_employee_name=<%%URLVALUE(personal_data_id)%%>&<%%EMBEDDED%%>">
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -37,6 +38,15 @@
 					<label class="control-label col-lg-3" for="employee_type">Employee type</label>
 					<div class="col-lg-9">
 						<%%COMBO(employee_type)%%>
+					</div>
+				</div>
+
+				<!-- Field: Emp id -->
+				<div class="form-group personal_data_table-emp_id">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="emp_id">Emp id</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="emp_id" id="emp_id" value="<%%VALUE(emp_id)%%>">
 					</div>
 				</div>
 

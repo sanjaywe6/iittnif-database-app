@@ -203,6 +203,20 @@
 
 			return $data;
 		},
+		'employee_appraisal_table' => function($data, $options = []) {
+			if(isset($data['employee_name'])) $data['employee_name'] = pkGivenLookupText($data['employee_name'], 'employee_appraisal_table', 'employee_name');
+			if(isset($data['reporting_officer'])) $data['reporting_officer'] = pkGivenLookupText($data['reporting_officer'], 'employee_appraisal_table', 'reporting_officer');
+			if(isset($data['reviewing_officer'])) $data['reviewing_officer'] = pkGivenLookupText($data['reviewing_officer'], 'employee_appraisal_table', 'reviewing_officer');
+
+			return $data;
+		},
+		'beyond_workingHours_table' => function($data, $options = []) {
+			if(isset($data['select_employee'])) $data['select_employee'] = pkGivenLookupText($data['select_employee'], 'beyond_workingHours_table', 'select_employee');
+			if(isset($data['start_datetime'])) $data['start_datetime'] = guessMySQLDateTime($data['start_datetime']);
+			if(isset($data['end_datetime'])) $data['end_datetime'] = guessMySQLDateTime($data['end_datetime']);
+
+			return $data;
+		},
 		'attendence_details_table' => function($data, $options = []) {
 			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
 
@@ -287,13 +301,6 @@
 			if(isset($data['date_5'])) $data['date_5'] = guessMySQLDateTime($data['date_5']);
 			if(isset($data['coordinated_by_tih_user'])) $data['coordinated_by_tih_user'] = pkGivenLookupText($data['coordinated_by_tih_user'], 'honorarium_claim_table', 'coordinated_by_tih_user');
 			if(isset($data['payment_date'])) $data['payment_date'] = guessMySQLDateTime($data['payment_date']);
-
-			return $data;
-		},
-		'beyond_workingHours_table' => function($data, $options = []) {
-			if(isset($data['select_employee'])) $data['select_employee'] = pkGivenLookupText($data['select_employee'], 'beyond_workingHours_table', 'select_employee');
-			if(isset($data['start_datetime'])) $data['start_datetime'] = guessMySQLDateTime($data['start_datetime']);
-			if(isset($data['end_datetime'])) $data['end_datetime'] = guessMySQLDateTime($data['end_datetime']);
 
 			return $data;
 		},
@@ -454,6 +461,8 @@
 		'computer_usage_table' => function($data, $options = []) { return true; },
 		'personal_data_table' => function($data, $options = []) { return true; },
 		'employees_designation_table' => function($data, $options = []) { return true; },
+		'employee_appraisal_table' => function($data, $options = []) { return true; },
+		'beyond_workingHours_table' => function($data, $options = []) { return true; },
 		'attendence_details_table' => function($data, $options = []) { return true; },
 		'leave_table' => function($data, $options = []) { return true; },
 		'work_from_home_table' => function($data, $options = []) { return true; },
@@ -469,7 +478,6 @@
 		'approval_table' => function($data, $options = []) { return true; },
 		'approval_billing_table' => function($data, $options = []) { return true; },
 		'honorarium_claim_table' => function($data, $options = []) { return true; },
-		'beyond_workingHours_table' => function($data, $options = []) { return true; },
 		'all_bank_account_statement_table' => function($data, $options = []) { return true; },
 		'payment_track_details_table' => function($data, $options = []) { return true; },
 		'car_table' => function($data, $options = []) { return true; },

@@ -14,32 +14,32 @@
 
 <div class="panel-body">
 	<fieldset class="form-horizontal">
-		<!-- Field: Employee details -->
-		<div class="form-group employees_designation_table-employee_details" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Employee details</label>
+		<!-- Field: Employee name -->
+		<div class="form-group employee_appraisal_table-employee_name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Employee name</label>
 			<div class="col-xs-9">
-				<div class="form-control-static"><span id="employee_details<%%RND1%%>"><%%COMBOTEXT(employee_details)%%></span></div>
+				<div class="form-control-static"><span id="employee_name-readonly<%%RND1%%>"><%%COMBOTEXT(employee_name)%%></span></div>
 			</div>
 		</div>
 		<!-- Field: Designation -->
-		<div class="form-group employees_designation_table-designation" style="border-bottom: dotted 1px #DDD;">
+		<div class="form-group employee_appraisal_table-designation" style="border-bottom: dotted 1px #DDD;">
 			<label class="col-xs-3 control-label">Designation</label>
 			<div class="col-xs-9">
 				<div class="form-control-static"><%%VALUE(designation)%%></div>
 			</div>
 		</div>
-		<!-- Field: Date of appointment to designation -->
-		<div class="form-group employees_designation_table-date_of_appointment_to_designation" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Date of appointment to designation</label>
+		<!-- Field: Reporting Officer -->
+		<div class="form-group employee_appraisal_table-reporting_officer" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Reporting Officer</label>
 			<div class="col-xs-9">
-				<div class="form-control-static"><%%COMBOTEXT(date_of_appointment_to_designation)%%></div>
+				<div class="form-control-static"><span id="reporting_officer<%%RND1%%>"><%%COMBOTEXT(reporting_officer)%%></span></div>
 			</div>
 		</div>
-		<!-- Field: Active status -->
-		<div class="form-group employees_designation_table-active_status" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Active status</label>
+		<!-- Field: Reviewing Officer -->
+		<div class="form-group employee_appraisal_table-reviewing_officer" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Reviewing Officer</label>
 			<div class="col-xs-9">
-				<div class="form-control-static"><%%COMBOTEXT(active_status)%%></div>
+				<div class="form-control-static"><span id="reviewing_officer<%%RND1%%>"><%%COMBOTEXT(reviewing_officer)%%></span></div>
 			</div>
 		</div>
 	</fieldset>

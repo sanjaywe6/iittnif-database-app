@@ -95,6 +95,12 @@
 		setupTable('employees_designation_table', []);
 		setupIndexes('employees_designation_table', ['employee_details',]);
 
+		setupTable('employee_appraisal_table', []);
+		setupIndexes('employee_appraisal_table', ['employee_name','reporting_officer','reviewing_officer',]);
+
+		setupTable('beyond_workingHours_table', []);
+		setupIndexes('beyond_workingHours_table', ['select_employee',]);
+
 		setupTable('attendence_details_table', []);
 
 		setupTable('leave_table', []);
@@ -134,9 +140,6 @@
 
 		setupTable('honorarium_claim_table', []);
 		setupIndexes('honorarium_claim_table', ['coordinated_by_tih_user',]);
-
-		setupTable('beyond_workingHours_table', []);
-		setupIndexes('beyond_workingHours_table', ['select_employee',]);
 
 		setupTable('all_bank_account_statement_table', []);
 

@@ -715,6 +715,18 @@ function employees_designation_table_validateData(insertMode) {
 
 	return !errors;
 }
+function employee_appraisal_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
+function beyond_workingHours_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
 function attendence_details_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
@@ -864,12 +876,6 @@ function approval_billing_table_validateData(insertMode) {
 	return !errors;
 }
 function honorarium_claim_table_validateData(insertMode) {
-	$j('.has-error').removeClass('has-error');
-	var errors = false;
-
-	return !errors;
-}
-function beyond_workingHours_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
 

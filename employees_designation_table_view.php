@@ -19,8 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`employees_designation_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`employee_type`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`employee_type`), '') /* Employee details */" => "employee_details",
-		"`employees_designation_table`.`emp_id`" => "emp_id",
+		"IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`emp_id`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`emp_id`), '') /* Employee details */" => "employee_details",
 		"`employees_designation_table`.`designation`" => "designation",
 		"if(`employees_designation_table`.`date_of_appointment_to_designation`,date_format(`employees_designation_table`.`date_of_appointment_to_designation`,'%d/%m/%Y'),'')" => "date_of_appointment_to_designation",
 		"`employees_designation_table`.`active_status`" => "active_status",
@@ -34,20 +33,18 @@
 		1 => '`employees_designation_table`.`id`',
 		2 => 2,
 		3 => 3,
-		4 => 4,
-		5 => '`employees_designation_table`.`date_of_appointment_to_designation`',
+		4 => '`employees_designation_table`.`date_of_appointment_to_designation`',
+		5 => 5,
 		6 => 6,
 		7 => 7,
 		8 => 8,
 		9 => 9,
-		10 => 10,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`employees_designation_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`employee_type`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`employee_type`), '') /* Employee details */" => "employee_details",
-		"`employees_designation_table`.`emp_id`" => "emp_id",
+		"IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`emp_id`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`emp_id`), '') /* Employee details */" => "employee_details",
 		"`employees_designation_table`.`designation`" => "designation",
 		"if(`employees_designation_table`.`date_of_appointment_to_designation`,date_format(`employees_designation_table`.`date_of_appointment_to_designation`,'%d/%m/%Y'),'')" => "date_of_appointment_to_designation",
 		"`employees_designation_table`.`active_status`" => "active_status",
@@ -59,8 +56,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`employees_designation_table`.`id`" => "ID",
-		"IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`employee_type`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`employee_type`), '') /* Employee details */" => "Employee details",
-		"`employees_designation_table`.`emp_id`" => "Emp id",
+		"IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`emp_id`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`emp_id`), '') /* Employee details */" => "Employee details",
 		"`employees_designation_table`.`designation`" => "Designation",
 		"`employees_designation_table`.`date_of_appointment_to_designation`" => "Date of appointment to designation",
 		"`employees_designation_table`.`active_status`" => "Active status",
@@ -73,8 +69,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`employees_designation_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`employee_type`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`employee_type`), '') /* Employee details */" => "employee_details",
-		"`employees_designation_table`.`emp_id`" => "emp_id",
+		"IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`emp_id`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`emp_id`), '') /* Employee details */" => "employee_details",
 		"`employees_designation_table`.`designation`" => "designation",
 		"if(`employees_designation_table`.`date_of_appointment_to_designation`,date_format(`employees_designation_table`.`date_of_appointment_to_designation`,'%d/%m/%Y'),'')" => "date_of_appointment_to_designation",
 		"`employees_designation_table`.`active_status`" => "active_status",
@@ -115,12 +110,12 @@
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`employees_designation_table`.`id`';
 	$x->DefaultSortField = '1';
-	$x->DefaultSortDirection = 'asc';
+	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Employee details', 'Emp id', 'Designation', 'Date of appointment to designation', 'Active status', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'employee_details', 'emp_id', 'designation', 'date_of_appointment_to_designation', 'active_status', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Employee details', 'Designation', 'Date of appointment to designation', 'Active status', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'employee_details', 'designation', 'date_of_appointment_to_designation', 'active_status', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/employees_designation_table_templateTV.html';

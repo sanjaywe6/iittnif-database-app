@@ -18,6 +18,7 @@ function personal_data_table_insert(&$error_message = '') {
 	$data = [
 		'name' => Request::val('name', ''),
 		'employee_type' => Request::val('employee_type', ''),
+		'emp_id' => Request::val('emp_id', ''),
 		'date_of_birth' => Request::dateComponents('date_of_birth', ''),
 		'blood_group' => Request::val('blood_group', ''),
 		'email' => Request::val('email', ''),
@@ -126,6 +127,26 @@ function personal_data_table_delete($selected_id, $AllowDeleteOfParents = false,
 		return $RetMsg;
 	}
 
+	// child table: employee_appraisal_table
+	$res = sql("SELECT `personal_data_id` FROM `personal_data_table` WHERE `personal_data_id`='{$selected_id}'", $eo);
+	$personal_data_id = db_fetch_row($res);
+	$rires = sql("SELECT COUNT(1) FROM `employee_appraisal_table` WHERE `employee_name`='" . makeSafe($personal_data_id[0]) . "'", $eo);
+	$rirow = db_fetch_row($rires);
+	$childrenATag = '<a class="alert-link" href="employee_appraisal_table_view.php?filterer_employee_name=' . urlencode($personal_data_id[0]) . '">%s</a>';
+	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation["couldn't delete"];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'employee_appraisal_table'), $RetMsg);
+		return $RetMsg;
+	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation['confirm delete'];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'employee_appraisal_table'), $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `personal_data_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `personal_data_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		return $RetMsg;
+	}
+
 	sql("DELETE FROM `personal_data_table` WHERE `personal_data_id`='{$selected_id}'", $eo);
 
 	// hook: personal_data_table_after_delete
@@ -147,6 +168,7 @@ function personal_data_table_update(&$selected_id, &$error_message = '') {
 	$data = [
 		'name' => Request::val('name', ''),
 		'employee_type' => Request::val('employee_type', ''),
+		'emp_id' => Request::val('emp_id', ''),
 		'date_of_birth' => Request::dateComponents('date_of_birth', ''),
 		'blood_group' => Request::val('blood_group', ''),
 		'email' => Request::val('email', ''),
@@ -357,7 +379,7 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
 		$combo_employee_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_active_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '10' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_active_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '11' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
 	$combo_employee_type->Render();
 	$combo_active_status->Render();
@@ -459,6 +481,7 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 		$jsReadOnly = '';
 		$jsReadOnly .= "\t\$j('#name').replaceWith('<div class=\"form-control-static\" id=\"name\">' + (\$j('#name').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#employee_type').replaceWith('<div class=\"form-control-static\" id=\"employee_type\">' + (\$j('#employee_type').val() || '') + '</div>'); \$j('#employee_type-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#emp_id').replaceWith('<div class=\"form-control-static\" id=\"emp_id\">' + (\$j('#emp_id').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#date_of_birth').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#date_of_birthDay, #date_of_birthMonth, #date_of_birthYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#blood_group').replaceWith('<div class=\"form-control-static\" id=\"blood_group\">' + (\$j('#blood_group').val() || '') + '</div>');\n";
@@ -527,6 +550,7 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 	$templateCode = str_replace('<%%UPLOADFILE(personal_data_id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(name)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(employee_type)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(emp_id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date_of_birth)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(blood_group)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(email)%%>', '', $templateCode);
@@ -561,6 +585,9 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(employee_type)%%>', safe_html($urow['employee_type']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(employee_type)%%>', html_attr($row['employee_type']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(employee_type)%%>', urlencode($urow['employee_type']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(emp_id)%%>', safe_html($urow['emp_id']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(emp_id)%%>', html_attr($row['emp_id']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(emp_id)%%>', urlencode($urow['emp_id']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date_of_birth)%%>', app_datetime($row['date_of_birth']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date_of_birth)%%>', urlencode(app_datetime($urow['date_of_birth'])), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(blood_group)%%>', safe_html($urow['blood_group']), $templateCode);
@@ -602,6 +629,8 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 		$templateCode = str_replace('<%%URLVALUE(name)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(employee_type)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(employee_type)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(emp_id)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(emp_id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date_of_birth)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date_of_birth)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(blood_group)%%>', '', $templateCode);

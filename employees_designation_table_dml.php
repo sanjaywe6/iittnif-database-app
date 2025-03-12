@@ -17,7 +17,6 @@ function employees_designation_table_insert(&$error_message = '') {
 
 	$data = [
 		'employee_details' => Request::lookup('employee_details', ''),
-		'emp_id' => Request::val('emp_id', ''),
 		'designation' => Request::val('designation', ''),
 		'date_of_appointment_to_designation' => Request::dateComponents('date_of_appointment_to_designation', ''),
 		'active_status' => Request::val('active_status', ''),
@@ -90,7 +89,6 @@ function employees_designation_table_update(&$selected_id, &$error_message = '')
 
 	$data = [
 		'employee_details' => Request::lookup('employee_details', ''),
-		'emp_id' => Request::val('emp_id', ''),
 		'designation' => Request::val('designation', ''),
 		'date_of_appointment_to_designation' => Request::dateComponents('date_of_appointment_to_designation', ''),
 		'active_status' => Request::val('active_status', ''),
@@ -229,7 +227,7 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
 		$combo_employee_details->SelectedData = $filterer_employee_details;
-		$combo_active_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '6' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_active_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
 	$combo_employee_details->HTML = '<span id="employee_details-container' . $rnd1 . '"></span><input type="hidden" name="employee_details" id="employee_details' . $rnd1 . '" value="' . html_attr($combo_employee_details->SelectedData) . '">';
 	$combo_employee_details->MatchText = '<span id="employee_details-container-readonly' . $rnd1 . '"></span><input type="hidden" name="employee_details" id="employee_details' . $rnd1 . '" value="' . html_attr($combo_employee_details->SelectedData) . '">';
@@ -411,7 +409,6 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 		$jsReadOnly = '';
 		$jsReadOnly .= "\t\$j('#employee_details').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#employee_details_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\t\$j('#emp_id').replaceWith('<div class=\"form-control-static\" id=\"emp_id\">' + (\$j('#emp_id').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#designation').replaceWith('<div class=\"form-control-static\" id=\"designation\">' + (\$j('#designation').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#date_of_appointment_to_designation').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#date_of_appointment_to_designationDay, #date_of_appointment_to_designationMonth, #date_of_appointment_to_designationYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
@@ -458,7 +455,6 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(employee_details)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(emp_id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(designation)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date_of_appointment_to_designation)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(active_status)%%>', '', $templateCode);
@@ -474,9 +470,6 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(employee_details)%%>', safe_html($urow['employee_details']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(employee_details)%%>', html_attr($row['employee_details']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(employee_details)%%>', urlencode($urow['employee_details']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(emp_id)%%>', safe_html($urow['emp_id']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(emp_id)%%>', html_attr($row['emp_id']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(emp_id)%%>', urlencode($urow['emp_id']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(designation)%%>', safe_html($urow['designation']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(designation)%%>', html_attr($row['designation']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(designation)%%>', urlencode($urow['designation']), $templateCode);
@@ -498,8 +491,6 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(employee_details)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(employee_details)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(emp_id)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(emp_id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(designation)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(designation)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date_of_appointment_to_designation)%%>', '', $templateCode);

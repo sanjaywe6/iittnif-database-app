@@ -82,7 +82,29 @@
 
 	function employees_appraisal_table_before_update(&$data, $memberInfo, &$args) {
 
-		return TRUE;
+		// capturing the post request data
+		$formData = $_POST;
+		// filter data with id from existing database
+		$id = makeSafe($formData["SelectedID"]);
+		$sql_querry = "SELECT * FROM employees_appraisal_table WHERE id='{$id}'";
+		$result = sql($sql_querry,$eo);
+		if($row = db_fetch_assoc($result)){
+			// if already reviewed then block the update
+			if ($row["appraisal_status"] == "Reviewed"){
+
+				if ($memberInfo["groupID"] == 3){
+					return TRUE;
+				}
+				else{
+					WindowMessages::add("Sorry! You don't have permission to edit the data. Please contact admin.");
+					return FALSE;
+				}
+			}
+			else{
+				return TRUE;
+			}
+		}
+		
 	}
 
 	function employees_appraisal_table_after_update($data, $memberInfo, &$args) {

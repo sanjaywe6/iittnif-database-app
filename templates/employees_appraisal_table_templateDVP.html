@@ -14,32 +14,67 @@
 
 <div class="panel-body">
 	<fieldset class="form-horizontal">
-		<!-- Field: Employee details -->
+		<!-- Field: Employee Details (ID::Name::Joining Date::Department) -->
 		<div class="form-group employees_appraisal_table-employee_details" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Employee details</label>
+			<label class="col-xs-3 control-label">Employee Details (ID::Name::Joining Date::Department)</label>
 			<div class="col-xs-9">
-				<div class="form-control-static"><%%VALUE(employee_details)%%></div>
+				<div class="form-control-static"><span id="employee_details<%%RND1%%>"><%%COMBOTEXT(employee_details)%%></span></div>
 			</div>
 		</div>
-		<!-- Field: Department / Section -->
-		<div class="form-group employees_appraisal_table-department" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Department / Section</label>
+		<!-- Field: Employee Other Details (Designation::Reporting Officer) -->
+		<div class="form-group employees_appraisal_table-employee_designation_reporting" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Employee Other Details (Designation::Reporting Officer)</label>
 			<div class="col-xs-9">
-				<div class="form-control-static"><%%VALUE(department)%%></div>
+				<div class="form-control-static"><span id="employee_designation_reporting-readonly<%%RND1%%>"><%%COMBOTEXT(employee_designation_reporting)%%></span></div>
 			</div>
 		</div>
-		<!-- Field: Designation -->
-		<div class="form-group employees_appraisal_table-designation" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Designation</label>
+		<!-- Field: Current review period -->
+		<div class="form-group employees_appraisal_table-current_review_period" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Current review period</label>
 			<div class="col-xs-9">
-				<div class="form-control-static"><%%VALUE(designation)%%></div>
+				<div class="form-control-static"><%%VALUE(current_review_period)%%></div>
 			</div>
 		</div>
-		<!-- Field: Date of joining -->
-		<div class="form-group employees_appraisal_table-date_of_joining" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Date of joining</label>
+		<!-- Field: Roles & Responsibilities -->
+		<div class="form-group employees_appraisal_table-roles" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Roles & Responsibilities</label>
 			<div class="col-xs-9">
-				<div class="form-control-static"><%%VALUE(date_of_joining)%%></div>
+				<div class="form-control-static"><%%VALUE(roles)%%></div>
+			</div>
+		</div>
+		<!-- Field: Employee Self-explanation -->
+		<div class="form-group employees_appraisal_table-self_explanation" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Employee Self-explanation</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(self_explanation)%%></div>
+			</div>
+		</div>
+		<!-- Field: Reporting Officer Feedback on the Employee Responsibilities -->
+		<div class="form-group employees_appraisal_table-reporting_officer_feedback" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Reporting Officer Feedback on the Employee Responsibilities</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(reporting_officer_feedback)%%></div>
+			</div>
+		</div>
+		<!-- Field: Observations by the Reporting Officer -->
+		<div class="form-group employees_appraisal_table-observations_by_reporting_officer" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Observations by the Reporting Officer</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(observations_by_reporting_officer)%%></div>
+			</div>
+		</div>
+		<!-- Field: Overall Rating by the Reporting Officer -->
+		<div class="form-group employees_appraisal_table-overall_rating" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Overall Rating by the Reporting Officer</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(overall_rating)%%></div>
+			</div>
+		</div>
+		<!-- Field: Appraisal status -->
+		<div class="form-group employees_appraisal_table-appraisal_status" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Appraisal status</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(appraisal_status)%%></div>
 			</div>
 		</div>
 	</fieldset>

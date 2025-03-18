@@ -209,17 +209,14 @@
 		'employees_designation_table' => function($data, $options = []) {
 			if(isset($data['employee_details'])) $data['employee_details'] = pkGivenLookupText($data['employee_details'], 'employees_designation_table', 'employee_details');
 			if(isset($data['date_of_appointment_to_designation'])) $data['date_of_appointment_to_designation'] = guessMySQLDateTime($data['date_of_appointment_to_designation']);
-
-			return $data;
-		},
-		'employees_reporting_table' => function($data, $options = []) {
-			if(isset($data['employee_name'])) $data['employee_name'] = pkGivenLookupText($data['employee_name'], 'employees_reporting_table', 'employee_name');
-			if(isset($data['reporting_officer'])) $data['reporting_officer'] = pkGivenLookupText($data['reporting_officer'], 'employees_reporting_table', 'reporting_officer');
-			if(isset($data['reviewing_officer'])) $data['reviewing_officer'] = pkGivenLookupText($data['reviewing_officer'], 'employees_reporting_table', 'reviewing_officer');
+			if(isset($data['reporting_officer'])) $data['reporting_officer'] = pkGivenLookupText($data['reporting_officer'], 'employees_designation_table', 'reporting_officer');
+			if(isset($data['reviewing_officer'])) $data['reviewing_officer'] = pkGivenLookupText($data['reviewing_officer'], 'employees_designation_table', 'reviewing_officer');
 
 			return $data;
 		},
 		'employees_appraisal_table' => function($data, $options = []) {
+			if(isset($data['employee_details'])) $data['employee_details'] = pkGivenLookupText($data['employee_details'], 'employees_appraisal_table', 'employee_details');
+			if(isset($data['employee_designation_reporting'])) $data['employee_designation_reporting'] = pkGivenLookupText($data['employee_designation_reporting'], 'employees_appraisal_table', 'employee_designation_reporting');
 
 			return $data;
 		},
@@ -475,7 +472,6 @@
 		'computer_usage_table' => function($data, $options = []) { return true; },
 		'personal_data_table' => function($data, $options = []) { return true; },
 		'employees_designation_table' => function($data, $options = []) { return true; },
-		'employees_reporting_table' => function($data, $options = []) { return true; },
 		'employees_appraisal_table' => function($data, $options = []) { return true; },
 		'beyond_workingHours_table' => function($data, $options = []) { return true; },
 		'attendence_details_table' => function($data, $options = []) { return true; },

@@ -721,15 +721,27 @@ function employees_designation_table_validateData(insertMode) {
 
 	return !errors;
 }
-function employees_reporting_table_validateData(insertMode) {
-	$j('.has-error').removeClass('has-error');
-	var errors = false;
-
-	return !errors;
-}
 function employees_appraisal_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
+
+	// check all required fields have values
+	const reqFields = [
+		// [field-type, field-name, field-caption], ...
+		['lookup', 'employee_details', 'Employee Details (ID::Name::Joining Date::Department)'],
+		['text', 'current_review_period', 'Current review period'],
+		['text', 'roles', 'Roles & Responsibilities'],
+		['text', 'self_explanation', 'Employee Self-explanation'],
+	];
+
+	reqFields.map(function(rf) {
+		// avoid displaying more error messages and overwhelming users
+		if(rf.length != 3 || errors) return;
+
+		if(!AppGini.Validation.fieldRequired(rf[0], rf[1], rf[2], insertMode)) errors = true;
+	});
+
+	if(errors) return false;
 
 	return !errors;
 }

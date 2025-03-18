@@ -9,6 +9,9 @@
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
+			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="employees_appraisal_table_view.php?filterer_employee_designation_reporting=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="employees_appraisal_table_link"><img src="table.gif"> Employees Appraisal  - App</a>
+			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="employees_appraisal_table_view.php?filterer_employee_designation_reporting=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_employees_appraisal_table_link"><img src="table.gif"> Employees Appraisal  - App</a>
+			<input type="hidden" id="employees_appraisal_table_hclink" value="employees_appraisal_table_view.php?filterer_employee_designation_reporting=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -55,6 +58,24 @@
 					</div>
 				</div>
 
+				<!-- Field: Reporting Officer -->
+				<div class="form-group employees_designation_table-reporting_officer">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="reporting_officer" data-parent_link="view_parent_modal">Reporting Officer</label>
+					<div class="col-lg-9">
+						<div class="lookup-flex"><%%COMBO(reporting_officer)%%><%%PLINK(reporting_officer)%%><%%ADDNEW(user_table)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Reviewing Officer -->
+				<div class="form-group employees_designation_table-reviewing_officer">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="reviewing_officer" data-parent_link="view_parent_modal">Reviewing Officer</label>
+					<div class="col-lg-9">
+						<div class="lookup-flex"><%%COMBO(reviewing_officer)%%><%%PLINK(reviewing_officer)%%><%%ADDNEW(user_table)%%></div>
+					</div>
+				</div>
+
 			</fieldset>
 		</div>
 
@@ -77,6 +98,16 @@
 		</div>
 	</div>
 
+
+	<!-- child records -->
+	<hr>
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1">
+			<div id="employees_designation_table-children" class="children-tabs">
+				<div class="text-center"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+			</div>
+		</div>
+	</div>
 
 </div><!-- /div class="panel-body" -->
 	<script>
@@ -120,6 +151,38 @@
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 
+			if(embedded_mode) {
+				/* hide links to children tables in embedded mode */
+				$j('.detail_view a[id$=_link]').remove();
+
+				/* append embedded mode to all links */
+				var append_embedded = function() {
+					$j('a[href]:not([href^="#"]):not([href^="javascript"]):not([href$="Embedded=1"]):not([href*="link.php?t="]):not([href^="mailto:"]):not([href$=".jpg"]):not([href$=".png"]):not([href$=".gif"])').each(
+						function() {
+							$j(this).attr('href', $j(this).attr('href') + '&Embedded=1');
+						}
+					);
+				}
+				setTimeout(append_embedded, 500);
+				setTimeout(append_embedded, 1500);
+				setTimeout(append_embedded, 2500);
+				setTimeout(append_embedded, 3500);
+			}
+
+			/* when no record is selected ('add new' mode) */
+			if(add_new_mode) {
+				/* hide links to children tables */
+				$j('.detail_view a[id$=_link]').remove();
+			} else {
+				post(
+					'parent-children.php', {
+						ParentTable: 'employees_designation_table',
+						SelectedID: '<%%VALUE(id)%%>',
+						Operation: 'show-children'
+					},
+					'employees_designation_table-children'
+				);
+			}
 
 			if(true /* !embedded_mode */) {
 				$j('.add_new_parent').click(function() {

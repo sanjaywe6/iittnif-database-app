@@ -606,40 +606,22 @@ personal_data_table_delete2Tip=["",spacer+"This option allows each member of the
 personal_data_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Employee personal data - App' table."];
 
 // employees_designation_table table
-employees_designation_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Employees designation table' table. A member who adds a record to the table becomes the 'owner' of that record."];
+employees_designation_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Employees designation & Reporting - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
 
-employees_designation_table_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Employees designation table' table."];
-employees_designation_table_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Employees designation table' table."];
-employees_designation_table_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Employees designation table' table."];
-employees_designation_table_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Employees designation table' table."];
+employees_designation_table_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Employees designation & Reporting - App' table."];
+employees_designation_table_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Employees designation & Reporting - App' table."];
+employees_designation_table_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Employees designation & Reporting - App' table."];
+employees_designation_table_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Employees designation & Reporting - App' table."];
 
-employees_designation_table_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Employees designation table' table."];
-employees_designation_table_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Employees designation table' table."];
-employees_designation_table_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Employees designation table' table."];
-employees_designation_table_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Employees designation table' table, regardless of their owner."];
+employees_designation_table_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Employees designation & Reporting - App' table."];
+employees_designation_table_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Employees designation & Reporting - App' table."];
+employees_designation_table_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Employees designation & Reporting - App' table."];
+employees_designation_table_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Employees designation & Reporting - App' table, regardless of their owner."];
 
-employees_designation_table_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Employees designation table' table."];
-employees_designation_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Employees designation table' table."];
-employees_designation_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Employees designation table' table."];
-employees_designation_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Employees designation table' table."];
-
-// employees_reporting_table table
-employees_reporting_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Employee Reporting - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
-
-employees_reporting_table_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Employee Reporting - App' table."];
-employees_reporting_table_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Employee Reporting - App' table."];
-employees_reporting_table_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Employee Reporting - App' table."];
-employees_reporting_table_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Employee Reporting - App' table."];
-
-employees_reporting_table_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Employee Reporting - App' table."];
-employees_reporting_table_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Employee Reporting - App' table."];
-employees_reporting_table_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Employee Reporting - App' table."];
-employees_reporting_table_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Employee Reporting - App' table, regardless of their owner."];
-
-employees_reporting_table_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Employee Reporting - App' table."];
-employees_reporting_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Employee Reporting - App' table."];
-employees_reporting_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Employee Reporting - App' table."];
-employees_reporting_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Employee Reporting - App' table."];
+employees_designation_table_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Employees designation & Reporting - App' table."];
+employees_designation_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Employees designation & Reporting - App' table."];
+employees_designation_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Employees designation & Reporting - App' table."];
+employees_designation_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Employees designation & Reporting - App' table."];
 
 // employees_appraisal_table table
 employees_appraisal_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Employees Appraisal  - App' table. A member who adds a record to the table becomes the 'owner' of that record."];

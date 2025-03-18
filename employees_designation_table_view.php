@@ -23,6 +23,8 @@
 		"`employees_designation_table`.`designation`" => "designation",
 		"if(`employees_designation_table`.`date_of_appointment_to_designation`,date_format(`employees_designation_table`.`date_of_appointment_to_designation`,'%d/%m/%Y'),'')" => "date_of_appointment_to_designation",
 		"`employees_designation_table`.`active_status`" => "active_status",
+		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Reporting Officer */" => "reporting_officer",
+		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Reviewing Officer */" => "reviewing_officer",
 		"`employees_designation_table`.`created_by`" => "created_by",
 		"`employees_designation_table`.`created_at`" => "created_at",
 		"`employees_designation_table`.`last_updated_by`" => "last_updated_by",
@@ -39,6 +41,8 @@
 		7 => 7,
 		8 => 8,
 		9 => 9,
+		10 => 10,
+		11 => 11,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -48,6 +52,8 @@
 		"`employees_designation_table`.`designation`" => "designation",
 		"if(`employees_designation_table`.`date_of_appointment_to_designation`,date_format(`employees_designation_table`.`date_of_appointment_to_designation`,'%d/%m/%Y'),'')" => "date_of_appointment_to_designation",
 		"`employees_designation_table`.`active_status`" => "active_status",
+		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Reporting Officer */" => "reporting_officer",
+		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Reviewing Officer */" => "reviewing_officer",
 		"`employees_designation_table`.`created_by`" => "created_by",
 		"`employees_designation_table`.`created_at`" => "created_at",
 		"`employees_designation_table`.`last_updated_by`" => "last_updated_by",
@@ -60,6 +66,8 @@
 		"`employees_designation_table`.`designation`" => "Designation",
 		"`employees_designation_table`.`date_of_appointment_to_designation`" => "Date of appointment to designation",
 		"`employees_designation_table`.`active_status`" => "Active status",
+		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Reporting Officer */" => "Reporting Officer",
+		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Reviewing Officer */" => "Reviewing Officer",
 		"`employees_designation_table`.`created_by`" => "Created by",
 		"`employees_designation_table`.`created_at`" => "Created at",
 		"`employees_designation_table`.`last_updated_by`" => "Last updated by",
@@ -73,6 +81,8 @@
 		"`employees_designation_table`.`designation`" => "designation",
 		"if(`employees_designation_table`.`date_of_appointment_to_designation`,date_format(`employees_designation_table`.`date_of_appointment_to_designation`,'%d/%m/%Y'),'')" => "date_of_appointment_to_designation",
 		"`employees_designation_table`.`active_status`" => "active_status",
+		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Reporting Officer */" => "reporting_officer",
+		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Reviewing Officer */" => "reviewing_officer",
 		"`employees_designation_table`.`created_by`" => "created_by",
 		"`employees_designation_table`.`created_at`" => "created_at",
 		"`employees_designation_table`.`last_updated_by`" => "last_updated_by",
@@ -80,9 +90,9 @@
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['employee_details' => 'Employee details', ];
+	$x->filterers = ['employee_details' => 'Employee details', 'reporting_officer' => 'Reporting Officer', 'reviewing_officer' => 'Reviewing Officer', ];
 
-	$x->QueryFrom = "`employees_designation_table` LEFT JOIN `personal_data_table` as personal_data_table1 ON `personal_data_table1`.`personal_data_id`=`employees_designation_table`.`employee_details` ";
+	$x->QueryFrom = "`employees_designation_table` LEFT JOIN `personal_data_table` as personal_data_table1 ON `personal_data_table1`.`personal_data_id`=`employees_designation_table`.`employee_details` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employees_designation_table`.`reviewing_officer` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -106,16 +116,16 @@
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'employees_designation_table_view.php';
-	$x->TableTitle = 'Employees designation table';
+	$x->TableTitle = 'Employees designation & Reporting - App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`employees_designation_table`.`id`';
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Employee details', 'Designation', 'Date of appointment to designation', 'Active status', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'employee_details', 'designation', 'date_of_appointment_to_designation', 'active_status', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Employee details', 'Designation', 'Date of appointment to designation', 'Active status', 'Reporting Officer', 'Reviewing Officer', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'employee_details', 'designation', 'date_of_appointment_to_designation', 'active_status', 'reporting_officer', 'reviewing_officer', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/employees_designation_table_templateTV.html';

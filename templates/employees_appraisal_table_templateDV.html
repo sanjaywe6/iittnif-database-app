@@ -19,39 +19,88 @@
 		<div class="col-md-8 col-lg-10" id="employees_appraisal_table_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: Employee details -->
+				<!-- Field: Employee Details (ID::Name::Joining Date::Department) -->
 				<div class="form-group employees_appraisal_table-employee_details">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3">Employee details</label>
+					<label class="control-label col-lg-3" for="employee_details" data-parent_link="view_parent_modal">Employee Details (ID::Name::Joining Date::Department)<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
-						<div class="form-control-static" id="employee_details"><%%VALUE(employee_details)%%></div>
+						<div class="lookup-flex"><%%COMBO(employee_details)%%><%%PLINK(employee_details)%%><%%ADDNEW(personal_data_table)%%></div>
 					</div>
 				</div>
 
-				<!-- Field: Department / Section -->
-				<div class="form-group employees_appraisal_table-department">
+				<!-- Field: Employee Other Details (Designation::Reporting Officer) -->
+				<div class="form-group employees_appraisal_table-employee_designation_reporting">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="department">Department / Section</label>
+					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Employee Other Details (Designation::Reporting Officer)</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="department" id="department" value="<%%VALUE(department)%%>">
+						<div class="form-control-static">
+							<span id="employee_designation_reporting-readonly"><%%COMBOTEXT(employee_designation_reporting)%%></span>
+							<%%PLINK(employee_designation_reporting)%%>
+						</div>
 					</div>
 				</div>
 
-				<!-- Field: Designation -->
-				<div class="form-group employees_appraisal_table-designation">
+				<!-- Field: Current review period -->
+				<div class="form-group employees_appraisal_table-current_review_period">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="designation">Designation</label>
+					<label class="control-label col-lg-3" for="current_review_period">Current review period<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="designation" id="designation" value="<%%VALUE(designation)%%>">
+						<input maxlength="255" type="text" class="form-control" name="current_review_period" id="current_review_period" value="<%%VALUE(current_review_period)%%>" required>
 					</div>
 				</div>
 
-				<!-- Field: Date of joining -->
-				<div class="form-group employees_appraisal_table-date_of_joining">
+				<!-- Field: Roles & Responsibilities -->
+				<div class="form-group employees_appraisal_table-roles">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="date_of_joining">Date of joining</label>
+					<label class="control-label col-lg-3" for="roles">Roles & Responsibilities<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="date_of_joining" id="date_of_joining" value="<%%VALUE(date_of_joining)%%>">
+						<input maxlength="255" type="text" class="form-control" name="roles" id="roles" value="<%%VALUE(roles)%%>" required>
+					</div>
+				</div>
+
+				<!-- Field: Employee Self-explanation -->
+				<div class="form-group employees_appraisal_table-self_explanation">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="self_explanation">Employee Self-explanation<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="self_explanation" id="self_explanation" rows=" 5"><%%VALUE(self_explanation)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Reporting Officer Feedback on the Employee Responsibilities -->
+				<div class="form-group employees_appraisal_table-reporting_officer_feedback">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="reporting_officer_feedback">Reporting Officer Feedback on the Employee Responsibilities</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="reporting_officer_feedback" id="reporting_officer_feedback" rows=" 5"><%%VALUE(reporting_officer_feedback)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Observations by the Reporting Officer -->
+				<div class="form-group employees_appraisal_table-observations_by_reporting_officer">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="observations_by_reporting_officer">Observations by the Reporting Officer</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="observations_by_reporting_officer" id="observations_by_reporting_officer" rows=" 5"><%%VALUE(observations_by_reporting_officer)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Overall Rating by the Reporting Officer -->
+				<div class="form-group employees_appraisal_table-overall_rating">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="overall_rating">Overall Rating by the Reporting Officer <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#overall_rating-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="overall_rating-description"><div class="alert alert-info bspacer-xs">Scale of Rating: 1-Poor | 2-Satisfactory | 3-Average | 4-Good | 5-Excellent</div></span>
+						<%%COMBO(overall_rating)%%>
+					</div>
+				</div>
+
+				<!-- Field: Appraisal status -->
+				<div class="form-group employees_appraisal_table-appraisal_status">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="appraisal_status">Appraisal status</label>
+					<div class="col-lg-9">
+						<%%COMBO(appraisal_status)%%>
 					</div>
 				</div>
 
@@ -96,9 +145,27 @@
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-			$j('#employees_appraisal_table_dv_container-loading').addClass('hidden');
-			$j('#employees_appraisal_table_dv_container').removeClass('hidden');
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('employees_appraisal_table', 'department');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
+				AppGini.once({
+					condition: function() {
+						return $j('.form-group.employees_appraisal_table-employee_details')
+									.find('.nicEdit-main, .select2-container, input[type=radio]')
+									.length > 0
+								// or read-only DV
+								|| (!$j('#update').length && !$j('#insert').length);
+					},
+					action: function() {
+						$j('#employees_appraisal_table_dv_container-loading').addClass('hidden');
+						$j('#employees_appraisal_table_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('employees_appraisal_table', 'employee_details');
+					},
+					timeout:  5000,
+					doActionOnTimeout:  true
+				});
+			} else {
+				$j('#employees_appraisal_table_dv_container-loading').addClass('hidden');
+				$j('#employees_appraisal_table_dv_container').removeClass('hidden');
+			}
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 

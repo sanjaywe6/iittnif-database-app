@@ -4,7 +4,7 @@
 ?>
 <script>
 	$j(function() {
-		var tn = 'employee_appraisal_table';
+		var tn = 'employees_reporting_table';
 
 		/* data for selected record, or defaults if none is selected */
 		var data = {

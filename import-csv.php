@@ -156,6 +156,15 @@
 
 			return $data;
 		},
+		'asset_allotment_table' => function($data, $options = []) {
+			if(isset($data['asset_details'])) $data['asset_details'] = pkGivenLookupText($data['asset_details'], 'asset_allotment_table', 'asset_details');
+			if(isset($data['select_employee'])) $data['select_employee'] = pkGivenLookupText($data['select_employee'], 'asset_allotment_table', 'select_employee');
+			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
+			if(isset($data['alloted_by'])) $data['alloted_by'] = pkGivenLookupText($data['alloted_by'], 'asset_allotment_table', 'alloted_by');
+			if(isset($data['returned_date'])) $data['returned_date'] = guessMySQLDateTime($data['returned_date']);
+
+			return $data;
+		},
 		'it_inventory_app' => function($data, $options = []) {
 			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
 			if(isset($data['date_of_useful_life_of_assets_ends'])) $data['date_of_useful_life_of_assets_ends'] = guessMySQLDateTime($data['date_of_useful_life_of_assets_ends']);
@@ -203,10 +212,14 @@
 
 			return $data;
 		},
-		'employee_appraisal_table' => function($data, $options = []) {
-			if(isset($data['employee_name'])) $data['employee_name'] = pkGivenLookupText($data['employee_name'], 'employee_appraisal_table', 'employee_name');
-			if(isset($data['reporting_officer'])) $data['reporting_officer'] = pkGivenLookupText($data['reporting_officer'], 'employee_appraisal_table', 'reporting_officer');
-			if(isset($data['reviewing_officer'])) $data['reviewing_officer'] = pkGivenLookupText($data['reviewing_officer'], 'employee_appraisal_table', 'reviewing_officer');
+		'employees_reporting_table' => function($data, $options = []) {
+			if(isset($data['employee_name'])) $data['employee_name'] = pkGivenLookupText($data['employee_name'], 'employees_reporting_table', 'employee_name');
+			if(isset($data['reporting_officer'])) $data['reporting_officer'] = pkGivenLookupText($data['reporting_officer'], 'employees_reporting_table', 'reporting_officer');
+			if(isset($data['reviewing_officer'])) $data['reviewing_officer'] = pkGivenLookupText($data['reviewing_officer'], 'employees_reporting_table', 'reviewing_officer');
+
+			return $data;
+		},
+		'employees_appraisal_table' => function($data, $options = []) {
 
 			return $data;
 		},
@@ -454,6 +467,7 @@
 		'school_list' => function($data, $options = []) { return true; },
 		'sdp_participants_college_details_table' => function($data, $options = []) { return true; },
 		'asset_table' => function($data, $options = []) { return true; },
+		'asset_allotment_table' => function($data, $options = []) { return true; },
 		'it_inventory_app' => function($data, $options = []) { return true; },
 		'it_inventory_billing_details' => function($data, $options = []) { return true; },
 		'it_inventory_allotment_table' => function($data, $options = []) { return true; },
@@ -461,7 +475,8 @@
 		'computer_usage_table' => function($data, $options = []) { return true; },
 		'personal_data_table' => function($data, $options = []) { return true; },
 		'employees_designation_table' => function($data, $options = []) { return true; },
-		'employee_appraisal_table' => function($data, $options = []) { return true; },
+		'employees_reporting_table' => function($data, $options = []) { return true; },
+		'employees_appraisal_table' => function($data, $options = []) { return true; },
 		'beyond_workingHours_table' => function($data, $options = []) { return true; },
 		'attendence_details_table' => function($data, $options = []) { return true; },
 		'leave_table' => function($data, $options = []) { return true; },

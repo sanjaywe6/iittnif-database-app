@@ -23,6 +23,7 @@ function personal_data_table_insert(&$error_message = '') {
 		'blood_group' => Request::val('blood_group', ''),
 		'email' => Request::val('email', ''),
 		'phone_number' => Request::val('phone_number', ''),
+		'department' => Request::val('department', ''),
 		'date_of_joining' => Request::dateComponents('date_of_joining', ''),
 		'date_of_exit' => Request::dateComponents('date_of_exit', ''),
 		'active_status' => Request::val('active_status', ''),
@@ -127,21 +128,21 @@ function personal_data_table_delete($selected_id, $AllowDeleteOfParents = false,
 		return $RetMsg;
 	}
 
-	// child table: employee_appraisal_table
+	// child table: employees_reporting_table
 	$res = sql("SELECT `personal_data_id` FROM `personal_data_table` WHERE `personal_data_id`='{$selected_id}'", $eo);
 	$personal_data_id = db_fetch_row($res);
-	$rires = sql("SELECT COUNT(1) FROM `employee_appraisal_table` WHERE `employee_name`='" . makeSafe($personal_data_id[0]) . "'", $eo);
+	$rires = sql("SELECT COUNT(1) FROM `employees_reporting_table` WHERE `employee_name`='" . makeSafe($personal_data_id[0]) . "'", $eo);
 	$rirow = db_fetch_row($rires);
-	$childrenATag = '<a class="alert-link" href="employee_appraisal_table_view.php?filterer_employee_name=' . urlencode($personal_data_id[0]) . '">%s</a>';
+	$childrenATag = '<a class="alert-link" href="employees_reporting_table_view.php?filterer_employee_name=' . urlencode($personal_data_id[0]) . '">%s</a>';
 	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
 		$RetMsg = $Translation["couldn't delete"];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
-		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'employee_appraisal_table'), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'employees_reporting_table'), $RetMsg);
 		return $RetMsg;
 	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
-		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'employee_appraisal_table'), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'employees_reporting_table'), $RetMsg);
 		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `personal_data_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `personal_data_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
@@ -173,6 +174,7 @@ function personal_data_table_update(&$selected_id, &$error_message = '') {
 		'blood_group' => Request::val('blood_group', ''),
 		'email' => Request::val('email', ''),
 		'phone_number' => Request::val('phone_number', ''),
+		'department' => Request::val('department', ''),
 		'date_of_joining' => Request::dateComponents('date_of_joining', ''),
 		'date_of_exit' => Request::dateComponents('date_of_exit', ''),
 		'active_status' => Request::val('active_status', ''),
@@ -379,7 +381,7 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
 		$combo_employee_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_active_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '11' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_active_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '12' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
 	$combo_employee_type->Render();
 	$combo_active_status->Render();
@@ -487,6 +489,7 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 		$jsReadOnly .= "\t\$j('#blood_group').replaceWith('<div class=\"form-control-static\" id=\"blood_group\">' + (\$j('#blood_group').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#email').parent().replaceWith(`<div class=\"form-control-static\" id=\"email\">\${\$j('#email').val() || ''}\${\$j('#email').val() ? '<a target=\"_blank\" class=\"hspacer-lg\" href=\"mailto:' + \$j('#email').val() + '\" target=\"_blank\"><i class=\"glyphicon glyphicon-envelope\"></i></a>' : ''}</div>`);\n";
 		$jsReadOnly .= "\t\$j('#phone_number').replaceWith('<div class=\"form-control-static\" id=\"phone_number\">' + (\$j('#phone_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#department').replaceWith('<div class=\"form-control-static\" id=\"department\">' + (\$j('#department').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#date_of_joining').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#date_of_joiningDay, #date_of_joiningMonth, #date_of_joiningYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#date_of_exit').prop('readonly', true);\n";
@@ -555,6 +558,7 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 	$templateCode = str_replace('<%%UPLOADFILE(blood_group)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(email)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(phone_number)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(department)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date_of_joining)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date_of_exit)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(active_status)%%>', '', $templateCode);
@@ -599,6 +603,9 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(phone_number)%%>', safe_html($urow['phone_number']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(phone_number)%%>', html_attr($row['phone_number']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(phone_number)%%>', urlencode($urow['phone_number']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(department)%%>', safe_html($urow['department']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(department)%%>', html_attr($row['department']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(department)%%>', urlencode($urow['department']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date_of_joining)%%>', app_datetime($row['date_of_joining']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date_of_joining)%%>', urlencode(app_datetime($urow['date_of_joining'])), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date_of_exit)%%>', app_datetime($row['date_of_exit']), $templateCode);
@@ -639,6 +646,8 @@ function personal_data_table_form($selectedId = '', $allowUpdate = true, $allowI
 		$templateCode = str_replace('<%%URLVALUE(email)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(phone_number)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(phone_number)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(department)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(department)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date_of_joining)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date_of_joining)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date_of_exit)%%>', '', $templateCode);

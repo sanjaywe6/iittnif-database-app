@@ -359,6 +359,41 @@
 		],
 		'asset_table' => [
 		],
+		'asset_allotment_table' => [
+			'asset_details' => [
+				'parent_table' => 'asset_table',
+				'parent_pk_field' => 'id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`asset_table`.`ClassificationofAssest`) || CHAR_LENGTH(`asset_table`.`ItemDescription`), CONCAT_WS(\'\', `asset_table`.`ClassificationofAssest`, \'::\', `asset_table`.`ItemDescription`), \'\')',
+				'parent_from' => '`asset_table` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
+			'select_employee' => [
+				'parent_table' => 'user_table',
+				'parent_pk_field' => 'user_id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
+				'parent_from' => '`user_table` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
+			'alloted_by' => [
+				'parent_table' => 'user_table',
+				'parent_pk_field' => 'user_id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
+				'parent_from' => '`user_table` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
+		],
 		'it_inventory_app' => [
 			'sactioned_by' => [
 				'parent_table' => 'user_table',
@@ -450,7 +485,7 @@
 				'not_null' => false,
 			],
 		],
-		'employee_appraisal_table' => [
+		'employees_reporting_table' => [
 			'employee_name' => [
 				'parent_table' => 'personal_data_table',
 				'parent_pk_field' => 'personal_data_id',
@@ -484,6 +519,8 @@
 				'list_type' => 0,
 				'not_null' => false,
 			],
+		],
+		'employees_appraisal_table' => [
 		],
 		'beyond_workingHours_table' => [
 			'select_employee' => [

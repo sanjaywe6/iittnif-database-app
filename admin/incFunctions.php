@@ -297,6 +297,13 @@
 					'group' => $tg[7],
 					'homepageShowCount' => 1
 				],
+				'asset_allotment_table' => [
+					'Caption' => 'Asset Allotment - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[7],
+					'homepageShowCount' => 1
+				],
 				'it_inventory_app' => [
 					'Caption' => 'IT inventory - App',
 					'Description' => '',
@@ -346,11 +353,18 @@
 					'group' => $tg[6],
 					'homepageShowCount' => 1
 				],
-				'employee_appraisal_table' => [
-					'Caption' => 'Employee Appraisal - App',
+				'employees_reporting_table' => [
+					'Caption' => 'Employee Reporting - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[6],
+					'homepageShowCount' => 1
+				],
+				'employees_appraisal_table' => [
+					'Caption' => 'Employees Appraisal  - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[0],
 					'homepageShowCount' => 1
 				],
 				'beyond_workingHours_table' => [
@@ -647,6 +661,7 @@
 			'school_list' => ['School List - App', 'HRD', 'table.gif', 'HRD Apps'],
 			'sdp_participants_college_details_table' => ['SDP participants college details - App', 'SDP', 'table.gif', 'SDP Apps'],
 			'asset_table' => ['Asset table', '', 'table.gif', 'Asset Management Apps'],
+			'asset_allotment_table' => ['Asset Allotment - App', '', 'table.gif', 'Asset Management Apps'],
 			'it_inventory_app' => ['IT inventory - App', '', 'table.gif', 'Asset Management Apps'],
 			'it_inventory_billing_details' => ['IT inventory billing details - App', '', 'table.gif', 'Asset Management Apps'],
 			'it_inventory_allotment_table' => ['IT inventory allotment - App', '', 'table.gif', 'Asset Management Apps'],
@@ -654,7 +669,8 @@
 			'computer_usage_table' => ['Computer usage table', '', 'table.gif', 'Asset Management Apps'],
 			'personal_data_table' => ['Employee personal data - App', '<a href="https://lookerstudio.google.com/reporting/e46f3806-e78c-4f09-8417-049568d4783d"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Employee Details App Report</b></button></a>', 'table.gif', 'Employee Data Management Apps'],
 			'employees_designation_table' => ['Employees designation table', '', 'table.gif', 'Employee Data Management Apps'],
-			'employee_appraisal_table' => ['Employee Appraisal - App', '', 'table.gif', 'Employee Data Management Apps'],
+			'employees_reporting_table' => ['Employee Reporting - App', '', 'table.gif', 'Employee Data Management Apps'],
+			'employees_appraisal_table' => ['Employees Appraisal  - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'beyond_workingHours_table' => ['Beyond Working Hours Approval - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'attendence_details_table' => ['Attendence details - App', '<a href="https://lookerstudio.google.com/reporting/dd61ce5a-ccb5-4d55-b0a4-5233454f4b2c"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Attendence App View</b></button></a>', 'table.gif', 'Employee Data Management Apps'],
 			'leave_table' => ['Leave - App', '', 'table.gif', 'Employee Data Management Apps'],
@@ -3934,6 +3950,99 @@
 						],
 					],
 				],
+				'asset_allotment_table' => [
+					'id' => [
+						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'asset_details' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Asset Details',
+							'description' => '',
+						],
+					],
+					'select_employee' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Select employee',
+							'description' => '',
+						],
+					],
+					'department' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Department',
+							'description' => '',
+						],
+					],
+					'date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Date',
+							'description' => '',
+						],
+					],
+					'purpose' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Purpose',
+							'description' => '',
+						],
+					],
+					'alloted_by' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Alloted by',
+							'description' => '',
+						],
+					],
+					'status' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Status',
+							'description' => '',
+						],
+					],
+					'returned_date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Returned date',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
 				'it_inventory_app' => [
 					'it_inventory_id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
@@ -4519,6 +4628,13 @@
 							'description' => '',
 						],
 					],
+					'department' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Department',
+							'description' => '',
+						],
+					],
 					'date_of_joining' => [
 						'appgini' => "DATE NULL",
 						'info' => [
@@ -4648,7 +4764,7 @@
 						],
 					],
 				],
-				'employee_appraisal_table' => [
+				'employees_reporting_table' => [
 					'id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
@@ -4709,6 +4825,43 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
+				'employees_appraisal_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'employee_details' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Employee details',
+							'description' => '',
+						],
+					],
+					'department' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Department / Section',
+							'description' => '',
+						],
+					],
+					'designation' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Designation',
+							'description' => '',
+						],
+					],
+					'date_of_joining' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Date of joining',
 							'description' => '',
 						],
 					],
@@ -9848,6 +10001,10 @@
 			'star_pnt' => [
 				'internship_fellowship_details_app' => ['iittnif_id'],
 			],
+			'asset_allotment_table' => [
+				'asset_table' => ['asset_details'],
+				'user_table' => ['alloted_by', 'select_employee'],
+			],
 			'it_inventory_app' => [
 				'user_table' => ['sactioned_by'],
 			],
@@ -9864,7 +10021,7 @@
 			'employees_designation_table' => [
 				'personal_data_table' => ['employee_details'],
 			],
-			'employee_appraisal_table' => [
+			'employees_reporting_table' => [
 				'personal_data_table' => ['employee_name'],
 				'user_table' => ['reviewing_officer', 'reporting_officer'],
 			],
@@ -9995,6 +10152,7 @@
 			'school_list' => [],
 			'sdp_participants_college_details_table' => [],
 			'asset_table' => [],
+			'asset_allotment_table' => [],
 			'it_inventory_app' => [],
 			'it_inventory_billing_details' => [],
 			'it_inventory_allotment_table' => [],
@@ -10002,7 +10160,19 @@
 			'computer_usage_table' => [],
 			'personal_data_table' => [],
 			'employees_designation_table' => [],
-			'employee_appraisal_table' => [],
+			'employees_reporting_table' => [],
+			'employees_appraisal_table' => [
+				'employee_details' => 'SELECT CONCAT(
+					`personal_data_table`.`name`,\':\',
+					`personal_data_table`.`emp_id`,\':\',
+					`personal_data_table`.`department`,\':\',
+					`personal_data_table`.`date_of_joining`,\':\',
+					`employees_designation_table`.`designation`,\':\',
+					`employees_reporting_table`.`reporting_officer`,\':\',
+					`employees_reporting_table`.`reviewing_officer`,\':\',
+					
+					)',
+			],
 			'beyond_workingHours_table' => [
 				'number_of_hours' => 'SELECT 
 					    TIMESTAMPDIFF(SECOND, `overtime_table`.`start_datetime`, `overtime_table`.`end_datetime`)/3600 AS DifferenceInSeconds
@@ -10244,6 +10414,11 @@
 			],
 			'asset_table' => [
 			],
+			'asset_allotment_table' => [
+				'asset_details' => 'SELECT `asset_table`.`id`, IF(CHAR_LENGTH(`asset_table`.`ClassificationofAssest`) || CHAR_LENGTH(`asset_table`.`ItemDescription`), CONCAT_WS(\'\', `asset_table`.`ClassificationofAssest`, \'::\', `asset_table`.`ItemDescription`), \'\') FROM `asset_table` ORDER BY 2',
+				'select_employee' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+				'alloted_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+			],
 			'it_inventory_app' => [
 				'sactioned_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
@@ -10265,10 +10440,12 @@
 			'employees_designation_table' => [
 				'employee_details' => 'SELECT `personal_data_table`.`personal_data_id`, IF(CHAR_LENGTH(`personal_data_table`.`name`) || CHAR_LENGTH(`personal_data_table`.`emp_id`), CONCAT_WS(\'\', `personal_data_table`.`name`, \'::\', `personal_data_table`.`emp_id`), \'\') FROM `personal_data_table` ORDER BY 2',
 			],
-			'employee_appraisal_table' => [
+			'employees_reporting_table' => [
 				'employee_name' => 'SELECT `personal_data_table`.`personal_data_id`, IF(CHAR_LENGTH(`personal_data_table`.`name`) || CHAR_LENGTH(`personal_data_table`.`emp_id`), CONCAT_WS(\'\', `personal_data_table`.`name`, \'::\', `personal_data_table`.`emp_id`), \'\') FROM `personal_data_table` ORDER BY 2',
 				'reporting_officer' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 				'reviewing_officer' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+			],
+			'employees_appraisal_table' => [
 			],
 			'beyond_workingHours_table' => [
 				'select_employee' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',

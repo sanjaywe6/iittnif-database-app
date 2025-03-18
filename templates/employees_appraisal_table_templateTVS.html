@@ -1,0 +1,12 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the employees_appraisal_table_init() hook (in hooks/employees_appraisal_table.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="employees_appraisal_table-id-<%%VALUE(id)%%>" class="employees_appraisal_table-id text-right text-bold"><%%VALUE(id)%%></td>
+		<td id="employees_appraisal_table-employee_details-<%%VALUE(id)%%>" class="employees_appraisal_table-employee_details text-bold"><%%VALUE(employee_details)%%></td>
+		<td id="employees_appraisal_table-department-<%%VALUE(id)%%>" class="employees_appraisal_table-department text-bold"><%%VALUE(department)%%></td>
+		<td id="employees_appraisal_table-designation-<%%VALUE(id)%%>" class="employees_appraisal_table-designation text-bold"><%%VALUE(designation)%%></td>
+		<td id="employees_appraisal_table-date_of_joining-<%%VALUE(id)%%>" class="employees_appraisal_table-date_of_joining text-bold"><%%VALUE(date_of_joining)%%></td>

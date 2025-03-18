@@ -3,34 +3,34 @@
 // Download AppGini for free from https://bigprof.com/appgini/download/
 
 	include_once(__DIR__ . '/lib.php');
-	@include_once(__DIR__ . '/hooks/employee_appraisal_table.php');
-	include_once(__DIR__ . '/employee_appraisal_table_dml.php');
+	@include_once(__DIR__ . '/hooks/employees_reporting_table.php');
+	include_once(__DIR__ . '/employees_reporting_table_dml.php');
 
 	// mm: can the current member access this page?
-	$perm = getTablePermissions('employee_appraisal_table');
+	$perm = getTablePermissions('employees_reporting_table');
 	if(!$perm['access']) {
 		echo error_message($Translation['tableAccessDenied']);
 		exit;
 	}
 
 	$x = new DataList;
-	$x->TableName = 'employee_appraisal_table';
+	$x->TableName = 'employees_reporting_table';
 
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
-		"`employee_appraisal_table`.`id`" => "id",
+		"`employees_reporting_table`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`emp_id`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`emp_id`), '') /* Employee name */" => "employee_name",
-		"`employee_appraisal_table`.`designation`" => "designation",
+		"`employees_reporting_table`.`designation`" => "designation",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Reporting Officer */" => "reporting_officer",
 		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Reviewing Officer */" => "reviewing_officer",
-		"`employee_appraisal_table`.`created_by`" => "created_by",
-		"`employee_appraisal_table`.`created_at`" => "created_at",
-		"`employee_appraisal_table`.`last_updated_by`" => "last_updated_by",
-		"`employee_appraisal_table`.`last_updated_at`" => "last_updated_at",
+		"`employees_reporting_table`.`created_by`" => "created_by",
+		"`employees_reporting_table`.`created_at`" => "created_at",
+		"`employees_reporting_table`.`last_updated_by`" => "last_updated_by",
+		"`employees_reporting_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
-		1 => '`employee_appraisal_table`.`id`',
+		1 => '`employees_reporting_table`.`id`',
 		2 => 2,
 		3 => 3,
 		4 => 4,
@@ -43,46 +43,46 @@
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
-		"`employee_appraisal_table`.`id`" => "id",
+		"`employees_reporting_table`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`emp_id`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`emp_id`), '') /* Employee name */" => "employee_name",
-		"`employee_appraisal_table`.`designation`" => "designation",
+		"`employees_reporting_table`.`designation`" => "designation",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Reporting Officer */" => "reporting_officer",
 		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Reviewing Officer */" => "reviewing_officer",
-		"`employee_appraisal_table`.`created_by`" => "created_by",
-		"`employee_appraisal_table`.`created_at`" => "created_at",
-		"`employee_appraisal_table`.`last_updated_by`" => "last_updated_by",
-		"`employee_appraisal_table`.`last_updated_at`" => "last_updated_at",
+		"`employees_reporting_table`.`created_by`" => "created_by",
+		"`employees_reporting_table`.`created_at`" => "created_at",
+		"`employees_reporting_table`.`last_updated_by`" => "last_updated_by",
+		"`employees_reporting_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
-		"`employee_appraisal_table`.`id`" => "ID",
+		"`employees_reporting_table`.`id`" => "ID",
 		"IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`emp_id`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`emp_id`), '') /* Employee name */" => "Employee name",
-		"`employee_appraisal_table`.`designation`" => "Designation",
+		"`employees_reporting_table`.`designation`" => "Designation",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Reporting Officer */" => "Reporting Officer",
 		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Reviewing Officer */" => "Reviewing Officer",
-		"`employee_appraisal_table`.`created_by`" => "Created by",
-		"`employee_appraisal_table`.`created_at`" => "Created at",
-		"`employee_appraisal_table`.`last_updated_by`" => "Last updated by",
-		"`employee_appraisal_table`.`last_updated_at`" => "Last updated at",
+		"`employees_reporting_table`.`created_by`" => "Created by",
+		"`employees_reporting_table`.`created_at`" => "Created at",
+		"`employees_reporting_table`.`last_updated_by`" => "Last updated by",
+		"`employees_reporting_table`.`last_updated_at`" => "Last updated at",
 	];
 
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
-		"`employee_appraisal_table`.`id`" => "id",
+		"`employees_reporting_table`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`emp_id`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`emp_id`), '') /* Employee name */" => "employee_name",
-		"`employee_appraisal_table`.`designation`" => "designation",
+		"`employees_reporting_table`.`designation`" => "designation",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Reporting Officer */" => "reporting_officer",
 		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Reviewing Officer */" => "reviewing_officer",
-		"`employee_appraisal_table`.`created_by`" => "created_by",
-		"`employee_appraisal_table`.`created_at`" => "created_at",
-		"`employee_appraisal_table`.`last_updated_by`" => "last_updated_by",
-		"`employee_appraisal_table`.`last_updated_at`" => "last_updated_at",
+		"`employees_reporting_table`.`created_by`" => "created_by",
+		"`employees_reporting_table`.`created_at`" => "created_at",
+		"`employees_reporting_table`.`last_updated_by`" => "last_updated_by",
+		"`employees_reporting_table`.`last_updated_at`" => "last_updated_at",
 	];
 
 	// Lookup fields that can be used as filterers
 	$x->filterers = ['employee_name' => 'Employee name', 'reporting_officer' => 'Reporting Officer', 'reviewing_officer' => 'Reviewing Officer', ];
 
-	$x->QueryFrom = "`employee_appraisal_table` LEFT JOIN `personal_data_table` as personal_data_table1 ON `personal_data_table1`.`personal_data_id`=`employee_appraisal_table`.`employee_name` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employee_appraisal_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employee_appraisal_table`.`reviewing_officer` ";
+	$x->QueryFrom = "`employees_reporting_table` LEFT JOIN `personal_data_table` as personal_data_table1 ON `personal_data_table1`.`personal_data_id`=`employees_reporting_table`.`employee_name` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_reporting_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employees_reporting_table`.`reviewing_officer` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -105,10 +105,10 @@
 	$x->RecordsPerPage = 10;
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
-	$x->ScriptFileName = 'employee_appraisal_table_view.php';
-	$x->TableTitle = 'Employee Appraisal - App';
+	$x->ScriptFileName = 'employees_reporting_table_view.php';
+	$x->TableTitle = 'Employee Reporting - App';
 	$x->TableIcon = 'table.gif';
-	$x->PrimaryKey = '`employee_appraisal_table`.`id`';
+	$x->PrimaryKey = '`employees_reporting_table`.`id`';
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
@@ -118,10 +118,10 @@
 	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
 
 	// template paths below are based on the app main directory
-	$x->Template = 'templates/employee_appraisal_table_templateTV.html';
-	$x->SelectedTemplate = 'templates/employee_appraisal_table_templateTVS.html';
-	$x->TemplateDV = 'templates/employee_appraisal_table_templateDV.html';
-	$x->TemplateDVP = 'templates/employee_appraisal_table_templateDVP.html';
+	$x->Template = 'templates/employees_reporting_table_templateTV.html';
+	$x->SelectedTemplate = 'templates/employees_reporting_table_templateTVS.html';
+	$x->TemplateDV = 'templates/employees_reporting_table_templateDV.html';
+	$x->TemplateDVP = 'templates/employees_reporting_table_templateDVP.html';
 
 	$x->ShowTableHeader = 1;
 	$x->TVClasses = "";
@@ -130,20 +130,20 @@
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 
-	// hook: employee_appraisal_table_init
+	// hook: employees_reporting_table_init
 	$render = true;
-	if(function_exists('employee_appraisal_table_init')) {
+	if(function_exists('employees_reporting_table_init')) {
 		$args = [];
-		$render = employee_appraisal_table_init($x, getMemberInfo(), $args);
+		$render = employees_reporting_table_init($x, getMemberInfo(), $args);
 	}
 
 	if($render) $x->Render();
 
-	// hook: employee_appraisal_table_header
+	// hook: employees_reporting_table_header
 	$headerCode = '';
-	if(function_exists('employee_appraisal_table_header')) {
+	if(function_exists('employees_reporting_table_header')) {
 		$args = [];
-		$headerCode = employee_appraisal_table_header($x->ContentType, getMemberInfo(), $args);
+		$headerCode = employees_reporting_table_header($x->ContentType, getMemberInfo(), $args);
 	}
 
 	if(!$headerCode) {
@@ -156,11 +156,11 @@
 
 	echo $x->HTML;
 
-	// hook: employee_appraisal_table_footer
+	// hook: employees_reporting_table_footer
 	$footerCode = '';
-	if(function_exists('employee_appraisal_table_footer')) {
+	if(function_exists('employees_reporting_table_footer')) {
 		$args = [];
-		$footerCode = employee_appraisal_table_footer($x->ContentType, getMemberInfo(), $args);
+		$footerCode = employees_reporting_table_footer($x->ContentType, getMemberInfo(), $args);
 	}
 
 	if(!$footerCode) {

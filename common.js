@@ -651,6 +651,12 @@ function asset_table_validateData(insertMode) {
 
 	return !errors;
 }
+function asset_allotment_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
 function it_inventory_app_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
@@ -715,7 +721,13 @@ function employees_designation_table_validateData(insertMode) {
 
 	return !errors;
 }
-function employee_appraisal_table_validateData(insertMode) {
+function employees_reporting_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
+function employees_appraisal_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
 

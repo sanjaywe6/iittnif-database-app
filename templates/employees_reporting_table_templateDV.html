@@ -1,11 +1,11 @@
-<!-- To change the layout of the detail view form, we recommend using JS code in hooks/employee_appraisal_table-dv.js rather than editing this file -->
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/employees_reporting_table-dv.js rather than editing this file -->
 
 <div id="detail-view"></div>
 <div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
 
-<div id="employee_appraisal_table_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+<div id="employees_reporting_table_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
 
-<div class="panel-body hidden" id="employee_appraisal_table_dv_container">
+<div class="panel-body hidden" id="employees_reporting_table_dv_container">
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
@@ -16,11 +16,11 @@
 
 	<div class="row">
 		<!-- form inputs -->
-		<div class="col-md-8 col-lg-10" id="employee_appraisal_table_dv_form">
+		<div class="col-md-8 col-lg-10" id="employees_reporting_table_dv_form">
 			<fieldset class="form-horizontal">
 
 				<!-- Field: Employee name -->
-				<div class="form-group employee_appraisal_table-employee_name">
+				<div class="form-group employees_reporting_table-employee_name">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Employee name</label>
 					<div class="col-lg-9">
@@ -32,7 +32,7 @@
 				</div>
 
 				<!-- Field: Designation -->
-				<div class="form-group employee_appraisal_table-designation">
+				<div class="form-group employees_reporting_table-designation">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="designation">Designation</label>
 					<div class="col-lg-9">
@@ -41,7 +41,7 @@
 				</div>
 
 				<!-- Field: Reporting Officer -->
-				<div class="form-group employee_appraisal_table-reporting_officer">
+				<div class="form-group employees_reporting_table-reporting_officer">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="reporting_officer" data-parent_link="view_parent_modal">Reporting Officer</label>
 					<div class="col-lg-9">
@@ -50,7 +50,7 @@
 				</div>
 
 				<!-- Field: Reviewing Officer -->
-				<div class="form-group employee_appraisal_table-reviewing_officer">
+				<div class="form-group employees_reporting_table-reviewing_officer">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="reviewing_officer" data-parent_link="view_parent_modal">Reviewing Officer</label>
 					<div class="col-lg-9">
@@ -63,7 +63,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2" id="employee_appraisal_table_dv_action_buttons">
+		<div class="col-md-4 col-lg-2" id="employees_reporting_table_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>
@@ -99,9 +99,9 @@
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-			$j('#employee_appraisal_table_dv_container-loading').addClass('hidden');
-			$j('#employee_appraisal_table_dv_container').removeClass('hidden');
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('employee_appraisal_table', 'designation');
+			$j('#employees_reporting_table_dv_container-loading').addClass('hidden');
+			$j('#employees_reporting_table_dv_container').removeClass('hidden');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('employees_reporting_table', 'designation');
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 
@@ -122,7 +122,7 @@
 							localStorage.removeItem(pt + '_last_added_id');
 							AppGini.lookupText({
 								id: new_id,
-								table: 'employee_appraisal_table',
+								table: 'employees_reporting_table',
 								field: field_id,
 								callback: function(data) {
 									$j('#' + field_id + '-container').select2('data', data, true);
@@ -182,21 +182,21 @@
 				}
 			});
 
-			employee_appraisal_tableUniqueFields.forEach(fieldName => enforce_uniqueness('employee_appraisal_table', fieldName));
+			employees_reporting_tableUniqueFields.forEach(fieldName => enforce_uniqueness('employees_reporting_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
 				$j('body').append('<div id="admin-tools-appendix"></div>');
 				$j('#admin-tools-appendix').load(
-					'ajax_admin_tools.php?table=employee_appraisal_table&id=<%%URLVALUE(id)%%>',
+					'ajax_admin_tools.php?table=employees_reporting_table&id=<%%URLVALUE(id)%%>',
 					function(resp) {
 						if(!resp.length) return;
-						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=employee_appraisal_table&id=<%%URLVALUE(id)%%>');
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=employees_reporting_table&id=<%%URLVALUE(id)%%>');
 					}
 				);
 			}
 		});
 
-		var employee_appraisal_tableUniqueFields = [
+		var employees_reporting_tableUniqueFields = [
 		];
 	</script>

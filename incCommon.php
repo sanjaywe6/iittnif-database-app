@@ -131,14 +131,16 @@
 			'school_list' => "`school_list`.`id` as 'id', `school_list`.`district_name` as 'district_name', `school_list`.`school_code` as 'school_code', `school_list`.`school_name` as 'school_name', `school_list`.`pincode` as 'pincode', `school_list`.`school_type` as 'school_type', `school_list`.`school_phone_number` as 'school_phone_number', `school_list`.`created_by` as 'created_by', `school_list`.`created_at` as 'created_at', `school_list`.`last_updated_by` as 'last_updated_by', `school_list`.`last_updated_at` as 'last_updated_at'",
 			'sdp_participants_college_details_table' => "`sdp_participants_college_details_table`.`id` as 'id', `sdp_participants_college_details_table`.`participants_type` as 'participants_type', `sdp_participants_college_details_table`.`school_college_name` as 'school_college_name', `sdp_participants_college_details_table`.`location` as 'location', `sdp_participants_college_details_table`.`latitude` as 'latitude', `sdp_participants_college_details_table`.`longitude` as 'longitude', `sdp_participants_college_details_table`.`number_of_participants` as 'number_of_participants', if(`sdp_participants_college_details_table`.`start_date`,date_format(`sdp_participants_college_details_table`.`start_date`,'%d/%m/%Y'),'') as 'start_date', if(`sdp_participants_college_details_table`.`end_date`,date_format(`sdp_participants_college_details_table`.`end_date`,'%d/%m/%Y'),'') as 'end_date', `sdp_participants_college_details_table`.`state` as 'state', `sdp_participants_college_details_table`.`created_by` as 'created_by', `sdp_participants_college_details_table`.`created_at` as 'created_at', `sdp_participants_college_details_table`.`last_updated_by` as 'last_updated_by', `sdp_participants_college_details_table`.`last_updated_at` as 'last_updated_at'",
 			'asset_table' => "`asset_table`.`id` as 'id', if(`asset_table`.`Date`,date_format(`asset_table`.`Date`,'%d/%m/%Y'),'') as 'Date', `asset_table`.`ClassificationofAssest` as 'ClassificationofAssest', `asset_table`.`SubCategory` as 'SubCategory', `asset_table`.`AssetSerialNo` as 'AssetSerialNo', `asset_table`.`QRBarCode` as 'QRBarCode', `asset_table`.`AssetNo` as 'AssetNo', `asset_table`.`PONO` as 'PONO', if(`asset_table`.`PODATE`,date_format(`asset_table`.`PODATE`,'%d/%m/%Y'),'') as 'PODATE', `asset_table`.`particulars_of_supplier_name_address` as 'particulars_of_supplier_name_address', `asset_table`.`ItemDescription` as 'ItemDescription', `asset_table`.`BillNo` as 'BillNo', if(`asset_table`.`BillDate`,date_format(`asset_table`.`BillDate`,'%d/%m/%Y'),'') as 'BillDate', `asset_table`.`QUANTITY` as 'QUANTITY', `asset_table`.`CostoftheAssetinINR` as 'CostoftheAssetinINR', `asset_table`.`TotalInvoiceValueinINR` as 'TotalInvoiceValueinINR', `asset_table`.`CustodyDepartment` as 'CustodyDepartment', `asset_table`.`custodian` as 'custodian', `asset_table`.`CustodianSignature` as 'CustodianSignature', `asset_table`.`remarks` as 'remarks', `asset_table`.`created_by` as 'created_by', `asset_table`.`created_at` as 'created_at', `asset_table`.`last_updated_by` as 'last_updated_by', `asset_table`.`last_updated_at` as 'last_updated_at'",
+			'asset_allotment_table' => "`asset_allotment_table`.`id` as 'id', IF(    CHAR_LENGTH(`asset_table1`.`ClassificationofAssest`) || CHAR_LENGTH(`asset_table1`.`ItemDescription`), CONCAT_WS('',   `asset_table1`.`ClassificationofAssest`, '::', `asset_table1`.`ItemDescription`), '') as 'asset_details', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'select_employee', `asset_allotment_table`.`department` as 'department', if(`asset_allotment_table`.`date`,date_format(`asset_allotment_table`.`date`,'%d/%m/%Y'),'') as 'date', `asset_allotment_table`.`purpose` as 'purpose', IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') as 'alloted_by', `asset_allotment_table`.`status` as 'status', if(`asset_allotment_table`.`returned_date`,date_format(`asset_allotment_table`.`returned_date`,'%d/%m/%Y'),'') as 'returned_date', `asset_allotment_table`.`created_by` as 'created_by', `asset_allotment_table`.`created_at` as 'created_at', `asset_allotment_table`.`last_updated_by` as 'last_updated_by', `asset_allotment_table`.`last_updated_at` as 'last_updated_at'",
 			'it_inventory_app' => "`it_inventory_app`.`it_inventory_id` as 'it_inventory_id', if(`it_inventory_app`.`date`,date_format(`it_inventory_app`.`date`,'%d/%m/%Y'),'') as 'date', `it_inventory_app`.`description` as 'description', `it_inventory_app`.`classification_of_asset` as 'classification_of_asset', `it_inventory_app`.`sub_category` as 'sub_category', `it_inventory_app`.`asset_serial_number` as 'asset_serial_number', `it_inventory_app`.`qr_and_bar_code` as 'qr_and_bar_code', `it_inventory_app`.`custody_department` as 'custody_department', `it_inventory_app`.`custodian` as 'custodian', `it_inventory_app`.`custodian_signature` as 'custodian_signature', `it_inventory_app`.`no_of_years_useful_life_of_assets` as 'no_of_years_useful_life_of_assets', if(`it_inventory_app`.`date_of_useful_life_of_assets_ends`,date_format(`it_inventory_app`.`date_of_useful_life_of_assets_ends`,'%d/%m/%Y'),'') as 'date_of_useful_life_of_assets_ends', `it_inventory_app`.`remarks` as 'remarks', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'sactioned_by', `it_inventory_app`.`it_inventory_str` as 'it_inventory_str', `it_inventory_app`.`created_by` as 'created_by', `it_inventory_app`.`created_at` as 'created_at', `it_inventory_app`.`last_updated_by` as 'last_updated_by', `it_inventory_app`.`last_updated_at` as 'last_updated_at'",
 			'it_inventory_billing_details' => "`it_inventory_billing_details`.`it_inventory_biling_details_id` as 'it_inventory_biling_details_id', IF(    CHAR_LENGTH(`it_inventory_app1`.`it_inventory_str`), CONCAT_WS('',   `it_inventory_app1`.`it_inventory_str`, '::'), '') as 'it_inventory_lookup', `it_inventory_billing_details`.`po_no` as 'po_no', if(`it_inventory_billing_details`.`po_date`,date_format(`it_inventory_billing_details`.`po_date`,'%d/%m/%Y'),'') as 'po_date', `it_inventory_billing_details`.`particulars_of_supplier` as 'particulars_of_supplier', `it_inventory_billing_details`.`item_description` as 'item_description', `it_inventory_billing_details`.`bill_no` as 'bill_no', if(`it_inventory_billing_details`.`bill_date`,date_format(`it_inventory_billing_details`.`bill_date`,'%d/%m/%Y'),'') as 'bill_date', `it_inventory_billing_details`.`quantity` as 'quantity', `it_inventory_billing_details`.`total_invoice_value` as 'total_invoice_value', `it_inventory_billing_details`.`cost_of_the_asset` as 'cost_of_the_asset', `it_inventory_billing_details`.`image` as 'image', `it_inventory_billing_details`.`created_by` as 'created_by', `it_inventory_billing_details`.`created_at` as 'created_at', `it_inventory_billing_details`.`last_updated_by` as 'last_updated_by', `it_inventory_billing_details`.`last_updated_at` as 'last_updated_at'",
 			'it_inventory_allotment_table' => "`it_inventory_allotment_table`.`it_inventory_allotment_id` as 'it_inventory_allotment_id', IF(    CHAR_LENGTH(`it_inventory_app1`.`it_inventory_str`), CONCAT_WS('',   `it_inventory_app1`.`it_inventory_str`), '') as 'it_inventory_lookup', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'select_employee', `it_inventory_allotment_table`.`department` as 'department', if(`it_inventory_allotment_table`.`date`,date_format(`it_inventory_allotment_table`.`date`,'%d/%m/%Y'),'') as 'date', `it_inventory_allotment_table`.`purpose` as 'purpose', IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') as 'alloted_by', `it_inventory_allotment_table`.`status` as 'status', if(`it_inventory_allotment_table`.`returned_date`,date_format(`it_inventory_allotment_table`.`returned_date`,'%d/%m/%Y'),'') as 'returned_date', `it_inventory_allotment_table`.`created_by` as 'created_by', `it_inventory_allotment_table`.`created_at` as 'created_at', `it_inventory_allotment_table`.`last_updated_by` as 'last_updated_by', `it_inventory_allotment_table`.`last_updated_at` as 'last_updated_at'",
 			'computer_details_table' => "`computer_details_table`.`id` as 'id', `computer_details_table`.`pc_number` as 'pc_number', `computer_details_table`.`pc_hostname` as 'pc_hostname', `computer_details_table`.`pc_mac_address` as 'pc_mac_address', `computer_details_table`.`room_number` as 'room_number', `computer_details_table`.`desk_number` as 'desk_number', `computer_details_table`.`maintained_by` as 'maintained_by', `computer_details_table`.`assigned_to_user` as 'assigned_to_user', `computer_details_table`.`remote_access` as 'remote_access', `computer_details_table`.`created_by` as 'created_by', `computer_details_table`.`created_at` as 'created_at', `computer_details_table`.`last_updated_by` as 'last_updated_by', `computer_details_table`.`last_updated_at` as 'last_updated_at'",
 			'computer_usage_table' => "`computer_usage_table`.`id` as 'id', IF(    CHAR_LENGTH(`computer_details_table1`.`pc_number`) || CHAR_LENGTH(`computer_details_table1`.`pc_hostname`), CONCAT_WS('',   `computer_details_table1`.`pc_number`, '::', `computer_details_table1`.`pc_hostname`), '') as 'pc_id', `computer_usage_table`.`name_of_user` as 'name_of_user', `computer_usage_table`.`role` as 'role', if(`computer_usage_table`.`from_date`,date_format(`computer_usage_table`.`from_date`,'%d/%m/%Y %H:%i'),'') as 'from_date', if(`computer_usage_table`.`to_date`,date_format(`computer_usage_table`.`to_date`,'%d/%m/%Y %H:%i'),'') as 'to_date', `computer_usage_table`.`purpose` as 'purpose', `computer_usage_table`.`email_d` as 'email_d', `computer_usage_table`.`mobile_number` as 'mobile_number', `computer_usage_table`.`created_by` as 'created_by', `computer_usage_table`.`created_at` as 'created_at', `computer_usage_table`.`last_updated_by` as 'last_updated_by', `computer_usage_table`.`last_updated_at` as 'last_updated_at'",
-			'personal_data_table' => "`personal_data_table`.`personal_data_id` as 'personal_data_id', `personal_data_table`.`name` as 'name', `personal_data_table`.`employee_type` as 'employee_type', `personal_data_table`.`emp_id` as 'emp_id', if(`personal_data_table`.`date_of_birth`,date_format(`personal_data_table`.`date_of_birth`,'%d/%m/%Y'),'') as 'date_of_birth', `personal_data_table`.`blood_group` as 'blood_group', `personal_data_table`.`email` as 'email', `personal_data_table`.`phone_number` as 'phone_number', if(`personal_data_table`.`date_of_joining`,date_format(`personal_data_table`.`date_of_joining`,'%d/%m/%Y'),'') as 'date_of_joining', if(`personal_data_table`.`date_of_exit`,date_format(`personal_data_table`.`date_of_exit`,'%d/%m/%Y'),'') as 'date_of_exit', `personal_data_table`.`active_status` as 'active_status', `personal_data_table`.`profile_photo` as 'profile_photo', `personal_data_table`.`signature` as 'signature', `personal_data_table`.`created_by` as 'created_by', `personal_data_table`.`created_at` as 'created_at', `personal_data_table`.`last_updated_by` as 'last_updated_by', `personal_data_table`.`last_updated_at` as 'last_updated_at'",
+			'personal_data_table' => "`personal_data_table`.`personal_data_id` as 'personal_data_id', `personal_data_table`.`name` as 'name', `personal_data_table`.`employee_type` as 'employee_type', `personal_data_table`.`emp_id` as 'emp_id', if(`personal_data_table`.`date_of_birth`,date_format(`personal_data_table`.`date_of_birth`,'%d/%m/%Y'),'') as 'date_of_birth', `personal_data_table`.`blood_group` as 'blood_group', `personal_data_table`.`email` as 'email', `personal_data_table`.`phone_number` as 'phone_number', `personal_data_table`.`department` as 'department', if(`personal_data_table`.`date_of_joining`,date_format(`personal_data_table`.`date_of_joining`,'%d/%m/%Y'),'') as 'date_of_joining', if(`personal_data_table`.`date_of_exit`,date_format(`personal_data_table`.`date_of_exit`,'%d/%m/%Y'),'') as 'date_of_exit', `personal_data_table`.`active_status` as 'active_status', `personal_data_table`.`profile_photo` as 'profile_photo', `personal_data_table`.`signature` as 'signature', `personal_data_table`.`created_by` as 'created_by', `personal_data_table`.`created_at` as 'created_at', `personal_data_table`.`last_updated_by` as 'last_updated_by', `personal_data_table`.`last_updated_at` as 'last_updated_at'",
 			'employees_designation_table' => "`employees_designation_table`.`id` as 'id', IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`emp_id`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`emp_id`), '') as 'employee_details', `employees_designation_table`.`designation` as 'designation', if(`employees_designation_table`.`date_of_appointment_to_designation`,date_format(`employees_designation_table`.`date_of_appointment_to_designation`,'%d/%m/%Y'),'') as 'date_of_appointment_to_designation', `employees_designation_table`.`active_status` as 'active_status', `employees_designation_table`.`created_by` as 'created_by', `employees_designation_table`.`created_at` as 'created_at', `employees_designation_table`.`last_updated_by` as 'last_updated_by', `employees_designation_table`.`last_updated_at` as 'last_updated_at'",
-			'employee_appraisal_table' => "`employee_appraisal_table`.`id` as 'id', IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`emp_id`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`emp_id`), '') as 'employee_name', `employee_appraisal_table`.`designation` as 'designation', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'reporting_officer', IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') as 'reviewing_officer', `employee_appraisal_table`.`created_by` as 'created_by', `employee_appraisal_table`.`created_at` as 'created_at', `employee_appraisal_table`.`last_updated_by` as 'last_updated_by', `employee_appraisal_table`.`last_updated_at` as 'last_updated_at'",
+			'employees_reporting_table' => "`employees_reporting_table`.`id` as 'id', IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`emp_id`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`emp_id`), '') as 'employee_name', `employees_reporting_table`.`designation` as 'designation', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'reporting_officer', IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') as 'reviewing_officer', `employees_reporting_table`.`created_by` as 'created_by', `employees_reporting_table`.`created_at` as 'created_at', `employees_reporting_table`.`last_updated_by` as 'last_updated_by', `employees_reporting_table`.`last_updated_at` as 'last_updated_at'",
+			'employees_appraisal_table' => "`employees_appraisal_table`.`id` as 'id', `employees_appraisal_table`.`employee_details` as 'employee_details', `employees_appraisal_table`.`department` as 'department', `employees_appraisal_table`.`designation` as 'designation', `employees_appraisal_table`.`date_of_joining` as 'date_of_joining'",
 			'beyond_workingHours_table' => "`beyond_workingHours_table`.`id` as 'id', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'select_employee', `beyond_workingHours_table`.`reson_for_overtime` as 'reson_for_overtime', if(`beyond_workingHours_table`.`start_datetime`,date_format(`beyond_workingHours_table`.`start_datetime`,'%d/%m/%Y %H:%i'),'') as 'start_datetime', if(`beyond_workingHours_table`.`end_datetime`,date_format(`beyond_workingHours_table`.`end_datetime`,'%d/%m/%Y %H:%i'),'') as 'end_datetime', `beyond_workingHours_table`.`number_of_hours` as 'number_of_hours', `beyond_workingHours_table`.`approval_status` as 'approval_status', `beyond_workingHours_table`.`approval_remarks` as 'approval_remarks', `beyond_workingHours_table`.`approved_by` as 'approved_by', `beyond_workingHours_table`.`created_by` as 'created_by', `beyond_workingHours_table`.`created_at` as 'created_at', `beyond_workingHours_table`.`last_updated_by` as 'last_updated_by', `beyond_workingHours_table`.`last_updated_at` as 'last_updated_at'",
 			'attendence_details_table' => "`attendence_details_table`.`id` as 'id', `attendence_details_table`.`enrollment_no` as 'enrollment_no', `attendence_details_table`.`name` as 'name', `attendence_details_table`.`mode` as 'mode', if(`attendence_details_table`.`date`,date_format(`attendence_details_table`.`date`,'%d/%m/%Y'),'') as 'date', `attendence_details_table`.`in_time` as 'in_time', `attendence_details_table`.`out_time` as 'out_time', `attendence_details_table`.`working_hours` as 'working_hours', `attendence_details_table`.`remarks` as 'remarks', `attendence_details_table`.`created_by` as 'created_by', `attendence_details_table`.`created_at` as 'created_at', `attendence_details_table`.`last_updated_by` as 'last_updated_by', `attendence_details_table`.`last_updated_at` as 'last_updated_at'",
 			'leave_table' => "`leave_table`.`leave_id` as 'leave_id', `leave_table`.`leave_type` as 'leave_type', `leave_table`.`purpose_of_leave` as 'purpose_of_leave', if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y %H:%i'),'') as 'from_date', if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y %H:%i'),'') as 'to_date', `leave_table`.`created_by` as 'created_by', `leave_table`.`created_at` as 'created_at', `leave_table`.`last_updated_by` as 'last_updated_by', `leave_table`.`last_updated_at` as 'last_updated_at'",
@@ -212,6 +214,7 @@
 			'school_list' => "`school_list` ",
 			'sdp_participants_college_details_table' => "`sdp_participants_college_details_table` ",
 			'asset_table' => "`asset_table` ",
+			'asset_allotment_table' => "`asset_allotment_table` LEFT JOIN `asset_table` as asset_table1 ON `asset_table1`.`id`=`asset_allotment_table`.`asset_details` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`asset_allotment_table`.`select_employee` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`asset_allotment_table`.`alloted_by` ",
 			'it_inventory_app' => "`it_inventory_app` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`it_inventory_app`.`sactioned_by` ",
 			'it_inventory_billing_details' => "`it_inventory_billing_details` LEFT JOIN `it_inventory_app` as it_inventory_app1 ON `it_inventory_app1`.`it_inventory_id`=`it_inventory_billing_details`.`it_inventory_lookup` ",
 			'it_inventory_allotment_table' => "`it_inventory_allotment_table` LEFT JOIN `it_inventory_app` as it_inventory_app1 ON `it_inventory_app1`.`it_inventory_id`=`it_inventory_allotment_table`.`it_inventory_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`it_inventory_allotment_table`.`select_employee` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`it_inventory_allotment_table`.`alloted_by` ",
@@ -219,7 +222,8 @@
 			'computer_usage_table' => "`computer_usage_table` LEFT JOIN `computer_details_table` as computer_details_table1 ON `computer_details_table1`.`id`=`computer_usage_table`.`pc_id` ",
 			'personal_data_table' => "`personal_data_table` ",
 			'employees_designation_table' => "`employees_designation_table` LEFT JOIN `personal_data_table` as personal_data_table1 ON `personal_data_table1`.`personal_data_id`=`employees_designation_table`.`employee_details` ",
-			'employee_appraisal_table' => "`employee_appraisal_table` LEFT JOIN `personal_data_table` as personal_data_table1 ON `personal_data_table1`.`personal_data_id`=`employee_appraisal_table`.`employee_name` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employee_appraisal_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employee_appraisal_table`.`reviewing_officer` ",
+			'employees_reporting_table' => "`employees_reporting_table` LEFT JOIN `personal_data_table` as personal_data_table1 ON `personal_data_table1`.`personal_data_id`=`employees_reporting_table`.`employee_name` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_reporting_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employees_reporting_table`.`reviewing_officer` ",
+			'employees_appraisal_table' => "`employees_appraisal_table` ",
 			'beyond_workingHours_table' => "`beyond_workingHours_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`beyond_workingHours_table`.`select_employee` ",
 			'attendence_details_table' => "`attendence_details_table` ",
 			'leave_table' => "`leave_table` ",
@@ -285,6 +289,7 @@
 			'school_list' => 'id',
 			'sdp_participants_college_details_table' => 'id',
 			'asset_table' => 'id',
+			'asset_allotment_table' => 'id',
 			'it_inventory_app' => 'it_inventory_id',
 			'it_inventory_billing_details' => 'it_inventory_biling_details_id',
 			'it_inventory_allotment_table' => 'it_inventory_allotment_id',
@@ -292,7 +297,8 @@
 			'computer_usage_table' => 'id',
 			'personal_data_table' => 'personal_data_id',
 			'employees_designation_table' => 'id',
-			'employee_appraisal_table' => 'id',
+			'employees_reporting_table' => 'id',
+			'employees_appraisal_table' => 'id',
 			'beyond_workingHours_table' => 'id',
 			'attendence_details_table' => 'id',
 			'leave_table' => 'leave_id',
@@ -773,6 +779,21 @@
 				'last_updated_by' => '',
 				'last_updated_at' => '',
 			],
+			'asset_allotment_table' => [
+				'id' => '',
+				'asset_details' => '',
+				'select_employee' => '',
+				'department' => '',
+				'date' => '1',
+				'purpose' => '',
+				'alloted_by' => '',
+				'status' => '',
+				'returned_date' => '1',
+				'created_by' => '',
+				'created_at' => '',
+				'last_updated_by' => '',
+				'last_updated_at' => '',
+			],
 			'it_inventory_app' => [
 				'it_inventory_id' => '',
 				'date' => '1',
@@ -866,6 +887,7 @@
 				'blood_group' => '',
 				'email' => '',
 				'phone_number' => '',
+				'department' => '',
 				'date_of_joining' => '',
 				'date_of_exit' => '',
 				'active_status' => '',
@@ -887,7 +909,7 @@
 				'last_updated_by' => '',
 				'last_updated_at' => '',
 			],
-			'employee_appraisal_table' => [
+			'employees_reporting_table' => [
 				'id' => '',
 				'employee_name' => '',
 				'designation' => '',
@@ -897,6 +919,13 @@
 				'created_at' => '',
 				'last_updated_by' => '',
 				'last_updated_at' => '',
+			],
+			'employees_appraisal_table' => [
+				'id' => '',
+				'employee_details' => '',
+				'department' => '',
+				'designation' => '',
+				'date_of_joining' => '',
 			],
 			'beyond_workingHours_table' => [
 				'id' => '',
@@ -2274,7 +2303,7 @@
 		if(is_array($arrTables)) {
 			foreach($arrTables as $tn => $tc) {
 				/* ---- list of tables where hide link in nav menu is set ---- */
-				$tChkHL = array_search($tn, ['user_table','suggestion','event_table','outcomes_expected_table','event_decision_table','meetings_table','agenda_table','decision_table','participants_table','action_actor','visiting_card_table','mou_details_table','mou_company_area_details_table','goal_setting_table','goal_progress_table','task_setting_table','subtask_setting_table','internship_fellowship_details_app','star_pnt','hrd_sdp_events_table','training_program_on_geospatial_tchnologies_table','space_day_school_details_app','space_day_college_student_table','school_list','sdp_participants_college_details_table','asset_table','it_inventory_app','it_inventory_billing_details','it_inventory_allotment_table','computer_details_table','computer_usage_table','personal_data_table','employees_designation_table','employee_appraisal_table','beyond_workingHours_table','attendence_details_table','leave_table','work_from_home_table','email_id_allocation_table','all_startup_data_table','shortlisted_startups_for_fund_table','shortlisted_startups_dd_and_agreement_table','vikas_startup_applications_table','programs_table','evaluation_table','problem_statement_table','evaluators_table','approval_table','approval_billing_table','honorarium_claim_table','all_bank_account_statement_table','payment_track_details_table','car_table','car_usage_table','travel_table','travel_cab_table','travel_flight_table','travel_hotel_table','operation_dronagiri_data_submission_app','file_table','panel_decision_table_tdp','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','summary_table_tdp','project_details_tdp']);
+				$tChkHL = array_search($tn, ['user_table','suggestion','event_table','outcomes_expected_table','event_decision_table','meetings_table','agenda_table','decision_table','participants_table','action_actor','visiting_card_table','mou_details_table','mou_company_area_details_table','goal_setting_table','goal_progress_table','task_setting_table','subtask_setting_table','internship_fellowship_details_app','star_pnt','hrd_sdp_events_table','training_program_on_geospatial_tchnologies_table','space_day_school_details_app','space_day_college_student_table','school_list','sdp_participants_college_details_table','asset_table','asset_allotment_table','it_inventory_app','it_inventory_billing_details','it_inventory_allotment_table','computer_details_table','computer_usage_table','personal_data_table','employees_designation_table','employees_reporting_table','employees_appraisal_table','beyond_workingHours_table','attendence_details_table','leave_table','work_from_home_table','email_id_allocation_table','all_startup_data_table','shortlisted_startups_for_fund_table','shortlisted_startups_dd_and_agreement_table','vikas_startup_applications_table','programs_table','evaluation_table','problem_statement_table','evaluators_table','approval_table','approval_billing_table','honorarium_claim_table','all_bank_account_statement_table','payment_track_details_table','car_table','car_usage_table','travel_table','travel_cab_table','travel_flight_table','travel_hotel_table','operation_dronagiri_data_submission_app','file_table','panel_decision_table_tdp','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','summary_table_tdp','project_details_tdp']);
 
 				/* ---- list of tables where filter first is set ---- */
 				$tChkFF = array_search($tn, []);
@@ -3097,6 +3126,80 @@ EOT;
 			],
 			'asset_table' => [
 			],
+			'asset_allotment_table' => [
+				'asset_details' => [
+					'parent-table' => 'asset_table',
+					'parent-primary-key' => 'id',
+					'child-primary-key' => 'id',
+					'child-primary-key-index' => 0,
+					'tab-label' => 'Asset Allotment - App <span class="hidden child-label-asset_allotment_table child-field-caption">(Asset Details)</span>',
+					'auto-close' => false,
+					'table-icon' => 'table.gif',
+					'display-refresh' => true,
+					'display-add-new' => true,
+					'forced-where' => '',
+					'display-fields' => [0 => 'ID', 1 => 'Asset Details', 2 => 'Select employee', 3 => 'Department', 4 => 'Date', 5 => 'Purpose', 6 => 'Alloted by', 7 => 'Status', 8 => 'Returned date', 9 => 'Created by', 10 => 'Created at', 11 => 'Last updated by', 12 => 'Last updated at'],
+					'display-field-names' => [0 => 'id', 1 => 'asset_details', 2 => 'select_employee', 3 => 'department', 4 => 'date', 5 => 'purpose', 6 => 'alloted_by', 7 => 'status', 8 => 'returned_date', 9 => 'created_by', 10 => 'created_at', 11 => 'last_updated_by', 12 => 'last_updated_at'],
+					'sortable-fields' => [0 => '`asset_allotment_table`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => '`asset_allotment_table`.`date`', 5 => 6, 6 => 7, 7 => 8, 8 => '`asset_allotment_table`.`returned_date`', 9 => 10, 10 => 11, 11 => 12, 12 => 13],
+					'records-per-page' => 10,
+					'default-sort-by' => 0,
+					'default-sort-direction' => 'desc',
+					'open-detail-view-on-click' => true,
+					'display-page-selector' => true,
+					'show-page-progress' => true,
+					'template' => 'children-asset_allotment_table',
+					'template-printable' => 'children-asset_allotment_table-printable',
+					'query' => "SELECT `asset_allotment_table`.`id` as 'id', IF(    CHAR_LENGTH(`asset_table1`.`ClassificationofAssest`) || CHAR_LENGTH(`asset_table1`.`ItemDescription`), CONCAT_WS('',   `asset_table1`.`ClassificationofAssest`, '::', `asset_table1`.`ItemDescription`), '') as 'asset_details', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'select_employee', `asset_allotment_table`.`department` as 'department', if(`asset_allotment_table`.`date`,date_format(`asset_allotment_table`.`date`,'%d/%m/%Y'),'') as 'date', `asset_allotment_table`.`purpose` as 'purpose', IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') as 'alloted_by', `asset_allotment_table`.`status` as 'status', if(`asset_allotment_table`.`returned_date`,date_format(`asset_allotment_table`.`returned_date`,'%d/%m/%Y'),'') as 'returned_date', `asset_allotment_table`.`created_by` as 'created_by', `asset_allotment_table`.`created_at` as 'created_at', `asset_allotment_table`.`last_updated_by` as 'last_updated_by', `asset_allotment_table`.`last_updated_at` as 'last_updated_at' FROM `asset_allotment_table` LEFT JOIN `asset_table` as asset_table1 ON `asset_table1`.`id`=`asset_allotment_table`.`asset_details` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`asset_allotment_table`.`select_employee` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`asset_allotment_table`.`alloted_by` "
+				],
+				'select_employee' => [
+					'parent-table' => 'user_table',
+					'parent-primary-key' => 'user_id',
+					'child-primary-key' => 'id',
+					'child-primary-key-index' => 0,
+					'tab-label' => 'Asset Allotment - App <span class="hidden child-label-asset_allotment_table child-field-caption">(Select employee)</span>',
+					'auto-close' => false,
+					'table-icon' => 'table.gif',
+					'display-refresh' => true,
+					'display-add-new' => true,
+					'forced-where' => '',
+					'display-fields' => [0 => 'ID', 1 => 'Asset Details', 2 => 'Select employee', 3 => 'Department', 4 => 'Date', 5 => 'Purpose', 6 => 'Alloted by', 7 => 'Status', 8 => 'Returned date', 9 => 'Created by', 10 => 'Created at', 11 => 'Last updated by', 12 => 'Last updated at'],
+					'display-field-names' => [0 => 'id', 1 => 'asset_details', 2 => 'select_employee', 3 => 'department', 4 => 'date', 5 => 'purpose', 6 => 'alloted_by', 7 => 'status', 8 => 'returned_date', 9 => 'created_by', 10 => 'created_at', 11 => 'last_updated_by', 12 => 'last_updated_at'],
+					'sortable-fields' => [0 => '`asset_allotment_table`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => '`asset_allotment_table`.`date`', 5 => 6, 6 => 7, 7 => 8, 8 => '`asset_allotment_table`.`returned_date`', 9 => 10, 10 => 11, 11 => 12, 12 => 13],
+					'records-per-page' => 10,
+					'default-sort-by' => 0,
+					'default-sort-direction' => 'desc',
+					'open-detail-view-on-click' => true,
+					'display-page-selector' => true,
+					'show-page-progress' => true,
+					'template' => 'children-asset_allotment_table',
+					'template-printable' => 'children-asset_allotment_table-printable',
+					'query' => "SELECT `asset_allotment_table`.`id` as 'id', IF(    CHAR_LENGTH(`asset_table1`.`ClassificationofAssest`) || CHAR_LENGTH(`asset_table1`.`ItemDescription`), CONCAT_WS('',   `asset_table1`.`ClassificationofAssest`, '::', `asset_table1`.`ItemDescription`), '') as 'asset_details', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'select_employee', `asset_allotment_table`.`department` as 'department', if(`asset_allotment_table`.`date`,date_format(`asset_allotment_table`.`date`,'%d/%m/%Y'),'') as 'date', `asset_allotment_table`.`purpose` as 'purpose', IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') as 'alloted_by', `asset_allotment_table`.`status` as 'status', if(`asset_allotment_table`.`returned_date`,date_format(`asset_allotment_table`.`returned_date`,'%d/%m/%Y'),'') as 'returned_date', `asset_allotment_table`.`created_by` as 'created_by', `asset_allotment_table`.`created_at` as 'created_at', `asset_allotment_table`.`last_updated_by` as 'last_updated_by', `asset_allotment_table`.`last_updated_at` as 'last_updated_at' FROM `asset_allotment_table` LEFT JOIN `asset_table` as asset_table1 ON `asset_table1`.`id`=`asset_allotment_table`.`asset_details` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`asset_allotment_table`.`select_employee` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`asset_allotment_table`.`alloted_by` "
+				],
+				'alloted_by' => [
+					'parent-table' => 'user_table',
+					'parent-primary-key' => 'user_id',
+					'child-primary-key' => 'id',
+					'child-primary-key-index' => 0,
+					'tab-label' => 'Asset Allotment - App <span class="hidden child-label-asset_allotment_table child-field-caption">(Alloted by)</span>',
+					'auto-close' => false,
+					'table-icon' => 'table.gif',
+					'display-refresh' => true,
+					'display-add-new' => true,
+					'forced-where' => '',
+					'display-fields' => [0 => 'ID', 1 => 'Asset Details', 2 => 'Select employee', 3 => 'Department', 4 => 'Date', 5 => 'Purpose', 6 => 'Alloted by', 7 => 'Status', 8 => 'Returned date', 9 => 'Created by', 10 => 'Created at', 11 => 'Last updated by', 12 => 'Last updated at'],
+					'display-field-names' => [0 => 'id', 1 => 'asset_details', 2 => 'select_employee', 3 => 'department', 4 => 'date', 5 => 'purpose', 6 => 'alloted_by', 7 => 'status', 8 => 'returned_date', 9 => 'created_by', 10 => 'created_at', 11 => 'last_updated_by', 12 => 'last_updated_at'],
+					'sortable-fields' => [0 => '`asset_allotment_table`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => '`asset_allotment_table`.`date`', 5 => 6, 6 => 7, 7 => 8, 8 => '`asset_allotment_table`.`returned_date`', 9 => 10, 10 => 11, 11 => 12, 12 => 13],
+					'records-per-page' => 10,
+					'default-sort-by' => 0,
+					'default-sort-direction' => 'desc',
+					'open-detail-view-on-click' => true,
+					'display-page-selector' => true,
+					'show-page-progress' => true,
+					'template' => 'children-asset_allotment_table',
+					'template-printable' => 'children-asset_allotment_table-printable',
+					'query' => "SELECT `asset_allotment_table`.`id` as 'id', IF(    CHAR_LENGTH(`asset_table1`.`ClassificationofAssest`) || CHAR_LENGTH(`asset_table1`.`ItemDescription`), CONCAT_WS('',   `asset_table1`.`ClassificationofAssest`, '::', `asset_table1`.`ItemDescription`), '') as 'asset_details', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'select_employee', `asset_allotment_table`.`department` as 'department', if(`asset_allotment_table`.`date`,date_format(`asset_allotment_table`.`date`,'%d/%m/%Y'),'') as 'date', `asset_allotment_table`.`purpose` as 'purpose', IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') as 'alloted_by', `asset_allotment_table`.`status` as 'status', if(`asset_allotment_table`.`returned_date`,date_format(`asset_allotment_table`.`returned_date`,'%d/%m/%Y'),'') as 'returned_date', `asset_allotment_table`.`created_by` as 'created_by', `asset_allotment_table`.`created_at` as 'created_at', `asset_allotment_table`.`last_updated_by` as 'last_updated_by', `asset_allotment_table`.`last_updated_at` as 'last_updated_at' FROM `asset_allotment_table` LEFT JOIN `asset_table` as asset_table1 ON `asset_table1`.`id`=`asset_allotment_table`.`asset_details` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`asset_allotment_table`.`select_employee` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`asset_allotment_table`.`alloted_by` "
+				],
+			],
 			'it_inventory_app' => [
 				'sactioned_by' => [
 					'parent-table' => 'user_table',
@@ -3279,13 +3382,13 @@ EOT;
 					'query' => "SELECT `employees_designation_table`.`id` as 'id', IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`emp_id`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`emp_id`), '') as 'employee_details', `employees_designation_table`.`designation` as 'designation', if(`employees_designation_table`.`date_of_appointment_to_designation`,date_format(`employees_designation_table`.`date_of_appointment_to_designation`,'%d/%m/%Y'),'') as 'date_of_appointment_to_designation', `employees_designation_table`.`active_status` as 'active_status', `employees_designation_table`.`created_by` as 'created_by', `employees_designation_table`.`created_at` as 'created_at', `employees_designation_table`.`last_updated_by` as 'last_updated_by', `employees_designation_table`.`last_updated_at` as 'last_updated_at' FROM `employees_designation_table` LEFT JOIN `personal_data_table` as personal_data_table1 ON `personal_data_table1`.`personal_data_id`=`employees_designation_table`.`employee_details` "
 				],
 			],
-			'employee_appraisal_table' => [
+			'employees_reporting_table' => [
 				'employee_name' => [
 					'parent-table' => 'personal_data_table',
 					'parent-primary-key' => 'personal_data_id',
 					'child-primary-key' => 'id',
 					'child-primary-key-index' => 0,
-					'tab-label' => 'Employee Appraisal - App <span class="hidden child-label-employee_appraisal_table child-field-caption">(Employee name)</span>',
+					'tab-label' => 'Employee Appraisal - App <span class="hidden child-label-employees_reporting_table child-field-caption">(Employee name)</span>',
 					'auto-close' => false,
 					'table-icon' => 'table.gif',
 					'display-refresh' => true,
@@ -3293,23 +3396,23 @@ EOT;
 					'forced-where' => '',
 					'display-fields' => [0 => 'ID', 1 => 'Employee name', 2 => 'Designation', 3 => 'Reporting Officer', 4 => 'Reviewing Officer', 5 => 'Created by', 6 => 'Created at', 7 => 'Last updated by', 8 => 'Last updated at'],
 					'display-field-names' => [0 => 'id', 1 => 'employee_name', 2 => 'designation', 3 => 'reporting_officer', 4 => 'reviewing_officer', 5 => 'created_by', 6 => 'created_at', 7 => 'last_updated_by', 8 => 'last_updated_at'],
-					'sortable-fields' => [0 => '`employee_appraisal_table`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => 9],
+					'sortable-fields' => [0 => '`employees_reporting_table`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => 9],
 					'records-per-page' => 10,
 					'default-sort-by' => 0,
 					'default-sort-direction' => 'desc',
 					'open-detail-view-on-click' => true,
 					'display-page-selector' => true,
 					'show-page-progress' => true,
-					'template' => 'children-employee_appraisal_table',
-					'template-printable' => 'children-employee_appraisal_table-printable',
-					'query' => "SELECT `employee_appraisal_table`.`id` as 'id', IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`emp_id`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`emp_id`), '') as 'employee_name', `employee_appraisal_table`.`designation` as 'designation', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'reporting_officer', IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') as 'reviewing_officer', `employee_appraisal_table`.`created_by` as 'created_by', `employee_appraisal_table`.`created_at` as 'created_at', `employee_appraisal_table`.`last_updated_by` as 'last_updated_by', `employee_appraisal_table`.`last_updated_at` as 'last_updated_at' FROM `employee_appraisal_table` LEFT JOIN `personal_data_table` as personal_data_table1 ON `personal_data_table1`.`personal_data_id`=`employee_appraisal_table`.`employee_name` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employee_appraisal_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employee_appraisal_table`.`reviewing_officer` "
+					'template' => 'children-employees_reporting_table',
+					'template-printable' => 'children-employees_reporting_table-printable',
+					'query' => "SELECT `employees_reporting_table`.`id` as 'id', IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`emp_id`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`emp_id`), '') as 'employee_name', `employees_reporting_table`.`designation` as 'designation', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'reporting_officer', IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') as 'reviewing_officer', `employees_reporting_table`.`created_by` as 'created_by', `employees_reporting_table`.`created_at` as 'created_at', `employees_reporting_table`.`last_updated_by` as 'last_updated_by', `employees_reporting_table`.`last_updated_at` as 'last_updated_at' FROM `employees_reporting_table` LEFT JOIN `personal_data_table` as personal_data_table1 ON `personal_data_table1`.`personal_data_id`=`employees_reporting_table`.`employee_name` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_reporting_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employees_reporting_table`.`reviewing_officer` "
 				],
 				'reporting_officer' => [
 					'parent-table' => 'user_table',
 					'parent-primary-key' => 'user_id',
 					'child-primary-key' => 'id',
 					'child-primary-key-index' => 0,
-					'tab-label' => 'Employee Appraisal - App <span class="hidden child-label-employee_appraisal_table child-field-caption">(Reporting Officer)</span>',
+					'tab-label' => 'Employee Appraisal - App <span class="hidden child-label-employees_reporting_table child-field-caption">(Reporting Officer)</span>',
 					'auto-close' => false,
 					'table-icon' => 'table.gif',
 					'display-refresh' => true,
@@ -3317,23 +3420,23 @@ EOT;
 					'forced-where' => '',
 					'display-fields' => [0 => 'ID', 1 => 'Employee name', 2 => 'Designation', 3 => 'Reporting Officer', 4 => 'Reviewing Officer', 5 => 'Created by', 6 => 'Created at', 7 => 'Last updated by', 8 => 'Last updated at'],
 					'display-field-names' => [0 => 'id', 1 => 'employee_name', 2 => 'designation', 3 => 'reporting_officer', 4 => 'reviewing_officer', 5 => 'created_by', 6 => 'created_at', 7 => 'last_updated_by', 8 => 'last_updated_at'],
-					'sortable-fields' => [0 => '`employee_appraisal_table`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => 9],
+					'sortable-fields' => [0 => '`employees_reporting_table`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => 9],
 					'records-per-page' => 10,
 					'default-sort-by' => 0,
 					'default-sort-direction' => 'desc',
 					'open-detail-view-on-click' => true,
 					'display-page-selector' => true,
 					'show-page-progress' => true,
-					'template' => 'children-employee_appraisal_table',
-					'template-printable' => 'children-employee_appraisal_table-printable',
-					'query' => "SELECT `employee_appraisal_table`.`id` as 'id', IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`emp_id`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`emp_id`), '') as 'employee_name', `employee_appraisal_table`.`designation` as 'designation', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'reporting_officer', IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') as 'reviewing_officer', `employee_appraisal_table`.`created_by` as 'created_by', `employee_appraisal_table`.`created_at` as 'created_at', `employee_appraisal_table`.`last_updated_by` as 'last_updated_by', `employee_appraisal_table`.`last_updated_at` as 'last_updated_at' FROM `employee_appraisal_table` LEFT JOIN `personal_data_table` as personal_data_table1 ON `personal_data_table1`.`personal_data_id`=`employee_appraisal_table`.`employee_name` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employee_appraisal_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employee_appraisal_table`.`reviewing_officer` "
+					'template' => 'children-employees_reporting_table',
+					'template-printable' => 'children-employees_reporting_table-printable',
+					'query' => "SELECT `employees_reporting_table`.`id` as 'id', IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`emp_id`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`emp_id`), '') as 'employee_name', `employees_reporting_table`.`designation` as 'designation', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'reporting_officer', IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') as 'reviewing_officer', `employees_reporting_table`.`created_by` as 'created_by', `employees_reporting_table`.`created_at` as 'created_at', `employees_reporting_table`.`last_updated_by` as 'last_updated_by', `employees_reporting_table`.`last_updated_at` as 'last_updated_at' FROM `employees_reporting_table` LEFT JOIN `personal_data_table` as personal_data_table1 ON `personal_data_table1`.`personal_data_id`=`employees_reporting_table`.`employee_name` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_reporting_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employees_reporting_table`.`reviewing_officer` "
 				],
 				'reviewing_officer' => [
 					'parent-table' => 'user_table',
 					'parent-primary-key' => 'user_id',
 					'child-primary-key' => 'id',
 					'child-primary-key-index' => 0,
-					'tab-label' => 'Employee Appraisal - App <span class="hidden child-label-employee_appraisal_table child-field-caption">(Reviewing Officer)</span>',
+					'tab-label' => 'Employee Appraisal - App <span class="hidden child-label-employees_reporting_table child-field-caption">(Reviewing Officer)</span>',
 					'auto-close' => false,
 					'table-icon' => 'table.gif',
 					'display-refresh' => true,
@@ -3341,17 +3444,19 @@ EOT;
 					'forced-where' => '',
 					'display-fields' => [0 => 'ID', 1 => 'Employee name', 2 => 'Designation', 3 => 'Reporting Officer', 4 => 'Reviewing Officer', 5 => 'Created by', 6 => 'Created at', 7 => 'Last updated by', 8 => 'Last updated at'],
 					'display-field-names' => [0 => 'id', 1 => 'employee_name', 2 => 'designation', 3 => 'reporting_officer', 4 => 'reviewing_officer', 5 => 'created_by', 6 => 'created_at', 7 => 'last_updated_by', 8 => 'last_updated_at'],
-					'sortable-fields' => [0 => '`employee_appraisal_table`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => 9],
+					'sortable-fields' => [0 => '`employees_reporting_table`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => 9],
 					'records-per-page' => 10,
 					'default-sort-by' => 0,
 					'default-sort-direction' => 'desc',
 					'open-detail-view-on-click' => true,
 					'display-page-selector' => true,
 					'show-page-progress' => true,
-					'template' => 'children-employee_appraisal_table',
-					'template-printable' => 'children-employee_appraisal_table-printable',
-					'query' => "SELECT `employee_appraisal_table`.`id` as 'id', IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`emp_id`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`emp_id`), '') as 'employee_name', `employee_appraisal_table`.`designation` as 'designation', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'reporting_officer', IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') as 'reviewing_officer', `employee_appraisal_table`.`created_by` as 'created_by', `employee_appraisal_table`.`created_at` as 'created_at', `employee_appraisal_table`.`last_updated_by` as 'last_updated_by', `employee_appraisal_table`.`last_updated_at` as 'last_updated_at' FROM `employee_appraisal_table` LEFT JOIN `personal_data_table` as personal_data_table1 ON `personal_data_table1`.`personal_data_id`=`employee_appraisal_table`.`employee_name` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employee_appraisal_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employee_appraisal_table`.`reviewing_officer` "
+					'template' => 'children-employees_reporting_table',
+					'template-printable' => 'children-employees_reporting_table-printable',
+					'query' => "SELECT `employees_reporting_table`.`id` as 'id', IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`emp_id`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`emp_id`), '') as 'employee_name', `employees_reporting_table`.`designation` as 'designation', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'reporting_officer', IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') as 'reviewing_officer', `employees_reporting_table`.`created_by` as 'created_by', `employees_reporting_table`.`created_at` as 'created_at', `employees_reporting_table`.`last_updated_by` as 'last_updated_by', `employees_reporting_table`.`last_updated_at` as 'last_updated_at' FROM `employees_reporting_table` LEFT JOIN `personal_data_table` as personal_data_table1 ON `personal_data_table1`.`personal_data_id`=`employees_reporting_table`.`employee_name` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_reporting_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employees_reporting_table`.`reviewing_officer` "
 				],
+			],
+			'employees_appraisal_table' => [
 			],
 			'beyond_workingHours_table' => [
 				'select_employee' => [
@@ -4094,7 +4199,7 @@ EOT;
 	#########################################################
 
 	function isDetailViewEnabled($tn) {
-		$tables = ['user_table', 'suggestion', 'event_table', 'outcomes_expected_table', 'event_decision_table', 'meetings_table', 'agenda_table', 'decision_table', 'participants_table', 'action_actor', 'visiting_card_table', 'mou_details_table', 'mou_company_area_details_table', 'goal_setting_table', 'goal_progress_table', 'task_setting_table', 'subtask_setting_table', 'internship_fellowship_details_app', 'star_pnt', 'hrd_sdp_events_table', 'training_program_on_geospatial_tchnologies_table', 'space_day_school_details_app', 'space_day_college_student_table', 'school_list', 'sdp_participants_college_details_table', 'asset_table', 'it_inventory_app', 'it_inventory_billing_details', 'it_inventory_allotment_table', 'computer_details_table', 'computer_usage_table', 'personal_data_table', 'employees_designation_table', 'employee_appraisal_table', 'beyond_workingHours_table', 'attendence_details_table', 'leave_table', 'work_from_home_table', 'email_id_allocation_table', 'all_startup_data_table', 'shortlisted_startups_for_fund_table', 'shortlisted_startups_dd_and_agreement_table', 'vikas_startup_applications_table', 'programs_table', 'evaluation_table', 'problem_statement_table', 'evaluators_table', 'approval_table', 'approval_billing_table', 'honorarium_claim_table', 'all_bank_account_statement_table', 'payment_track_details_table', 'car_table', 'car_usage_table', 'travel_table', 'travel_cab_table', 'travel_flight_table', 'travel_hotel_table', 'operation_dronagiri_data_submission_app', 'file_table', 'panel_decision_table_tdp', 'selected_proposals_final_tdp', 'stage_wise_budget_table_tdp', 'first_level_shortlisted_proposals_tdp', 'budget_table_tdp', 'panel_comments_tdp', 'selected_tdp', 'address_tdp', 'summary_table_tdp', 'project_details_tdp', ];
+		$tables = ['user_table', 'suggestion', 'event_table', 'outcomes_expected_table', 'event_decision_table', 'meetings_table', 'agenda_table', 'decision_table', 'participants_table', 'action_actor', 'visiting_card_table', 'mou_details_table', 'mou_company_area_details_table', 'goal_setting_table', 'goal_progress_table', 'task_setting_table', 'subtask_setting_table', 'internship_fellowship_details_app', 'star_pnt', 'hrd_sdp_events_table', 'training_program_on_geospatial_tchnologies_table', 'space_day_school_details_app', 'space_day_college_student_table', 'school_list', 'sdp_participants_college_details_table', 'asset_table', 'asset_allotment_table', 'it_inventory_app', 'it_inventory_billing_details', 'it_inventory_allotment_table', 'computer_details_table', 'computer_usage_table', 'personal_data_table', 'employees_designation_table', 'employees_reporting_table', 'employees_appraisal_table', 'beyond_workingHours_table', 'attendence_details_table', 'leave_table', 'work_from_home_table', 'email_id_allocation_table', 'all_startup_data_table', 'shortlisted_startups_for_fund_table', 'shortlisted_startups_dd_and_agreement_table', 'vikas_startup_applications_table', 'programs_table', 'evaluation_table', 'problem_statement_table', 'evaluators_table', 'approval_table', 'approval_billing_table', 'honorarium_claim_table', 'all_bank_account_statement_table', 'payment_track_details_table', 'car_table', 'car_usage_table', 'travel_table', 'travel_cab_table', 'travel_flight_table', 'travel_hotel_table', 'operation_dronagiri_data_submission_app', 'file_table', 'panel_decision_table_tdp', 'selected_proposals_final_tdp', 'stage_wise_budget_table_tdp', 'first_level_shortlisted_proposals_tdp', 'budget_table_tdp', 'panel_comments_tdp', 'selected_tdp', 'address_tdp', 'summary_table_tdp', 'project_details_tdp', ];
 		return in_array($tn, $tables);
 	}
 

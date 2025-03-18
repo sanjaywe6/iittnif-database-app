@@ -76,6 +76,9 @@
 
 		setupTable('asset_table', []);
 
+		setupTable('asset_allotment_table', []);
+		setupIndexes('asset_allotment_table', ['asset_details','select_employee','alloted_by',]);
+
 		setupTable('it_inventory_app', []);
 		setupIndexes('it_inventory_app', ['sactioned_by',]);
 
@@ -95,8 +98,10 @@
 		setupTable('employees_designation_table', []);
 		setupIndexes('employees_designation_table', ['employee_details',]);
 
-		setupTable('employee_appraisal_table', []);
-		setupIndexes('employee_appraisal_table', ['employee_name','reporting_officer','reviewing_officer',]);
+		setupTable('employees_reporting_table', []);
+		setupIndexes('employees_reporting_table', ['employee_name','reporting_officer','reviewing_officer',]);
+
+		setupTable('employees_appraisal_table', []);
 
 		setupTable('beyond_workingHours_table', []);
 		setupIndexes('beyond_workingHours_table', ['select_employee',]);

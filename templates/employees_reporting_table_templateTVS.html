@@ -1,0 +1,16 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the employees_reporting_table_init() hook (in hooks/employees_reporting_table.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="employees_reporting_table-id-<%%VALUE(id)%%>" class="employees_reporting_table-id text-right text-bold"><%%VALUE(id)%%></td>
+		<td id="employees_reporting_table-employee_name-<%%VALUE(id)%%>" class="employees_reporting_table-employee_name text-bold"><%%VALUE(employee_name)%%></td>
+		<td id="employees_reporting_table-designation-<%%VALUE(id)%%>" class="employees_reporting_table-designation text-bold"><%%VALUE(designation)%%></td>
+		<td id="employees_reporting_table-reporting_officer-<%%VALUE(id)%%>" class="employees_reporting_table-reporting_officer text-bold"><%%VALUE(reporting_officer)%%></td>
+		<td id="employees_reporting_table-reviewing_officer-<%%VALUE(id)%%>" class="employees_reporting_table-reviewing_officer text-bold"><%%VALUE(reviewing_officer)%%></td>
+		<td id="employees_reporting_table-created_by-<%%VALUE(id)%%>" class="employees_reporting_table-created_by text-bold"><%%VALUE(created_by)%%></td>
+		<td id="employees_reporting_table-created_at-<%%VALUE(id)%%>" class="employees_reporting_table-created_at text-bold"><%%VALUE(created_at)%%></td>
+		<td id="employees_reporting_table-last_updated_by-<%%VALUE(id)%%>" class="employees_reporting_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
+		<td id="employees_reporting_table-last_updated_at-<%%VALUE(id)%%>" class="employees_reporting_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>

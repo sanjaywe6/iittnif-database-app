@@ -8,7 +8,7 @@
 
 	header('Content-type: text/javascript; charset=' . datalist_db_encoding);
 
-	$table_perms = getTablePermissions('employee_appraisal_table');
+	$table_perms = getTablePermissions('employees_appraisal_table');
 	if(!$table_perms['access']) die('// Access denied!');
 
 	$mfk = Request::val('mfk');

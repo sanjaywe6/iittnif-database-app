@@ -153,34 +153,10 @@
 		setupTable('car_usage_table', []);
 		setupIndexes('car_usage_table', ['car_lookup',]);
 
-		setupTable('cycle_table', [
-				"ALTER TABLE `car_table_1` RENAME `cycle_table`",
-				"UPDATE `membership_userrecords` SET `tableName`='cycle_table' WHERE `tableName`='car_table_1'",
-				"UPDATE `membership_userpermissions` SET `tableName`='cycle_table' WHERE `tableName`='car_table_1'",
-				"UPDATE `membership_grouppermissions` SET `tableName`='cycle_table' WHERE `tableName`='car_table_1'",
-				"ALTER TABLE `cycle_table` CHANGE `car_number` `cycle_number` VARCHAR(255) NULL ",
-				"ALTER TABLE `cycle_table` DROP `cycle_number`",
-				"ALTER TABLE `cycle_table` CHANGE `car_model` `cycle_model` VARCHAR(255) NULL ",
-				"ALTER TABLE `cycle_table` DROP `car_vin`",
-				"ALTER TABLE `cycle_table` DROP `fuel_type`",
-				"ALTER TABLE `cycle_table` DROP `seating_capacity`",
-				"ALTER TABLE `cycle_table` CHANGE `car_color` `cycle_color` VARCHAR(255) NULL ",
-				"ALTER TABLE `cycle_table` DROP `rental_company_name`",
-				"ALTER TABLE `cycle_table` CHANGE `contact_person` `responsible_contact_person` VARCHAR(255) NULL ",
-				"ALTER TABLE `cycle_table` DROP `rental_rate`",
-				"ALTER TABLE `cycle_table` DROP `rental_start_date`",
-				"ALTER TABLE `cycle_table` DROP `rental_end_date`",
-			]);
+		setupTable('cycle_table', []);
 		setupIndexes('cycle_table', ['responsible_contact_person',]);
 
-		setupTable('cycle_usage_table', [
-				"ALTER TABLE `car_usage_table_1` RENAME `cycle_usage_table`",
-				"UPDATE `membership_userrecords` SET `tableName`='cycle_usage_table' WHERE `tableName`='car_usage_table_1'",
-				"UPDATE `membership_userpermissions` SET `tableName`='cycle_usage_table' WHERE `tableName`='car_usage_table_1'",
-				"UPDATE `membership_grouppermissions` SET `tableName`='cycle_usage_table' WHERE `tableName`='car_usage_table_1'",
-				"ALTER TABLE `cycle_usage_table` CHANGE `car_usage_id` `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT ",
-				"ALTER TABLE `cycle_usage_table` CHANGE `car_lookup` `cycle_lookup` INT(10) UNSIGNED NULL ",
-			]);
+		setupTable('cycle_usage_table', []);
 		setupIndexes('cycle_usage_table', ['cycle_lookup',]);
 
 		setupTable('travel_table', []);

@@ -349,7 +349,7 @@ Seminar;;
 
 Conference;;
 
-Skill&#160;Development;;Business Development;;Startups;;Training;;Operation Dronagiri;;HRD"))));
+Skill&#160;Development;;Business Development;;Startups;;Training;;Operation Dronagiri;;HRD;;Navavishkar Stay;; Navavishkar Ride;;Office Gym"))));
 		$combo_type->ListData = $combo_type->ListItem;
 	}
 	$combo_type->SelectName = 'type';

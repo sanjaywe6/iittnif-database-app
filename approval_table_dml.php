@@ -337,19 +337,7 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		$combo_type->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($type_data))));
 		$combo_type->ListData = $combo_type->ListItem;
 	} else {
-		$combo_type->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Product;;Service;;Hiring;;Advance;;Travel;;Stay;;Technology Development Project;;
-
-Centre of Excellence;;
-
-Hackathon
-
-;;Workshop;;
-
-Seminar;;
-
-Conference;;
-
-Skill&#160;Development;;Business Development;;Startups;;Training;;Operation Dronagiri;;HRD;;Navavishkar Stay;; Navavishkar Ride;;Office Gym"))));
+		$combo_type->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Event;;Function;;Celebration;;Product;;Service;;Hiring;;Advance;;Local Travel;;Out Station Travel;;Outstation Stay;;Technology Development Project;;Centre of Excellence;;Hackathon;;Workshop;;Seminar;;Conference;;Skill Development;;Business Development;;Startups;;Training;;Operation Dronagiri;;HRD;;Navavishkar Stay;; Navavishkar Ride;;Office Gym"))));
 		$combo_type->ListData = $combo_type->ListItem;
 	}
 	$combo_type->SelectName = 'type';

@@ -446,6 +446,10 @@
 
 			return $data;
 		},
+		'navavishkar_stay_table' => function($data, $options = []) {
+
+			return $data;
+		},
 	];
 
 	// accept a record as an assoc array, return a boolean indicating whether to import or skip record
@@ -523,6 +527,7 @@
 		'address_tdp' => function($data, $options = []) { return true; },
 		'summary_table_tdp' => function($data, $options = []) { return true; },
 		'project_details_tdp' => function($data, $options = []) { return true; },
+		'navavishkar_stay_table' => function($data, $options = []) { return true; },
 	];
 
 	/*

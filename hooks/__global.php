@@ -36,6 +36,19 @@
 	}
 
 
+	// function for approval from techleads
+
+	function approvalOnInsertTechleads($data, $memberInfo){
+
+		// capturing form details
+
+		$formData = $_POST;
+
+		
+
+	}
+
+
 	// function for approval
 	function approvalBeforeInsert($data, $memberInfo){
 

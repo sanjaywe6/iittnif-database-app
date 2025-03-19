@@ -1087,6 +1087,12 @@ function project_details_tdp_validateData(insertMode) {
 
 	return !errors;
 }
+function navavishkar_stay_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
 
 function post(url, params, update, disable, loading, success_callback) {
 	$j.ajax({

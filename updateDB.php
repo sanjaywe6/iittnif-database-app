@@ -204,6 +204,8 @@
 		setupTable('project_details_tdp', []);
 		setupIndexes('project_details_tdp', ['project_number',]);
 
+		setupTable('navavishkar_stay_table', []);
+
 
 
 		// set up internal tables

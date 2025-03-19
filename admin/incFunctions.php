@@ -626,6 +626,13 @@
 					'group' => $tg[4],
 					'homepageShowCount' => 1
 				],
+				'navavishkar_stay_table' => [
+					'Caption' => 'Navavishkar Stay - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[0],
+					'homepageShowCount' => 1
+				],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) return $all_tables;
@@ -715,6 +722,7 @@
 			'address_tdp' => ['Address Details - App', '', 'table.gif', 'Technology Development Apps'],
 			'summary_table_tdp' => ['Summary - App', '', 'table.gif', 'Technology Development Apps'],
 			'project_details_tdp' => ['Project details - App', '', 'table.gif', 'Technology Development Apps'],
+			'navavishkar_stay_table' => ['Navavishkar Stay - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) {
@@ -8952,6 +8960,15 @@
 						],
 					],
 				],
+				'navavishkar_stay_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+				],
 			];
 
 			$internalTablesSimple = [
@@ -10382,6 +10399,7 @@
 			'address_tdp' => [],
 			'summary_table_tdp' => [],
 			'project_details_tdp' => [],
+			'navavishkar_stay_table' => [],
 		];
 	}
 	#########################################################
@@ -10625,7 +10643,7 @@
 				'approved_by' => 'SELECT `user_table`.`user_id`, `user_table`.`user_id` FROM `user_table` ORDER BY 2',
 			],
 			'email_id_allocation_table' => [
-				'reporting_manager' => 'SELECT `user_table`.`user_id`, `user_table`.`memberID` FROM `user_table` ORDER BY 2',
+				'reporting_manager' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'all_startup_data_table' => [
 			],
@@ -10717,6 +10735,8 @@
 			],
 			'project_details_tdp' => [
 				'project_number' => 'SELECT `summary_table_tdp`.`id`, `summary_table_tdp`.`project_number` FROM `summary_table_tdp` ORDER BY 2',
+			],
+			'navavishkar_stay_table' => [
 			],
 		];
 

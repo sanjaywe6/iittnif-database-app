@@ -500,6 +500,20 @@
 					'group' => $tg[9],
 					'homepageShowCount' => 1
 				],
+				'cycle_table' => [
+					'Caption' => 'Cycle - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[9],
+					'homepageShowCount' => 1
+				],
+				'cycle_usage_table' => [
+					'Caption' => 'Cycle usage table',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[9],
+					'homepageShowCount' => 1
+				],
 				'travel_table' => [
 					'Caption' => 'Travel - App',
 					'Description' => '',
@@ -683,6 +697,8 @@
 			'payment_track_details_table' => ['Payment track details - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'car_table' => ['Car - App', '<a href="https://lookerstudio.google.com/reporting/58f87367-3f09-42c0-a288-cf75f313cbed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Car App Report</b></button></a>', 'table.gif', 'Transport Apps'],
 			'car_usage_table' => ['Car usage table', '', 'table.gif', 'Transport Apps'],
+			'cycle_table' => ['Cycle - App', '', 'table.gif', 'Transport Apps'],
+			'cycle_usage_table' => ['Cycle usage table', '', 'table.gif', 'Transport Apps'],
 			'travel_table' => ['Travel - App', '', 'table.gif', 'Transport Apps'],
 			'travel_cab_table' => ['Travel cab details - App', '', 'table.gif', 'Transport Apps'],
 			'travel_flight_table' => ['Travel flight table', '', 'table.gif', 'Transport Apps'],
@@ -7003,6 +7019,157 @@
 						],
 					],
 				],
+				'cycle_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'registration_number' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Registration number',
+							'description' => '',
+						],
+					],
+					'cycle_model' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Cycle model',
+							'description' => '',
+						],
+					],
+					'cycle_color' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Cycle color',
+							'description' => '',
+						],
+					],
+					'responsible_contact_person' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Responsible Contact Person',
+							'description' => '',
+						],
+					],
+					'contact_number_of_person' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Contact number of person',
+							'description' => '',
+						],
+					],
+					'purpose' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Purpose',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
+				'cycle_usage_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'cycle_lookup' => [
+						'appgini' => "INT(10) UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Cycle Details',
+							'description' => '',
+						],
+					],
+					'used_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Used by',
+							'description' => '',
+						],
+					],
+					'datetime_from' => [
+						'appgini' => "DATETIME NULL",
+						'info' => [
+							'caption' => 'Date and time from',
+							'description' => '',
+						],
+					],
+					'datetime_to' => [
+						'appgini' => "DATETIME NULL",
+						'info' => [
+							'caption' => 'Date and time to',
+							'description' => '',
+						],
+					],
+					'total_distance_run' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Total distance run (In KM)',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
 				'travel_table' => [
 					'id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
@@ -10067,6 +10234,12 @@
 			'car_usage_table' => [
 				'car_table' => ['car_lookup'],
 			],
+			'cycle_table' => [
+				'user_table' => ['responsible_contact_person'],
+			],
+			'cycle_usage_table' => [
+				'cycle_table' => ['cycle_lookup'],
+			],
 			'travel_table' => [
 				'user_table' => ['approved_by'],
 			],
@@ -10191,6 +10364,8 @@
 			'payment_track_details_table' => [],
 			'car_table' => [],
 			'car_usage_table' => [],
+			'cycle_table' => [],
+			'cycle_usage_table' => [],
 			'travel_table' => [],
 			'travel_cab_table' => [],
 			'travel_flight_table' => [],
@@ -10491,6 +10666,12 @@
 			],
 			'car_usage_table' => [
 				'car_lookup' => 'SELECT `car_table`.`id`, IF(CHAR_LENGTH(`car_table`.`car_number`) || CHAR_LENGTH(`car_table`.`car_model`), CONCAT_WS(\'\', `car_table`.`car_number`, \'::\', `car_table`.`car_model`), \'\') FROM `car_table` ORDER BY 2',
+			],
+			'cycle_table' => [
+				'responsible_contact_person' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+			],
+			'cycle_usage_table' => [
+				'cycle_lookup' => 'SELECT `cycle_table`.`id`, IF(CHAR_LENGTH(`cycle_table`.`registration_number`) || CHAR_LENGTH(`cycle_table`.`cycle_model`), CONCAT_WS(\'\', `cycle_table`.`registration_number`, \'::\', `cycle_table`.`cycle_model`), \'\') FROM `cycle_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`cycle_table`.`responsible_contact_person` ORDER BY 2',
 			],
 			'travel_table' => [
 				'approved_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',

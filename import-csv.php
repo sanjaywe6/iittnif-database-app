@@ -339,6 +339,18 @@
 
 			return $data;
 		},
+		'cycle_table' => function($data, $options = []) {
+			if(isset($data['responsible_contact_person'])) $data['responsible_contact_person'] = pkGivenLookupText($data['responsible_contact_person'], 'cycle_table', 'responsible_contact_person');
+
+			return $data;
+		},
+		'cycle_usage_table' => function($data, $options = []) {
+			if(isset($data['cycle_lookup'])) $data['cycle_lookup'] = pkGivenLookupText($data['cycle_lookup'], 'cycle_usage_table', 'cycle_lookup');
+			if(isset($data['datetime_from'])) $data['datetime_from'] = guessMySQLDateTime($data['datetime_from']);
+			if(isset($data['datetime_to'])) $data['datetime_to'] = guessMySQLDateTime($data['datetime_to']);
+
+			return $data;
+		},
 		'travel_table' => function($data, $options = []) {
 			if(isset($data['date_from'])) $data['date_from'] = guessMySQLDateTime($data['date_from']);
 			if(isset($data['date_to'])) $data['date_to'] = guessMySQLDateTime($data['date_to']);
@@ -493,6 +505,8 @@
 		'payment_track_details_table' => function($data, $options = []) { return true; },
 		'car_table' => function($data, $options = []) { return true; },
 		'car_usage_table' => function($data, $options = []) { return true; },
+		'cycle_table' => function($data, $options = []) { return true; },
+		'cycle_usage_table' => function($data, $options = []) { return true; },
 		'travel_table' => function($data, $options = []) { return true; },
 		'travel_cab_table' => function($data, $options = []) { return true; },
 		'travel_flight_table' => function($data, $options = []) { return true; },

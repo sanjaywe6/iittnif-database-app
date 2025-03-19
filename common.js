@@ -939,6 +939,18 @@ function car_usage_table_validateData(insertMode) {
 
 	return !errors;
 }
+function cycle_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
+function cycle_usage_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
 function travel_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;

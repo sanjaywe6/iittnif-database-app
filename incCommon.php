@@ -160,6 +160,8 @@
 			'payment_track_details_table' => "`payment_track_details_table`.`payment_track_details_id` as 'payment_track_details_id', `payment_track_details_table`.`pfms_num` as 'pfms_num', if(`payment_track_details_table`.`date`,date_format(`payment_track_details_table`.`date`,'%d/%m/%Y'),'') as 'date', `payment_track_details_table`.`description` as 'description', `payment_track_details_table`.`amount` as 'amount', `payment_track_details_table`.`requested_by` as 'requested_by', `payment_track_details_table`.`paid_to` as 'paid_to', `payment_track_details_table`.`paid_status` as 'paid_status', if(`payment_track_details_table`.`payment_date`,date_format(`payment_track_details_table`.`payment_date`,'%d/%m/%Y'),'') as 'payment_date', `payment_track_details_table`.`remarks` as 'remarks', `payment_track_details_table`.`upload_scanned_file_1` as 'upload_scanned_file_1', `payment_track_details_table`.`upload_scanned_file_2` as 'upload_scanned_file_2', `payment_track_details_table`.`created_by` as 'created_by', `payment_track_details_table`.`created_at` as 'created_at', `payment_track_details_table`.`last_updated_by` as 'last_updated_by', `payment_track_details_table`.`last_updated_at` as 'last_updated_at'",
 			'car_table' => "`car_table`.`id` as 'id', `car_table`.`car_number` as 'car_number', `car_table`.`registration_number` as 'registration_number', `car_table`.`car_model` as 'car_model', `car_table`.`car_vin` as 'car_vin', `car_table`.`fuel_type` as 'fuel_type', `car_table`.`seating_capacity` as 'seating_capacity', `car_table`.`car_color` as 'car_color', `car_table`.`rental_company_name` as 'rental_company_name', `car_table`.`contact_person` as 'contact_person', `car_table`.`contact_number_of_person` as 'contact_number_of_person', `car_table`.`rental_rate` as 'rental_rate', if(`car_table`.`rental_start_date`,date_format(`car_table`.`rental_start_date`,'%d/%m/%Y'),'') as 'rental_start_date', if(`car_table`.`rental_end_date`,date_format(`car_table`.`rental_end_date`,'%d/%m/%Y'),'') as 'rental_end_date', `car_table`.`purpose` as 'purpose', `car_table`.`created_by` as 'created_by', `car_table`.`created_at` as 'created_at', `car_table`.`last_updated_by` as 'last_updated_by', `car_table`.`last_updated_at` as 'last_updated_at'",
 			'car_usage_table' => "`car_usage_table`.`car_usage_id` as 'car_usage_id', IF(    CHAR_LENGTH(`car_table1`.`car_number`) || CHAR_LENGTH(`car_table1`.`car_model`), CONCAT_WS('',   `car_table1`.`car_number`, '::', `car_table1`.`car_model`), '') as 'car_lookup', `car_usage_table`.`used_by` as 'used_by', if(`car_usage_table`.`datetime_from`,date_format(`car_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'') as 'datetime_from', if(`car_usage_table`.`datetime_to`,date_format(`car_usage_table`.`datetime_to`,'%d/%m/%Y %H:%i'),'') as 'datetime_to', `car_usage_table`.`total_distance_run` as 'total_distance_run', `car_usage_table`.`created_by` as 'created_by', `car_usage_table`.`created_at` as 'created_at', `car_usage_table`.`last_updated_by` as 'last_updated_by', `car_usage_table`.`last_updated_at` as 'last_updated_at'",
+			'cycle_table' => "`cycle_table`.`id` as 'id', `cycle_table`.`registration_number` as 'registration_number', `cycle_table`.`cycle_model` as 'cycle_model', `cycle_table`.`cycle_color` as 'cycle_color', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'responsible_contact_person', `cycle_table`.`contact_number_of_person` as 'contact_number_of_person', `cycle_table`.`purpose` as 'purpose', `cycle_table`.`created_by` as 'created_by', `cycle_table`.`created_at` as 'created_at', `cycle_table`.`last_updated_by` as 'last_updated_by', `cycle_table`.`last_updated_at` as 'last_updated_at'",
+			'cycle_usage_table' => "`cycle_usage_table`.`id` as 'id', IF(    CHAR_LENGTH(`cycle_table1`.`registration_number`) || CHAR_LENGTH(`cycle_table1`.`cycle_model`), CONCAT_WS('',   `cycle_table1`.`registration_number`, '::', `cycle_table1`.`cycle_model`), '') as 'cycle_lookup', `cycle_usage_table`.`used_by` as 'used_by', if(`cycle_usage_table`.`datetime_from`,date_format(`cycle_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'') as 'datetime_from', if(`cycle_usage_table`.`datetime_to`,date_format(`cycle_usage_table`.`datetime_to`,'%d/%m/%Y %H:%i'),'') as 'datetime_to', `cycle_usage_table`.`total_distance_run` as 'total_distance_run', `cycle_usage_table`.`created_by` as 'created_by', `cycle_usage_table`.`created_at` as 'created_at', `cycle_usage_table`.`last_updated_by` as 'last_updated_by', `cycle_usage_table`.`last_updated_at` as 'last_updated_at'",
 			'travel_table' => "`travel_table`.`id` as 'id', `travel_table`.`first_name` as 'first_name', `travel_table`.`last_name` as 'last_name', `travel_table`.`age` as 'age', `travel_table`.`gender` as 'gender', `travel_table`.`mobile_number` as 'mobile_number', if(`travel_table`.`date_from`,date_format(`travel_table`.`date_from`,'%d/%m/%Y'),'') as 'date_from', if(`travel_table`.`date_to`,date_format(`travel_table`.`date_to`,'%d/%m/%Y'),'') as 'date_to', `travel_table`.`travel_description` as 'travel_description', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'approved_by', `travel_table`.`remarks` as 'remarks', `travel_table`.`created_by` as 'created_by', `travel_table`.`created_at` as 'created_at', `travel_table`.`last_updated_by` as 'last_updated_by', `travel_table`.`last_updated_at` as 'last_updated_at'",
 			'travel_cab_table' => "`travel_cab_table`.`id` as 'id', IF(    CHAR_LENGTH(`travel_table1`.`first_name`) || CHAR_LENGTH(`travel_table1`.`travel_description`), CONCAT_WS('',   `travel_table1`.`first_name`, '::', `travel_table1`.`travel_description`), '') as 'travel_details', if(`travel_cab_table`.`date`,date_format(`travel_cab_table`.`date`,'%d/%m/%Y'),'') as 'date', `travel_cab_table`.`from` as 'from', `travel_cab_table`.`to` as 'to', `travel_cab_table`.`vendor_name` as 'vendor_name', `travel_cab_table`.`vendor_contact_number` as 'vendor_contact_number', `travel_cab_table`.`driver_contact_number` as 'driver_contact_number', `travel_cab_table`.`driver_name` as 'driver_name', `travel_cab_table`.`payment_status` as 'payment_status', `travel_cab_table`.`remarks` as 'remarks', `travel_cab_table`.`created_by` as 'created_by', `travel_cab_table`.`created_at` as 'created_at', `travel_cab_table`.`last_updated_by` as 'last_updated_by', `travel_cab_table`.`last_updated_at` as 'last_updated_at'",
 			'travel_flight_table' => "`travel_flight_table`.`id` as 'id', IF(    CHAR_LENGTH(`travel_table1`.`first_name`) || CHAR_LENGTH(`travel_table1`.`travel_description`), CONCAT_WS('',   `travel_table1`.`first_name`, '::', `travel_table1`.`travel_description`), '') as 'travel_details', `travel_flight_table`.`flight_number` as 'flight_number', if(`travel_flight_table`.`travel_date`,date_format(`travel_flight_table`.`travel_date`,'%d/%m/%Y'),'') as 'travel_date', `travel_flight_table`.`flight_time` as 'flight_time', `travel_flight_table`.`from` as 'from', `travel_flight_table`.`to` as 'to', `travel_flight_table`.`seat_preferance` as 'seat_preferance', `travel_flight_table`.`status` as 'status', `travel_flight_table`.`remarks` as 'remarks', `travel_flight_table`.`created_by` as 'created_by', `travel_flight_table`.`created_at` as 'created_at', `travel_flight_table`.`last_updated_by` as 'last_updated_by', `travel_flight_table`.`last_updated_at` as 'last_updated_at'",
@@ -242,6 +244,8 @@
 			'payment_track_details_table' => "`payment_track_details_table` ",
 			'car_table' => "`car_table` ",
 			'car_usage_table' => "`car_usage_table` LEFT JOIN `car_table` as car_table1 ON `car_table1`.`id`=`car_usage_table`.`car_lookup` ",
+			'cycle_table' => "`cycle_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`cycle_table`.`responsible_contact_person` ",
+			'cycle_usage_table' => "`cycle_usage_table` LEFT JOIN `cycle_table` as cycle_table1 ON `cycle_table1`.`id`=`cycle_usage_table`.`cycle_lookup` ",
 			'travel_table' => "`travel_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`travel_table`.`approved_by` ",
 			'travel_cab_table' => "`travel_cab_table` LEFT JOIN `travel_table` as travel_table1 ON `travel_table1`.`id`=`travel_cab_table`.`travel_details` ",
 			'travel_flight_table' => "`travel_flight_table` LEFT JOIN `travel_table` as travel_table1 ON `travel_table1`.`id`=`travel_flight_table`.`travel_details` ",
@@ -316,6 +320,8 @@
 			'payment_track_details_table' => 'payment_track_details_id',
 			'car_table' => 'id',
 			'car_usage_table' => 'car_usage_id',
+			'cycle_table' => 'id',
+			'cycle_usage_table' => 'id',
 			'travel_table' => 'id',
 			'travel_cab_table' => 'id',
 			'travel_flight_table' => 'id',
@@ -1254,6 +1260,31 @@
 			'car_usage_table' => [
 				'car_usage_id' => '',
 				'car_lookup' => '',
+				'used_by' => '',
+				'datetime_from' => '',
+				'datetime_to' => '',
+				'total_distance_run' => '',
+				'created_by' => '',
+				'created_at' => '',
+				'last_updated_by' => '',
+				'last_updated_at' => '',
+			],
+			'cycle_table' => [
+				'id' => '',
+				'registration_number' => '',
+				'cycle_model' => '',
+				'cycle_color' => '',
+				'responsible_contact_person' => '',
+				'contact_number_of_person' => '',
+				'purpose' => '',
+				'created_by' => '',
+				'created_at' => '',
+				'last_updated_by' => '',
+				'last_updated_at' => '',
+			],
+			'cycle_usage_table' => [
+				'id' => '',
+				'cycle_lookup' => '',
 				'used_by' => '',
 				'datetime_from' => '',
 				'datetime_to' => '',
@@ -2300,7 +2331,7 @@
 		if(is_array($arrTables)) {
 			foreach($arrTables as $tn => $tc) {
 				/* ---- list of tables where hide link in nav menu is set ---- */
-				$tChkHL = array_search($tn, ['user_table','suggestion','event_table','outcomes_expected_table','event_decision_table','meetings_table','agenda_table','decision_table','participants_table','action_actor','visiting_card_table','mou_details_table','mou_company_area_details_table','goal_setting_table','goal_progress_table','task_setting_table','subtask_setting_table','internship_fellowship_details_app','star_pnt','hrd_sdp_events_table','training_program_on_geospatial_tchnologies_table','space_day_school_details_app','space_day_college_student_table','school_list','sdp_participants_college_details_table','asset_table','asset_allotment_table','it_inventory_app','it_inventory_billing_details','it_inventory_allotment_table','computer_details_table','computer_usage_table','personal_data_table','employees_designation_table','employees_appraisal_table','beyond_workingHours_table','attendence_details_table','leave_table','work_from_home_table','email_id_allocation_table','all_startup_data_table','shortlisted_startups_for_fund_table','shortlisted_startups_dd_and_agreement_table','vikas_startup_applications_table','programs_table','evaluation_table','problem_statement_table','evaluators_table','approval_table','approval_billing_table','honorarium_claim_table','all_bank_account_statement_table','payment_track_details_table','car_table','car_usage_table','travel_table','travel_cab_table','travel_flight_table','travel_hotel_table','operation_dronagiri_data_submission_app','file_table','panel_decision_table_tdp','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','summary_table_tdp','project_details_tdp']);
+				$tChkHL = array_search($tn, ['user_table','suggestion','event_table','outcomes_expected_table','event_decision_table','meetings_table','agenda_table','decision_table','participants_table','action_actor','visiting_card_table','mou_details_table','mou_company_area_details_table','goal_setting_table','goal_progress_table','task_setting_table','subtask_setting_table','internship_fellowship_details_app','star_pnt','hrd_sdp_events_table','training_program_on_geospatial_tchnologies_table','space_day_school_details_app','space_day_college_student_table','school_list','sdp_participants_college_details_table','asset_table','asset_allotment_table','it_inventory_app','it_inventory_billing_details','it_inventory_allotment_table','computer_details_table','computer_usage_table','personal_data_table','employees_designation_table','employees_appraisal_table','beyond_workingHours_table','attendence_details_table','leave_table','work_from_home_table','email_id_allocation_table','all_startup_data_table','shortlisted_startups_for_fund_table','shortlisted_startups_dd_and_agreement_table','vikas_startup_applications_table','programs_table','evaluation_table','problem_statement_table','evaluators_table','approval_table','approval_billing_table','honorarium_claim_table','all_bank_account_statement_table','payment_track_details_table','car_table','car_usage_table','cycle_table','cycle_usage_table','travel_table','travel_cab_table','travel_flight_table','travel_hotel_table','operation_dronagiri_data_submission_app','file_table','panel_decision_table_tdp','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','summary_table_tdp','project_details_tdp']);
 
 				/* ---- list of tables where filter first is set ---- */
 				$tChkFF = array_search($tn, []);
@@ -3829,6 +3860,58 @@ EOT;
 					'query' => "SELECT `car_usage_table`.`car_usage_id` as 'car_usage_id', IF(    CHAR_LENGTH(`car_table1`.`car_number`) || CHAR_LENGTH(`car_table1`.`car_model`), CONCAT_WS('',   `car_table1`.`car_number`, '::', `car_table1`.`car_model`), '') as 'car_lookup', `car_usage_table`.`used_by` as 'used_by', if(`car_usage_table`.`datetime_from`,date_format(`car_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'') as 'datetime_from', if(`car_usage_table`.`datetime_to`,date_format(`car_usage_table`.`datetime_to`,'%d/%m/%Y %H:%i'),'') as 'datetime_to', `car_usage_table`.`total_distance_run` as 'total_distance_run', `car_usage_table`.`created_by` as 'created_by', `car_usage_table`.`created_at` as 'created_at', `car_usage_table`.`last_updated_by` as 'last_updated_by', `car_usage_table`.`last_updated_at` as 'last_updated_at' FROM `car_usage_table` LEFT JOIN `car_table` as car_table1 ON `car_table1`.`id`=`car_usage_table`.`car_lookup` "
 				],
 			],
+			'cycle_table' => [
+				'responsible_contact_person' => [
+					'parent-table' => 'user_table',
+					'parent-primary-key' => 'user_id',
+					'child-primary-key' => 'id',
+					'child-primary-key-index' => 0,
+					'tab-label' => 'Cycle - App <span class="hidden child-label-cycle_table child-field-caption">(Responsible Contact Person)</span>',
+					'auto-close' => false,
+					'table-icon' => 'table.gif',
+					'display-refresh' => true,
+					'display-add-new' => true,
+					'forced-where' => '',
+					'display-fields' => [0 => 'ID', 1 => 'Registration number', 2 => 'Cycle model', 3 => 'Cycle color', 4 => 'Responsible Contact Person', 5 => 'Contact number of person', 6 => 'Purpose', 7 => 'Created by', 8 => 'Created at', 9 => 'Last updated by', 10 => 'Last updated at'],
+					'display-field-names' => [0 => 'id', 1 => 'registration_number', 2 => 'cycle_model', 3 => 'cycle_color', 4 => 'responsible_contact_person', 5 => 'contact_number_of_person', 6 => 'purpose', 7 => 'created_by', 8 => 'created_at', 9 => 'last_updated_by', 10 => 'last_updated_at'],
+					'sortable-fields' => [0 => '`cycle_table`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => 9, 9 => 10, 10 => 11],
+					'records-per-page' => 10,
+					'default-sort-by' => 0,
+					'default-sort-direction' => 'desc',
+					'open-detail-view-on-click' => true,
+					'display-page-selector' => true,
+					'show-page-progress' => true,
+					'template' => 'children-cycle_table',
+					'template-printable' => 'children-cycle_table-printable',
+					'query' => "SELECT `cycle_table`.`id` as 'id', `cycle_table`.`registration_number` as 'registration_number', `cycle_table`.`cycle_model` as 'cycle_model', `cycle_table`.`cycle_color` as 'cycle_color', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'responsible_contact_person', `cycle_table`.`contact_number_of_person` as 'contact_number_of_person', `cycle_table`.`purpose` as 'purpose', `cycle_table`.`created_by` as 'created_by', `cycle_table`.`created_at` as 'created_at', `cycle_table`.`last_updated_by` as 'last_updated_by', `cycle_table`.`last_updated_at` as 'last_updated_at' FROM `cycle_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`cycle_table`.`responsible_contact_person` "
+				],
+			],
+			'cycle_usage_table' => [
+				'cycle_lookup' => [
+					'parent-table' => 'cycle_table',
+					'parent-primary-key' => 'id',
+					'child-primary-key' => 'id',
+					'child-primary-key-index' => 0,
+					'tab-label' => 'Cycle usage table <span class="hidden child-label-cycle_usage_table child-field-caption">(Cycle Details)</span>',
+					'auto-close' => false,
+					'table-icon' => 'table.gif',
+					'display-refresh' => true,
+					'display-add-new' => true,
+					'forced-where' => '',
+					'display-fields' => [0 => 'ID', 1 => 'Cycle Details', 2 => 'Used by', 3 => 'Date and time from', 4 => 'Date and time to', 5 => 'Total distance run (In KM)', 6 => 'Created by', 7 => 'Created at', 8 => 'Last updated by', 9 => 'Last updated at'],
+					'display-field-names' => [0 => 'id', 1 => 'cycle_lookup', 2 => 'used_by', 3 => 'datetime_from', 4 => 'datetime_to', 5 => 'total_distance_run', 6 => 'created_by', 7 => 'created_at', 8 => 'last_updated_by', 9 => 'last_updated_at'],
+					'sortable-fields' => [0 => '`cycle_usage_table`.`id`', 1 => 2, 2 => 3, 3 => '`cycle_usage_table`.`datetime_from`', 4 => '`cycle_usage_table`.`datetime_to`', 5 => 6, 6 => 7, 7 => 8, 8 => 9, 9 => 10],
+					'records-per-page' => 10,
+					'default-sort-by' => 0,
+					'default-sort-direction' => 'desc',
+					'open-detail-view-on-click' => true,
+					'display-page-selector' => true,
+					'show-page-progress' => true,
+					'template' => 'children-cycle_usage_table',
+					'template-printable' => 'children-cycle_usage_table-printable',
+					'query' => "SELECT `cycle_usage_table`.`id` as 'id', IF(    CHAR_LENGTH(`cycle_table1`.`registration_number`) || CHAR_LENGTH(`cycle_table1`.`cycle_model`), CONCAT_WS('',   `cycle_table1`.`registration_number`, '::', `cycle_table1`.`cycle_model`), '') as 'cycle_lookup', `cycle_usage_table`.`used_by` as 'used_by', if(`cycle_usage_table`.`datetime_from`,date_format(`cycle_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'') as 'datetime_from', if(`cycle_usage_table`.`datetime_to`,date_format(`cycle_usage_table`.`datetime_to`,'%d/%m/%Y %H:%i'),'') as 'datetime_to', `cycle_usage_table`.`total_distance_run` as 'total_distance_run', `cycle_usage_table`.`created_by` as 'created_by', `cycle_usage_table`.`created_at` as 'created_at', `cycle_usage_table`.`last_updated_by` as 'last_updated_by', `cycle_usage_table`.`last_updated_at` as 'last_updated_at' FROM `cycle_usage_table` LEFT JOIN `cycle_table` as cycle_table1 ON `cycle_table1`.`id`=`cycle_usage_table`.`cycle_lookup` "
+				],
+			],
 			'travel_table' => [
 				'approved_by' => [
 					'parent-table' => 'user_table',
@@ -4218,7 +4301,7 @@ EOT;
 	#########################################################
 
 	function isDetailViewEnabled($tn) {
-		$tables = ['user_table', 'suggestion', 'event_table', 'outcomes_expected_table', 'event_decision_table', 'meetings_table', 'agenda_table', 'decision_table', 'participants_table', 'action_actor', 'visiting_card_table', 'mou_details_table', 'mou_company_area_details_table', 'goal_setting_table', 'goal_progress_table', 'task_setting_table', 'subtask_setting_table', 'internship_fellowship_details_app', 'star_pnt', 'hrd_sdp_events_table', 'training_program_on_geospatial_tchnologies_table', 'space_day_school_details_app', 'space_day_college_student_table', 'school_list', 'sdp_participants_college_details_table', 'asset_table', 'asset_allotment_table', 'it_inventory_app', 'it_inventory_billing_details', 'it_inventory_allotment_table', 'computer_details_table', 'computer_usage_table', 'personal_data_table', 'employees_designation_table', 'employees_appraisal_table', 'beyond_workingHours_table', 'attendence_details_table', 'leave_table', 'work_from_home_table', 'email_id_allocation_table', 'all_startup_data_table', 'shortlisted_startups_for_fund_table', 'shortlisted_startups_dd_and_agreement_table', 'vikas_startup_applications_table', 'programs_table', 'evaluation_table', 'problem_statement_table', 'evaluators_table', 'approval_table', 'approval_billing_table', 'honorarium_claim_table', 'all_bank_account_statement_table', 'payment_track_details_table', 'car_table', 'car_usage_table', 'travel_table', 'travel_cab_table', 'travel_flight_table', 'travel_hotel_table', 'operation_dronagiri_data_submission_app', 'file_table', 'panel_decision_table_tdp', 'selected_proposals_final_tdp', 'stage_wise_budget_table_tdp', 'first_level_shortlisted_proposals_tdp', 'budget_table_tdp', 'panel_comments_tdp', 'selected_tdp', 'address_tdp', 'summary_table_tdp', 'project_details_tdp', ];
+		$tables = ['user_table', 'suggestion', 'event_table', 'outcomes_expected_table', 'event_decision_table', 'meetings_table', 'agenda_table', 'decision_table', 'participants_table', 'action_actor', 'visiting_card_table', 'mou_details_table', 'mou_company_area_details_table', 'goal_setting_table', 'goal_progress_table', 'task_setting_table', 'subtask_setting_table', 'internship_fellowship_details_app', 'star_pnt', 'hrd_sdp_events_table', 'training_program_on_geospatial_tchnologies_table', 'space_day_school_details_app', 'space_day_college_student_table', 'school_list', 'sdp_participants_college_details_table', 'asset_table', 'asset_allotment_table', 'it_inventory_app', 'it_inventory_billing_details', 'it_inventory_allotment_table', 'computer_details_table', 'computer_usage_table', 'personal_data_table', 'employees_designation_table', 'employees_appraisal_table', 'beyond_workingHours_table', 'attendence_details_table', 'leave_table', 'work_from_home_table', 'email_id_allocation_table', 'all_startup_data_table', 'shortlisted_startups_for_fund_table', 'shortlisted_startups_dd_and_agreement_table', 'vikas_startup_applications_table', 'programs_table', 'evaluation_table', 'problem_statement_table', 'evaluators_table', 'approval_table', 'approval_billing_table', 'honorarium_claim_table', 'all_bank_account_statement_table', 'payment_track_details_table', 'car_table', 'car_usage_table', 'cycle_table', 'cycle_usage_table', 'travel_table', 'travel_cab_table', 'travel_flight_table', 'travel_hotel_table', 'operation_dronagiri_data_submission_app', 'file_table', 'panel_decision_table_tdp', 'selected_proposals_final_tdp', 'stage_wise_budget_table_tdp', 'first_level_shortlisted_proposals_tdp', 'budget_table_tdp', 'panel_comments_tdp', 'selected_tdp', 'address_tdp', 'summary_table_tdp', 'project_details_tdp', ];
 		return in_array($tn, $tables);
 	}
 

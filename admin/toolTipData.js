@@ -1001,6 +1001,42 @@ car_usage_table_delete1Tip=["",spacer+"This option allows each member of the gro
 car_usage_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Car usage table' table."];
 car_usage_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Car usage table' table."];
 
+// cycle_table table
+cycle_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Cycle - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
+
+cycle_table_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Cycle - App' table."];
+cycle_table_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Cycle - App' table."];
+cycle_table_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Cycle - App' table."];
+cycle_table_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Cycle - App' table."];
+
+cycle_table_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Cycle - App' table."];
+cycle_table_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Cycle - App' table."];
+cycle_table_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Cycle - App' table."];
+cycle_table_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Cycle - App' table, regardless of their owner."];
+
+cycle_table_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Cycle - App' table."];
+cycle_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Cycle - App' table."];
+cycle_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Cycle - App' table."];
+cycle_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Cycle - App' table."];
+
+// cycle_usage_table table
+cycle_usage_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Cycle usage table' table. A member who adds a record to the table becomes the 'owner' of that record."];
+
+cycle_usage_table_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Cycle usage table' table."];
+cycle_usage_table_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Cycle usage table' table."];
+cycle_usage_table_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Cycle usage table' table."];
+cycle_usage_table_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Cycle usage table' table."];
+
+cycle_usage_table_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Cycle usage table' table."];
+cycle_usage_table_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Cycle usage table' table."];
+cycle_usage_table_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Cycle usage table' table."];
+cycle_usage_table_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Cycle usage table' table, regardless of their owner."];
+
+cycle_usage_table_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Cycle usage table' table."];
+cycle_usage_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Cycle usage table' table."];
+cycle_usage_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Cycle usage table' table."];
+cycle_usage_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Cycle usage table' table."];
+
 // travel_table table
 travel_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Travel - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
 

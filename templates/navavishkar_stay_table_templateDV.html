@@ -9,6 +9,7 @@
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
+			<input type="hidden" id="navavishkar_stay_payment_table_hclink" value="navavishkar_stay_payment_table_view.php?filterer_navavishakr_stay_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -109,30 +110,30 @@
 					</div>
 				</div>
 
-				<!-- Field: Payment status -->
-				<div class="form-group navavishkar_stay_table-payment_status">
+				<!-- Field: Approval status -->
+				<div class="form-group navavishkar_stay_table-approval_status">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="payment_status">Payment status</label>
+					<label class="control-label col-lg-3" for="approval_status">Approval status</label>
 					<div class="col-lg-9">
-						<%%COMBO(payment_status)%%>
+						<%%COMBO(approval_status)%%>
 					</div>
 				</div>
 
-				<!-- Field: Amount (INR) -->
-				<div class="form-group navavishkar_stay_table-amount">
+				<!-- Field: Approved By -->
+				<div class="form-group navavishkar_stay_table-approved_by">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="amount">Amount (INR)</label>
+					<label class="control-label col-lg-3">Approved By</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="amount" id="amount" value="<%%VALUE(amount)%%>">
+						<div class="form-control-static" id="approved_by"><%%VALUE(approved_by)%%></div>
 					</div>
 				</div>
 
-				<!-- Field: Additional Facilities Provided (Optional) -->
-				<div class="form-group navavishkar_stay_table-additional_facilities_provided">
+				<!-- Field: Approval remarks -->
+				<div class="form-group navavishkar_stay_table-approval_remarks">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="additional_facilities_provided">Additional Facilities Provided (Optional)</label>
+					<label class="control-label col-lg-3" for="approval_remarks">Approval remarks</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="additional_facilities_provided" id="additional_facilities_provided" value="<%%VALUE(additional_facilities_provided)%%>">
+						<textarea class="form-control" name="approval_remarks" id="approval_remarks" rows=" 5"><%%VALUE(approval_remarks)%%></textarea>
 					</div>
 				</div>
 
@@ -159,6 +160,16 @@
 	</div>
 
 
+	<!-- child records -->
+	<hr>
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1">
+			<div id="navavishkar_stay_table-children" class="children-tabs">
+				<div class="text-center"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+			</div>
+		</div>
+	</div>
+
 </div><!-- /div class="panel-body" -->
 	<script>
 		$j(function() {
@@ -183,6 +194,38 @@
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 
+			if(embedded_mode) {
+				/* hide links to children tables in embedded mode */
+				$j('.detail_view a[id$=_link]').remove();
+
+				/* append embedded mode to all links */
+				var append_embedded = function() {
+					$j('a[href]:not([href^="#"]):not([href^="javascript"]):not([href$="Embedded=1"]):not([href*="link.php?t="]):not([href^="mailto:"]):not([href$=".jpg"]):not([href$=".png"]):not([href$=".gif"])').each(
+						function() {
+							$j(this).attr('href', $j(this).attr('href') + '&Embedded=1');
+						}
+					);
+				}
+				setTimeout(append_embedded, 500);
+				setTimeout(append_embedded, 1500);
+				setTimeout(append_embedded, 2500);
+				setTimeout(append_embedded, 3500);
+			}
+
+			/* when no record is selected ('add new' mode) */
+			if(add_new_mode) {
+				/* hide links to children tables */
+				$j('.detail_view a[id$=_link]').remove();
+			} else {
+				post(
+					'parent-children.php', {
+						ParentTable: 'navavishkar_stay_table',
+						SelectedID: '<%%VALUE(id)%%>',
+						Operation: 'show-children'
+					},
+					'navavishkar_stay_table-children'
+				);
+			}
 
 			if(true /* !embedded_mode */) {
 				$j('.add_new_parent').click(function() {

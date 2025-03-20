@@ -395,6 +395,13 @@
 					'group' => $tg[6],
 					'homepageShowCount' => 1
 				],
+				'navavishkar_stay_payment_table' => [
+					'Caption' => 'Navavishkar Stay Payment - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[6],
+					'homepageShowCount' => 1
+				],
 				'email_id_allocation_table' => [
 					'Caption' => 'Email id allocation - App',
 					'Description' => '',
@@ -689,6 +696,7 @@
 			'leave_table' => ['Leave - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'work_from_home_table' => ['Work from home - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'navavishkar_stay_table' => ['Navavishkar Stay - App', '', 'table.gif', 'Employee Data Management Apps'],
+			'navavishkar_stay_payment_table' => ['Navavishkar Stay Payment - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'email_id_allocation_table' => ['Email id allocation - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'all_startup_data_table' => ['All Startups Data - App', '', 'table.gif', 'Startup Data Management Apps'],
 			'shortlisted_startups_for_fund_table' => ['Shortlisted startups for fund - App', '', 'table.gif', 'Startup Data Management Apps'],
@@ -5288,6 +5296,71 @@
 							'description' => '',
 						],
 					],
+					'approval_status' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Approval status',
+							'description' => '',
+						],
+					],
+					'approved_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Approved By',
+							'description' => '',
+						],
+					],
+					'approval_remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Approval remarks',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
+				'navavishkar_stay_payment_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'navavishakr_stay_details' => [
+						'appgini' => "INT(10) UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Navavishakr stay details',
+							'description' => '',
+						],
+					],
 					'payment_status' => [
 						'appgini' => "VARCHAR(255) NULL DEFAULT 'Pending'",
 						'info' => [
@@ -5306,6 +5379,20 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Additional Facilities Provided (Optional)',
+							'description' => '',
+						],
+					],
+					'payment_img' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Upload Payment Image',
+							'description' => 'Maximum file size allowed: 100 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
+						],
+					],
+					'remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Remarks',
 							'description' => '',
 						],
 					],
@@ -10339,6 +10426,9 @@
 			'work_from_home_table' => [
 				'user_table' => ['approved_by'],
 			],
+			'navavishkar_stay_payment_table' => [
+				'navavishkar_stay_table' => ['navavishakr_stay_details'],
+			],
 			'email_id_allocation_table' => [
 				'user_table' => ['reporting_manager'],
 			],
@@ -10485,6 +10575,7 @@
 			'leave_table' => [],
 			'work_from_home_table' => [],
 			'navavishkar_stay_table' => [],
+			'navavishkar_stay_payment_table' => [],
 			'email_id_allocation_table' => [],
 			'all_startup_data_table' => [],
 			'shortlisted_startups_for_fund_table' => [],
@@ -10762,6 +10853,9 @@
 				'approved_by' => 'SELECT `user_table`.`user_id`, `user_table`.`user_id` FROM `user_table` ORDER BY 2',
 			],
 			'navavishkar_stay_table' => [
+			],
+			'navavishkar_stay_payment_table' => [
+				'navavishakr_stay_details' => 'SELECT `navavishkar_stay_table`.`id`, IF(CHAR_LENGTH(`navavishkar_stay_table`.`full_name`) || CHAR_LENGTH(`navavishkar_stay_table`.`emp_id`), CONCAT_WS(\'\', `navavishkar_stay_table`.`full_name`, \'::\', `navavishkar_stay_table`.`emp_id`), \'\') FROM `navavishkar_stay_table` ORDER BY 2',
 			],
 			'email_id_allocation_table' => [
 				'reporting_manager' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',

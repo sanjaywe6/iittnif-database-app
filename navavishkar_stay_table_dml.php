@@ -26,9 +26,8 @@ function navavishkar_stay_table_insert(&$error_message = '') {
 		'check_in_date' => Request::dateComponents('check_in_date', '1'),
 		'checkout_date' => Request::dateComponents('checkout_date', '1'),
 		'reason_for_stay' => br2nl(Request::val('reason_for_stay', '')),
-		'payment_status' => Request::val('payment_status', 'Pending'),
-		'amount' => Request::val('amount', ''),
-		'additional_facilities_provided' => Request::val('additional_facilities_provided', ''),
+		'approval_status' => Request::val('approval_status', ''),
+		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
@@ -78,6 +77,26 @@ function navavishkar_stay_table_delete($selected_id, $AllowDeleteOfParents = fal
 			);
 	}
 
+	// child table: navavishkar_stay_payment_table
+	$res = sql("SELECT `id` FROM `navavishkar_stay_table` WHERE `id`='{$selected_id}'", $eo);
+	$id = db_fetch_row($res);
+	$rires = sql("SELECT COUNT(1) FROM `navavishkar_stay_payment_table` WHERE `navavishakr_stay_details`='" . makeSafe($id[0]) . "'", $eo);
+	$rirow = db_fetch_row($rires);
+	$childrenATag = '<a class="alert-link" href="navavishkar_stay_payment_table_view.php?filterer_navavishakr_stay_details=' . urlencode($id[0]) . '">%s</a>';
+	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation["couldn't delete"];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'navavishkar_stay_payment_table'), $RetMsg);
+		return $RetMsg;
+	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation['confirm delete'];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'navavishkar_stay_payment_table'), $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `navavishkar_stay_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `navavishkar_stay_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		return $RetMsg;
+	}
+
 	sql("DELETE FROM `navavishkar_stay_table` WHERE `id`='{$selected_id}'", $eo);
 
 	// hook: navavishkar_stay_table_after_delete
@@ -107,9 +126,9 @@ function navavishkar_stay_table_update(&$selected_id, &$error_message = '') {
 		'check_in_date' => Request::dateComponents('check_in_date', ''),
 		'checkout_date' => Request::dateComponents('checkout_date', ''),
 		'reason_for_stay' => br2nl(Request::val('reason_for_stay', '')),
-		'payment_status' => Request::val('payment_status', ''),
-		'amount' => Request::val('amount', ''),
-		'additional_facilities_provided' => Request::val('additional_facilities_provided', ''),
+		'approval_status' => Request::val('approval_status', ''),
+		'approved_by' => parseCode('<%%editorUsername%%>', false),
+		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 	];
@@ -220,21 +239,21 @@ function navavishkar_stay_table_form($selectedId = '', $allowUpdate = true, $all
 	$combo_checkout_date->DefaultDate = parseMySQLDate('1', '1');
 	$combo_checkout_date->MonthNames = $Translation['month names'];
 	$combo_checkout_date->NamePrefix = 'checkout_date';
-	// combobox: payment_status
-	$combo_payment_status = new Combo;
-	$combo_payment_status->ListType = 0;
-	$combo_payment_status->MultipleSeparator = ', ';
-	$combo_payment_status->ListBoxHeight = 10;
-	$combo_payment_status->RadiosPerLine = 1;
-	if(is_file(__DIR__ . '/hooks/navavishkar_stay_table.payment_status.csv')) {
-		$payment_status_data = addslashes(implode('', @file(__DIR__ . '/hooks/navavishkar_stay_table.payment_status.csv')));
-		$combo_payment_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($payment_status_data))));
-		$combo_payment_status->ListData = $combo_payment_status->ListItem;
+	// combobox: approval_status
+	$combo_approval_status = new Combo;
+	$combo_approval_status->ListType = 0;
+	$combo_approval_status->MultipleSeparator = ', ';
+	$combo_approval_status->ListBoxHeight = 10;
+	$combo_approval_status->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/navavishkar_stay_table.approval_status.csv')) {
+		$approval_status_data = addslashes(implode('', @file(__DIR__ . '/hooks/navavishkar_stay_table.approval_status.csv')));
+		$combo_approval_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($approval_status_data))));
+		$combo_approval_status->ListData = $combo_approval_status->ListItem;
 	} else {
-		$combo_payment_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Pending;;Paid"))));
-		$combo_payment_status->ListData = $combo_payment_status->ListItem;
+		$combo_approval_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Approved;;Not Approved;;Under Consideration"))));
+		$combo_approval_status->ListData = $combo_approval_status->ListItem;
 	}
-	$combo_payment_status->SelectName = 'payment_status';
+	$combo_approval_status->SelectName = 'approval_status';
 
 	if($hasSelectedId) {
 		if(!($row = getRecord('navavishkar_stay_table', $selectedId))) {
@@ -242,16 +261,16 @@ function navavishkar_stay_table_form($selectedId = '', $allowUpdate = true, $all
 		}
 		$combo_check_in_date->DefaultDate = $row['check_in_date'];
 		$combo_checkout_date->DefaultDate = $row['checkout_date'];
-		$combo_payment_status->SelectedData = $row['payment_status'];
+		$combo_approval_status->SelectedData = $row['approval_status'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
 	} else {
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_payment_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '12' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '12' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
-	$combo_payment_status->Render();
+	$combo_approval_status->Render();
 
 	ob_start();
 	?>
@@ -360,9 +379,8 @@ function navavishkar_stay_table_form($selectedId = '', $allowUpdate = true, $all
 		$jsReadOnly .= "\t\$j('#checkout_date').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#checkout_dateDay, #checkout_dateMonth, #checkout_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#reason_for_stay').replaceWith('<div class=\"form-control-static\" id=\"reason_for_stay\">' + (\$j('#reason_for_stay').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#payment_status').replaceWith('<div class=\"form-control-static\" id=\"payment_status\">' + (\$j('#payment_status').val() || '') + '</div>'); \$j('#payment_status-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\t\$j('#amount').replaceWith('<div class=\"form-control-static\" id=\"amount\">' + (\$j('#amount').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#additional_facilities_provided').replaceWith('<div class=\"form-control-static\" id=\"additional_facilities_provided\">' + (\$j('#additional_facilities_provided').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#approval_status').replaceWith('<div class=\"form-control-static\" id=\"approval_status\">' + (\$j('#approval_status').val() || '') + '</div>'); \$j('#approval_status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#approval_remarks').replaceWith('<div class=\"form-control-static\" id=\"approval_remarks\">' + (\$j('#approval_remarks').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -387,8 +405,8 @@ function navavishkar_stay_table_form($selectedId = '', $allowUpdate = true, $all
 			$combo_checkout_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(checkout_date)%%>', $combo_checkout_date->GetHTML(true), $templateCode);
-	$templateCode = str_replace('<%%COMBO(payment_status)%%>', $combo_payment_status->HTML, $templateCode);
-	$templateCode = str_replace('<%%COMBOTEXT(payment_status)%%>', $combo_payment_status->SelectedData, $templateCode);
+	$templateCode = str_replace('<%%COMBO(approval_status)%%>', $combo_approval_status->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(approval_status)%%>', $combo_approval_status->SelectedData, $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
 	$lookup_fields = [];
@@ -418,9 +436,9 @@ function navavishkar_stay_table_form($selectedId = '', $allowUpdate = true, $all
 	$templateCode = str_replace('<%%UPLOADFILE(check_in_date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(checkout_date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(reason_for_stay)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(payment_status)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(amount)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(additional_facilities_provided)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approval_status)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approved_by)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approval_remarks)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
@@ -457,15 +475,13 @@ function navavishkar_stay_table_form($selectedId = '', $allowUpdate = true, $all
 		$templateCode = str_replace('<%%URLVALUE(checkout_date)%%>', urlencode(app_datetime($urow['checkout_date'])), $templateCode);
 		$templateCode = str_replace('<%%VALUE(reason_for_stay)%%>', safe_html($urow['reason_for_stay'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(reason_for_stay)%%>', urlencode($urow['reason_for_stay']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(payment_status)%%>', safe_html($urow['payment_status']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(payment_status)%%>', html_attr($row['payment_status']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(payment_status)%%>', urlencode($urow['payment_status']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(amount)%%>', safe_html($urow['amount']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(amount)%%>', html_attr($row['amount']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(amount)%%>', urlencode($urow['amount']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(additional_facilities_provided)%%>', safe_html($urow['additional_facilities_provided']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(additional_facilities_provided)%%>', html_attr($row['additional_facilities_provided']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(additional_facilities_provided)%%>', urlencode($urow['additional_facilities_provided']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', safe_html($urow['approval_status']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', html_attr($row['approval_status']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode($urow['approval_status']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approved_by)%%>', safe_html($urow['approved_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode($urow['approved_by']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', safe_html($urow['approval_remarks'], $fieldsAreEditable), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_remarks)%%>', urlencode($urow['approval_remarks']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
@@ -497,12 +513,12 @@ function navavishkar_stay_table_form($selectedId = '', $allowUpdate = true, $all
 		$templateCode = str_replace('<%%URLVALUE(checkout_date)%%>', urlencode('1'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(reason_for_stay)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(reason_for_stay)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(payment_status)%%>', 'Pending', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(payment_status)%%>', urlencode('Pending'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(amount)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(amount)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(additional_facilities_provided)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(additional_facilities_provided)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_status)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approved_by)%%>', '<%%editorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_remarks)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);

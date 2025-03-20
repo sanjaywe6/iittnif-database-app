@@ -38,13 +38,24 @@
 
 	// function for approval from techleads
 
-	function approvalOnInsertTechleads($data, $memberInfo){
+	function restrictApprovalForApproved($data, $memberInfo, $tablename){
 
-		// capturing form details
+		// Capturing the Post request
+		$fromData = $_POST;
 
-		$formData = $_POST;
+		$id = makeSafe($fromData["SelectedID"]);
+		$sql_querry = "SELECT * FROM {$tablename} WHERE id ='{$id}'";
+		$result = sql($sql_querry,$eo);
+		if($row = db_fetch_assoc($result)){
+			if ($row["approval_status"] == "Approved"){
+				WindowMessages::add("Sorry! The form is already approved. It can not be changed.");
+				return FALSE;
+			}
+			else{
+				return TRUE;
+			}
+		}
 
-		
 
 	}
 

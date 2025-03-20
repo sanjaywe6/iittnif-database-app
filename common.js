@@ -809,6 +809,18 @@ function navavishkar_stay_table_validateData(insertMode) {
 
 	return !errors;
 }
+function navavishkar_stay_payment_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	// check file uploads (file type and size)
+	if($j('#payment_img').val() && !AppGini.checkFileUpload('payment_img', 'jpg|jpeg|gif|png|webp', 102400)) {
+		AppGini.scrollTo('payment_img');
+		return false;
+	}
+
+	return !errors;
+}
 function email_id_allocation_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;

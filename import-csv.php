@@ -251,6 +251,11 @@
 
 			return $data;
 		},
+		'navavishkar_stay_payment_table' => function($data, $options = []) {
+			if(isset($data['navavishakr_stay_details'])) $data['navavishakr_stay_details'] = pkGivenLookupText($data['navavishakr_stay_details'], 'navavishkar_stay_payment_table', 'navavishakr_stay_details');
+
+			return $data;
+		},
 		'email_id_allocation_table' => function($data, $options = []) {
 			if(isset($data['date_of_allocation'])) $data['date_of_allocation'] = guessMySQLDateTime($data['date_of_allocation']);
 			if(isset($data['reporting_manager'])) $data['reporting_manager'] = pkGivenLookupText($data['reporting_manager'], 'email_id_allocation_table', 'reporting_manager');
@@ -496,6 +501,7 @@
 		'leave_table' => function($data, $options = []) { return true; },
 		'work_from_home_table' => function($data, $options = []) { return true; },
 		'navavishkar_stay_table' => function($data, $options = []) { return true; },
+		'navavishkar_stay_payment_table' => function($data, $options = []) { return true; },
 		'email_id_allocation_table' => function($data, $options = []) { return true; },
 		'all_startup_data_table' => function($data, $options = []) { return true; },
 		'shortlisted_startups_for_fund_table' => function($data, $options = []) { return true; },

@@ -84,25 +84,25 @@
 				<div class="form-control-static"><%%VALUE(reason_for_stay)%%></div>
 			</div>
 		</div>
-		<!-- Field: Payment status -->
-		<div class="form-group navavishkar_stay_table-payment_status" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Payment status</label>
+		<!-- Field: Approval status -->
+		<div class="form-group navavishkar_stay_table-approval_status" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Approval status</label>
 			<div class="col-xs-9">
-				<div class="form-control-static"><%%COMBOTEXT(payment_status)%%></div>
+				<div class="form-control-static"><%%COMBOTEXT(approval_status)%%></div>
 			</div>
 		</div>
-		<!-- Field: Amount (INR) -->
-		<div class="form-group navavishkar_stay_table-amount" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Amount (INR)</label>
+		<!-- Field: Approved By -->
+		<div class="form-group navavishkar_stay_table-approved_by" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Approved By</label>
 			<div class="col-xs-9">
-				<div class="form-control-static"><%%VALUE(amount)%%></div>
+				<div class="form-control-static"><%%VALUE(approved_by)%%></div>
 			</div>
 		</div>
-		<!-- Field: Additional Facilities Provided (Optional) -->
-		<div class="form-group navavishkar_stay_table-additional_facilities_provided" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Additional Facilities Provided (Optional)</label>
+		<!-- Field: Approval remarks -->
+		<div class="form-group navavishkar_stay_table-approval_remarks" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Approval remarks</label>
 			<div class="col-xs-9">
-				<div class="form-control-static"><%%VALUE(additional_facilities_provided)%%></div>
+				<div class="form-control-static"><%%VALUE(approval_remarks)%%></div>
 			</div>
 		</div>
 	</fieldset>
@@ -118,3 +118,32 @@
 			.after('<i class="glyphicon glyphicon-unchecked"></i>')
 	})
 </script>
+<!-- child records -->
+<div class="panel-body">
+	<div id="navavishkar_stay_table-children"></div>
+</div>
+
+<script>
+	$j(function() {
+		/* prevent loading child records in multiple DVP */
+		if($j('[id=navavishkar_stay_table-children]').length > 1) return;
+
+		post(
+			'parent-children.php', {
+				ParentTable: 'navavishkar_stay_table',
+				SelectedID: '<%%VALUE(id)%%>',
+				Operation: 'show-children-printable'
+			},
+			'navavishkar_stay_table-children',
+			'disable-element',
+			'loading-element',
+			apply_persisting_children
+		);
+
+		$j('form').on('click', '#children-tabs button[data-target]', function() {
+			$j(this).toggleClass('active');
+			persist_expanded_child($j(this).attr('id'));
+		});
+	})
+</script>
+

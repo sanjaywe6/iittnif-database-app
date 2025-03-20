@@ -29,9 +29,9 @@
 		"if(`navavishkar_stay_table`.`check_in_date`,date_format(`navavishkar_stay_table`.`check_in_date`,'%d/%m/%Y'),'')" => "check_in_date",
 		"if(`navavishkar_stay_table`.`checkout_date`,date_format(`navavishkar_stay_table`.`checkout_date`,'%d/%m/%Y'),'')" => "checkout_date",
 		"`navavishkar_stay_table`.`reason_for_stay`" => "reason_for_stay",
-		"`navavishkar_stay_table`.`payment_status`" => "payment_status",
-		"`navavishkar_stay_table`.`amount`" => "amount",
-		"`navavishkar_stay_table`.`additional_facilities_provided`" => "additional_facilities_provided",
+		"`navavishkar_stay_table`.`approval_status`" => "approval_status",
+		"`navavishkar_stay_table`.`approved_by`" => "approved_by",
+		"`navavishkar_stay_table`.`approval_remarks`" => "approval_remarks",
 		"`navavishkar_stay_table`.`created_by`" => "created_by",
 		"`navavishkar_stay_table`.`created_at`" => "created_at",
 		"`navavishkar_stay_table`.`last_updated_by`" => "last_updated_by",
@@ -72,9 +72,9 @@
 		"if(`navavishkar_stay_table`.`check_in_date`,date_format(`navavishkar_stay_table`.`check_in_date`,'%d/%m/%Y'),'')" => "check_in_date",
 		"if(`navavishkar_stay_table`.`checkout_date`,date_format(`navavishkar_stay_table`.`checkout_date`,'%d/%m/%Y'),'')" => "checkout_date",
 		"`navavishkar_stay_table`.`reason_for_stay`" => "reason_for_stay",
-		"`navavishkar_stay_table`.`payment_status`" => "payment_status",
-		"`navavishkar_stay_table`.`amount`" => "amount",
-		"`navavishkar_stay_table`.`additional_facilities_provided`" => "additional_facilities_provided",
+		"`navavishkar_stay_table`.`approval_status`" => "approval_status",
+		"`navavishkar_stay_table`.`approved_by`" => "approved_by",
+		"`navavishkar_stay_table`.`approval_remarks`" => "approval_remarks",
 		"`navavishkar_stay_table`.`created_by`" => "created_by",
 		"`navavishkar_stay_table`.`created_at`" => "created_at",
 		"`navavishkar_stay_table`.`last_updated_by`" => "last_updated_by",
@@ -93,9 +93,9 @@
 		"`navavishkar_stay_table`.`check_in_date`" => "Check in date",
 		"`navavishkar_stay_table`.`checkout_date`" => "Checkout date",
 		"`navavishkar_stay_table`.`reason_for_stay`" => "Reason for stay",
-		"`navavishkar_stay_table`.`payment_status`" => "Payment status",
-		"`navavishkar_stay_table`.`amount`" => "Amount (INR)",
-		"`navavishkar_stay_table`.`additional_facilities_provided`" => "Additional Facilities Provided (Optional)",
+		"`navavishkar_stay_table`.`approval_status`" => "Approval status",
+		"`navavishkar_stay_table`.`approved_by`" => "Approved By",
+		"`navavishkar_stay_table`.`approval_remarks`" => "Approval remarks",
 		"`navavishkar_stay_table`.`created_by`" => "Created by",
 		"`navavishkar_stay_table`.`created_at`" => "Created at",
 		"`navavishkar_stay_table`.`last_updated_by`" => "Last updated by",
@@ -115,9 +115,9 @@
 		"if(`navavishkar_stay_table`.`check_in_date`,date_format(`navavishkar_stay_table`.`check_in_date`,'%d/%m/%Y'),'')" => "check_in_date",
 		"if(`navavishkar_stay_table`.`checkout_date`,date_format(`navavishkar_stay_table`.`checkout_date`,'%d/%m/%Y'),'')" => "checkout_date",
 		"`navavishkar_stay_table`.`reason_for_stay`" => "reason_for_stay",
-		"`navavishkar_stay_table`.`payment_status`" => "payment_status",
-		"`navavishkar_stay_table`.`amount`" => "amount",
-		"`navavishkar_stay_table`.`additional_facilities_provided`" => "additional_facilities_provided",
+		"`navavishkar_stay_table`.`approval_status`" => "approval_status",
+		"`navavishkar_stay_table`.`approved_by`" => "approved_by",
+		"`navavishkar_stay_table`.`approval_remarks`" => "approval_remarks",
 		"`navavishkar_stay_table`.`created_by`" => "created_by",
 		"`navavishkar_stay_table`.`created_at`" => "created_at",
 		"`navavishkar_stay_table`.`last_updated_by`" => "last_updated_by",
@@ -158,8 +158,8 @@
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Full Name', 'Employee ID', 'Department', 'Designation', 'Contact Email', 'Contact Number', 'Room number', 'Check in date', 'Checkout date', 'Reason for stay', 'Payment status', 'Amount (INR)', 'Additional Facilities Provided (Optional)', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'full_name', 'emp_id', 'department', 'designation', 'contact_email', 'contact_number', 'room_number', 'check_in_date', 'checkout_date', 'reason_for_stay', 'payment_status', 'amount', 'additional_facilities_provided', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColCaption = ['ID', 'Full Name', 'Employee ID', 'Department', 'Designation', 'Contact Email', 'Contact Number', 'Room number', 'Check in date', 'Checkout date', 'Reason for stay', 'Approval status', 'Approved By', 'Approval remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'full_name', 'emp_id', 'department', 'designation', 'contact_email', 'contact_number', 'room_number', 'check_in_date', 'checkout_date', 'reason_for_stay', 'approval_status', 'approved_by', 'approval_remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
 	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ];
 
 	// template paths below are based on the app main directory

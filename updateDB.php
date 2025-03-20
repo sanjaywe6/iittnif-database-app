@@ -113,6 +113,9 @@
 
 		setupTable('navavishkar_stay_table', []);
 
+		setupTable('navavishkar_stay_payment_table', []);
+		setupIndexes('navavishkar_stay_payment_table', ['navavishakr_stay_details',]);
+
 		setupTable('email_id_allocation_table', []);
 		setupIndexes('email_id_allocation_table', ['reporting_manager',]);
 

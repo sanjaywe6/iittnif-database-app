@@ -15,8 +15,12 @@ function employees_designation_table_insert(&$error_message = '') {
 		return false;
 	}
 
+	// automatic employee_details if passed as filterer
+	if(Request::val('filterer_employee_details')) {
+		$_REQUEST['employee_details'] = Request::val('filterer_employee_details');
+	}
+
 	$data = [
-		'employee_details' => Request::lookup('employee_details', ''),
 		'designation' => Request::val('designation', ''),
 		'date_of_appointment_to_designation' => Request::dateComponents('date_of_appointment_to_designation', ''),
 		'active_status' => Request::val('active_status', ''),
@@ -26,6 +30,11 @@ function employees_designation_table_insert(&$error_message = '') {
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
 
+
+	// automatic employee_details if passed as filterer
+	if(Request::val('filterer_employee_details')) {
+		$data['employee_details'] = Request::val('filterer_employee_details');
+	}
 	// record owner is current user
 	$recordOwner = getLoggedMemberID();
 
@@ -110,7 +119,6 @@ function employees_designation_table_update(&$selected_id, &$error_message = '')
 	if(!check_record_permission('employees_designation_table', $selected_id, 'edit')) return false;
 
 	$data = [
-		'employee_details' => Request::lookup('employee_details', ''),
 		'designation' => Request::val('designation', ''),
 		'date_of_appointment_to_designation' => Request::dateComponents('date_of_appointment_to_designation', ''),
 		'active_status' => Request::val('active_status', ''),
@@ -603,8 +611,6 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\t\$j('#employee_details').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\t\$j('#employee_details_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\t\$j('#designation').replaceWith('<div class=\"form-control-static\" id=\"designation\">' + (\$j('#designation').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#date_of_appointment_to_designation').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#date_of_appointment_to_designationDay, #date_of_appointment_to_designationMonth, #date_of_appointment_to_designationYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
@@ -675,8 +681,7 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(employee_details)%%>', safe_html($urow['employee_details']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(employee_details)%%>', html_attr($row['employee_details']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(employee_details)%%>', safe_html($urow['employee_details']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(employee_details)%%>', urlencode($urow['employee_details']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(designation)%%>', safe_html($urow['designation']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(designation)%%>', html_attr($row['designation']), $templateCode);
@@ -763,6 +768,8 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
+	if(isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>')
+		$templateCode.="\n<input type=hidden name=employee_details value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery
 	$templateCode = preg_replace('/blank.gif" data-lightbox=".*?"/', 'blank.gif"', $templateCode);

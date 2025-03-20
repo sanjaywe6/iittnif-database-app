@@ -563,6 +563,19 @@
 		],
 		'navavishkar_stay_table' => [
 		],
+		'navavishkar_stay_payment_table' => [
+			'navavishakr_stay_details' => [
+				'parent_table' => 'navavishkar_stay_table',
+				'parent_pk_field' => 'id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`navavishkar_stay_table`.`full_name`) || CHAR_LENGTH(`navavishkar_stay_table`.`emp_id`), CONCAT_WS(\'\', `navavishkar_stay_table`.`full_name`, \'::\', `navavishkar_stay_table`.`emp_id`), \'\')',
+				'parent_from' => '`navavishkar_stay_table` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
+		],
 		'email_id_allocation_table' => [
 			'reporting_manager' => [
 				'parent_table' => 'user_table',

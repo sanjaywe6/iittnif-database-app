@@ -81,22 +81,7 @@
 	}
 
 	function beyond_workingHours_table_before_update(&$data, $memberInfo, &$args) {
-
-		// Capturing the Post request
-		$fromData = $_POST;
-
-		$id = makeSafe($fromData["SelectedID"]);
-		$sql_querry = "SELECT * FROM beyond_workingHours_table WHERE id ='{$id}'";
-		$result = sql($sql_querry,$eo);
-		if($row = db_fetch_assoc($result)){
-			if ($row["approval_status"] == "Approved"){
-				WindowMessages::add("Sorry! The form is already approved. It can not be changed.");
-				return FALSE;
-			}
-			else{
-				return TRUE;
-			}
-		}
+		return restrictApprovalForApproved($data, $memberInfo, `beyond_workingHours_table`);
 
 	}
 

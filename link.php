@@ -33,6 +33,10 @@
 			'signature' => getUploadDir(''),
 			'primary key' => 'personal_data_id'
 		],
+		'navavishkar_stay_payment_table' => [
+			'payment_img' => getUploadDir(''),
+			'primary key' => 'id'
+		],
 		'all_startup_data_table' => [
 			'company_logo' => getUploadDir(''),
 			'primary key' => 'id'

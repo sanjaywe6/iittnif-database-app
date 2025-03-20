@@ -28,7 +28,7 @@
 			'image' => getUploadDir(''),
 			'primary key' => 'it_inventory_biling_details_id'
 		],
-		'personal_data_table' => [
+		'employees_personal_data_table' => [
 			'profile_photo' => getUploadDir(''),
 			'signature' => getUploadDir(''),
 			'primary key' => 'personal_data_id'

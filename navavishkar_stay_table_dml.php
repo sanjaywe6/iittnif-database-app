@@ -26,7 +26,7 @@ function navavishkar_stay_table_insert(&$error_message = '') {
 		'check_in_date' => Request::dateComponents('check_in_date', '1'),
 		'checkout_date' => Request::dateComponents('checkout_date', '1'),
 		'reason_for_stay' => br2nl(Request::val('reason_for_stay', '')),
-		'approval_status' => Request::val('approval_status', ''),
+		'approval_status' => Request::val('approval_status', 'Under Consideration'),
 		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
@@ -268,7 +268,7 @@ function navavishkar_stay_table_form($selectedId = '', $allowUpdate = true, $all
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '12' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '12' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 	}
 	$combo_approval_status->Render();
 
@@ -513,8 +513,8 @@ function navavishkar_stay_table_form($selectedId = '', $allowUpdate = true, $all
 		$templateCode = str_replace('<%%URLVALUE(checkout_date)%%>', urlencode('1'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(reason_for_stay)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(reason_for_stay)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(approval_status)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_status)%%>', 'Under Consideration', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode('Under Consideration'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(approved_by)%%>', '<%%editorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', '', $templateCode);

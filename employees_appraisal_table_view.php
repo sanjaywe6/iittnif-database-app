@@ -19,7 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`employees_appraisal_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`personal_data_table1`.`emp_id`) || CHAR_LENGTH(`personal_data_table1`.`name`), CONCAT_WS('',   `personal_data_table1`.`emp_id`, '::', `personal_data_table1`.`name`), '') /* Employee Details (ID::Name::Joining Date::Department) */" => "employee_details",
+		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, '::', `employees_personal_data_table1`.`name`), '') /* Employee Details (ID::Name::Joining Date::Department) */" => "employee_details",
 		"IF(    CHAR_LENGTH(`employees_designation_table1`.`designation`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `employees_designation_table1`.`designation`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Employee Other Details (Designation::Reporting Officer) */" => "employee_designation_reporting",
 		"`employees_appraisal_table`.`current_review_period`" => "current_review_period",
 		"`employees_appraisal_table`.`roles`" => "roles",
@@ -54,7 +54,7 @@
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`employees_appraisal_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`personal_data_table1`.`emp_id`) || CHAR_LENGTH(`personal_data_table1`.`name`), CONCAT_WS('',   `personal_data_table1`.`emp_id`, '::', `personal_data_table1`.`name`), '') /* Employee Details (ID::Name::Joining Date::Department) */" => "employee_details",
+		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, '::', `employees_personal_data_table1`.`name`), '') /* Employee Details (ID::Name::Joining Date::Department) */" => "employee_details",
 		"IF(    CHAR_LENGTH(`employees_designation_table1`.`designation`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `employees_designation_table1`.`designation`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Employee Other Details (Designation::Reporting Officer) */" => "employee_designation_reporting",
 		"`employees_appraisal_table`.`current_review_period`" => "current_review_period",
 		"`employees_appraisal_table`.`roles`" => "roles",
@@ -71,7 +71,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`employees_appraisal_table`.`id`" => "ID",
-		"IF(    CHAR_LENGTH(`personal_data_table1`.`emp_id`) || CHAR_LENGTH(`personal_data_table1`.`name`), CONCAT_WS('',   `personal_data_table1`.`emp_id`, '::', `personal_data_table1`.`name`), '') /* Employee Details (ID::Name::Joining Date::Department) */" => "Employee Details (ID::Name::Joining Date::Department)",
+		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, '::', `employees_personal_data_table1`.`name`), '') /* Employee Details (ID::Name::Joining Date::Department) */" => "Employee Details (ID::Name::Joining Date::Department)",
 		"IF(    CHAR_LENGTH(`employees_designation_table1`.`designation`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `employees_designation_table1`.`designation`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Employee Other Details (Designation::Reporting Officer) */" => "Employee Other Details (Designation::Reporting Officer)",
 		"`employees_appraisal_table`.`current_review_period`" => "Current review period",
 		"`employees_appraisal_table`.`roles`" => "Roles & Responsibilities",
@@ -89,7 +89,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`employees_appraisal_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`personal_data_table1`.`emp_id`) || CHAR_LENGTH(`personal_data_table1`.`name`), CONCAT_WS('',   `personal_data_table1`.`emp_id`, '::', `personal_data_table1`.`name`), '') /* Employee Details (ID::Name::Joining Date::Department) */" => "employee_details",
+		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, '::', `employees_personal_data_table1`.`name`), '') /* Employee Details (ID::Name::Joining Date::Department) */" => "employee_details",
 		"IF(    CHAR_LENGTH(`employees_designation_table1`.`designation`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `employees_designation_table1`.`designation`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Employee Other Details (Designation::Reporting Officer) */" => "employee_designation_reporting",
 		"`employees_appraisal_table`.`current_review_period`" => "current_review_period",
 		"`employees_appraisal_table`.`roles`" => "roles",
@@ -107,7 +107,7 @@
 	// Lookup fields that can be used as filterers
 	$x->filterers = ['employee_details' => 'Employee Details (ID::Name::Joining Date::Department)', 'employee_designation_reporting' => 'Employee Other Details (Designation::Reporting Officer)', ];
 
-	$x->QueryFrom = "`employees_appraisal_table` LEFT JOIN `personal_data_table` as personal_data_table1 ON `personal_data_table1`.`personal_data_id`=`employees_appraisal_table`.`employee_details` LEFT JOIN `employees_designation_table` as employees_designation_table1 ON `employees_designation_table1`.`id`=`employees_appraisal_table`.`employee_designation_reporting` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table1`.`reporting_officer` ";
+	$x->QueryFrom = "`employees_appraisal_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`personal_data_id`=`employees_appraisal_table`.`employee_details` LEFT JOIN `employees_designation_table` as employees_designation_table1 ON `employees_designation_table1`.`id`=`employees_appraisal_table`.`employee_designation_reporting` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table1`.`reporting_officer` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 

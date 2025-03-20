@@ -1,12 +1,12 @@
 <?php
 	// For help on using hooks, please refer to https://bigprof.com/appgini/help/advanced-topics/hooks/
 
-	function personal_data_table_init(&$options, $memberInfo, &$args) {
+	function employees_personal_data_table_init(&$options, $memberInfo, &$args) {
 
 		return TRUE;
 	}
 
-	function personal_data_table_header($contentType, $memberInfo, &$args) {
+	function employees_personal_data_table_header($contentType, $memberInfo, &$args) {
 		$header='';
 
 		switch($contentType) {
@@ -38,7 +38,7 @@
 		return $header;
 	}
 
-	function personal_data_table_footer($contentType, $memberInfo, &$args) {
+	function employees_personal_data_table_footer($contentType, $memberInfo, &$args) {
 		$footer='';
 
 		switch($contentType) {
@@ -70,44 +70,44 @@
 		return $footer;
 	}
 
-	function personal_data_table_before_insert(&$data, $memberInfo, &$args) {
+	function employees_personal_data_table_before_insert(&$data, $memberInfo, &$args) {
 
 		return TRUE;
 	}
 
-	function personal_data_table_after_insert($data, $memberInfo, &$args) {
+	function employees_personal_data_table_after_insert($data, $memberInfo, &$args) {
 
 		return TRUE;
 	}
 
-	function personal_data_table_before_update(&$data, $memberInfo, &$args) {
+	function employees_personal_data_table_before_update(&$data, $memberInfo, &$args) {
 
 		return TRUE;
 	}
 
-	function personal_data_table_after_update($data, $memberInfo, &$args) {
+	function employees_personal_data_table_after_update($data, $memberInfo, &$args) {
 
 		return TRUE;
 	}
 
-	function personal_data_table_before_delete($selectedID, &$skipChecks, $memberInfo, &$args) {
+	function employees_personal_data_table_before_delete($selectedID, &$skipChecks, $memberInfo, &$args) {
 
 		return TRUE;
 	}
 
-	function personal_data_table_after_delete($selectedID, $memberInfo, &$args) {
+	function employees_personal_data_table_after_delete($selectedID, $memberInfo, &$args) {
 
 	}
 
-	function personal_data_table_dv($selectedID, $memberInfo, &$html, &$args) {
+	function employees_personal_data_table_dv($selectedID, $memberInfo, &$html, &$args) {
 
 	}
 
-	function personal_data_table_csv($query, $memberInfo, &$args) {
+	function employees_personal_data_table_csv($query, $memberInfo, &$args) {
 
 		return $query;
 	}
-	function personal_data_table_batch_actions(&$args) {
+	function employees_personal_data_table_batch_actions(&$args) {
 
 		return [];
 	}

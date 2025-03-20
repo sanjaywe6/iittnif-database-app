@@ -19,7 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`employees_designation_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`emp_id`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`emp_id`), '') /* Employee details */" => "employee_details",
+		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`name`) || CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`), CONCAT_WS('',   `employees_personal_data_table1`.`name`, '::', `employees_personal_data_table1`.`emp_id`), '') /* Employee details */" => "employee_details",
 		"`employees_designation_table`.`designation`" => "designation",
 		"if(`employees_designation_table`.`date_of_appointment_to_designation`,date_format(`employees_designation_table`.`date_of_appointment_to_designation`,'%d/%m/%Y'),'')" => "date_of_appointment_to_designation",
 		"`employees_designation_table`.`active_status`" => "active_status",
@@ -48,7 +48,7 @@
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`employees_designation_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`emp_id`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`emp_id`), '') /* Employee details */" => "employee_details",
+		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`name`) || CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`), CONCAT_WS('',   `employees_personal_data_table1`.`name`, '::', `employees_personal_data_table1`.`emp_id`), '') /* Employee details */" => "employee_details",
 		"`employees_designation_table`.`designation`" => "designation",
 		"if(`employees_designation_table`.`date_of_appointment_to_designation`,date_format(`employees_designation_table`.`date_of_appointment_to_designation`,'%d/%m/%Y'),'')" => "date_of_appointment_to_designation",
 		"`employees_designation_table`.`active_status`" => "active_status",
@@ -62,7 +62,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`employees_designation_table`.`id`" => "ID",
-		"IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`emp_id`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`emp_id`), '') /* Employee details */" => "Employee details",
+		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`name`) || CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`), CONCAT_WS('',   `employees_personal_data_table1`.`name`, '::', `employees_personal_data_table1`.`emp_id`), '') /* Employee details */" => "Employee details",
 		"`employees_designation_table`.`designation`" => "Designation",
 		"`employees_designation_table`.`date_of_appointment_to_designation`" => "Date of appointment to designation",
 		"`employees_designation_table`.`active_status`" => "Active status",
@@ -77,7 +77,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`employees_designation_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`personal_data_table1`.`name`) || CHAR_LENGTH(`personal_data_table1`.`emp_id`), CONCAT_WS('',   `personal_data_table1`.`name`, '::', `personal_data_table1`.`emp_id`), '') /* Employee details */" => "employee_details",
+		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`name`) || CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`), CONCAT_WS('',   `employees_personal_data_table1`.`name`, '::', `employees_personal_data_table1`.`emp_id`), '') /* Employee details */" => "employee_details",
 		"`employees_designation_table`.`designation`" => "designation",
 		"if(`employees_designation_table`.`date_of_appointment_to_designation`,date_format(`employees_designation_table`.`date_of_appointment_to_designation`,'%d/%m/%Y'),'')" => "date_of_appointment_to_designation",
 		"`employees_designation_table`.`active_status`" => "active_status",
@@ -92,7 +92,7 @@
 	// Lookup fields that can be used as filterers
 	$x->filterers = ['employee_details' => 'Employee details', 'reporting_officer' => 'Reporting Officer', 'reviewing_officer' => 'Reviewing Officer', ];
 
-	$x->QueryFrom = "`employees_designation_table` LEFT JOIN `personal_data_table` as personal_data_table1 ON `personal_data_table1`.`personal_data_id`=`employees_designation_table`.`employee_details` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employees_designation_table`.`reviewing_officer` ";
+	$x->QueryFrom = "`employees_designation_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`personal_data_id`=`employees_designation_table`.`employee_details` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employees_designation_table`.`reviewing_officer` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 

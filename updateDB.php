@@ -93,7 +93,12 @@
 		setupTable('computer_usage_table', []);
 		setupIndexes('computer_usage_table', ['pc_id',]);
 
-		setupTable('personal_data_table', []);
+		setupTable('employees_personal_data_table', [
+				"ALTER TABLE `personal_data_table` RENAME `employees_personal_data_table`",
+				"UPDATE `membership_userrecords` SET `tableName`='employees_personal_data_table' WHERE `tableName`='personal_data_table'",
+				"UPDATE `membership_userpermissions` SET `tableName`='employees_personal_data_table' WHERE `tableName`='personal_data_table'",
+				"UPDATE `membership_grouppermissions` SET `tableName`='employees_personal_data_table' WHERE `tableName`='personal_data_table'",
+			]);
 
 		setupTable('employees_designation_table', []);
 		setupIndexes('employees_designation_table', ['employee_details','reporting_officer','reviewing_officer',]);

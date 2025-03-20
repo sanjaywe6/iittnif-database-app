@@ -699,7 +699,7 @@ function computer_usage_table_validateData(insertMode) {
 
 	return !errors;
 }
-function personal_data_table_validateData(insertMode) {
+function employees_personal_data_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
 

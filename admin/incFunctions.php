@@ -339,8 +339,8 @@
 					'group' => $tg[7],
 					'homepageShowCount' => 1
 				],
-				'personal_data_table' => [
-					'Caption' => 'Employee personal data - App',
+				'employees_personal_data_table' => [
+					'Caption' => 'Employee Personal Data - App',
 					'Description' => '<a href="https://lookerstudio.google.com/reporting/e46f3806-e78c-4f09-8417-049568d4783d"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Employee Details App Report</b></button></a>',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[6],
@@ -688,7 +688,7 @@
 			'it_inventory_allotment_table' => ['IT inventory allotment - App', '', 'table.gif', 'Asset Management Apps'],
 			'computer_details_table' => ['Computer lab PC list - App', '<a href="https://lookerstudio.google.com/reporting/3dc9dac5-3945-4853-91cc-12e26b865666"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Computer lab PC Report</b></button></a>', 'table.gif', 'Asset Management Apps'],
 			'computer_usage_table' => ['Computer usage table', '', 'table.gif', 'Asset Management Apps'],
-			'personal_data_table' => ['Employee personal data - App', '<a href="https://lookerstudio.google.com/reporting/e46f3806-e78c-4f09-8417-049568d4783d"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Employee Details App Report</b></button></a>', 'table.gif', 'Employee Data Management Apps'],
+			'employees_personal_data_table' => ['Employee Personal Data - App', '<a href="https://lookerstudio.google.com/reporting/e46f3806-e78c-4f09-8417-049568d4783d"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Employee Details App Report</b></button></a>', 'table.gif', 'Employee Data Management Apps'],
 			'employees_designation_table' => ['Employees designation & Reporting - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'employees_appraisal_table' => ['Employees Appraisal  - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'beyond_workingHours_table' => ['Beyond Working Hours Approval - App', '', 'table.gif', 'Employee Data Management Apps'],
@@ -783,13 +783,13 @@
 			return ['width'=>50, 'height'=>50, 'identifier'=>'_tv'];
 		elseif($tableName=='it_inventory_billing_details' && $fieldName=='image' && $view=='dv')
 			return ['width'=>250, 'height'=>250, 'identifier'=>'_dv'];
-		elseif($tableName=='personal_data_table' && $fieldName=='profile_photo' && $view=='tv')
+		elseif($tableName=='employees_personal_data_table' && $fieldName=='profile_photo' && $view=='tv')
 			return ['width'=>50, 'height'=>50, 'identifier'=>'_tv'];
-		elseif($tableName=='personal_data_table' && $fieldName=='profile_photo' && $view=='dv')
+		elseif($tableName=='employees_personal_data_table' && $fieldName=='profile_photo' && $view=='dv')
 			return ['width'=>250, 'height'=>250, 'identifier'=>'_dv'];
-		elseif($tableName=='personal_data_table' && $fieldName=='signature' && $view=='tv')
+		elseif($tableName=='employees_personal_data_table' && $fieldName=='signature' && $view=='tv')
 			return ['width'=>50, 'height'=>50, 'identifier'=>'_tv'];
-		elseif($tableName=='personal_data_table' && $fieldName=='signature' && $view=='dv')
+		elseif($tableName=='employees_personal_data_table' && $fieldName=='signature' && $view=='dv')
 			return ['width'=>250, 'height'=>250, 'identifier'=>'_dv'];
 		elseif($tableName=='approval_table' && $fieldName=='image' && $view=='tv')
 			return ['width'=>50, 'height'=>50, 'identifier'=>'_tv'];
@@ -4595,7 +4595,7 @@
 						],
 					],
 				],
-				'personal_data_table' => [
+				'employees_personal_data_table' => [
 					'personal_data_id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
@@ -5297,7 +5297,7 @@
 						],
 					],
 					'approval_status' => [
-						'appgini' => "VARCHAR(255) NULL",
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Under Consideration'",
 						'info' => [
 							'caption' => 'Approval status',
 							'description' => '',
@@ -10413,11 +10413,11 @@
 				'computer_details_table' => ['pc_id'],
 			],
 			'employees_designation_table' => [
-				'personal_data_table' => ['employee_details'],
+				'employees_personal_data_table' => ['employee_details'],
 				'user_table' => ['reviewing_officer', 'reporting_officer'],
 			],
 			'employees_appraisal_table' => [
-				'personal_data_table' => ['employee_details'],
+				'employees_personal_data_table' => ['employee_details'],
 				'employees_designation_table' => ['employee_designation_reporting'],
 			],
 			'beyond_workingHours_table' => [
@@ -10562,7 +10562,7 @@
 			'it_inventory_allotment_table' => [],
 			'computer_details_table' => [],
 			'computer_usage_table' => [],
-			'personal_data_table' => [],
+			'employees_personal_data_table' => [],
 			'employees_designation_table' => [],
 			'employees_appraisal_table' => [],
 			'beyond_workingHours_table' => [
@@ -10831,10 +10831,10 @@
 			'computer_usage_table' => [
 				'pc_id' => 'SELECT `computer_details_table`.`id`, IF(CHAR_LENGTH(`computer_details_table`.`pc_number`) || CHAR_LENGTH(`computer_details_table`.`pc_hostname`), CONCAT_WS(\'\', `computer_details_table`.`pc_number`, \'::\', `computer_details_table`.`pc_hostname`), \'\') FROM `computer_details_table` ORDER BY 2',
 			],
-			'personal_data_table' => [
+			'employees_personal_data_table' => [
 			],
 			'employees_designation_table' => [
-				'employee_details' => 'SELECT `personal_data_table`.`personal_data_id`, IF(CHAR_LENGTH(`personal_data_table`.`name`) || CHAR_LENGTH(`personal_data_table`.`emp_id`), CONCAT_WS(\'\', `personal_data_table`.`name`, \'::\', `personal_data_table`.`emp_id`), \'\') FROM `personal_data_table` ORDER BY 2',
+				'employee_details' => 'SELECT `employees_personal_data_table`.`personal_data_id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`name`) || CHAR_LENGTH(`employees_personal_data_table`.`emp_id`), CONCAT_WS(\'\', `employees_personal_data_table`.`name`, \'::\', `employees_personal_data_table`.`emp_id`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
 				'reporting_officer' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 				'reviewing_officer' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],

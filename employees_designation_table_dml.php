@@ -312,7 +312,7 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 							});
 							$j('[name="employee_details"]').val(resp.results[0].id);
 							$j('[id=employee_details-container-readonly__RAND__]').html('<span class="match-text" id="employee_details-match-text">' + resp.results[0].text + '</span>');
-							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=personal_data_table_view_parent]').hide(); } else { $j('.btn[id=personal_data_table_view_parent]').show(); }
+							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=employees_personal_data_table_view_parent]').hide(); } else { $j('.btn[id=employees_personal_data_table_view_parent]').show(); }
 
 
 							if(typeof(employee_details_update_autofills__RAND__) == 'function') employee_details_update_autofills__RAND__();
@@ -335,7 +335,7 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 				AppGini.current_employee_details__RAND__.value = e.added.id;
 				AppGini.current_employee_details__RAND__.text = e.added.text;
 				$j('[name="employee_details"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=personal_data_table_view_parent]').hide(); } else { $j('.btn[id=personal_data_table_view_parent]').show(); }
+				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=employees_personal_data_table_view_parent]').hide(); } else { $j('.btn[id=employees_personal_data_table_view_parent]').show(); }
 
 
 				if(typeof(employee_details_update_autofills__RAND__) == 'function') employee_details_update_autofills__RAND__();
@@ -349,7 +349,7 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 					success: function(resp) {
 						$j('[name="employee_details"]').val(resp.results[0].id);
 						$j('[id=employee_details-container-readonly__RAND__]').html('<span class="match-text" id="employee_details-match-text">' + resp.results[0].text + '</span>');
-						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=personal_data_table_view_parent]').hide(); } else { $j('.btn[id=personal_data_table_view_parent]').show(); }
+						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=employees_personal_data_table_view_parent]').hide(); } else { $j('.btn[id=employees_personal_data_table_view_parent]').show(); }
 
 						if(typeof(employee_details_update_autofills__RAND__) == 'function') employee_details_update_autofills__RAND__();
 					}
@@ -364,7 +364,7 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 				data: { id: AppGini.current_employee_details__RAND__.value, t: 'employees_designation_table', f: 'employee_details' },
 				success: function(resp) {
 					$j('[id=employee_details-container__RAND__], [id=employee_details-container-readonly__RAND__]').html('<span class="match-text" id="employee_details-match-text">' + resp.results[0].text + '</span>');
-					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=personal_data_table_view_parent]').hide(); } else { $j('.btn[id=personal_data_table_view_parent]').show(); }
+					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=employees_personal_data_table_view_parent]').hide(); } else { $j('.btn[id=employees_personal_data_table_view_parent]').show(); }
 
 					if(typeof(employee_details_update_autofills__RAND__) == 'function') employee_details_update_autofills__RAND__();
 				}
@@ -649,7 +649,7 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 	$templateCode = str_replace('<%%URLCOMBOTEXT(reviewing_officer)%%>', urlencode($combo_reviewing_officer->MatchText), $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
-	$lookup_fields = ['employee_details' => ['personal_data_table', 'Employee details'], 'reporting_officer' => ['user_table', 'Reporting Officer'], 'reviewing_officer' => ['user_table', 'Reviewing Officer'], ];
+	$lookup_fields = ['employee_details' => ['employees_personal_data_table', 'Employee details'], 'reporting_officer' => ['user_table', 'Reporting Officer'], 'reviewing_officer' => ['user_table', 'Reviewing Officer'], ];
 	foreach($lookup_fields as $luf => $ptfc) {
 		$pt_perm = getTablePermissions($ptfc[0]);
 

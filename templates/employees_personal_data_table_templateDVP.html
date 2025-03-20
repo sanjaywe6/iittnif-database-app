@@ -1,0 +1,157 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Name -->
+		<div class="form-group employees_personal_data_table-name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Name</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Employee type -->
+		<div class="form-group employees_personal_data_table-employee_type" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Employee type</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(employee_type)%%></div>
+			</div>
+		</div>
+		<!-- Field: Emp id -->
+		<div class="form-group employees_personal_data_table-emp_id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Emp id</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(emp_id)%%></div>
+			</div>
+		</div>
+		<!-- Field: Date of birth -->
+		<div class="form-group employees_personal_data_table-date_of_birth" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Date of birth</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(date_of_birth)%%></div>
+			</div>
+		</div>
+		<!-- Field: Blood group -->
+		<div class="form-group employees_personal_data_table-blood_group" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Blood group</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(blood_group)%%></div>
+			</div>
+		</div>
+		<!-- Field: Email -->
+		<div class="form-group employees_personal_data_table-email" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Email</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(email)%%></div>
+			</div>
+		</div>
+		<!-- Field: Phone number -->
+		<div class="form-group employees_personal_data_table-phone_number" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Phone number</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(phone_number)%%></div>
+			</div>
+		</div>
+		<!-- Field: Department -->
+		<div class="form-group employees_personal_data_table-department" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Department</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(department)%%></div>
+			</div>
+		</div>
+		<!-- Field: Date of joining -->
+		<div class="form-group employees_personal_data_table-date_of_joining" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Date of joining</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(date_of_joining)%%></div>
+			</div>
+		</div>
+		<!-- Field: Date of exit -->
+		<div class="form-group employees_personal_data_table-date_of_exit" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Date of exit</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(date_of_exit)%%></div>
+			</div>
+		</div>
+		<!-- Field: Active status -->
+		<div class="form-group employees_personal_data_table-active_status" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Active status</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(active_status)%%></div>
+			</div>
+		</div>
+		<!-- Field: Profile photo -->
+		<div class="form-group employees_personal_data_table-profile_photo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Profile photo</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><script>
+				var profile_photoSrc1<%%RND1%%>='<%%BASE_UPLOAD_PATH%%><%%VALUE(profile_photo)%%>';
+				var profile_photoSrc2<%%RND1%%>='thumbnail.php?t=employees_personal_data_table&f=profile_photo&i=<%%VALUE(profile_photo)%%>&v=dv'
+			</script>
+			<a href="#" onclick="$j('#profile_photoImg<%%RND1%%>').attr('src', ($j('#profile_photoImg<%%RND1%%>').attr('src').search(/thumbnail\.php/) != -1 && profile_photoSrc1<%%RND1%%> != '<%%BASE_UPLOAD_PATH%%>' ? profile_photoSrc1<%%RND1%%> : profile_photoSrc2<%%RND1%%>)); return false;"><img id="profile_photoImg<%%RND1%%>" src="thumbnail.php?t=employees_personal_data_table&f=profile_photo&i=<%%VALUE(profile_photo)%%>&v=dv" class="img-thumbnail"></a></div>
+			</div>
+		</div>
+		<!-- Field: Signature -->
+		<div class="form-group employees_personal_data_table-signature" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Signature</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><script>
+				var signatureSrc1<%%RND1%%>='<%%BASE_UPLOAD_PATH%%><%%VALUE(signature)%%>';
+				var signatureSrc2<%%RND1%%>='thumbnail.php?t=employees_personal_data_table&f=signature&i=<%%VALUE(signature)%%>&v=dv'
+			</script>
+			<a href="#" onclick="$j('#signatureImg<%%RND1%%>').attr('src', ($j('#signatureImg<%%RND1%%>').attr('src').search(/thumbnail\.php/) != -1 && signatureSrc1<%%RND1%%> != '<%%BASE_UPLOAD_PATH%%>' ? signatureSrc1<%%RND1%%> : signatureSrc2<%%RND1%%>)); return false;"><img id="signatureImg<%%RND1%%>" src="thumbnail.php?t=employees_personal_data_table&f=signature&i=<%%VALUE(signature)%%>&v=dv" class="img-thumbnail"></a></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>
+<!-- child records -->
+<div class="panel-body">
+	<div id="employees_personal_data_table-children"></div>
+</div>
+
+<script>
+	$j(function() {
+		/* prevent loading child records in multiple DVP */
+		if($j('[id=employees_personal_data_table-children]').length > 1) return;
+
+		post(
+			'parent-children.php', {
+				ParentTable: 'employees_personal_data_table',
+				SelectedID: '<%%VALUE(personal_data_id)%%>',
+				Operation: 'show-children-printable'
+			},
+			'employees_personal_data_table-children',
+			'disable-element',
+			'loading-element',
+			apply_persisting_children
+		);
+
+		$j('form').on('click', '#children-tabs button[data-target]', function() {
+			$j(this).toggleClass('active');
+			persist_expanded_child($j(this).attr('id'));
+		});
+	})
+</script>
+

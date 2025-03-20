@@ -15,7 +15,7 @@
 		'it_inventory_billing_details' => [
 			'image' => '../' . getUploadDir(''),
 		],
-		'personal_data_table' => [
+		'employees_personal_data_table' => [
 			'profile_photo' => '../' . getUploadDir(''),
 			'signature' => '../' . getUploadDir(''),
 		],

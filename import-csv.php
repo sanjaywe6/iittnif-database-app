@@ -199,7 +199,7 @@
 
 			return $data;
 		},
-		'personal_data_table' => function($data, $options = []) {
+		'employees_personal_data_table' => function($data, $options = []) {
 			if(isset($data['date_of_birth'])) $data['date_of_birth'] = guessMySQLDateTime($data['date_of_birth']);
 			if(isset($data['date_of_joining'])) $data['date_of_joining'] = guessMySQLDateTime($data['date_of_joining']);
 			if(isset($data['date_of_exit'])) $data['date_of_exit'] = guessMySQLDateTime($data['date_of_exit']);
@@ -493,7 +493,7 @@
 		'it_inventory_allotment_table' => function($data, $options = []) { return true; },
 		'computer_details_table' => function($data, $options = []) { return true; },
 		'computer_usage_table' => function($data, $options = []) { return true; },
-		'personal_data_table' => function($data, $options = []) { return true; },
+		'employees_personal_data_table' => function($data, $options = []) { return true; },
 		'employees_designation_table' => function($data, $options = []) { return true; },
 		'employees_appraisal_table' => function($data, $options = []) { return true; },
 		'beyond_workingHours_table' => function($data, $options = []) { return true; },

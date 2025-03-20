@@ -245,6 +245,12 @@
 
 			return $data;
 		},
+		'navavishkar_stay_table' => function($data, $options = []) {
+			if(isset($data['check_in_date'])) $data['check_in_date'] = guessMySQLDateTime($data['check_in_date']);
+			if(isset($data['checkout_date'])) $data['checkout_date'] = guessMySQLDateTime($data['checkout_date']);
+
+			return $data;
+		},
 		'email_id_allocation_table' => function($data, $options = []) {
 			if(isset($data['date_of_allocation'])) $data['date_of_allocation'] = guessMySQLDateTime($data['date_of_allocation']);
 			if(isset($data['reporting_manager'])) $data['reporting_manager'] = pkGivenLookupText($data['reporting_manager'], 'email_id_allocation_table', 'reporting_manager');
@@ -446,10 +452,6 @@
 
 			return $data;
 		},
-		'navavishkar_stay_table' => function($data, $options = []) {
-
-			return $data;
-		},
 	];
 
 	// accept a record as an assoc array, return a boolean indicating whether to import or skip record
@@ -493,6 +495,7 @@
 		'attendence_details_table' => function($data, $options = []) { return true; },
 		'leave_table' => function($data, $options = []) { return true; },
 		'work_from_home_table' => function($data, $options = []) { return true; },
+		'navavishkar_stay_table' => function($data, $options = []) { return true; },
 		'email_id_allocation_table' => function($data, $options = []) { return true; },
 		'all_startup_data_table' => function($data, $options = []) { return true; },
 		'shortlisted_startups_for_fund_table' => function($data, $options = []) { return true; },
@@ -527,7 +530,6 @@
 		'address_tdp' => function($data, $options = []) { return true; },
 		'summary_table_tdp' => function($data, $options = []) { return true; },
 		'project_details_tdp' => function($data, $options = []) { return true; },
-		'navavishkar_stay_table' => function($data, $options = []) { return true; },
 	];
 
 	/*

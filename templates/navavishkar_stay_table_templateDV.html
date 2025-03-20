@@ -19,6 +19,123 @@
 		<div class="col-md-8 col-lg-10" id="navavishkar_stay_table_dv_form">
 			<fieldset class="form-horizontal">
 
+				<!-- Field: Full Name -->
+				<div class="form-group navavishkar_stay_table-full_name">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="full_name">Full Name</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="full_name" id="full_name" value="<%%VALUE(full_name)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Employee ID -->
+				<div class="form-group navavishkar_stay_table-emp_id">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="emp_id">Employee ID</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="emp_id" id="emp_id" value="<%%VALUE(emp_id)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Department -->
+				<div class="form-group navavishkar_stay_table-department">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="department">Department</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="department" id="department" value="<%%VALUE(department)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Designation -->
+				<div class="form-group navavishkar_stay_table-designation">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="designation">Designation</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="designation" id="designation" value="<%%VALUE(designation)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Contact Email -->
+				<div class="form-group navavishkar_stay_table-contact_email">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="contact_email">Contact Email</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="contact_email" id="contact_email" value="<%%VALUE(contact_email)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Contact Number -->
+				<div class="form-group navavishkar_stay_table-contact_number">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="contact_number">Contact Number</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="contact_number" id="contact_number" value="<%%VALUE(contact_number)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Room number -->
+				<div class="form-group navavishkar_stay_table-room_number">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="room_number">Room number</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="room_number" id="room_number" value="<%%VALUE(room_number)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Check in date -->
+				<div class="form-group navavishkar_stay_table-check_in_date">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="check_in_date-dd">Check in date</label>
+					<div class="col-lg-9">
+						<%%COMBO(check_in_date)%%>
+					</div>
+				</div>
+
+				<!-- Field: Checkout date -->
+				<div class="form-group navavishkar_stay_table-checkout_date">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="checkout_date-dd">Checkout date</label>
+					<div class="col-lg-9">
+						<%%COMBO(checkout_date)%%>
+					</div>
+				</div>
+
+				<!-- Field: Reason for stay -->
+				<div class="form-group navavishkar_stay_table-reason_for_stay">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="reason_for_stay">Reason for stay</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="reason_for_stay" id="reason_for_stay" rows=" 5"><%%VALUE(reason_for_stay)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Payment status -->
+				<div class="form-group navavishkar_stay_table-payment_status">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="payment_status">Payment status</label>
+					<div class="col-lg-9">
+						<%%COMBO(payment_status)%%>
+					</div>
+				</div>
+
+				<!-- Field: Amount (INR) -->
+				<div class="form-group navavishkar_stay_table-amount">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="amount">Amount (INR)</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="amount" id="amount" value="<%%VALUE(amount)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Additional Facilities Provided (Optional) -->
+				<div class="form-group navavishkar_stay_table-additional_facilities_provided">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="additional_facilities_provided">Additional Facilities Provided (Optional)</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="additional_facilities_provided" id="additional_facilities_provided" value="<%%VALUE(additional_facilities_provided)%%>">
+					</div>
+				</div>
+
 			</fieldset>
 		</div>
 
@@ -60,8 +177,9 @@
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-						$j('#navavishkar_stay_table_dv_container-loading').addClass('hidden');
-						$j('#navavishkar_stay_table_dv_container').removeClass('hidden');
+			$j('#navavishkar_stay_table_dv_container-loading').addClass('hidden');
+			$j('#navavishkar_stay_table_dv_container').removeClass('hidden');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('navavishkar_stay_table', 'full_name');
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 

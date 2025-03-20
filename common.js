@@ -803,6 +803,12 @@ function work_from_home_table_validateData(insertMode) {
 
 	return !errors;
 }
+function navavishkar_stay_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
 function email_id_allocation_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
@@ -1082,12 +1088,6 @@ function summary_table_tdp_validateData(insertMode) {
 	return !errors;
 }
 function project_details_tdp_validateData(insertMode) {
-	$j('.has-error').removeClass('has-error');
-	var errors = false;
-
-	return !errors;
-}
-function navavishkar_stay_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
 

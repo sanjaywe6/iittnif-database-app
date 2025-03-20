@@ -111,6 +111,8 @@
 		setupTable('work_from_home_table', []);
 		setupIndexes('work_from_home_table', ['approved_by',]);
 
+		setupTable('navavishkar_stay_table', []);
+
 		setupTable('email_id_allocation_table', []);
 		setupIndexes('email_id_allocation_table', ['reporting_manager',]);
 
@@ -203,8 +205,6 @@
 
 		setupTable('project_details_tdp', []);
 		setupIndexes('project_details_tdp', ['project_number',]);
-
-		setupTable('navavishkar_stay_table', []);
 
 
 

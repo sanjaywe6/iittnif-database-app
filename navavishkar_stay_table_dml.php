@@ -15,8 +15,34 @@ function navavishkar_stay_table_insert(&$error_message = '') {
 		return false;
 	}
 
-	// nothing to insert as all fields are read-only
-	return;
+	$data = [
+		'full_name' => Request::val('full_name', ''),
+		'emp_id' => Request::val('emp_id', ''),
+		'department' => Request::val('department', ''),
+		'designation' => Request::val('designation', ''),
+		'contact_email' => Request::val('contact_email', ''),
+		'contact_number' => Request::val('contact_number', ''),
+		'room_number' => Request::val('room_number', ''),
+		'check_in_date' => Request::dateComponents('check_in_date', '1'),
+		'checkout_date' => Request::dateComponents('checkout_date', '1'),
+		'reason_for_stay' => br2nl(Request::val('reason_for_stay', '')),
+		'payment_status' => Request::val('payment_status', 'Pending'),
+		'amount' => Request::val('amount', ''),
+		'additional_facilities_provided' => Request::val('additional_facilities_provided', ''),
+		'created_by' => parseCode('<%%creatorUsername%%>', true),
+		'created_at' => parseCode('<%%creationDateTime%%>', true),
+	];
+
+	// record owner is current user
+	$recordOwner = getLoggedMemberID();
+
+	$recID = tableInsert('navavishkar_stay_table', $data, $recordOwner, $error_message);
+
+	// if this record is a copy of another record, copy children if applicable
+	if(strlen(Request::val('SelectedID')) && $recID !== false)
+		navavishkar_stay_table_copy_children($recID, Request::val('SelectedID'));
+
+	return $recID;
 }
 
 function navavishkar_stay_table_copy_children($destination_id, $source_id) {
@@ -70,8 +96,72 @@ function navavishkar_stay_table_update(&$selected_id, &$error_message = '') {
 	// mm: can member edit record?
 	if(!check_record_permission('navavishkar_stay_table', $selected_id, 'edit')) return false;
 
-	// nothing to update as all fields are read-only
-	return;
+	$data = [
+		'full_name' => Request::val('full_name', ''),
+		'emp_id' => Request::val('emp_id', ''),
+		'department' => Request::val('department', ''),
+		'designation' => Request::val('designation', ''),
+		'contact_email' => Request::val('contact_email', ''),
+		'contact_number' => Request::val('contact_number', ''),
+		'room_number' => Request::val('room_number', ''),
+		'check_in_date' => Request::dateComponents('check_in_date', ''),
+		'checkout_date' => Request::dateComponents('checkout_date', ''),
+		'reason_for_stay' => br2nl(Request::val('reason_for_stay', '')),
+		'payment_status' => Request::val('payment_status', ''),
+		'amount' => Request::val('amount', ''),
+		'additional_facilities_provided' => Request::val('additional_facilities_provided', ''),
+		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
+		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
+	];
+
+	// get existing values
+	$old_data = getRecord('navavishkar_stay_table', $selected_id);
+	if(is_array($old_data)) {
+		$old_data = array_map('makeSafe', $old_data);
+		$old_data['selectedID'] = makeSafe($selected_id);
+	}
+
+	$data['selectedID'] = makeSafe($selected_id);
+
+	// hook: navavishkar_stay_table_before_update
+	if(function_exists('navavishkar_stay_table_before_update')) {
+		$args = ['old_data' => $old_data];
+		if(!navavishkar_stay_table_before_update($data, getMemberInfo(), $args)) {
+			if(isset($args['error_message'])) $error_message = $args['error_message'];
+			return false;
+		}
+	}
+
+	$set = $data; unset($set['selectedID']);
+	foreach ($set as $field => $value) {
+		$set[$field] = ($value !== '' && $value !== NULL) ? $value : NULL;
+	}
+
+	if(!update(
+		'navavishkar_stay_table', 
+		backtick_keys_once($set), 
+		['`id`' => $selected_id], 
+		$error_message
+	)) {
+		echo $error_message;
+		echo '<a href="navavishkar_stay_table_view.php?SelectedID=' . urlencode($selected_id) . "\">{$Translation['< back']}</a>";
+		exit;
+	}
+
+
+	update_calc_fields('navavishkar_stay_table', $data['selectedID'], calculated_fields()['navavishkar_stay_table']);
+
+	// hook: navavishkar_stay_table_after_update
+	if(function_exists('navavishkar_stay_table_after_update')) {
+		if($row = getRecord('navavishkar_stay_table', $data['selectedID'])) $data = array_map('makeSafe', $row);
+
+		$data['selectedID'] = $data['id'];
+		$args = ['old_data' => $old_data];
+		if(!navavishkar_stay_table_after_update($data, getMemberInfo(), $args)) return;
+	}
+
+	// mm: update record update timestamp
+	set_record_owner('navavishkar_stay_table', $selected_id);
 }
 
 function navavishkar_stay_table_form($selectedId = '', $allowUpdate = true, $allowInsert = true, $allowDelete = true, $separateDV = true, $templateDV = '', $templateDVP = '') {
@@ -114,18 +204,54 @@ function navavishkar_stay_table_form($selectedId = '', $allowUpdate = true, $all
 
 	// unique random identifier
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
+	// combobox: check_in_date
+	$combo_check_in_date = new DateCombo;
+	$combo_check_in_date->DateFormat = "dmy";
+	$combo_check_in_date->MinYear = defined('navavishkar_stay_table.check_in_date.MinYear') ? constant('navavishkar_stay_table.check_in_date.MinYear') : 1900;
+	$combo_check_in_date->MaxYear = defined('navavishkar_stay_table.check_in_date.MaxYear') ? constant('navavishkar_stay_table.check_in_date.MaxYear') : 2100;
+	$combo_check_in_date->DefaultDate = parseMySQLDate('1', '1');
+	$combo_check_in_date->MonthNames = $Translation['month names'];
+	$combo_check_in_date->NamePrefix = 'check_in_date';
+	// combobox: checkout_date
+	$combo_checkout_date = new DateCombo;
+	$combo_checkout_date->DateFormat = "dmy";
+	$combo_checkout_date->MinYear = defined('navavishkar_stay_table.checkout_date.MinYear') ? constant('navavishkar_stay_table.checkout_date.MinYear') : 1900;
+	$combo_checkout_date->MaxYear = defined('navavishkar_stay_table.checkout_date.MaxYear') ? constant('navavishkar_stay_table.checkout_date.MaxYear') : 2100;
+	$combo_checkout_date->DefaultDate = parseMySQLDate('1', '1');
+	$combo_checkout_date->MonthNames = $Translation['month names'];
+	$combo_checkout_date->NamePrefix = 'checkout_date';
+	// combobox: payment_status
+	$combo_payment_status = new Combo;
+	$combo_payment_status->ListType = 0;
+	$combo_payment_status->MultipleSeparator = ', ';
+	$combo_payment_status->ListBoxHeight = 10;
+	$combo_payment_status->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/navavishkar_stay_table.payment_status.csv')) {
+		$payment_status_data = addslashes(implode('', @file(__DIR__ . '/hooks/navavishkar_stay_table.payment_status.csv')));
+		$combo_payment_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($payment_status_data))));
+		$combo_payment_status->ListData = $combo_payment_status->ListItem;
+	} else {
+		$combo_payment_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Pending;;Paid"))));
+		$combo_payment_status->ListData = $combo_payment_status->ListItem;
+	}
+	$combo_payment_status->SelectName = 'payment_status';
 
 	if($hasSelectedId) {
 		if(!($row = getRecord('navavishkar_stay_table', $selectedId))) {
 			return error_message($Translation['No records found'], 'navavishkar_stay_table_view.php', false);
 		}
+		$combo_check_in_date->DefaultDate = $row['check_in_date'];
+		$combo_checkout_date->DefaultDate = $row['checkout_date'];
+		$combo_payment_status->SelectedData = $row['payment_status'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
 	} else {
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
+		$combo_payment_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '12' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
 	}
+	$combo_payment_status->Render();
 
 	ob_start();
 	?>
@@ -222,6 +348,21 @@ function navavishkar_stay_table_form($selectedId = '', $allowUpdate = true, $all
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
+		$jsReadOnly .= "\t\$j('#full_name').replaceWith('<div class=\"form-control-static\" id=\"full_name\">' + (\$j('#full_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#emp_id').replaceWith('<div class=\"form-control-static\" id=\"emp_id\">' + (\$j('#emp_id').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#department').replaceWith('<div class=\"form-control-static\" id=\"department\">' + (\$j('#department').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#designation').replaceWith('<div class=\"form-control-static\" id=\"designation\">' + (\$j('#designation').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#contact_email').replaceWith('<div class=\"form-control-static\" id=\"contact_email\">' + (\$j('#contact_email').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#contact_number').replaceWith('<div class=\"form-control-static\" id=\"contact_number\">' + (\$j('#contact_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#room_number').replaceWith('<div class=\"form-control-static\" id=\"room_number\">' + (\$j('#room_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#check_in_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#check_in_dateDay, #check_in_dateMonth, #check_in_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#checkout_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#checkout_dateDay, #checkout_dateMonth, #checkout_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#reason_for_stay').replaceWith('<div class=\"form-control-static\" id=\"reason_for_stay\">' + (\$j('#reason_for_stay').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#payment_status').replaceWith('<div class=\"form-control-static\" id=\"payment_status\">' + (\$j('#payment_status').val() || '') + '</div>'); \$j('#payment_status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#amount').replaceWith('<div class=\"form-control-static\" id=\"amount\">' + (\$j('#amount').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#additional_facilities_provided').replaceWith('<div class=\"form-control-static\" id=\"additional_facilities_provided\">' + (\$j('#additional_facilities_provided').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -232,6 +373,22 @@ function navavishkar_stay_table_form($selectedId = '', $allowUpdate = true, $all
 	}
 
 	// process combos
+	$templateCode = str_replace(
+		'<%%COMBO(check_in_date)%%>', 
+		(!$fieldsAreEditable ? 
+			'<div class="form-control-static">' . $combo_check_in_date->GetHTML(true) . '</div>' : 
+			$combo_check_in_date->GetHTML()
+		), $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(check_in_date)%%>', $combo_check_in_date->GetHTML(true), $templateCode);
+	$templateCode = str_replace(
+		'<%%COMBO(checkout_date)%%>', 
+		(!$fieldsAreEditable ? 
+			'<div class="form-control-static">' . $combo_checkout_date->GetHTML(true) . '</div>' : 
+			$combo_checkout_date->GetHTML()
+		), $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(checkout_date)%%>', $combo_checkout_date->GetHTML(true), $templateCode);
+	$templateCode = str_replace('<%%COMBO(payment_status)%%>', $combo_payment_status->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(payment_status)%%>', $combo_payment_status->SelectedData, $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
 	$lookup_fields = [];
@@ -251,14 +408,109 @@ function navavishkar_stay_table_form($selectedId = '', $allowUpdate = true, $all
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(full_name)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(emp_id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(department)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(designation)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(contact_email)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(contact_number)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(room_number)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(check_in_date)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(checkout_date)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(reason_for_stay)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(payment_status)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(amount)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(additional_facilities_provided)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_updated_at)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(full_name)%%>', safe_html($urow['full_name']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(full_name)%%>', html_attr($row['full_name']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(full_name)%%>', urlencode($urow['full_name']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(emp_id)%%>', safe_html($urow['emp_id']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(emp_id)%%>', html_attr($row['emp_id']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(emp_id)%%>', urlencode($urow['emp_id']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(department)%%>', safe_html($urow['department']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(department)%%>', html_attr($row['department']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(department)%%>', urlencode($urow['department']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(designation)%%>', safe_html($urow['designation']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(designation)%%>', html_attr($row['designation']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(designation)%%>', urlencode($urow['designation']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(contact_email)%%>', safe_html($urow['contact_email']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(contact_email)%%>', html_attr($row['contact_email']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(contact_email)%%>', urlencode($urow['contact_email']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(contact_number)%%>', safe_html($urow['contact_number']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(contact_number)%%>', html_attr($row['contact_number']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(contact_number)%%>', urlencode($urow['contact_number']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(room_number)%%>', safe_html($urow['room_number']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(room_number)%%>', html_attr($row['room_number']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(room_number)%%>', urlencode($urow['room_number']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(check_in_date)%%>', app_datetime($row['check_in_date']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(check_in_date)%%>', urlencode(app_datetime($urow['check_in_date'])), $templateCode);
+		$templateCode = str_replace('<%%VALUE(checkout_date)%%>', app_datetime($row['checkout_date']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(checkout_date)%%>', urlencode(app_datetime($urow['checkout_date'])), $templateCode);
+		$templateCode = str_replace('<%%VALUE(reason_for_stay)%%>', safe_html($urow['reason_for_stay'], $fieldsAreEditable), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(reason_for_stay)%%>', urlencode($urow['reason_for_stay']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(payment_status)%%>', safe_html($urow['payment_status']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(payment_status)%%>', html_attr($row['payment_status']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(payment_status)%%>', urlencode($urow['payment_status']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(amount)%%>', safe_html($urow['amount']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(amount)%%>', html_attr($row['amount']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(amount)%%>', urlencode($urow['amount']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(additional_facilities_provided)%%>', safe_html($urow['additional_facilities_provided']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(additional_facilities_provided)%%>', html_attr($row['additional_facilities_provided']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(additional_facilities_provided)%%>', urlencode($urow['additional_facilities_provided']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode($urow['created_at']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(full_name)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(full_name)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(emp_id)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(emp_id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(department)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(department)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(designation)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(designation)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(contact_email)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(contact_email)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(contact_number)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(contact_number)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(room_number)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(room_number)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(check_in_date)%%>', '1', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(check_in_date)%%>', urlencode('1'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(checkout_date)%%>', '1', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(checkout_date)%%>', urlencode('1'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(reason_for_stay)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(reason_for_stay)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(payment_status)%%>', 'Pending', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(payment_status)%%>', urlencode('Pending'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(amount)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(amount)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(additional_facilities_provided)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(additional_facilities_provided)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode('<%%creationDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', '<%%editingDateTime%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode('<%%editingDateTime%%>'), $templateCode);
 	}
 
 	// process translations

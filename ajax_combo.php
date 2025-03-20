@@ -561,6 +561,8 @@
 				'not_null' => false,
 			],
 		],
+		'navavishkar_stay_table' => [
+		],
 		'email_id_allocation_table' => [
 			'reporting_manager' => [
 				'parent_table' => 'user_table',
@@ -914,8 +916,6 @@
 				'list_type' => 0,
 				'not_null' => false,
 			],
-		],
-		'navavishkar_stay_table' => [
 		],
 	];
 

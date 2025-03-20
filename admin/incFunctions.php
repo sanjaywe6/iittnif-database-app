@@ -388,6 +388,13 @@
 					'group' => $tg[6],
 					'homepageShowCount' => 1
 				],
+				'navavishkar_stay_table' => [
+					'Caption' => 'Navavishkar Stay - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[6],
+					'homepageShowCount' => 1
+				],
 				'email_id_allocation_table' => [
 					'Caption' => 'Email id allocation - App',
 					'Description' => '',
@@ -626,13 +633,6 @@
 					'group' => $tg[4],
 					'homepageShowCount' => 1
 				],
-				'navavishkar_stay_table' => [
-					'Caption' => 'Navavishkar Stay - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[0],
-					'homepageShowCount' => 1
-				],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) return $all_tables;
@@ -688,6 +688,7 @@
 			'attendence_details_table' => ['Attendence details - App', '<a href="https://lookerstudio.google.com/reporting/dd61ce5a-ccb5-4d55-b0a4-5233454f4b2c"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Attendence App View</b></button></a>', 'table.gif', 'Employee Data Management Apps'],
 			'leave_table' => ['Leave - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'work_from_home_table' => ['Work from home - App', '', 'table.gif', 'Employee Data Management Apps'],
+			'navavishkar_stay_table' => ['Navavishkar Stay - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'email_id_allocation_table' => ['Email id allocation - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'all_startup_data_table' => ['All Startups Data - App', '', 'table.gif', 'Startup Data Management Apps'],
 			'shortlisted_startups_for_fund_table' => ['Shortlisted startups for fund - App', '', 'table.gif', 'Startup Data Management Apps'],
@@ -722,7 +723,6 @@
 			'address_tdp' => ['Address Details - App', '', 'table.gif', 'Technology Development Apps'],
 			'summary_table_tdp' => ['Summary - App', '', 'table.gif', 'Technology Development Apps'],
 			'project_details_tdp' => ['Project details - App', '', 'table.gif', 'Technology Development Apps'],
-			'navavishkar_stay_table' => ['Navavishkar Stay - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) {
@@ -5210,6 +5210,134 @@
 						],
 					],
 				],
+				'navavishkar_stay_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'full_name' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Full Name',
+							'description' => '',
+						],
+					],
+					'emp_id' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Employee ID',
+							'description' => '',
+						],
+					],
+					'department' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Department',
+							'description' => '',
+						],
+					],
+					'designation' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Designation',
+							'description' => '',
+						],
+					],
+					'contact_email' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Contact Email',
+							'description' => '',
+						],
+					],
+					'contact_number' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Contact Number',
+							'description' => '',
+						],
+					],
+					'room_number' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Room number',
+							'description' => '',
+						],
+					],
+					'check_in_date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Check in date',
+							'description' => '',
+						],
+					],
+					'checkout_date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Checkout date',
+							'description' => '',
+						],
+					],
+					'reason_for_stay' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Reason for stay',
+							'description' => '',
+						],
+					],
+					'payment_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Pending'",
+						'info' => [
+							'caption' => 'Payment status',
+							'description' => '',
+						],
+					],
+					'amount' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Amount (INR)',
+							'description' => '',
+						],
+					],
+					'additional_facilities_provided' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Additional Facilities Provided (Optional)',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
 				'email_id_allocation_table' => [
 					'email_id_allocation_id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
@@ -8960,15 +9088,6 @@
 						],
 					],
 				],
-				'navavishkar_stay_table' => [
-					'id' => [
-						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
-						'info' => [
-							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-				],
 			];
 
 			$internalTablesSimple = [
@@ -10365,6 +10484,7 @@
 			'attendence_details_table' => [],
 			'leave_table' => [],
 			'work_from_home_table' => [],
+			'navavishkar_stay_table' => [],
 			'email_id_allocation_table' => [],
 			'all_startup_data_table' => [],
 			'shortlisted_startups_for_fund_table' => [],
@@ -10399,7 +10519,6 @@
 			'address_tdp' => [],
 			'summary_table_tdp' => [],
 			'project_details_tdp' => [],
-			'navavishkar_stay_table' => [],
 		];
 	}
 	#########################################################
@@ -10642,6 +10761,8 @@
 			'work_from_home_table' => [
 				'approved_by' => 'SELECT `user_table`.`user_id`, `user_table`.`user_id` FROM `user_table` ORDER BY 2',
 			],
+			'navavishkar_stay_table' => [
+			],
 			'email_id_allocation_table' => [
 				'reporting_manager' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
@@ -10735,8 +10856,6 @@
 			],
 			'project_details_tdp' => [
 				'project_number' => 'SELECT `summary_table_tdp`.`id`, `summary_table_tdp`.`project_number` FROM `summary_table_tdp` ORDER BY 2',
-			],
-			'navavishkar_stay_table' => [
 			],
 		];
 

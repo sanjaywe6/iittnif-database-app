@@ -19,24 +19,109 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`navavishkar_stay_table`.`id`" => "id",
+		"`navavishkar_stay_table`.`full_name`" => "full_name",
+		"`navavishkar_stay_table`.`emp_id`" => "emp_id",
+		"`navavishkar_stay_table`.`department`" => "department",
+		"`navavishkar_stay_table`.`designation`" => "designation",
+		"`navavishkar_stay_table`.`contact_email`" => "contact_email",
+		"`navavishkar_stay_table`.`contact_number`" => "contact_number",
+		"`navavishkar_stay_table`.`room_number`" => "room_number",
+		"if(`navavishkar_stay_table`.`check_in_date`,date_format(`navavishkar_stay_table`.`check_in_date`,'%d/%m/%Y'),'')" => "check_in_date",
+		"if(`navavishkar_stay_table`.`checkout_date`,date_format(`navavishkar_stay_table`.`checkout_date`,'%d/%m/%Y'),'')" => "checkout_date",
+		"`navavishkar_stay_table`.`reason_for_stay`" => "reason_for_stay",
+		"`navavishkar_stay_table`.`payment_status`" => "payment_status",
+		"`navavishkar_stay_table`.`amount`" => "amount",
+		"`navavishkar_stay_table`.`additional_facilities_provided`" => "additional_facilities_provided",
+		"`navavishkar_stay_table`.`created_by`" => "created_by",
+		"`navavishkar_stay_table`.`created_at`" => "created_at",
+		"`navavishkar_stay_table`.`last_updated_by`" => "last_updated_by",
+		"`navavishkar_stay_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
 		1 => '`navavishkar_stay_table`.`id`',
+		2 => 2,
+		3 => 3,
+		4 => 4,
+		5 => 5,
+		6 => 6,
+		7 => 7,
+		8 => 8,
+		9 => '`navavishkar_stay_table`.`check_in_date`',
+		10 => '`navavishkar_stay_table`.`checkout_date`',
+		11 => 11,
+		12 => 12,
+		13 => 13,
+		14 => 14,
+		15 => 15,
+		16 => 16,
+		17 => 17,
+		18 => 18,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`navavishkar_stay_table`.`id`" => "id",
+		"`navavishkar_stay_table`.`full_name`" => "full_name",
+		"`navavishkar_stay_table`.`emp_id`" => "emp_id",
+		"`navavishkar_stay_table`.`department`" => "department",
+		"`navavishkar_stay_table`.`designation`" => "designation",
+		"`navavishkar_stay_table`.`contact_email`" => "contact_email",
+		"`navavishkar_stay_table`.`contact_number`" => "contact_number",
+		"`navavishkar_stay_table`.`room_number`" => "room_number",
+		"if(`navavishkar_stay_table`.`check_in_date`,date_format(`navavishkar_stay_table`.`check_in_date`,'%d/%m/%Y'),'')" => "check_in_date",
+		"if(`navavishkar_stay_table`.`checkout_date`,date_format(`navavishkar_stay_table`.`checkout_date`,'%d/%m/%Y'),'')" => "checkout_date",
+		"`navavishkar_stay_table`.`reason_for_stay`" => "reason_for_stay",
+		"`navavishkar_stay_table`.`payment_status`" => "payment_status",
+		"`navavishkar_stay_table`.`amount`" => "amount",
+		"`navavishkar_stay_table`.`additional_facilities_provided`" => "additional_facilities_provided",
+		"`navavishkar_stay_table`.`created_by`" => "created_by",
+		"`navavishkar_stay_table`.`created_at`" => "created_at",
+		"`navavishkar_stay_table`.`last_updated_by`" => "last_updated_by",
+		"`navavishkar_stay_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`navavishkar_stay_table`.`id`" => "ID",
+		"`navavishkar_stay_table`.`full_name`" => "Full Name",
+		"`navavishkar_stay_table`.`emp_id`" => "Employee ID",
+		"`navavishkar_stay_table`.`department`" => "Department",
+		"`navavishkar_stay_table`.`designation`" => "Designation",
+		"`navavishkar_stay_table`.`contact_email`" => "Contact Email",
+		"`navavishkar_stay_table`.`contact_number`" => "Contact Number",
+		"`navavishkar_stay_table`.`room_number`" => "Room number",
+		"`navavishkar_stay_table`.`check_in_date`" => "Check in date",
+		"`navavishkar_stay_table`.`checkout_date`" => "Checkout date",
+		"`navavishkar_stay_table`.`reason_for_stay`" => "Reason for stay",
+		"`navavishkar_stay_table`.`payment_status`" => "Payment status",
+		"`navavishkar_stay_table`.`amount`" => "Amount (INR)",
+		"`navavishkar_stay_table`.`additional_facilities_provided`" => "Additional Facilities Provided (Optional)",
+		"`navavishkar_stay_table`.`created_by`" => "Created by",
+		"`navavishkar_stay_table`.`created_at`" => "Created at",
+		"`navavishkar_stay_table`.`last_updated_by`" => "Last updated by",
+		"`navavishkar_stay_table`.`last_updated_at`" => "Last updated at",
 	];
 
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`navavishkar_stay_table`.`id`" => "id",
+		"`navavishkar_stay_table`.`full_name`" => "full_name",
+		"`navavishkar_stay_table`.`emp_id`" => "emp_id",
+		"`navavishkar_stay_table`.`department`" => "department",
+		"`navavishkar_stay_table`.`designation`" => "designation",
+		"`navavishkar_stay_table`.`contact_email`" => "contact_email",
+		"`navavishkar_stay_table`.`contact_number`" => "contact_number",
+		"`navavishkar_stay_table`.`room_number`" => "room_number",
+		"if(`navavishkar_stay_table`.`check_in_date`,date_format(`navavishkar_stay_table`.`check_in_date`,'%d/%m/%Y'),'')" => "check_in_date",
+		"if(`navavishkar_stay_table`.`checkout_date`,date_format(`navavishkar_stay_table`.`checkout_date`,'%d/%m/%Y'),'')" => "checkout_date",
+		"`navavishkar_stay_table`.`reason_for_stay`" => "reason_for_stay",
+		"`navavishkar_stay_table`.`payment_status`" => "payment_status",
+		"`navavishkar_stay_table`.`amount`" => "amount",
+		"`navavishkar_stay_table`.`additional_facilities_provided`" => "additional_facilities_provided",
+		"`navavishkar_stay_table`.`created_by`" => "created_by",
+		"`navavishkar_stay_table`.`created_at`" => "created_at",
+		"`navavishkar_stay_table`.`last_updated_by`" => "last_updated_by",
+		"`navavishkar_stay_table`.`last_updated_at`" => "last_updated_at",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -62,18 +147,20 @@
 	$x->AllowPrintingDV = 1;
 	$x->AllowCSV = 1;
 	$x->AllowAdminShowSQL = showSQL();
-	$x->RecordsPerPage = 10;
+	$x->RecordsPerPage = 100;
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'navavishkar_stay_table_view.php';
 	$x->TableTitle = 'Navavishkar Stay - App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`navavishkar_stay_table`.`id`';
+	$x->DefaultSortField = '1';
+	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, ];
-	$x->ColCaption = ['ID', ];
-	$x->ColFieldName = ['id', ];
-	$x->ColNumber  = [1, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Full Name', 'Employee ID', 'Department', 'Designation', 'Contact Email', 'Contact Number', 'Room number', 'Check in date', 'Checkout date', 'Reason for stay', 'Payment status', 'Amount (INR)', 'Additional Facilities Provided (Optional)', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'full_name', 'emp_id', 'department', 'designation', 'contact_email', 'contact_number', 'room_number', 'check_in_date', 'checkout_date', 'reason_for_stay', 'payment_status', 'amount', 'additional_facilities_provided', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/navavishkar_stay_table_templateTV.html';
@@ -81,7 +168,7 @@
 	$x->TemplateDV = 'templates/navavishkar_stay_table_templateDV.html';
 	$x->TemplateDVP = 'templates/navavishkar_stay_table_templateDVP.html';
 
-	$x->ShowTableHeader = 1;
+	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
 	$x->HasCalculatedFields = false;

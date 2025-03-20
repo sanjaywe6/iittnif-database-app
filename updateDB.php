@@ -94,10 +94,7 @@
 		setupIndexes('computer_usage_table', ['pc_id',]);
 
 		setupTable('employees_personal_data_table', [
-				"ALTER TABLE `personal_data_table` RENAME `employees_personal_data_table`",
-				"UPDATE `membership_userrecords` SET `tableName`='employees_personal_data_table' WHERE `tableName`='personal_data_table'",
-				"UPDATE `membership_userpermissions` SET `tableName`='employees_personal_data_table' WHERE `tableName`='personal_data_table'",
-				"UPDATE `membership_grouppermissions` SET `tableName`='employees_personal_data_table' WHERE `tableName`='personal_data_table'",
+				"ALTER TABLE `employees_personal_data_table` CHANGE `personal_data_id` `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT ",
 			]);
 
 		setupTable('employees_designation_table', []);

@@ -109,11 +109,11 @@ function employees_personal_data_table_delete($selected_id, $AllowDeleteOfParent
 	}
 
 	// child table: employees_designation_table
-	$res = sql("SELECT `personal_data_id` FROM `employees_personal_data_table` WHERE `personal_data_id`='{$selected_id}'", $eo);
-	$personal_data_id = db_fetch_row($res);
-	$rires = sql("SELECT COUNT(1) FROM `employees_designation_table` WHERE `employee_details`='" . makeSafe($personal_data_id[0]) . "'", $eo);
+	$res = sql("SELECT `id` FROM `employees_personal_data_table` WHERE `id`='{$selected_id}'", $eo);
+	$id = db_fetch_row($res);
+	$rires = sql("SELECT COUNT(1) FROM `employees_designation_table` WHERE `employee_details`='" . makeSafe($id[0]) . "'", $eo);
 	$rirow = db_fetch_row($rires);
-	$childrenATag = '<a class="alert-link" href="employees_designation_table_view.php?filterer_employee_details=' . urlencode($personal_data_id[0]) . '">%s</a>';
+	$childrenATag = '<a class="alert-link" href="employees_designation_table_view.php?filterer_employee_details=' . urlencode($id[0]) . '">%s</a>';
 	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
 		$RetMsg = $Translation["couldn't delete"];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
@@ -129,11 +129,11 @@ function employees_personal_data_table_delete($selected_id, $AllowDeleteOfParent
 	}
 
 	// child table: employees_appraisal_table
-	$res = sql("SELECT `personal_data_id` FROM `employees_personal_data_table` WHERE `personal_data_id`='{$selected_id}'", $eo);
-	$personal_data_id = db_fetch_row($res);
-	$rires = sql("SELECT COUNT(1) FROM `employees_appraisal_table` WHERE `employee_details`='" . makeSafe($personal_data_id[0]) . "'", $eo);
+	$res = sql("SELECT `id` FROM `employees_personal_data_table` WHERE `id`='{$selected_id}'", $eo);
+	$id = db_fetch_row($res);
+	$rires = sql("SELECT COUNT(1) FROM `employees_appraisal_table` WHERE `employee_details`='" . makeSafe($id[0]) . "'", $eo);
 	$rirow = db_fetch_row($rires);
-	$childrenATag = '<a class="alert-link" href="employees_appraisal_table_view.php?filterer_employee_details=' . urlencode($personal_data_id[0]) . '">%s</a>';
+	$childrenATag = '<a class="alert-link" href="employees_appraisal_table_view.php?filterer_employee_details=' . urlencode($id[0]) . '">%s</a>';
 	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
 		$RetMsg = $Translation["couldn't delete"];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
@@ -148,7 +148,7 @@ function employees_personal_data_table_delete($selected_id, $AllowDeleteOfParent
 		return $RetMsg;
 	}
 
-	sql("DELETE FROM `employees_personal_data_table` WHERE `personal_data_id`='{$selected_id}'", $eo);
+	sql("DELETE FROM `employees_personal_data_table` WHERE `id`='{$selected_id}'", $eo);
 
 	// hook: employees_personal_data_table_after_delete
 	if(function_exists('employees_personal_data_table_after_delete')) {
@@ -246,7 +246,7 @@ function employees_personal_data_table_update(&$selected_id, &$error_message = '
 	if(!update(
 		'employees_personal_data_table', 
 		backtick_keys_once($set), 
-		['`personal_data_id`' => $selected_id], 
+		['`id`' => $selected_id], 
 		$error_message
 	)) {
 		echo $error_message;
@@ -261,7 +261,7 @@ function employees_personal_data_table_update(&$selected_id, &$error_message = '
 	if(function_exists('employees_personal_data_table_after_update')) {
 		if($row = getRecord('employees_personal_data_table', $data['selectedID'])) $data = array_map('makeSafe', $row);
 
-		$data['selectedID'] = $data['personal_data_id'];
+		$data['selectedID'] = $data['id'];
 		$args = ['old_data' => $old_data];
 		if(!employees_personal_data_table_after_update($data, getMemberInfo(), $args)) return;
 	}
@@ -550,7 +550,7 @@ function employees_personal_data_table_form($selectedId = '', $allowUpdate = tru
 	}
 
 	// process images
-	$templateCode = str_replace('<%%UPLOADFILE(personal_data_id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(name)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(employee_type)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(emp_id)%%>', '', $templateCode);
@@ -581,8 +581,8 @@ function employees_personal_data_table_form($selectedId = '', $allowUpdate = tru
 
 	// process values
 	if($hasSelectedId) {
-		$templateCode = str_replace('<%%VALUE(personal_data_id)%%>', safe_html($urow['personal_data_id']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(personal_data_id)%%>', urlencode($urow['personal_data_id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(name)%%>', safe_html($urow['name']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(name)%%>', html_attr($row['name']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(name)%%>', urlencode($urow['name']), $templateCode);
@@ -630,8 +630,8 @@ function employees_personal_data_table_form($selectedId = '', $allowUpdate = tru
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
 	} else {
-		$templateCode = str_replace('<%%VALUE(personal_data_id)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(personal_data_id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(name)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(name)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(employee_type)%%>', '', $templateCode);

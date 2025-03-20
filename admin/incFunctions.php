@@ -4596,7 +4596,7 @@
 					],
 				],
 				'employees_personal_data_table' => [
-					'personal_data_id' => [
+					'id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
@@ -10834,7 +10834,7 @@
 			'employees_personal_data_table' => [
 			],
 			'employees_designation_table' => [
-				'employee_details' => 'SELECT `employees_personal_data_table`.`personal_data_id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`name`) || CHAR_LENGTH(`employees_personal_data_table`.`emp_id`), CONCAT_WS(\'\', `employees_personal_data_table`.`name`, \'::\', `employees_personal_data_table`.`emp_id`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
+				'employee_details' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`name`) || CHAR_LENGTH(`employees_personal_data_table`.`emp_id`), CONCAT_WS(\'\', `employees_personal_data_table`.`name`, \'::\', `employees_personal_data_table`.`emp_id`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
 				'reporting_officer' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 				'reviewing_officer' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],

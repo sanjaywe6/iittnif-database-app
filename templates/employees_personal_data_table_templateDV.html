@@ -9,12 +9,12 @@
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
-			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="employees_designation_table_view.php?filterer_employee_details=<%%URLVALUE(personal_data_id)%%>&<%%EMBEDDED%%>" id="employees_designation_table_link"><img src="table.gif"> Employees designation & Reporting - App</a>
-			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="employees_designation_table_view.php?filterer_employee_details=<%%URLVALUE(personal_data_id)%%>&<%%EMBEDDED%%>" id="xs_employees_designation_table_link"><img src="table.gif"> Employees designation & Reporting - App</a>
-			<input type="hidden" id="employees_designation_table_hclink" value="employees_designation_table_view.php?filterer_employee_details=<%%URLVALUE(personal_data_id)%%>&<%%EMBEDDED%%>">
-			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="employees_appraisal_table_view.php?filterer_employee_details=<%%URLVALUE(personal_data_id)%%>&<%%EMBEDDED%%>" id="employees_appraisal_table_link"><img src="table.gif"> Employees Appraisal  - App</a>
-			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="employees_appraisal_table_view.php?filterer_employee_details=<%%URLVALUE(personal_data_id)%%>&<%%EMBEDDED%%>" id="xs_employees_appraisal_table_link"><img src="table.gif"> Employees Appraisal  - App</a>
-			<input type="hidden" id="employees_appraisal_table_hclink" value="employees_appraisal_table_view.php?filterer_employee_details=<%%URLVALUE(personal_data_id)%%>&<%%EMBEDDED%%>">
+			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="employees_designation_table_view.php?filterer_employee_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="employees_designation_table_link"><img src="table.gif"> Employees designation & Reporting - App</a>
+			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="employees_designation_table_view.php?filterer_employee_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_employees_designation_table_link"><img src="table.gif"> Employees designation & Reporting - App</a>
+			<input type="hidden" id="employees_designation_table_hclink" value="employees_designation_table_view.php?filterer_employee_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
+			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="employees_appraisal_table_view.php?filterer_employee_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="employees_appraisal_table_link"><img src="table.gif"> Employees Appraisal  - App</a>
+			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="employees_appraisal_table_view.php?filterer_employee_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_employees_appraisal_table_link"><img src="table.gif"> Employees Appraisal  - App</a>
+			<input type="hidden" id="employees_appraisal_table_hclink" value="employees_appraisal_table_view.php?filterer_employee_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -256,7 +256,7 @@
 				post(
 					'parent-children.php', {
 						ParentTable: 'employees_personal_data_table',
-						SelectedID: '<%%VALUE(personal_data_id)%%>',
+						SelectedID: '<%%VALUE(id)%%>',
 						Operation: 'show-children'
 					},
 					'employees_personal_data_table-children'
@@ -345,10 +345,10 @@
 			if(!add_new_mode) {
 				$j('body').append('<div id="admin-tools-appendix"></div>');
 				$j('#admin-tools-appendix').load(
-					'ajax_admin_tools.php?table=employees_personal_data_table&id=<%%URLVALUE(personal_data_id)%%>',
+					'ajax_admin_tools.php?table=employees_personal_data_table&id=<%%URLVALUE(id)%%>',
 					function(resp) {
 						if(!resp.length) return;
-						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=employees_personal_data_table&id=<%%URLVALUE(personal_data_id)%%>');
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=employees_personal_data_table&id=<%%URLVALUE(id)%%>');
 					}
 				);
 			}

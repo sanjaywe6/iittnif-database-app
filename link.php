@@ -31,7 +31,7 @@
 		'employees_personal_data_table' => [
 			'profile_photo' => getUploadDir(''),
 			'signature' => getUploadDir(''),
-			'primary key' => 'personal_data_id'
+			'primary key' => 'id'
 		],
 		'navavishkar_stay_payment_table' => [
 			'payment_img' => getUploadDir(''),

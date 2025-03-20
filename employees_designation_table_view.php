@@ -92,7 +92,7 @@
 	// Lookup fields that can be used as filterers
 	$x->filterers = ['employee_details' => 'Employee details', 'reporting_officer' => 'Reporting Officer', 'reviewing_officer' => 'Reviewing Officer', ];
 
-	$x->QueryFrom = "`employees_designation_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`personal_data_id`=`employees_designation_table`.`employee_details` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employees_designation_table`.`reviewing_officer` ";
+	$x->QueryFrom = "`employees_designation_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`id`=`employees_designation_table`.`employee_details` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employees_designation_table`.`reviewing_officer` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 

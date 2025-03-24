@@ -2922,7 +2922,7 @@
 						],
 					],
 					'gender' => [
-						'appgini' => "VARCHAR(255) NULL",
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Male'",
 						'info' => [
 							'caption' => 'Gender',
 							'description' => '',
@@ -2978,7 +2978,7 @@
 						],
 					],
 					'status' => [
-						'appgini' => "VARCHAR(255) NULL",
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Yet to Start'",
 						'info' => [
 							'caption' => 'Status',
 							'description' => '',

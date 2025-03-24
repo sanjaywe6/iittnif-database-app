@@ -22,7 +22,7 @@ function internship_fellowship_details_app_insert(&$error_message = '') {
 		'type_of_internship_fellowship' => Request::val('type_of_internship_fellowship', ''),
 		'year' => Request::val('year', ''),
 		'project_title' => br2nl(Request::val('project_title', '')),
-		'gender' => Request::val('gender', ''),
+		'gender' => Request::val('gender', 'Male'),
 		'department' => Request::val('department', ''),
 		'institute_id_number' => Request::val('institute_id_number', ''),
 		'institute' => Request::val('institute', ''),
@@ -30,7 +30,7 @@ function internship_fellowship_details_app_insert(&$error_message = '') {
 		'longitude' => Request::val('longitude', ''),
 		'start_date' => Request::val('start_date', ''),
 		'end_date' => Request::val('end_date', ''),
-		'status' => Request::val('status', ''),
+		'status' => Request::val('status', 'Yet to Start'),
 		'cotegory' => Request::val('cotegory', ''),
 		'report_link' => Request::val('report_link', ''),
 		'outcomes' => br2nl(Request::val('outcomes', '')),
@@ -234,18 +234,54 @@ function internship_fellowship_details_app_form($selectedId = '', $allowUpdate =
 
 	// unique random identifier
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
+	// combobox: gender
+	$combo_gender = new Combo;
+	$combo_gender->ListType = 0;
+	$combo_gender->MultipleSeparator = ', ';
+	$combo_gender->ListBoxHeight = 10;
+	$combo_gender->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/internship_fellowship_details_app.gender.csv')) {
+		$gender_data = addslashes(implode('', @file(__DIR__ . '/hooks/internship_fellowship_details_app.gender.csv')));
+		$combo_gender->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($gender_data))));
+		$combo_gender->ListData = $combo_gender->ListItem;
+	} else {
+		$combo_gender->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Male;;Female;;Prefer Not to Say"))));
+		$combo_gender->ListData = $combo_gender->ListItem;
+	}
+	$combo_gender->SelectName = 'gender';
+	// combobox: status
+	$combo_status = new Combo;
+	$combo_status->ListType = 0;
+	$combo_status->MultipleSeparator = ', ';
+	$combo_status->ListBoxHeight = 10;
+	$combo_status->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/internship_fellowship_details_app.status.csv')) {
+		$status_data = addslashes(implode('', @file(__DIR__ . '/hooks/internship_fellowship_details_app.status.csv')));
+		$combo_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($status_data))));
+		$combo_status->ListData = $combo_status->ListItem;
+	} else {
+		$combo_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Yet to Start;;Pending;;Completed"))));
+		$combo_status->ListData = $combo_status->ListItem;
+	}
+	$combo_status->SelectName = 'status';
 
 	if($hasSelectedId) {
 		if(!($row = getRecord('internship_fellowship_details_app', $selectedId))) {
 			return error_message($Translation['No records found'], 'internship_fellowship_details_app_view.php', false);
 		}
+		$combo_gender->SelectedData = $row['gender'];
+		$combo_status->SelectedData = $row['status'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
 	} else {
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
+		$combo_gender->SelectedText = (isset($filterField[1]) && $filterField[1] == '8' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Male'));
+		$combo_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '16' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Yet to Start'));
 	}
+	$combo_gender->Render();
+	$combo_status->Render();
 
 	ob_start();
 	?>
@@ -348,7 +384,7 @@ function internship_fellowship_details_app_form($selectedId = '', $allowUpdate =
 		$jsReadOnly .= "\t\$j('#type_of_internship_fellowship').replaceWith('<div class=\"form-control-static\" id=\"type_of_internship_fellowship\">' + (\$j('#type_of_internship_fellowship').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#year').replaceWith('<div class=\"form-control-static\" id=\"year\">' + (\$j('#year').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#project_title').replaceWith('<div class=\"form-control-static\" id=\"project_title\">' + (\$j('#project_title').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#gender').replaceWith('<div class=\"form-control-static\" id=\"gender\">' + (\$j('#gender').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#gender').replaceWith('<div class=\"form-control-static\" id=\"gender\">' + (\$j('#gender').val() || '') + '</div>'); \$j('#gender-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#department').replaceWith('<div class=\"form-control-static\" id=\"department\">' + (\$j('#department').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#institute_id_number').replaceWith('<div class=\"form-control-static\" id=\"institute_id_number\">' + (\$j('#institute_id_number').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#institute').replaceWith('<div class=\"form-control-static\" id=\"institute\">' + (\$j('#institute').val() || '') + '</div>');\n";
@@ -356,7 +392,7 @@ function internship_fellowship_details_app_form($selectedId = '', $allowUpdate =
 		$jsReadOnly .= "\t\$j('#longitude').replaceWith('<div class=\"form-control-static\" id=\"longitude\">' + (\$j('#longitude').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#start_date').replaceWith('<div class=\"form-control-static\" id=\"start_date\">' + (\$j('#start_date').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#end_date').replaceWith('<div class=\"form-control-static\" id=\"end_date\">' + (\$j('#end_date').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#status').replaceWith('<div class=\"form-control-static\" id=\"status\">' + (\$j('#status').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#status').replaceWith('<div class=\"form-control-static\" id=\"status\">' + (\$j('#status').val() || '') + '</div>'); \$j('#status-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#cotegory').replaceWith('<div class=\"form-control-static\" id=\"cotegory\">' + (\$j('#cotegory').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#report_link').replaceWith('<div class=\"form-control-static\" id=\"report_link\">' + (\$j('#report_link').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#outcomes').replaceWith('<div class=\"form-control-static\" id=\"outcomes\">' + (\$j('#outcomes').val() || '') + '</div>');\n";
@@ -370,6 +406,10 @@ function internship_fellowship_details_app_form($selectedId = '', $allowUpdate =
 	}
 
 	// process combos
+	$templateCode = str_replace('<%%COMBO(gender)%%>', $combo_gender->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(gender)%%>', $combo_gender->SelectedData, $templateCode);
+	$templateCode = str_replace('<%%COMBO(status)%%>', $combo_status->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(status)%%>', $combo_status->SelectedData, $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
 	$lookup_fields = [];
@@ -491,8 +531,8 @@ function internship_fellowship_details_app_form($selectedId = '', $allowUpdate =
 		$templateCode = str_replace('<%%URLVALUE(year)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(project_title)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(project_title)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(gender)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(gender)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(gender)%%>', 'Male', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(gender)%%>', urlencode('Male'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(department)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(department)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(institute_id_number)%%>', '', $templateCode);
@@ -507,8 +547,8 @@ function internship_fellowship_details_app_form($selectedId = '', $allowUpdate =
 		$templateCode = str_replace('<%%URLVALUE(start_date)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(end_date)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(end_date)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(status)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(status)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(status)%%>', 'Yet to Start', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(status)%%>', urlencode('Yet to Start'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(cotegory)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(cotegory)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(report_link)%%>', '', $templateCode);

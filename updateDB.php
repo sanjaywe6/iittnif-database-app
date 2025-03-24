@@ -57,7 +57,10 @@
 		setupTable('subtask_setting_table', []);
 		setupIndexes('subtask_setting_table', ['task_lookup','supervisor_name','assigned_to',]);
 
-		setupTable('internship_fellowship_details_app', []);
+		setupTable('internship_fellowship_details_app', [
+				" ALTER TABLE `internship_fellowship_details_app` CHANGE `status` `status` VARCHAR(255) NULL DEFAULT 'Yet to Start' ",
+				" ALTER TABLE `internship_fellowship_details_app` CHANGE `gender` `gender` VARCHAR(255) NULL DEFAULT 'Male' ",
+			]);
 
 		setupTable('star_pnt', []);
 		setupIndexes('star_pnt', ['iittnif_id',]);
@@ -93,9 +96,7 @@
 		setupTable('computer_usage_table', []);
 		setupIndexes('computer_usage_table', ['pc_id',]);
 
-		setupTable('employees_personal_data_table', [
-				"ALTER TABLE `employees_personal_data_table` CHANGE `personal_data_id` `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT ",
-			]);
+		setupTable('employees_personal_data_table', []);
 
 		setupTable('employees_designation_table', []);
 		setupIndexes('employees_designation_table', ['employee_details','reporting_officer','reviewing_officer',]);

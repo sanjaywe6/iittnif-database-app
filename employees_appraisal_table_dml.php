@@ -25,6 +25,48 @@ function employees_appraisal_table_insert(&$error_message = '') {
 		'current_review_period' => Request::val('current_review_period', ''),
 		'roles' => Request::val('roles', ''),
 		'self_explanation' => br2nl(Request::val('self_explanation', '')),
+		'upload_file_1' => Request::fileUpload('upload_file_1', [
+			'maxSize' => 102400,
+			'types' => 'ppt|pptx|pptm|pdf|ppsx|ppsm|pps|odp',
+			'noRename' => false,
+			'dir' => '',
+			'success' => function($name, $selected_id) {
+			},
+			'failure' => function($selected_id, $fileRemoved) {
+				if(!strlen(Request::val('SelectedID'))) return '';
+
+				/* for empty upload fields, when saving a copy of an existing record, copy the original upload field */
+				return existing_value('employees_appraisal_table', 'upload_file_1', Request::val('SelectedID'));
+			},
+		]),
+		'upload_file_2' => Request::fileUpload('upload_file_2', [
+			'maxSize' => 102400,
+			'types' => 'ppt|pptx|pptm|pdf|ppsx|ppsm|pps|odp',
+			'noRename' => false,
+			'dir' => '',
+			'success' => function($name, $selected_id) {
+			},
+			'failure' => function($selected_id, $fileRemoved) {
+				if(!strlen(Request::val('SelectedID'))) return '';
+
+				/* for empty upload fields, when saving a copy of an existing record, copy the original upload field */
+				return existing_value('employees_appraisal_table', 'upload_file_2', Request::val('SelectedID'));
+			},
+		]),
+		'upload_file_3' => Request::fileUpload('upload_file_3', [
+			'maxSize' => 102400,
+			'types' => 'ppt|pptx|pptm|pdf|ppsx|ppsm|pps|odp',
+			'noRename' => false,
+			'dir' => '',
+			'success' => function($name, $selected_id) {
+			},
+			'failure' => function($selected_id, $fileRemoved) {
+				if(!strlen(Request::val('SelectedID'))) return '';
+
+				/* for empty upload fields, when saving a copy of an existing record, copy the original upload field */
+				return existing_value('employees_appraisal_table', 'upload_file_3', Request::val('SelectedID'));
+			},
+		]),
 		'reporting_officer_feedback' => br2nl(Request::val('reporting_officer_feedback', '')),
 		'observations_by_reporting_officer' => br2nl(Request::val('observations_by_reporting_officer', '')),
 		'overall_rating' => Request::val('overall_rating', ''),
@@ -106,6 +148,57 @@ function employees_appraisal_table_update(&$selected_id, &$error_message = '') {
 		'current_review_period' => Request::val('current_review_period', ''),
 		'roles' => Request::val('roles', ''),
 		'self_explanation' => br2nl(Request::val('self_explanation', '')),
+		'upload_file_1' => Request::fileUpload('upload_file_1', [
+			'maxSize' => 102400,
+			'types' => 'ppt|pptx|pptm|pdf|ppsx|ppsm|pps|odp',
+			'noRename' => false,
+			'dir' => '',
+			'id' => $selected_id,
+			'success' => function($name, $selected_id) {
+			},
+			'removeOnRequest' => true,
+			'remove' => function($selected_id) {
+				// do nothing: preserve removed files on server.
+			},
+			'failure' => function($selected_id, $fileRemoved) {
+				if($fileRemoved) return '';
+				return existing_value('employees_appraisal_table', 'upload_file_1', $selected_id);
+			},
+		]),
+		'upload_file_2' => Request::fileUpload('upload_file_2', [
+			'maxSize' => 102400,
+			'types' => 'ppt|pptx|pptm|pdf|ppsx|ppsm|pps|odp',
+			'noRename' => false,
+			'dir' => '',
+			'id' => $selected_id,
+			'success' => function($name, $selected_id) {
+			},
+			'removeOnRequest' => true,
+			'remove' => function($selected_id) {
+				// do nothing: preserve removed files on server.
+			},
+			'failure' => function($selected_id, $fileRemoved) {
+				if($fileRemoved) return '';
+				return existing_value('employees_appraisal_table', 'upload_file_2', $selected_id);
+			},
+		]),
+		'upload_file_3' => Request::fileUpload('upload_file_3', [
+			'maxSize' => 102400,
+			'types' => 'ppt|pptx|pptm|pdf|ppsx|ppsm|pps|odp',
+			'noRename' => false,
+			'dir' => '',
+			'id' => $selected_id,
+			'success' => function($name, $selected_id) {
+			},
+			'removeOnRequest' => true,
+			'remove' => function($selected_id) {
+				// do nothing: preserve removed files on server.
+			},
+			'failure' => function($selected_id, $fileRemoved) {
+				if($fileRemoved) return '';
+				return existing_value('employees_appraisal_table', 'upload_file_3', $selected_id);
+			},
+		]),
 		'reporting_officer_feedback' => br2nl(Request::val('reporting_officer_feedback', '')),
 		'observations_by_reporting_officer' => br2nl(Request::val('observations_by_reporting_officer', '')),
 		'overall_rating' => Request::val('overall_rating', ''),
@@ -277,8 +370,8 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 		$filterValue = Request::val('FilterValue');
 		$combo_employee_details->SelectedData = $filterer_employee_details;
 		$combo_employee_designation_reporting->SelectedData = $filterer_employee_designation_reporting;
-		$combo_overall_rating->SelectedText = (isset($filterField[1]) && $filterField[1] == '9' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_appraisal_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '10' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Yet to Start'));
+		$combo_overall_rating->SelectedText = (isset($filterField[1]) && $filterField[1] == '12' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_appraisal_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '13' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Yet to Start'));
 	}
 	$combo_employee_details->HTML = '<span id="employee_details-container' . $rnd1 . '"></span><input type="hidden" name="employee_details" id="employee_details' . $rnd1 . '" value="' . html_attr($combo_employee_details->SelectedData) . '">';
 	$combo_employee_details->MatchText = '<span id="employee_details-container-readonly' . $rnd1 . '"></span><input type="hidden" name="employee_details" id="employee_details' . $rnd1 . '" value="' . html_attr($combo_employee_details->SelectedData) . '">';
@@ -545,6 +638,9 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 		$jsReadOnly .= "\t\$j('#current_review_period').replaceWith('<div class=\"form-control-static\" id=\"current_review_period\">' + (\$j('#current_review_period').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#roles').replaceWith('<div class=\"form-control-static\" id=\"roles\">' + (\$j('#roles').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#self_explanation').replaceWith('<div class=\"form-control-static\" id=\"self_explanation\">' + (\$j('#self_explanation').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#upload_file_1').parent().replaceWith(`<div class=\"form-control-static\" id=\"upload_file_1\">\${\$j('#upload_file_1').val() || ''}\${\$j('#upload_file_1').val() ? '<a target=\"_blank\" class=\"hspacer-lg\" href=\"' + \$j('#upload_file_1').val() + '\" target=\"_blank\"><i class=\"glyphicon glyphicon-globe\"></i></a>' : ''}</div>`);\n";
+		$jsReadOnly .= "\t\$j('#upload_file_2').parent().replaceWith(`<div class=\"form-control-static\" id=\"upload_file_2\">\${\$j('#upload_file_2').val() || ''}\${\$j('#upload_file_2').val() ? '<a target=\"_blank\" class=\"hspacer-lg\" href=\"' + \$j('#upload_file_2').val() + '\" target=\"_blank\"><i class=\"glyphicon glyphicon-globe\"></i></a>' : ''}</div>`);\n";
+		$jsReadOnly .= "\t\$j('#upload_file_3').parent().replaceWith(`<div class=\"form-control-static\" id=\"upload_file_3\">\${\$j('#upload_file_3').val() || ''}\${\$j('#upload_file_3').val() ? '<a target=\"_blank\" class=\"hspacer-lg\" href=\"' + \$j('#upload_file_3').val() + '\" target=\"_blank\"><i class=\"glyphicon glyphicon-globe\"></i></a>' : ''}</div>`);\n";
 		$jsReadOnly .= "\t\$j('#reporting_officer_feedback').replaceWith('<div class=\"form-control-static\" id=\"reporting_officer_feedback\">' + (\$j('#reporting_officer_feedback').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#observations_by_reporting_officer').replaceWith('<div class=\"form-control-static\" id=\"observations_by_reporting_officer\">' + (\$j('#observations_by_reporting_officer').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#overall_rating').replaceWith('<div class=\"form-control-static\" id=\"overall_rating\">' + (\$j('#overall_rating').val() || '') + '</div>'); \$j('#overall_rating-multi-selection-help').hide();\n";
@@ -593,6 +689,9 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 	$templateCode = str_replace('<%%UPLOADFILE(current_review_period)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(roles)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(self_explanation)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(upload_file_1)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="upload_file_1" id="upload_file_1" data-filetypes="ppt|pptx|pptm|pdf|ppsx|ppsm|pps|odp" data-maxsize="102400" style="max-width: calc(100% - 1.5rem);" accept=".ppt,.pptx,.pptm,.pdf,.ppsx,.ppsm,.pps,.odp">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(upload_file_2)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="upload_file_2" id="upload_file_2" data-filetypes="ppt|pptx|pptm|pdf|ppsx|ppsm|pps|odp" data-maxsize="102400" style="max-width: calc(100% - 1.5rem);" accept=".ppt,.pptx,.pptm,.pdf,.ppsx,.ppsm,.pps,.odp">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(upload_file_3)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="upload_file_3" id="upload_file_3" data-filetypes="ppt|pptx|pptm|pdf|ppsx|ppsm|pps|odp" data-maxsize="102400" style="max-width: calc(100% - 1.5rem);" accept=".ppt,.pptx,.pptm,.pdf,.ppsx,.ppsm,.pps,.odp">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(reporting_officer_feedback)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(observations_by_reporting_officer)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(overall_rating)%%>', '', $templateCode);
@@ -619,6 +718,15 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 		$templateCode = str_replace('<%%URLVALUE(roles)%%>', urlencode($urow['roles']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(self_explanation)%%>', safe_html($urow['self_explanation'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(self_explanation)%%>', urlencode($urow['self_explanation']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(upload_file_1)%%>', safe_html($urow['upload_file_1']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(upload_file_1)%%>', html_attr($row['upload_file_1']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(upload_file_1)%%>', urlencode($urow['upload_file_1']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(upload_file_2)%%>', safe_html($urow['upload_file_2']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(upload_file_2)%%>', html_attr($row['upload_file_2']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(upload_file_2)%%>', urlencode($urow['upload_file_2']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(upload_file_3)%%>', safe_html($urow['upload_file_3']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(upload_file_3)%%>', html_attr($row['upload_file_3']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(upload_file_3)%%>', urlencode($urow['upload_file_3']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(reporting_officer_feedback)%%>', safe_html($urow['reporting_officer_feedback'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(reporting_officer_feedback)%%>', urlencode($urow['reporting_officer_feedback']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(observations_by_reporting_officer)%%>', safe_html($urow['observations_by_reporting_officer'], $fieldsAreEditable), $templateCode);
@@ -650,6 +758,12 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 		$templateCode = str_replace('<%%URLVALUE(roles)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(self_explanation)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(self_explanation)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(upload_file_1)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(upload_file_1)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(upload_file_2)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(upload_file_2)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(upload_file_3)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(upload_file_3)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(reporting_officer_feedback)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(reporting_officer_feedback)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(observations_by_reporting_officer)%%>', '', $templateCode);
@@ -688,6 +802,12 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 		$templateCode .= $jsEditable;
 
 		if(!$hasSelectedId) {
+			$templateCode.="\n\tif(document.getElementById('upload_file_1Edit')) { document.getElementById('upload_file_1Edit').style.display='inline'; }";
+			$templateCode.="\n\tif(document.getElementById('upload_file_1EditLink')) { document.getElementById('upload_file_1EditLink').style.display='none'; }";
+			$templateCode.="\n\tif(document.getElementById('upload_file_2Edit')) { document.getElementById('upload_file_2Edit').style.display='inline'; }";
+			$templateCode.="\n\tif(document.getElementById('upload_file_2EditLink')) { document.getElementById('upload_file_2EditLink').style.display='none'; }";
+			$templateCode.="\n\tif(document.getElementById('upload_file_3Edit')) { document.getElementById('upload_file_3Edit').style.display='inline'; }";
+			$templateCode.="\n\tif(document.getElementById('upload_file_3EditLink')) { document.getElementById('upload_file_3EditLink').style.display='none'; }";
 		}
 
 		$templateCode.="\n});</script>\n";

@@ -33,6 +33,12 @@
 			'signature' => getUploadDir(''),
 			'primary key' => 'id'
 		],
+		'employees_appraisal_table' => [
+			'upload_file_1' => getUploadDir(''),
+			'upload_file_2' => getUploadDir(''),
+			'upload_file_3' => getUploadDir(''),
+			'primary key' => 'id'
+		],
 		'navavishkar_stay_payment_table' => [
 			'payment_img' => getUploadDir(''),
 			'primary key' => 'id'

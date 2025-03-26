@@ -4845,6 +4845,27 @@
 							'description' => '',
 						],
 					],
+					'upload_file_1' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Upload file 1',
+							'description' => 'Maximum file size allowed: 100 KB.<br>Allowed file types: ppt, pptx, pptm, pdf, ppsx, ppsm, pps, odp',
+						],
+					],
+					'upload_file_2' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Upload file 2',
+							'description' => 'Maximum file size allowed: 100 KB.<br>Allowed file types: ppt, pptx, pptm, pdf, ppsx, ppsm, pps, odp',
+						],
+					],
+					'upload_file_3' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Upload file 3',
+							'description' => 'Maximum file size allowed: 100 KB.<br>Allowed file types: ppt, pptx, pptm, pdf, ppsx, ppsm, pps, odp',
+						],
+					],
 					'reporting_officer_feedback' => [
 						'appgini' => "TEXT NULL",
 						'info' => [

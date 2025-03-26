@@ -24,6 +24,9 @@
 		"`employees_appraisal_table`.`current_review_period`" => "current_review_period",
 		"`employees_appraisal_table`.`roles`" => "roles",
 		"`employees_appraisal_table`.`self_explanation`" => "self_explanation",
+		"`employees_appraisal_table`.`upload_file_1`" => "upload_file_1",
+		"`employees_appraisal_table`.`upload_file_2`" => "upload_file_2",
+		"`employees_appraisal_table`.`upload_file_3`" => "upload_file_3",
 		"`employees_appraisal_table`.`reporting_officer_feedback`" => "reporting_officer_feedback",
 		"`employees_appraisal_table`.`observations_by_reporting_officer`" => "observations_by_reporting_officer",
 		"`employees_appraisal_table`.`overall_rating`" => "overall_rating",
@@ -49,6 +52,9 @@
 		12 => 12,
 		13 => 13,
 		14 => 14,
+		15 => 15,
+		16 => 16,
+		17 => 17,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -59,6 +65,9 @@
 		"`employees_appraisal_table`.`current_review_period`" => "current_review_period",
 		"`employees_appraisal_table`.`roles`" => "roles",
 		"`employees_appraisal_table`.`self_explanation`" => "self_explanation",
+		"`employees_appraisal_table`.`upload_file_1`" => "upload_file_1",
+		"`employees_appraisal_table`.`upload_file_2`" => "upload_file_2",
+		"`employees_appraisal_table`.`upload_file_3`" => "upload_file_3",
 		"`employees_appraisal_table`.`reporting_officer_feedback`" => "reporting_officer_feedback",
 		"`employees_appraisal_table`.`observations_by_reporting_officer`" => "observations_by_reporting_officer",
 		"`employees_appraisal_table`.`overall_rating`" => "overall_rating",
@@ -76,6 +85,9 @@
 		"`employees_appraisal_table`.`current_review_period`" => "Current review period",
 		"`employees_appraisal_table`.`roles`" => "Roles & Responsibilities",
 		"`employees_appraisal_table`.`self_explanation`" => "Employee Self-explanation",
+		"`employees_appraisal_table`.`upload_file_1`" => "Upload file 1",
+		"`employees_appraisal_table`.`upload_file_2`" => "Upload file 2",
+		"`employees_appraisal_table`.`upload_file_3`" => "Upload file 3",
 		"`employees_appraisal_table`.`reporting_officer_feedback`" => "Reporting Officer Feedback on the Employee Responsibilities",
 		"`employees_appraisal_table`.`observations_by_reporting_officer`" => "Observations by the Reporting Officer",
 		"`employees_appraisal_table`.`overall_rating`" => "Overall Rating by the Reporting Officer",
@@ -94,6 +106,9 @@
 		"`employees_appraisal_table`.`current_review_period`" => "current_review_period",
 		"`employees_appraisal_table`.`roles`" => "roles",
 		"`employees_appraisal_table`.`self_explanation`" => "self_explanation",
+		"`employees_appraisal_table`.`upload_file_1`" => "upload_file_1",
+		"`employees_appraisal_table`.`upload_file_2`" => "upload_file_2",
+		"`employees_appraisal_table`.`upload_file_3`" => "upload_file_3",
 		"`employees_appraisal_table`.`reporting_officer_feedback`" => "reporting_officer_feedback",
 		"`employees_appraisal_table`.`observations_by_reporting_officer`" => "observations_by_reporting_officer",
 		"`employees_appraisal_table`.`overall_rating`" => "overall_rating",
@@ -137,10 +152,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Employee Details (ID::Name::Joining Date::Department)', 'Employee Other Details (Designation::Reporting Officer)', 'Current review period', 'Roles & Responsibilities', 'Employee Self-explanation', 'Reporting Officer Feedback on the Employee Responsibilities', 'Observations by the Reporting Officer', 'Overall Rating by the Reporting Officer', 'Appraisal status', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'employee_details', 'employee_designation_reporting', 'current_review_period', 'roles', 'self_explanation', 'reporting_officer_feedback', 'observations_by_reporting_officer', 'overall_rating', 'appraisal_status', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Employee Details (ID::Name::Joining Date::Department)', 'Employee Other Details (Designation::Reporting Officer)', 'Current review period', 'Roles & Responsibilities', 'Employee Self-explanation', 'Upload file 1', 'Upload file 2', 'Upload file 3', 'Reporting Officer Feedback on the Employee Responsibilities', 'Observations by the Reporting Officer', 'Overall Rating by the Reporting Officer', 'Appraisal status', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'employee_details', 'employee_designation_reporting', 'current_review_period', 'roles', 'self_explanation', 'upload_file_1', 'upload_file_2', 'upload_file_3', 'reporting_officer_feedback', 'observations_by_reporting_officer', 'overall_rating', 'appraisal_status', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/employees_appraisal_table_templateTV.html';

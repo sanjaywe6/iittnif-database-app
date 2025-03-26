@@ -743,6 +743,20 @@ function employees_appraisal_table_validateData(insertMode) {
 
 	if(errors) return false;
 
+	// check file uploads (file type and size)
+	if($j('#upload_file_1').val() && !AppGini.checkFileUpload('upload_file_1', 'ppt|pptx|pptm|pdf|ppsx|ppsm|pps|odp', 102400)) {
+		AppGini.scrollTo('upload_file_1');
+		return false;
+	}
+	if($j('#upload_file_2').val() && !AppGini.checkFileUpload('upload_file_2', 'ppt|pptx|pptm|pdf|ppsx|ppsm|pps|odp', 102400)) {
+		AppGini.scrollTo('upload_file_2');
+		return false;
+	}
+	if($j('#upload_file_3').val() && !AppGini.checkFileUpload('upload_file_3', 'ppt|pptx|pptm|pdf|ppsx|ppsm|pps|odp', 102400)) {
+		AppGini.scrollTo('upload_file_3');
+		return false;
+	}
+
 	return !errors;
 }
 function beyond_workingHours_table_validateData(insertMode) {

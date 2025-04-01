@@ -169,7 +169,7 @@ function travel_local_commute_table_form($selectedId = '', $allowUpdate = true, 
 	global $Translation;
 	$eo = ['silentErrors' => true];
 	$noUploads = $row = $urow = $jsReadOnly = $jsEditable = $lookups = null;
-	$noSaveAsCopy = false;
+	$noSaveAsCopy = true;
 	$hasSelectedId = strlen($selectedId) > 0;
 
 	// mm: get table permissions

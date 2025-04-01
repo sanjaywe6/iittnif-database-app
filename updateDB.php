@@ -98,9 +98,7 @@
 		setupTable('employees_designation_table', []);
 		setupIndexes('employees_designation_table', ['employee_details','reporting_officer','reviewing_officer',]);
 
-		setupTable('employees_appraisal_table', [
-				"ALTER TABLE `employees_appraisal_table` CHANGE `employee_designation_reporting_lookup` `employee_designation_lookup` INT(10) UNSIGNED NULL ",
-			]);
+		setupTable('employees_appraisal_table', []);
 		setupIndexes('employees_appraisal_table', ['employee_lookup','employee_designation_lookup',]);
 
 		setupTable('employees_appraisal_feedback_table', []);
@@ -159,10 +157,7 @@
 
 		setupTable('payment_track_details_table', []);
 
-		setupTable('travel_table', [
-				" ALTER TABLE `travel_table` CHANGE `age` `age` VARCHAR(255) NULL ",
-				" ALTER TABLE `travel_table` CHANGE `gender` `gender` VARCHAR(255) NULL DEFAULT 'Male' ",
-			]);
+		setupTable('travel_table', []);
 
 		setupTable('travel_stay_table', []);
 

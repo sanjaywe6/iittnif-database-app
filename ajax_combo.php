@@ -586,13 +586,24 @@
 			],
 		],
 		'navavishkar_stay_table' => [
+			'approved_by' => [
+				'parent_table' => 'user_table',
+				'parent_pk_field' => 'user_id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
+				'parent_from' => '`user_table` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
 		],
 		'navavishkar_stay_payment_table' => [
 			'navavishakr_stay_details' => [
 				'parent_table' => 'navavishkar_stay_table',
 				'parent_pk_field' => 'id',
 				'parent_caption' => 'IF(CHAR_LENGTH(`navavishkar_stay_table`.`full_name`) || CHAR_LENGTH(`navavishkar_stay_table`.`emp_id`), CONCAT_WS(\'\', `navavishkar_stay_table`.`full_name`, \'::\', `navavishkar_stay_table`.`emp_id`), \'\')',
-				'parent_from' => '`navavishkar_stay_table` ',
+				'parent_from' => '`navavishkar_stay_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`navavishkar_stay_table`.`approved_by` ',
 				'filterers' => [],
 				'custom_query' => '',
 				'inherit_permissions' => false,
@@ -780,24 +791,13 @@
 			],
 		],
 		'travel_table' => [
-			'approved_by' => [
-				'parent_table' => 'user_table',
-				'parent_pk_field' => 'user_id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
-				'parent_from' => '`user_table` ',
-				'filterers' => [],
-				'custom_query' => '',
-				'inherit_permissions' => false,
-				'list_type' => 0,
-				'not_null' => false,
-			],
 		],
 		'travel_cab_table' => [
 			'travel_details' => [
 				'parent_table' => 'travel_table',
 				'parent_pk_field' => 'id',
 				'parent_caption' => 'IF(CHAR_LENGTH(`travel_table`.`first_name`) || CHAR_LENGTH(`travel_table`.`travel_description`), CONCAT_WS(\'\', `travel_table`.`first_name`, \'::\', `travel_table`.`travel_description`), \'\')',
-				'parent_from' => '`travel_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`travel_table`.`approved_by` ',
+				'parent_from' => '`travel_table` ',
 				'filterers' => [],
 				'custom_query' => '',
 				'inherit_permissions' => false,
@@ -810,7 +810,7 @@
 				'parent_table' => 'travel_table',
 				'parent_pk_field' => 'id',
 				'parent_caption' => 'IF(CHAR_LENGTH(`travel_table`.`first_name`) || CHAR_LENGTH(`travel_table`.`travel_description`), CONCAT_WS(\'\', `travel_table`.`first_name`, \'::\', `travel_table`.`travel_description`), \'\')',
-				'parent_from' => '`travel_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`travel_table`.`approved_by` ',
+				'parent_from' => '`travel_table` ',
 				'filterers' => [],
 				'custom_query' => '',
 				'inherit_permissions' => false,
@@ -818,12 +818,12 @@
 				'not_null' => false,
 			],
 		],
-		'travel_hotel_table' => [
+		'travel_stay_table' => [
 			'travel_details' => [
 				'parent_table' => 'travel_table',
 				'parent_pk_field' => 'id',
 				'parent_caption' => 'IF(CHAR_LENGTH(`travel_table`.`first_name`) || CHAR_LENGTH(`travel_table`.`travel_description`), CONCAT_WS(\'\', `travel_table`.`first_name`, \'::\', `travel_table`.`travel_description`), \'\')',
-				'parent_from' => '`travel_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`travel_table`.`approved_by` ',
+				'parent_from' => '`travel_table` ',
 				'filterers' => [],
 				'custom_query' => '',
 				'inherit_permissions' => false,

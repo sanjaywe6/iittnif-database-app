@@ -115,6 +115,7 @@
 		setupIndexes('work_from_home_table', ['approved_by',]);
 
 		setupTable('navavishkar_stay_table', []);
+		setupIndexes('navavishkar_stay_table', ['approved_by',]);
 
 		setupTable('navavishkar_stay_payment_table', []);
 		setupIndexes('navavishkar_stay_payment_table', ['navavishakr_stay_details',]);
@@ -167,8 +168,13 @@
 		setupTable('cycle_usage_table', []);
 		setupIndexes('cycle_usage_table', ['cycle_lookup',]);
 
-		setupTable('travel_table', []);
-		setupIndexes('travel_table', ['approved_by',]);
+		setupTable('travel_table', [
+				"ALTER TABLE travel_table ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `travel_table` CHANGE `field1` `travel_type` VARCHAR(255) NULL ",
+				"ALTER TABLE `travel_table` DROP `approved_by`",
+				"ALTER TABLE `travel_table` CHANGE `last_updated_by` `approved_by` VARCHAR(255) NULL ",
+				"ALTER TABLE `travel_table` ADD `approval_status` VARCHAR(255) NULL DEFAULT 'Under Consideration' ",
+			]);
 
 		setupTable('travel_cab_table', []);
 		setupIndexes('travel_cab_table', ['travel_details',]);
@@ -176,8 +182,8 @@
 		setupTable('travel_flight_table', []);
 		setupIndexes('travel_flight_table', ['travel_details',]);
 
-		setupTable('travel_hotel_table', []);
-		setupIndexes('travel_hotel_table', ['travel_details',]);
+		setupTable('travel_stay_table', []);
+		setupIndexes('travel_stay_table', ['travel_details',]);
 
 		setupTable('operation_dronagiri_data_submission_app', []);
 

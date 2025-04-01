@@ -989,7 +989,7 @@ function travel_flight_table_validateData(insertMode) {
 
 	return !errors;
 }
-function travel_hotel_table_validateData(insertMode) {
+function travel_stay_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
 

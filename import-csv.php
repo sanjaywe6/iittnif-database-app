@@ -254,6 +254,7 @@
 		'navavishkar_stay_table' => function($data, $options = []) {
 			if(isset($data['check_in_date'])) $data['check_in_date'] = guessMySQLDateTime($data['check_in_date']);
 			if(isset($data['checkout_date'])) $data['checkout_date'] = guessMySQLDateTime($data['checkout_date']);
+			if(isset($data['approved_by'])) $data['approved_by'] = pkGivenLookupText($data['approved_by'], 'navavishkar_stay_table', 'approved_by');
 
 			return $data;
 		},
@@ -371,7 +372,6 @@
 		'travel_table' => function($data, $options = []) {
 			if(isset($data['date_from'])) $data['date_from'] = guessMySQLDateTime($data['date_from']);
 			if(isset($data['date_to'])) $data['date_to'] = guessMySQLDateTime($data['date_to']);
-			if(isset($data['approved_by'])) $data['approved_by'] = pkGivenLookupText($data['approved_by'], 'travel_table', 'approved_by');
 
 			return $data;
 		},
@@ -387,8 +387,8 @@
 
 			return $data;
 		},
-		'travel_hotel_table' => function($data, $options = []) {
-			if(isset($data['travel_details'])) $data['travel_details'] = pkGivenLookupText($data['travel_details'], 'travel_hotel_table', 'travel_details');
+		'travel_stay_table' => function($data, $options = []) {
+			if(isset($data['travel_details'])) $data['travel_details'] = pkGivenLookupText($data['travel_details'], 'travel_stay_table', 'travel_details');
 			if(isset($data['checkin_date'])) $data['checkin_date'] = guessMySQLDateTime($data['checkin_date']);
 			if(isset($data['checkout_date'])) $data['checkout_date'] = guessMySQLDateTime($data['checkout_date']);
 
@@ -530,7 +530,7 @@
 		'travel_table' => function($data, $options = []) { return true; },
 		'travel_cab_table' => function($data, $options = []) { return true; },
 		'travel_flight_table' => function($data, $options = []) { return true; },
-		'travel_hotel_table' => function($data, $options = []) { return true; },
+		'travel_stay_table' => function($data, $options = []) { return true; },
 		'operation_dronagiri_data_submission_app' => function($data, $options = []) { return true; },
 		'file_table' => function($data, $options = []) { return true; },
 		'panel_decision_table_tdp' => function($data, $options = []) { return true; },

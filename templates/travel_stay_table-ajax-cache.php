@@ -4,11 +4,11 @@
 ?>
 <script>
 	$j(function() {
-		var tn = 'navavishkar_stay_table';
+		var tn = 'travel_stay_table';
 
 		/* data for selected record, or defaults if none is selected */
 		var data = {
-			approved_by: <?php echo json_encode(['id' => $rdata['approved_by'], 'value' => $rdata['approved_by'], 'text' => $jdata['approved_by']]); ?>
+			travel_details: <?php echo json_encode(['id' => $rdata['travel_details'], 'value' => $rdata['travel_details'], 'text' => $jdata['travel_details']]); ?>
 		};
 
 		/* initialize or continue using AppGini.cache for the current table */
@@ -16,11 +16,11 @@
 		AppGini.cache[tn] = AppGini.cache[tn] || AppGini.ajaxCache();
 		var cache = AppGini.cache[tn];
 
-		/* saved value for approved_by */
+		/* saved value for travel_details */
 		cache.addCheck(function(u, d) {
 			if(u != 'ajax_combo.php') return false;
-			if(d.t == tn && d.f == 'approved_by' && d.id == data.approved_by.id)
-				return { results: [ data.approved_by ], more: false, elapsed: 0.01 };
+			if(d.t == tn && d.f == 'travel_details' && d.id == data.travel_details.id)
+				return { results: [ data.travel_details ], more: false, elapsed: 0.01 };
 			return false;
 		});
 

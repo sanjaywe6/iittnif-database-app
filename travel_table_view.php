@@ -24,15 +24,16 @@
 		"`travel_table`.`age`" => "age",
 		"`travel_table`.`gender`" => "gender",
 		"`travel_table`.`mobile_number`" => "mobile_number",
+		"`travel_table`.`travel_type`" => "travel_type",
 		"if(`travel_table`.`date_from`,date_format(`travel_table`.`date_from`,'%d/%m/%Y'),'')" => "date_from",
 		"if(`travel_table`.`date_to`,date_format(`travel_table`.`date_to`,'%d/%m/%Y'),'')" => "date_to",
 		"`travel_table`.`travel_description`" => "travel_description",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved by */" => "approved_by",
 		"`travel_table`.`remarks`" => "remarks",
+		"`travel_table`.`approval_status`" => "approval_status",
 		"`travel_table`.`created_by`" => "created_by",
 		"`travel_table`.`created_at`" => "created_at",
-		"`travel_table`.`last_updated_by`" => "last_updated_by",
-		"`travel_table`.`last_updated_at`" => "last_updated_at",
+		"`travel_table`.`approved_by`" => "approved_by",
+		"`travel_table`.`approved_by`" => "approved_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -42,15 +43,16 @@
 		4 => 4,
 		5 => 5,
 		6 => 6,
-		7 => '`travel_table`.`date_from`',
-		8 => '`travel_table`.`date_to`',
-		9 => 9,
+		7 => 7,
+		8 => '`travel_table`.`date_from`',
+		9 => '`travel_table`.`date_to`',
 		10 => 10,
 		11 => 11,
 		12 => 12,
 		13 => 13,
 		14 => 14,
 		15 => 15,
+		16 => 16,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -61,15 +63,16 @@
 		"`travel_table`.`age`" => "age",
 		"`travel_table`.`gender`" => "gender",
 		"`travel_table`.`mobile_number`" => "mobile_number",
+		"`travel_table`.`travel_type`" => "travel_type",
 		"if(`travel_table`.`date_from`,date_format(`travel_table`.`date_from`,'%d/%m/%Y'),'')" => "date_from",
 		"if(`travel_table`.`date_to`,date_format(`travel_table`.`date_to`,'%d/%m/%Y'),'')" => "date_to",
 		"`travel_table`.`travel_description`" => "travel_description",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved by */" => "approved_by",
 		"`travel_table`.`remarks`" => "remarks",
+		"`travel_table`.`approval_status`" => "approval_status",
 		"`travel_table`.`created_by`" => "created_by",
 		"`travel_table`.`created_at`" => "created_at",
-		"`travel_table`.`last_updated_by`" => "last_updated_by",
-		"`travel_table`.`last_updated_at`" => "last_updated_at",
+		"`travel_table`.`approved_by`" => "approved_by",
+		"`travel_table`.`approved_by`" => "approved_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -79,15 +82,16 @@
 		"`travel_table`.`age`" => "Age",
 		"`travel_table`.`gender`" => "Gender",
 		"`travel_table`.`mobile_number`" => "Mobile number",
+		"`travel_table`.`travel_type`" => "Travel type",
 		"`travel_table`.`date_from`" => "Date from",
 		"`travel_table`.`date_to`" => "Date to",
 		"`travel_table`.`travel_description`" => "Travel description",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved by */" => "Approved by",
 		"`travel_table`.`remarks`" => "Remarks",
+		"`travel_table`.`approval_status`" => "Approval Status",
 		"`travel_table`.`created_by`" => "Created by",
 		"`travel_table`.`created_at`" => "Created at",
-		"`travel_table`.`last_updated_by`" => "Last updated by",
-		"`travel_table`.`last_updated_at`" => "Last updated at",
+		"`travel_table`.`approved_by`" => "Approved by",
+		"`travel_table`.`approved_by`" => "Approved by",
 	];
 
 	// Fields that can be quick searched
@@ -98,21 +102,22 @@
 		"`travel_table`.`age`" => "age",
 		"`travel_table`.`gender`" => "gender",
 		"`travel_table`.`mobile_number`" => "mobile_number",
+		"`travel_table`.`travel_type`" => "travel_type",
 		"if(`travel_table`.`date_from`,date_format(`travel_table`.`date_from`,'%d/%m/%Y'),'')" => "date_from",
 		"if(`travel_table`.`date_to`,date_format(`travel_table`.`date_to`,'%d/%m/%Y'),'')" => "date_to",
 		"`travel_table`.`travel_description`" => "travel_description",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved by */" => "approved_by",
 		"`travel_table`.`remarks`" => "remarks",
+		"`travel_table`.`approval_status`" => "approval_status",
 		"`travel_table`.`created_by`" => "created_by",
 		"`travel_table`.`created_at`" => "created_at",
-		"`travel_table`.`last_updated_by`" => "last_updated_by",
-		"`travel_table`.`last_updated_at`" => "last_updated_at",
+		"`travel_table`.`approved_by`" => "approved_by",
+		"`travel_table`.`approved_by`" => "approved_by",
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['approved_by' => 'Approved by', ];
+	$x->filterers = [];
 
-	$x->QueryFrom = "`travel_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`travel_table`.`approved_by` ";
+	$x->QueryFrom = "`travel_table` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -142,10 +147,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'First name', 'Last name', 'Age', 'Gender', 'Mobile number', 'Date from', 'Date to', 'Travel description', 'Approved by', 'Remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'first_name', 'last_name', 'age', 'gender', 'mobile_number', 'date_from', 'date_to', 'travel_description', 'approved_by', 'remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'First name', 'Last name', 'Age', 'Gender', 'Mobile number', 'Travel type', 'Date from', 'Date to', 'Travel description', 'Remarks', 'Approval Status', 'Created by', 'Created at', 'Approved by', 'Approved by', ];
+	$x->ColFieldName = ['id', 'first_name', 'last_name', 'age', 'gender', 'mobile_number', 'travel_type', 'date_from', 'date_to', 'travel_description', 'remarks', 'approval_status', 'created_by', 'created_at', 'approved_by', 'approved_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/travel_table_templateTV.html';

@@ -21,11 +21,12 @@ function travel_table_insert(&$error_message = '') {
 		'age' => Request::val('age', ''),
 		'gender' => Request::val('gender', ''),
 		'mobile_number' => Request::val('mobile_number', ''),
+		'travel_type' => Request::val('travel_type', ''),
 		'date_from' => Request::dateComponents('date_from', ''),
 		'date_to' => Request::dateComponents('date_to', ''),
 		'travel_description' => br2nl(Request::val('travel_description', '')),
-		'approved_by' => Request::lookup('approved_by', ''),
 		'remarks' => br2nl(Request::val('remarks', '')),
+		'approval_status' => Request::val('approval_status', 'Under Consideration'),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
@@ -115,21 +116,21 @@ function travel_table_delete($selected_id, $AllowDeleteOfParents = false, $skipC
 		return $RetMsg;
 	}
 
-	// child table: travel_hotel_table
+	// child table: travel_stay_table
 	$res = sql("SELECT `id` FROM `travel_table` WHERE `id`='{$selected_id}'", $eo);
 	$id = db_fetch_row($res);
-	$rires = sql("SELECT COUNT(1) FROM `travel_hotel_table` WHERE `travel_details`='" . makeSafe($id[0]) . "'", $eo);
+	$rires = sql("SELECT COUNT(1) FROM `travel_stay_table` WHERE `travel_details`='" . makeSafe($id[0]) . "'", $eo);
 	$rirow = db_fetch_row($rires);
-	$childrenATag = '<a class="alert-link" href="travel_hotel_table_view.php?filterer_travel_details=' . urlencode($id[0]) . '">%s</a>';
+	$childrenATag = '<a class="alert-link" href="travel_stay_table_view.php?filterer_travel_details=' . urlencode($id[0]) . '">%s</a>';
 	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
 		$RetMsg = $Translation["couldn't delete"];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
-		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'travel_hotel_table'), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'travel_stay_table'), $RetMsg);
 		return $RetMsg;
 	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
-		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'travel_hotel_table'), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'travel_stay_table'), $RetMsg);
 		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `travel_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `travel_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
@@ -159,13 +160,14 @@ function travel_table_update(&$selected_id, &$error_message = '') {
 		'age' => Request::val('age', ''),
 		'gender' => Request::val('gender', ''),
 		'mobile_number' => Request::val('mobile_number', ''),
+		'travel_type' => Request::val('travel_type', ''),
 		'date_from' => Request::dateComponents('date_from', ''),
 		'date_to' => Request::dateComponents('date_to', ''),
 		'travel_description' => br2nl(Request::val('travel_description', '')),
-		'approved_by' => Request::lookup('approved_by', ''),
 		'remarks' => br2nl(Request::val('remarks', '')),
-		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
-		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
+		'approval_status' => Request::val('approval_status', ''),
+		'approved_by' => parseCode('<%%editorUsername%%>', false),
+		'approved_by' => parseCode('<%%editorUsername%%>', false),
 	];
 
 	// get existing values
@@ -253,7 +255,6 @@ function travel_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 	$showSaveAsCopy = !$dvprint && ($allowInsert && $hasSelectedId && !$noSaveAsCopy);
 	$fieldsAreEditable = !$dvprint && (($allowInsert && !$hasSelectedId) || ($allowUpdate && $hasSelectedId) || $showSaveAsCopy);
 
-	$filterer_approved_by = Request::val('filterer_approved_by');
 
 	// populate filterers, starting from children to grand-parents
 
@@ -274,6 +275,21 @@ function travel_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 		$combo_gender->ListData = $combo_gender->ListItem;
 	}
 	$combo_gender->SelectName = 'gender';
+	// combobox: travel_type
+	$combo_travel_type = new Combo;
+	$combo_travel_type->ListType = 0;
+	$combo_travel_type->MultipleSeparator = ', ';
+	$combo_travel_type->ListBoxHeight = 10;
+	$combo_travel_type->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/travel_table.travel_type.csv')) {
+		$travel_type_data = addslashes(implode('', @file(__DIR__ . '/hooks/travel_table.travel_type.csv')));
+		$combo_travel_type->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($travel_type_data))));
+		$combo_travel_type->ListData = $combo_travel_type->ListItem;
+	} else {
+		$combo_travel_type->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Flight;;Train;;Bus;;Cabs"))));
+		$combo_travel_type->ListData = $combo_travel_type->ListItem;
+	}
+	$combo_travel_type->SelectName = 'travel_type';
 	// combobox: date_from
 	$combo_date_from = new DateCombo;
 	$combo_date_from->DateFormat = "dmy";
@@ -290,17 +306,31 @@ function travel_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 	$combo_date_to->DefaultDate = parseMySQLDate('', '');
 	$combo_date_to->MonthNames = $Translation['month names'];
 	$combo_date_to->NamePrefix = 'date_to';
-	// combobox: approved_by
-	$combo_approved_by = new DataCombo;
+	// combobox: approval_status
+	$combo_approval_status = new Combo;
+	$combo_approval_status->ListType = 0;
+	$combo_approval_status->MultipleSeparator = ', ';
+	$combo_approval_status->ListBoxHeight = 10;
+	$combo_approval_status->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/travel_table.approval_status.csv')) {
+		$approval_status_data = addslashes(implode('', @file(__DIR__ . '/hooks/travel_table.approval_status.csv')));
+		$combo_approval_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($approval_status_data))));
+		$combo_approval_status->ListData = $combo_approval_status->ListItem;
+	} else {
+		$combo_approval_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Approved by CEO;;Not Approved by CEO;;Approved by PD;;Not Approved by PD;;Under Consideration"))));
+		$combo_approval_status->ListData = $combo_approval_status->ListItem;
+	}
+	$combo_approval_status->SelectName = 'approval_status';
 
 	if($hasSelectedId) {
 		if(!($row = getRecord('travel_table', $selectedId))) {
 			return error_message($Translation['No records found'], 'travel_table_view.php', false);
 		}
 		$combo_gender->SelectedData = $row['gender'];
+		$combo_travel_type->SelectedData = $row['travel_type'];
 		$combo_date_from->DefaultDate = $row['date_from'];
 		$combo_date_to->DefaultDate = $row['date_to'];
-		$combo_approved_by->SelectedData = $row['approved_by'];
+		$combo_approval_status->SelectedData = $row['approval_status'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
 	} else {
@@ -308,101 +338,23 @@ function travel_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
 		$combo_gender->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_approved_by->SelectedData = $filterer_approved_by;
+		$combo_travel_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '7' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '12' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 	}
 	$combo_gender->Render();
-	$combo_approved_by->HTML = '<span id="approved_by-container' . $rnd1 . '"></span><input type="hidden" name="approved_by" id="approved_by' . $rnd1 . '" value="' . html_attr($combo_approved_by->SelectedData) . '">';
-	$combo_approved_by->MatchText = '<span id="approved_by-container-readonly' . $rnd1 . '"></span><input type="hidden" name="approved_by" id="approved_by' . $rnd1 . '" value="' . html_attr($combo_approved_by->SelectedData) . '">';
+	$combo_travel_type->Render();
+	$combo_approval_status->Render();
 
 	ob_start();
 	?>
 
 	<script>
 		// initial lookup values
-		AppGini.current_approved_by__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['approved_by'] : htmlspecialchars($filterer_approved_by, ENT_QUOTES)); ?>"};
 
 		$j(function() {
 			setTimeout(function() {
-				if(typeof(approved_by_reload__RAND__) == 'function') approved_by_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
-		function approved_by_reload__RAND__() {
-		<?php if($fieldsAreEditable) { ?>
-
-			$j("#approved_by-container__RAND__").select2({
-				/* initial default value */
-				initSelection: function(e, c) {
-					$j.ajax({
-						url: 'ajax_combo.php',
-						dataType: 'json',
-						data: { id: AppGini.current_approved_by__RAND__.value, t: 'travel_table', f: 'approved_by' },
-						success: function(resp) {
-							c({
-								id: resp.results[0].id,
-								text: resp.results[0].text
-							});
-							$j('[name="approved_by"]').val(resp.results[0].id);
-							$j('[id=approved_by-container-readonly__RAND__]').html('<span class="match-text" id="approved_by-match-text">' + resp.results[0].text + '</span>');
-							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
-
-
-							if(typeof(approved_by_update_autofills__RAND__) == 'function') approved_by_update_autofills__RAND__();
-						}
-					});
-				},
-				width: '100%',
-				formatNoMatches: function(term) { return '<?php echo addslashes($Translation['No matches found!']); ?>'; },
-				minimumResultsForSearch: 5,
-				loadMorePadding: 200,
-				ajax: {
-					url: 'ajax_combo.php',
-					dataType: 'json',
-					cache: true,
-					data: function(term, page) { return { s: term, p: page, t: 'travel_table', f: 'approved_by' }; },
-					results: function(resp, page) { return resp; }
-				},
-				escapeMarkup: function(str) { return str; }
-			}).on('change', function(e) {
-				AppGini.current_approved_by__RAND__.value = e.added.id;
-				AppGini.current_approved_by__RAND__.text = e.added.text;
-				$j('[name="approved_by"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
-
-
-				if(typeof(approved_by_update_autofills__RAND__) == 'function') approved_by_update_autofills__RAND__();
-			});
-
-			if(!$j("#approved_by-container__RAND__").length) {
-				$j.ajax({
-					url: 'ajax_combo.php',
-					dataType: 'json',
-					data: { id: AppGini.current_approved_by__RAND__.value, t: 'travel_table', f: 'approved_by' },
-					success: function(resp) {
-						$j('[name="approved_by"]').val(resp.results[0].id);
-						$j('[id=approved_by-container-readonly__RAND__]').html('<span class="match-text" id="approved_by-match-text">' + resp.results[0].text + '</span>');
-						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
-
-						if(typeof(approved_by_update_autofills__RAND__) == 'function') approved_by_update_autofills__RAND__();
-					}
-				});
-			}
-
-		<?php } else { ?>
-
-			$j.ajax({
-				url: 'ajax_combo.php',
-				dataType: 'json',
-				data: { id: AppGini.current_approved_by__RAND__.value, t: 'travel_table', f: 'approved_by' },
-				success: function(resp) {
-					$j('[id=approved_by-container__RAND__], [id=approved_by-container-readonly__RAND__]').html('<span class="match-text" id="approved_by-match-text">' + resp.results[0].text + '</span>');
-					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
-
-					if(typeof(approved_by_update_autofills__RAND__) == 'function') approved_by_update_autofills__RAND__();
-				}
-			});
-		<?php } ?>
-
-		}
 	</script>
 	<?php
 
@@ -493,14 +445,14 @@ function travel_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 		$jsReadOnly .= "\t\$j('#age').replaceWith('<div class=\"form-control-static\" id=\"age\">' + (\$j('#age').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#gender').replaceWith('<div class=\"form-control-static\" id=\"gender\">' + (\$j('#gender').val() || '') + '</div>'); \$j('#gender-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#mobile_number').replaceWith('<div class=\"form-control-static\" id=\"mobile_number\">' + (\$j('#mobile_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#travel_type').replaceWith('<div class=\"form-control-static\" id=\"travel_type\">' + (\$j('#travel_type').val() || '') + '</div>'); \$j('#travel_type-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#date_from').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#date_fromDay, #date_fromMonth, #date_fromYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#date_to').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#date_toDay, #date_toMonth, #date_toYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#travel_description').replaceWith('<div class=\"form-control-static\" id=\"travel_description\">' + (\$j('#travel_description').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#approved_by').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\t\$j('#approved_by_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\t\$j('#remarks').replaceWith('<div class=\"form-control-static\" id=\"remarks\">' + (\$j('#remarks').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#approval_status').replaceWith('<div class=\"form-control-static\" id=\"approval_status\">' + (\$j('#approval_status').val() || '') + '</div>'); \$j('#approval_status-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -513,6 +465,8 @@ function travel_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 	// process combos
 	$templateCode = str_replace('<%%COMBO(gender)%%>', $combo_gender->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(gender)%%>', $combo_gender->SelectedData, $templateCode);
+	$templateCode = str_replace('<%%COMBO(travel_type)%%>', $combo_travel_type->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(travel_type)%%>', $combo_travel_type->SelectedData, $templateCode);
 	$templateCode = str_replace(
 		'<%%COMBO(date_from)%%>', 
 		(!$fieldsAreEditable ? 
@@ -527,12 +481,11 @@ function travel_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 			$combo_date_to->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(date_to)%%>', $combo_date_to->GetHTML(true), $templateCode);
-	$templateCode = str_replace('<%%COMBO(approved_by)%%>', $combo_approved_by->HTML, $templateCode);
-	$templateCode = str_replace('<%%COMBOTEXT(approved_by)%%>', $combo_approved_by->MatchText, $templateCode);
-	$templateCode = str_replace('<%%URLCOMBOTEXT(approved_by)%%>', urlencode($combo_approved_by->MatchText), $templateCode);
+	$templateCode = str_replace('<%%COMBO(approval_status)%%>', $combo_approval_status->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(approval_status)%%>', $combo_approval_status->SelectedData, $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
-	$lookup_fields = ['approved_by' => ['user_table', 'Approved by'], ];
+	$lookup_fields = [];
 	foreach($lookup_fields as $luf => $ptfc) {
 		$pt_perm = getTablePermissions($ptfc[0]);
 
@@ -554,15 +507,16 @@ function travel_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 	$templateCode = str_replace('<%%UPLOADFILE(age)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(gender)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(mobile_number)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(travel_type)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date_from)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date_to)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(travel_description)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(approved_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(remarks)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approval_status)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(last_updated_at)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approved_by)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approved_by)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
@@ -583,25 +537,28 @@ function travel_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(mobile_number)%%>', safe_html($urow['mobile_number']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(mobile_number)%%>', html_attr($row['mobile_number']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(mobile_number)%%>', urlencode($urow['mobile_number']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(travel_type)%%>', safe_html($urow['travel_type']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(travel_type)%%>', html_attr($row['travel_type']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(travel_type)%%>', urlencode($urow['travel_type']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date_from)%%>', app_datetime($row['date_from']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date_from)%%>', urlencode(app_datetime($urow['date_from'])), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date_to)%%>', app_datetime($row['date_to']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date_to)%%>', urlencode(app_datetime($urow['date_to'])), $templateCode);
 		$templateCode = str_replace('<%%VALUE(travel_description)%%>', safe_html($urow['travel_description'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(travel_description)%%>', urlencode($urow['travel_description']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(approved_by)%%>', safe_html($urow['approved_by']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approved_by)%%>', html_attr($row['approved_by']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode($urow['approved_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(remarks)%%>', safe_html($urow['remarks'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(remarks)%%>', urlencode($urow['remarks']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', safe_html($urow['approval_status']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', html_attr($row['approval_status']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode($urow['approval_status']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode($urow['created_at']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approved_by)%%>', safe_html($urow['approved_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode($urow['approved_by']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approved_by)%%>', safe_html($urow['approved_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode($urow['approved_by']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
@@ -615,24 +572,26 @@ function travel_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 		$templateCode = str_replace('<%%URLVALUE(gender)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(mobile_number)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(mobile_number)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(travel_type)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(travel_type)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date_from)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date_from)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date_to)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date_to)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(travel_description)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(travel_description)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(approved_by)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(remarks)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(remarks)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_status)%%>', 'Under Consideration', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode('Under Consideration'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode('<%%creationDateTime%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', '<%%editingDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode('<%%editingDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approved_by)%%>', '<%%editorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approved_by)%%>', '<%%editorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 	}
 
 	// process translations

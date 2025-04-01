@@ -556,8 +556,8 @@
 					'group' => $tg[9],
 					'homepageShowCount' => 1
 				],
-				'travel_hotel_table' => [
-					'Caption' => 'Travel hotel details - App',
+				'travel_stay_table' => [
+					'Caption' => 'Travel Stay details - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[9],
@@ -726,7 +726,7 @@
 			'travel_table' => ['Travel - App', '', 'table.gif', 'Transport Apps'],
 			'travel_cab_table' => ['Travel cab details - App', '', 'table.gif', 'Transport Apps'],
 			'travel_flight_table' => ['Travel flight table', '', 'table.gif', 'Transport Apps'],
-			'travel_hotel_table' => ['Travel hotel details - App', '', 'table.gif', 'Transport Apps'],
+			'travel_stay_table' => ['Travel Stay details - App', '', 'table.gif', 'Transport Apps'],
 			'operation_dronagiri_data_submission_app' => ['Operation dronagiri data submission - App', '', 'resources/table_icons/data_table.png', 'Suggestions &amp; Other Apps'],
 			'file_table' => ['File table', '', 'table.gif', 'Suggestions &amp; Other Apps'],
 			'panel_decision_table_tdp' => ['Panel Decision App', '', 'table.gif', 'Technology Development Apps'],
@@ -5390,17 +5390,17 @@
 							'description' => '',
 						],
 					],
-					'approved_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Approved By',
-							'description' => '',
-						],
-					],
 					'approval_remarks' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
 							'caption' => 'Approval remarks',
+							'description' => '',
+						],
+					],
+					'approved_by' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Approved By',
 							'description' => '',
 						],
 					],
@@ -7523,6 +7523,13 @@
 							'description' => '',
 						],
 					],
+					'travel_type' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Travel type',
+							'description' => '',
+						],
+					],
 					'date_from' => [
 						'appgini' => "DATE NULL",
 						'info' => [
@@ -7544,17 +7551,17 @@
 							'description' => '',
 						],
 					],
-					'approved_by' => [
-						'appgini' => "INT UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Approved by',
-							'description' => '',
-						],
-					],
 					'remarks' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
 							'caption' => 'Remarks',
+							'description' => '',
+						],
+					],
+					'approval_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Under Consideration'",
+						'info' => [
+							'caption' => 'Approval Status',
 							'description' => '',
 						],
 					],
@@ -7572,17 +7579,17 @@
 							'description' => '',
 						],
 					],
-					'last_updated_by' => [
+					'approved_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Last updated by',
+							'caption' => 'Approved by',
 							'description' => '',
 						],
 					],
-					'last_updated_at' => [
+					'approved_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Last updated at',
+							'caption' => 'Approved by',
 							'description' => '',
 						],
 					],
@@ -7794,7 +7801,7 @@
 						],
 					],
 				],
-				'travel_hotel_table' => [
+				'travel_stay_table' => [
 					'id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
@@ -10517,6 +10524,9 @@
 			'work_from_home_table' => [
 				'user_table' => ['approved_by'],
 			],
+			'navavishkar_stay_table' => [
+				'user_table' => ['approved_by'],
+			],
 			'navavishkar_stay_payment_table' => [
 				'navavishkar_stay_table' => ['navavishakr_stay_details'],
 			],
@@ -10557,16 +10567,13 @@
 			'cycle_usage_table' => [
 				'cycle_table' => ['cycle_lookup'],
 			],
-			'travel_table' => [
-				'user_table' => ['approved_by'],
-			],
 			'travel_cab_table' => [
 				'travel_table' => ['travel_details'],
 			],
 			'travel_flight_table' => [
 				'travel_table' => ['travel_details'],
 			],
-			'travel_hotel_table' => [
+			'travel_stay_table' => [
 				'travel_table' => ['travel_details'],
 			],
 			'file_table' => [
@@ -10689,7 +10696,7 @@
 			'travel_table' => [],
 			'travel_cab_table' => [],
 			'travel_flight_table' => [],
-			'travel_hotel_table' => [],
+			'travel_stay_table' => [],
 			'operation_dronagiri_data_submission_app' => [],
 			'file_table' => [],
 			'panel_decision_table_tdp' => [],
@@ -10949,9 +10956,10 @@
 				'approved_by' => 'SELECT `user_table`.`user_id`, `user_table`.`user_id` FROM `user_table` ORDER BY 2',
 			],
 			'navavishkar_stay_table' => [
+				'approved_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'navavishkar_stay_payment_table' => [
-				'navavishakr_stay_details' => 'SELECT `navavishkar_stay_table`.`id`, IF(CHAR_LENGTH(`navavishkar_stay_table`.`full_name`) || CHAR_LENGTH(`navavishkar_stay_table`.`emp_id`), CONCAT_WS(\'\', `navavishkar_stay_table`.`full_name`, \'::\', `navavishkar_stay_table`.`emp_id`), \'\') FROM `navavishkar_stay_table` ORDER BY 2',
+				'navavishakr_stay_details' => 'SELECT `navavishkar_stay_table`.`id`, IF(CHAR_LENGTH(`navavishkar_stay_table`.`full_name`) || CHAR_LENGTH(`navavishkar_stay_table`.`emp_id`), CONCAT_WS(\'\', `navavishkar_stay_table`.`full_name`, \'::\', `navavishkar_stay_table`.`emp_id`), \'\') FROM `navavishkar_stay_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`navavishkar_stay_table`.`approved_by` ORDER BY 2',
 			],
 			'email_id_allocation_table' => [
 				'reporting_manager' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
@@ -11003,16 +11011,15 @@
 				'cycle_lookup' => 'SELECT `cycle_table`.`id`, IF(CHAR_LENGTH(`cycle_table`.`registration_number`) || CHAR_LENGTH(`cycle_table`.`cycle_model`), CONCAT_WS(\'\', `cycle_table`.`registration_number`, \'::\', `cycle_table`.`cycle_model`), \'\') FROM `cycle_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`cycle_table`.`responsible_contact_person` ORDER BY 2',
 			],
 			'travel_table' => [
-				'approved_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'travel_cab_table' => [
-				'travel_details' => 'SELECT `travel_table`.`id`, IF(CHAR_LENGTH(`travel_table`.`first_name`) || CHAR_LENGTH(`travel_table`.`travel_description`), CONCAT_WS(\'\', `travel_table`.`first_name`, \'::\', `travel_table`.`travel_description`), \'\') FROM `travel_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`travel_table`.`approved_by` ORDER BY 2',
+				'travel_details' => 'SELECT `travel_table`.`id`, IF(CHAR_LENGTH(`travel_table`.`first_name`) || CHAR_LENGTH(`travel_table`.`travel_description`), CONCAT_WS(\'\', `travel_table`.`first_name`, \'::\', `travel_table`.`travel_description`), \'\') FROM `travel_table` ORDER BY 2',
 			],
 			'travel_flight_table' => [
-				'travel_details' => 'SELECT `travel_table`.`id`, IF(CHAR_LENGTH(`travel_table`.`first_name`) || CHAR_LENGTH(`travel_table`.`travel_description`), CONCAT_WS(\'\', `travel_table`.`first_name`, \'::\', `travel_table`.`travel_description`), \'\') FROM `travel_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`travel_table`.`approved_by` ORDER BY 2',
+				'travel_details' => 'SELECT `travel_table`.`id`, IF(CHAR_LENGTH(`travel_table`.`first_name`) || CHAR_LENGTH(`travel_table`.`travel_description`), CONCAT_WS(\'\', `travel_table`.`first_name`, \'::\', `travel_table`.`travel_description`), \'\') FROM `travel_table` ORDER BY 2',
 			],
-			'travel_hotel_table' => [
-				'travel_details' => 'SELECT `travel_table`.`id`, IF(CHAR_LENGTH(`travel_table`.`first_name`) || CHAR_LENGTH(`travel_table`.`travel_description`), CONCAT_WS(\'\', `travel_table`.`first_name`, \'::\', `travel_table`.`travel_description`), \'\') FROM `travel_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`travel_table`.`approved_by` ORDER BY 2',
+			'travel_stay_table' => [
+				'travel_details' => 'SELECT `travel_table`.`id`, IF(CHAR_LENGTH(`travel_table`.`first_name`) || CHAR_LENGTH(`travel_table`.`travel_description`), CONCAT_WS(\'\', `travel_table`.`first_name`, \'::\', `travel_table`.`travel_description`), \'\') FROM `travel_table` ORDER BY 2',
 			],
 			'operation_dronagiri_data_submission_app' => [
 			],

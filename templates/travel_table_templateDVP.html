@@ -49,6 +49,13 @@
 				<div class="form-control-static"><%%VALUE(mobile_number)%%></div>
 			</div>
 		</div>
+		<!-- Field: Travel type -->
+		<div class="form-group travel_table-travel_type" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Travel type</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(travel_type)%%></div>
+			</div>
+		</div>
 		<!-- Field: Date from -->
 		<div class="form-group travel_table-date_from" style="border-bottom: dotted 1px #DDD;">
 			<label class="col-xs-3 control-label">Date from</label>
@@ -70,18 +77,32 @@
 				<div class="form-control-static"><%%VALUE(travel_description)%%></div>
 			</div>
 		</div>
-		<!-- Field: Approved by -->
-		<div class="form-group travel_table-approved_by" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Approved by</label>
-			<div class="col-xs-9">
-				<div class="form-control-static"><span id="approved_by<%%RND1%%>"><%%COMBOTEXT(approved_by)%%></span></div>
-			</div>
-		</div>
 		<!-- Field: Remarks -->
 		<div class="form-group travel_table-remarks" style="border-bottom: dotted 1px #DDD;">
 			<label class="col-xs-3 control-label">Remarks</label>
 			<div class="col-xs-9">
 				<div class="form-control-static"><%%VALUE(remarks)%%></div>
+			</div>
+		</div>
+		<!-- Field: Approval Status -->
+		<div class="form-group travel_table-approval_status" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Approval Status</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(approval_status)%%></div>
+			</div>
+		</div>
+		<!-- Field: Approved by -->
+		<div class="form-group travel_table-approved_by" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Approved by</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(approved_by)%%></div>
+			</div>
+		</div>
+		<!-- Field: Approved by -->
+		<div class="form-group travel_table-approved_by" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Approved by</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(approved_by)%%></div>
 			</div>
 		</div>
 	</fieldset>

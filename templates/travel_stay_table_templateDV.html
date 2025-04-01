@@ -19,15 +19,48 @@
 		<div class="col-md-8 col-lg-10" id="travel_stay_table_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: Travel details -->
-				<div class="form-group travel_stay_table-travel_details">
+				<!-- Field: First name -->
+				<div class="form-group travel_stay_table-first_name">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Travel details</label>
+					<label class="control-label col-lg-3" for="first_name">First name</label>
 					<div class="col-lg-9">
-						<div class="form-control-static">
-							<span id="travel_details-readonly"><%%COMBOTEXT(travel_details)%%></span>
-							<%%PLINK(travel_details)%%>
-						</div>
+						<input maxlength="255" type="text" class="form-control" name="first_name" id="first_name" value="<%%VALUE(first_name)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Last name -->
+				<div class="form-group travel_stay_table-last_name">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="last_name">Last name</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="last_name" id="last_name" value="<%%VALUE(last_name)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Age -->
+				<div class="form-group travel_stay_table-age">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="age">Age</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="age" id="age" value="<%%VALUE(age)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Gender -->
+				<div class="form-group travel_stay_table-gender">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="gender">Gender</label>
+					<div class="col-lg-9">
+						<%%COMBO(gender)%%>
+					</div>
+				</div>
+
+				<!-- Field: Mobile number -->
+				<div class="form-group travel_stay_table-mobile_number">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="mobile_number">Mobile number</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="mobile_number" id="mobile_number" value="<%%VALUE(mobile_number)%%>">
 					</div>
 				</div>
 
@@ -40,12 +73,12 @@
 					</div>
 				</div>
 
-				<!-- Field: Destination city -->
-				<div class="form-group travel_stay_table-destination_city">
+				<!-- Field: Hotel address -->
+				<div class="form-group travel_stay_table-hotel_address">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="destination_city">Destination city</label>
+					<label class="control-label col-lg-3" for="hotel_address">Hotel address</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="destination_city" id="destination_city" value="<%%VALUE(destination_city)%%>">
+						<input maxlength="255" type="text" class="form-control" name="hotel_address" id="hotel_address" value="<%%VALUE(hotel_address)%%>">
 					</div>
 				</div>
 
@@ -82,6 +115,33 @@
 					<label class="control-label col-lg-3" for="remarks">Remarks</label>
 					<div class="col-lg-9">
 						<textarea class="form-control" name="remarks" id="remarks" rows=" 5"><%%VALUE(remarks)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Approval Status -->
+				<div class="form-group travel_stay_table-approval_status">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="approval_status">Approval Status</label>
+					<div class="col-lg-9">
+						<%%COMBO(approval_status)%%>
+					</div>
+				</div>
+
+				<!-- Field: Approval remarks -->
+				<div class="form-group travel_stay_table-approval_remarks">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="approval_remarks">Approval remarks</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="approval_remarks" id="approval_remarks" rows=" 5"><%%VALUE(approval_remarks)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Approved By -->
+				<div class="form-group travel_stay_table-approved_by">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Approved By</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="approved_by"><%%VALUE(approved_by)%%></div>
 					</div>
 				</div>
 
@@ -128,7 +188,7 @@
 
 			$j('#travel_stay_table_dv_container-loading').addClass('hidden');
 			$j('#travel_stay_table_dv_container').removeClass('hidden');
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('travel_stay_table', 'hotel_name');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('travel_stay_table', 'first_name');
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 

@@ -1,11 +1,11 @@
-<!-- To change the layout of the detail view form, we recommend using JS code in hooks/travel_flight_table-dv.js rather than editing this file -->
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/travel_local_commute_table-dv.js rather than editing this file -->
 
 <div id="detail-view"></div>
 <div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
 
-<div id="travel_flight_table_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+<div id="travel_local_commute_table_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
 
-<div class="panel-body hidden" id="travel_flight_table_dv_container">
+<div class="panel-body hidden" id="travel_local_commute_table_dv_container">
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
@@ -16,90 +16,114 @@
 
 	<div class="row">
 		<!-- form inputs -->
-		<div class="col-md-8 col-lg-10" id="travel_flight_table_dv_form">
+		<div class="col-md-8 col-lg-10" id="travel_local_commute_table_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: Travel details -->
-				<div class="form-group travel_flight_table-travel_details">
+				<!-- Field: First name -->
+				<div class="form-group travel_local_commute_table-first_name">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Travel details</label>
+					<label class="control-label col-lg-3" for="first_name">First name</label>
 					<div class="col-lg-9">
-						<div class="form-control-static">
-							<span id="travel_details-readonly"><%%COMBOTEXT(travel_details)%%></span>
-							<%%PLINK(travel_details)%%>
-						</div>
+						<input maxlength="255" type="text" class="form-control" name="first_name" id="first_name" value="<%%VALUE(first_name)%%>">
 					</div>
 				</div>
 
-				<!-- Field: Flight number -->
-				<div class="form-group travel_flight_table-flight_number">
+				<!-- Field: Last name -->
+				<div class="form-group travel_local_commute_table-last_name">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="flight_number">Flight number</label>
+					<label class="control-label col-lg-3" for="last_name">Last name</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="flight_number" id="flight_number" value="<%%VALUE(flight_number)%%>">
+						<input maxlength="255" type="text" class="form-control" name="last_name" id="last_name" value="<%%VALUE(last_name)%%>">
 					</div>
 				</div>
 
-				<!-- Field: Travel date -->
-				<div class="form-group travel_flight_table-travel_date">
+				<!-- Field: Age -->
+				<div class="form-group travel_local_commute_table-age">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="travel_date-dd">Travel date</label>
+					<label class="control-label col-lg-3" for="age">Age</label>
 					<div class="col-lg-9">
-						<%%COMBO(travel_date)%%>
+						<input maxlength="255" type="text" class="form-control" name="age" id="age" value="<%%VALUE(age)%%>">
 					</div>
 				</div>
 
-				<!-- Field: Flight time -->
-				<div class="form-group travel_flight_table-flight_time">
+				<!-- Field: Gender -->
+				<div class="form-group travel_local_commute_table-gender">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="flight_time">Flight time</label>
+					<label class="control-label col-lg-3" for="gender">Gender</label>
 					<div class="col-lg-9">
-						<input type="text" class="form-control" name="flight_time" id="flight_time" value="<%%VALUE(flight_time)%%>">
+						<%%COMBO(gender)%%>
 					</div>
 				</div>
 
-				<!-- Field: From -->
-				<div class="form-group travel_flight_table-from">
+				<!-- Field: Mobile number -->
+				<div class="form-group travel_local_commute_table-mobile_number">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="from">From</label>
+					<label class="control-label col-lg-3" for="mobile_number">Mobile number</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="from" id="from" value="<%%VALUE(from)%%>">
+						<input maxlength="255" type="text" class="form-control" name="mobile_number" id="mobile_number" value="<%%VALUE(mobile_number)%%>">
 					</div>
 				</div>
 
-				<!-- Field: To -->
-				<div class="form-group travel_flight_table-to">
+				<!-- Field: Local Commute Type -->
+				<div class="form-group travel_local_commute_table-local_commute_type">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="to">To</label>
+					<label class="control-label col-lg-3" for="local_commute_type">Local Commute Type</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="to" id="to" value="<%%VALUE(to)%%>">
+						<%%COMBO(local_commute_type)%%>
 					</div>
 				</div>
 
-				<!-- Field: Seat preferance -->
-				<div class="form-group travel_flight_table-seat_preferance">
+				<!-- Field: From Place -->
+				<div class="form-group travel_local_commute_table-from_place">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="seat_preferance">Seat preferance</label>
+					<label class="control-label col-lg-3" for="from_place">From Place</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="seat_preferance" id="seat_preferance" value="<%%VALUE(seat_preferance)%%>">
+						<input maxlength="255" type="text" class="form-control" name="from_place" id="from_place" value="<%%VALUE(from_place)%%>">
 					</div>
 				</div>
 
-				<!-- Field: Status -->
-				<div class="form-group travel_flight_table-status">
+				<!-- Field: To Place -->
+				<div class="form-group travel_local_commute_table-to_place">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="status">Status</label>
+					<label class="control-label col-lg-3" for="to_place">To Place</label>
 					<div class="col-lg-9">
-						<%%COMBO(status)%%>
+						<input maxlength="255" type="text" class="form-control" name="to_place" id="to_place" value="<%%VALUE(to_place)%%>">
 					</div>
 				</div>
 
-				<!-- Field: Remarks -->
-				<div class="form-group travel_flight_table-remarks">
+				<!-- Field: Description -->
+				<div class="form-group travel_local_commute_table-description">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="remarks">Remarks</label>
+					<label class="control-label col-lg-3" for="description">Description</label>
+					<div class="col-lg-9 has-nicedit">
+						<%%HTMLAREA(description)%%>
+					</div>
+				</div>
+
+				<!-- Field: Approval Status -->
+				<div class="form-group travel_local_commute_table-approval_status">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="approval_status">Approval Status</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="remarks" id="remarks" rows=" 5"><%%VALUE(remarks)%%></textarea>
+						<%%COMBO(approval_status)%%>
+					</div>
+				</div>
+
+				<!-- Field: Approval remarks -->
+				<div class="form-group travel_local_commute_table-approval_remarks">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="approval_remarks">Approval remarks</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="approval_remarks" id="approval_remarks" rows=" 5"><%%VALUE(approval_remarks)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Approved by -->
+				<div class="form-group travel_local_commute_table-approved_by">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Approved by</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="approved_by"><%%VALUE(approved_by)%%></div>
 					</div>
 				</div>
 
@@ -108,7 +132,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2" id="travel_flight_table_dv_action_buttons">
+		<div class="col-md-4 col-lg-2" id="travel_local_commute_table_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>
@@ -140,13 +164,22 @@
 				setTimeout(AppGini.closeParentModal, 2000);
 			}
 
+			AppGini.once({
+				condition: function() { return bkLib != undefined; },
+				action: function() {
+					if($j('textarea#description').length) new nicEditor({ fullPanel : true }).panelInstance('description');
+				}
+			});
 
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-			$j('#travel_flight_table_dv_container-loading').addClass('hidden');
-			$j('#travel_flight_table_dv_container').removeClass('hidden');
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('travel_flight_table', 'flight_number');
+			$j('#travel_local_commute_table_dv_container-loading').addClass('hidden');
+			$j('#travel_local_commute_table_dv_container').removeClass('hidden');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('travel_local_commute_table', 'first_name');
+
+			// try to detect rich text changes by adding 'input' handler after nicedit is loaded ...
+			AppGini.detectContentEditableChanges();
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 
@@ -167,7 +200,7 @@
 							localStorage.removeItem(pt + '_last_added_id');
 							AppGini.lookupText({
 								id: new_id,
-								table: 'travel_flight_table',
+								table: 'travel_local_commute_table',
 								field: field_id,
 								callback: function(data) {
 									$j('#' + field_id + '-container').select2('data', data, true);
@@ -227,21 +260,21 @@
 				}
 			});
 
-			travel_flight_tableUniqueFields.forEach(fieldName => enforce_uniqueness('travel_flight_table', fieldName));
+			travel_local_commute_tableUniqueFields.forEach(fieldName => enforce_uniqueness('travel_local_commute_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
 				$j('body').append('<div id="admin-tools-appendix"></div>');
 				$j('#admin-tools-appendix').load(
-					'ajax_admin_tools.php?table=travel_flight_table&id=<%%URLVALUE(id)%%>',
+					'ajax_admin_tools.php?table=travel_local_commute_table&id=<%%URLVALUE(id)%%>',
 					function(resp) {
 						if(!resp.length) return;
-						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=travel_flight_table&id=<%%URLVALUE(id)%%>');
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=travel_local_commute_table&id=<%%URLVALUE(id)%%>');
 					}
 				);
 			}
 		});
 
-		var travel_flight_tableUniqueFields = [
+		var travel_local_commute_tableUniqueFields = [
 		];
 	</script>

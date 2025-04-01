@@ -1,42 +1,60 @@
-		<td colspan="12" class="row">
+		<td colspan="18" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="travel_stay_table-id-caption field-caption-tv">ID</dt>
 					<dd id="travel_stay_table-id-<%%VALUE(id)%%>" class="travel_stay_table-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></dd>
 
-					<dt class="travel_stay_table-travel_details-caption field-caption-tv">Travel details</dt>
-					<dd id="travel_stay_table-travel_details-<%%VALUE(id)%%>" class="travel_stay_table-travel_details"><%%SELECT%%><%%VALUE(travel_details)%%><%%ENDSELECT%%></dd>
+					<dt class="travel_stay_table-first_name-caption field-caption-tv">First name</dt>
+					<dd id="travel_stay_table-first_name-<%%VALUE(id)%%>" class="travel_stay_table-first_name"><%%SELECT%%><%%VALUE(first_name)%%><%%ENDSELECT%%></dd>
+
+					<dt class="travel_stay_table-last_name-caption field-caption-tv">Last name</dt>
+					<dd id="travel_stay_table-last_name-<%%VALUE(id)%%>" class="travel_stay_table-last_name"><%%SELECT%%><%%VALUE(last_name)%%><%%ENDSELECT%%></dd>
+
+					<dt class="travel_stay_table-age-caption field-caption-tv">Age</dt>
+					<dd id="travel_stay_table-age-<%%VALUE(id)%%>" class="travel_stay_table-age"><%%SELECT%%><%%VALUE(age)%%><%%ENDSELECT%%></dd>
+
+					<dt class="travel_stay_table-gender-caption field-caption-tv">Gender</dt>
+					<dd id="travel_stay_table-gender-<%%VALUE(id)%%>" class="travel_stay_table-gender"><%%SELECT%%><%%VALUE(gender)%%><%%ENDSELECT%%></dd>
+
+					<dt class="travel_stay_table-mobile_number-caption field-caption-tv">Mobile number</dt>
+					<dd id="travel_stay_table-mobile_number-<%%VALUE(id)%%>" class="travel_stay_table-mobile_number"><%%SELECT%%><%%VALUE(mobile_number)%%><%%ENDSELECT%%></dd>
 
 					<dt class="travel_stay_table-hotel_name-caption field-caption-tv">Hotel name</dt>
 					<dd id="travel_stay_table-hotel_name-<%%VALUE(id)%%>" class="travel_stay_table-hotel_name"><%%SELECT%%><%%VALUE(hotel_name)%%><%%ENDSELECT%%></dd>
 
-					<dt class="travel_stay_table-destination_city-caption field-caption-tv">Destination city</dt>
-					<dd id="travel_stay_table-destination_city-<%%VALUE(id)%%>" class="travel_stay_table-destination_city"><%%SELECT%%><%%VALUE(destination_city)%%><%%ENDSELECT%%></dd>
+					<dt class="travel_stay_table-hotel_address-caption field-caption-tv">Hotel address</dt>
+					<dd id="travel_stay_table-hotel_address-<%%VALUE(id)%%>" class="travel_stay_table-hotel_address"><%%SELECT%%><%%VALUE(hotel_address)%%><%%ENDSELECT%%></dd>
 
 					<dt class="travel_stay_table-checkin_date-caption field-caption-tv">Checkin date</dt>
 					<dd id="travel_stay_table-checkin_date-<%%VALUE(id)%%>" class="travel_stay_table-checkin_date"><%%SELECT%%><%%VALUE(checkin_date)%%><%%ENDSELECT%%></dd>
-
-					<dt class="travel_stay_table-checkout_date-caption field-caption-tv">Checkout date</dt>
-					<dd id="travel_stay_table-checkout_date-<%%VALUE(id)%%>" class="travel_stay_table-checkout_date"><%%SELECT%%><%%VALUE(checkout_date)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
+					<dt class="travel_stay_table-checkout_date-caption field-caption-tv">Checkout date</dt>
+					<dd id="travel_stay_table-checkout_date-<%%VALUE(id)%%>" class="travel_stay_table-checkout_date"><%%SELECT%%><%%VALUE(checkout_date)%%><%%ENDSELECT%%></dd>
+
 					<dt class="travel_stay_table-room_preferance-caption field-caption-tv">Room preferance</dt>
 					<dd id="travel_stay_table-room_preferance-<%%VALUE(id)%%>" class="travel_stay_table-room_preferance"><%%SELECT%%><%%VALUE(room_preferance)%%><%%ENDSELECT%%></dd>
 
 					<dt class="travel_stay_table-remarks-caption field-caption-tv">Remarks</dt>
 					<dd id="travel_stay_table-remarks-<%%VALUE(id)%%>" class="travel_stay_table-remarks"><%%SELECT%%><%%VALUE(remarks)%%><%%ENDSELECT%%></dd>
 
+					<dt class="travel_stay_table-approval_status-caption field-caption-tv">Approval Status</dt>
+					<dd id="travel_stay_table-approval_status-<%%VALUE(id)%%>" class="travel_stay_table-approval_status"><%%SELECT%%><%%VALUE(approval_status)%%><%%ENDSELECT%%></dd>
+
+					<dt class="travel_stay_table-approval_remarks-caption field-caption-tv">Approval remarks</dt>
+					<dd id="travel_stay_table-approval_remarks-<%%VALUE(id)%%>" class="travel_stay_table-approval_remarks"><%%SELECT%%><%%VALUE(approval_remarks)%%><%%ENDSELECT%%></dd>
+
+					<dt class="travel_stay_table-approved_by-caption field-caption-tv">Approved By</dt>
+					<dd id="travel_stay_table-approved_by-<%%VALUE(id)%%>" class="travel_stay_table-approved_by"><%%SELECT%%><%%VALUE(approved_by)%%><%%ENDSELECT%%></dd>
+
 					<dt class="travel_stay_table-created_by-caption field-caption-tv">Created by</dt>
 					<dd id="travel_stay_table-created_by-<%%VALUE(id)%%>" class="travel_stay_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
 
 					<dt class="travel_stay_table-created_at-caption field-caption-tv">Created at</dt>
 					<dd id="travel_stay_table-created_at-<%%VALUE(id)%%>" class="travel_stay_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
-
-					<dt class="travel_stay_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
-					<dd id="travel_stay_table-last_updated_by-<%%VALUE(id)%%>" class="travel_stay_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
 
 					<dt class="travel_stay_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
 					<dd id="travel_stay_table-last_updated_at-<%%VALUE(id)%%>" class="travel_stay_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></dd>

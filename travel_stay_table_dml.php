@@ -15,27 +15,24 @@ function travel_stay_table_insert(&$error_message = '') {
 		return false;
 	}
 
-	// automatic travel_details if passed as filterer
-	if(Request::val('filterer_travel_details')) {
-		$_REQUEST['travel_details'] = Request::val('filterer_travel_details');
-	}
-
 	$data = [
+		'first_name' => Request::val('first_name', ''),
+		'last_name' => Request::val('last_name', ''),
+		'age' => Request::val('age', ''),
+		'gender' => Request::val('gender', 'Male'),
+		'mobile_number' => Request::val('mobile_number', ''),
 		'hotel_name' => Request::val('hotel_name', ''),
-		'destination_city' => Request::val('destination_city', ''),
+		'hotel_address' => Request::val('hotel_address', ''),
 		'checkin_date' => Request::dateComponents('checkin_date', ''),
 		'checkout_date' => Request::dateComponents('checkout_date', ''),
 		'room_preferance' => Request::val('room_preferance', ''),
 		'remarks' => br2nl(Request::val('remarks', '')),
+		'approval_status' => Request::val('approval_status', 'Under Consideration'),
+		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
 
-
-	// automatic travel_details if passed as filterer
-	if(Request::val('filterer_travel_details')) {
-		$data['travel_details'] = Request::val('filterer_travel_details');
-	}
 	// record owner is current user
 	$recordOwner = getLoggedMemberID();
 
@@ -100,13 +97,20 @@ function travel_stay_table_update(&$selected_id, &$error_message = '') {
 	if(!check_record_permission('travel_stay_table', $selected_id, 'edit')) return false;
 
 	$data = [
+		'first_name' => Request::val('first_name', ''),
+		'last_name' => Request::val('last_name', ''),
+		'age' => Request::val('age', ''),
+		'gender' => Request::val('gender', ''),
+		'mobile_number' => Request::val('mobile_number', ''),
 		'hotel_name' => Request::val('hotel_name', ''),
-		'destination_city' => Request::val('destination_city', ''),
+		'hotel_address' => Request::val('hotel_address', ''),
 		'checkin_date' => Request::dateComponents('checkin_date', ''),
 		'checkout_date' => Request::dateComponents('checkout_date', ''),
 		'room_preferance' => Request::val('room_preferance', ''),
 		'remarks' => br2nl(Request::val('remarks', '')),
-		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
+		'approval_status' => Request::val('approval_status', ''),
+		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
+		'approved_by' => parseCode('<%%editorUsername%%>', false),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 	];
 
@@ -195,14 +199,26 @@ function travel_stay_table_form($selectedId = '', $allowUpdate = true, $allowIns
 	$showSaveAsCopy = !$dvprint && ($allowInsert && $hasSelectedId && !$noSaveAsCopy);
 	$fieldsAreEditable = !$dvprint && (($allowInsert && !$hasSelectedId) || ($allowUpdate && $hasSelectedId) || $showSaveAsCopy);
 
-	$filterer_travel_details = Request::val('filterer_travel_details');
 
 	// populate filterers, starting from children to grand-parents
 
 	// unique random identifier
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
-	// combobox: travel_details
-	$combo_travel_details = new DataCombo;
+	// combobox: gender
+	$combo_gender = new Combo;
+	$combo_gender->ListType = 0;
+	$combo_gender->MultipleSeparator = ', ';
+	$combo_gender->ListBoxHeight = 10;
+	$combo_gender->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/travel_stay_table.gender.csv')) {
+		$gender_data = addslashes(implode('', @file(__DIR__ . '/hooks/travel_stay_table.gender.csv')));
+		$combo_gender->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($gender_data))));
+		$combo_gender->ListData = $combo_gender->ListItem;
+	} else {
+		$combo_gender->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Male;;Female;;Prefer not to say"))));
+		$combo_gender->ListData = $combo_gender->ListItem;
+	}
+	$combo_gender->SelectName = 'gender';
 	// combobox: checkin_date
 	$combo_checkin_date = new DateCombo;
 	$combo_checkin_date->DateFormat = "dmy";
@@ -219,114 +235,52 @@ function travel_stay_table_form($selectedId = '', $allowUpdate = true, $allowIns
 	$combo_checkout_date->DefaultDate = parseMySQLDate('', '');
 	$combo_checkout_date->MonthNames = $Translation['month names'];
 	$combo_checkout_date->NamePrefix = 'checkout_date';
+	// combobox: approval_status
+	$combo_approval_status = new Combo;
+	$combo_approval_status->ListType = 0;
+	$combo_approval_status->MultipleSeparator = ', ';
+	$combo_approval_status->ListBoxHeight = 10;
+	$combo_approval_status->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/travel_stay_table.approval_status.csv')) {
+		$approval_status_data = addslashes(implode('', @file(__DIR__ . '/hooks/travel_stay_table.approval_status.csv')));
+		$combo_approval_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($approval_status_data))));
+		$combo_approval_status->ListData = $combo_approval_status->ListItem;
+	} else {
+		$combo_approval_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Approved by CEO;;Not Approved by CEO;;Approved by PD;;Not Approved by PD;;Under Consideration"))));
+		$combo_approval_status->ListData = $combo_approval_status->ListItem;
+	}
+	$combo_approval_status->SelectName = 'approval_status';
 
 	if($hasSelectedId) {
 		if(!($row = getRecord('travel_stay_table', $selectedId))) {
 			return error_message($Translation['No records found'], 'travel_stay_table_view.php', false);
 		}
-		$combo_travel_details->SelectedData = $row['travel_details'];
+		$combo_gender->SelectedData = $row['gender'];
 		$combo_checkin_date->DefaultDate = $row['checkin_date'];
 		$combo_checkout_date->DefaultDate = $row['checkout_date'];
+		$combo_approval_status->SelectedData = $row['approval_status'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
 	} else {
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_travel_details->SelectedData = $filterer_travel_details;
+		$combo_gender->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Male'));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '13' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 	}
-	$combo_travel_details->HTML = '<span id="travel_details-container' . $rnd1 . '"></span><input type="hidden" name="travel_details" id="travel_details' . $rnd1 . '" value="' . html_attr($combo_travel_details->SelectedData) . '">';
-	$combo_travel_details->MatchText = '<span id="travel_details-container-readonly' . $rnd1 . '"></span><input type="hidden" name="travel_details" id="travel_details' . $rnd1 . '" value="' . html_attr($combo_travel_details->SelectedData) . '">';
+	$combo_gender->Render();
+	$combo_approval_status->Render();
 
 	ob_start();
 	?>
 
 	<script>
 		// initial lookup values
-		AppGini.current_travel_details__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['travel_details'] : htmlspecialchars($filterer_travel_details, ENT_QUOTES)); ?>"};
 
 		$j(function() {
 			setTimeout(function() {
-				if(typeof(travel_details_reload__RAND__) == 'function') travel_details_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
-		function travel_details_reload__RAND__() {
-		<?php if($fieldsAreEditable) { ?>
-
-			$j("#travel_details-container__RAND__").select2({
-				/* initial default value */
-				initSelection: function(e, c) {
-					$j.ajax({
-						url: 'ajax_combo.php',
-						dataType: 'json',
-						data: { id: AppGini.current_travel_details__RAND__.value, t: 'travel_stay_table', f: 'travel_details' },
-						success: function(resp) {
-							c({
-								id: resp.results[0].id,
-								text: resp.results[0].text
-							});
-							$j('[name="travel_details"]').val(resp.results[0].id);
-							$j('[id=travel_details-container-readonly__RAND__]').html('<span class="match-text" id="travel_details-match-text">' + resp.results[0].text + '</span>');
-							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=travel_table_view_parent]').hide(); } else { $j('.btn[id=travel_table_view_parent]').show(); }
-
-
-							if(typeof(travel_details_update_autofills__RAND__) == 'function') travel_details_update_autofills__RAND__();
-						}
-					});
-				},
-				width: '100%',
-				formatNoMatches: function(term) { return '<?php echo addslashes($Translation['No matches found!']); ?>'; },
-				minimumResultsForSearch: 5,
-				loadMorePadding: 200,
-				ajax: {
-					url: 'ajax_combo.php',
-					dataType: 'json',
-					cache: true,
-					data: function(term, page) { return { s: term, p: page, t: 'travel_stay_table', f: 'travel_details' }; },
-					results: function(resp, page) { return resp; }
-				},
-				escapeMarkup: function(str) { return str; }
-			}).on('change', function(e) {
-				AppGini.current_travel_details__RAND__.value = e.added.id;
-				AppGini.current_travel_details__RAND__.text = e.added.text;
-				$j('[name="travel_details"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=travel_table_view_parent]').hide(); } else { $j('.btn[id=travel_table_view_parent]').show(); }
-
-
-				if(typeof(travel_details_update_autofills__RAND__) == 'function') travel_details_update_autofills__RAND__();
-			});
-
-			if(!$j("#travel_details-container__RAND__").length) {
-				$j.ajax({
-					url: 'ajax_combo.php',
-					dataType: 'json',
-					data: { id: AppGini.current_travel_details__RAND__.value, t: 'travel_stay_table', f: 'travel_details' },
-					success: function(resp) {
-						$j('[name="travel_details"]').val(resp.results[0].id);
-						$j('[id=travel_details-container-readonly__RAND__]').html('<span class="match-text" id="travel_details-match-text">' + resp.results[0].text + '</span>');
-						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=travel_table_view_parent]').hide(); } else { $j('.btn[id=travel_table_view_parent]').show(); }
-
-						if(typeof(travel_details_update_autofills__RAND__) == 'function') travel_details_update_autofills__RAND__();
-					}
-				});
-			}
-
-		<?php } else { ?>
-
-			$j.ajax({
-				url: 'ajax_combo.php',
-				dataType: 'json',
-				data: { id: AppGini.current_travel_details__RAND__.value, t: 'travel_stay_table', f: 'travel_details' },
-				success: function(resp) {
-					$j('[id=travel_details-container__RAND__], [id=travel_details-container-readonly__RAND__]').html('<span class="match-text" id="travel_details-match-text">' + resp.results[0].text + '</span>');
-					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=travel_table_view_parent]').hide(); } else { $j('.btn[id=travel_table_view_parent]').show(); }
-
-					if(typeof(travel_details_update_autofills__RAND__) == 'function') travel_details_update_autofills__RAND__();
-				}
-			});
-		<?php } ?>
-
-		}
 	</script>
 	<?php
 
@@ -412,14 +366,21 @@ function travel_stay_table_form($selectedId = '', $allowUpdate = true, $allowIns
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
+		$jsReadOnly .= "\t\$j('#first_name').replaceWith('<div class=\"form-control-static\" id=\"first_name\">' + (\$j('#first_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#last_name').replaceWith('<div class=\"form-control-static\" id=\"last_name\">' + (\$j('#last_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#age').replaceWith('<div class=\"form-control-static\" id=\"age\">' + (\$j('#age').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#gender').replaceWith('<div class=\"form-control-static\" id=\"gender\">' + (\$j('#gender').val() || '') + '</div>'); \$j('#gender-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#mobile_number').replaceWith('<div class=\"form-control-static\" id=\"mobile_number\">' + (\$j('#mobile_number').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#hotel_name').replaceWith('<div class=\"form-control-static\" id=\"hotel_name\">' + (\$j('#hotel_name').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#destination_city').replaceWith('<div class=\"form-control-static\" id=\"destination_city\">' + (\$j('#destination_city').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#hotel_address').replaceWith('<div class=\"form-control-static\" id=\"hotel_address\">' + (\$j('#hotel_address').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#checkin_date').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#checkin_dateDay, #checkin_dateMonth, #checkin_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#checkout_date').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#checkout_dateDay, #checkout_dateMonth, #checkout_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#room_preferance').replaceWith('<div class=\"form-control-static\" id=\"room_preferance\">' + (\$j('#room_preferance').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#remarks').replaceWith('<div class=\"form-control-static\" id=\"remarks\">' + (\$j('#remarks').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#approval_status').replaceWith('<div class=\"form-control-static\" id=\"approval_status\">' + (\$j('#approval_status').val() || '') + '</div>'); \$j('#approval_status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#approval_remarks').replaceWith('<div class=\"form-control-static\" id=\"approval_remarks\">' + (\$j('#approval_remarks').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -430,9 +391,8 @@ function travel_stay_table_form($selectedId = '', $allowUpdate = true, $allowIns
 	}
 
 	// process combos
-	$templateCode = str_replace('<%%COMBO(travel_details)%%>', $combo_travel_details->HTML, $templateCode);
-	$templateCode = str_replace('<%%COMBOTEXT(travel_details)%%>', $combo_travel_details->MatchText, $templateCode);
-	$templateCode = str_replace('<%%URLCOMBOTEXT(travel_details)%%>', urlencode($combo_travel_details->MatchText), $templateCode);
+	$templateCode = str_replace('<%%COMBO(gender)%%>', $combo_gender->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(gender)%%>', $combo_gender->SelectedData, $templateCode);
 	$templateCode = str_replace(
 		'<%%COMBO(checkin_date)%%>', 
 		(!$fieldsAreEditable ? 
@@ -447,9 +407,11 @@ function travel_stay_table_form($selectedId = '', $allowUpdate = true, $allowIns
 			$combo_checkout_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(checkout_date)%%>', $combo_checkout_date->GetHTML(true), $templateCode);
+	$templateCode = str_replace('<%%COMBO(approval_status)%%>', $combo_approval_status->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(approval_status)%%>', $combo_approval_status->SelectedData, $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
-	$lookup_fields = ['travel_details' => ['travel_table', 'Travel details'], ];
+	$lookup_fields = [];
 	foreach($lookup_fields as $luf => $ptfc) {
 		$pt_perm = getTablePermissions($ptfc[0]);
 
@@ -466,30 +428,49 @@ function travel_stay_table_form($selectedId = '', $allowUpdate = true, $allowIns
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(travel_details)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(first_name)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_name)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(age)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(gender)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(mobile_number)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(hotel_name)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(destination_city)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(hotel_address)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(checkin_date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(checkout_date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(room_preferance)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(remarks)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approval_status)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approval_remarks)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approved_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_at)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(travel_details)%%>', safe_html($urow['travel_details']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(travel_details)%%>', urlencode($urow['travel_details']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(first_name)%%>', safe_html($urow['first_name']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(first_name)%%>', html_attr($row['first_name']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(first_name)%%>', urlencode($urow['first_name']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(last_name)%%>', safe_html($urow['last_name']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(last_name)%%>', html_attr($row['last_name']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_name)%%>', urlencode($urow['last_name']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(age)%%>', safe_html($urow['age']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(age)%%>', html_attr($row['age']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(age)%%>', urlencode($urow['age']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(gender)%%>', safe_html($urow['gender']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(gender)%%>', html_attr($row['gender']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(gender)%%>', urlencode($urow['gender']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(mobile_number)%%>', safe_html($urow['mobile_number']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(mobile_number)%%>', html_attr($row['mobile_number']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(mobile_number)%%>', urlencode($urow['mobile_number']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(hotel_name)%%>', safe_html($urow['hotel_name']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(hotel_name)%%>', html_attr($row['hotel_name']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(hotel_name)%%>', urlencode($urow['hotel_name']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(destination_city)%%>', safe_html($urow['destination_city']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(destination_city)%%>', html_attr($row['destination_city']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(destination_city)%%>', urlencode($urow['destination_city']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(hotel_address)%%>', safe_html($urow['hotel_address']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(hotel_address)%%>', html_attr($row['hotel_address']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(hotel_address)%%>', urlencode($urow['hotel_address']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(checkin_date)%%>', app_datetime($row['checkin_date']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(checkin_date)%%>', urlencode(app_datetime($urow['checkin_date'])), $templateCode);
 		$templateCode = str_replace('<%%VALUE(checkout_date)%%>', app_datetime($row['checkout_date']), $templateCode);
@@ -499,23 +480,36 @@ function travel_stay_table_form($selectedId = '', $allowUpdate = true, $allowIns
 		$templateCode = str_replace('<%%URLVALUE(room_preferance)%%>', urlencode($urow['room_preferance']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(remarks)%%>', safe_html($urow['remarks'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(remarks)%%>', urlencode($urow['remarks']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', safe_html($urow['approval_status']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', html_attr($row['approval_status']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode($urow['approval_status']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', safe_html($urow['approval_remarks'], $fieldsAreEditable), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_remarks)%%>', urlencode($urow['approval_remarks']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approved_by)%%>', safe_html($urow['approved_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode($urow['approved_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode($urow['created_at']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(travel_details)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(travel_details)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(first_name)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(first_name)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_name)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_name)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(age)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(age)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(gender)%%>', 'Male', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(gender)%%>', urlencode('Male'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(mobile_number)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(mobile_number)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(hotel_name)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(hotel_name)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(destination_city)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(destination_city)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(hotel_address)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(hotel_address)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(checkin_date)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(checkin_date)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(checkout_date)%%>', '', $templateCode);
@@ -524,12 +518,16 @@ function travel_stay_table_form($selectedId = '', $allowUpdate = true, $allowIns
 		$templateCode = str_replace('<%%URLVALUE(room_preferance)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(remarks)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(remarks)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_status)%%>', 'Under Consideration', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode('Under Consideration'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_remarks)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approved_by)%%>', '<%%editorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode('<%%creationDateTime%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', '<%%editingDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode('<%%editingDateTime%%>'), $templateCode);
 	}
@@ -572,8 +570,6 @@ function travel_stay_table_form($selectedId = '', $allowUpdate = true, $allowIns
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
-	if(isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>')
-		$templateCode.="\n<input type=hidden name=travel_details value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery
 	$templateCode = preg_replace('/blank.gif" data-lightbox=".*?"/', 'blank.gif"', $templateCode);

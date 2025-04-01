@@ -19,16 +19,22 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`travel_stay_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`travel_table1`.`first_name`) || CHAR_LENGTH(`travel_table1`.`travel_description`), CONCAT_WS('',   `travel_table1`.`first_name`, '::', `travel_table1`.`travel_description`), '') /* Travel details */" => "travel_details",
+		"`travel_stay_table`.`first_name`" => "first_name",
+		"`travel_stay_table`.`last_name`" => "last_name",
+		"`travel_stay_table`.`age`" => "age",
+		"`travel_stay_table`.`gender`" => "gender",
+		"`travel_stay_table`.`mobile_number`" => "mobile_number",
 		"`travel_stay_table`.`hotel_name`" => "hotel_name",
-		"`travel_stay_table`.`destination_city`" => "destination_city",
+		"`travel_stay_table`.`hotel_address`" => "hotel_address",
 		"if(`travel_stay_table`.`checkin_date`,date_format(`travel_stay_table`.`checkin_date`,'%d/%m/%Y'),'')" => "checkin_date",
 		"if(`travel_stay_table`.`checkout_date`,date_format(`travel_stay_table`.`checkout_date`,'%d/%m/%Y'),'')" => "checkout_date",
 		"`travel_stay_table`.`room_preferance`" => "room_preferance",
 		"`travel_stay_table`.`remarks`" => "remarks",
+		"`travel_stay_table`.`approval_status`" => "approval_status",
+		"`travel_stay_table`.`approval_remarks`" => "approval_remarks",
+		"`travel_stay_table`.`approved_by`" => "approved_by",
 		"`travel_stay_table`.`created_by`" => "created_by",
 		"`travel_stay_table`.`created_at`" => "created_at",
-		"`travel_stay_table`.`last_updated_by`" => "last_updated_by",
 		"`travel_stay_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// mapping incoming sort by requests to actual query fields
@@ -37,67 +43,91 @@
 		2 => 2,
 		3 => 3,
 		4 => 4,
-		5 => '`travel_stay_table`.`checkin_date`',
-		6 => '`travel_stay_table`.`checkout_date`',
+		5 => 5,
+		6 => 6,
 		7 => 7,
 		8 => 8,
-		9 => 9,
-		10 => 10,
+		9 => '`travel_stay_table`.`checkin_date`',
+		10 => '`travel_stay_table`.`checkout_date`',
 		11 => 11,
 		12 => 12,
+		13 => 13,
+		14 => 14,
+		15 => 15,
+		16 => 16,
+		17 => 17,
+		18 => 18,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`travel_stay_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`travel_table1`.`first_name`) || CHAR_LENGTH(`travel_table1`.`travel_description`), CONCAT_WS('',   `travel_table1`.`first_name`, '::', `travel_table1`.`travel_description`), '') /* Travel details */" => "travel_details",
+		"`travel_stay_table`.`first_name`" => "first_name",
+		"`travel_stay_table`.`last_name`" => "last_name",
+		"`travel_stay_table`.`age`" => "age",
+		"`travel_stay_table`.`gender`" => "gender",
+		"`travel_stay_table`.`mobile_number`" => "mobile_number",
 		"`travel_stay_table`.`hotel_name`" => "hotel_name",
-		"`travel_stay_table`.`destination_city`" => "destination_city",
+		"`travel_stay_table`.`hotel_address`" => "hotel_address",
 		"if(`travel_stay_table`.`checkin_date`,date_format(`travel_stay_table`.`checkin_date`,'%d/%m/%Y'),'')" => "checkin_date",
 		"if(`travel_stay_table`.`checkout_date`,date_format(`travel_stay_table`.`checkout_date`,'%d/%m/%Y'),'')" => "checkout_date",
 		"`travel_stay_table`.`room_preferance`" => "room_preferance",
 		"`travel_stay_table`.`remarks`" => "remarks",
+		"`travel_stay_table`.`approval_status`" => "approval_status",
+		"`travel_stay_table`.`approval_remarks`" => "approval_remarks",
+		"`travel_stay_table`.`approved_by`" => "approved_by",
 		"`travel_stay_table`.`created_by`" => "created_by",
 		"`travel_stay_table`.`created_at`" => "created_at",
-		"`travel_stay_table`.`last_updated_by`" => "last_updated_by",
 		"`travel_stay_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`travel_stay_table`.`id`" => "ID",
-		"IF(    CHAR_LENGTH(`travel_table1`.`first_name`) || CHAR_LENGTH(`travel_table1`.`travel_description`), CONCAT_WS('',   `travel_table1`.`first_name`, '::', `travel_table1`.`travel_description`), '') /* Travel details */" => "Travel details",
+		"`travel_stay_table`.`first_name`" => "First name",
+		"`travel_stay_table`.`last_name`" => "Last name",
+		"`travel_stay_table`.`age`" => "Age",
+		"`travel_stay_table`.`gender`" => "Gender",
+		"`travel_stay_table`.`mobile_number`" => "Mobile number",
 		"`travel_stay_table`.`hotel_name`" => "Hotel name",
-		"`travel_stay_table`.`destination_city`" => "Destination city",
+		"`travel_stay_table`.`hotel_address`" => "Hotel address",
 		"`travel_stay_table`.`checkin_date`" => "Checkin date",
 		"`travel_stay_table`.`checkout_date`" => "Checkout date",
 		"`travel_stay_table`.`room_preferance`" => "Room preferance",
 		"`travel_stay_table`.`remarks`" => "Remarks",
+		"`travel_stay_table`.`approval_status`" => "Approval Status",
+		"`travel_stay_table`.`approval_remarks`" => "Approval remarks",
+		"`travel_stay_table`.`approved_by`" => "Approved By",
 		"`travel_stay_table`.`created_by`" => "Created by",
 		"`travel_stay_table`.`created_at`" => "Created at",
-		"`travel_stay_table`.`last_updated_by`" => "Last updated by",
 		"`travel_stay_table`.`last_updated_at`" => "Last updated at",
 	];
 
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`travel_stay_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`travel_table1`.`first_name`) || CHAR_LENGTH(`travel_table1`.`travel_description`), CONCAT_WS('',   `travel_table1`.`first_name`, '::', `travel_table1`.`travel_description`), '') /* Travel details */" => "travel_details",
+		"`travel_stay_table`.`first_name`" => "first_name",
+		"`travel_stay_table`.`last_name`" => "last_name",
+		"`travel_stay_table`.`age`" => "age",
+		"`travel_stay_table`.`gender`" => "gender",
+		"`travel_stay_table`.`mobile_number`" => "mobile_number",
 		"`travel_stay_table`.`hotel_name`" => "hotel_name",
-		"`travel_stay_table`.`destination_city`" => "destination_city",
+		"`travel_stay_table`.`hotel_address`" => "hotel_address",
 		"if(`travel_stay_table`.`checkin_date`,date_format(`travel_stay_table`.`checkin_date`,'%d/%m/%Y'),'')" => "checkin_date",
 		"if(`travel_stay_table`.`checkout_date`,date_format(`travel_stay_table`.`checkout_date`,'%d/%m/%Y'),'')" => "checkout_date",
 		"`travel_stay_table`.`room_preferance`" => "room_preferance",
 		"`travel_stay_table`.`remarks`" => "remarks",
+		"`travel_stay_table`.`approval_status`" => "approval_status",
+		"`travel_stay_table`.`approval_remarks`" => "approval_remarks",
+		"`travel_stay_table`.`approved_by`" => "approved_by",
 		"`travel_stay_table`.`created_by`" => "created_by",
 		"`travel_stay_table`.`created_at`" => "created_at",
-		"`travel_stay_table`.`last_updated_by`" => "last_updated_by",
 		"`travel_stay_table`.`last_updated_at`" => "last_updated_at",
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['travel_details' => 'Travel details', ];
+	$x->filterers = [];
 
-	$x->QueryFrom = "`travel_stay_table` LEFT JOIN `travel_table` as travel_table1 ON `travel_table1`.`id`=`travel_stay_table`.`travel_details` ";
+	$x->QueryFrom = "`travel_stay_table` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -121,16 +151,16 @@
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'travel_stay_table_view.php';
-	$x->TableTitle = 'Travel Stay details - App';
+	$x->TableTitle = 'Stay Details - App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`travel_stay_table`.`id`';
-	$x->DefaultSortField = '12';
+	$x->DefaultSortField = '11';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Travel details', 'Hotel name', 'Destination city', 'Checkin date', 'Checkout date', 'Room preferance', 'Remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'travel_details', 'hotel_name', 'destination_city', 'checkin_date', 'checkout_date', 'room_preferance', 'remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'First name', 'Last name', 'Age', 'Gender', 'Mobile number', 'Hotel name', 'Hotel address', 'Checkin date', 'Checkout date', 'Room preferance', 'Remarks', 'Approval Status', 'Approval remarks', 'Approved By', 'Created by', 'Created at', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'first_name', 'last_name', 'age', 'gender', 'mobile_number', 'hotel_name', 'hotel_address', 'checkin_date', 'checkout_date', 'room_preferance', 'remarks', 'approval_status', 'approval_remarks', 'approved_by', 'created_by', 'created_at', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/travel_stay_table_templateTV.html';

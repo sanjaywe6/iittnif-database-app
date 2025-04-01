@@ -25,15 +25,17 @@
 		"`travel_table`.`gender`" => "gender",
 		"`travel_table`.`mobile_number`" => "mobile_number",
 		"`travel_table`.`travel_type`" => "travel_type",
+		"`travel_table`.`from_place`" => "from_place",
+		"`travel_table`.`to_place`" => "to_place",
 		"if(`travel_table`.`date_from`,date_format(`travel_table`.`date_from`,'%d/%m/%Y'),'')" => "date_from",
 		"if(`travel_table`.`date_to`,date_format(`travel_table`.`date_to`,'%d/%m/%Y'),'')" => "date_to",
 		"`travel_table`.`travel_description`" => "travel_description",
-		"`travel_table`.`remarks`" => "remarks",
 		"`travel_table`.`approval_status`" => "approval_status",
+		"`travel_table`.`approval_remarks`" => "approval_remarks",
 		"`travel_table`.`created_by`" => "created_by",
+		"`travel_table`.`approved_by`" => "approved_by",
 		"`travel_table`.`created_at`" => "created_at",
-		"`travel_table`.`approved_by`" => "approved_by",
-		"`travel_table`.`approved_by`" => "approved_by",
+		"`travel_table`.`approved_at`" => "approved_at",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -44,15 +46,17 @@
 		5 => 5,
 		6 => 6,
 		7 => 7,
-		8 => '`travel_table`.`date_from`',
-		9 => '`travel_table`.`date_to`',
-		10 => 10,
-		11 => 11,
+		8 => 8,
+		9 => 9,
+		10 => '`travel_table`.`date_from`',
+		11 => '`travel_table`.`date_to`',
 		12 => 12,
 		13 => 13,
 		14 => 14,
 		15 => 15,
 		16 => 16,
+		17 => 17,
+		18 => 18,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -64,15 +68,17 @@
 		"`travel_table`.`gender`" => "gender",
 		"`travel_table`.`mobile_number`" => "mobile_number",
 		"`travel_table`.`travel_type`" => "travel_type",
+		"`travel_table`.`from_place`" => "from_place",
+		"`travel_table`.`to_place`" => "to_place",
 		"if(`travel_table`.`date_from`,date_format(`travel_table`.`date_from`,'%d/%m/%Y'),'')" => "date_from",
 		"if(`travel_table`.`date_to`,date_format(`travel_table`.`date_to`,'%d/%m/%Y'),'')" => "date_to",
 		"`travel_table`.`travel_description`" => "travel_description",
-		"`travel_table`.`remarks`" => "remarks",
 		"`travel_table`.`approval_status`" => "approval_status",
+		"`travel_table`.`approval_remarks`" => "approval_remarks",
 		"`travel_table`.`created_by`" => "created_by",
+		"`travel_table`.`approved_by`" => "approved_by",
 		"`travel_table`.`created_at`" => "created_at",
-		"`travel_table`.`approved_by`" => "approved_by",
-		"`travel_table`.`approved_by`" => "approved_by",
+		"`travel_table`.`approved_at`" => "approved_at",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -83,15 +89,17 @@
 		"`travel_table`.`gender`" => "Gender",
 		"`travel_table`.`mobile_number`" => "Mobile number",
 		"`travel_table`.`travel_type`" => "Travel type",
+		"`travel_table`.`from_place`" => "From Place",
+		"`travel_table`.`to_place`" => "To Place",
 		"`travel_table`.`date_from`" => "Date from",
 		"`travel_table`.`date_to`" => "Date to",
 		"`travel_table`.`travel_description`" => "Travel description",
-		"`travel_table`.`remarks`" => "Remarks",
 		"`travel_table`.`approval_status`" => "Approval Status",
+		"`travel_table`.`approval_remarks`" => "Approval remarks",
 		"`travel_table`.`created_by`" => "Created by",
+		"`travel_table`.`approved_by`" => "Approved by",
 		"`travel_table`.`created_at`" => "Created at",
-		"`travel_table`.`approved_by`" => "Approved by",
-		"`travel_table`.`approved_by`" => "Approved by",
+		"`travel_table`.`approved_at`" => "Approved at",
 	];
 
 	// Fields that can be quick searched
@@ -103,15 +111,17 @@
 		"`travel_table`.`gender`" => "gender",
 		"`travel_table`.`mobile_number`" => "mobile_number",
 		"`travel_table`.`travel_type`" => "travel_type",
+		"`travel_table`.`from_place`" => "from_place",
+		"`travel_table`.`to_place`" => "to_place",
 		"if(`travel_table`.`date_from`,date_format(`travel_table`.`date_from`,'%d/%m/%Y'),'')" => "date_from",
 		"if(`travel_table`.`date_to`,date_format(`travel_table`.`date_to`,'%d/%m/%Y'),'')" => "date_to",
 		"`travel_table`.`travel_description`" => "travel_description",
-		"`travel_table`.`remarks`" => "remarks",
 		"`travel_table`.`approval_status`" => "approval_status",
+		"`travel_table`.`approval_remarks`" => "approval_remarks",
 		"`travel_table`.`created_by`" => "created_by",
+		"`travel_table`.`approved_by`" => "approved_by",
 		"`travel_table`.`created_at`" => "created_at",
-		"`travel_table`.`approved_by`" => "approved_by",
-		"`travel_table`.`approved_by`" => "approved_by",
+		"`travel_table`.`approved_at`" => "approved_at",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -147,10 +157,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'First name', 'Last name', 'Age', 'Gender', 'Mobile number', 'Travel type', 'Date from', 'Date to', 'Travel description', 'Remarks', 'Approval Status', 'Created by', 'Created at', 'Approved by', 'Approved by', ];
-	$x->ColFieldName = ['id', 'first_name', 'last_name', 'age', 'gender', 'mobile_number', 'travel_type', 'date_from', 'date_to', 'travel_description', 'remarks', 'approval_status', 'created_by', 'created_at', 'approved_by', 'approved_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'First name', 'Last name', 'Age', 'Gender', 'Mobile number', 'Travel type', 'From Place', 'To Place', 'Date from', 'Date to', 'Travel description', 'Approval Status', 'Approval remarks', 'Created by', 'Approved by', 'Created at', 'Approved at', ];
+	$x->ColFieldName = ['id', 'first_name', 'last_name', 'age', 'gender', 'mobile_number', 'travel_type', 'from_place', 'to_place', 'date_from', 'date_to', 'travel_description', 'approval_status', 'approval_remarks', 'created_by', 'approved_by', 'created_at', 'approved_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/travel_table_templateTV.html';

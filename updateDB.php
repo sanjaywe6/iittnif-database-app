@@ -157,6 +157,15 @@
 
 		setupTable('payment_track_details_table', []);
 
+		setupTable('travel_table', []);
+
+		setupTable('travel_stay_table', []);
+
+		setupTable('travel_local_commute_table', [
+				"ALTER TABLE `travel_local_commute_table` CHANGE `comments` `comments` TEXT NULL ",
+				"ALTER TABLE `travel_local_commute_table` CHANGE `travel_description` `description` TEXT NULL ",
+			]);
+
 		setupTable('car_table', []);
 
 		setupTable('car_usage_table', []);
@@ -167,23 +176,6 @@
 
 		setupTable('cycle_usage_table', []);
 		setupIndexes('cycle_usage_table', ['cycle_lookup',]);
-
-		setupTable('travel_table', [
-				"ALTER TABLE travel_table ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `travel_table` CHANGE `field1` `travel_type` VARCHAR(255) NULL ",
-				"ALTER TABLE `travel_table` DROP `approved_by`",
-				"ALTER TABLE `travel_table` CHANGE `last_updated_by` `approved_by` VARCHAR(255) NULL ",
-				"ALTER TABLE `travel_table` ADD `approval_status` VARCHAR(255) NULL DEFAULT 'Under Consideration' ",
-			]);
-
-		setupTable('travel_cab_table', []);
-		setupIndexes('travel_cab_table', ['travel_details',]);
-
-		setupTable('travel_flight_table', []);
-		setupIndexes('travel_flight_table', ['travel_details',]);
-
-		setupTable('travel_stay_table', []);
-		setupIndexes('travel_stay_table', ['travel_details',]);
 
 		setupTable('operation_dronagiri_data_submission_app', []);
 

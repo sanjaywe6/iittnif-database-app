@@ -507,6 +507,27 @@
 					'group' => $tg[8],
 					'homepageShowCount' => 1
 				],
+				'travel_table' => [
+					'Caption' => 'Travel - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[9],
+					'homepageShowCount' => 1
+				],
+				'travel_stay_table' => [
+					'Caption' => 'Stay Details - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[9],
+					'homepageShowCount' => 1
+				],
+				'travel_local_commute_table' => [
+					'Caption' => 'Local Commute - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[9],
+					'homepageShowCount' => 1
+				],
 				'car_table' => [
 					'Caption' => 'Car - App',
 					'Description' => '<a href="https://lookerstudio.google.com/reporting/58f87367-3f09-42c0-a288-cf75f313cbed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Car App Report</b></button></a>',
@@ -530,34 +551,6 @@
 				],
 				'cycle_usage_table' => [
 					'Caption' => 'Cycle usage table',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[9],
-					'homepageShowCount' => 1
-				],
-				'travel_table' => [
-					'Caption' => 'Travel - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[9],
-					'homepageShowCount' => 1
-				],
-				'travel_cab_table' => [
-					'Caption' => 'Travel cab details - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[9],
-					'homepageShowCount' => 1
-				],
-				'travel_flight_table' => [
-					'Caption' => 'Travel flight table',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[9],
-					'homepageShowCount' => 1
-				],
-				'travel_stay_table' => [
-					'Caption' => 'Travel Stay details - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[9],
@@ -719,14 +712,13 @@
 			'honorarium_claim_table' => ['Honorarium - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'all_bank_account_statement_table' => ['All bank account statement - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'payment_track_details_table' => ['Payment track details - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
+			'travel_table' => ['Travel - App', '', 'table.gif', 'Transport Apps'],
+			'travel_stay_table' => ['Stay Details - App', '', 'table.gif', 'Transport Apps'],
+			'travel_local_commute_table' => ['Local Commute - App', '', 'table.gif', 'Transport Apps'],
 			'car_table' => ['Car - App', '<a href="https://lookerstudio.google.com/reporting/58f87367-3f09-42c0-a288-cf75f313cbed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Car App Report</b></button></a>', 'table.gif', 'Transport Apps'],
 			'car_usage_table' => ['Car usage table', '', 'table.gif', 'Transport Apps'],
 			'cycle_table' => ['Cycle - App', '', 'table.gif', 'Transport Apps'],
 			'cycle_usage_table' => ['Cycle usage table', '', 'table.gif', 'Transport Apps'],
-			'travel_table' => ['Travel - App', '', 'table.gif', 'Transport Apps'],
-			'travel_cab_table' => ['Travel cab details - App', '', 'table.gif', 'Transport Apps'],
-			'travel_flight_table' => ['Travel flight table', '', 'table.gif', 'Transport Apps'],
-			'travel_stay_table' => ['Travel Stay details - App', '', 'table.gif', 'Transport Apps'],
 			'operation_dronagiri_data_submission_app' => ['Operation dronagiri data submission - App', '', 'resources/table_icons/data_table.png', 'Suggestions &amp; Other Apps'],
 			'file_table' => ['File table', '', 'table.gif', 'Suggestions &amp; Other Apps'],
 			'panel_decision_table_tdp' => ['Panel Decision App', '', 'table.gif', 'Technology Development Apps'],
@@ -7122,6 +7114,376 @@
 						],
 					],
 				],
+				'travel_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'first_name' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'First name',
+							'description' => '',
+						],
+					],
+					'last_name' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last name',
+							'description' => '',
+						],
+					],
+					'age' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Male'",
+						'info' => [
+							'caption' => 'Age',
+							'description' => '',
+						],
+					],
+					'gender' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Gender',
+							'description' => '',
+						],
+					],
+					'mobile_number' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Mobile number',
+							'description' => '',
+						],
+					],
+					'travel_type' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Travel type',
+							'description' => '',
+						],
+					],
+					'from_place' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'From Place',
+							'description' => '',
+						],
+					],
+					'to_place' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'To Place',
+							'description' => '',
+						],
+					],
+					'date_from' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Date from',
+							'description' => '',
+						],
+					],
+					'date_to' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Date to',
+							'description' => '',
+						],
+					],
+					'travel_description' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Travel description',
+							'description' => '',
+						],
+					],
+					'approval_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Under Consideration'",
+						'info' => [
+							'caption' => 'Approval Status',
+							'description' => '',
+						],
+					],
+					'approval_remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Approval remarks',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'approved_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Approved by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'approved_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Approved at',
+							'description' => '',
+						],
+					],
+				],
+				'travel_stay_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'first_name' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'First name',
+							'description' => '',
+						],
+					],
+					'last_name' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last name',
+							'description' => '',
+						],
+					],
+					'age' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Age',
+							'description' => '',
+						],
+					],
+					'gender' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Male'",
+						'info' => [
+							'caption' => 'Gender',
+							'description' => '',
+						],
+					],
+					'mobile_number' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Mobile number',
+							'description' => '',
+						],
+					],
+					'hotel_name' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Hotel name',
+							'description' => '',
+						],
+					],
+					'hotel_address' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Hotel address',
+							'description' => '',
+						],
+					],
+					'checkin_date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Checkin date',
+							'description' => '',
+						],
+					],
+					'checkout_date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Checkout date',
+							'description' => '',
+						],
+					],
+					'room_preferance' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Room preferance',
+							'description' => '',
+						],
+					],
+					'remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Remarks',
+							'description' => '',
+						],
+					],
+					'approval_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Under Consideration'",
+						'info' => [
+							'caption' => 'Approval Status',
+							'description' => '',
+						],
+					],
+					'approval_remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Approval remarks',
+							'description' => '',
+						],
+					],
+					'approved_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Approved By',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
+				'travel_local_commute_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'first_name' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'First name',
+							'description' => '',
+						],
+					],
+					'last_name' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last name',
+							'description' => '',
+						],
+					],
+					'age' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Age',
+							'description' => '',
+						],
+					],
+					'gender' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Male'",
+						'info' => [
+							'caption' => 'Gender',
+							'description' => '',
+						],
+					],
+					'mobile_number' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Mobile number',
+							'description' => '',
+						],
+					],
+					'local_commute_type' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Cab'",
+						'info' => [
+							'caption' => 'Local Commute Type',
+							'description' => '',
+						],
+					],
+					'from_place' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'From Place',
+							'description' => '',
+						],
+					],
+					'to_place' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'To Place',
+							'description' => '',
+						],
+					],
+					'description' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Description',
+							'description' => '',
+						],
+					],
+					'approval_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Under Consideration'",
+						'info' => [
+							'caption' => 'Approval Status',
+							'description' => '',
+						],
+					],
+					'approval_remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Approval remarks',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'approved_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Approved by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'approved_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Approved at',
+							'description' => '',
+						],
+					],
+				],
 				'car_table' => [
 					'id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
@@ -7448,413 +7810,6 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Total distance run (In KM)',
-							'description' => '',
-						],
-					],
-					'created_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created by',
-							'description' => '',
-						],
-					],
-					'created_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created at',
-							'description' => '',
-						],
-					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated by',
-							'description' => '',
-						],
-					],
-					'last_updated_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated at',
-							'description' => '',
-						],
-					],
-				],
-				'travel_table' => [
-					'id' => [
-						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
-						'info' => [
-							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'first_name' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'First name',
-							'description' => '',
-						],
-					],
-					'last_name' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last name',
-							'description' => '',
-						],
-					],
-					'age' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Age',
-							'description' => '',
-						],
-					],
-					'gender' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Gender',
-							'description' => '',
-						],
-					],
-					'mobile_number' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Mobile number',
-							'description' => '',
-						],
-					],
-					'travel_type' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Travel type',
-							'description' => '',
-						],
-					],
-					'date_from' => [
-						'appgini' => "DATE NULL",
-						'info' => [
-							'caption' => 'Date from',
-							'description' => '',
-						],
-					],
-					'date_to' => [
-						'appgini' => "DATE NULL",
-						'info' => [
-							'caption' => 'Date to',
-							'description' => '',
-						],
-					],
-					'travel_description' => [
-						'appgini' => "TEXT NULL",
-						'info' => [
-							'caption' => 'Travel description',
-							'description' => '',
-						],
-					],
-					'remarks' => [
-						'appgini' => "TEXT NULL",
-						'info' => [
-							'caption' => 'Remarks',
-							'description' => '',
-						],
-					],
-					'approval_status' => [
-						'appgini' => "VARCHAR(255) NULL DEFAULT 'Under Consideration'",
-						'info' => [
-							'caption' => 'Approval Status',
-							'description' => '',
-						],
-					],
-					'created_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created by',
-							'description' => '',
-						],
-					],
-					'created_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created at',
-							'description' => '',
-						],
-					],
-					'approved_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Approved by',
-							'description' => '',
-						],
-					],
-					'approved_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Approved by',
-							'description' => '',
-						],
-					],
-				],
-				'travel_cab_table' => [
-					'id' => [
-						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
-						'info' => [
-							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'travel_details' => [
-						'appgini' => "INT(10) UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Travel details',
-							'description' => '',
-						],
-					],
-					'date' => [
-						'appgini' => "DATE NULL",
-						'info' => [
-							'caption' => 'Date',
-							'description' => '',
-						],
-					],
-					'from' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'From',
-							'description' => '',
-						],
-					],
-					'to' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'To',
-							'description' => '',
-						],
-					],
-					'vendor_name' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Vendor name',
-							'description' => '',
-						],
-					],
-					'vendor_contact_number' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Vendor contact number',
-							'description' => '',
-						],
-					],
-					'driver_contact_number' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Driver contact number',
-							'description' => '',
-						],
-					],
-					'driver_name' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Driver name',
-							'description' => '',
-						],
-					],
-					'payment_status' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Payment status',
-							'description' => '',
-						],
-					],
-					'remarks' => [
-						'appgini' => "TEXT NULL",
-						'info' => [
-							'caption' => 'Remarks',
-							'description' => '',
-						],
-					],
-					'created_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created by',
-							'description' => '',
-						],
-					],
-					'created_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created at',
-							'description' => '',
-						],
-					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated by',
-							'description' => '',
-						],
-					],
-					'last_updated_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated at',
-							'description' => '',
-						],
-					],
-				],
-				'travel_flight_table' => [
-					'id' => [
-						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
-						'info' => [
-							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'travel_details' => [
-						'appgini' => "INT(10) UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Travel details',
-							'description' => '',
-						],
-					],
-					'flight_number' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Flight number',
-							'description' => '',
-						],
-					],
-					'travel_date' => [
-						'appgini' => "DATE NULL",
-						'info' => [
-							'caption' => 'Travel date',
-							'description' => '',
-						],
-					],
-					'flight_time' => [
-						'appgini' => "TIME NULL",
-						'info' => [
-							'caption' => 'Flight time',
-							'description' => '',
-						],
-					],
-					'from' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'From',
-							'description' => '',
-						],
-					],
-					'to' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'To',
-							'description' => '',
-						],
-					],
-					'seat_preferance' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Seat preferance',
-							'description' => '',
-						],
-					],
-					'status' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Status',
-							'description' => '',
-						],
-					],
-					'remarks' => [
-						'appgini' => "TEXT NULL",
-						'info' => [
-							'caption' => 'Remarks',
-							'description' => '',
-						],
-					],
-					'created_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created by',
-							'description' => '',
-						],
-					],
-					'created_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created at',
-							'description' => '',
-						],
-					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated by',
-							'description' => '',
-						],
-					],
-					'last_updated_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated at',
-							'description' => '',
-						],
-					],
-				],
-				'travel_stay_table' => [
-					'id' => [
-						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
-						'info' => [
-							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'travel_details' => [
-						'appgini' => "INT(10) UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Travel details',
-							'description' => '',
-						],
-					],
-					'hotel_name' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Hotel name',
-							'description' => '',
-						],
-					],
-					'destination_city' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Destination city',
-							'description' => '',
-						],
-					],
-					'checkin_date' => [
-						'appgini' => "DATE NULL",
-						'info' => [
-							'caption' => 'Checkin date',
-							'description' => '',
-						],
-					],
-					'checkout_date' => [
-						'appgini' => "DATE NULL",
-						'info' => [
-							'caption' => 'Checkout date',
-							'description' => '',
-						],
-					],
-					'room_preferance' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Room preferance',
-							'description' => '',
-						],
-					],
-					'remarks' => [
-						'appgini' => "TEXT NULL",
-						'info' => [
-							'caption' => 'Remarks',
 							'description' => '',
 						],
 					],
@@ -10567,15 +10522,6 @@
 			'cycle_usage_table' => [
 				'cycle_table' => ['cycle_lookup'],
 			],
-			'travel_cab_table' => [
-				'travel_table' => ['travel_details'],
-			],
-			'travel_flight_table' => [
-				'travel_table' => ['travel_details'],
-			],
-			'travel_stay_table' => [
-				'travel_table' => ['travel_details'],
-			],
 			'file_table' => [
 				'operation_dronagiri_data_submission_app' => ['data_str_key'],
 			],
@@ -10689,14 +10635,13 @@
 			'honorarium_claim_table' => [],
 			'all_bank_account_statement_table' => [],
 			'payment_track_details_table' => [],
+			'travel_table' => [],
+			'travel_stay_table' => [],
+			'travel_local_commute_table' => [],
 			'car_table' => [],
 			'car_usage_table' => [],
 			'cycle_table' => [],
 			'cycle_usage_table' => [],
-			'travel_table' => [],
-			'travel_cab_table' => [],
-			'travel_flight_table' => [],
-			'travel_stay_table' => [],
 			'operation_dronagiri_data_submission_app' => [],
 			'file_table' => [],
 			'panel_decision_table_tdp' => [],
@@ -10938,7 +10883,7 @@
 				'reviewing_officer' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'employees_appraisal_table' => [
-				'employee_lookup' => 'SELECT `personal_data_table`.`personal_data_id`, IF(CHAR_LENGTH(`personal_data_table`.`emp_id`) || CHAR_LENGTH(`personal_data_table`.`name`), CONCAT_WS(\'\', `personal_data_table`.`emp_id`, \'::\', `personal_data_table`.`name`, \'::\', `personal_data_table`.`date_of_joining`, \'::\', `personal_data_table`.`department`), \'\') FROM `personal_data_table` ORDER BY 2',
+				'employee_lookup' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \'::\', `employees_personal_data_table`.`name`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
 				'employee_designation_reporting_lookup' => 'SELECT `employees_designation_table`.`id`, IF(CHAR_LENGTH(`employees_designation_table`.`designation`) || CHAR_LENGTH(`employees_designation_table`.`reporting_officer`), CONCAT_WS(\'\', `employees_designation_table`.`designation`, \'::\', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS(\'\',   `user_table1`.`memberID`, \'::\', `user_table1`.`name`), \'\')), \'\') FROM `employees_designation_table` LEFT JOIN `personal_data_table` as personal_data_table1 ON `personal_data_table1`.`personal_data_id`=`employees_designation_table`.`employee_details` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employees_designation_table`.`reviewing_officer` ORDER BY 2',
 			],
 			'employees_appraisal_feedback_table' => [
@@ -10999,6 +10944,12 @@
 			],
 			'payment_track_details_table' => [
 			],
+			'travel_table' => [
+			],
+			'travel_stay_table' => [
+			],
+			'travel_local_commute_table' => [
+			],
 			'car_table' => [
 			],
 			'car_usage_table' => [
@@ -11009,17 +10960,6 @@
 			],
 			'cycle_usage_table' => [
 				'cycle_lookup' => 'SELECT `cycle_table`.`id`, IF(CHAR_LENGTH(`cycle_table`.`registration_number`) || CHAR_LENGTH(`cycle_table`.`cycle_model`), CONCAT_WS(\'\', `cycle_table`.`registration_number`, \'::\', `cycle_table`.`cycle_model`), \'\') FROM `cycle_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`cycle_table`.`responsible_contact_person` ORDER BY 2',
-			],
-			'travel_table' => [
-			],
-			'travel_cab_table' => [
-				'travel_details' => 'SELECT `travel_table`.`id`, IF(CHAR_LENGTH(`travel_table`.`first_name`) || CHAR_LENGTH(`travel_table`.`travel_description`), CONCAT_WS(\'\', `travel_table`.`first_name`, \'::\', `travel_table`.`travel_description`), \'\') FROM `travel_table` ORDER BY 2',
-			],
-			'travel_flight_table' => [
-				'travel_details' => 'SELECT `travel_table`.`id`, IF(CHAR_LENGTH(`travel_table`.`first_name`) || CHAR_LENGTH(`travel_table`.`travel_description`), CONCAT_WS(\'\', `travel_table`.`first_name`, \'::\', `travel_table`.`travel_description`), \'\') FROM `travel_table` ORDER BY 2',
-			],
-			'travel_stay_table' => [
-				'travel_details' => 'SELECT `travel_table`.`id`, IF(CHAR_LENGTH(`travel_table`.`first_name`) || CHAR_LENGTH(`travel_table`.`travel_description`), CONCAT_WS(\'\', `travel_table`.`first_name`, \'::\', `travel_table`.`travel_description`), \'\') FROM `travel_table` ORDER BY 2',
 			],
 			'operation_dronagiri_data_submission_app' => [
 			],

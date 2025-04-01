@@ -344,6 +344,22 @@
 
 			return $data;
 		},
+		'travel_table' => function($data, $options = []) {
+			if(isset($data['date_from'])) $data['date_from'] = guessMySQLDateTime($data['date_from']);
+			if(isset($data['date_to'])) $data['date_to'] = guessMySQLDateTime($data['date_to']);
+
+			return $data;
+		},
+		'travel_stay_table' => function($data, $options = []) {
+			if(isset($data['checkin_date'])) $data['checkin_date'] = guessMySQLDateTime($data['checkin_date']);
+			if(isset($data['checkout_date'])) $data['checkout_date'] = guessMySQLDateTime($data['checkout_date']);
+
+			return $data;
+		},
+		'travel_local_commute_table' => function($data, $options = []) {
+
+			return $data;
+		},
 		'car_table' => function($data, $options = []) {
 			if(isset($data['rental_start_date'])) $data['rental_start_date'] = guessMySQLDateTime($data['rental_start_date']);
 			if(isset($data['rental_end_date'])) $data['rental_end_date'] = guessMySQLDateTime($data['rental_end_date']);
@@ -366,31 +382,6 @@
 			if(isset($data['cycle_lookup'])) $data['cycle_lookup'] = pkGivenLookupText($data['cycle_lookup'], 'cycle_usage_table', 'cycle_lookup');
 			if(isset($data['datetime_from'])) $data['datetime_from'] = guessMySQLDateTime($data['datetime_from']);
 			if(isset($data['datetime_to'])) $data['datetime_to'] = guessMySQLDateTime($data['datetime_to']);
-
-			return $data;
-		},
-		'travel_table' => function($data, $options = []) {
-			if(isset($data['date_from'])) $data['date_from'] = guessMySQLDateTime($data['date_from']);
-			if(isset($data['date_to'])) $data['date_to'] = guessMySQLDateTime($data['date_to']);
-
-			return $data;
-		},
-		'travel_cab_table' => function($data, $options = []) {
-			if(isset($data['travel_details'])) $data['travel_details'] = pkGivenLookupText($data['travel_details'], 'travel_cab_table', 'travel_details');
-			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
-
-			return $data;
-		},
-		'travel_flight_table' => function($data, $options = []) {
-			if(isset($data['travel_details'])) $data['travel_details'] = pkGivenLookupText($data['travel_details'], 'travel_flight_table', 'travel_details');
-			if(isset($data['travel_date'])) $data['travel_date'] = guessMySQLDateTime($data['travel_date']);
-
-			return $data;
-		},
-		'travel_stay_table' => function($data, $options = []) {
-			if(isset($data['travel_details'])) $data['travel_details'] = pkGivenLookupText($data['travel_details'], 'travel_stay_table', 'travel_details');
-			if(isset($data['checkin_date'])) $data['checkin_date'] = guessMySQLDateTime($data['checkin_date']);
-			if(isset($data['checkout_date'])) $data['checkout_date'] = guessMySQLDateTime($data['checkout_date']);
 
 			return $data;
 		},
@@ -523,14 +514,13 @@
 		'honorarium_claim_table' => function($data, $options = []) { return true; },
 		'all_bank_account_statement_table' => function($data, $options = []) { return true; },
 		'payment_track_details_table' => function($data, $options = []) { return true; },
+		'travel_table' => function($data, $options = []) { return true; },
+		'travel_stay_table' => function($data, $options = []) { return true; },
+		'travel_local_commute_table' => function($data, $options = []) { return true; },
 		'car_table' => function($data, $options = []) { return true; },
 		'car_usage_table' => function($data, $options = []) { return true; },
 		'cycle_table' => function($data, $options = []) { return true; },
 		'cycle_usage_table' => function($data, $options = []) { return true; },
-		'travel_table' => function($data, $options = []) { return true; },
-		'travel_cab_table' => function($data, $options = []) { return true; },
-		'travel_flight_table' => function($data, $options = []) { return true; },
-		'travel_stay_table' => function($data, $options = []) { return true; },
 		'operation_dronagiri_data_submission_app' => function($data, $options = []) { return true; },
 		'file_table' => function($data, $options = []) { return true; },
 		'panel_decision_table_tdp' => function($data, $options = []) { return true; },

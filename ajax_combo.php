@@ -514,7 +514,7 @@
 				'parent_caption' => 'IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \'::\', `employees_personal_data_table`.`name`), \'\')',
 				'parent_from' => '`employees_personal_data_table` ',
 				'filterers' => [],
-				'custom_query' => 'SELECT `personal_data_table`.`personal_data_id`, IF(CHAR_LENGTH(`personal_data_table`.`emp_id`) || CHAR_LENGTH(`personal_data_table`.`name`), CONCAT_WS(\'\', `personal_data_table`.`emp_id`, \'::\', `personal_data_table`.`name`, \'::\', `personal_data_table`.`date_of_joining`, \'::\', `personal_data_table`.`department`), \'\') FROM `personal_data_table` ORDER BY 2',
+				'custom_query' => '',
 				'inherit_permissions' => false,
 				'list_type' => 0,
 				'not_null' => false,
@@ -749,6 +749,12 @@
 		],
 		'payment_track_details_table' => [
 		],
+		'travel_table' => [
+		],
+		'travel_stay_table' => [
+		],
+		'travel_local_commute_table' => [
+		],
 		'car_table' => [
 		],
 		'car_usage_table' => [
@@ -783,47 +789,6 @@
 				'parent_pk_field' => 'id',
 				'parent_caption' => 'IF(CHAR_LENGTH(`cycle_table`.`registration_number`) || CHAR_LENGTH(`cycle_table`.`cycle_model`), CONCAT_WS(\'\', `cycle_table`.`registration_number`, \'::\', `cycle_table`.`cycle_model`), \'\')',
 				'parent_from' => '`cycle_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`cycle_table`.`responsible_contact_person` ',
-				'filterers' => [],
-				'custom_query' => '',
-				'inherit_permissions' => false,
-				'list_type' => 0,
-				'not_null' => false,
-			],
-		],
-		'travel_table' => [
-		],
-		'travel_cab_table' => [
-			'travel_details' => [
-				'parent_table' => 'travel_table',
-				'parent_pk_field' => 'id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`travel_table`.`first_name`) || CHAR_LENGTH(`travel_table`.`travel_description`), CONCAT_WS(\'\', `travel_table`.`first_name`, \'::\', `travel_table`.`travel_description`), \'\')',
-				'parent_from' => '`travel_table` ',
-				'filterers' => [],
-				'custom_query' => '',
-				'inherit_permissions' => false,
-				'list_type' => 0,
-				'not_null' => false,
-			],
-		],
-		'travel_flight_table' => [
-			'travel_details' => [
-				'parent_table' => 'travel_table',
-				'parent_pk_field' => 'id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`travel_table`.`first_name`) || CHAR_LENGTH(`travel_table`.`travel_description`), CONCAT_WS(\'\', `travel_table`.`first_name`, \'::\', `travel_table`.`travel_description`), \'\')',
-				'parent_from' => '`travel_table` ',
-				'filterers' => [],
-				'custom_query' => '',
-				'inherit_permissions' => false,
-				'list_type' => 0,
-				'not_null' => false,
-			],
-		],
-		'travel_stay_table' => [
-			'travel_details' => [
-				'parent_table' => 'travel_table',
-				'parent_pk_field' => 'id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`travel_table`.`first_name`) || CHAR_LENGTH(`travel_table`.`travel_description`), CONCAT_WS(\'\', `travel_table`.`first_name`, \'::\', `travel_table`.`travel_description`), \'\')',
-				'parent_from' => '`travel_table` ',
 				'filterers' => [],
 				'custom_query' => '',
 				'inherit_permissions' => false,

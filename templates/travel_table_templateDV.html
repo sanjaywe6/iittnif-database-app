@@ -9,11 +9,6 @@
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
-			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="travel_cab_table_view.php?filterer_travel_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="travel_cab_table_link"><img src="table.gif"> Travel cab details - App</a>
-			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="travel_cab_table_view.php?filterer_travel_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_travel_cab_table_link"><img src="table.gif"> Travel cab details - App</a>
-			<input type="hidden" id="travel_cab_table_hclink" value="travel_cab_table_view.php?filterer_travel_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
-			<input type="hidden" id="travel_flight_table_hclink" value="travel_flight_table_view.php?filterer_travel_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
-			<input type="hidden" id="travel_stay_table_hclink" value="travel_stay_table_view.php?filterer_travel_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -78,6 +73,24 @@
 					</div>
 				</div>
 
+				<!-- Field: From Place -->
+				<div class="form-group travel_table-from_place">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="from_place">From Place</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="from_place" id="from_place" value="<%%VALUE(from_place)%%>">
+					</div>
+				</div>
+
+				<!-- Field: To Place -->
+				<div class="form-group travel_table-to_place">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="to_place">To Place</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="to_place" id="to_place" value="<%%VALUE(to_place)%%>">
+					</div>
+				</div>
+
 				<!-- Field: Date from -->
 				<div class="form-group travel_table-date_from">
 					<hr class="hidden-md hidden-lg">
@@ -105,15 +118,6 @@
 					</div>
 				</div>
 
-				<!-- Field: Remarks -->
-				<div class="form-group travel_table-remarks">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="remarks">Remarks</label>
-					<div class="col-lg-9">
-						<textarea class="form-control" name="remarks" id="remarks" rows=" 5"><%%VALUE(remarks)%%></textarea>
-					</div>
-				</div>
-
 				<!-- Field: Approval Status -->
 				<div class="form-group travel_table-approval_status">
 					<hr class="hidden-md hidden-lg">
@@ -123,12 +127,12 @@
 					</div>
 				</div>
 
-				<!-- Field: Approved by -->
-				<div class="form-group travel_table-approved_by">
+				<!-- Field: Approval remarks -->
+				<div class="form-group travel_table-approval_remarks">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3">Approved by</label>
+					<label class="control-label col-lg-3" for="approval_remarks">Approval remarks</label>
 					<div class="col-lg-9">
-						<div class="form-control-static" id="approved_by"><%%VALUE(approved_by)%%></div>
+						<textarea class="form-control" name="approval_remarks" id="approval_remarks" rows=" 5"><%%VALUE(approval_remarks)%%></textarea>
 					</div>
 				</div>
 
@@ -164,16 +168,6 @@
 	</div>
 
 
-	<!-- child records -->
-	<hr>
-	<div class="row">
-		<div class="col-lg-10 col-lg-offset-1">
-			<div id="travel_table-children" class="children-tabs">
-				<div class="text-center"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
-			</div>
-		</div>
-	</div>
-
 </div><!-- /div class="panel-body" -->
 	<script>
 		$j(function() {
@@ -198,38 +192,6 @@
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 
-			if(embedded_mode) {
-				/* hide links to children tables in embedded mode */
-				$j('.detail_view a[id$=_link]').remove();
-
-				/* append embedded mode to all links */
-				var append_embedded = function() {
-					$j('a[href]:not([href^="#"]):not([href^="javascript"]):not([href$="Embedded=1"]):not([href*="link.php?t="]):not([href^="mailto:"]):not([href$=".jpg"]):not([href$=".png"]):not([href$=".gif"])').each(
-						function() {
-							$j(this).attr('href', $j(this).attr('href') + '&Embedded=1');
-						}
-					);
-				}
-				setTimeout(append_embedded, 500);
-				setTimeout(append_embedded, 1500);
-				setTimeout(append_embedded, 2500);
-				setTimeout(append_embedded, 3500);
-			}
-
-			/* when no record is selected ('add new' mode) */
-			if(add_new_mode) {
-				/* hide links to children tables */
-				$j('.detail_view a[id$=_link]').remove();
-			} else {
-				post(
-					'parent-children.php', {
-						ParentTable: 'travel_table',
-						SelectedID: '<%%VALUE(id)%%>',
-						Operation: 'show-children'
-					},
-					'travel_table-children'
-				);
-			}
 
 			if(true /* !embedded_mode */) {
 				$j('.add_new_parent').click(function() {

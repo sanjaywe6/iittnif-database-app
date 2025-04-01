@@ -1,12 +1,12 @@
 <?php
 	// For help on using hooks, please refer to https://bigprof.com/appgini/help/advanced-topics/hooks/
 
-	function travel_table_init(&$options, $memberInfo, &$args) {
+	function travel_local_commute_table_init(&$options, $memberInfo, &$args) {
 
 		return TRUE;
 	}
 
-	function travel_table_header($contentType, $memberInfo, &$args) {
+	function travel_local_commute_table_header($contentType, $memberInfo, &$args) {
 		$header='';
 
 		switch($contentType) {
@@ -38,7 +38,7 @@
 		return $header;
 	}
 
-	function travel_table_footer($contentType, $memberInfo, &$args) {
+	function travel_local_commute_table_footer($contentType, $memberInfo, &$args) {
 		$footer='';
 
 		switch($contentType) {
@@ -70,45 +70,44 @@
 		return $footer;
 	}
 
-	function travel_table_before_insert(&$data, $memberInfo, &$args) {
+	function travel_local_commute_table_before_insert(&$data, $memberInfo, &$args) {
 
 		return approvalBeforeInsert($data, $memberInfo);
 	}
 
-	function travel_table_after_insert($data, $memberInfo, &$args) {
+	function travel_local_commute_table_after_insert($data, $memberInfo, &$args) {
 
 		return TRUE;
 	}
 
-	function travel_table_before_update(&$data, $memberInfo, &$args) {
+	function travel_local_commute_table_before_update(&$data, $memberInfo, &$args) {
 
-		return approvalBeforeUpdate($data, $memberInfo, "travel_table");
-
+		return approvalBeforeUpdate($data, $memberInfo, "travel_local_commute_table");
 	}
 
-	function travel_table_after_update($data, $memberInfo, &$args) {
+	function travel_local_commute_table_after_update($data, $memberInfo, &$args) {
 
 		return TRUE;
 	}
 
-	function travel_table_before_delete($selectedID, &$skipChecks, $memberInfo, &$args) {
+	function travel_local_commute_table_before_delete($selectedID, &$skipChecks, $memberInfo, &$args) {
 
 		return TRUE;
 	}
 
-	function travel_table_after_delete($selectedID, $memberInfo, &$args) {
+	function travel_local_commute_table_after_delete($selectedID, $memberInfo, &$args) {
 
 	}
 
-	function travel_table_dv($selectedID, $memberInfo, &$html, &$args) {
+	function travel_local_commute_table_dv($selectedID, $memberInfo, &$html, &$args) {
 
 	}
 
-	function travel_table_csv($query, $memberInfo, &$args) {
+	function travel_local_commute_table_csv($query, $memberInfo, &$args) {
 
 		return $query;
 	}
-	function travel_table_batch_actions(&$args) {
+	function travel_local_commute_table_batch_actions(&$args) {
 
 		return [];
 	}

@@ -99,7 +99,10 @@
 		setupIndexes('employees_designation_table', ['employee_details','reporting_officer','reviewing_officer',]);
 
 		setupTable('employees_appraisal_table', []);
-		setupIndexes('employees_appraisal_table', ['employee_details','employee_designation_reporting',]);
+		setupIndexes('employees_appraisal_table', ['employee_lookup','employee_designation_reporting_lookup',]);
+
+		setupTable('employees_appraisal_feedback_table', []);
+		setupIndexes('employees_appraisal_feedback_table', ['employees_appraisal_lookup','reviewing_officer',]);
 
 		setupTable('beyond_workingHours_table', []);
 		setupIndexes('beyond_workingHours_table', ['select_employee',]);

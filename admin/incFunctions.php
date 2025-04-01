@@ -360,6 +360,13 @@
 					'group' => $tg[6],
 					'homepageShowCount' => 1
 				],
+				'employees_appraisal_feedback_table' => [
+					'Caption' => 'Employees appraisal feedback table',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[6],
+					'homepageShowCount' => 1
+				],
 				'beyond_workingHours_table' => [
 					'Caption' => 'Beyond Working Hours Approval - App',
 					'Description' => '',
@@ -691,6 +698,7 @@
 			'employees_personal_data_table' => ['Employee Personal Data - App', '<a href="https://lookerstudio.google.com/reporting/e46f3806-e78c-4f09-8417-049568d4783d"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Employee Details App Report</b></button></a>', 'table.gif', 'Employee Data Management Apps'],
 			'employees_designation_table' => ['Employees designation & Reporting - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'employees_appraisal_table' => ['Employees Appraisal  - App', '', 'table.gif', 'Employee Data Management Apps'],
+			'employees_appraisal_feedback_table' => ['Employees appraisal feedback table', '', 'table.gif', 'Employee Data Management Apps'],
 			'beyond_workingHours_table' => ['Beyond Working Hours Approval - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'attendence_details_table' => ['Attendence details - App', '<a href="https://lookerstudio.google.com/reporting/dd61ce5a-ccb5-4d55-b0a4-5233454f4b2c"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Attendence App View</b></button></a>', 'table.gif', 'Employee Data Management Apps'],
 			'leave_table' => ['Leave - App', '', 'table.gif', 'Employee Data Management Apps'],
@@ -4810,14 +4818,14 @@
 							'description' => '',
 						],
 					],
-					'employee_details' => [
-						'appgini' => "INT(10) UNSIGNED NOT NULL",
+					'employee_lookup' => [
+						'appgini' => "INT(10) UNSIGNED NULL",
 						'info' => [
-							'caption' => 'Employee Details (ID::Name::Joining Date::Department)',
+							'caption' => 'Employee Details',
 							'description' => '',
 						],
 					],
-					'employee_designation_reporting' => [
+					'employee_designation_reporting_lookup' => [
 						'appgini' => "INT(10) UNSIGNED NULL",
 						'info' => [
 							'caption' => 'Employee Other Details (Designation::Reporting Officer)',
@@ -4825,21 +4833,21 @@
 						],
 					],
 					'current_review_period' => [
-						'appgini' => "VARCHAR(255) NOT NULL",
+						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Current review period',
 							'description' => '',
 						],
 					],
 					'roles' => [
-						'appgini' => "VARCHAR(255) NOT NULL",
+						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Roles & Responsibilities',
 							'description' => '',
 						],
 					],
 					'self_explanation' => [
-						'appgini' => "TEXT NOT NULL",
+						'appgini' => "TEXT NULL",
 						'info' => [
 							'caption' => 'Employee Self-explanation',
 							'description' => '',
@@ -4866,6 +4874,57 @@
 							'description' => 'Maximum file size allowed: 100 KB.<br>Allowed file types: ppt, pptx, pptm, pdf, ppsx, ppsm, pps, odp',
 						],
 					],
+					'appraisal_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Yet to Start'",
+						'info' => [
+							'caption' => 'Appraisal status',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
+				'employees_appraisal_feedback_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'employees_appraisal_lookup' => [
+						'appgini' => "INT(10) UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Employees appraisal lookup',
+							'description' => '',
+						],
+					],
 					'reporting_officer_feedback' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
@@ -4887,10 +4946,17 @@
 							'description' => 'Scale of Rating: 1-Poor | 2-Satisfactory | 3-Average | 4-Good | 5-Excellent',
 						],
 					],
-					'appraisal_status' => [
+					'appraisal_feedback_status' => [
 						'appgini' => "VARCHAR(255) NULL DEFAULT 'Yet to Start'",
 						'info' => [
-							'caption' => 'Appraisal status',
+							'caption' => 'Appraisal Feedback Status',
+							'description' => '',
+						],
+					],
+					'reviewing_officer' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Reprting / Reviewing officer',
 							'description' => '',
 						],
 					],
@@ -10438,8 +10504,12 @@
 				'user_table' => ['reviewing_officer', 'reporting_officer'],
 			],
 			'employees_appraisal_table' => [
-				'employees_personal_data_table' => ['employee_details'],
-				'employees_designation_table' => ['employee_designation_reporting'],
+				'employees_personal_data_table' => ['employee_lookup'],
+				'employees_designation_table' => ['employee_designation_reporting_lookup'],
+			],
+			'employees_appraisal_feedback_table' => [
+				'employees_appraisal_table' => ['employees_appraisal_lookup'],
+				'user_table' => ['reviewing_officer'],
 			],
 			'beyond_workingHours_table' => [
 				'user_table' => ['select_employee'],
@@ -10586,6 +10656,7 @@
 			'employees_personal_data_table' => [],
 			'employees_designation_table' => [],
 			'employees_appraisal_table' => [],
+			'employees_appraisal_feedback_table' => [],
 			'beyond_workingHours_table' => [
 				'number_of_hours' => 'SELECT 
 					    TIMESTAMPDIFF(SECOND, `overtime_table`.`start_datetime`, `overtime_table`.`end_datetime`)/3600 AS DifferenceInSeconds
@@ -10860,8 +10931,12 @@
 				'reviewing_officer' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'employees_appraisal_table' => [
-				'employee_details' => 'SELECT `personal_data_table`.`personal_data_id`, IF(CHAR_LENGTH(`personal_data_table`.`emp_id`) || CHAR_LENGTH(`personal_data_table`.`name`), CONCAT_WS(\'\', `personal_data_table`.`emp_id`, \'::\', `personal_data_table`.`name`, \'::\', `personal_data_table`.`date_of_joining`, \'::\', `personal_data_table`.`department`), \'\') FROM `personal_data_table` ORDER BY 2',
-				'employee_designation_reporting' => 'SELECT `employees_designation_table`.`id`, IF(CHAR_LENGTH(`employees_designation_table`.`designation`) || CHAR_LENGTH(`employees_designation_table`.`reporting_officer`), CONCAT_WS(\'\', `employees_designation_table`.`designation`, \'::\', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS(\'\',   `user_table1`.`memberID`, \'::\', `user_table1`.`name`), \'\')), \'\') FROM `employees_designation_table` LEFT JOIN `personal_data_table` as personal_data_table1 ON `personal_data_table1`.`personal_data_id`=`employees_designation_table`.`employee_details` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employees_designation_table`.`reviewing_officer` ORDER BY 2',
+				'employee_lookup' => 'SELECT `personal_data_table`.`personal_data_id`, IF(CHAR_LENGTH(`personal_data_table`.`emp_id`) || CHAR_LENGTH(`personal_data_table`.`name`), CONCAT_WS(\'\', `personal_data_table`.`emp_id`, \'::\', `personal_data_table`.`name`, \'::\', `personal_data_table`.`date_of_joining`, \'::\', `personal_data_table`.`department`), \'\') FROM `personal_data_table` ORDER BY 2',
+				'employee_designation_reporting_lookup' => 'SELECT `employees_designation_table`.`id`, IF(CHAR_LENGTH(`employees_designation_table`.`designation`) || CHAR_LENGTH(`employees_designation_table`.`reporting_officer`), CONCAT_WS(\'\', `employees_designation_table`.`designation`, \'::\', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS(\'\',   `user_table1`.`memberID`, \'::\', `user_table1`.`name`), \'\')), \'\') FROM `employees_designation_table` LEFT JOIN `personal_data_table` as personal_data_table1 ON `personal_data_table1`.`personal_data_id`=`employees_designation_table`.`employee_details` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employees_designation_table`.`reviewing_officer` ORDER BY 2',
+			],
+			'employees_appraisal_feedback_table' => [
+				'employees_appraisal_lookup' => 'SELECT `employees_appraisal_table`.`id`, IF(CHAR_LENGTH(`employees_appraisal_table`.`roles`) || CHAR_LENGTH(`employees_appraisal_table`.`self_explanation`), CONCAT_WS(\'\', `employees_appraisal_table`.`roles`, \'::\', `employees_appraisal_table`.`self_explanation`), \'\') FROM `employees_appraisal_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`id`=`employees_appraisal_table`.`employee_lookup` LEFT JOIN `employees_designation_table` as employees_designation_table1 ON `employees_designation_table1`.`id`=`employees_appraisal_table`.`employee_designation_reporting_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table1`.`reporting_officer` ORDER BY 2',
+				'reviewing_officer' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'beyond_workingHours_table' => [
 				'select_employee' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',

@@ -508,7 +508,7 @@
 			],
 		],
 		'employees_appraisal_table' => [
-			'employee_details' => [
+			'employee_lookup' => [
 				'parent_table' => 'employees_personal_data_table',
 				'parent_pk_field' => 'id',
 				'parent_caption' => 'IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \'::\', `employees_personal_data_table`.`name`), \'\')',
@@ -517,15 +517,39 @@
 				'custom_query' => 'SELECT `personal_data_table`.`personal_data_id`, IF(CHAR_LENGTH(`personal_data_table`.`emp_id`) || CHAR_LENGTH(`personal_data_table`.`name`), CONCAT_WS(\'\', `personal_data_table`.`emp_id`, \'::\', `personal_data_table`.`name`, \'::\', `personal_data_table`.`date_of_joining`, \'::\', `personal_data_table`.`department`), \'\') FROM `personal_data_table` ORDER BY 2',
 				'inherit_permissions' => false,
 				'list_type' => 0,
-				'not_null' => true,
+				'not_null' => false,
 			],
-			'employee_designation_reporting' => [
+			'employee_designation_reporting_lookup' => [
 				'parent_table' => 'employees_designation_table',
 				'parent_pk_field' => 'id',
 				'parent_caption' => 'IF(CHAR_LENGTH(`employees_designation_table`.`designation`) || CHAR_LENGTH(`employees_designation_table`.`reporting_officer`), CONCAT_WS(\'\', `employees_designation_table`.`designation`, \'::\', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS(\'\',   `user_table1`.`memberID`, \'::\', `user_table1`.`name`), \'\')), \'\')',
 				'parent_from' => '`employees_designation_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`id`=`employees_designation_table`.`employee_details` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employees_designation_table`.`reviewing_officer` ',
 				'filterers' => [],
 				'custom_query' => 'SELECT `employees_designation_table`.`id`, IF(CHAR_LENGTH(`employees_designation_table`.`designation`) || CHAR_LENGTH(`employees_designation_table`.`reporting_officer`), CONCAT_WS(\'\', `employees_designation_table`.`designation`, \'::\', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS(\'\',   `user_table1`.`memberID`, \'::\', `user_table1`.`name`), \'\')), \'\') FROM `employees_designation_table` LEFT JOIN `personal_data_table` as personal_data_table1 ON `personal_data_table1`.`personal_data_id`=`employees_designation_table`.`employee_details` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employees_designation_table`.`reviewing_officer` ORDER BY 2',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
+		],
+		'employees_appraisal_feedback_table' => [
+			'employees_appraisal_lookup' => [
+				'parent_table' => 'employees_appraisal_table',
+				'parent_pk_field' => 'id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`employees_appraisal_table`.`roles`) || CHAR_LENGTH(`employees_appraisal_table`.`self_explanation`), CONCAT_WS(\'\', `employees_appraisal_table`.`roles`, \'::\', `employees_appraisal_table`.`self_explanation`), \'\')',
+				'parent_from' => '`employees_appraisal_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`id`=`employees_appraisal_table`.`employee_lookup` LEFT JOIN `employees_designation_table` as employees_designation_table1 ON `employees_designation_table1`.`id`=`employees_appraisal_table`.`employee_designation_reporting_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table1`.`reporting_officer` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
+			'reviewing_officer' => [
+				'parent_table' => 'user_table',
+				'parent_pk_field' => 'user_id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
+				'parent_from' => '`user_table` ',
+				'filterers' => [],
+				'custom_query' => '',
 				'inherit_permissions' => false,
 				'list_type' => 0,
 				'not_null' => false,

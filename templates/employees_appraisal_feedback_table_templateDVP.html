@@ -1,0 +1,71 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Employees appraisal lookup -->
+		<div class="form-group employees_appraisal_feedback_table-employees_appraisal_lookup" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Employees appraisal lookup</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="employees_appraisal_lookup-readonly<%%RND1%%>"><%%COMBOTEXT(employees_appraisal_lookup)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Reporting Officer Feedback on the Employee Responsibilities -->
+		<div class="form-group employees_appraisal_feedback_table-reporting_officer_feedback" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Reporting Officer Feedback on the Employee Responsibilities</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(reporting_officer_feedback)%%></div>
+			</div>
+		</div>
+		<!-- Field: Observations by the Reporting Officer -->
+		<div class="form-group employees_appraisal_feedback_table-observations_by_reporting_officer" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Observations by the Reporting Officer</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(observations_by_reporting_officer)%%></div>
+			</div>
+		</div>
+		<!-- Field: Overall Rating by the Reporting Officer -->
+		<div class="form-group employees_appraisal_feedback_table-overall_rating" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Overall Rating by the Reporting Officer</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(overall_rating)%%></div>
+			</div>
+		</div>
+		<!-- Field: Appraisal Feedback Status -->
+		<div class="form-group employees_appraisal_feedback_table-appraisal_feedback_status" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Appraisal Feedback Status</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(appraisal_feedback_status)%%></div>
+			</div>
+		</div>
+		<!-- Field: Reprting / Reviewing officer -->
+		<div class="form-group employees_appraisal_feedback_table-reviewing_officer" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Reprting / Reviewing officer</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="reviewing_officer<%%RND1%%>"><%%COMBOTEXT(reviewing_officer)%%></span></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

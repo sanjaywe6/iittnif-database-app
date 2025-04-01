@@ -9,6 +9,9 @@
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
+			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="employees_appraisal_feedback_table_view.php?filterer_employees_appraisal_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="employees_appraisal_feedback_table_link"><img src="table.gif"> Employees appraisal feedback table</a>
+			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="employees_appraisal_feedback_table_view.php?filterer_employees_appraisal_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_employees_appraisal_feedback_table_link"><img src="table.gif"> Employees appraisal feedback table</a>
+			<input type="hidden" id="employees_appraisal_feedback_table_hclink" value="employees_appraisal_feedback_table_view.php?filterer_employees_appraisal_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -19,23 +22,23 @@
 		<div class="col-md-8 col-lg-10" id="employees_appraisal_table_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: Employee Details (ID::Name::Joining Date::Department) -->
-				<div class="form-group employees_appraisal_table-employee_details">
+				<!-- Field: Employee Details -->
+				<div class="form-group employees_appraisal_table-employee_lookup">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="employee_details" data-parent_link="view_parent_modal">Employee Details (ID::Name::Joining Date::Department)<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<label class="control-label col-lg-3" for="employee_lookup" data-parent_link="view_parent_modal">Employee Details</label>
 					<div class="col-lg-9">
-						<div class="lookup-flex"><%%COMBO(employee_details)%%><%%PLINK(employee_details)%%><%%ADDNEW(personal_data_table)%%></div>
+						<div class="lookup-flex"><%%COMBO(employee_lookup)%%><%%PLINK(employee_lookup)%%><%%ADDNEW(employees_personal_data_table)%%></div>
 					</div>
 				</div>
 
 				<!-- Field: Employee Other Details (Designation::Reporting Officer) -->
-				<div class="form-group employees_appraisal_table-employee_designation_reporting">
+				<div class="form-group employees_appraisal_table-employee_designation_reporting_lookup">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Employee Other Details (Designation::Reporting Officer)</label>
 					<div class="col-lg-9">
 						<div class="form-control-static">
-							<span id="employee_designation_reporting-readonly"><%%COMBOTEXT(employee_designation_reporting)%%></span>
-							<%%PLINK(employee_designation_reporting)%%>
+							<span id="employee_designation_reporting_lookup-readonly"><%%COMBOTEXT(employee_designation_reporting_lookup)%%></span>
+							<%%PLINK(employee_designation_reporting_lookup)%%>
 						</div>
 					</div>
 				</div>
@@ -43,55 +46,93 @@
 				<!-- Field: Current review period -->
 				<div class="form-group employees_appraisal_table-current_review_period">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="current_review_period">Current review period<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<label class="control-label col-lg-3" for="current_review_period">Current review period</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="current_review_period" id="current_review_period" value="<%%VALUE(current_review_period)%%>" required>
+						<input maxlength="255" type="text" class="form-control" name="current_review_period" id="current_review_period" value="<%%VALUE(current_review_period)%%>">
 					</div>
 				</div>
 
 				<!-- Field: Roles & Responsibilities -->
 				<div class="form-group employees_appraisal_table-roles">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="roles">Roles & Responsibilities<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<label class="control-label col-lg-3" for="roles">Roles & Responsibilities</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="roles" id="roles" value="<%%VALUE(roles)%%>" required>
+						<input maxlength="255" type="text" class="form-control" name="roles" id="roles" value="<%%VALUE(roles)%%>">
 					</div>
 				</div>
 
 				<!-- Field: Employee Self-explanation -->
 				<div class="form-group employees_appraisal_table-self_explanation">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="self_explanation">Employee Self-explanation<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<label class="control-label col-lg-3" for="self_explanation">Employee Self-explanation</label>
 					<div class="col-lg-9">
 						<textarea class="form-control" name="self_explanation" id="self_explanation" rows=" 5"><%%VALUE(self_explanation)%%></textarea>
 					</div>
 				</div>
 
-				<!-- Field: Reporting Officer Feedback on the Employee Responsibilities -->
-				<div class="form-group employees_appraisal_table-reporting_officer_feedback">
+				<!-- Field: Upload file 1 -->
+				<div class="form-group employees_appraisal_table-upload_file_1">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="reporting_officer_feedback">Reporting Officer Feedback on the Employee Responsibilities</label>
+					<label class="control-label col-lg-3">Upload file 1 <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#upload_file_1-description"></i></label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="reporting_officer_feedback" id="reporting_officer_feedback" rows=" 5"><%%VALUE(reporting_officer_feedback)%%></textarea>
+						<span class="help-block bspacer-xs collapse" id="upload_file_1-description"><div class="alert alert-info bspacer-xs">Maximum file size allowed: 100 KB.<br>Allowed file types: ppt, pptx, pptm, pdf, ppsx, ppsm, pps, odp</div></span>
+						<div class="form-control-static well well-sm">
+							<div class="row" style="margin-right: 0; margin-left: 0;">
+								<div class="col-lg-8 col-md-6" style="padding-left: 0;"><a id="upload_file_1-link" href="link.php?t=employees_appraisal_table&f=upload_file_1&i=<%%VALUE(id)%%>" target="_blank" class="rspacer-lg"><i class="glyphicon glyphicon-download-alt" title="<%%VALUE(upload_file_1)%%>" style="font-size: 4em;"></i></a></div>
+								<div class="hidden-md hidden-lg vspacer-lg"></div>
+								<div class="col-lg-4 col-md-6 well upload-toolbox">
+									<%%REMOVEFILE(upload_file_1)%%>
+									<%%UPLOADFILE(upload_file_1)%%>
+									<div class="text-bold text-danger file-type-error hidden"><%%TRANSLATION(invalid file type)%%></div>
+									<div class="text-bold text-danger file-size-error hidden"><%%TRANSLATION(file too large)%%></div>
+								</div>
+							</div>
+						</div>
+						<script>/* disable empty links */ $j(() => { const e_upload_file_1 = '<%%VALUE(upload_file_1)%%>'; if(e_upload_file_1 == '' || e_upload_file_1 == '&nbsp;' || e_upload_file_1 == 'blank.gif') { $j('#upload_file_1-link').hide(); $j('#upload_file_1-image').parents('a').attr('href', '').on('click', (e) => e.preventDefault()); } });</script>
 					</div>
 				</div>
 
-				<!-- Field: Observations by the Reporting Officer -->
-				<div class="form-group employees_appraisal_table-observations_by_reporting_officer">
+				<!-- Field: Upload file 2 -->
+				<div class="form-group employees_appraisal_table-upload_file_2">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="observations_by_reporting_officer">Observations by the Reporting Officer</label>
+					<label class="control-label col-lg-3">Upload file 2 <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#upload_file_2-description"></i></label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="observations_by_reporting_officer" id="observations_by_reporting_officer" rows=" 5"><%%VALUE(observations_by_reporting_officer)%%></textarea>
+						<span class="help-block bspacer-xs collapse" id="upload_file_2-description"><div class="alert alert-info bspacer-xs">Maximum file size allowed: 100 KB.<br>Allowed file types: ppt, pptx, pptm, pdf, ppsx, ppsm, pps, odp</div></span>
+						<div class="form-control-static well well-sm">
+							<div class="row" style="margin-right: 0; margin-left: 0;">
+								<div class="col-lg-8 col-md-6" style="padding-left: 0;"><a id="upload_file_2-link" href="link.php?t=employees_appraisal_table&f=upload_file_2&i=<%%VALUE(id)%%>" target="_blank" class="rspacer-lg"><i class="glyphicon glyphicon-download-alt" title="<%%VALUE(upload_file_2)%%>" style="font-size: 4em;"></i></a></div>
+								<div class="hidden-md hidden-lg vspacer-lg"></div>
+								<div class="col-lg-4 col-md-6 well upload-toolbox">
+									<%%REMOVEFILE(upload_file_2)%%>
+									<%%UPLOADFILE(upload_file_2)%%>
+									<div class="text-bold text-danger file-type-error hidden"><%%TRANSLATION(invalid file type)%%></div>
+									<div class="text-bold text-danger file-size-error hidden"><%%TRANSLATION(file too large)%%></div>
+								</div>
+							</div>
+						</div>
+						<script>/* disable empty links */ $j(() => { const e_upload_file_2 = '<%%VALUE(upload_file_2)%%>'; if(e_upload_file_2 == '' || e_upload_file_2 == '&nbsp;' || e_upload_file_2 == 'blank.gif') { $j('#upload_file_2-link').hide(); $j('#upload_file_2-image').parents('a').attr('href', '').on('click', (e) => e.preventDefault()); } });</script>
 					</div>
 				</div>
 
-				<!-- Field: Overall Rating by the Reporting Officer -->
-				<div class="form-group employees_appraisal_table-overall_rating">
+				<!-- Field: Upload file 3 -->
+				<div class="form-group employees_appraisal_table-upload_file_3">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="overall_rating">Overall Rating by the Reporting Officer <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#overall_rating-description"></i></label>
+					<label class="control-label col-lg-3">Upload file 3 <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#upload_file_3-description"></i></label>
 					<div class="col-lg-9">
-						<span class="help-block bspacer-xs collapse" id="overall_rating-description"><div class="alert alert-info bspacer-xs">Scale of Rating: 1-Poor | 2-Satisfactory | 3-Average | 4-Good | 5-Excellent</div></span>
-						<%%COMBO(overall_rating)%%>
+						<span class="help-block bspacer-xs collapse" id="upload_file_3-description"><div class="alert alert-info bspacer-xs">Maximum file size allowed: 100 KB.<br>Allowed file types: ppt, pptx, pptm, pdf, ppsx, ppsm, pps, odp</div></span>
+						<div class="form-control-static well well-sm">
+							<div class="row" style="margin-right: 0; margin-left: 0;">
+								<div class="col-lg-8 col-md-6" style="padding-left: 0;"><a id="upload_file_3-link" href="link.php?t=employees_appraisal_table&f=upload_file_3&i=<%%VALUE(id)%%>" target="_blank" class="rspacer-lg"><i class="glyphicon glyphicon-download-alt" title="<%%VALUE(upload_file_3)%%>" style="font-size: 4em;"></i></a></div>
+								<div class="hidden-md hidden-lg vspacer-lg"></div>
+								<div class="col-lg-4 col-md-6 well upload-toolbox">
+									<%%REMOVEFILE(upload_file_3)%%>
+									<%%UPLOADFILE(upload_file_3)%%>
+									<div class="text-bold text-danger file-type-error hidden"><%%TRANSLATION(invalid file type)%%></div>
+									<div class="text-bold text-danger file-size-error hidden"><%%TRANSLATION(file too large)%%></div>
+								</div>
+							</div>
+						</div>
+						<script>/* disable empty links */ $j(() => { const e_upload_file_3 = '<%%VALUE(upload_file_3)%%>'; if(e_upload_file_3 == '' || e_upload_file_3 == '&nbsp;' || e_upload_file_3 == 'blank.gif') { $j('#upload_file_3-link').hide(); $j('#upload_file_3-image').parents('a').attr('href', '').on('click', (e) => e.preventDefault()); } });</script>
 					</div>
 				</div>
 
@@ -127,6 +168,16 @@
 	</div>
 
 
+	<!-- child records -->
+	<hr>
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1">
+			<div id="employees_appraisal_table-children" class="children-tabs">
+				<div class="text-center"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+			</div>
+		</div>
+	</div>
+
 </div><!-- /div class="panel-body" -->
 	<script>
 		$j(function() {
@@ -148,7 +199,7 @@
 			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
 				AppGini.once({
 					condition: function() {
-						return $j('.form-group.employees_appraisal_table-employee_details')
+						return $j('.form-group.employees_appraisal_table-employee_lookup')
 									.find('.nicEdit-main, .select2-container, input[type=radio]')
 									.length > 0
 								// or read-only DV
@@ -157,7 +208,7 @@
 					action: function() {
 						$j('#employees_appraisal_table_dv_container-loading').addClass('hidden');
 						$j('#employees_appraisal_table_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('employees_appraisal_table', 'employee_details');
+						AppGini.focusFormElement('employees_appraisal_table', 'employee_lookup');
 					},
 					timeout:  5000,
 					doActionOnTimeout:  true
@@ -169,6 +220,38 @@
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 
+			if(embedded_mode) {
+				/* hide links to children tables in embedded mode */
+				$j('.detail_view a[id$=_link]').remove();
+
+				/* append embedded mode to all links */
+				var append_embedded = function() {
+					$j('a[href]:not([href^="#"]):not([href^="javascript"]):not([href$="Embedded=1"]):not([href*="link.php?t="]):not([href^="mailto:"]):not([href$=".jpg"]):not([href$=".png"]):not([href$=".gif"])').each(
+						function() {
+							$j(this).attr('href', $j(this).attr('href') + '&Embedded=1');
+						}
+					);
+				}
+				setTimeout(append_embedded, 500);
+				setTimeout(append_embedded, 1500);
+				setTimeout(append_embedded, 2500);
+				setTimeout(append_embedded, 3500);
+			}
+
+			/* when no record is selected ('add new' mode) */
+			if(add_new_mode) {
+				/* hide links to children tables */
+				$j('.detail_view a[id$=_link]').remove();
+			} else {
+				post(
+					'parent-children.php', {
+						ParentTable: 'employees_appraisal_table',
+						SelectedID: '<%%VALUE(id)%%>',
+						Operation: 'show-children'
+					},
+					'employees_appraisal_table-children'
+				);
+			}
 
 			if(true /* !embedded_mode */) {
 				$j('.add_new_parent').click(function() {

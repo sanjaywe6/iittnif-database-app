@@ -6,16 +6,21 @@
 <!--     $options->ShowTableHeader = 0;     -->
 
 		<td id="employees_appraisal_table-id-<%%VALUE(id)%%>" class="employees_appraisal_table-id text-right text-bold"><%%VALUE(id)%%></td>
-		<td id="employees_appraisal_table-employee_details-<%%VALUE(id)%%>" class="employees_appraisal_table-employee_details text-bold"><%%VALUE(employee_details)%%></td>
-		<td id="employees_appraisal_table-employee_designation_reporting-<%%VALUE(id)%%>" class="employees_appraisal_table-employee_designation_reporting text-bold"><%%VALUE(employee_designation_reporting)%%></td>
+		<td id="employees_appraisal_table-employee_lookup-<%%VALUE(id)%%>" class="employees_appraisal_table-employee_lookup text-bold"><%%VALUE(employee_lookup)%%></td>
+		<td id="employees_appraisal_table-employee_designation_reporting_lookup-<%%VALUE(id)%%>" class="employees_appraisal_table-employee_designation_reporting_lookup text-bold"><%%VALUE(employee_designation_reporting_lookup)%%></td>
 		<td id="employees_appraisal_table-current_review_period-<%%VALUE(id)%%>" class="employees_appraisal_table-current_review_period text-bold"><%%VALUE(current_review_period)%%></td>
 		<td id="employees_appraisal_table-roles-<%%VALUE(id)%%>" class="employees_appraisal_table-roles text-bold"><%%VALUE(roles)%%></td>
 		<td id="employees_appraisal_table-self_explanation-<%%VALUE(id)%%>" class="employees_appraisal_table-self_explanation text-bold"><%%VALUE(self_explanation)%%></td>
-		<td id="employees_appraisal_table-reporting_officer_feedback-<%%VALUE(id)%%>" class="employees_appraisal_table-reporting_officer_feedback text-bold"><%%VALUE(reporting_officer_feedback)%%></td>
-		<td id="employees_appraisal_table-observations_by_reporting_officer-<%%VALUE(id)%%>" class="employees_appraisal_table-observations_by_reporting_officer text-bold"><%%VALUE(observations_by_reporting_officer)%%></td>
-		<td id="employees_appraisal_table-overall_rating-<%%VALUE(id)%%>" class="employees_appraisal_table-overall_rating text-bold"><%%VALUE(overall_rating)%%></td>
+		<td id="employees_appraisal_table-upload_file_1-<%%VALUE(id)%%>" class="employees_appraisal_table-upload_file_1 text-bold"><a href="link.php?t=employees_appraisal_table&f=upload_file_1&i=<%%VALUE(id)%%>" target="_blank" title="<%%VALUE(upload_file_1)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-download-alt text-info"></i></a></td>
+		<td id="employees_appraisal_table-upload_file_2-<%%VALUE(id)%%>" class="employees_appraisal_table-upload_file_2 text-bold"><a href="link.php?t=employees_appraisal_table&f=upload_file_2&i=<%%VALUE(id)%%>" target="_blank" title="<%%VALUE(upload_file_2)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-download-alt text-info"></i></a></td>
+		<td id="employees_appraisal_table-upload_file_3-<%%VALUE(id)%%>" class="employees_appraisal_table-upload_file_3 text-bold"><a href="link.php?t=employees_appraisal_table&f=upload_file_3&i=<%%VALUE(id)%%>" target="_blank" title="<%%VALUE(upload_file_3)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-download-alt text-info"></i></a></td>
 		<td id="employees_appraisal_table-appraisal_status-<%%VALUE(id)%%>" class="employees_appraisal_table-appraisal_status text-bold"><%%VALUE(appraisal_status)%%></td>
 		<td id="employees_appraisal_table-created_by-<%%VALUE(id)%%>" class="employees_appraisal_table-created_by text-bold"><%%VALUE(created_by)%%></td>
 		<td id="employees_appraisal_table-created_at-<%%VALUE(id)%%>" class="employees_appraisal_table-created_at text-bold"><%%VALUE(created_at)%%></td>
 		<td id="employees_appraisal_table-last_updated_by-<%%VALUE(id)%%>" class="employees_appraisal_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
 		<td id="employees_appraisal_table-last_updated_at-<%%VALUE(id)%%>" class="employees_appraisal_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>
+		<script>$j(function() {
+			var e_upload_file_1 = '<%%VALUE(upload_file_1)%%>'; if(e_upload_file_1 == '' || e_upload_file_1 == '&nbsp;') $j(/*<*/ '#employees_appraisal_table-upload_file_1-<%%VALUE(id)%%>' /*>*/).html('');
+			var e_upload_file_2 = '<%%VALUE(upload_file_2)%%>'; if(e_upload_file_2 == '' || e_upload_file_2 == '&nbsp;') $j(/*<*/ '#employees_appraisal_table-upload_file_2-<%%VALUE(id)%%>' /*>*/).html('');
+			var e_upload_file_3 = '<%%VALUE(upload_file_3)%%>'; if(e_upload_file_3 == '' || e_upload_file_3 == '&nbsp;') $j(/*<*/ '#employees_appraisal_table-upload_file_3-<%%VALUE(id)%%>' /*>*/).html('');
+		});</script>

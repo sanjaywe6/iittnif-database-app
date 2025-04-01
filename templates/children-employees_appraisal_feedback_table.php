@@ -1,6 +1,6 @@
 <?php
 	if(!isset($Translation)) die('No direct access allowed.');
-	$current_table = 'personal_data_table';
+	$current_table = 'employees_appraisal_feedback_table';
 	$cleaner = new CI_Input(datalist_db_encoding);
 	$firstRecord = null;
 ?>
@@ -33,7 +33,7 @@
 					Page: param.Page,
 					SortBy: command.SortBy,
 					SortDirection: command.SortDirection,
-					Operation: 'get-records-printable'
+					Operation: 'get-records'
 				}, panelID, undefined, 'pc-loading', function() { AppGini.calculatedFields.init() });
 				break;
 			case 'page': /* next or previous page as provided by 'Page' */
@@ -48,8 +48,52 @@
 					Page: command.Page,
 					SortBy: param.SortBy,
 					SortDirection: param.SortDirection,
-					Operation: 'get-records-printable'
+					Operation: 'get-records'
 				}, panelID, undefined, 'pc-loading', function() { AppGini.calculatedFields.init() });
+				break;
+			case 'new': /* new record */
+				var parentId = $j('[name=SelectedID]').val();
+				var url = param.ChildTable + '_view.php?' + 
+					'filterer_' + param.ChildLookupField + '=' + encodeURIComponent(parentId) +
+					'&addNew_x=1' + 
+					'&Embedded=1' + 
+					(param.AutoClose ? '&AutoClose=1' : '');
+				modal_window({
+					url: url,
+					close: function() {
+						$j(window).trigger('child-modal-closed', {
+							parentTable: $j('.detail_view').data('table'),
+							parentId: param.SelectedID,
+							childTable: param.ChildTable,
+							childId: localStorage.getItem(param.ChildTable + '_last_added_id')
+						});
+						localStorage.removeItem(param.ChildTable + '_last_added_id');
+						<?php echo $current_table; ?>GetChildrenRecordsList({ Verb: 'reload' });
+						AppGini.calculatedFields.init();
+						AppGini.scrollTo('children-tabs');
+					},
+					size: 'full',
+					title: '<?php echo addslashes("{$config['tab-label']}: {$Translation['Add New']}"); ?>'
+				});
+				break;
+			case 'open': /* opens the detail view for given child record PK provided in 'ChildID' */
+				var url = param.ChildTable + '_view.php?Embedded=1&SelectedID=' + escape(command.ChildID) + (param.AutoClose ? '&AutoClose=1' : '');
+				modal_window({
+					url: url,
+					close: function() {
+						$j(window).trigger('child-modal-closed', {
+							parentTable: $j('.detail_view').data('table'),
+							parentId: param.SelectedID,
+							childTable: param.ChildTable,
+							childId: command.ChildID
+						});
+						<?php echo $current_table; ?>GetChildrenRecordsList({ Verb: 'reload' });
+						AppGini.calculatedFields.init();
+						AppGini.scrollTo('children-tabs');
+					},
+					size: 'full',
+					title: '<?php echo addslashes($config['tab-label']); ?>'
+				});
 				break;
 			case 'reload': /* just a way of refreshing children, retaining sorting and pagination & without reloading the whole page */
 				post("parent-children.php", {
@@ -59,7 +103,7 @@
 					Page: param.Page,
 					SortBy: param.SortBy,
 					SortDirection: param.SortDirection,
-					Operation: 'get-records-printable'
+					Operation: 'get-records'
 				}, panelID, undefined, 'pc-loading', function() { AppGini.calculatedFields.init() });
 				break;
 		}
@@ -67,18 +111,25 @@
 </script>
 
 <div class="row">
-	<div class="col-xs-12 col-md-12">
+	<div class="col-xs-11 col-md-12">
 
-		<div class="page-header"><h1>
-			<?php echo ($config['table-icon'] ? '<img src="' . $config['table-icon'] . '">' : ''); ?>
-			<?php echo $config['tab-label']; ?>
-		</h1></div>
+		<?php if($config['display-add-new']) { ?>
+			<?php if(stripos($_SERVER['HTTP_USER_AGENT'], 'msie ')) { ?>
+				<a href="<?php echo $parameters['ChildTable']; ?>_view.php?filterer_<?php echo $parameters['ChildLookupField']; ?>=<?php echo urlencode($parameters['SelectedID']); ?>&addNew_x=1" target="_viewchild" class="btn btn-success hspacer-sm vspacer-md"><i class="glyphicon glyphicon-plus-sign"></i> <?php echo html_attr($Translation['Add New']); ?></a>
+			<?php } else { ?>
+				<a href="#" onclick="<?php echo $current_table; ?>GetChildrenRecordsList({ Verb: 'new' }); return false;" class="btn btn-success hspacer-sm vspacer-md"><i class="glyphicon glyphicon-plus-sign"></i> <?php echo html_attr($Translation['Add New']); ?></a>
+			<?php } ?>
+		<?php } ?>
+		<?php if($config['display-refresh']) { ?><a href="#" onclick="<?php echo $current_table; ?>GetChildrenRecordsList({ Verb: 'reload' }); return false;" class="btn btn-default hspacer-sm vspacer-md"><i class="glyphicon glyphicon-refresh"></i></a><?php } ?>
 
 
 		<div class="table-responsive">
 			<table data-tablename="<?php echo $current_table; ?>" class="table table-striped table-hover table-condensed table-bordered">
 				<thead>
 					<tr>
+						<?php if($config['open-detail-view-on-click']) { ?>
+							<th>&nbsp;</th>
+						<?php } ?>
 						<?php if(is_array($config['display-fields'])) foreach($config['display-fields'] as $fieldIndex => $fieldLabel) { ?>
 							<th 
 								<?php if($config['sortable-fields'][$fieldIndex]) { ?>
@@ -104,30 +155,31 @@
 				<tbody>
 					<?php if(is_array($records)) foreach($records as $pkValue => $record) { ?>
 					<tr data-id="<?php echo html_attr($pkValue); ?>">
+						<?php if($config['open-detail-view-on-click']) { ?>
+							<?php if(stripos($_SERVER['HTTP_USER_AGENT'], 'msie ')) { ?>
+								<td class="text-center view-on-click"><a href="<?php echo $parameters['ChildTable']; ?>_view.php?SelectedID=<?php echo urlencode($record[$config['child-primary-key-index']]); ?>" target="_viewchild" class="h6"><i class="glyphicon glyphicon-new-window hspacer-md"></i></a></td>
+							<?php } else { ?>
+								<td class="text-center view-on-click"><a href="#" onclick="<?php echo $current_table; ?>GetChildrenRecordsList({ Verb: 'open', ChildID: '<?php echo html_attr($record[$config['child-primary-key-index']]); ?>' }); return false;" class="h6"><i class="glyphicon glyphicon-new-window hspacer-md"></i></a></td>
+							<?php } ?>
+						<?php } ?>
+
 						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][0]}"; ?> text-right" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][0]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><?php echo safe_html($record[0]); ?></td>
 						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][1]}"; ?>" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][1]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><?php echo safe_html($record[1]); ?></td>
 						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][2]}"; ?>" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][2]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><?php echo safe_html($record[2]); ?></td>
 						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][3]}"; ?>" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][3]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><?php echo safe_html($record[3]); ?></td>
 						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][4]}"; ?>" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][4]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><?php echo safe_html($record[4]); ?></td>
 						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][5]}"; ?>" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][5]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><?php echo safe_html($record[5]); ?></td>
-						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][6]}"; ?>" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][6]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><a href="mailto:<?php echo html_attr($record[6]); ?>" class="btn btn-info" title="<?php echo html_attr($record[6]); ?>"><i class="glyphicon glyphicon-envelope"></i></a></td>
+						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][6]}"; ?>" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][6]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><?php echo safe_html($record[6]); ?></td>
 						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][7]}"; ?>" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][7]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><?php echo safe_html($record[7]); ?></td>
 						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][8]}"; ?>" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][8]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><?php echo safe_html($record[8]); ?></td>
 						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][9]}"; ?>" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][9]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><?php echo safe_html($record[9]); ?></td>
 						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][10]}"; ?>" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][10]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><?php echo safe_html($record[10]); ?></td>
-						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][11]}"; ?>" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][11]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><?php echo safe_html($record[11]); ?></td>
-						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][12]}"; ?>" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][12]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><a href="<?php echo getUploadDir('') . urlencode($record[12]); ?>" data-lightbox="personal_data_table-profile_photo"><img src="thumbnail.php?i=<?php echo urlencode($record[12]); ?>&t=personal_data_table&f=profile_photo&v=tv" class="img-thumbnail"></a></td>
-						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][13]}"; ?>" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][13]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><a href="<?php echo getUploadDir('') . urlencode($record[13]); ?>" data-lightbox="personal_data_table-signature"><img src="thumbnail.php?i=<?php echo urlencode($record[13]); ?>&t=personal_data_table&f=signature&v=tv" class="img-thumbnail"></a></td>
-						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][14]}"; ?>" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][14]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><?php echo safe_html($record[14]); ?></td>
-						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][15]}"; ?>" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][15]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><?php echo safe_html($record[15]); ?></td>
-						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][16]}"; ?>" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][16]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><?php echo safe_html($record[16]); ?></td>
-						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][17]}"; ?>" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][17]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><?php echo safe_html($record[17]); ?></td>
 					</tr>
 					<?php } ?>
 				</tbody>
 				<tfoot>
 					<tr>
-						<td colspan="<?php echo count($config['display-fields']); ?>">
+						<td colspan="<?php echo (count($config['display-fields']) + ($config['open-detail-view-on-click'] ? 1 : 0)); ?>">
 							<?php if($totalMatches) { ?>
 								<?php if($config['show-page-progress']) { ?>
 									<span style="margin: 10px;">
@@ -162,6 +214,7 @@
 			</div>
 		<?php } ?>
 	</div>
+	<div class="col-xs-1 md-hidden lg-hidden"></div>
 </div>
 
 <script>

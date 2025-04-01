@@ -1,17 +1,14 @@
-<!-- To change the layout of the detail view form, we recommend using JS code in hooks/employees_designation_table-dv.js rather than editing this file -->
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/employees_appraisal_feedback_table-dv.js rather than editing this file -->
 
 <div id="detail-view"></div>
 <div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
 
-<div id="employees_designation_table_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+<div id="employees_appraisal_feedback_table_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
 
-<div class="panel-body hidden" id="employees_designation_table_dv_container">
+<div class="panel-body hidden" id="employees_appraisal_feedback_table_dv_container">
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
-			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="employees_appraisal_table_view.php?filterer_employee_designation_reporting_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="employees_appraisal_table_link"><img src="table.gif"> Employees Appraisal  - App</a>
-			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="employees_appraisal_table_view.php?filterer_employee_designation_reporting_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_employees_appraisal_table_link"><img src="table.gif"> Employees Appraisal  - App</a>
-			<input type="hidden" id="employees_appraisal_table_hclink" value="employees_appraisal_table_view.php?filterer_employee_designation_reporting_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -19,61 +16,62 @@
 
 	<div class="row">
 		<!-- form inputs -->
-		<div class="col-md-8 col-lg-10" id="employees_designation_table_dv_form">
+		<div class="col-md-8 col-lg-10" id="employees_appraisal_feedback_table_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: Employee details -->
-				<div class="form-group employees_designation_table-employee_details">
+				<!-- Field: Employees appraisal lookup -->
+				<div class="form-group employees_appraisal_feedback_table-employees_appraisal_lookup">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Employee details</label>
+					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Employees appraisal lookup</label>
 					<div class="col-lg-9">
 						<div class="form-control-static">
-							<span id="employee_details-readonly"><%%COMBOTEXT(employee_details)%%></span>
-							<%%PLINK(employee_details)%%>
+							<span id="employees_appraisal_lookup-readonly"><%%COMBOTEXT(employees_appraisal_lookup)%%></span>
+							<%%PLINK(employees_appraisal_lookup)%%>
 						</div>
 					</div>
 				</div>
 
-				<!-- Field: Designation -->
-				<div class="form-group employees_designation_table-designation">
+				<!-- Field: Reporting Officer Feedback on the Employee Responsibilities -->
+				<div class="form-group employees_appraisal_feedback_table-reporting_officer_feedback">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="designation">Designation</label>
+					<label class="control-label col-lg-3" for="reporting_officer_feedback">Reporting Officer Feedback on the Employee Responsibilities</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="designation" id="designation" value="<%%VALUE(designation)%%>">
+						<textarea class="form-control" name="reporting_officer_feedback" id="reporting_officer_feedback" rows=" 5"><%%VALUE(reporting_officer_feedback)%%></textarea>
 					</div>
 				</div>
 
-				<!-- Field: Date of appointment to designation -->
-				<div class="form-group employees_designation_table-date_of_appointment_to_designation">
+				<!-- Field: Observations by the Reporting Officer -->
+				<div class="form-group employees_appraisal_feedback_table-observations_by_reporting_officer">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="date_of_appointment_to_designation-dd">Date of appointment to designation</label>
+					<label class="control-label col-lg-3" for="observations_by_reporting_officer">Observations by the Reporting Officer</label>
 					<div class="col-lg-9">
-						<%%COMBO(date_of_appointment_to_designation)%%>
+						<textarea class="form-control" name="observations_by_reporting_officer" id="observations_by_reporting_officer" rows=" 5"><%%VALUE(observations_by_reporting_officer)%%></textarea>
 					</div>
 				</div>
 
-				<!-- Field: Active status -->
-				<div class="form-group employees_designation_table-active_status">
+				<!-- Field: Overall Rating by the Reporting Officer -->
+				<div class="form-group employees_appraisal_feedback_table-overall_rating">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="active_status">Active status</label>
+					<label class="control-label col-lg-3" for="overall_rating">Overall Rating by the Reporting Officer <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#overall_rating-description"></i></label>
 					<div class="col-lg-9">
-						<%%COMBO(active_status)%%>
+						<span class="help-block bspacer-xs collapse" id="overall_rating-description"><div class="alert alert-info bspacer-xs">Scale of Rating: 1-Poor | 2-Satisfactory | 3-Average | 4-Good | 5-Excellent</div></span>
+						<%%COMBO(overall_rating)%%>
 					</div>
 				</div>
 
-				<!-- Field: Reporting Officer -->
-				<div class="form-group employees_designation_table-reporting_officer">
+				<!-- Field: Appraisal Feedback Status -->
+				<div class="form-group employees_appraisal_feedback_table-appraisal_feedback_status">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="reporting_officer" data-parent_link="view_parent_modal">Reporting Officer</label>
+					<label class="control-label col-lg-3" for="appraisal_feedback_status">Appraisal Feedback Status</label>
 					<div class="col-lg-9">
-						<div class="lookup-flex"><%%COMBO(reporting_officer)%%><%%PLINK(reporting_officer)%%><%%ADDNEW(user_table)%%></div>
+						<%%COMBO(appraisal_feedback_status)%%>
 					</div>
 				</div>
 
-				<!-- Field: Reviewing Officer -->
-				<div class="form-group employees_designation_table-reviewing_officer">
+				<!-- Field: Reprting / Reviewing officer -->
+				<div class="form-group employees_appraisal_feedback_table-reviewing_officer">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="reviewing_officer" data-parent_link="view_parent_modal">Reviewing Officer</label>
+					<label class="control-label col-lg-3" for="reviewing_officer" data-parent_link="view_parent_modal">Reprting / Reviewing officer</label>
 					<div class="col-lg-9">
 						<div class="lookup-flex"><%%COMBO(reviewing_officer)%%><%%PLINK(reviewing_officer)%%><%%ADDNEW(user_table)%%></div>
 					</div>
@@ -84,7 +82,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2" id="employees_designation_table_dv_action_buttons">
+		<div class="col-md-4 col-lg-2" id="employees_appraisal_feedback_table_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>
@@ -101,16 +99,6 @@
 		</div>
 	</div>
 
-
-	<!-- child records -->
-	<hr>
-	<div class="row">
-		<div class="col-lg-10 col-lg-offset-1">
-			<div id="employees_designation_table-children" class="children-tabs">
-				<div class="text-center"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
-			</div>
-		</div>
-	</div>
 
 </div><!-- /div class="panel-body" -->
 	<script>
@@ -130,44 +118,12 @@
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-			$j('#employees_designation_table_dv_container-loading').addClass('hidden');
-			$j('#employees_designation_table_dv_container').removeClass('hidden');
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('employees_designation_table', 'designation');
+			$j('#employees_appraisal_feedback_table_dv_container-loading').addClass('hidden');
+			$j('#employees_appraisal_feedback_table_dv_container').removeClass('hidden');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('employees_appraisal_feedback_table', 'reporting_officer_feedback');
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 
-			if(embedded_mode) {
-				/* hide links to children tables in embedded mode */
-				$j('.detail_view a[id$=_link]').remove();
-
-				/* append embedded mode to all links */
-				var append_embedded = function() {
-					$j('a[href]:not([href^="#"]):not([href^="javascript"]):not([href$="Embedded=1"]):not([href*="link.php?t="]):not([href^="mailto:"]):not([href$=".jpg"]):not([href$=".png"]):not([href$=".gif"])').each(
-						function() {
-							$j(this).attr('href', $j(this).attr('href') + '&Embedded=1');
-						}
-					);
-				}
-				setTimeout(append_embedded, 500);
-				setTimeout(append_embedded, 1500);
-				setTimeout(append_embedded, 2500);
-				setTimeout(append_embedded, 3500);
-			}
-
-			/* when no record is selected ('add new' mode) */
-			if(add_new_mode) {
-				/* hide links to children tables */
-				$j('.detail_view a[id$=_link]').remove();
-			} else {
-				post(
-					'parent-children.php', {
-						ParentTable: 'employees_designation_table',
-						SelectedID: '<%%VALUE(id)%%>',
-						Operation: 'show-children'
-					},
-					'employees_designation_table-children'
-				);
-			}
 
 			if(true /* !embedded_mode */) {
 				$j('.add_new_parent').click(function() {
@@ -185,7 +141,7 @@
 							localStorage.removeItem(pt + '_last_added_id');
 							AppGini.lookupText({
 								id: new_id,
-								table: 'employees_designation_table',
+								table: 'employees_appraisal_feedback_table',
 								field: field_id,
 								callback: function(data) {
 									$j('#' + field_id + '-container').select2('data', data, true);
@@ -245,21 +201,21 @@
 				}
 			});
 
-			employees_designation_tableUniqueFields.forEach(fieldName => enforce_uniqueness('employees_designation_table', fieldName));
+			employees_appraisal_feedback_tableUniqueFields.forEach(fieldName => enforce_uniqueness('employees_appraisal_feedback_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
 				$j('body').append('<div id="admin-tools-appendix"></div>');
 				$j('#admin-tools-appendix').load(
-					'ajax_admin_tools.php?table=employees_designation_table&id=<%%URLVALUE(id)%%>',
+					'ajax_admin_tools.php?table=employees_appraisal_feedback_table&id=<%%URLVALUE(id)%%>',
 					function(resp) {
 						if(!resp.length) return;
-						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=employees_designation_table&id=<%%URLVALUE(id)%%>');
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=employees_appraisal_feedback_table&id=<%%URLVALUE(id)%%>');
 					}
 				);
 			}
 		});
 
-		var employees_designation_tableUniqueFields = [
+		var employees_appraisal_feedback_tableUniqueFields = [
 		];
 	</script>

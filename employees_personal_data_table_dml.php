@@ -131,9 +131,9 @@ function employees_personal_data_table_delete($selected_id, $AllowDeleteOfParent
 	// child table: employees_appraisal_table
 	$res = sql("SELECT `id` FROM `employees_personal_data_table` WHERE `id`='{$selected_id}'", $eo);
 	$id = db_fetch_row($res);
-	$rires = sql("SELECT COUNT(1) FROM `employees_appraisal_table` WHERE `employee_details`='" . makeSafe($id[0]) . "'", $eo);
+	$rires = sql("SELECT COUNT(1) FROM `employees_appraisal_table` WHERE `employee_lookup`='" . makeSafe($id[0]) . "'", $eo);
 	$rirow = db_fetch_row($rires);
-	$childrenATag = '<a class="alert-link" href="employees_appraisal_table_view.php?filterer_employee_details=' . urlencode($id[0]) . '">%s</a>';
+	$childrenATag = '<a class="alert-link" href="employees_appraisal_table_view.php?filterer_employee_lookup=' . urlencode($id[0]) . '">%s</a>';
 	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
 		$RetMsg = $Translation["couldn't delete"];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);

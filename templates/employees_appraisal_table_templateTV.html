@@ -6,16 +6,21 @@
 <!--     $options->ShowTableHeader = 0;     -->
 
 		<td id="employees_appraisal_table-id-<%%VALUE(id)%%>" class="employees_appraisal_table-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></td>
-		<td id="employees_appraisal_table-employee_details-<%%VALUE(id)%%>" class="employees_appraisal_table-employee_details"><%%SELECT%%><%%VALUE(employee_details)%%><%%ENDSELECT%%></td>
-		<td id="employees_appraisal_table-employee_designation_reporting-<%%VALUE(id)%%>" class="employees_appraisal_table-employee_designation_reporting"><%%SELECT%%><%%VALUE(employee_designation_reporting)%%><%%ENDSELECT%%></td>
+		<td id="employees_appraisal_table-employee_lookup-<%%VALUE(id)%%>" class="employees_appraisal_table-employee_lookup"><%%SELECT%%><%%VALUE(employee_lookup)%%><%%ENDSELECT%%></td>
+		<td id="employees_appraisal_table-employee_designation_reporting_lookup-<%%VALUE(id)%%>" class="employees_appraisal_table-employee_designation_reporting_lookup"><%%SELECT%%><%%VALUE(employee_designation_reporting_lookup)%%><%%ENDSELECT%%></td>
 		<td id="employees_appraisal_table-current_review_period-<%%VALUE(id)%%>" class="employees_appraisal_table-current_review_period"><%%SELECT%%><%%VALUE(current_review_period)%%><%%ENDSELECT%%></td>
 		<td id="employees_appraisal_table-roles-<%%VALUE(id)%%>" class="employees_appraisal_table-roles"><%%SELECT%%><%%VALUE(roles)%%><%%ENDSELECT%%></td>
 		<td id="employees_appraisal_table-self_explanation-<%%VALUE(id)%%>" class="employees_appraisal_table-self_explanation"><%%SELECT%%><%%VALUE(self_explanation)%%><%%ENDSELECT%%></td>
-		<td id="employees_appraisal_table-reporting_officer_feedback-<%%VALUE(id)%%>" class="employees_appraisal_table-reporting_officer_feedback"><%%SELECT%%><%%VALUE(reporting_officer_feedback)%%><%%ENDSELECT%%></td>
-		<td id="employees_appraisal_table-observations_by_reporting_officer-<%%VALUE(id)%%>" class="employees_appraisal_table-observations_by_reporting_officer"><%%SELECT%%><%%VALUE(observations_by_reporting_officer)%%><%%ENDSELECT%%></td>
-		<td id="employees_appraisal_table-overall_rating-<%%VALUE(id)%%>" class="employees_appraisal_table-overall_rating"><%%SELECT%%><%%VALUE(overall_rating)%%><%%ENDSELECT%%></td>
+		<td id="employees_appraisal_table-upload_file_1-<%%VALUE(id)%%>" class="employees_appraisal_table-upload_file_1"><a href="link.php?t=employees_appraisal_table&f=upload_file_1&i=<%%VALUE(id)%%>" target="_blank" title="<%%VALUE(upload_file_1)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-download-alt text-info"></i></a></td>
+		<td id="employees_appraisal_table-upload_file_2-<%%VALUE(id)%%>" class="employees_appraisal_table-upload_file_2"><a href="link.php?t=employees_appraisal_table&f=upload_file_2&i=<%%VALUE(id)%%>" target="_blank" title="<%%VALUE(upload_file_2)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-download-alt text-info"></i></a></td>
+		<td id="employees_appraisal_table-upload_file_3-<%%VALUE(id)%%>" class="employees_appraisal_table-upload_file_3"><a href="link.php?t=employees_appraisal_table&f=upload_file_3&i=<%%VALUE(id)%%>" target="_blank" title="<%%VALUE(upload_file_3)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-download-alt text-info"></i></a></td>
 		<td id="employees_appraisal_table-appraisal_status-<%%VALUE(id)%%>" class="employees_appraisal_table-appraisal_status"><%%SELECT%%><%%VALUE(appraisal_status)%%><%%ENDSELECT%%></td>
 		<td id="employees_appraisal_table-created_by-<%%VALUE(id)%%>" class="employees_appraisal_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
 		<td id="employees_appraisal_table-created_at-<%%VALUE(id)%%>" class="employees_appraisal_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
 		<td id="employees_appraisal_table-last_updated_by-<%%VALUE(id)%%>" class="employees_appraisal_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>
 		<td id="employees_appraisal_table-last_updated_at-<%%VALUE(id)%%>" class="employees_appraisal_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>
+		<script>$j(function() {
+			var e_upload_file_1 = '<%%VALUE(upload_file_1)%%>'; if(e_upload_file_1 == '' || e_upload_file_1 == '&nbsp;') $j(/*<*/ '#employees_appraisal_table-upload_file_1-<%%VALUE(id)%%>' /*>*/).html('');
+			var e_upload_file_2 = '<%%VALUE(upload_file_2)%%>'; if(e_upload_file_2 == '' || e_upload_file_2 == '&nbsp;') $j(/*<*/ '#employees_appraisal_table-upload_file_2-<%%VALUE(id)%%>' /*>*/).html('');
+			var e_upload_file_3 = '<%%VALUE(upload_file_3)%%>'; if(e_upload_file_3 == '' || e_upload_file_3 == '&nbsp;') $j(/*<*/ '#employees_appraisal_table-upload_file_3-<%%VALUE(id)%%>' /*>*/).html('');
+		});</script>

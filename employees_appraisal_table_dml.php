@@ -15,9 +15,9 @@ function employees_appraisal_table_insert(&$error_message = '') {
 		return false;
 	}
 
-	// automatic employee_designation_reporting_lookup if passed as filterer
-	if(Request::val('filterer_employee_designation_reporting_lookup')) {
-		$_REQUEST['employee_designation_reporting_lookup'] = Request::val('filterer_employee_designation_reporting_lookup');
+	// automatic employee_designation_lookup if passed as filterer
+	if(Request::val('filterer_employee_designation_lookup')) {
+		$_REQUEST['employee_designation_lookup'] = Request::val('filterer_employee_designation_lookup');
 	}
 
 	$data = [
@@ -73,9 +73,9 @@ function employees_appraisal_table_insert(&$error_message = '') {
 	];
 
 
-	// automatic employee_designation_reporting_lookup if passed as filterer
-	if(Request::val('filterer_employee_designation_reporting_lookup')) {
-		$data['employee_designation_reporting_lookup'] = Request::val('filterer_employee_designation_reporting_lookup');
+	// automatic employee_designation_lookup if passed as filterer
+	if(Request::val('filterer_employee_designation_lookup')) {
+		$data['employee_designation_lookup'] = Request::val('filterer_employee_designation_lookup');
 	}
 	// record owner is current user
 	$recordOwner = getLoggedMemberID();
@@ -307,7 +307,7 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 	$fieldsAreEditable = !$dvprint && (($allowInsert && !$hasSelectedId) || ($allowUpdate && $hasSelectedId) || $showSaveAsCopy);
 
 	$filterer_employee_lookup = Request::val('filterer_employee_lookup');
-	$filterer_employee_designation_reporting_lookup = Request::val('filterer_employee_designation_reporting_lookup');
+	$filterer_employee_designation_lookup = Request::val('filterer_employee_designation_lookup');
 
 	// populate filterers, starting from children to grand-parents
 
@@ -315,8 +315,8 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
 	// combobox: employee_lookup
 	$combo_employee_lookup = new DataCombo;
-	// combobox: employee_designation_reporting_lookup
-	$combo_employee_designation_reporting_lookup = new DataCombo;
+	// combobox: employee_designation_lookup
+	$combo_employee_designation_lookup = new DataCombo;
 	// combobox: appraisal_status
 	$combo_appraisal_status = new Combo;
 	$combo_appraisal_status->ListType = 0;
@@ -338,7 +338,7 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 			return error_message($Translation['No records found'], 'employees_appraisal_table_view.php', false);
 		}
 		$combo_employee_lookup->SelectedData = $row['employee_lookup'];
-		$combo_employee_designation_reporting_lookup->SelectedData = $row['employee_designation_reporting_lookup'];
+		$combo_employee_designation_lookup->SelectedData = $row['employee_designation_lookup'];
 		$combo_appraisal_status->SelectedData = $row['appraisal_status'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
@@ -347,13 +347,13 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
 		$combo_employee_lookup->SelectedData = $filterer_employee_lookup;
-		$combo_employee_designation_reporting_lookup->SelectedData = $filterer_employee_designation_reporting_lookup;
+		$combo_employee_designation_lookup->SelectedData = $filterer_employee_designation_lookup;
 		$combo_appraisal_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '10' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Yet to Start'));
 	}
 	$combo_employee_lookup->HTML = '<span id="employee_lookup-container' . $rnd1 . '"></span><input type="hidden" name="employee_lookup" id="employee_lookup' . $rnd1 . '" value="' . html_attr($combo_employee_lookup->SelectedData) . '">';
 	$combo_employee_lookup->MatchText = '<span id="employee_lookup-container-readonly' . $rnd1 . '"></span><input type="hidden" name="employee_lookup" id="employee_lookup' . $rnd1 . '" value="' . html_attr($combo_employee_lookup->SelectedData) . '">';
-	$combo_employee_designation_reporting_lookup->HTML = '<span id="employee_designation_reporting_lookup-container' . $rnd1 . '"></span><input type="hidden" name="employee_designation_reporting_lookup" id="employee_designation_reporting_lookup' . $rnd1 . '" value="' . html_attr($combo_employee_designation_reporting_lookup->SelectedData) . '">';
-	$combo_employee_designation_reporting_lookup->MatchText = '<span id="employee_designation_reporting_lookup-container-readonly' . $rnd1 . '"></span><input type="hidden" name="employee_designation_reporting_lookup" id="employee_designation_reporting_lookup' . $rnd1 . '" value="' . html_attr($combo_employee_designation_reporting_lookup->SelectedData) . '">';
+	$combo_employee_designation_lookup->HTML = '<span id="employee_designation_lookup-container' . $rnd1 . '"></span><input type="hidden" name="employee_designation_lookup" id="employee_designation_lookup' . $rnd1 . '" value="' . html_attr($combo_employee_designation_lookup->SelectedData) . '">';
+	$combo_employee_designation_lookup->MatchText = '<span id="employee_designation_lookup-container-readonly' . $rnd1 . '"></span><input type="hidden" name="employee_designation_lookup" id="employee_designation_lookup' . $rnd1 . '" value="' . html_attr($combo_employee_designation_lookup->SelectedData) . '">';
 	$combo_appraisal_status->Render();
 
 	ob_start();
@@ -362,12 +362,12 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 	<script>
 		// initial lookup values
 		AppGini.current_employee_lookup__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['employee_lookup'] : htmlspecialchars($filterer_employee_lookup, ENT_QUOTES)); ?>"};
-		AppGini.current_employee_designation_reporting_lookup__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['employee_designation_reporting_lookup'] : htmlspecialchars($filterer_employee_designation_reporting_lookup, ENT_QUOTES)); ?>"};
+		AppGini.current_employee_designation_lookup__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['employee_designation_lookup'] : htmlspecialchars($filterer_employee_designation_lookup, ENT_QUOTES)); ?>"};
 
 		$j(function() {
 			setTimeout(function() {
 				if(typeof(employee_lookup_reload__RAND__) == 'function') employee_lookup_reload__RAND__();
-				if(typeof(employee_designation_reporting_lookup_reload__RAND__) == 'function') employee_designation_reporting_lookup_reload__RAND__();
+				if(typeof(employee_designation_lookup_reload__RAND__) == 'function') employee_designation_lookup_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
 		function employee_lookup_reload__RAND__() {
@@ -447,27 +447,27 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 		<?php } ?>
 
 		}
-		function employee_designation_reporting_lookup_reload__RAND__() {
+		function employee_designation_lookup_reload__RAND__() {
 		<?php if($fieldsAreEditable) { ?>
 
-			$j("#employee_designation_reporting_lookup-container__RAND__").select2({
+			$j("#employee_designation_lookup-container__RAND__").select2({
 				/* initial default value */
 				initSelection: function(e, c) {
 					$j.ajax({
 						url: 'ajax_combo.php',
 						dataType: 'json',
-						data: { id: AppGini.current_employee_designation_reporting_lookup__RAND__.value, t: 'employees_appraisal_table', f: 'employee_designation_reporting_lookup' },
+						data: { id: AppGini.current_employee_designation_lookup__RAND__.value, t: 'employees_appraisal_table', f: 'employee_designation_lookup' },
 						success: function(resp) {
 							c({
 								id: resp.results[0].id,
 								text: resp.results[0].text
 							});
-							$j('[name="employee_designation_reporting_lookup"]').val(resp.results[0].id);
-							$j('[id=employee_designation_reporting_lookup-container-readonly__RAND__]').html('<span class="match-text" id="employee_designation_reporting_lookup-match-text">' + resp.results[0].text + '</span>');
+							$j('[name="employee_designation_lookup"]').val(resp.results[0].id);
+							$j('[id=employee_designation_lookup-container-readonly__RAND__]').html('<span class="match-text" id="employee_designation_lookup-match-text">' + resp.results[0].text + '</span>');
 							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=employees_designation_table_view_parent]').hide(); } else { $j('.btn[id=employees_designation_table_view_parent]').show(); }
 
 
-							if(typeof(employee_designation_reporting_lookup_update_autofills__RAND__) == 'function') employee_designation_reporting_lookup_update_autofills__RAND__();
+							if(typeof(employee_designation_lookup_update_autofills__RAND__) == 'function') employee_designation_lookup_update_autofills__RAND__();
 						}
 					});
 				},
@@ -479,31 +479,31 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 					url: 'ajax_combo.php',
 					dataType: 'json',
 					cache: true,
-					data: function(term, page) { return { s: term, p: page, t: 'employees_appraisal_table', f: 'employee_designation_reporting_lookup' }; },
+					data: function(term, page) { return { s: term, p: page, t: 'employees_appraisal_table', f: 'employee_designation_lookup' }; },
 					results: function(resp, page) { return resp; }
 				},
 				escapeMarkup: function(str) { return str; }
 			}).on('change', function(e) {
-				AppGini.current_employee_designation_reporting_lookup__RAND__.value = e.added.id;
-				AppGini.current_employee_designation_reporting_lookup__RAND__.text = e.added.text;
-				$j('[name="employee_designation_reporting_lookup"]').val(e.added.id);
+				AppGini.current_employee_designation_lookup__RAND__.value = e.added.id;
+				AppGini.current_employee_designation_lookup__RAND__.text = e.added.text;
+				$j('[name="employee_designation_lookup"]').val(e.added.id);
 				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=employees_designation_table_view_parent]').hide(); } else { $j('.btn[id=employees_designation_table_view_parent]').show(); }
 
 
-				if(typeof(employee_designation_reporting_lookup_update_autofills__RAND__) == 'function') employee_designation_reporting_lookup_update_autofills__RAND__();
+				if(typeof(employee_designation_lookup_update_autofills__RAND__) == 'function') employee_designation_lookup_update_autofills__RAND__();
 			});
 
-			if(!$j("#employee_designation_reporting_lookup-container__RAND__").length) {
+			if(!$j("#employee_designation_lookup-container__RAND__").length) {
 				$j.ajax({
 					url: 'ajax_combo.php',
 					dataType: 'json',
-					data: { id: AppGini.current_employee_designation_reporting_lookup__RAND__.value, t: 'employees_appraisal_table', f: 'employee_designation_reporting_lookup' },
+					data: { id: AppGini.current_employee_designation_lookup__RAND__.value, t: 'employees_appraisal_table', f: 'employee_designation_lookup' },
 					success: function(resp) {
-						$j('[name="employee_designation_reporting_lookup"]').val(resp.results[0].id);
-						$j('[id=employee_designation_reporting_lookup-container-readonly__RAND__]').html('<span class="match-text" id="employee_designation_reporting_lookup-match-text">' + resp.results[0].text + '</span>');
+						$j('[name="employee_designation_lookup"]').val(resp.results[0].id);
+						$j('[id=employee_designation_lookup-container-readonly__RAND__]').html('<span class="match-text" id="employee_designation_lookup-match-text">' + resp.results[0].text + '</span>');
 						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=employees_designation_table_view_parent]').hide(); } else { $j('.btn[id=employees_designation_table_view_parent]').show(); }
 
-						if(typeof(employee_designation_reporting_lookup_update_autofills__RAND__) == 'function') employee_designation_reporting_lookup_update_autofills__RAND__();
+						if(typeof(employee_designation_lookup_update_autofills__RAND__) == 'function') employee_designation_lookup_update_autofills__RAND__();
 					}
 				});
 			}
@@ -513,12 +513,12 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 			$j.ajax({
 				url: 'ajax_combo.php',
 				dataType: 'json',
-				data: { id: AppGini.current_employee_designation_reporting_lookup__RAND__.value, t: 'employees_appraisal_table', f: 'employee_designation_reporting_lookup' },
+				data: { id: AppGini.current_employee_designation_lookup__RAND__.value, t: 'employees_appraisal_table', f: 'employee_designation_lookup' },
 				success: function(resp) {
-					$j('[id=employee_designation_reporting_lookup-container__RAND__], [id=employee_designation_reporting_lookup-container-readonly__RAND__]').html('<span class="match-text" id="employee_designation_reporting_lookup-match-text">' + resp.results[0].text + '</span>');
+					$j('[id=employee_designation_lookup-container__RAND__], [id=employee_designation_lookup-container-readonly__RAND__]').html('<span class="match-text" id="employee_designation_lookup-match-text">' + resp.results[0].text + '</span>');
 					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=employees_designation_table_view_parent]').hide(); } else { $j('.btn[id=employees_designation_table_view_parent]').show(); }
 
-					if(typeof(employee_designation_reporting_lookup_update_autofills__RAND__) == 'function') employee_designation_reporting_lookup_update_autofills__RAND__();
+					if(typeof(employee_designation_lookup_update_autofills__RAND__) == 'function') employee_designation_lookup_update_autofills__RAND__();
 				}
 			});
 		<?php } ?>
@@ -631,14 +631,14 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 	$templateCode = str_replace('<%%COMBO(employee_lookup)%%>', $combo_employee_lookup->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(employee_lookup)%%>', $combo_employee_lookup->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(employee_lookup)%%>', urlencode($combo_employee_lookup->MatchText), $templateCode);
-	$templateCode = str_replace('<%%COMBO(employee_designation_reporting_lookup)%%>', $combo_employee_designation_reporting_lookup->HTML, $templateCode);
-	$templateCode = str_replace('<%%COMBOTEXT(employee_designation_reporting_lookup)%%>', $combo_employee_designation_reporting_lookup->MatchText, $templateCode);
-	$templateCode = str_replace('<%%URLCOMBOTEXT(employee_designation_reporting_lookup)%%>', urlencode($combo_employee_designation_reporting_lookup->MatchText), $templateCode);
+	$templateCode = str_replace('<%%COMBO(employee_designation_lookup)%%>', $combo_employee_designation_lookup->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(employee_designation_lookup)%%>', $combo_employee_designation_lookup->MatchText, $templateCode);
+	$templateCode = str_replace('<%%URLCOMBOTEXT(employee_designation_lookup)%%>', urlencode($combo_employee_designation_lookup->MatchText), $templateCode);
 	$templateCode = str_replace('<%%COMBO(appraisal_status)%%>', $combo_appraisal_status->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(appraisal_status)%%>', $combo_appraisal_status->SelectedData, $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
-	$lookup_fields = ['employee_lookup' => ['employees_personal_data_table', 'Employee Details'], 'employee_designation_reporting_lookup' => ['employees_designation_table', 'Employee Other Details (Designation::Reporting Officer)'], ];
+	$lookup_fields = ['employee_lookup' => ['employees_personal_data_table', 'Employee Details'], 'employee_designation_lookup' => ['employees_designation_table', 'Employee Other Details (Designation::Reporting Officer)'], ];
 	foreach($lookup_fields as $luf => $ptfc) {
 		$pt_perm = getTablePermissions($ptfc[0]);
 
@@ -656,7 +656,7 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(employee_lookup)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(employee_designation_reporting_lookup)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(employee_designation_lookup)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(current_review_period)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(roles)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(self_explanation)%%>', '', $templateCode);
@@ -676,8 +676,8 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(employee_lookup)%%>', safe_html($urow['employee_lookup']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(employee_lookup)%%>', html_attr($row['employee_lookup']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(employee_lookup)%%>', urlencode($urow['employee_lookup']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(employee_designation_reporting_lookup)%%>', safe_html($urow['employee_designation_reporting_lookup']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(employee_designation_reporting_lookup)%%>', urlencode($urow['employee_designation_reporting_lookup']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(employee_designation_lookup)%%>', safe_html($urow['employee_designation_lookup']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(employee_designation_lookup)%%>', urlencode($urow['employee_designation_lookup']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(current_review_period)%%>', safe_html($urow['current_review_period']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(current_review_period)%%>', html_attr($row['current_review_period']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(current_review_period)%%>', urlencode($urow['current_review_period']), $templateCode);
@@ -711,8 +711,8 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(employee_lookup)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(employee_lookup)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(employee_designation_reporting_lookup)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(employee_designation_reporting_lookup)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(employee_designation_lookup)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(employee_designation_lookup)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(current_review_period)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(current_review_period)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(roles)%%>', '', $templateCode);
@@ -782,7 +782,7 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
 	if(isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>')
-		$templateCode.="\n<input type=hidden name=employee_designation_reporting_lookup value=\"" . html_attr($filterValue[1]) . "\">\n";
+		$templateCode.="\n<input type=hidden name=employee_designation_lookup value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery
 	$templateCode = preg_replace('/blank.gif" data-lightbox=".*?"/', 'blank.gif"', $templateCode);

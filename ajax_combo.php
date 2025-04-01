@@ -519,7 +519,7 @@
 				'list_type' => 0,
 				'not_null' => false,
 			],
-			'employee_designation_reporting_lookup' => [
+			'employee_designation_lookup' => [
 				'parent_table' => 'employees_designation_table',
 				'parent_pk_field' => 'id',
 				'parent_caption' => 'IF(CHAR_LENGTH(`employees_designation_table`.`designation`) || CHAR_LENGTH(`employees_designation_table`.`reporting_officer`), CONCAT_WS(\'\', `employees_designation_table`.`designation`, \'::\', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS(\'\',   `user_table1`.`memberID`, \'::\', `user_table1`.`name`), \'\')), \'\')',
@@ -536,7 +536,7 @@
 				'parent_table' => 'employees_appraisal_table',
 				'parent_pk_field' => 'id',
 				'parent_caption' => 'IF(CHAR_LENGTH(`employees_appraisal_table`.`roles`) || CHAR_LENGTH(`employees_appraisal_table`.`self_explanation`), CONCAT_WS(\'\', `employees_appraisal_table`.`roles`, \'::\', `employees_appraisal_table`.`self_explanation`), \'\')',
-				'parent_from' => '`employees_appraisal_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`id`=`employees_appraisal_table`.`employee_lookup` LEFT JOIN `employees_designation_table` as employees_designation_table1 ON `employees_designation_table1`.`id`=`employees_appraisal_table`.`employee_designation_reporting_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table1`.`reporting_officer` ',
+				'parent_from' => '`employees_appraisal_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`id`=`employees_appraisal_table`.`employee_lookup` LEFT JOIN `employees_designation_table` as employees_designation_table1 ON `employees_designation_table1`.`id`=`employees_appraisal_table`.`employee_designation_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table1`.`reporting_officer` ',
 				'filterers' => [],
 				'custom_query' => '',
 				'inherit_permissions' => false,

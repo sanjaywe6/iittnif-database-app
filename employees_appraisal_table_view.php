@@ -20,7 +20,7 @@
 	$x->QueryFieldsTV = [
 		"`employees_appraisal_table`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, '::', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "employee_lookup",
-		"IF(    CHAR_LENGTH(`employees_designation_table1`.`designation`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `employees_designation_table1`.`designation`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Employee Other Details (Designation::Reporting Officer) */" => "employee_designation_reporting_lookup",
+		"IF(    CHAR_LENGTH(`employees_designation_table1`.`designation`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `employees_designation_table1`.`designation`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Employee Other Details (Designation::Reporting Officer) */" => "employee_designation_lookup",
 		"`employees_appraisal_table`.`current_review_period`" => "current_review_period",
 		"`employees_appraisal_table`.`roles`" => "roles",
 		"`employees_appraisal_table`.`self_explanation`" => "self_explanation",
@@ -55,7 +55,7 @@
 	$x->QueryFieldsCSV = [
 		"`employees_appraisal_table`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, '::', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "employee_lookup",
-		"IF(    CHAR_LENGTH(`employees_designation_table1`.`designation`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `employees_designation_table1`.`designation`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Employee Other Details (Designation::Reporting Officer) */" => "employee_designation_reporting_lookup",
+		"IF(    CHAR_LENGTH(`employees_designation_table1`.`designation`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `employees_designation_table1`.`designation`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Employee Other Details (Designation::Reporting Officer) */" => "employee_designation_lookup",
 		"`employees_appraisal_table`.`current_review_period`" => "current_review_period",
 		"`employees_appraisal_table`.`roles`" => "roles",
 		"`employees_appraisal_table`.`self_explanation`" => "self_explanation",
@@ -90,7 +90,7 @@
 	$x->QueryFieldsQS = [
 		"`employees_appraisal_table`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, '::', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "employee_lookup",
-		"IF(    CHAR_LENGTH(`employees_designation_table1`.`designation`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `employees_designation_table1`.`designation`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Employee Other Details (Designation::Reporting Officer) */" => "employee_designation_reporting_lookup",
+		"IF(    CHAR_LENGTH(`employees_designation_table1`.`designation`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `employees_designation_table1`.`designation`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Employee Other Details (Designation::Reporting Officer) */" => "employee_designation_lookup",
 		"`employees_appraisal_table`.`current_review_period`" => "current_review_period",
 		"`employees_appraisal_table`.`roles`" => "roles",
 		"`employees_appraisal_table`.`self_explanation`" => "self_explanation",
@@ -105,9 +105,9 @@
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['employee_lookup' => 'Employee Details', 'employee_designation_reporting_lookup' => 'Employee Other Details (Designation::Reporting Officer)', ];
+	$x->filterers = ['employee_lookup' => 'Employee Details', 'employee_designation_lookup' => 'Employee Other Details (Designation::Reporting Officer)', ];
 
-	$x->QueryFrom = "`employees_appraisal_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`id`=`employees_appraisal_table`.`employee_lookup` LEFT JOIN `employees_designation_table` as employees_designation_table1 ON `employees_designation_table1`.`id`=`employees_appraisal_table`.`employee_designation_reporting_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table1`.`reporting_officer` ";
+	$x->QueryFrom = "`employees_appraisal_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`id`=`employees_appraisal_table`.`employee_lookup` LEFT JOIN `employees_designation_table` as employees_designation_table1 ON `employees_designation_table1`.`id`=`employees_appraisal_table`.`employee_designation_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table1`.`reporting_officer` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -139,7 +139,7 @@
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
 	$x->ColCaption = ['ID', 'Employee Details', 'Employee Other Details (Designation::Reporting Officer)', 'Current review period', 'Roles & Responsibilities', 'Employee Self-explanation', 'Upload file 1', 'Upload file 2', 'Upload file 3', 'Appraisal status', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'employee_lookup', 'employee_designation_reporting_lookup', 'current_review_period', 'roles', 'self_explanation', 'upload_file_1', 'upload_file_2', 'upload_file_3', 'appraisal_status', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColFieldName = ['id', 'employee_lookup', 'employee_designation_lookup', 'current_review_period', 'roles', 'self_explanation', 'upload_file_1', 'upload_file_2', 'upload_file_3', 'appraisal_status', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
 	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
 
 	// template paths below are based on the app main directory

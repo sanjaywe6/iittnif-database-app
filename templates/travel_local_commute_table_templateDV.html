@@ -95,8 +95,8 @@
 				<div class="form-group travel_local_commute_table-description">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="description">Description</label>
-					<div class="col-lg-9 has-nicedit">
-						<%%HTMLAREA(description)%%>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="description" id="description" rows=" 5"><%%VALUE(description)%%></textarea>
 					</div>
 				</div>
 
@@ -164,12 +164,6 @@
 				setTimeout(AppGini.closeParentModal, 2000);
 			}
 
-			AppGini.once({
-				condition: function() { return bkLib != undefined; },
-				action: function() {
-					if($j('textarea#description').length) new nicEditor({ fullPanel : true }).panelInstance('description');
-				}
-			});
 
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
@@ -177,9 +171,6 @@
 			$j('#travel_local_commute_table_dv_container-loading').addClass('hidden');
 			$j('#travel_local_commute_table_dv_container').removeClass('hidden');
 			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('travel_local_commute_table', 'first_name');
-
-			// try to detect rich text changes by adding 'input' handler after nicedit is loaded ...
-			AppGini.detectContentEditableChanges();
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 

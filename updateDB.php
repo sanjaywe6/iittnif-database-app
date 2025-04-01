@@ -98,8 +98,10 @@
 		setupTable('employees_designation_table', []);
 		setupIndexes('employees_designation_table', ['employee_details','reporting_officer','reviewing_officer',]);
 
-		setupTable('employees_appraisal_table', []);
-		setupIndexes('employees_appraisal_table', ['employee_lookup','employee_designation_reporting_lookup',]);
+		setupTable('employees_appraisal_table', [
+				"ALTER TABLE `employees_appraisal_table` CHANGE `employee_designation_reporting_lookup` `employee_designation_lookup` INT(10) UNSIGNED NULL ",
+			]);
+		setupIndexes('employees_appraisal_table', ['employee_lookup','employee_designation_lookup',]);
 
 		setupTable('employees_appraisal_feedback_table', []);
 		setupIndexes('employees_appraisal_feedback_table', ['employees_appraisal_lookup','reviewing_officer',]);
@@ -157,14 +159,14 @@
 
 		setupTable('payment_track_details_table', []);
 
-		setupTable('travel_table', []);
+		setupTable('travel_table', [
+				" ALTER TABLE `travel_table` CHANGE `age` `age` VARCHAR(255) NULL ",
+				" ALTER TABLE `travel_table` CHANGE `gender` `gender` VARCHAR(255) NULL DEFAULT 'Male' ",
+			]);
 
 		setupTable('travel_stay_table', []);
 
-		setupTable('travel_local_commute_table', [
-				"ALTER TABLE `travel_local_commute_table` CHANGE `comments` `comments` TEXT NULL ",
-				"ALTER TABLE `travel_local_commute_table` CHANGE `travel_description` `description` TEXT NULL ",
-			]);
+		setupTable('travel_local_commute_table', []);
 
 		setupTable('car_table', []);
 

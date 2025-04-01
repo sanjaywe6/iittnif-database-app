@@ -18,8 +18,8 @@ function travel_table_insert(&$error_message = '') {
 	$data = [
 		'first_name' => Request::val('first_name', ''),
 		'last_name' => Request::val('last_name', ''),
-		'age' => Request::val('age', 'Male'),
-		'gender' => Request::val('gender', ''),
+		'age' => Request::val('age', ''),
+		'gender' => Request::val('gender', 'Male'),
 		'mobile_number' => Request::val('mobile_number', ''),
 		'travel_type' => Request::val('travel_type', ''),
 		'from_place' => Request::val('from_place', ''),
@@ -281,7 +281,7 @@ function travel_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_gender->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_gender->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Male'));
 		$combo_travel_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '7' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '13' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 	}
@@ -520,10 +520,10 @@ function travel_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 		$templateCode = str_replace('<%%URLVALUE(first_name)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_name)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_name)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(age)%%>', 'Male', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(age)%%>', urlencode('Male'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(gender)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(gender)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(age)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(age)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(gender)%%>', 'Male', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(gender)%%>', urlencode('Male'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(mobile_number)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(mobile_number)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(travel_type)%%>', '', $templateCode);

@@ -24,7 +24,7 @@ function travel_local_commute_table_insert(&$error_message = '') {
 		'local_commute_type' => Request::val('local_commute_type', 'Cab'),
 		'from_place' => Request::val('from_place', ''),
 		'to_place' => Request::val('to_place', ''),
-		'description' => Request::val('description', ''),
+		'description' => br2nl(Request::val('description', '')),
 		'approval_status' => Request::val('approval_status', 'Under Consideration'),
 		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
@@ -103,7 +103,7 @@ function travel_local_commute_table_update(&$selected_id, &$error_message = '') 
 		'local_commute_type' => Request::val('local_commute_type', ''),
 		'from_place' => Request::val('from_place', ''),
 		'to_place' => Request::val('to_place', ''),
-		'description' => Request::val('description', ''),
+		'description' => br2nl(Request::val('description', '')),
 		'approval_status' => Request::val('approval_status', ''),
 		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
 		'approved_by' => parseCode('<%%editorUsername%%>', false),
@@ -370,6 +370,7 @@ function travel_local_commute_table_form($selectedId = '', $allowUpdate = true, 
 		$jsReadOnly .= "\t\$j('#local_commute_type').replaceWith('<div class=\"form-control-static\" id=\"local_commute_type\">' + (\$j('#local_commute_type').val() || '') + '</div>'); \$j('#local_commute_type-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#from_place').replaceWith('<div class=\"form-control-static\" id=\"from_place\">' + (\$j('#from_place').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#to_place').replaceWith('<div class=\"form-control-static\" id=\"to_place\">' + (\$j('#to_place').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#description').replaceWith('<div class=\"form-control-static\" id=\"description\">' + (\$j('#description').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#approval_status').replaceWith('<div class=\"form-control-static\" id=\"approval_status\">' + (\$j('#approval_status').val() || '') + '</div>'); \$j('#approval_status-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#approval_remarks').replaceWith('<div class=\"form-control-static\" id=\"approval_remarks\">' + (\$j('#approval_remarks').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
@@ -451,12 +452,7 @@ function travel_local_commute_table_form($selectedId = '', $allowUpdate = true, 
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(to_place)%%>', safe_html($urow['to_place']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(to_place)%%>', html_attr($row['to_place']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(to_place)%%>', urlencode($urow['to_place']), $templateCode);
-		if($fieldsAreEditable) {
-			$templateCode = str_replace('<%%HTMLAREA(description)%%>', '<textarea name="description" id="description" rows="5">' . safe_html(htmlspecialchars_decode($row['description'])) . '</textarea>', $templateCode);
-		} else {
-			$templateCode = str_replace('<%%HTMLAREA(description)%%>', '<div id="description" class="form-control-static">' . $row['description'] . '</div>', $templateCode);
-		}
-		$templateCode = str_replace('<%%VALUE(description)%%>', nl2br($row['description']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(description)%%>', safe_html($urow['description'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(description)%%>', urlencode($urow['description']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', safe_html($urow['approval_status']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', html_attr($row['approval_status']), $templateCode);
@@ -490,7 +486,8 @@ function travel_local_commute_table_form($selectedId = '', $allowUpdate = true, 
 		$templateCode = str_replace('<%%URLVALUE(from_place)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(to_place)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(to_place)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%HTMLAREA(description)%%>', '<textarea name="description" id="description" rows="5"></textarea>', $templateCode);
+		$templateCode = str_replace('<%%VALUE(description)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(description)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(approval_status)%%>', 'Under Consideration', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode('Under Consideration'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', '', $templateCode);

@@ -216,7 +216,7 @@
 		},
 		'employees_appraisal_table' => function($data, $options = []) {
 			if(isset($data['employee_lookup'])) $data['employee_lookup'] = pkGivenLookupText($data['employee_lookup'], 'employees_appraisal_table', 'employee_lookup');
-			if(isset($data['employee_designation_reporting_lookup'])) $data['employee_designation_reporting_lookup'] = pkGivenLookupText($data['employee_designation_reporting_lookup'], 'employees_appraisal_table', 'employee_designation_reporting_lookup');
+			if(isset($data['employee_designation_lookup'])) $data['employee_designation_lookup'] = pkGivenLookupText($data['employee_designation_lookup'], 'employees_appraisal_table', 'employee_designation_lookup');
 
 			return $data;
 		},

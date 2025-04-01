@@ -4820,7 +4820,7 @@
 					'employee_designation_lookup' => [
 						'appgini' => "INT(10) UNSIGNED NULL",
 						'info' => [
-							'caption' => 'Employee Other Details (Designation::Reporting Officer)',
+							'caption' => 'Employee Reporting/Reviewing Officer',
 							'description' => '',
 						],
 					],

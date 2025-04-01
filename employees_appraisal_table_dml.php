@@ -638,7 +638,7 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 	$templateCode = str_replace('<%%COMBOTEXT(appraisal_status)%%>', $combo_appraisal_status->SelectedData, $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
-	$lookup_fields = ['employee_lookup' => ['employees_personal_data_table', 'Employee Details'], 'employee_designation_lookup' => ['employees_designation_table', 'Employee Other Details (Designation::Reporting Officer)'], ];
+	$lookup_fields = ['employee_lookup' => ['employees_personal_data_table', 'Employee Details'], 'employee_designation_lookup' => ['employees_designation_table', 'Employee Reporting/Reviewing Officer'], ];
 	foreach($lookup_fields as $luf => $ptfc) {
 		$pt_perm = getTablePermissions($ptfc[0]);
 

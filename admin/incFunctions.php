@@ -4103,6 +4103,13 @@
 							'description' => '',
 						],
 					],
+					'qty' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Qty',
+							'description' => '',
+						],
+					],
 					'asset_serial_number' => [
 						'appgini' => "VARCHAR(40) NULL",
 						'info' => [

@@ -23,6 +23,7 @@
 		"`it_inventory_app`.`description`" => "description",
 		"`it_inventory_app`.`classification_of_asset`" => "classification_of_asset",
 		"`it_inventory_app`.`sub_category`" => "sub_category",
+		"`it_inventory_app`.`qty`" => "qty",
 		"`it_inventory_app`.`asset_serial_number`" => "asset_serial_number",
 		"`it_inventory_app`.`qr_and_bar_code`" => "qr_and_bar_code",
 		"`it_inventory_app`.`custody_department`" => "custody_department",
@@ -51,14 +52,15 @@
 		9 => 9,
 		10 => 10,
 		11 => 11,
-		12 => '`it_inventory_app`.`date_of_useful_life_of_assets_ends`',
-		13 => 13,
+		12 => 12,
+		13 => '`it_inventory_app`.`date_of_useful_life_of_assets_ends`',
 		14 => 14,
 		15 => 15,
 		16 => 16,
 		17 => 17,
 		18 => 18,
 		19 => 19,
+		20 => 20,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -68,6 +70,7 @@
 		"`it_inventory_app`.`description`" => "description",
 		"`it_inventory_app`.`classification_of_asset`" => "classification_of_asset",
 		"`it_inventory_app`.`sub_category`" => "sub_category",
+		"`it_inventory_app`.`qty`" => "qty",
 		"`it_inventory_app`.`asset_serial_number`" => "asset_serial_number",
 		"`it_inventory_app`.`qr_and_bar_code`" => "qr_and_bar_code",
 		"`it_inventory_app`.`custody_department`" => "custody_department",
@@ -90,6 +93,7 @@
 		"`it_inventory_app`.`description`" => "Description",
 		"`it_inventory_app`.`classification_of_asset`" => "Classification of asset",
 		"`it_inventory_app`.`sub_category`" => "Sub category",
+		"`it_inventory_app`.`qty`" => "Qty",
 		"`it_inventory_app`.`asset_serial_number`" => "Asset serial number",
 		"`it_inventory_app`.`qr_and_bar_code`" => "Qr and bar code",
 		"`it_inventory_app`.`custody_department`" => "Custody department",
@@ -112,6 +116,7 @@
 		"`it_inventory_app`.`description`" => "description",
 		"`it_inventory_app`.`classification_of_asset`" => "classification_of_asset",
 		"`it_inventory_app`.`sub_category`" => "sub_category",
+		"`it_inventory_app`.`qty`" => "qty",
 		"`it_inventory_app`.`asset_serial_number`" => "asset_serial_number",
 		"`it_inventory_app`.`qr_and_bar_code`" => "qr_and_bar_code",
 		"`it_inventory_app`.`custody_department`" => "custody_department",
@@ -160,10 +165,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Date', 'Description', 'Classification of asset', 'Sub category', 'Asset serial number', 'Qr and bar code', 'Custody department', 'Custodian', 'Custodian signature', 'Number of years useful life of assets', 'Date of useful life of assets ends', 'Remarks', 'Sactioned by', 'It inventory str', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['it_inventory_id', 'date', 'description', 'classification_of_asset', 'sub_category', 'asset_serial_number', 'qr_and_bar_code', 'custody_department', 'custodian', 'custodian_signature', 'no_of_years_useful_life_of_assets', 'date_of_useful_life_of_assets_ends', 'remarks', 'sactioned_by', 'it_inventory_str', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Date', 'Description', 'Classification of asset', 'Sub category', 'Qty', 'Asset serial number', 'Qr and bar code', 'Custody department', 'Custodian', 'Custodian signature', 'Number of years useful life of assets', 'Date of useful life of assets ends', 'Remarks', 'Sactioned by', 'It inventory str', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['it_inventory_id', 'date', 'description', 'classification_of_asset', 'sub_category', 'qty', 'asset_serial_number', 'qr_and_bar_code', 'custody_department', 'custodian', 'custodian_signature', 'no_of_years_useful_life_of_assets', 'date_of_useful_life_of_assets_ends', 'remarks', 'sactioned_by', 'it_inventory_str', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/it_inventory_app_templateTV.html';

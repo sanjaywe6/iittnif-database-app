@@ -20,6 +20,7 @@ function it_inventory_app_insert(&$error_message = '') {
 		'description' => br2nl(Request::val('description', '')),
 		'classification_of_asset' => Request::val('classification_of_asset', ''),
 		'sub_category' => Request::val('sub_category', ''),
+		'qty' => Request::val('qty', ''),
 		'asset_serial_number' => Request::val('asset_serial_number', ''),
 		'qr_and_bar_code' => Request::val('qr_and_bar_code', ''),
 		'custody_department' => Request::val('custody_department', ''),
@@ -156,6 +157,7 @@ function it_inventory_app_update(&$selected_id, &$error_message = '') {
 		'description' => br2nl(Request::val('description', '')),
 		'classification_of_asset' => Request::val('classification_of_asset', ''),
 		'sub_category' => Request::val('sub_category', ''),
+		'qty' => Request::val('qty', ''),
 		'asset_serial_number' => Request::val('asset_serial_number', ''),
 		'qr_and_bar_code' => Request::val('qr_and_bar_code', ''),
 		'custody_department' => Request::val('custody_department', ''),
@@ -494,6 +496,7 @@ function it_inventory_app_form($selectedId = '', $allowUpdate = true, $allowInse
 		$jsReadOnly .= "\t\$j('#description').replaceWith('<div class=\"form-control-static\" id=\"description\">' + (\$j('#description').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#classification_of_asset').replaceWith('<div class=\"form-control-static\" id=\"classification_of_asset\">' + (\$j('#classification_of_asset').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#sub_category').replaceWith('<div class=\"form-control-static\" id=\"sub_category\">' + (\$j('#sub_category').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#qty').replaceWith('<div class=\"form-control-static\" id=\"qty\">' + (\$j('#qty').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#asset_serial_number').replaceWith('<div class=\"form-control-static\" id=\"asset_serial_number\">' + (\$j('#asset_serial_number').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#qr_and_bar_code').replaceWith('<div class=\"form-control-static\" id=\"qr_and_bar_code\">' + (\$j('#qr_and_bar_code').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#custody_department').replaceWith('<div class=\"form-control-static\" id=\"custody_department\">' + (\$j('#custody_department').val() || '') + '</div>');\n";
@@ -555,6 +558,7 @@ function it_inventory_app_form($selectedId = '', $allowUpdate = true, $allowInse
 	$templateCode = str_replace('<%%UPLOADFILE(description)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(classification_of_asset)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(sub_category)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(qty)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(asset_serial_number)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(qr_and_bar_code)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(custody_department)%%>', '', $templateCode);
@@ -589,6 +593,9 @@ function it_inventory_app_form($selectedId = '', $allowUpdate = true, $allowInse
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(sub_category)%%>', safe_html($urow['sub_category']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(sub_category)%%>', html_attr($row['sub_category']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(sub_category)%%>', urlencode($urow['sub_category']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(qty)%%>', safe_html($urow['qty']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(qty)%%>', html_attr($row['qty']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(qty)%%>', urlencode($urow['qty']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(asset_serial_number)%%>', safe_html($urow['asset_serial_number']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(asset_serial_number)%%>', html_attr($row['asset_serial_number']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(asset_serial_number)%%>', urlencode($urow['asset_serial_number']), $templateCode);
@@ -637,6 +644,8 @@ function it_inventory_app_form($selectedId = '', $allowUpdate = true, $allowInse
 		$templateCode = str_replace('<%%URLVALUE(classification_of_asset)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(sub_category)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(sub_category)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(qty)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(qty)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(asset_serial_number)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(asset_serial_number)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(qr_and_bar_code)%%>', '', $templateCode);

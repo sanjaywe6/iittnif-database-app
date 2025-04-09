@@ -1,4 +1,4 @@
-		<td colspan="19" class="row">
+		<td colspan="20" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="it_inventory_app-it_inventory_id-caption field-caption-tv">ID</dt>
@@ -16,6 +16,9 @@
 					<dt class="it_inventory_app-sub_category-caption field-caption-tv">Sub category</dt>
 					<dd id="it_inventory_app-sub_category-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-sub_category"><%%SELECT%%><%%VALUE(sub_category)%%><%%ENDSELECT%%></dd>
 
+					<dt class="it_inventory_app-qty-caption field-caption-tv">Qty</dt>
+					<dd id="it_inventory_app-qty-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-qty"><%%SELECT%%><%%VALUE(qty)%%><%%ENDSELECT%%></dd>
+
 					<dt class="it_inventory_app-asset_serial_number-caption field-caption-tv">Asset serial number</dt>
 					<dd id="it_inventory_app-asset_serial_number-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-asset_serial_number"><%%SELECT%%><%%VALUE(asset_serial_number)%%><%%ENDSELECT%%></dd>
 
@@ -28,13 +31,13 @@
 					<dt class="it_inventory_app-custodian-caption field-caption-tv">Custodian</dt>
 					<dd id="it_inventory_app-custodian-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-custodian"><%%SELECT%%><%%VALUE(custodian)%%><%%ENDSELECT%%></dd>
 
-					<dt class="it_inventory_app-custodian_signature-caption field-caption-tv">Custodian signature</dt>
-					<dd id="it_inventory_app-custodian_signature-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-custodian_signature"><%%SELECT%%><img src="thumbnail.php?i=<%%VALUE(custodian_signature)%%>&t=it_inventory_app&f=custodian_signature&v=tv" class="img-thumbnail"><%%ENDSELECT%%></dd>
-
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
+					<dt class="it_inventory_app-custodian_signature-caption field-caption-tv">Custodian signature</dt>
+					<dd id="it_inventory_app-custodian_signature-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-custodian_signature"><%%SELECT%%><img src="thumbnail.php?i=<%%VALUE(custodian_signature)%%>&t=it_inventory_app&f=custodian_signature&v=tv" class="img-thumbnail"><%%ENDSELECT%%></dd>
+
 					<dt class="it_inventory_app-no_of_years_useful_life_of_assets-caption field-caption-tv">Number of years useful life of assets</dt>
 					<dd id="it_inventory_app-no_of_years_useful_life_of_assets-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-no_of_years_useful_life_of_assets"><%%SELECT%%><%%VALUE(no_of_years_useful_life_of_assets)%%><%%ENDSELECT%%></dd>
 

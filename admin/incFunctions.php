@@ -339,6 +339,13 @@
 					'group' => $tg[7],
 					'homepageShowCount' => 1
 				],
+				'gym_table' => [
+					'Caption' => 'Gym - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[7],
+					'homepageShowCount' => 1
+				],
 				'employees_personal_data_table' => [
 					'Caption' => 'Employee Personal Data - App',
 					'Description' => '<a href="https://lookerstudio.google.com/reporting/e46f3806-e78c-4f09-8417-049568d4783d"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Employee Details App Report</b></button></a>',
@@ -688,6 +695,7 @@
 			'it_inventory_allotment_table' => ['IT inventory allotment - App', '', 'table.gif', 'Asset Management Apps'],
 			'computer_details_table' => ['Computer lab PC list - App', '<a href="https://lookerstudio.google.com/reporting/3dc9dac5-3945-4853-91cc-12e26b865666"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Computer lab PC Report</b></button></a>', 'table.gif', 'Asset Management Apps'],
 			'computer_usage_table' => ['Computer usage table', '', 'table.gif', 'Asset Management Apps'],
+			'gym_table' => ['Gym - App', '', 'table.gif', 'Asset Management Apps'],
 			'employees_personal_data_table' => ['Employee Personal Data - App', '<a href="https://lookerstudio.google.com/reporting/e46f3806-e78c-4f09-8417-049568d4783d"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Employee Details App Report</b></button></a>', 'table.gif', 'Employee Data Management Apps'],
 			'employees_designation_table' => ['Employees designation & Reporting - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'employees_appraisal_table' => ['Employees Appraisal  - App', '', 'table.gif', 'Employee Data Management Apps'],
@@ -4570,6 +4578,71 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Mobile number',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
+				'gym_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'employee_lookup' => [
+						'appgini' => "INT(10) UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Employee Details',
+							'description' => '',
+						],
+					],
+					'in' => [
+						'appgini' => "TIME NULL",
+						'info' => [
+							'caption' => 'In Time',
+							'description' => '',
+						],
+					],
+					'out' => [
+						'appgini' => "TIME NULL",
+						'info' => [
+							'caption' => 'Out Time',
+							'description' => '',
+						],
+					],
+					'date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Date',
 							'description' => '',
 						],
 					],
@@ -10468,6 +10541,9 @@
 			'computer_usage_table' => [
 				'computer_details_table' => ['pc_id'],
 			],
+			'gym_table' => [
+				'employees_personal_data_table' => ['employee_lookup'],
+			],
 			'employees_designation_table' => [
 				'employees_personal_data_table' => ['employee_details'],
 				'user_table' => ['reviewing_officer', 'reporting_officer'],
@@ -10613,6 +10689,7 @@
 			'it_inventory_allotment_table' => [],
 			'computer_details_table' => [],
 			'computer_usage_table' => [],
+			'gym_table' => [],
 			'employees_personal_data_table' => [],
 			'employees_designation_table' => [],
 			'employees_appraisal_table' => [],
@@ -10881,6 +10958,9 @@
 			],
 			'computer_usage_table' => [
 				'pc_id' => 'SELECT `computer_details_table`.`id`, IF(CHAR_LENGTH(`computer_details_table`.`pc_number`) || CHAR_LENGTH(`computer_details_table`.`pc_hostname`), CONCAT_WS(\'\', `computer_details_table`.`pc_number`, \'::\', `computer_details_table`.`pc_hostname`), \'\') FROM `computer_details_table` ORDER BY 2',
+			],
+			'gym_table' => [
+				'employee_lookup' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \'::\', `employees_personal_data_table`.`name`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
 			],
 			'employees_personal_data_table' => [
 			],

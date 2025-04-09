@@ -93,6 +93,9 @@
 		setupTable('computer_usage_table', []);
 		setupIndexes('computer_usage_table', ['pc_id',]);
 
+		setupTable('gym_table', []);
+		setupIndexes('gym_table', ['employee_lookup',]);
+
 		setupTable('employees_personal_data_table', []);
 
 		setupTable('employees_designation_table', []);

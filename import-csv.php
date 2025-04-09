@@ -199,6 +199,12 @@
 
 			return $data;
 		},
+		'gym_table' => function($data, $options = []) {
+			if(isset($data['employee_lookup'])) $data['employee_lookup'] = pkGivenLookupText($data['employee_lookup'], 'gym_table', 'employee_lookup');
+			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
+
+			return $data;
+		},
 		'employees_personal_data_table' => function($data, $options = []) {
 			if(isset($data['date_of_birth'])) $data['date_of_birth'] = guessMySQLDateTime($data['date_of_birth']);
 			if(isset($data['date_of_joining'])) $data['date_of_joining'] = guessMySQLDateTime($data['date_of_joining']);
@@ -490,6 +496,7 @@
 		'it_inventory_allotment_table' => function($data, $options = []) { return true; },
 		'computer_details_table' => function($data, $options = []) { return true; },
 		'computer_usage_table' => function($data, $options = []) { return true; },
+		'gym_table' => function($data, $options = []) { return true; },
 		'employees_personal_data_table' => function($data, $options = []) { return true; },
 		'employees_designation_table' => function($data, $options = []) { return true; },
 		'employees_appraisal_table' => function($data, $options = []) { return true; },

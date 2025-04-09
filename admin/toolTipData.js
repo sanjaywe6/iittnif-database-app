@@ -587,6 +587,24 @@ computer_usage_table_delete1Tip=["",spacer+"This option allows each member of th
 computer_usage_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Computer usage table' table."];
 computer_usage_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Computer usage table' table."];
 
+// gym_table table
+gym_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Gym - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
+
+gym_table_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Gym - App' table."];
+gym_table_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Gym - App' table."];
+gym_table_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Gym - App' table."];
+gym_table_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Gym - App' table."];
+
+gym_table_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Gym - App' table."];
+gym_table_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Gym - App' table."];
+gym_table_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Gym - App' table."];
+gym_table_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Gym - App' table, regardless of their owner."];
+
+gym_table_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Gym - App' table."];
+gym_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Gym - App' table."];
+gym_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Gym - App' table."];
+gym_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Gym - App' table."];
+
 // employees_personal_data_table table
 employees_personal_data_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Employee Personal Data - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
 

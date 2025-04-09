@@ -165,7 +165,7 @@ function space_day_college_student_table_form($selectedId = '', $allowUpdate = t
 	global $Translation;
 	$eo = ['silentErrors' => true];
 	$noUploads = $row = $urow = $jsReadOnly = $jsEditable = $lookups = null;
-	$noSaveAsCopy = false;
+	$noSaveAsCopy = true;
 	$hasSelectedId = strlen($selectedId) > 0;
 
 	// mm: get table permissions

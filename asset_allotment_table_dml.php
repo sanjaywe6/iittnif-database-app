@@ -171,7 +171,7 @@ function asset_allotment_table_form($selectedId = '', $allowUpdate = true, $allo
 	global $Translation;
 	$eo = ['silentErrors' => true];
 	$noUploads = $row = $urow = $jsReadOnly = $jsEditable = $lookups = null;
-	$noSaveAsCopy = false;
+	$noSaveAsCopy = true;
 	$hasSelectedId = strlen($selectedId) > 0;
 
 	// mm: get table permissions

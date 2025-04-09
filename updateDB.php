@@ -96,6 +96,9 @@
 		setupTable('gym_table', []);
 		setupIndexes('gym_table', ['employee_lookup',]);
 
+		setupTable('coffee_table', []);
+		setupIndexes('coffee_table', ['employee_lookup',]);
+
 		setupTable('employees_personal_data_table', []);
 
 		setupTable('employees_designation_table', []);

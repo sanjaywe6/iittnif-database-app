@@ -705,6 +705,12 @@ function gym_table_validateData(insertMode) {
 
 	return !errors;
 }
+function coffee_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
 function employees_personal_data_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;

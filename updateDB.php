@@ -171,7 +171,9 @@
 
 		setupTable('car_table', []);
 
-		setupTable('car_usage_table', []);
+		setupTable('car_usage_table', [
+				"ALTER TABLE `car_usage_table` ADD `purpose` TEXT NULL ",
+			]);
 		setupIndexes('car_usage_table', ['car_lookup',]);
 
 		setupTable('cycle_table', []);

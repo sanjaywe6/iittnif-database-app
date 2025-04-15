@@ -7815,6 +7815,13 @@
 							'description' => '',
 						],
 					],
+					'purpose' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Purpose',
+							'description' => '',
+						],
+					],
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [

@@ -30,22 +30,22 @@ user_table_delete2Tip=["",spacer+"This option allows each member of the group to
 user_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'User Table' table."];
 
 // suggestion table
-suggestion_addTip=["",spacer+"This option allows all members of the group to add records to the 'Suggestions - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
+suggestion_addTip=["",spacer+"This option allows all members of the group to add records to the 'Suggestion - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
 
-suggestion_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Suggestions - App' table."];
-suggestion_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Suggestions - App' table."];
-suggestion_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Suggestions - App' table."];
-suggestion_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Suggestions - App' table."];
+suggestion_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Suggestion - App' table."];
+suggestion_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Suggestion - App' table."];
+suggestion_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Suggestion - App' table."];
+suggestion_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Suggestion - App' table."];
 
-suggestion_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Suggestions - App' table."];
-suggestion_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Suggestions - App' table."];
-suggestion_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Suggestions - App' table."];
-suggestion_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Suggestions - App' table, regardless of their owner."];
+suggestion_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Suggestion - App' table."];
+suggestion_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Suggestion - App' table."];
+suggestion_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Suggestion - App' table."];
+suggestion_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Suggestion - App' table, regardless of their owner."];
 
-suggestion_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Suggestions - App' table."];
-suggestion_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Suggestions - App' table."];
-suggestion_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Suggestions - App' table."];
-suggestion_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Suggestions - App' table."];
+suggestion_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Suggestion - App' table."];
+suggestion_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Suggestion - App' table."];
+suggestion_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Suggestion - App' table."];
+suggestion_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Suggestion - App' table."];
 
 // approval_table table
 approval_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Approval - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
@@ -1180,42 +1180,6 @@ travel_local_commute_table_delete0Tip=["",spacer+"This option prohibits all memb
 travel_local_commute_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Local Commute - App' table."];
 travel_local_commute_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Local Commute - App' table."];
 travel_local_commute_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Local Commute - App' table."];
-
-// operation_dronagiri_data_submission_app table
-operation_dronagiri_data_submission_app_addTip=["",spacer+"This option allows all members of the group to add records to the 'Operation dronagiri data submission - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
-
-operation_dronagiri_data_submission_app_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Operation dronagiri data submission - App' table."];
-operation_dronagiri_data_submission_app_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Operation dronagiri data submission - App' table."];
-operation_dronagiri_data_submission_app_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Operation dronagiri data submission - App' table."];
-operation_dronagiri_data_submission_app_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Operation dronagiri data submission - App' table."];
-
-operation_dronagiri_data_submission_app_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Operation dronagiri data submission - App' table."];
-operation_dronagiri_data_submission_app_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Operation dronagiri data submission - App' table."];
-operation_dronagiri_data_submission_app_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Operation dronagiri data submission - App' table."];
-operation_dronagiri_data_submission_app_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Operation dronagiri data submission - App' table, regardless of their owner."];
-
-operation_dronagiri_data_submission_app_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Operation dronagiri data submission - App' table."];
-operation_dronagiri_data_submission_app_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Operation dronagiri data submission - App' table."];
-operation_dronagiri_data_submission_app_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Operation dronagiri data submission - App' table."];
-operation_dronagiri_data_submission_app_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Operation dronagiri data submission - App' table."];
-
-// file_table table
-file_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'File table' table. A member who adds a record to the table becomes the 'owner' of that record."];
-
-file_table_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'File table' table."];
-file_table_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'File table' table."];
-file_table_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'File table' table."];
-file_table_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'File table' table."];
-
-file_table_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'File table' table."];
-file_table_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'File table' table."];
-file_table_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'File table' table."];
-file_table_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'File table' table, regardless of their owner."];
-
-file_table_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'File table' table."];
-file_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'File table' table."];
-file_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'File table' table."];
-file_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'File table' table."];
 
 // panel_decision_table_tdp table
 panel_decision_table_tdp_addTip=["",spacer+"This option allows all members of the group to add records to the 'Panel Decision App' table. A member who adds a record to the table becomes the 'owner' of that record."];

@@ -1001,58 +1001,6 @@ function travel_local_commute_table_validateData(insertMode) {
 
 	return !errors;
 }
-function operation_dronagiri_data_submission_app_validateData(insertMode) {
-	$j('.has-error').removeClass('has-error');
-	var errors = false;
-
-	// check all required fields have values
-	const reqFields = [
-		// [field-type, field-name, field-caption], ...
-		['text', 'name_of_the_department', 'Name of the department'],
-		['text', 'name_of_the_officer', 'Name of the officer'],
-		['text', 'designation', 'Designation'],
-		['text', 'email_address', 'Email address'],
-		['text', 'phone_number', 'Phone number'],
-	];
-
-	reqFields.map(function(rf) {
-		// avoid displaying more error messages and overwhelming users
-		if(rf.length != 3 || errors) return;
-
-		if(!AppGini.Validation.fieldRequired(rf[0], rf[1], rf[2], insertMode)) errors = true;
-	});
-
-	if(errors) return false;
-
-	return !errors;
-}
-function file_table_validateData(insertMode) {
-	$j('.has-error').removeClass('has-error');
-	var errors = false;
-
-	// check all required fields have values
-	const reqFields = [
-		// [field-type, field-name, field-caption], ...
-		['text', 'name_title_of_the_dataset', 'Name/Title of the dataset'],
-	];
-
-	reqFields.map(function(rf) {
-		// avoid displaying more error messages and overwhelming users
-		if(rf.length != 3 || errors) return;
-
-		if(!AppGini.Validation.fieldRequired(rf[0], rf[1], rf[2], insertMode)) errors = true;
-	});
-
-	if(errors) return false;
-
-	// check file uploads (file type and size)
-	if($j('#upload_file').val() && !AppGini.checkFileUpload('upload_file', 'csv|xls|shp|geojson|tif|png|gif|shp|shx|dbf|prj|sbn|sbx|xml|geojson|json|kml|kmz|gml|csv|xls|xlsx|xlsm|ods|tif|tiff|jpg|jpeg|png|bmp|gif|img|ecw|sid|jp2', 1073741824)) {
-		AppGini.scrollTo('upload_file');
-		return false;
-	}
-
-	return !errors;
-}
 function panel_decision_table_tdp_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;

@@ -112,7 +112,7 @@
 			'Asset Management Apps',
 			'Accounts &amp; Finance Apps',
 			'Transport Apps',
-			'Suggestions &amp; Other Apps'
+			'Suggestion App'
 		];
 
 		$all_tables = [
@@ -125,7 +125,7 @@
 					'homepageShowCount' => 1
 				],
 				'suggestion' => [
-					'Caption' => 'Suggestions - App',
+					'Caption' => 'Suggestion - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[12],
@@ -572,20 +572,6 @@
 					'group' => $tg[11],
 					'homepageShowCount' => 1
 				],
-				'operation_dronagiri_data_submission_app' => [
-					'Caption' => 'Operation dronagiri data submission - App',
-					'Description' => '',
-					'tableIcon' => 'resources/table_icons/data_table.png',
-					'group' => $tg[12],
-					'homepageShowCount' => 1
-				],
-				'file_table' => [
-					'Caption' => 'File table',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[12],
-					'homepageShowCount' => 1
-				],
 				'panel_decision_table_tdp' => [
 					'Caption' => 'Panel Decision App',
 					'Description' => '',
@@ -672,8 +658,8 @@
 		$arrAccessTables = [];
 		$arrTables = [
 			/* 'table_name' => ['table caption', 'homepage description', 'icon', 'table group name'] */   
-			'user_table' => ['User Table', '', 'table.gif', 'Suggestions &amp; Other Apps'],
-			'suggestion' => ['Suggestions - App', '', 'table.gif', 'Suggestions &amp; Other Apps'],
+			'user_table' => ['User Table', '', 'table.gif', 'Suggestion App'],
+			'suggestion' => ['Suggestion - App', '', 'table.gif', 'Suggestion App'],
 			'approval_table' => ['Approval - App', '', 'table.gif', 'Approval App'],
 			'car_table' => ['Car - App', '<a href="https://lookerstudio.google.com/reporting/58f87367-3f09-42c0-a288-cf75f313cbed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Car App Report</b></button></a>', 'table.gif', 'Facilities Apps'],
 			'car_usage_table' => ['Car usage table', '', 'table.gif', 'Facilities Apps'],
@@ -737,8 +723,6 @@
 			'travel_table' => ['Travel - App', '', 'table.gif', 'Transport Apps'],
 			'travel_stay_table' => ['Stay Details - App', '', 'table.gif', 'Transport Apps'],
 			'travel_local_commute_table' => ['Local Commute - App', '', 'table.gif', 'Transport Apps'],
-			'operation_dronagiri_data_submission_app' => ['Operation dronagiri data submission - App', '', 'resources/table_icons/data_table.png', 'Suggestions &amp; Other Apps'],
-			'file_table' => ['File table', '', 'table.gif', 'Suggestions &amp; Other Apps'],
 			'panel_decision_table_tdp' => ['Panel Decision App', '', 'table.gif', 'Technology Development Apps'],
 			'selected_proposals_final_tdp' => ['Selected proposals final - App', '', 'table.gif', 'Technology Development Apps'],
 			'stage_wise_budget_table_tdp' => ['Stage wise budget - App', '', 'table.gif', 'Technology Development Apps'],
@@ -1570,6 +1554,13 @@
 							'description' => '',
 						],
 					],
+					'department' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Event'",
+						'info' => [
+							'caption' => 'Suggestion Related to Department',
+							'description' => '',
+						],
+					],
 					'suggestion' => [
 						'appgini' => "TEXT NOT NULL",
 						'info' => [
@@ -1582,6 +1573,20 @@
 						'info' => [
 							'caption' => 'Attachment',
 							'description' => 'Maximum file size allowed: 200 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
+						],
+					],
+					'department_remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Remarks of Department/Office Head',
+							'description' => '',
+						],
+					],
+					'ceo_pd_remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Remarks of CEO/PD',
+							'description' => '',
 						],
 					],
 					'created_by' => [
@@ -8004,171 +8009,6 @@
 						],
 					],
 				],
-				'operation_dronagiri_data_submission_app' => [
-					'data_id' => [
-						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
-						'info' => [
-							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'name_of_the_department' => [
-						'appgini' => "VARCHAR(255) NOT NULL",
-						'info' => [
-							'caption' => 'Name of the department',
-							'description' => '',
-						],
-					],
-					'name_of_the_officer' => [
-						'appgini' => "VARCHAR(255) NOT NULL",
-						'info' => [
-							'caption' => 'Name of the officer',
-							'description' => '',
-						],
-					],
-					'designation' => [
-						'appgini' => "VARCHAR(255) NOT NULL",
-						'info' => [
-							'caption' => 'Designation',
-							'description' => '',
-						],
-					],
-					'email_address' => [
-						'appgini' => "VARCHAR(255) NOT NULL",
-						'info' => [
-							'caption' => 'Email address',
-							'description' => '',
-						],
-					],
-					'phone_number' => [
-						'appgini' => "VARCHAR(255) NOT NULL",
-						'info' => [
-							'caption' => 'Phone number',
-							'description' => '',
-						],
-					],
-					'submit_date' => [
-						'appgini' => "DATE NULL",
-						'info' => [
-							'caption' => 'Submit date',
-							'description' => '',
-						],
-					],
-					'created_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created by',
-							'description' => '',
-						],
-					],
-					'created_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created at',
-							'description' => '',
-						],
-					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated by',
-							'description' => '',
-						],
-					],
-					'last_updated_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated at',
-							'description' => '',
-						],
-					],
-				],
-				'file_table' => [
-					'file_id' => [
-						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
-						'info' => [
-							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'data_str_key' => [
-						'appgini' => "INT(10) UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Data str key',
-							'description' => '',
-						],
-					],
-					'name_title_of_the_dataset' => [
-						'appgini' => "VARCHAR(255) NOT NULL",
-						'info' => [
-							'caption' => 'Name/Title of the dataset',
-							'description' => '',
-						],
-					],
-					'category_of_the_dataset' => [
-						'appgini' => "VARCHAR(255) NULL DEFAULT 'Agriculture'",
-						'info' => [
-							'caption' => 'Category of the dataset',
-							'description' => '',
-						],
-					],
-					'description_of_the_dataset' => [
-						'appgini' => "TEXT NULL",
-						'info' => [
-							'caption' => 'Description of the dataset (Provide a brief note on the dataset content, including what the data represents.)',
-							'description' => '',
-						],
-					],
-					'geographic_coverage' => [
-						'appgini' => "TEXT NULL",
-						'info' => [
-							'caption' => 'Geographic Coverage (Specify the region/area covered by the dataset, e.g., Block Name, Taluk Name, Village Name, Vizianagaram district, Andhra Pradesh.)',
-							'description' => '',
-						],
-					],
-					'format_of_the_dataset' => [
-						'appgini' => "VARCHAR(255) NULL DEFAULT 'Spatial (Shapefiles, GeoJSON, etc.)'",
-						'info' => [
-							'caption' => 'Format of the dataset',
-							'description' => '',
-						],
-					],
-					'upload_file' => [
-						'appgini' => "VARCHAR(40) NULL",
-						'info' => [
-							'caption' => 'Upload file',
-							'description' => 'Maximum file size allowed: 1048576 KB.<br>Allowed file types: csv, xls, shp, geojson, tif, png, gif, shp, shx, dbf, prj, sbn, sbx, xml, geojson, json, kml, kmz, gml, csv, xls, xlsx, xlsm, ods, tif, tiff, jpg, jpeg, png, bmp, gif, img, ecw, sid, jp2',
-						],
-					],
-					'created_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created by',
-							'description' => '',
-						],
-					],
-					'created_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created at',
-							'description' => '',
-						],
-					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated by',
-							'description' => '',
-						],
-					],
-					'last_updated_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated at',
-							'description' => '',
-						],
-					],
-				],
 				'panel_decision_table_tdp' => [
 					'panel_decision_id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
@@ -10684,9 +10524,6 @@
 			'honorarium_claim_table' => [
 				'user_table' => ['coordinated_by_tih_user'],
 			],
-			'file_table' => [
-				'operation_dronagiri_data_submission_app' => ['data_str_key'],
-			],
 			'selected_proposals_final_tdp' => [
 				'panel_decision_table_tdp' => ['project_id'],
 			],
@@ -10806,8 +10643,6 @@
 			'travel_table' => [],
 			'travel_stay_table' => [],
 			'travel_local_commute_table' => [],
-			'operation_dronagiri_data_submission_app' => [],
-			'file_table' => [],
 			'panel_decision_table_tdp' => [],
 			'selected_proposals_final_tdp' => [],
 			'stage_wise_budget_table_tdp' => [],
@@ -11128,11 +10963,6 @@
 			'travel_stay_table' => [
 			],
 			'travel_local_commute_table' => [
-			],
-			'operation_dronagiri_data_submission_app' => [
-			],
-			'file_table' => [
-				'data_str_key' => 'SELECT `operation_dronagiri_data_submission_app`.`data_id`, IF(CHAR_LENGTH(`operation_dronagiri_data_submission_app`.`data_id`) || CHAR_LENGTH(`operation_dronagiri_data_submission_app`.`name_of_the_officer`), CONCAT_WS(\'\', `operation_dronagiri_data_submission_app`.`data_id`, \'::\', `operation_dronagiri_data_submission_app`.`name_of_the_officer`), \'\') FROM `operation_dronagiri_data_submission_app` ORDER BY 2',
 			],
 			'panel_decision_table_tdp' => [
 			],

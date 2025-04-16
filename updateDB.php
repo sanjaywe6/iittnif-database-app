@@ -27,16 +27,9 @@
 		setupTable('cycle_usage_table', []);
 		setupIndexes('cycle_usage_table', ['cycle_lookup',]);
 
-		setupTable('gym_table', [
-				" ALTER TABLE `gym_table` CHANGE `username` `username` VARCHAR(255) NULL ",
-				"ALTER TABLE `gym_table` ADD `created_by` VARCHAR(255) NULL ",
-				"ALTER TABLE `gym_table` ADD `created_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('gym_table', []);
 
-		setupTable('coffee_table', [
-				" ALTER TABLE `coffee_table` CHANGE `username` `username` VARCHAR(40) NULL ",
-				" ALTER TABLE `coffee_table` CHANGE `username` `username` VARCHAR(255) NULL ",
-			]);
+		setupTable('coffee_table', []);
 
 		setupTable('event_table', []);
 
@@ -184,11 +177,6 @@
 		setupTable('travel_stay_table', []);
 
 		setupTable('travel_local_commute_table', []);
-
-		setupTable('operation_dronagiri_data_submission_app', []);
-
-		setupTable('file_table', []);
-		setupIndexes('file_table', ['data_str_key',]);
 
 		setupTable('panel_decision_table_tdp', []);
 

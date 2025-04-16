@@ -19,8 +19,11 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`suggestion`.`suggestion_id`" => "suggestion_id",
+		"`suggestion`.`department`" => "department",
 		"`suggestion`.`suggestion`" => "suggestion",
 		"`suggestion`.`attachment`" => "attachment",
+		"`suggestion`.`department_remarks`" => "department_remarks",
+		"`suggestion`.`ceo_pd_remarks`" => "ceo_pd_remarks",
 		"`suggestion`.`created_by`" => "created_by",
 		"`suggestion`.`created_at`" => "created_at",
 		"`suggestion`.`last_updated_by`" => "last_updated_by",
@@ -35,13 +38,19 @@
 		5 => 5,
 		6 => 6,
 		7 => 7,
+		8 => 8,
+		9 => 9,
+		10 => 10,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`suggestion`.`suggestion_id`" => "suggestion_id",
+		"`suggestion`.`department`" => "department",
 		"`suggestion`.`suggestion`" => "suggestion",
 		"`suggestion`.`attachment`" => "attachment",
+		"`suggestion`.`department_remarks`" => "department_remarks",
+		"`suggestion`.`ceo_pd_remarks`" => "ceo_pd_remarks",
 		"`suggestion`.`created_by`" => "created_by",
 		"`suggestion`.`created_at`" => "created_at",
 		"`suggestion`.`last_updated_by`" => "last_updated_by",
@@ -50,8 +59,11 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`suggestion`.`suggestion_id`" => "ID",
+		"`suggestion`.`department`" => "Suggestion Related to Department",
 		"`suggestion`.`suggestion`" => "Suggestion",
 		"`suggestion`.`attachment`" => "Attachment",
+		"`suggestion`.`department_remarks`" => "Remarks of Department/Office Head",
+		"`suggestion`.`ceo_pd_remarks`" => "Remarks of CEO/PD",
 		"`suggestion`.`created_by`" => "Created By",
 		"`suggestion`.`created_at`" => "Created At",
 		"`suggestion`.`last_updated_by`" => "Last Updated By",
@@ -61,8 +73,11 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`suggestion`.`suggestion_id`" => "suggestion_id",
+		"`suggestion`.`department`" => "department",
 		"`suggestion`.`suggestion`" => "suggestion",
 		"`suggestion`.`attachment`" => "attachment",
+		"`suggestion`.`department_remarks`" => "department_remarks",
+		"`suggestion`.`ceo_pd_remarks`" => "ceo_pd_remarks",
 		"`suggestion`.`created_by`" => "created_by",
 		"`suggestion`.`created_at`" => "created_at",
 		"`suggestion`.`last_updated_by`" => "last_updated_by",
@@ -96,16 +111,16 @@
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'suggestion_view.php';
-	$x->TableTitle = 'Suggestions - App';
+	$x->TableTitle = 'Suggestion - App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`suggestion`.`suggestion_id`';
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Suggestion', 'Attachment', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', ];
-	$x->ColFieldName = ['suggestion_id', 'suggestion', 'attachment', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Suggestion Related to Department', 'Suggestion', 'Attachment', 'Remarks of Department/Office Head', 'Remarks of CEO/PD', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', ];
+	$x->ColFieldName = ['suggestion_id', 'department', 'suggestion', 'attachment', 'department_remarks', 'ceo_pd_remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/suggestion_templateTV.html';

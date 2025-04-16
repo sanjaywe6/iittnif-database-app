@@ -38,7 +38,7 @@
 
 	function get_table_groups($skip_authentication = false) {
 		$tables = getTableList($skip_authentication);
-		$all_groups = ['Approval App', 'Facilities Apps', 'Events / Meetings / Goals Apps', 'HRD Apps', 'SDP Apps', 'Program Apps', 'Technology Development Apps', 'Startup Data Management Apps', 'Employee Data Management Apps', 'Asset Management Apps', 'Accounts &amp; Finance Apps', 'Transport Apps', 'Suggestions &amp; Other Apps'];
+		$all_groups = ['Approval App', 'Facilities Apps', 'Events / Meetings / Goals Apps', 'HRD Apps', 'SDP Apps', 'Program Apps', 'Technology Development Apps', 'Startup Data Management Apps', 'Employee Data Management Apps', 'Asset Management Apps', 'Accounts &amp; Finance Apps', 'Transport Apps', 'Suggestion App'];
 
 		$groups = [];
 		foreach($all_groups as $grp) {
@@ -106,7 +106,7 @@
 	function get_sql_fields($table_name) {
 		$sql_fields = [
 			'user_table' => "`user_table`.`user_id` as 'user_id', `user_table`.`memberID` as 'memberID', `user_table`.`name` as 'name'",
-			'suggestion' => "`suggestion`.`suggestion_id` as 'suggestion_id', `suggestion`.`suggestion` as 'suggestion', `suggestion`.`attachment` as 'attachment', `suggestion`.`created_by` as 'created_by', `suggestion`.`created_at` as 'created_at', `suggestion`.`last_updated_by` as 'last_updated_by', `suggestion`.`last_updated_at` as 'last_updated_at'",
+			'suggestion' => "`suggestion`.`suggestion_id` as 'suggestion_id', `suggestion`.`department` as 'department', `suggestion`.`suggestion` as 'suggestion', `suggestion`.`attachment` as 'attachment', `suggestion`.`department_remarks` as 'department_remarks', `suggestion`.`ceo_pd_remarks` as 'ceo_pd_remarks', `suggestion`.`created_by` as 'created_by', `suggestion`.`created_at` as 'created_at', `suggestion`.`last_updated_by` as 'last_updated_by', `suggestion`.`last_updated_at` as 'last_updated_at'",
 			'approval_table' => "`approval_table`.`id` as 'id', `approval_table`.`type` as 'type', `approval_table`.`description` as 'description', `approval_table`.`quantity` as 'quantity', `approval_table`.`full_est_value` as 'full_est_value', `approval_table`.`name_of_vendor` as 'name_of_vendor', `approval_table`.`purpose` as 'purpose', `approval_table`.`requested_department` as 'requested_department', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'person_responsbility', `approval_table`.`mode_of_purchase` as 'mode_of_purchase', `approval_table`.`others_if_any` as 'others_if_any', `approval_table`.`approval_status` as 'approval_status', `approval_table`.`remarks_for_approval` as 'remarks_for_approval', `approval_table`.`image` as 'image', `approval_table`.`other_file` as 'other_file', `approval_table`.`created_by` as 'created_by', `approval_table`.`created_at` as 'created_at', `approval_table`.`last_updated_by` as 'last_updated_by', `approval_table`.`last_updated_at` as 'last_updated_at'",
 			'car_table' => "`car_table`.`id` as 'id', `car_table`.`car_number` as 'car_number', `car_table`.`registration_number` as 'registration_number', `car_table`.`car_model` as 'car_model', `car_table`.`car_vin` as 'car_vin', `car_table`.`fuel_type` as 'fuel_type', `car_table`.`seating_capacity` as 'seating_capacity', `car_table`.`car_color` as 'car_color', `car_table`.`rental_company_name` as 'rental_company_name', `car_table`.`contact_person` as 'contact_person', `car_table`.`contact_number_of_person` as 'contact_number_of_person', `car_table`.`rental_rate` as 'rental_rate', if(`car_table`.`rental_start_date`,date_format(`car_table`.`rental_start_date`,'%d/%m/%Y'),'') as 'rental_start_date', if(`car_table`.`rental_end_date`,date_format(`car_table`.`rental_end_date`,'%d/%m/%Y'),'') as 'rental_end_date', `car_table`.`purpose` as 'purpose', `car_table`.`created_by` as 'created_by', `car_table`.`created_at` as 'created_at', `car_table`.`last_updated_by` as 'last_updated_by', `car_table`.`last_updated_at` as 'last_updated_at'",
 			'car_usage_table' => "`car_usage_table`.`car_usage_id` as 'car_usage_id', IF(    CHAR_LENGTH(`car_table1`.`car_number`) || CHAR_LENGTH(`car_table1`.`car_model`), CONCAT_WS('',   `car_table1`.`car_number`, '::', `car_table1`.`car_model`), '') as 'car_lookup', `car_usage_table`.`used_by` as 'used_by', if(`car_usage_table`.`datetime_from`,date_format(`car_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'') as 'datetime_from', if(`car_usage_table`.`datetime_to`,date_format(`car_usage_table`.`datetime_to`,'%d/%m/%Y %H:%i'),'') as 'datetime_to', `car_usage_table`.`total_distance_run` as 'total_distance_run', `car_usage_table`.`purpose` as 'purpose', `car_usage_table`.`created_by` as 'created_by', `car_usage_table`.`created_at` as 'created_at', `car_usage_table`.`last_updated_by` as 'last_updated_by', `car_usage_table`.`last_updated_at` as 'last_updated_at'",
@@ -170,8 +170,6 @@
 			'travel_table' => "`travel_table`.`id` as 'id', `travel_table`.`first_name` as 'first_name', `travel_table`.`last_name` as 'last_name', `travel_table`.`age` as 'age', `travel_table`.`gender` as 'gender', `travel_table`.`mobile_number` as 'mobile_number', `travel_table`.`travel_type` as 'travel_type', `travel_table`.`from_place` as 'from_place', `travel_table`.`to_place` as 'to_place', if(`travel_table`.`date_from`,date_format(`travel_table`.`date_from`,'%d/%m/%Y'),'') as 'date_from', if(`travel_table`.`date_to`,date_format(`travel_table`.`date_to`,'%d/%m/%Y'),'') as 'date_to', `travel_table`.`travel_description` as 'travel_description', `travel_table`.`approval_status` as 'approval_status', `travel_table`.`approval_remarks` as 'approval_remarks', `travel_table`.`created_by` as 'created_by', `travel_table`.`approved_by` as 'approved_by', `travel_table`.`created_at` as 'created_at', `travel_table`.`approved_at` as 'approved_at'",
 			'travel_stay_table' => "`travel_stay_table`.`id` as 'id', `travel_stay_table`.`first_name` as 'first_name', `travel_stay_table`.`last_name` as 'last_name', `travel_stay_table`.`age` as 'age', `travel_stay_table`.`gender` as 'gender', `travel_stay_table`.`mobile_number` as 'mobile_number', `travel_stay_table`.`hotel_name` as 'hotel_name', `travel_stay_table`.`hotel_address` as 'hotel_address', if(`travel_stay_table`.`checkin_date`,date_format(`travel_stay_table`.`checkin_date`,'%d/%m/%Y'),'') as 'checkin_date', if(`travel_stay_table`.`checkout_date`,date_format(`travel_stay_table`.`checkout_date`,'%d/%m/%Y'),'') as 'checkout_date', `travel_stay_table`.`room_preferance` as 'room_preferance', `travel_stay_table`.`remarks` as 'remarks', `travel_stay_table`.`approval_status` as 'approval_status', `travel_stay_table`.`approval_remarks` as 'approval_remarks', `travel_stay_table`.`approved_by` as 'approved_by', `travel_stay_table`.`created_by` as 'created_by', `travel_stay_table`.`created_at` as 'created_at', `travel_stay_table`.`last_updated_at` as 'last_updated_at'",
 			'travel_local_commute_table' => "`travel_local_commute_table`.`id` as 'id', `travel_local_commute_table`.`first_name` as 'first_name', `travel_local_commute_table`.`last_name` as 'last_name', `travel_local_commute_table`.`age` as 'age', `travel_local_commute_table`.`gender` as 'gender', `travel_local_commute_table`.`mobile_number` as 'mobile_number', `travel_local_commute_table`.`local_commute_type` as 'local_commute_type', `travel_local_commute_table`.`from_place` as 'from_place', `travel_local_commute_table`.`to_place` as 'to_place', `travel_local_commute_table`.`description` as 'description', `travel_local_commute_table`.`approval_status` as 'approval_status', `travel_local_commute_table`.`approval_remarks` as 'approval_remarks', `travel_local_commute_table`.`created_by` as 'created_by', `travel_local_commute_table`.`approved_by` as 'approved_by', `travel_local_commute_table`.`created_at` as 'created_at', `travel_local_commute_table`.`approved_at` as 'approved_at'",
-			'operation_dronagiri_data_submission_app' => "`operation_dronagiri_data_submission_app`.`data_id` as 'data_id', `operation_dronagiri_data_submission_app`.`name_of_the_department` as 'name_of_the_department', `operation_dronagiri_data_submission_app`.`name_of_the_officer` as 'name_of_the_officer', `operation_dronagiri_data_submission_app`.`designation` as 'designation', `operation_dronagiri_data_submission_app`.`email_address` as 'email_address', `operation_dronagiri_data_submission_app`.`phone_number` as 'phone_number', if(`operation_dronagiri_data_submission_app`.`submit_date`,date_format(`operation_dronagiri_data_submission_app`.`submit_date`,'%d/%m/%Y'),'') as 'submit_date', `operation_dronagiri_data_submission_app`.`created_by` as 'created_by', `operation_dronagiri_data_submission_app`.`created_at` as 'created_at', `operation_dronagiri_data_submission_app`.`last_updated_by` as 'last_updated_by', `operation_dronagiri_data_submission_app`.`last_updated_at` as 'last_updated_at'",
-			'file_table' => "`file_table`.`file_id` as 'file_id', IF(    CHAR_LENGTH(`operation_dronagiri_data_submission_app1`.`data_id`) || CHAR_LENGTH(`operation_dronagiri_data_submission_app1`.`name_of_the_officer`), CONCAT_WS('',   `operation_dronagiri_data_submission_app1`.`data_id`, '::', `operation_dronagiri_data_submission_app1`.`name_of_the_officer`), '') as 'data_str_key', `file_table`.`name_title_of_the_dataset` as 'name_title_of_the_dataset', `file_table`.`category_of_the_dataset` as 'category_of_the_dataset', `file_table`.`description_of_the_dataset` as 'description_of_the_dataset', `file_table`.`geographic_coverage` as 'geographic_coverage', `file_table`.`format_of_the_dataset` as 'format_of_the_dataset', `file_table`.`upload_file` as 'upload_file', `file_table`.`created_by` as 'created_by', `file_table`.`created_at` as 'created_at', `file_table`.`last_updated_by` as 'last_updated_by', `file_table`.`last_updated_at` as 'last_updated_at'",
 			'panel_decision_table_tdp' => "`panel_decision_table_tdp`.`panel_decision_id` as 'panel_decision_id', `panel_decision_table_tdp`.`edition` as 'edition', `panel_decision_table_tdp`.`project_id` as 'project_id', if(`panel_decision_table_tdp`.`date_of_presentation`,date_format(`panel_decision_table_tdp`.`date_of_presentation`,'%d/%m/%Y'),'') as 'date_of_presentation', `panel_decision_table_tdp`.`project_title` as 'project_title', `panel_decision_table_tdp`.`name_of_pi` as 'name_of_pi', `panel_decision_table_tdp`.`mobile_number` as 'mobile_number', `panel_decision_table_tdp`.`institute` as 'institute', `panel_decision_table_tdp`.`budget_specified` as 'budget_specified', `panel_decision_table_tdp`.`final_budget_to_be_allocated` as 'final_budget_to_be_allocated', `panel_decision_table_tdp`.`experts_comments` as 'experts_comments', `panel_decision_table_tdp`.`trl` as 'trl', `panel_decision_table_tdp`.`proposal_link` as 'proposal_link', `panel_decision_table_tdp`.`updated_proposal_link` as 'updated_proposal_link', `panel_decision_table_tdp`.`where_budget_need` as 'where_budget_need', `panel_decision_table_tdp`.`final_decision` as 'final_decision', `panel_decision_table_tdp`.`notification_mail` as 'notification_mail', `panel_decision_table_tdp`.`call_done` as 'call_done', `panel_decision_table_tdp`.`created_by` as 'created_by', `panel_decision_table_tdp`.`created_at` as 'created_at', `panel_decision_table_tdp`.`last_updated_by` as 'last_updated_by', `panel_decision_table_tdp`.`last_updated_at` as 'last_updated_at'",
 			'selected_proposals_final_tdp' => "`selected_proposals_final_tdp`.`selected_proposals_id` as 'selected_proposals_id', IF(    CHAR_LENGTH(`panel_decision_table_tdp1`.`project_id`) || CHAR_LENGTH(`panel_decision_table_tdp1`.`project_title`), CONCAT_WS('',   `panel_decision_table_tdp1`.`project_id`, '::', `panel_decision_table_tdp1`.`project_title`), '') as 'project_id', `selected_proposals_final_tdp`.`breakthrough` as 'breakthrough', `selected_proposals_final_tdp`.`project_title` as 'project_title', `selected_proposals_final_tdp`.`short_name` as 'short_name', `selected_proposals_final_tdp`.`duration_in_months` as 'duration_in_months', `selected_proposals_final_tdp`.`name_of_pi` as 'name_of_pi', `selected_proposals_final_tdp`.`mobile_number` as 'mobile_number', `selected_proposals_final_tdp`.`institute` as 'institute', `selected_proposals_final_tdp`.`stage_1` as 'stage_1', `selected_proposals_final_tdp`.`stage_2` as 'stage_2', `selected_proposals_final_tdp`.`stage_3` as 'stage_3', `selected_proposals_final_tdp`.`stage_4` as 'stage_4', `selected_proposals_final_tdp`.`total_budget_specified` as 'total_budget_specified', `selected_proposals_final_tdp`.`one_slide_ppt_link` as 'one_slide_ppt_link', `selected_proposals_final_tdp`.`proposal_link` as 'proposal_link', `selected_proposals_final_tdp`.`existing_trl` as 'existing_trl', `selected_proposals_final_tdp`.`expected_trl` as 'expected_trl', `selected_proposals_final_tdp`.`created_by` as 'created_by', `selected_proposals_final_tdp`.`created_at` as 'created_at', `selected_proposals_final_tdp`.`last_updated_by` as 'last_updated_by', `selected_proposals_final_tdp`.`last_updated_at` as 'last_updated_at'",
 			'stage_wise_budget_table_tdp' => "`stage_wise_budget_table_tdp`.`id` as 'id', IF(    CHAR_LENGTH(`panel_decision_table_tdp1`.`project_id`) || CHAR_LENGTH(`panel_decision_table_tdp1`.`project_title`), CONCAT_WS('',   `panel_decision_table_tdp1`.`project_id`, '::', `panel_decision_table_tdp1`.`project_title`), '') as 'project_id', `stage_wise_budget_table_tdp`.`project_title` as 'project_title', `stage_wise_budget_table_tdp`.`name_of_pi` as 'name_of_pi', `stage_wise_budget_table_tdp`.`mobile_number` as 'mobile_number', `stage_wise_budget_table_tdp`.`institute` as 'institute', `stage_wise_budget_table_tdp`.`duration_in_months` as 'duration_in_months', `stage_wise_budget_table_tdp`.`total_budget_specified` as 'total_budget_specified', `stage_wise_budget_table_tdp`.`first_phase` as 'first_phase', `stage_wise_budget_table_tdp`.`second_phase` as 'second_phase', `stage_wise_budget_table_tdp`.`third_phase` as 'third_phase', `stage_wise_budget_table_tdp`.`fourth_phase` as 'fourth_phase', `stage_wise_budget_table_tdp`.`total` as 'total', `stage_wise_budget_table_tdp`.`final_budget_to_be_allocated` as 'final_budget_to_be_allocated', `stage_wise_budget_table_tdp`.`proposal_link` as 'proposal_link', `stage_wise_budget_table_tdp`.`created_by` as 'created_by', `stage_wise_budget_table_tdp`.`created_at` as 'created_at', `stage_wise_budget_table_tdp`.`last_updated_by` as 'last_updated_by', `stage_wise_budget_table_tdp`.`last_updated_at` as 'last_updated_at'",
@@ -258,8 +256,6 @@
 			'travel_table' => "`travel_table` ",
 			'travel_stay_table' => "`travel_stay_table` ",
 			'travel_local_commute_table' => "`travel_local_commute_table` ",
-			'operation_dronagiri_data_submission_app' => "`operation_dronagiri_data_submission_app` ",
-			'file_table' => "`file_table` LEFT JOIN `operation_dronagiri_data_submission_app` as operation_dronagiri_data_submission_app1 ON `operation_dronagiri_data_submission_app1`.`data_id`=`file_table`.`data_str_key` ",
 			'panel_decision_table_tdp' => "`panel_decision_table_tdp` ",
 			'selected_proposals_final_tdp' => "`selected_proposals_final_tdp` LEFT JOIN `panel_decision_table_tdp` as panel_decision_table_tdp1 ON `panel_decision_table_tdp1`.`panel_decision_id`=`selected_proposals_final_tdp`.`project_id` ",
 			'stage_wise_budget_table_tdp' => "`stage_wise_budget_table_tdp` LEFT JOIN `panel_decision_table_tdp` as panel_decision_table_tdp1 ON `panel_decision_table_tdp1`.`panel_decision_id`=`stage_wise_budget_table_tdp`.`project_id` ",
@@ -338,8 +334,6 @@
 			'travel_table' => 'id',
 			'travel_stay_table' => 'id',
 			'travel_local_commute_table' => 'id',
-			'operation_dronagiri_data_submission_app' => 'data_id',
-			'file_table' => 'file_id',
 			'panel_decision_table_tdp' => 'panel_decision_id',
 			'selected_proposals_final_tdp' => 'selected_proposals_id',
 			'stage_wise_budget_table_tdp' => 'id',
@@ -406,8 +400,11 @@
 			],
 			'suggestion' => [
 				'suggestion_id' => '',
+				'department' => 'Event',
 				'suggestion' => '',
 				'attachment' => '',
+				'department_remarks' => '',
+				'ceo_pd_remarks' => '',
 				'created_by' => '',
 				'created_at' => '',
 				'last_updated_by' => '',
@@ -1434,33 +1431,6 @@
 				'created_at' => '',
 				'approved_at' => '',
 			],
-			'operation_dronagiri_data_submission_app' => [
-				'data_id' => '',
-				'name_of_the_department' => '',
-				'name_of_the_officer' => '',
-				'designation' => '',
-				'email_address' => '',
-				'phone_number' => '',
-				'submit_date' => '',
-				'created_by' => '',
-				'created_at' => '',
-				'last_updated_by' => '',
-				'last_updated_at' => '',
-			],
-			'file_table' => [
-				'file_id' => '',
-				'data_str_key' => '',
-				'name_title_of_the_dataset' => '',
-				'category_of_the_dataset' => 'Agriculture',
-				'description_of_the_dataset' => '',
-				'geographic_coverage' => '',
-				'format_of_the_dataset' => 'Spatial (Shapefiles, GeoJSON, etc.)',
-				'upload_file' => '',
-				'created_by' => '',
-				'created_at' => '',
-				'last_updated_by' => '',
-				'last_updated_at' => '',
-			],
 			'panel_decision_table_tdp' => [
 				'panel_decision_id' => '',
 				'edition' => '',
@@ -2407,7 +2377,7 @@
 		if(is_array($arrTables)) {
 			foreach($arrTables as $tn => $tc) {
 				/* ---- list of tables where hide link in nav menu is set ---- */
-				$tChkHL = array_search($tn, ['user_table','suggestion','approval_table','car_table','car_usage_table','cycle_table','cycle_usage_table','gym_table','coffee_table','event_table','outcomes_expected_table','event_decision_table','meetings_table','agenda_table','decision_table','participants_table','action_actor','visiting_card_table','mou_details_table','mou_company_area_details_table','goal_setting_table','goal_progress_table','task_setting_table','subtask_setting_table','internship_fellowship_details_app','star_pnt','hrd_sdp_events_table','training_program_on_geospatial_tchnologies_table','space_day_school_details_app','space_day_college_student_table','school_list','sdp_participants_college_details_table','asset_table','asset_allotment_table','it_inventory_app','it_inventory_billing_details','it_inventory_allotment_table','computer_details_table','computer_usage_table','employees_personal_data_table','employees_designation_table','employees_appraisal_table','employees_appraisal_feedback_table','beyond_workingHours_table','attendence_details_table','leave_table','work_from_home_table','navavishkar_stay_table','navavishkar_stay_payment_table','email_id_allocation_table','all_startup_data_table','shortlisted_startups_for_fund_table','shortlisted_startups_dd_and_agreement_table','vikas_startup_applications_table','programs_table','evaluation_table','problem_statement_table','evaluators_table','approval_billing_table','honorarium_claim_table','all_bank_account_statement_table','payment_track_details_table','travel_table','travel_stay_table','travel_local_commute_table','operation_dronagiri_data_submission_app','file_table','panel_decision_table_tdp','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','summary_table_tdp','project_details_tdp']);
+				$tChkHL = array_search($tn, ['user_table','suggestion','approval_table','car_table','car_usage_table','cycle_table','cycle_usage_table','gym_table','coffee_table','event_table','outcomes_expected_table','event_decision_table','meetings_table','agenda_table','decision_table','participants_table','action_actor','visiting_card_table','mou_details_table','mou_company_area_details_table','goal_setting_table','goal_progress_table','task_setting_table','subtask_setting_table','internship_fellowship_details_app','star_pnt','hrd_sdp_events_table','training_program_on_geospatial_tchnologies_table','space_day_school_details_app','space_day_college_student_table','school_list','sdp_participants_college_details_table','asset_table','asset_allotment_table','it_inventory_app','it_inventory_billing_details','it_inventory_allotment_table','computer_details_table','computer_usage_table','employees_personal_data_table','employees_designation_table','employees_appraisal_table','employees_appraisal_feedback_table','beyond_workingHours_table','attendence_details_table','leave_table','work_from_home_table','navavishkar_stay_table','navavishkar_stay_payment_table','email_id_allocation_table','all_startup_data_table','shortlisted_startups_for_fund_table','shortlisted_startups_dd_and_agreement_table','vikas_startup_applications_table','programs_table','evaluation_table','problem_statement_table','evaluators_table','approval_billing_table','honorarium_claim_table','all_bank_account_statement_table','payment_track_details_table','travel_table','travel_stay_table','travel_local_commute_table','panel_decision_table_tdp','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','summary_table_tdp','project_details_tdp']);
 
 				/* ---- list of tables where filter first is set ---- */
 				$tChkFF = array_search($tn, []);
@@ -4100,34 +4070,6 @@ EOT;
 			],
 			'travel_local_commute_table' => [
 			],
-			'operation_dronagiri_data_submission_app' => [
-			],
-			'file_table' => [
-				'data_str_key' => [
-					'parent-table' => 'operation_dronagiri_data_submission_app',
-					'parent-primary-key' => 'data_id',
-					'child-primary-key' => 'file_id',
-					'child-primary-key-index' => 0,
-					'tab-label' => 'File table <span class="hidden child-label-file_table child-field-caption">(Data str key)</span>',
-					'auto-close' => false,
-					'table-icon' => 'table.gif',
-					'display-refresh' => true,
-					'display-add-new' => true,
-					'forced-where' => '',
-					'display-fields' => [0 => 'ID', 1 => 'Data str key', 2 => 'Name/Title of the dataset', 3 => 'Category of the dataset', 4 => 'Description of the dataset (Provide a brief note on the dataset content, including what the data represents.)', 5 => 'Geographic Coverage (Specify the region/area covered by the dataset, e.g., Block Name, Taluk Name, Village Name, Vizianagaram district, Andhra Pradesh.)', 6 => 'Format of the dataset', 7 => 'Upload file', 8 => 'Created by', 9 => 'Created at', 10 => 'Last updated by', 11 => 'Last updated at'],
-					'display-field-names' => [0 => 'file_id', 1 => 'data_str_key', 2 => 'name_title_of_the_dataset', 3 => 'category_of_the_dataset', 4 => 'description_of_the_dataset', 5 => 'geographic_coverage', 6 => 'format_of_the_dataset', 7 => 'upload_file', 8 => 'created_by', 9 => 'created_at', 10 => 'last_updated_by', 11 => 'last_updated_at'],
-					'sortable-fields' => [0 => '`file_table`.`file_id`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => 9, 9 => 10, 10 => 11, 11 => 12],
-					'records-per-page' => 10,
-					'default-sort-by' => 0,
-					'default-sort-direction' => 'desc',
-					'open-detail-view-on-click' => true,
-					'display-page-selector' => true,
-					'show-page-progress' => true,
-					'template' => 'children-file_table',
-					'template-printable' => 'children-file_table-printable',
-					'query' => "SELECT `file_table`.`file_id` as 'file_id', IF(    CHAR_LENGTH(`operation_dronagiri_data_submission_app1`.`data_id`) || CHAR_LENGTH(`operation_dronagiri_data_submission_app1`.`name_of_the_officer`), CONCAT_WS('',   `operation_dronagiri_data_submission_app1`.`data_id`, '::', `operation_dronagiri_data_submission_app1`.`name_of_the_officer`), '') as 'data_str_key', `file_table`.`name_title_of_the_dataset` as 'name_title_of_the_dataset', `file_table`.`category_of_the_dataset` as 'category_of_the_dataset', `file_table`.`description_of_the_dataset` as 'description_of_the_dataset', `file_table`.`geographic_coverage` as 'geographic_coverage', `file_table`.`format_of_the_dataset` as 'format_of_the_dataset', `file_table`.`upload_file` as 'upload_file', `file_table`.`created_by` as 'created_by', `file_table`.`created_at` as 'created_at', `file_table`.`last_updated_by` as 'last_updated_by', `file_table`.`last_updated_at` as 'last_updated_at' FROM `file_table` LEFT JOIN `operation_dronagiri_data_submission_app` as operation_dronagiri_data_submission_app1 ON `operation_dronagiri_data_submission_app1`.`data_id`=`file_table`.`data_str_key` "
-				],
-			],
 			'panel_decision_table_tdp' => [
 			],
 			'selected_proposals_final_tdp' => [
@@ -4385,7 +4327,7 @@ EOT;
 	#########################################################
 
 	function isDetailViewEnabled($tn) {
-		$tables = ['user_table', 'suggestion', 'approval_table', 'car_table', 'car_usage_table', 'cycle_table', 'cycle_usage_table', 'gym_table', 'coffee_table', 'event_table', 'outcomes_expected_table', 'event_decision_table', 'meetings_table', 'agenda_table', 'decision_table', 'participants_table', 'action_actor', 'visiting_card_table', 'mou_details_table', 'mou_company_area_details_table', 'goal_setting_table', 'goal_progress_table', 'task_setting_table', 'subtask_setting_table', 'internship_fellowship_details_app', 'star_pnt', 'hrd_sdp_events_table', 'training_program_on_geospatial_tchnologies_table', 'space_day_school_details_app', 'space_day_college_student_table', 'school_list', 'sdp_participants_college_details_table', 'asset_table', 'asset_allotment_table', 'it_inventory_app', 'it_inventory_billing_details', 'it_inventory_allotment_table', 'computer_details_table', 'computer_usage_table', 'employees_personal_data_table', 'employees_designation_table', 'employees_appraisal_table', 'employees_appraisal_feedback_table', 'beyond_workingHours_table', 'attendence_details_table', 'leave_table', 'work_from_home_table', 'navavishkar_stay_table', 'navavishkar_stay_payment_table', 'email_id_allocation_table', 'all_startup_data_table', 'shortlisted_startups_for_fund_table', 'shortlisted_startups_dd_and_agreement_table', 'vikas_startup_applications_table', 'programs_table', 'evaluation_table', 'problem_statement_table', 'evaluators_table', 'approval_billing_table', 'honorarium_claim_table', 'all_bank_account_statement_table', 'payment_track_details_table', 'travel_table', 'travel_stay_table', 'travel_local_commute_table', 'operation_dronagiri_data_submission_app', 'file_table', 'panel_decision_table_tdp', 'selected_proposals_final_tdp', 'stage_wise_budget_table_tdp', 'first_level_shortlisted_proposals_tdp', 'budget_table_tdp', 'panel_comments_tdp', 'selected_tdp', 'address_tdp', 'summary_table_tdp', 'project_details_tdp', ];
+		$tables = ['user_table', 'suggestion', 'approval_table', 'car_table', 'car_usage_table', 'cycle_table', 'cycle_usage_table', 'gym_table', 'coffee_table', 'event_table', 'outcomes_expected_table', 'event_decision_table', 'meetings_table', 'agenda_table', 'decision_table', 'participants_table', 'action_actor', 'visiting_card_table', 'mou_details_table', 'mou_company_area_details_table', 'goal_setting_table', 'goal_progress_table', 'task_setting_table', 'subtask_setting_table', 'internship_fellowship_details_app', 'star_pnt', 'hrd_sdp_events_table', 'training_program_on_geospatial_tchnologies_table', 'space_day_school_details_app', 'space_day_college_student_table', 'school_list', 'sdp_participants_college_details_table', 'asset_table', 'asset_allotment_table', 'it_inventory_app', 'it_inventory_billing_details', 'it_inventory_allotment_table', 'computer_details_table', 'computer_usage_table', 'employees_personal_data_table', 'employees_designation_table', 'employees_appraisal_table', 'employees_appraisal_feedback_table', 'beyond_workingHours_table', 'attendence_details_table', 'leave_table', 'work_from_home_table', 'navavishkar_stay_table', 'navavishkar_stay_payment_table', 'email_id_allocation_table', 'all_startup_data_table', 'shortlisted_startups_for_fund_table', 'shortlisted_startups_dd_and_agreement_table', 'vikas_startup_applications_table', 'programs_table', 'evaluation_table', 'problem_statement_table', 'evaluators_table', 'approval_billing_table', 'honorarium_claim_table', 'all_bank_account_statement_table', 'payment_track_details_table', 'travel_table', 'travel_stay_table', 'travel_local_commute_table', 'panel_decision_table_tdp', 'selected_proposals_final_tdp', 'stage_wise_budget_table_tdp', 'first_level_shortlisted_proposals_tdp', 'budget_table_tdp', 'panel_comments_tdp', 'selected_tdp', 'address_tdp', 'summary_table_tdp', 'project_details_tdp', ];
 		return in_array($tn, $tables);
 	}
 

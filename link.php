@@ -63,10 +63,6 @@
 			'upload_scanned_file_2' => getUploadDir(''),
 			'primary key' => 'payment_track_details_id'
 		],
-		'file_table' => [
-			'upload_file' => getUploadDir(''),
-			'primary key' => 'file_id'
-		],
 	];
 
 	if(!count($p)) getLink();

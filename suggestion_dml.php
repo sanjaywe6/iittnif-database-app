@@ -16,6 +16,7 @@ function suggestion_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'department' => Request::val('department', 'Event'),
 		'suggestion' => br2nl(Request::val('suggestion', '')),
 		'attachment' => Request::fileUpload('attachment', [
 			'maxSize' => 204800,
@@ -31,6 +32,8 @@ function suggestion_insert(&$error_message = '') {
 				return existing_value('suggestion', 'attachment', Request::val('SelectedID'));
 			},
 		]),
+		'department_remarks' => br2nl(Request::val('department_remarks', '')),
+		'ceo_pd_remarks' => br2nl(Request::val('ceo_pd_remarks', '')),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
@@ -107,6 +110,7 @@ function suggestion_update(&$selected_id, &$error_message = '') {
 	if(!check_record_permission('suggestion', $selected_id, 'edit')) return false;
 
 	$data = [
+		'department' => Request::val('department', ''),
 		'suggestion' => br2nl(Request::val('suggestion', '')),
 		'attachment' => Request::fileUpload('attachment', [
 			'maxSize' => 204800,
@@ -130,6 +134,8 @@ function suggestion_update(&$selected_id, &$error_message = '') {
 				return existing_value('suggestion', 'attachment', $selected_id);
 			},
 		]),
+		'department_remarks' => br2nl(Request::val('department_remarks', '')),
+		'ceo_pd_remarks' => br2nl(Request::val('ceo_pd_remarks', '')),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 	];
@@ -229,18 +235,36 @@ function suggestion_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 
 	// unique random identifier
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
+	// combobox: department
+	$combo_department = new Combo;
+	$combo_department->ListType = 0;
+	$combo_department->MultipleSeparator = ', ';
+	$combo_department->ListBoxHeight = 10;
+	$combo_department->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/suggestion.department.csv')) {
+		$department_data = addslashes(implode('', @file(__DIR__ . '/hooks/suggestion.department.csv')));
+		$combo_department->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($department_data))));
+		$combo_department->ListData = $combo_department->ListItem;
+	} else {
+		$combo_department->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Event;;Function;;Celebration;;Product;;Service;;Hiring;;Advance;;Local Travel;;Out Station Travel;;Outstation Stay;;Technology Development Project;;Centre of Excellence;;Hackathon;;Workshop;;Seminar;;Conference;;Skill Development;;Business Development;;Startups;;Training;;Operation Dronagiri;;HRD;;Navavishkar Stay;; Navavishkar Ride;;Office Gym;;Installation;;Refurbishment"))));
+		$combo_department->ListData = $combo_department->ListItem;
+	}
+	$combo_department->SelectName = 'department';
 
 	if($hasSelectedId) {
 		if(!($row = getRecord('suggestion', $selectedId))) {
 			return error_message($Translation['No records found'], 'suggestion_view.php', false);
 		}
+		$combo_department->SelectedData = $row['department'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
 	} else {
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
+		$combo_department->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Event'));
 	}
+	$combo_department->Render();
 
 	// code for template based detail view forms
 
@@ -321,8 +345,11 @@ function suggestion_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
+		$jsReadOnly .= "\t\$j('#department').replaceWith('<div class=\"form-control-static\" id=\"department\">' + (\$j('#department').val() || '') + '</div>'); \$j('#department-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#suggestion').replaceWith('<div class=\"form-control-static\" id=\"suggestion\">' + (\$j('#suggestion').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#attachment').parent().replaceWith(`<div class=\"form-control-static\" id=\"attachment\">\${\$j('#attachment').val() || ''}\${\$j('#attachment').val() ? '<a target=\"_blank\" class=\"hspacer-lg\" href=\"' + \$j('#attachment').val() + '\" target=\"_blank\"><i class=\"glyphicon glyphicon-globe\"></i></a>' : ''}</div>`);\n";
+		$jsReadOnly .= "\t\$j('#department_remarks').replaceWith('<div class=\"form-control-static\" id=\"department_remarks\">' + (\$j('#department_remarks').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#ceo_pd_remarks').replaceWith('<div class=\"form-control-static\" id=\"ceo_pd_remarks\">' + (\$j('#ceo_pd_remarks').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -333,6 +360,8 @@ function suggestion_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 	}
 
 	// process combos
+	$templateCode = str_replace('<%%COMBO(department)%%>', $combo_department->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(department)%%>', $combo_department->SelectedData, $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
 	$lookup_fields = [];
@@ -352,6 +381,7 @@ function suggestion_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(suggestion_id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(department)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(suggestion)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(attachment)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="attachment" id="attachment" data-filetypes="jpg|jpeg|gif|png|webp" data-maxsize="204800" style="max-width: calc(100% - 1.5rem);" accept=".jpg,.jpeg,.gif,.png,.webp">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
 	if($allowUpdate && $row['attachment'] != '') {
@@ -359,6 +389,8 @@ function suggestion_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 	} else {
 		$templateCode = str_replace('<%%REMOVEFILE(attachment)%%>', '', $templateCode);
 	}
+	$templateCode = str_replace('<%%UPLOADFILE(department_remarks)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(ceo_pd_remarks)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
@@ -368,11 +400,18 @@ function suggestion_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(suggestion_id)%%>', safe_html($urow['suggestion_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(suggestion_id)%%>', urlencode($urow['suggestion_id']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(department)%%>', safe_html($urow['department']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(department)%%>', html_attr($row['department']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(department)%%>', urlencode($urow['department']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(suggestion)%%>', safe_html($urow['suggestion'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(suggestion)%%>', urlencode($urow['suggestion']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(attachment)%%>', safe_html($urow['attachment']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(attachment)%%>', html_attr($row['attachment']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(attachment)%%>', urlencode($urow['attachment']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(department_remarks)%%>', safe_html($urow['department_remarks'], $fieldsAreEditable), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(department_remarks)%%>', urlencode($urow['department_remarks']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(ceo_pd_remarks)%%>', safe_html($urow['ceo_pd_remarks'], $fieldsAreEditable), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(ceo_pd_remarks)%%>', urlencode($urow['ceo_pd_remarks']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
@@ -384,10 +423,16 @@ function suggestion_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 	} else {
 		$templateCode = str_replace('<%%VALUE(suggestion_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(suggestion_id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(department)%%>', 'Event', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(department)%%>', urlencode('Event'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(suggestion)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(suggestion)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(attachment)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(attachment)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(department_remarks)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(department_remarks)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(ceo_pd_remarks)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(ceo_pd_remarks)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);

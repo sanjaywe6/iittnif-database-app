@@ -800,21 +800,6 @@
 		],
 		'travel_local_commute_table' => [
 		],
-		'operation_dronagiri_data_submission_app' => [
-		],
-		'file_table' => [
-			'data_str_key' => [
-				'parent_table' => 'operation_dronagiri_data_submission_app',
-				'parent_pk_field' => 'data_id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`operation_dronagiri_data_submission_app`.`data_id`) || CHAR_LENGTH(`operation_dronagiri_data_submission_app`.`name_of_the_officer`), CONCAT_WS(\'\', `operation_dronagiri_data_submission_app`.`data_id`, \'::\', `operation_dronagiri_data_submission_app`.`name_of_the_officer`), \'\')',
-				'parent_from' => '`operation_dronagiri_data_submission_app` ',
-				'filterers' => [],
-				'custom_query' => '',
-				'inherit_permissions' => false,
-				'list_type' => 0,
-				'not_null' => false,
-			],
-		],
 		'panel_decision_table_tdp' => [
 		],
 		'selected_proposals_final_tdp' => [

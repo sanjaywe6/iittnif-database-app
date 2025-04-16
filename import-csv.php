@@ -395,16 +395,6 @@
 
 			return $data;
 		},
-		'operation_dronagiri_data_submission_app' => function($data, $options = []) {
-			if(isset($data['submit_date'])) $data['submit_date'] = guessMySQLDateTime($data['submit_date']);
-
-			return $data;
-		},
-		'file_table' => function($data, $options = []) {
-			if(isset($data['data_str_key'])) $data['data_str_key'] = pkGivenLookupText($data['data_str_key'], 'file_table', 'data_str_key');
-
-			return $data;
-		},
 		'panel_decision_table_tdp' => function($data, $options = []) {
 			if(isset($data['date_of_presentation'])) $data['date_of_presentation'] = guessMySQLDateTime($data['date_of_presentation']);
 
@@ -533,8 +523,6 @@
 		'travel_table' => function($data, $options = []) { return true; },
 		'travel_stay_table' => function($data, $options = []) { return true; },
 		'travel_local_commute_table' => function($data, $options = []) { return true; },
-		'operation_dronagiri_data_submission_app' => function($data, $options = []) { return true; },
-		'file_table' => function($data, $options = []) { return true; },
 		'panel_decision_table_tdp' => function($data, $options = []) { return true; },
 		'selected_proposals_final_tdp' => function($data, $options = []) { return true; },
 		'stage_wise_budget_table_tdp' => function($data, $options = []) { return true; },

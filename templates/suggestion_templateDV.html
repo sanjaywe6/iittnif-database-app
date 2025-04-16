@@ -19,6 +19,15 @@
 		<div class="col-md-8 col-lg-10" id="suggestion_dv_form">
 			<fieldset class="form-horizontal">
 
+				<!-- Field: Suggestion Related to Department -->
+				<div class="form-group suggestion-department">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="department">Suggestion Related to Department</label>
+					<div class="col-lg-9">
+						<%%COMBO(department)%%>
+					</div>
+				</div>
+
 				<!-- Field: Suggestion -->
 				<div class="form-group suggestion-suggestion">
 					<hr class="hidden-md hidden-lg">
@@ -47,6 +56,24 @@
 							</div>
 						</div>
 						<script>/* disable empty links */ $j(() => { const e_attachment = '<%%VALUE(attachment)%%>'; if(e_attachment == '' || e_attachment == '&nbsp;' || e_attachment == 'blank.gif') { $j('#attachment-link').hide(); $j('#attachment-image').parents('a').attr('href', '').on('click', (e) => e.preventDefault()); } });</script>
+					</div>
+				</div>
+
+				<!-- Field: Remarks of Department/Office Head -->
+				<div class="form-group suggestion-department_remarks">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="department_remarks">Remarks of Department/Office Head</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="department_remarks" id="department_remarks" rows=" 5"><%%VALUE(department_remarks)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Remarks of CEO/PD -->
+				<div class="form-group suggestion-ceo_pd_remarks">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="ceo_pd_remarks">Remarks of CEO/PD</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="ceo_pd_remarks" id="ceo_pd_remarks" rows=" 5"><%%VALUE(ceo_pd_remarks)%%></textarea>
 					</div>
 				</div>
 
@@ -91,9 +118,27 @@
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-			$j('#suggestion_dv_container-loading').addClass('hidden');
-			$j('#suggestion_dv_container').removeClass('hidden');
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('suggestion', 'suggestion');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
+				AppGini.once({
+					condition: function() {
+						return $j('.form-group.suggestion-department')
+									.find('.nicEdit-main, .select2-container, input[type=radio]')
+									.length > 0
+								// or read-only DV
+								|| (!$j('#update').length && !$j('#insert').length);
+					},
+					action: function() {
+						$j('#suggestion_dv_container-loading').addClass('hidden');
+						$j('#suggestion_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('suggestion', 'department');
+					},
+					timeout:  5000,
+					doActionOnTimeout:  true
+				});
+			} else {
+				$j('#suggestion_dv_container-loading').addClass('hidden');
+				$j('#suggestion_dv_container').removeClass('hidden');
+			}
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 

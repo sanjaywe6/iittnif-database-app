@@ -279,6 +279,22 @@ function event_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 		$filterValue = Request::val('FilterValue');
 	}
 
+	ob_start();
+	?>
+
+	<script>
+		// initial lookup values
+
+		$j(function() {
+			setTimeout(function() {
+			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
+		});
+	</script>
+	<?php
+
+	$lookups = str_replace('__RAND__', $rnd1, ob_get_clean());
+
+
 	// code for template based detail view forms
 
 	// open the detail view template

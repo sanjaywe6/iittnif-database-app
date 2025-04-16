@@ -7,6 +7,11 @@
 			'attachment' => getUploadDir(''),
 			'primary key' => 'suggestion_id'
 		],
+		'approval_table' => [
+			'image' => getUploadDir(''),
+			'other_file' => getUploadDir(''),
+			'primary key' => 'id'
+		],
 		'visiting_card_table' => [
 			'front_img' => getUploadDir(''),
 			'back_img' => getUploadDir(''),
@@ -45,11 +50,6 @@
 		],
 		'all_startup_data_table' => [
 			'company_logo' => getUploadDir(''),
-			'primary key' => 'id'
-		],
-		'approval_table' => [
-			'image' => getUploadDir(''),
-			'other_file' => getUploadDir(''),
 			'primary key' => 'id'
 		],
 		'approval_billing_table' => [

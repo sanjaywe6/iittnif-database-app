@@ -100,6 +100,8 @@
 
 		/* table groups */
 		$tg = [
+			'Approval App',
+			'Facilities Apps',
 			'Events / Meetings / Goals Apps',
 			'HRD Apps',
 			'SDP Apps',
@@ -119,539 +121,539 @@
 					'Caption' => 'User Table',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[10],
+					'group' => $tg[12],
 					'homepageShowCount' => 1
 				],
 				'suggestion' => [
 					'Caption' => 'Suggestions - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[10],
-					'homepageShowCount' => 1
-				],
-				'event_table' => [
-					'Caption' => 'Event - App',
-					'Description' => '<a href="https://lookerstudio.google.com/reporting/7a6332d1-62b0-4602-baf9-7da8e4033e98"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Event App Report</b></button></a>',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[0],
-					'homepageShowCount' => 1
-				],
-				'outcomes_expected_table' => [
-					'Caption' => 'Outcomes Expected Table',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[0],
-					'homepageShowCount' => 1
-				],
-				'event_decision_table' => [
-					'Caption' => 'Decision - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[0],
-					'homepageShowCount' => 1
-				],
-				'meetings_table' => [
-					'Caption' => 'Meetings - App',
-					'Description' => '<a href="https://lookerstudio.google.com/reporting/b7bf99ff-cb80-42d5-8c5e-9256eb638f3a"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Meetings App Report</b></button></a>',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[0],
-					'homepageShowCount' => 1
-				],
-				'agenda_table' => [
-					'Caption' => 'Agenda - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[0],
-					'homepageShowCount' => 1
-				],
-				'decision_table' => [
-					'Caption' => 'Decision - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[0],
-					'homepageShowCount' => 1
-				],
-				'participants_table' => [
-					'Caption' => 'Participants / Speaker / VIP List - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[0],
-					'homepageShowCount' => 1
-				],
-				'action_actor' => [
-					'Caption' => 'Action actor',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[0],
-					'homepageShowCount' => 1
-				],
-				'visiting_card_table' => [
-					'Caption' => 'Visiting card - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[0],
-					'homepageShowCount' => 1
-				],
-				'mou_details_table' => [
-					'Caption' => 'MoU details - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[0],
-					'homepageShowCount' => 1
-				],
-				'mou_company_area_details_table' => [
-					'Caption' => 'MoU Scope - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[0],
-					'homepageShowCount' => 1
-				],
-				'goal_setting_table' => [
-					'Caption' => 'Goal setting - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[0],
-					'homepageShowCount' => 1
-				],
-				'goal_progress_table' => [
-					'Caption' => 'Goal progress table',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[0],
-					'homepageShowCount' => 0
-				],
-				'task_setting_table' => [
-					'Caption' => 'Task setting - App',
-					'Description' => '<a href="https://lookerstudio.google.com/reporting/52ec0149-4f45-4041-92b6-afc26208458e"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Task Setting App Report</b></button></a>',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[0],
-					'homepageShowCount' => 1
-				],
-				'subtask_setting_table' => [
-					'Caption' => 'Subtask setting - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[0],
-					'homepageShowCount' => 1
-				],
-				'internship_fellowship_details_app' => [
-					'Caption' => 'Internship/Fellowship details - App',
-					'Description' => 'HRD',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[1],
-					'homepageShowCount' => 1
-				],
-				'star_pnt' => [
-					'Caption' => 'Star-PNT - APP',
-					'Description' => 'HRD',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[1],
-					'homepageShowCount' => 1
-				],
-				'hrd_sdp_events_table' => [
-					'Caption' => 'HRD & SDP Events - App',
-					'Description' => 'HRD & SDP',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[1],
-					'homepageShowCount' => 1
-				],
-				'training_program_on_geospatial_tchnologies_table' => [
-					'Caption' => 'Training Program on Geospatial Technologies Details - App',
-					'Description' => 'HRD',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[1],
-					'homepageShowCount' => 1
-				],
-				'space_day_school_details_app' => [
-					'Caption' => 'Space day school student details app',
-					'Description' => 'HRD',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[1],
-					'homepageShowCount' => 1
-				],
-				'space_day_college_student_table' => [
-					'Caption' => 'Space day college student - App',
-					'Description' => 'HRD',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[1],
-					'homepageShowCount' => 1
-				],
-				'school_list' => [
-					'Caption' => 'School List - App',
-					'Description' => 'HRD',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[1],
-					'homepageShowCount' => 1
-				],
-				'sdp_participants_college_details_table' => [
-					'Caption' => 'SDP participants college details - App',
-					'Description' => 'SDP',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[2],
-					'homepageShowCount' => 1
-				],
-				'asset_table' => [
-					'Caption' => 'Asset table',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[7],
-					'homepageShowCount' => 1
-				],
-				'asset_allotment_table' => [
-					'Caption' => 'Asset Allotment - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[7],
-					'homepageShowCount' => 1
-				],
-				'it_inventory_app' => [
-					'Caption' => 'IT inventory - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[7],
-					'homepageShowCount' => 1
-				],
-				'it_inventory_billing_details' => [
-					'Caption' => 'IT inventory billing details - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[7],
-					'homepageShowCount' => 1
-				],
-				'it_inventory_allotment_table' => [
-					'Caption' => 'IT inventory allotment - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[7],
-					'homepageShowCount' => 1
-				],
-				'computer_details_table' => [
-					'Caption' => 'Computer lab PC list - App',
-					'Description' => '<a href="https://lookerstudio.google.com/reporting/3dc9dac5-3945-4853-91cc-12e26b865666"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Computer lab PC Report</b></button></a>',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[7],
-					'homepageShowCount' => 1
-				],
-				'computer_usage_table' => [
-					'Caption' => 'Computer usage table',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[7],
-					'homepageShowCount' => 1
-				],
-				'gym_table' => [
-					'Caption' => 'Gym - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[7],
-					'homepageShowCount' => 1
-				],
-				'coffee_table' => [
-					'Caption' => 'Coffee - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[7],
-					'homepageShowCount' => 1
-				],
-				'employees_personal_data_table' => [
-					'Caption' => 'Employee Personal Data - App',
-					'Description' => '<a href="https://lookerstudio.google.com/reporting/e46f3806-e78c-4f09-8417-049568d4783d"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Employee Details App Report</b></button></a>',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[6],
-					'homepageShowCount' => 1
-				],
-				'employees_designation_table' => [
-					'Caption' => 'Employees designation & Reporting - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[6],
-					'homepageShowCount' => 1
-				],
-				'employees_appraisal_table' => [
-					'Caption' => 'Employees Appraisal  - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[6],
-					'homepageShowCount' => 1
-				],
-				'employees_appraisal_feedback_table' => [
-					'Caption' => 'Employees appraisal feedback table',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[6],
-					'homepageShowCount' => 1
-				],
-				'beyond_workingHours_table' => [
-					'Caption' => 'Beyond Working Hours Approval - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[6],
-					'homepageShowCount' => 1
-				],
-				'attendence_details_table' => [
-					'Caption' => 'Attendence details - App',
-					'Description' => '<a href="https://lookerstudio.google.com/reporting/dd61ce5a-ccb5-4d55-b0a4-5233454f4b2c"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Attendence App View</b></button></a>',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[6],
-					'homepageShowCount' => 1
-				],
-				'leave_table' => [
-					'Caption' => 'Leave - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[6],
-					'homepageShowCount' => 1
-				],
-				'work_from_home_table' => [
-					'Caption' => 'Work from home - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[6],
-					'homepageShowCount' => 1
-				],
-				'navavishkar_stay_table' => [
-					'Caption' => 'Navavishkar Stay - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[6],
-					'homepageShowCount' => 1
-				],
-				'navavishkar_stay_payment_table' => [
-					'Caption' => 'Navavishkar Stay Payment - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[6],
-					'homepageShowCount' => 1
-				],
-				'email_id_allocation_table' => [
-					'Caption' => 'Email id allocation - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[6],
-					'homepageShowCount' => 1
-				],
-				'all_startup_data_table' => [
-					'Caption' => 'All Startups Data - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[5],
-					'homepageShowCount' => 1
-				],
-				'shortlisted_startups_for_fund_table' => [
-					'Caption' => 'Shortlisted startups for fund - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[5],
-					'homepageShowCount' => 1
-				],
-				'shortlisted_startups_dd_and_agreement_table' => [
-					'Caption' => 'Shortlisted startups DD and Agreement - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[5],
-					'homepageShowCount' => 1
-				],
-				'vikas_startup_applications_table' => [
-					'Caption' => 'Vikas startup applications - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[5],
-					'homepageShowCount' => 1
-				],
-				'programs_table' => [
-					'Caption' => 'Programs - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[3],
-					'homepageShowCount' => 1
-				],
-				'evaluation_table' => [
-					'Caption' => 'Evaluation table',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[3],
-					'homepageShowCount' => 1
-				],
-				'problem_statement_table' => [
-					'Caption' => 'Problem statement - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[3],
-					'homepageShowCount' => 1
-				],
-				'evaluators_table' => [
-					'Caption' => 'Evaluators table',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[3],
+					'group' => $tg[12],
 					'homepageShowCount' => 1
 				],
 				'approval_table' => [
 					'Caption' => 'Approval - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[8],
-					'homepageShowCount' => 1
-				],
-				'approval_billing_table' => [
-					'Caption' => 'Approval billing table',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[8],
-					'homepageShowCount' => 1
-				],
-				'honorarium_claim_table' => [
-					'Caption' => 'Honorarium - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[8],
-					'homepageShowCount' => 1
-				],
-				'all_bank_account_statement_table' => [
-					'Caption' => 'All bank account statement - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[8],
-					'homepageShowCount' => 1
-				],
-				'payment_track_details_table' => [
-					'Caption' => 'Payment track details - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[8],
-					'homepageShowCount' => 1
-				],
-				'travel_table' => [
-					'Caption' => 'Travel - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[9],
-					'homepageShowCount' => 1
-				],
-				'travel_stay_table' => [
-					'Caption' => 'Stay Details - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[9],
-					'homepageShowCount' => 1
-				],
-				'travel_local_commute_table' => [
-					'Caption' => 'Local Commute - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[9],
+					'group' => $tg[0],
 					'homepageShowCount' => 1
 				],
 				'car_table' => [
 					'Caption' => 'Car - App',
 					'Description' => '<a href="https://lookerstudio.google.com/reporting/58f87367-3f09-42c0-a288-cf75f313cbed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Car App Report</b></button></a>',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[9],
+					'group' => $tg[1],
 					'homepageShowCount' => 1
 				],
 				'car_usage_table' => [
 					'Caption' => 'Car usage table',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[9],
+					'group' => $tg[1],
 					'homepageShowCount' => 1
 				],
 				'cycle_table' => [
 					'Caption' => 'Cycle - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[9],
+					'group' => $tg[1],
 					'homepageShowCount' => 1
 				],
 				'cycle_usage_table' => [
 					'Caption' => 'Cycle usage table',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
+					'group' => $tg[1],
+					'homepageShowCount' => 1
+				],
+				'gym_table' => [
+					'Caption' => 'Gym - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[1],
+					'homepageShowCount' => 1
+				],
+				'coffee_table' => [
+					'Caption' => 'Coffee - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[1],
+					'homepageShowCount' => 1
+				],
+				'event_table' => [
+					'Caption' => 'Event - App',
+					'Description' => '<a href="https://lookerstudio.google.com/reporting/7a6332d1-62b0-4602-baf9-7da8e4033e98"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Event App Report</b></button></a>',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[2],
+					'homepageShowCount' => 1
+				],
+				'outcomes_expected_table' => [
+					'Caption' => 'Outcomes Expected Table',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[2],
+					'homepageShowCount' => 1
+				],
+				'event_decision_table' => [
+					'Caption' => 'Decision - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[2],
+					'homepageShowCount' => 1
+				],
+				'meetings_table' => [
+					'Caption' => 'Meetings - App',
+					'Description' => '<a href="https://lookerstudio.google.com/reporting/b7bf99ff-cb80-42d5-8c5e-9256eb638f3a"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Meetings App Report</b></button></a>',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[2],
+					'homepageShowCount' => 1
+				],
+				'agenda_table' => [
+					'Caption' => 'Agenda - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[2],
+					'homepageShowCount' => 1
+				],
+				'decision_table' => [
+					'Caption' => 'Decision - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[2],
+					'homepageShowCount' => 1
+				],
+				'participants_table' => [
+					'Caption' => 'Participants / Speaker / VIP List - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[2],
+					'homepageShowCount' => 1
+				],
+				'action_actor' => [
+					'Caption' => 'Action actor',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[2],
+					'homepageShowCount' => 1
+				],
+				'visiting_card_table' => [
+					'Caption' => 'Visiting card - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[2],
+					'homepageShowCount' => 1
+				],
+				'mou_details_table' => [
+					'Caption' => 'MoU details - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[2],
+					'homepageShowCount' => 1
+				],
+				'mou_company_area_details_table' => [
+					'Caption' => 'MoU Scope - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[2],
+					'homepageShowCount' => 1
+				],
+				'goal_setting_table' => [
+					'Caption' => 'Goal setting - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[2],
+					'homepageShowCount' => 1
+				],
+				'goal_progress_table' => [
+					'Caption' => 'Goal progress table',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[2],
+					'homepageShowCount' => 0
+				],
+				'task_setting_table' => [
+					'Caption' => 'Task setting - App',
+					'Description' => '<a href="https://lookerstudio.google.com/reporting/52ec0149-4f45-4041-92b6-afc26208458e"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Task Setting App Report</b></button></a>',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[2],
+					'homepageShowCount' => 1
+				],
+				'subtask_setting_table' => [
+					'Caption' => 'Subtask setting - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[2],
+					'homepageShowCount' => 1
+				],
+				'internship_fellowship_details_app' => [
+					'Caption' => 'Internship/Fellowship details - App',
+					'Description' => 'HRD',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[3],
+					'homepageShowCount' => 1
+				],
+				'star_pnt' => [
+					'Caption' => 'Star-PNT - APP',
+					'Description' => 'HRD',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[3],
+					'homepageShowCount' => 1
+				],
+				'hrd_sdp_events_table' => [
+					'Caption' => 'HRD & SDP Events - App',
+					'Description' => 'HRD & SDP',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[3],
+					'homepageShowCount' => 1
+				],
+				'training_program_on_geospatial_tchnologies_table' => [
+					'Caption' => 'Training Program on Geospatial Technologies Details - App',
+					'Description' => 'HRD',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[3],
+					'homepageShowCount' => 1
+				],
+				'space_day_school_details_app' => [
+					'Caption' => 'Space day school student details app',
+					'Description' => 'HRD',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[3],
+					'homepageShowCount' => 1
+				],
+				'space_day_college_student_table' => [
+					'Caption' => 'Space day college student - App',
+					'Description' => 'HRD',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[3],
+					'homepageShowCount' => 1
+				],
+				'school_list' => [
+					'Caption' => 'School List - App',
+					'Description' => 'HRD',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[3],
+					'homepageShowCount' => 1
+				],
+				'sdp_participants_college_details_table' => [
+					'Caption' => 'SDP participants college details - App',
+					'Description' => 'SDP',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[4],
+					'homepageShowCount' => 1
+				],
+				'asset_table' => [
+					'Caption' => 'Asset table',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
 					'group' => $tg[9],
+					'homepageShowCount' => 1
+				],
+				'asset_allotment_table' => [
+					'Caption' => 'Asset Allotment - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[9],
+					'homepageShowCount' => 1
+				],
+				'it_inventory_app' => [
+					'Caption' => 'IT inventory - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[9],
+					'homepageShowCount' => 1
+				],
+				'it_inventory_billing_details' => [
+					'Caption' => 'IT inventory billing details - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[9],
+					'homepageShowCount' => 1
+				],
+				'it_inventory_allotment_table' => [
+					'Caption' => 'IT inventory allotment - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[9],
+					'homepageShowCount' => 1
+				],
+				'computer_details_table' => [
+					'Caption' => 'Computer lab PC list - App',
+					'Description' => '<a href="https://lookerstudio.google.com/reporting/3dc9dac5-3945-4853-91cc-12e26b865666"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Computer lab PC Report</b></button></a>',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[9],
+					'homepageShowCount' => 1
+				],
+				'computer_usage_table' => [
+					'Caption' => 'Computer usage table',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[9],
+					'homepageShowCount' => 1
+				],
+				'employees_personal_data_table' => [
+					'Caption' => 'Employee Personal Data - App',
+					'Description' => '<a href="https://lookerstudio.google.com/reporting/e46f3806-e78c-4f09-8417-049568d4783d"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Employee Details App Report</b></button></a>',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[8],
+					'homepageShowCount' => 1
+				],
+				'employees_designation_table' => [
+					'Caption' => 'Employees designation & Reporting - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[8],
+					'homepageShowCount' => 1
+				],
+				'employees_appraisal_table' => [
+					'Caption' => 'Employees Appraisal  - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[8],
+					'homepageShowCount' => 1
+				],
+				'employees_appraisal_feedback_table' => [
+					'Caption' => 'Employees appraisal feedback table',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[8],
+					'homepageShowCount' => 1
+				],
+				'beyond_workingHours_table' => [
+					'Caption' => 'Beyond Working Hours Approval - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[8],
+					'homepageShowCount' => 1
+				],
+				'attendence_details_table' => [
+					'Caption' => 'Attendence details - App',
+					'Description' => '<a href="https://lookerstudio.google.com/reporting/dd61ce5a-ccb5-4d55-b0a4-5233454f4b2c"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Attendence App View</b></button></a>',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[8],
+					'homepageShowCount' => 1
+				],
+				'leave_table' => [
+					'Caption' => 'Leave - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[8],
+					'homepageShowCount' => 1
+				],
+				'work_from_home_table' => [
+					'Caption' => 'Work from home - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[8],
+					'homepageShowCount' => 1
+				],
+				'navavishkar_stay_table' => [
+					'Caption' => 'Navavishkar Stay - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[8],
+					'homepageShowCount' => 1
+				],
+				'navavishkar_stay_payment_table' => [
+					'Caption' => 'Navavishkar Stay Payment - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[8],
+					'homepageShowCount' => 1
+				],
+				'email_id_allocation_table' => [
+					'Caption' => 'Email id allocation - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[8],
+					'homepageShowCount' => 1
+				],
+				'all_startup_data_table' => [
+					'Caption' => 'All Startups Data - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[7],
+					'homepageShowCount' => 1
+				],
+				'shortlisted_startups_for_fund_table' => [
+					'Caption' => 'Shortlisted startups for fund - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[7],
+					'homepageShowCount' => 1
+				],
+				'shortlisted_startups_dd_and_agreement_table' => [
+					'Caption' => 'Shortlisted startups DD and Agreement - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[7],
+					'homepageShowCount' => 1
+				],
+				'vikas_startup_applications_table' => [
+					'Caption' => 'Vikas startup applications - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[7],
+					'homepageShowCount' => 1
+				],
+				'programs_table' => [
+					'Caption' => 'Programs - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[5],
+					'homepageShowCount' => 1
+				],
+				'evaluation_table' => [
+					'Caption' => 'Evaluation table',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[5],
+					'homepageShowCount' => 1
+				],
+				'problem_statement_table' => [
+					'Caption' => 'Problem statement - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[5],
+					'homepageShowCount' => 1
+				],
+				'evaluators_table' => [
+					'Caption' => 'Evaluators table',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[5],
+					'homepageShowCount' => 1
+				],
+				'approval_billing_table' => [
+					'Caption' => 'Approval billing table',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[10],
+					'homepageShowCount' => 1
+				],
+				'honorarium_claim_table' => [
+					'Caption' => 'Honorarium - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[10],
+					'homepageShowCount' => 1
+				],
+				'all_bank_account_statement_table' => [
+					'Caption' => 'All bank account statement - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[10],
+					'homepageShowCount' => 1
+				],
+				'payment_track_details_table' => [
+					'Caption' => 'Payment track details - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[10],
+					'homepageShowCount' => 1
+				],
+				'travel_table' => [
+					'Caption' => 'Travel - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[11],
+					'homepageShowCount' => 1
+				],
+				'travel_stay_table' => [
+					'Caption' => 'Stay Details - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[11],
+					'homepageShowCount' => 1
+				],
+				'travel_local_commute_table' => [
+					'Caption' => 'Local Commute - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[11],
 					'homepageShowCount' => 1
 				],
 				'operation_dronagiri_data_submission_app' => [
 					'Caption' => 'Operation dronagiri data submission - App',
 					'Description' => '',
 					'tableIcon' => 'resources/table_icons/data_table.png',
-					'group' => $tg[10],
+					'group' => $tg[12],
 					'homepageShowCount' => 1
 				],
 				'file_table' => [
 					'Caption' => 'File table',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[10],
+					'group' => $tg[12],
 					'homepageShowCount' => 1
 				],
 				'panel_decision_table_tdp' => [
 					'Caption' => 'Panel Decision App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[4],
+					'group' => $tg[6],
 					'homepageShowCount' => 1
 				],
 				'selected_proposals_final_tdp' => [
 					'Caption' => 'Selected proposals final - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[4],
+					'group' => $tg[6],
 					'homepageShowCount' => 1
 				],
 				'stage_wise_budget_table_tdp' => [
 					'Caption' => 'Stage wise budget - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[4],
+					'group' => $tg[6],
 					'homepageShowCount' => 1
 				],
 				'first_level_shortlisted_proposals_tdp' => [
 					'Caption' => 'First level shortlisted proposals - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[4],
+					'group' => $tg[6],
 					'homepageShowCount' => 1
 				],
 				'budget_table_tdp' => [
 					'Caption' => 'Budget App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[4],
+					'group' => $tg[6],
 					'homepageShowCount' => 1
 				],
 				'panel_comments_tdp' => [
 					'Caption' => 'Panel comments - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[4],
+					'group' => $tg[6],
 					'homepageShowCount' => 1
 				],
 				'selected_tdp' => [
 					'Caption' => 'Selected (Draft) - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[4],
+					'group' => $tg[6],
 					'homepageShowCount' => 1
 				],
 				'address_tdp' => [
 					'Caption' => 'Address Details - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[4],
+					'group' => $tg[6],
 					'homepageShowCount' => 1
 				],
 				'summary_table_tdp' => [
 					'Caption' => 'Summary - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[4],
+					'group' => $tg[6],
 					'homepageShowCount' => 1
 				],
 				'project_details_tdp' => [
 					'Caption' => 'Project details - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[4],
+					'group' => $tg[6],
 					'homepageShowCount' => 1
 				],
 		];
@@ -672,6 +674,13 @@
 			/* 'table_name' => ['table caption', 'homepage description', 'icon', 'table group name'] */   
 			'user_table' => ['User Table', '', 'table.gif', 'Suggestions &amp; Other Apps'],
 			'suggestion' => ['Suggestions - App', '', 'table.gif', 'Suggestions &amp; Other Apps'],
+			'approval_table' => ['Approval - App', '', 'table.gif', 'Approval App'],
+			'car_table' => ['Car - App', '<a href="https://lookerstudio.google.com/reporting/58f87367-3f09-42c0-a288-cf75f313cbed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Car App Report</b></button></a>', 'table.gif', 'Facilities Apps'],
+			'car_usage_table' => ['Car usage table', '', 'table.gif', 'Facilities Apps'],
+			'cycle_table' => ['Cycle - App', '', 'table.gif', 'Facilities Apps'],
+			'cycle_usage_table' => ['Cycle usage table', '', 'table.gif', 'Facilities Apps'],
+			'gym_table' => ['Gym - App', '', 'table.gif', 'Facilities Apps'],
+			'coffee_table' => ['Coffee - App', '', 'table.gif', 'Facilities Apps'],
 			'event_table' => ['Event - App', '<a href="https://lookerstudio.google.com/reporting/7a6332d1-62b0-4602-baf9-7da8e4033e98"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Event App Report</b></button></a>', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'outcomes_expected_table' => ['Outcomes Expected Table', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'event_decision_table' => ['Decision - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
@@ -702,8 +711,6 @@
 			'it_inventory_allotment_table' => ['IT inventory allotment - App', '', 'table.gif', 'Asset Management Apps'],
 			'computer_details_table' => ['Computer lab PC list - App', '<a href="https://lookerstudio.google.com/reporting/3dc9dac5-3945-4853-91cc-12e26b865666"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Computer lab PC Report</b></button></a>', 'table.gif', 'Asset Management Apps'],
 			'computer_usage_table' => ['Computer usage table', '', 'table.gif', 'Asset Management Apps'],
-			'gym_table' => ['Gym - App', '', 'table.gif', 'Asset Management Apps'],
-			'coffee_table' => ['Coffee - App', '', 'table.gif', 'Asset Management Apps'],
 			'employees_personal_data_table' => ['Employee Personal Data - App', '<a href="https://lookerstudio.google.com/reporting/e46f3806-e78c-4f09-8417-049568d4783d"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Employee Details App Report</b></button></a>', 'table.gif', 'Employee Data Management Apps'],
 			'employees_designation_table' => ['Employees designation & Reporting - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'employees_appraisal_table' => ['Employees Appraisal  - App', '', 'table.gif', 'Employee Data Management Apps'],
@@ -723,7 +730,6 @@
 			'evaluation_table' => ['Evaluation table', '', 'table.gif', 'Program Apps'],
 			'problem_statement_table' => ['Problem statement - App', '', 'table.gif', 'Program Apps'],
 			'evaluators_table' => ['Evaluators table', '', 'table.gif', 'Program Apps'],
-			'approval_table' => ['Approval - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'approval_billing_table' => ['Approval billing table', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'honorarium_claim_table' => ['Honorarium - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'all_bank_account_statement_table' => ['All bank account statement - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
@@ -731,10 +737,6 @@
 			'travel_table' => ['Travel - App', '', 'table.gif', 'Transport Apps'],
 			'travel_stay_table' => ['Stay Details - App', '', 'table.gif', 'Transport Apps'],
 			'travel_local_commute_table' => ['Local Commute - App', '', 'table.gif', 'Transport Apps'],
-			'car_table' => ['Car - App', '<a href="https://lookerstudio.google.com/reporting/58f87367-3f09-42c0-a288-cf75f313cbed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Car App Report</b></button></a>', 'table.gif', 'Transport Apps'],
-			'car_usage_table' => ['Car usage table', '', 'table.gif', 'Transport Apps'],
-			'cycle_table' => ['Cycle - App', '', 'table.gif', 'Transport Apps'],
-			'cycle_usage_table' => ['Cycle usage table', '', 'table.gif', 'Transport Apps'],
 			'operation_dronagiri_data_submission_app' => ['Operation dronagiri data submission - App', '', 'resources/table_icons/data_table.png', 'Suggestions &amp; Other Apps'],
 			'file_table' => ['File table', '', 'table.gif', 'Suggestions &amp; Other Apps'],
 			'panel_decision_table_tdp' => ['Panel Decision App', '', 'table.gif', 'Technology Development Apps'],
@@ -783,7 +785,11 @@
 	}
 	########################################################################
 	function getThumbnailSpecs($tableName, $fieldName, $view) {
-		if($tableName=='visiting_card_table' && $fieldName=='front_img' && $view=='tv')
+		if($tableName=='approval_table' && $fieldName=='image' && $view=='tv')
+			return ['width'=>50, 'height'=>50, 'identifier'=>'_tv'];
+		elseif($tableName=='approval_table' && $fieldName=='image' && $view=='dv')
+			return ['width'=>250, 'height'=>250, 'identifier'=>'_dv'];
+		elseif($tableName=='visiting_card_table' && $fieldName=='front_img' && $view=='tv')
 			return ['width'=>50, 'height'=>50, 'identifier'=>'_tv'];
 		elseif($tableName=='visiting_card_table' && $fieldName=='front_img' && $view=='dv')
 			return ['width'=>250, 'height'=>250, 'identifier'=>'_dv'];
@@ -806,10 +812,6 @@
 		elseif($tableName=='employees_personal_data_table' && $fieldName=='signature' && $view=='tv')
 			return ['width'=>50, 'height'=>50, 'identifier'=>'_tv'];
 		elseif($tableName=='employees_personal_data_table' && $fieldName=='signature' && $view=='dv')
-			return ['width'=>250, 'height'=>250, 'identifier'=>'_dv'];
-		elseif($tableName=='approval_table' && $fieldName=='image' && $view=='tv')
-			return ['width'=>50, 'height'=>50, 'identifier'=>'_tv'];
-		elseif($tableName=='approval_table' && $fieldName=='image' && $view=='dv')
 			return ['width'=>250, 'height'=>250, 'identifier'=>'_dv'];
 		elseif($tableName=='payment_track_details_table' && $fieldName=='upload_scanned_file_1' && $view=='tv')
 			return ['width'=>50, 'height'=>50, 'identifier'=>'_tv'];
@@ -1607,6 +1609,636 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+				],
+				'approval_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'type' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Approval Type',
+							'description' => '',
+						],
+					],
+					'description' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Description',
+							'description' => '',
+						],
+					],
+					'quantity' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Quantity',
+							'description' => '',
+						],
+					],
+					'full_est_value' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Full Estimated Value',
+							'description' => '',
+						],
+					],
+					'name_of_vendor' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Name of Vendor',
+							'description' => '',
+						],
+					],
+					'purpose' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Purpose',
+							'description' => '',
+						],
+					],
+					'requested_department' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Requested Department/Appointment',
+							'description' => '',
+						],
+					],
+					'person_responsbility' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Person Responsbility',
+							'description' => '',
+						],
+					],
+					'mode_of_purchase' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Mode of Purchase',
+							'description' => '',
+						],
+					],
+					'others_if_any' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Others if Any',
+							'description' => '',
+						],
+					],
+					'approval_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Under Consideration'",
+						'info' => [
+							'caption' => 'Approval Status',
+							'description' => '',
+						],
+					],
+					'remarks_for_approval' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Remarks for Approval',
+							'description' => '',
+						],
+					],
+					'image' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Upload Image if Any (Optional)',
+							'description' => 'Maximum file size allowed: 1000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
+						],
+					],
+					'other_file' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Upload Other File if Any (Optional)',
+							'description' => 'Maximum file size allowed: 1000 KB.<br>Allowed file types: txt, doc, docx, docm, odt, pdf, rtf',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created At',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Approved At',
+							'description' => '',
+						],
+					],
+				],
+				'car_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'car_number' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Car number',
+							'description' => '',
+						],
+					],
+					'registration_number' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Registration number',
+							'description' => '',
+						],
+					],
+					'car_model' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Car model',
+							'description' => '',
+						],
+					],
+					'car_vin' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Car Vehicle Identification Number',
+							'description' => '',
+						],
+					],
+					'fuel_type' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Fuel type',
+							'description' => '',
+						],
+					],
+					'seating_capacity' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Seating capacity',
+							'description' => '',
+						],
+					],
+					'car_color' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Car color',
+							'description' => '',
+						],
+					],
+					'rental_company_name' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Rental company name',
+							'description' => '',
+						],
+					],
+					'contact_person' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Contact person',
+							'description' => '',
+						],
+					],
+					'contact_number_of_person' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Contact number of person',
+							'description' => '',
+						],
+					],
+					'rental_rate' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Rental rate (In INR)',
+							'description' => '',
+						],
+					],
+					'rental_start_date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Rental start date',
+							'description' => '',
+						],
+					],
+					'rental_end_date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Rental end date',
+							'description' => '',
+						],
+					],
+					'purpose' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Purpose',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
+				'car_usage_table' => [
+					'car_usage_id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'car_lookup' => [
+						'appgini' => "INT(10) UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Select Car',
+							'description' => '',
+						],
+					],
+					'used_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Used by',
+							'description' => '',
+						],
+					],
+					'datetime_from' => [
+						'appgini' => "DATETIME NULL",
+						'info' => [
+							'caption' => 'Date and time from',
+							'description' => '',
+						],
+					],
+					'datetime_to' => [
+						'appgini' => "DATETIME NULL",
+						'info' => [
+							'caption' => 'Date and time to',
+							'description' => '',
+						],
+					],
+					'total_distance_run' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Total distance run (In KM)',
+							'description' => '',
+						],
+					],
+					'purpose' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Purpose',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
+				'cycle_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'registration_number' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Registration number',
+							'description' => '',
+						],
+					],
+					'cycle_model' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Cycle model',
+							'description' => '',
+						],
+					],
+					'cycle_color' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Cycle color',
+							'description' => '',
+						],
+					],
+					'responsible_contact_person' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Responsible Contact Person',
+							'description' => '',
+						],
+					],
+					'contact_number_of_person' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Contact number of person',
+							'description' => '',
+						],
+					],
+					'purpose' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Purpose',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
+				'cycle_usage_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'cycle_lookup' => [
+						'appgini' => "INT(10) UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Cycle Details',
+							'description' => '',
+						],
+					],
+					'used_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Used by',
+							'description' => '',
+						],
+					],
+					'datetime_from' => [
+						'appgini' => "DATETIME NULL",
+						'info' => [
+							'caption' => 'Date and time from',
+							'description' => '',
+						],
+					],
+					'datetime_to' => [
+						'appgini' => "DATETIME NULL",
+						'info' => [
+							'caption' => 'Date and time to',
+							'description' => '',
+						],
+					],
+					'total_distance_run' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Total distance run (In KM)',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
+				'gym_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'employee_lookup' => [
+						'appgini' => "INT(10) UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Employee Details',
+							'description' => '',
+						],
+					],
+					'in' => [
+						'appgini' => "TIME NULL",
+						'info' => [
+							'caption' => 'In Time',
+							'description' => '',
+						],
+					],
+					'out' => [
+						'appgini' => "TIME NULL",
+						'info' => [
+							'caption' => 'Out Time',
+							'description' => '',
+						],
+					],
+					'date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Date',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
+				'coffee_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'employee_lookup' => [
+						'appgini' => "INT(10) UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Employee Details',
+							'description' => '',
+						],
+					],
+					'cup_type' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Cup'",
+						'info' => [
+							'caption' => 'Cup Type',
+							'description' => '',
+						],
+					],
+					'time' => [
+						'appgini' => "TIME NULL",
+						'info' => [
+							'caption' => 'Time',
+							'description' => '',
+						],
+					],
+					'date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Date',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
 							'description' => '',
 						],
 					],
@@ -4618,136 +5250,6 @@
 						],
 					],
 				],
-				'gym_table' => [
-					'id' => [
-						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
-						'info' => [
-							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'employee_lookup' => [
-						'appgini' => "INT(10) UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Employee Details',
-							'description' => '',
-						],
-					],
-					'in' => [
-						'appgini' => "TIME NULL",
-						'info' => [
-							'caption' => 'In Time',
-							'description' => '',
-						],
-					],
-					'out' => [
-						'appgini' => "TIME NULL",
-						'info' => [
-							'caption' => 'Out Time',
-							'description' => '',
-						],
-					],
-					'date' => [
-						'appgini' => "DATE NULL",
-						'info' => [
-							'caption' => 'Date',
-							'description' => '',
-						],
-					],
-					'created_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created by',
-							'description' => '',
-						],
-					],
-					'created_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created at',
-							'description' => '',
-						],
-					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated by',
-							'description' => '',
-						],
-					],
-					'last_updated_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated at',
-							'description' => '',
-						],
-					],
-				],
-				'coffee_table' => [
-					'id' => [
-						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
-						'info' => [
-							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'employee_lookup' => [
-						'appgini' => "INT(10) UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Employee Details',
-							'description' => '',
-						],
-					],
-					'cup_type' => [
-						'appgini' => "VARCHAR(255) NULL DEFAULT 'Cup'",
-						'info' => [
-							'caption' => 'Cup Type',
-							'description' => '',
-						],
-					],
-					'time' => [
-						'appgini' => "TIME NULL",
-						'info' => [
-							'caption' => 'Time',
-							'description' => '',
-						],
-					],
-					'date' => [
-						'appgini' => "DATE NULL",
-						'info' => [
-							'caption' => 'Date',
-							'description' => '',
-						],
-					],
-					'created_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created by',
-							'description' => '',
-						],
-					],
-					'created_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created at',
-							'description' => '',
-						],
-					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated by',
-							'description' => '',
-						],
-					],
-					'last_updated_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated at',
-							'description' => '',
-						],
-					],
-				],
 				'employees_personal_data_table' => [
 					'id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
@@ -6564,141 +7066,6 @@
 						],
 					],
 				],
-				'approval_table' => [
-					'id' => [
-						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
-						'info' => [
-							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'type' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Approval Type',
-							'description' => '',
-						],
-					],
-					'description' => [
-						'appgini' => "TEXT NULL",
-						'info' => [
-							'caption' => 'Description',
-							'description' => '',
-						],
-					],
-					'quantity' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Quantity',
-							'description' => '',
-						],
-					],
-					'full_est_value' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Full Estimated Value',
-							'description' => '',
-						],
-					],
-					'name_of_vendor' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Name of Vendor',
-							'description' => '',
-						],
-					],
-					'purpose' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Purpose',
-							'description' => '',
-						],
-					],
-					'requested_department' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Requested Department/Appointment',
-							'description' => '',
-						],
-					],
-					'person_responsbility' => [
-						'appgini' => "INT UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Person Responsbility',
-							'description' => '',
-						],
-					],
-					'mode_of_purchase' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Mode of Purchase',
-							'description' => '',
-						],
-					],
-					'others_if_any' => [
-						'appgini' => "TEXT NULL",
-						'info' => [
-							'caption' => 'Others if Any',
-							'description' => '',
-						],
-					],
-					'approval_status' => [
-						'appgini' => "VARCHAR(255) NULL DEFAULT 'Under Consideration'",
-						'info' => [
-							'caption' => 'Approval Status',
-							'description' => '',
-						],
-					],
-					'remarks_for_approval' => [
-						'appgini' => "TEXT NULL",
-						'info' => [
-							'caption' => 'Remarks for Approval',
-							'description' => '',
-						],
-					],
-					'image' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Upload Image if Any (Optional)',
-							'description' => 'Maximum file size allowed: 1000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
-						],
-					],
-					'other_file' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Upload Other File if Any (Optional)',
-							'description' => 'Maximum file size allowed: 1000 KB.<br>Allowed file types: txt, doc, docx, docm, odt, pdf, rtf',
-						],
-					],
-					'created_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created By',
-							'description' => '',
-						],
-					],
-					'created_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created At',
-							'description' => '',
-						],
-					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last Updated By',
-							'description' => '',
-						],
-					],
-					'last_updated_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Approved At',
-							'description' => '',
-						],
-					],
-				],
 				'approval_billing_table' => [
 					'id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
@@ -7633,371 +8000,6 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Approved at',
-							'description' => '',
-						],
-					],
-				],
-				'car_table' => [
-					'id' => [
-						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
-						'info' => [
-							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'car_number' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Car number',
-							'description' => '',
-						],
-					],
-					'registration_number' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Registration number',
-							'description' => '',
-						],
-					],
-					'car_model' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Car model',
-							'description' => '',
-						],
-					],
-					'car_vin' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Car Vehicle Identification Number',
-							'description' => '',
-						],
-					],
-					'fuel_type' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Fuel type',
-							'description' => '',
-						],
-					],
-					'seating_capacity' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Seating capacity',
-							'description' => '',
-						],
-					],
-					'car_color' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Car color',
-							'description' => '',
-						],
-					],
-					'rental_company_name' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Rental company name',
-							'description' => '',
-						],
-					],
-					'contact_person' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Contact person',
-							'description' => '',
-						],
-					],
-					'contact_number_of_person' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Contact number of person',
-							'description' => '',
-						],
-					],
-					'rental_rate' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Rental rate (In INR)',
-							'description' => '',
-						],
-					],
-					'rental_start_date' => [
-						'appgini' => "DATE NULL",
-						'info' => [
-							'caption' => 'Rental start date',
-							'description' => '',
-						],
-					],
-					'rental_end_date' => [
-						'appgini' => "DATE NULL",
-						'info' => [
-							'caption' => 'Rental end date',
-							'description' => '',
-						],
-					],
-					'purpose' => [
-						'appgini' => "TEXT NULL",
-						'info' => [
-							'caption' => 'Purpose',
-							'description' => '',
-						],
-					],
-					'created_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created by',
-							'description' => '',
-						],
-					],
-					'created_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created at',
-							'description' => '',
-						],
-					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated by',
-							'description' => '',
-						],
-					],
-					'last_updated_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated at',
-							'description' => '',
-						],
-					],
-				],
-				'car_usage_table' => [
-					'car_usage_id' => [
-						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
-						'info' => [
-							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'car_lookup' => [
-						'appgini' => "INT(10) UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Select Car',
-							'description' => '',
-						],
-					],
-					'used_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Used by',
-							'description' => '',
-						],
-					],
-					'datetime_from' => [
-						'appgini' => "DATETIME NULL",
-						'info' => [
-							'caption' => 'Date and time from',
-							'description' => '',
-						],
-					],
-					'datetime_to' => [
-						'appgini' => "DATETIME NULL",
-						'info' => [
-							'caption' => 'Date and time to',
-							'description' => '',
-						],
-					],
-					'total_distance_run' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Total distance run (In KM)',
-							'description' => '',
-						],
-					],
-					'purpose' => [
-						'appgini' => "TEXT NULL",
-						'info' => [
-							'caption' => 'Purpose',
-							'description' => '',
-						],
-					],
-					'created_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created by',
-							'description' => '',
-						],
-					],
-					'created_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created at',
-							'description' => '',
-						],
-					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated by',
-							'description' => '',
-						],
-					],
-					'last_updated_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated at',
-							'description' => '',
-						],
-					],
-				],
-				'cycle_table' => [
-					'id' => [
-						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
-						'info' => [
-							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'registration_number' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Registration number',
-							'description' => '',
-						],
-					],
-					'cycle_model' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Cycle model',
-							'description' => '',
-						],
-					],
-					'cycle_color' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Cycle color',
-							'description' => '',
-						],
-					],
-					'responsible_contact_person' => [
-						'appgini' => "INT UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Responsible Contact Person',
-							'description' => '',
-						],
-					],
-					'contact_number_of_person' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Contact number of person',
-							'description' => '',
-						],
-					],
-					'purpose' => [
-						'appgini' => "TEXT NULL",
-						'info' => [
-							'caption' => 'Purpose',
-							'description' => '',
-						],
-					],
-					'created_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created by',
-							'description' => '',
-						],
-					],
-					'created_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created at',
-							'description' => '',
-						],
-					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated by',
-							'description' => '',
-						],
-					],
-					'last_updated_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated at',
-							'description' => '',
-						],
-					],
-				],
-				'cycle_usage_table' => [
-					'id' => [
-						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
-						'info' => [
-							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'cycle_lookup' => [
-						'appgini' => "INT(10) UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Cycle Details',
-							'description' => '',
-						],
-					],
-					'used_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Used by',
-							'description' => '',
-						],
-					],
-					'datetime_from' => [
-						'appgini' => "DATETIME NULL",
-						'info' => [
-							'caption' => 'Date and time from',
-							'description' => '',
-						],
-					],
-					'datetime_to' => [
-						'appgini' => "DATETIME NULL",
-						'info' => [
-							'caption' => 'Date and time to',
-							'description' => '',
-						],
-					],
-					'total_distance_run' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Total distance run (In KM)',
-							'description' => '',
-						],
-					],
-					'created_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created by',
-							'description' => '',
-						],
-					],
-					'created_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created at',
-							'description' => '',
-						],
-					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated by',
-							'description' => '',
-						],
-					],
-					'last_updated_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated at',
 							'description' => '',
 						],
 					],
@@ -10552,6 +10554,24 @@
 		 *             'parent table' => [main lookup fields in child]
 		 */
 		$parents = [
+			'approval_table' => [
+				'user_table' => ['person_responsbility'],
+			],
+			'car_usage_table' => [
+				'car_table' => ['car_lookup'],
+			],
+			'cycle_table' => [
+				'user_table' => ['responsible_contact_person'],
+			],
+			'cycle_usage_table' => [
+				'cycle_table' => ['cycle_lookup'],
+			],
+			'gym_table' => [
+				'employees_personal_data_table' => ['employee_lookup'],
+			],
+			'coffee_table' => [
+				'employees_personal_data_table' => ['employee_lookup'],
+			],
 			'outcomes_expected_table' => [
 				'event_table' => ['event_lookup'],
 			],
@@ -10621,12 +10641,6 @@
 			'computer_usage_table' => [
 				'computer_details_table' => ['pc_id'],
 			],
-			'gym_table' => [
-				'employees_personal_data_table' => ['employee_lookup'],
-			],
-			'coffee_table' => [
-				'employees_personal_data_table' => ['employee_lookup'],
-			],
 			'employees_designation_table' => [
 				'employees_personal_data_table' => ['employee_details'],
 				'user_table' => ['reviewing_officer', 'reporting_officer'],
@@ -10669,24 +10683,12 @@
 			'evaluators_table' => [
 				'evaluation_table' => ['evaluation_lookup'],
 			],
-			'approval_table' => [
-				'user_table' => ['person_responsbility'],
-			],
 			'approval_billing_table' => [
 				'approval_table' => ['approval_lookup'],
 				'user_table' => ['paid_by'],
 			],
 			'honorarium_claim_table' => [
 				'user_table' => ['coordinated_by_tih_user'],
-			],
-			'car_usage_table' => [
-				'car_table' => ['car_lookup'],
-			],
-			'cycle_table' => [
-				'user_table' => ['responsible_contact_person'],
-			],
-			'cycle_usage_table' => [
-				'cycle_table' => ['cycle_lookup'],
 			],
 			'file_table' => [
 				'operation_dronagiri_data_submission_app' => ['data_str_key'],
@@ -10742,6 +10744,13 @@
 		return [
 			'user_table' => [],
 			'suggestion' => [],
+			'approval_table' => [],
+			'car_table' => [],
+			'car_usage_table' => [],
+			'cycle_table' => [],
+			'cycle_usage_table' => [],
+			'gym_table' => [],
+			'coffee_table' => [],
 			'event_table' => [],
 			'outcomes_expected_table' => [],
 			'event_decision_table' => [],
@@ -10772,8 +10781,6 @@
 			'it_inventory_allotment_table' => [],
 			'computer_details_table' => [],
 			'computer_usage_table' => [],
-			'gym_table' => [],
-			'coffee_table' => [],
 			'employees_personal_data_table' => [],
 			'employees_designation_table' => [],
 			'employees_appraisal_table' => [],
@@ -10798,7 +10805,6 @@
 			'evaluation_table' => [],
 			'problem_statement_table' => [],
 			'evaluators_table' => [],
-			'approval_table' => [],
 			'approval_billing_table' => [],
 			'honorarium_claim_table' => [],
 			'all_bank_account_statement_table' => [],
@@ -10806,10 +10812,6 @@
 			'travel_table' => [],
 			'travel_stay_table' => [],
 			'travel_local_commute_table' => [],
-			'car_table' => [],
-			'car_usage_table' => [],
-			'cycle_table' => [],
-			'cycle_usage_table' => [],
 			'operation_dronagiri_data_submission_app' => [],
 			'file_table' => [],
 			'panel_decision_table_tdp' => [],
@@ -10949,6 +10951,26 @@
 			],
 			'suggestion' => [
 			],
+			'approval_table' => [
+				'person_responsbility' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+			],
+			'car_table' => [
+			],
+			'car_usage_table' => [
+				'car_lookup' => 'SELECT `car_table`.`id`, IF(CHAR_LENGTH(`car_table`.`car_number`) || CHAR_LENGTH(`car_table`.`car_model`), CONCAT_WS(\'\', `car_table`.`car_number`, \'::\', `car_table`.`car_model`), \'\') FROM `car_table` ORDER BY 2',
+			],
+			'cycle_table' => [
+				'responsible_contact_person' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+			],
+			'cycle_usage_table' => [
+				'cycle_lookup' => 'SELECT `cycle_table`.`id`, IF(CHAR_LENGTH(`cycle_table`.`registration_number`) || CHAR_LENGTH(`cycle_table`.`cycle_model`), CONCAT_WS(\'\', `cycle_table`.`registration_number`, \'::\', `cycle_table`.`cycle_model`), \'\') FROM `cycle_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`cycle_table`.`responsible_contact_person` ORDER BY 2',
+			],
+			'gym_table' => [
+				'employee_lookup' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \'::\', `employees_personal_data_table`.`name`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
+			],
+			'coffee_table' => [
+				'employee_lookup' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \'::\', `employees_personal_data_table`.`name`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
+			],
 			'event_table' => [
 			],
 			'outcomes_expected_table' => [
@@ -11043,12 +11065,6 @@
 			'computer_usage_table' => [
 				'pc_id' => 'SELECT `computer_details_table`.`id`, IF(CHAR_LENGTH(`computer_details_table`.`pc_number`) || CHAR_LENGTH(`computer_details_table`.`pc_hostname`), CONCAT_WS(\'\', `computer_details_table`.`pc_number`, \'::\', `computer_details_table`.`pc_hostname`), \'\') FROM `computer_details_table` ORDER BY 2',
 			],
-			'gym_table' => [
-				'employee_lookup' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \'::\', `employees_personal_data_table`.`name`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
-			],
-			'coffee_table' => [
-				'employee_lookup' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \'::\', `employees_personal_data_table`.`name`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
-			],
 			'employees_personal_data_table' => [
 			],
 			'employees_designation_table' => [
@@ -11104,9 +11120,6 @@
 			'evaluators_table' => [
 				'evaluation_lookup' => 'SELECT `evaluation_table`.`evaluation_id`, `evaluation_table`.`evaluation_id` FROM `evaluation_table` LEFT JOIN `all_startup_data_table` as all_startup_data_table1 ON `all_startup_data_table1`.`id`=`evaluation_table`.`select_startup` ORDER BY 2',
 			],
-			'approval_table' => [
-				'person_responsbility' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
-			],
 			'approval_billing_table' => [
 				'approval_lookup' => 'SELECT `approval_table`.`id`, IF(CHAR_LENGTH(`approval_table`.`type`) || CHAR_LENGTH(`approval_table`.`description`), CONCAT_WS(\'\', `approval_table`.`type`, \'::\', `approval_table`.`description`), \'\') FROM `approval_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`approval_table`.`person_responsbility` ORDER BY 2',
 				'paid_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
@@ -11123,17 +11136,6 @@
 			'travel_stay_table' => [
 			],
 			'travel_local_commute_table' => [
-			],
-			'car_table' => [
-			],
-			'car_usage_table' => [
-				'car_lookup' => 'SELECT `car_table`.`id`, IF(CHAR_LENGTH(`car_table`.`car_number`) || CHAR_LENGTH(`car_table`.`car_model`), CONCAT_WS(\'\', `car_table`.`car_number`, \'::\', `car_table`.`car_model`), \'\') FROM `car_table` ORDER BY 2',
-			],
-			'cycle_table' => [
-				'responsible_contact_person' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
-			],
-			'cycle_usage_table' => [
-				'cycle_lookup' => 'SELECT `cycle_table`.`id`, IF(CHAR_LENGTH(`cycle_table`.`registration_number`) || CHAR_LENGTH(`cycle_table`.`cycle_model`), CONCAT_WS(\'\', `cycle_table`.`registration_number`, \'::\', `cycle_table`.`cycle_model`), \'\') FROM `cycle_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`cycle_table`.`responsible_contact_person` ORDER BY 2',
 			],
 			'operation_dronagiri_data_submission_app' => [
 			],

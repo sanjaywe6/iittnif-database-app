@@ -13,6 +13,26 @@
 
 		setupTable('suggestion', []);
 
+		setupTable('approval_table', []);
+		setupIndexes('approval_table', ['person_responsbility',]);
+
+		setupTable('car_table', []);
+
+		setupTable('car_usage_table', []);
+		setupIndexes('car_usage_table', ['car_lookup',]);
+
+		setupTable('cycle_table', []);
+		setupIndexes('cycle_table', ['responsible_contact_person',]);
+
+		setupTable('cycle_usage_table', []);
+		setupIndexes('cycle_usage_table', ['cycle_lookup',]);
+
+		setupTable('gym_table', []);
+		setupIndexes('gym_table', ['employee_lookup',]);
+
+		setupTable('coffee_table', []);
+		setupIndexes('coffee_table', ['employee_lookup',]);
+
 		setupTable('event_table', []);
 
 		setupTable('outcomes_expected_table', []);
@@ -93,12 +113,6 @@
 		setupTable('computer_usage_table', []);
 		setupIndexes('computer_usage_table', ['pc_id',]);
 
-		setupTable('gym_table', []);
-		setupIndexes('gym_table', ['employee_lookup',]);
-
-		setupTable('coffee_table', []);
-		setupIndexes('coffee_table', ['employee_lookup',]);
-
 		setupTable('employees_personal_data_table', []);
 
 		setupTable('employees_designation_table', []);
@@ -150,9 +164,6 @@
 		setupTable('evaluators_table', []);
 		setupIndexes('evaluators_table', ['evaluation_lookup',]);
 
-		setupTable('approval_table', []);
-		setupIndexes('approval_table', ['person_responsbility',]);
-
 		setupTable('approval_billing_table', []);
 		setupIndexes('approval_billing_table', ['approval_lookup','paid_by',]);
 
@@ -168,19 +179,6 @@
 		setupTable('travel_stay_table', []);
 
 		setupTable('travel_local_commute_table', []);
-
-		setupTable('car_table', []);
-
-		setupTable('car_usage_table', [
-				"ALTER TABLE `car_usage_table` ADD `purpose` TEXT NULL ",
-			]);
-		setupIndexes('car_usage_table', ['car_lookup',]);
-
-		setupTable('cycle_table', []);
-		setupIndexes('cycle_table', ['responsible_contact_person',]);
-
-		setupTable('cycle_usage_table', []);
-		setupIndexes('cycle_usage_table', ['cycle_lookup',]);
 
 		setupTable('operation_dronagiri_data_submission_app', []);
 

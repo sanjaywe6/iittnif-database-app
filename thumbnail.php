@@ -5,6 +5,9 @@
 
 	// image paths
 	$p = [
+		'approval_table' => [
+			'image' => getUploadDir(''),
+		],
 		'visiting_card_table' => [
 			'front_img' => getUploadDir(''),
 			'back_img' => getUploadDir(''),
@@ -18,9 +21,6 @@
 		'employees_personal_data_table' => [
 			'profile_photo' => getUploadDir(''),
 			'signature' => getUploadDir(''),
-		],
-		'approval_table' => [
-			'image' => getUploadDir(''),
 		],
 		'payment_track_details_table' => [
 			'upload_scanned_file_1' => getUploadDir(''),

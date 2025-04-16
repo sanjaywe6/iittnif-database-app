@@ -470,6 +470,58 @@ function suggestion_validateData(insertMode) {
 
 	return !errors;
 }
+function approval_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	// check file uploads (file type and size)
+	if($j('#image').val() && !AppGini.checkFileUpload('image', 'jpg|jpeg|gif|png|webp', 1024000)) {
+		AppGini.scrollTo('image');
+		return false;
+	}
+	if($j('#other_file').val() && !AppGini.checkFileUpload('other_file', 'txt|doc|docx|docm|odt|pdf|rtf', 1024000)) {
+		AppGini.scrollTo('other_file');
+		return false;
+	}
+
+	return !errors;
+}
+function car_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
+function car_usage_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
+function cycle_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
+function cycle_usage_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
+function gym_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
+function coffee_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
 function event_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
@@ -699,18 +751,6 @@ function computer_usage_table_validateData(insertMode) {
 
 	return !errors;
 }
-function gym_table_validateData(insertMode) {
-	$j('.has-error').removeClass('has-error');
-	var errors = false;
-
-	return !errors;
-}
-function coffee_table_validateData(insertMode) {
-	$j('.has-error').removeClass('has-error');
-	var errors = false;
-
-	return !errors;
-}
 function employees_personal_data_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
@@ -895,22 +935,6 @@ function evaluators_table_validateData(insertMode) {
 
 	return !errors;
 }
-function approval_table_validateData(insertMode) {
-	$j('.has-error').removeClass('has-error');
-	var errors = false;
-
-	// check file uploads (file type and size)
-	if($j('#image').val() && !AppGini.checkFileUpload('image', 'jpg|jpeg|gif|png|webp', 1024000)) {
-		AppGini.scrollTo('image');
-		return false;
-	}
-	if($j('#other_file').val() && !AppGini.checkFileUpload('other_file', 'txt|doc|docx|docm|odt|pdf|rtf', 1024000)) {
-		AppGini.scrollTo('other_file');
-		return false;
-	}
-
-	return !errors;
-}
 function approval_billing_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
@@ -972,30 +996,6 @@ function travel_stay_table_validateData(insertMode) {
 	return !errors;
 }
 function travel_local_commute_table_validateData(insertMode) {
-	$j('.has-error').removeClass('has-error');
-	var errors = false;
-
-	return !errors;
-}
-function car_table_validateData(insertMode) {
-	$j('.has-error').removeClass('has-error');
-	var errors = false;
-
-	return !errors;
-}
-function car_usage_table_validateData(insertMode) {
-	$j('.has-error').removeClass('has-error');
-	var errors = false;
-
-	return !errors;
-}
-function cycle_table_validateData(insertMode) {
-	$j('.has-error').removeClass('has-error');
-	var errors = false;
-
-	return !errors;
-}
-function cycle_usage_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
 

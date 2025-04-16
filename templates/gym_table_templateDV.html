@@ -19,12 +19,12 @@
 		<div class="col-md-8 col-lg-10" id="gym_table_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: Employee Details -->
-				<div class="form-group gym_table-employee_lookup">
+				<!-- Field: Username -->
+				<div class="form-group gym_table-username">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="employee_lookup" data-parent_link="view_parent_modal">Employee Details</label>
+					<label class="control-label col-lg-3">Username</label>
 					<div class="col-lg-9">
-						<div class="lookup-flex"><%%COMBO(employee_lookup)%%><%%PLINK(employee_lookup)%%><%%ADDNEW(employees_personal_data_table)%%></div>
+						<div class="form-control-static" id="username"><%%VALUE(username)%%></div>
 					</div>
 				</div>
 
@@ -96,27 +96,9 @@
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
-				AppGini.once({
-					condition: function() {
-						return $j('.form-group.gym_table-employee_lookup')
-									.find('.nicEdit-main, .select2-container, input[type=radio]')
-									.length > 0
-								// or read-only DV
-								|| (!$j('#update').length && !$j('#insert').length);
-					},
-					action: function() {
-						$j('#gym_table_dv_container-loading').addClass('hidden');
-						$j('#gym_table_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('gym_table', 'employee_lookup');
-					},
-					timeout:  5000,
-					doActionOnTimeout:  true
-				});
-			} else {
-				$j('#gym_table_dv_container-loading').addClass('hidden');
-				$j('#gym_table_dv_container').removeClass('hidden');
-			}
+			$j('#gym_table_dv_container-loading').addClass('hidden');
+			$j('#gym_table_dv_container').removeClass('hidden');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('gym_table', 'in');
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 

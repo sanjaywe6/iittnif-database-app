@@ -27,11 +27,16 @@
 		setupTable('cycle_usage_table', []);
 		setupIndexes('cycle_usage_table', ['cycle_lookup',]);
 
-		setupTable('gym_table', []);
-		setupIndexes('gym_table', ['employee_lookup',]);
+		setupTable('gym_table', [
+				" ALTER TABLE `gym_table` CHANGE `username` `username` VARCHAR(255) NULL ",
+				"ALTER TABLE `gym_table` ADD `created_by` VARCHAR(255) NULL ",
+				"ALTER TABLE `gym_table` ADD `created_at` VARCHAR(255) NULL ",
+			]);
 
-		setupTable('coffee_table', []);
-		setupIndexes('coffee_table', ['employee_lookup',]);
+		setupTable('coffee_table', [
+				" ALTER TABLE `coffee_table` CHANGE `username` `username` VARCHAR(40) NULL ",
+				" ALTER TABLE `coffee_table` CHANGE `username` `username` VARCHAR(255) NULL ",
+			]);
 
 		setupTable('event_table', []);
 

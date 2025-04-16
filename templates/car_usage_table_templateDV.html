@@ -22,9 +22,12 @@
 				<!-- Field: Select Car -->
 				<div class="form-group car_usage_table-car_lookup">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="car_lookup" data-parent_link="view_parent_modal">Select Car</label>
+					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Select Car</label>
 					<div class="col-lg-9">
-						<div class="lookup-flex"><%%COMBO(car_lookup)%%><%%PLINK(car_lookup)%%><%%ADDNEW(car_table)%%></div>
+						<div class="form-control-static">
+							<span id="car_lookup-readonly"><%%COMBOTEXT(car_lookup)%%></span>
+							<%%PLINK(car_lookup)%%>
+						</div>
 					</div>
 				</div>
 
@@ -114,27 +117,9 @@
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
-				AppGini.once({
-					condition: function() {
-						return $j('.form-group.car_usage_table-car_lookup')
-									.find('.nicEdit-main, .select2-container, input[type=radio]')
-									.length > 0
-								// or read-only DV
-								|| (!$j('#update').length && !$j('#insert').length);
-					},
-					action: function() {
-						$j('#car_usage_table_dv_container-loading').addClass('hidden');
-						$j('#car_usage_table_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('car_usage_table', 'car_lookup');
-					},
-					timeout:  5000,
-					doActionOnTimeout:  true
-				});
-			} else {
-				$j('#car_usage_table_dv_container-loading').addClass('hidden');
-				$j('#car_usage_table_dv_container').removeClass('hidden');
-			}
+			$j('#car_usage_table_dv_container-loading').addClass('hidden');
+			$j('#car_usage_table_dv_container').removeClass('hidden');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('car_usage_table', 'used_by');
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 

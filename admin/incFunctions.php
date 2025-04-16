@@ -2121,10 +2121,10 @@
 							'description' => '',
 						],
 					],
-					'employee_lookup' => [
-						'appgini' => "INT(10) UNSIGNED NULL",
+					'username' => [
+						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Employee Details',
+							'caption' => 'Username',
 							'description' => '',
 						],
 					],
@@ -2186,10 +2186,10 @@
 							'description' => '',
 						],
 					],
-					'employee_lookup' => [
-						'appgini' => "INT(10) UNSIGNED NULL",
+					'username' => [
+						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Employee Details',
+							'caption' => 'Username',
 							'description' => '',
 						],
 					],
@@ -10566,12 +10566,6 @@
 			'cycle_usage_table' => [
 				'cycle_table' => ['cycle_lookup'],
 			],
-			'gym_table' => [
-				'employees_personal_data_table' => ['employee_lookup'],
-			],
-			'coffee_table' => [
-				'employees_personal_data_table' => ['employee_lookup'],
-			],
 			'outcomes_expected_table' => [
 				'event_table' => ['event_lookup'],
 			],
@@ -10966,10 +10960,8 @@
 				'cycle_lookup' => 'SELECT `cycle_table`.`id`, IF(CHAR_LENGTH(`cycle_table`.`registration_number`) || CHAR_LENGTH(`cycle_table`.`cycle_model`), CONCAT_WS(\'\', `cycle_table`.`registration_number`, \'::\', `cycle_table`.`cycle_model`), \'\') FROM `cycle_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`cycle_table`.`responsible_contact_person` ORDER BY 2',
 			],
 			'gym_table' => [
-				'employee_lookup' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \'::\', `employees_personal_data_table`.`name`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
 			],
 			'coffee_table' => [
-				'employee_lookup' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \'::\', `employees_personal_data_table`.`name`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
 			],
 			'event_table' => [
 			],

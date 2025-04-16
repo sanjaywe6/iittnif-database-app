@@ -43,13 +43,11 @@
 			return $data;
 		},
 		'gym_table' => function($data, $options = []) {
-			if(isset($data['employee_lookup'])) $data['employee_lookup'] = pkGivenLookupText($data['employee_lookup'], 'gym_table', 'employee_lookup');
 			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
 
 			return $data;
 		},
 		'coffee_table' => function($data, $options = []) {
-			if(isset($data['employee_lookup'])) $data['employee_lookup'] = pkGivenLookupText($data['employee_lookup'], 'coffee_table', 'employee_lookup');
 			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
 
 			return $data;

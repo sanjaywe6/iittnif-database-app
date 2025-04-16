@@ -19,7 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`coffee_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, '::', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "employee_lookup",
+		"`coffee_table`.`username`" => "username",
 		"`coffee_table`.`cup_type`" => "cup_type",
 		"`coffee_table`.`time`" => "time",
 		"if(`coffee_table`.`date`,date_format(`coffee_table`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -44,7 +44,7 @@
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`coffee_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, '::', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "employee_lookup",
+		"`coffee_table`.`username`" => "username",
 		"`coffee_table`.`cup_type`" => "cup_type",
 		"`coffee_table`.`time`" => "time",
 		"if(`coffee_table`.`date`,date_format(`coffee_table`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -56,7 +56,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`coffee_table`.`id`" => "ID",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, '::', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "Employee Details",
+		"`coffee_table`.`username`" => "Username",
 		"`coffee_table`.`cup_type`" => "Cup Type",
 		"`coffee_table`.`time`" => "Time",
 		"`coffee_table`.`date`" => "Date",
@@ -69,7 +69,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`coffee_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, '::', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "employee_lookup",
+		"`coffee_table`.`username`" => "username",
 		"`coffee_table`.`cup_type`" => "cup_type",
 		"`coffee_table`.`time`" => "time",
 		"if(`coffee_table`.`date`,date_format(`coffee_table`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -80,9 +80,9 @@
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['employee_lookup' => 'Employee Details', ];
+	$x->filterers = [];
 
-	$x->QueryFrom = "`coffee_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`id`=`coffee_table`.`employee_lookup` ";
+	$x->QueryFrom = "`coffee_table` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -113,8 +113,8 @@
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Employee Details', 'Cup Type', 'Time', 'Date', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'employee_lookup', 'cup_type', 'time', 'date', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColCaption = ['ID', 'Username', 'Cup Type', 'Time', 'Date', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'username', 'cup_type', 'time', 'date', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
 	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
 
 	// template paths below are based on the app main directory

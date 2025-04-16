@@ -16,7 +16,7 @@ function coffee_table_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'employee_lookup' => Request::lookup('employee_lookup', ''),
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'cup_type' => Request::val('cup_type', 'Cup'),
 		'time' => Request::val('time', ''),
 		'date' => parseCode('<%%creationDate%%>', true, true),
@@ -88,7 +88,6 @@ function coffee_table_update(&$selected_id, &$error_message = '') {
 	if(!check_record_permission('coffee_table', $selected_id, 'edit')) return false;
 
 	$data = [
-		'employee_lookup' => Request::lookup('employee_lookup', ''),
 		'cup_type' => Request::val('cup_type', ''),
 		'time' => Request::val('time', ''),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
@@ -180,14 +179,11 @@ function coffee_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 	$showSaveAsCopy = !$dvprint && ($allowInsert && $hasSelectedId && !$noSaveAsCopy);
 	$fieldsAreEditable = !$dvprint && (($allowInsert && !$hasSelectedId) || ($allowUpdate && $hasSelectedId) || $showSaveAsCopy);
 
-	$filterer_employee_lookup = Request::val('filterer_employee_lookup');
 
 	// populate filterers, starting from children to grand-parents
 
 	// unique random identifier
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
-	// combobox: employee_lookup
-	$combo_employee_lookup = new DataCombo;
 	// combobox: cup_type
 	$combo_cup_type = new Combo;
 	$combo_cup_type->ListType = 0;
@@ -216,7 +212,6 @@ function coffee_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 		if(!($row = getRecord('coffee_table', $selectedId))) {
 			return error_message($Translation['No records found'], 'coffee_table_view.php', false);
 		}
-		$combo_employee_lookup->SelectedData = $row['employee_lookup'];
 		$combo_cup_type->SelectedData = $row['cup_type'];
 		$combo_date->DefaultDate = $row['date'];
 		$urow = $row; /* unsanitized data */
@@ -225,11 +220,8 @@ function coffee_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_employee_lookup->SelectedData = $filterer_employee_lookup;
 		$combo_cup_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Cup'));
 	}
-	$combo_employee_lookup->HTML = '<span id="employee_lookup-container' . $rnd1 . '"></span><input type="hidden" name="employee_lookup" id="employee_lookup' . $rnd1 . '" value="' . html_attr($combo_employee_lookup->SelectedData) . '">';
-	$combo_employee_lookup->MatchText = '<span id="employee_lookup-container-readonly' . $rnd1 . '"></span><input type="hidden" name="employee_lookup" id="employee_lookup' . $rnd1 . '" value="' . html_attr($combo_employee_lookup->SelectedData) . '">';
 	$combo_cup_type->Render();
 
 	ob_start();
@@ -237,90 +229,11 @@ function coffee_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 
 	<script>
 		// initial lookup values
-		AppGini.current_employee_lookup__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['employee_lookup'] : htmlspecialchars($filterer_employee_lookup, ENT_QUOTES)); ?>"};
 
 		$j(function() {
 			setTimeout(function() {
-				if(typeof(employee_lookup_reload__RAND__) == 'function') employee_lookup_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
-		function employee_lookup_reload__RAND__() {
-		<?php if($fieldsAreEditable) { ?>
-
-			$j("#employee_lookup-container__RAND__").select2({
-				/* initial default value */
-				initSelection: function(e, c) {
-					$j.ajax({
-						url: 'ajax_combo.php',
-						dataType: 'json',
-						data: { id: AppGini.current_employee_lookup__RAND__.value, t: 'coffee_table', f: 'employee_lookup' },
-						success: function(resp) {
-							c({
-								id: resp.results[0].id,
-								text: resp.results[0].text
-							});
-							$j('[name="employee_lookup"]').val(resp.results[0].id);
-							$j('[id=employee_lookup-container-readonly__RAND__]').html('<span class="match-text" id="employee_lookup-match-text">' + resp.results[0].text + '</span>');
-							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=employees_personal_data_table_view_parent]').hide(); } else { $j('.btn[id=employees_personal_data_table_view_parent]').show(); }
-
-
-							if(typeof(employee_lookup_update_autofills__RAND__) == 'function') employee_lookup_update_autofills__RAND__();
-						}
-					});
-				},
-				width: '100%',
-				formatNoMatches: function(term) { return '<?php echo addslashes($Translation['No matches found!']); ?>'; },
-				minimumResultsForSearch: 5,
-				loadMorePadding: 200,
-				ajax: {
-					url: 'ajax_combo.php',
-					dataType: 'json',
-					cache: true,
-					data: function(term, page) { return { s: term, p: page, t: 'coffee_table', f: 'employee_lookup' }; },
-					results: function(resp, page) { return resp; }
-				},
-				escapeMarkup: function(str) { return str; }
-			}).on('change', function(e) {
-				AppGini.current_employee_lookup__RAND__.value = e.added.id;
-				AppGini.current_employee_lookup__RAND__.text = e.added.text;
-				$j('[name="employee_lookup"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=employees_personal_data_table_view_parent]').hide(); } else { $j('.btn[id=employees_personal_data_table_view_parent]').show(); }
-
-
-				if(typeof(employee_lookup_update_autofills__RAND__) == 'function') employee_lookup_update_autofills__RAND__();
-			});
-
-			if(!$j("#employee_lookup-container__RAND__").length) {
-				$j.ajax({
-					url: 'ajax_combo.php',
-					dataType: 'json',
-					data: { id: AppGini.current_employee_lookup__RAND__.value, t: 'coffee_table', f: 'employee_lookup' },
-					success: function(resp) {
-						$j('[name="employee_lookup"]').val(resp.results[0].id);
-						$j('[id=employee_lookup-container-readonly__RAND__]').html('<span class="match-text" id="employee_lookup-match-text">' + resp.results[0].text + '</span>');
-						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=employees_personal_data_table_view_parent]').hide(); } else { $j('.btn[id=employees_personal_data_table_view_parent]').show(); }
-
-						if(typeof(employee_lookup_update_autofills__RAND__) == 'function') employee_lookup_update_autofills__RAND__();
-					}
-				});
-			}
-
-		<?php } else { ?>
-
-			$j.ajax({
-				url: 'ajax_combo.php',
-				dataType: 'json',
-				data: { id: AppGini.current_employee_lookup__RAND__.value, t: 'coffee_table', f: 'employee_lookup' },
-				success: function(resp) {
-					$j('[id=employee_lookup-container__RAND__], [id=employee_lookup-container-readonly__RAND__]').html('<span class="match-text" id="employee_lookup-match-text">' + resp.results[0].text + '</span>');
-					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=employees_personal_data_table_view_parent]').hide(); } else { $j('.btn[id=employees_personal_data_table_view_parent]').show(); }
-
-					if(typeof(employee_lookup_update_autofills__RAND__) == 'function') employee_lookup_update_autofills__RAND__();
-				}
-			});
-		<?php } ?>
-
-		}
 	</script>
 	<?php
 
@@ -406,8 +319,6 @@ function coffee_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\t\$j('#employee_lookup').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\t\$j('#employee_lookup_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\t\$j('#cup_type').replaceWith('<div class=\"form-control-static\" id=\"cup_type\">' + (\$j('#cup_type').val() || '') + '</div>'); \$j('#cup_type-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#time').replaceWith('<div class=\"form-control-static\" id=\"time\">' + (\$j('#time').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
@@ -421,9 +332,6 @@ function coffee_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 	}
 
 	// process combos
-	$templateCode = str_replace('<%%COMBO(employee_lookup)%%>', $combo_employee_lookup->HTML, $templateCode);
-	$templateCode = str_replace('<%%COMBOTEXT(employee_lookup)%%>', $combo_employee_lookup->MatchText, $templateCode);
-	$templateCode = str_replace('<%%URLCOMBOTEXT(employee_lookup)%%>', urlencode($combo_employee_lookup->MatchText), $templateCode);
 	$templateCode = str_replace('<%%COMBO(cup_type)%%>', $combo_cup_type->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(cup_type)%%>', $combo_cup_type->SelectedData, $templateCode);
 	$templateCode = str_replace(
@@ -435,7 +343,7 @@ function coffee_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 	$templateCode = str_replace('<%%COMBOTEXT(date)%%>', $combo_date->GetHTML(true), $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
-	$lookup_fields = ['employee_lookup' => ['employees_personal_data_table', 'Employee Details'], ];
+	$lookup_fields = [];
 	foreach($lookup_fields as $luf => $ptfc) {
 		$pt_perm = getTablePermissions($ptfc[0]);
 
@@ -452,7 +360,7 @@ function coffee_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(employee_lookup)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(cup_type)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(time)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date)%%>', '', $templateCode);
@@ -465,9 +373,8 @@ function coffee_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(employee_lookup)%%>', safe_html($urow['employee_lookup']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(employee_lookup)%%>', html_attr($row['employee_lookup']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(employee_lookup)%%>', urlencode($urow['employee_lookup']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(cup_type)%%>', safe_html($urow['cup_type']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(cup_type)%%>', html_attr($row['cup_type']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(cup_type)%%>', urlencode($urow['cup_type']), $templateCode);
@@ -487,8 +394,8 @@ function coffee_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(employee_lookup)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(employee_lookup)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(cup_type)%%>', 'Cup', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(cup_type)%%>', urlencode('Cup'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(time)%%>', '', $templateCode);

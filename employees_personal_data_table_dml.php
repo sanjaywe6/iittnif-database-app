@@ -111,9 +111,9 @@ function employees_personal_data_table_delete($selected_id, $AllowDeleteOfParent
 	// child table: employees_designation_table
 	$res = sql("SELECT `id` FROM `employees_personal_data_table` WHERE `id`='{$selected_id}'", $eo);
 	$id = db_fetch_row($res);
-	$rires = sql("SELECT COUNT(1) FROM `employees_designation_table` WHERE `employee_details`='" . makeSafe($id[0]) . "'", $eo);
+	$rires = sql("SELECT COUNT(1) FROM `employees_designation_table` WHERE `employee_lookup`='" . makeSafe($id[0]) . "'", $eo);
 	$rirow = db_fetch_row($rires);
-	$childrenATag = '<a class="alert-link" href="employees_designation_table_view.php?filterer_employee_details=' . urlencode($id[0]) . '">%s</a>';
+	$childrenATag = '<a class="alert-link" href="employees_designation_table_view.php?filterer_employee_lookup=' . urlencode($id[0]) . '">%s</a>';
 	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
 		$RetMsg = $Translation["couldn't delete"];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
@@ -123,26 +123,6 @@ function employees_personal_data_table_delete($selected_id, $AllowDeleteOfParent
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
 		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'employees_designation_table'), $RetMsg);
-		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `employees_personal_data_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
-		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `employees_personal_data_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
-		return $RetMsg;
-	}
-
-	// child table: employees_appraisal_table
-	$res = sql("SELECT `id` FROM `employees_personal_data_table` WHERE `id`='{$selected_id}'", $eo);
-	$id = db_fetch_row($res);
-	$rires = sql("SELECT COUNT(1) FROM `employees_appraisal_table` WHERE `employee_lookup`='" . makeSafe($id[0]) . "'", $eo);
-	$rirow = db_fetch_row($rires);
-	$childrenATag = '<a class="alert-link" href="employees_appraisal_table_view.php?filterer_employee_lookup=' . urlencode($id[0]) . '">%s</a>';
-	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
-		$RetMsg = $Translation["couldn't delete"];
-		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
-		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'employees_appraisal_table'), $RetMsg);
-		return $RetMsg;
-	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
-		$RetMsg = $Translation['confirm delete'];
-		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
-		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'employees_appraisal_table'), $RetMsg);
 		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `employees_personal_data_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `employees_personal_data_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
@@ -578,6 +558,7 @@ function employees_personal_data_table_form($selectedId = '', $allowUpdate = tru
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_at)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(employee_str)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
@@ -629,6 +610,8 @@ function employees_personal_data_table_form($selectedId = '', $allowUpdate = tru
 		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(employee_str)%%>', safe_html($urow['employee_str']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(employee_str)%%>', urlencode($urow['employee_str']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
@@ -664,6 +647,8 @@ function employees_personal_data_table_form($selectedId = '', $allowUpdate = tru
 		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', '<%%editingDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode('<%%editingDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(employee_str)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(employee_str)%%>', urlencode(''), $templateCode);
 	}
 
 	// process translations

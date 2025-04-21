@@ -19,7 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`employees_designation_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`name`) || CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`), CONCAT_WS('',   `employees_personal_data_table1`.`name`, '::', `employees_personal_data_table1`.`emp_id`), '') /* Employee details */" => "employee_details",
+		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`name`) || CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`), CONCAT_WS('',   `employees_personal_data_table1`.`name`, '::', `employees_personal_data_table1`.`emp_id`), '') /* Employee Details */" => "employee_lookup",
 		"`employees_designation_table`.`designation`" => "designation",
 		"if(`employees_designation_table`.`date_of_appointment_to_designation`,date_format(`employees_designation_table`.`date_of_appointment_to_designation`,'%d/%m/%Y'),'')" => "date_of_appointment_to_designation",
 		"`employees_designation_table`.`active_status`" => "active_status",
@@ -29,6 +29,7 @@
 		"`employees_designation_table`.`created_at`" => "created_at",
 		"`employees_designation_table`.`last_updated_by`" => "last_updated_by",
 		"`employees_designation_table`.`last_updated_at`" => "last_updated_at",
+		"`employees_designation_table`.`employees_designation_str`" => "employees_designation_str",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -43,12 +44,13 @@
 		9 => 9,
 		10 => 10,
 		11 => 11,
+		12 => 12,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`employees_designation_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`name`) || CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`), CONCAT_WS('',   `employees_personal_data_table1`.`name`, '::', `employees_personal_data_table1`.`emp_id`), '') /* Employee details */" => "employee_details",
+		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`name`) || CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`), CONCAT_WS('',   `employees_personal_data_table1`.`name`, '::', `employees_personal_data_table1`.`emp_id`), '') /* Employee Details */" => "employee_lookup",
 		"`employees_designation_table`.`designation`" => "designation",
 		"if(`employees_designation_table`.`date_of_appointment_to_designation`,date_format(`employees_designation_table`.`date_of_appointment_to_designation`,'%d/%m/%Y'),'')" => "date_of_appointment_to_designation",
 		"`employees_designation_table`.`active_status`" => "active_status",
@@ -58,11 +60,12 @@
 		"`employees_designation_table`.`created_at`" => "created_at",
 		"`employees_designation_table`.`last_updated_by`" => "last_updated_by",
 		"`employees_designation_table`.`last_updated_at`" => "last_updated_at",
+		"`employees_designation_table`.`employees_designation_str`" => "employees_designation_str",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`employees_designation_table`.`id`" => "ID",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`name`) || CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`), CONCAT_WS('',   `employees_personal_data_table1`.`name`, '::', `employees_personal_data_table1`.`emp_id`), '') /* Employee details */" => "Employee details",
+		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`name`) || CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`), CONCAT_WS('',   `employees_personal_data_table1`.`name`, '::', `employees_personal_data_table1`.`emp_id`), '') /* Employee Details */" => "Employee Details",
 		"`employees_designation_table`.`designation`" => "Designation",
 		"`employees_designation_table`.`date_of_appointment_to_designation`" => "Date of appointment to designation",
 		"`employees_designation_table`.`active_status`" => "Active status",
@@ -72,12 +75,13 @@
 		"`employees_designation_table`.`created_at`" => "Created at",
 		"`employees_designation_table`.`last_updated_by`" => "Last updated by",
 		"`employees_designation_table`.`last_updated_at`" => "Last updated at",
+		"`employees_designation_table`.`employees_designation_str`" => "Employees designation str",
 	];
 
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`employees_designation_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`name`) || CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`), CONCAT_WS('',   `employees_personal_data_table1`.`name`, '::', `employees_personal_data_table1`.`emp_id`), '') /* Employee details */" => "employee_details",
+		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`name`) || CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`), CONCAT_WS('',   `employees_personal_data_table1`.`name`, '::', `employees_personal_data_table1`.`emp_id`), '') /* Employee Details */" => "employee_lookup",
 		"`employees_designation_table`.`designation`" => "designation",
 		"if(`employees_designation_table`.`date_of_appointment_to_designation`,date_format(`employees_designation_table`.`date_of_appointment_to_designation`,'%d/%m/%Y'),'')" => "date_of_appointment_to_designation",
 		"`employees_designation_table`.`active_status`" => "active_status",
@@ -87,12 +91,13 @@
 		"`employees_designation_table`.`created_at`" => "created_at",
 		"`employees_designation_table`.`last_updated_by`" => "last_updated_by",
 		"`employees_designation_table`.`last_updated_at`" => "last_updated_at",
+		"`employees_designation_table`.`employees_designation_str`" => "employees_designation_str",
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['employee_details' => 'Employee details', 'reporting_officer' => 'Reporting Officer', 'reviewing_officer' => 'Reviewing Officer', ];
+	$x->filterers = ['employee_lookup' => 'Employee Details', 'reporting_officer' => 'Reporting Officer', 'reviewing_officer' => 'Reviewing Officer', ];
 
-	$x->QueryFrom = "`employees_designation_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`id`=`employees_designation_table`.`employee_details` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employees_designation_table`.`reviewing_officer` ";
+	$x->QueryFrom = "`employees_designation_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`id`=`employees_designation_table`.`employee_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employees_designation_table`.`reviewing_officer` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -122,10 +127,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Employee details', 'Designation', 'Date of appointment to designation', 'Active status', 'Reporting Officer', 'Reviewing Officer', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'employee_details', 'designation', 'date_of_appointment_to_designation', 'active_status', 'reporting_officer', 'reviewing_officer', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Employee Details', 'Designation', 'Date of appointment to designation', 'Active status', 'Reporting Officer', 'Reviewing Officer', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Employees designation str', ];
+	$x->ColFieldName = ['id', 'employee_lookup', 'designation', 'date_of_appointment_to_designation', 'active_status', 'reporting_officer', 'reviewing_officer', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'employees_designation_str', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/employees_designation_table_templateTV.html';
@@ -136,7 +141,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

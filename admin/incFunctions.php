@@ -5382,6 +5382,13 @@
 							'description' => '',
 						],
 					],
+					'employee_str' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Employee str',
+							'description' => '',
+						],
+					],
 				],
 				'employees_designation_table' => [
 					'id' => [
@@ -5391,10 +5398,10 @@
 							'description' => '',
 						],
 					],
-					'employee_details' => [
+					'employee_lookup' => [
 						'appgini' => "INT(10) UNSIGNED NULL",
 						'info' => [
-							'caption' => 'Employee details',
+							'caption' => 'Employee Details',
 							'description' => '',
 						],
 					],
@@ -5461,6 +5468,13 @@
 							'description' => '',
 						],
 					],
+					'employees_designation_str' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Employees designation str',
+							'description' => '',
+						],
+					],
 				],
 				'employees_appraisal_table' => [
 					'id' => [
@@ -5470,17 +5484,10 @@
 							'description' => '',
 						],
 					],
-					'employee_lookup' => [
-						'appgini' => "INT(10) UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Employee Details',
-							'description' => '',
-						],
-					],
 					'employee_designation_lookup' => [
 						'appgini' => "INT(10) UNSIGNED NULL",
 						'info' => [
-							'caption' => 'Employee Reporting/Reviewing Officer',
+							'caption' => 'Employee Details',
 							'description' => '',
 						],
 					],
@@ -5492,7 +5499,7 @@
 						],
 					],
 					'roles' => [
-						'appgini' => "VARCHAR(255) NULL",
+						'appgini' => "TEXT NULL",
 						'info' => [
 							'caption' => 'Roles & Responsibilities',
 							'description' => '',
@@ -5526,10 +5533,45 @@
 							'description' => 'Maximum file size allowed: 100 KB.<br>Allowed file types: ppt, pptx, pptm, pdf, ppsx, ppsm, pps, odp',
 						],
 					],
-					'appraisal_status' => [
-						'appgini' => "VARCHAR(255) NULL DEFAULT 'Yet to Start'",
+					'reporting_officer_feedback' => [
+						'appgini' => "TEXT NULL",
 						'info' => [
-							'caption' => 'Appraisal status',
+							'caption' => 'Reporting Officer Feedback on the Employee Responsibilities',
+							'description' => '',
+						],
+					],
+					'observations_by_reporting_officer' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Observations by the Reporting Officer',
+							'description' => '',
+						],
+					],
+					'overall_rating' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Overall Rating by the Reporting Officer',
+							'description' => 'Scale of Rating: 1-Poor | 2-Satisfactory | 3-Average | 4-Good | 5-Excellent',
+						],
+					],
+					'reporting_appraisal_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Pending'",
+						'info' => [
+							'caption' => 'Appraisal Feedback Status by Reporting Officer',
+							'description' => '',
+						],
+					],
+					'reviewing_officer' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Reviewing officer',
+							'description' => '',
+						],
+					],
+					'reviewing_appraisal_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Pending'",
+						'info' => [
+							'caption' => 'Appraisal Feedback Status by Reviewing Officer',
 							'description' => '',
 						],
 					],
@@ -10476,12 +10518,12 @@
 				'computer_details_table' => ['pc_id'],
 			],
 			'employees_designation_table' => [
-				'employees_personal_data_table' => ['employee_details'],
+				'employees_personal_data_table' => ['employee_lookup'],
 				'user_table' => ['reviewing_officer', 'reporting_officer'],
 			],
 			'employees_appraisal_table' => [
-				'employees_personal_data_table' => ['employee_lookup'],
 				'employees_designation_table' => ['employee_designation_lookup'],
+				'user_table' => ['reviewing_officer'],
 			],
 			'employees_appraisal_feedback_table' => [
 				'employees_appraisal_table' => ['employees_appraisal_lookup'],
@@ -10612,8 +10654,27 @@
 			'it_inventory_allotment_table' => [],
 			'computer_details_table' => [],
 			'computer_usage_table' => [],
-			'employees_personal_data_table' => [],
-			'employees_designation_table' => [],
+			'employees_personal_data_table' => [
+				'employee_str' => 'SELECT CONCAT(
+					`employees_personal_data_table`.`name`,
+					\':\',`employees_personal_data_table`.`employee_type`,
+					\':\',`employees_personal_data_table`.`department`,
+					\':\',`employees_personal_data_table`.`active_status`
+					) FROM %TABLENAME% WHERE `employees_personal_data_table`.`id` = %ID%',
+			],
+			'employees_designation_table' => [
+				'employees_designation_str' => 'SELECT CONCAT(
+					`employees_personal_data_table`.`employee_str`,
+					\'::\', employees_designation_table.designation,  
+					\':\', employees_designation_table.reporting_officer,  
+					\':\', employees_designation_table.reviewing_officer;
+					\':\',`employees_designation_table`.`active_status`
+					) 
+					FROM employees_personal_data_table
+					JOIN employees_designation_table 
+					ON `employees_personal_data_table`.`id` = `employees_designation_table`.`employee_lookup`
+					WHERE `employees_designation_table`.`id` = 1;',
+			],
 			'employees_appraisal_table' => [],
 			'employees_appraisal_feedback_table' => [],
 			'beyond_workingHours_table' => [
@@ -10895,16 +10956,16 @@
 			'employees_personal_data_table' => [
 			],
 			'employees_designation_table' => [
-				'employee_details' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`name`) || CHAR_LENGTH(`employees_personal_data_table`.`emp_id`), CONCAT_WS(\'\', `employees_personal_data_table`.`name`, \'::\', `employees_personal_data_table`.`emp_id`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
+				'employee_lookup' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`name`) || CHAR_LENGTH(`employees_personal_data_table`.`emp_id`), CONCAT_WS(\'\', `employees_personal_data_table`.`name`, \'::\', `employees_personal_data_table`.`emp_id`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
 				'reporting_officer' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 				'reviewing_officer' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'employees_appraisal_table' => [
-				'employee_lookup' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \'::\', `employees_personal_data_table`.`name`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
-				'employee_designation_lookup' => 'SELECT `employees_designation_table`.`id`, IF(CHAR_LENGTH(`employees_designation_table`.`designation`) || CHAR_LENGTH(`employees_designation_table`.`reporting_officer`), CONCAT_WS(\'\', `employees_designation_table`.`designation`, \'::\', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS(\'\',   `user_table1`.`memberID`, \'::\', `user_table1`.`name`), \'\')), \'\') FROM `employees_designation_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`id`=`employees_designation_table`.`employee_details` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employees_designation_table`.`reviewing_officer` ORDER BY 2',
+				'employee_designation_lookup' => 'SELECT `employees_designation_table`.`id`, IF(CHAR_LENGTH(`employees_designation_table`.`employees_designation_str`) || CHAR_LENGTH(`employees_designation_table`.`reporting_officer`), CONCAT_WS(\'\', `employees_designation_table`.`employees_designation_str`, \'::\', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS(\'\',   `user_table1`.`memberID`, \'::\', `user_table1`.`name`), \'\')), \'\') FROM `employees_designation_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`id`=`employees_designation_table`.`employee_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employees_designation_table`.`reviewing_officer` ORDER BY 2',
+				'reviewing_officer' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'employees_appraisal_feedback_table' => [
-				'employees_appraisal_lookup' => 'SELECT `employees_appraisal_table`.`id`, IF(CHAR_LENGTH(`employees_appraisal_table`.`roles`) || CHAR_LENGTH(`employees_appraisal_table`.`self_explanation`), CONCAT_WS(\'\', `employees_appraisal_table`.`roles`, \'::\', `employees_appraisal_table`.`self_explanation`), \'\') FROM `employees_appraisal_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`id`=`employees_appraisal_table`.`employee_lookup` LEFT JOIN `employees_designation_table` as employees_designation_table1 ON `employees_designation_table1`.`id`=`employees_appraisal_table`.`employee_designation_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table1`.`reporting_officer` ORDER BY 2',
+				'employees_appraisal_lookup' => 'SELECT `employees_appraisal_table`.`id`, IF(CHAR_LENGTH(`employees_appraisal_table`.`roles`) || CHAR_LENGTH(`employees_appraisal_table`.`self_explanation`), CONCAT_WS(\'\', `employees_appraisal_table`.`roles`, \'::\', `employees_appraisal_table`.`self_explanation`), \'\') FROM `employees_appraisal_table` LEFT JOIN `employees_designation_table` as employees_designation_table1 ON `employees_designation_table1`.`id`=`employees_appraisal_table`.`employee_designation_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table1`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employees_appraisal_table`.`reviewing_officer` ORDER BY 2',
 				'reviewing_officer' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'beyond_workingHours_table' => [

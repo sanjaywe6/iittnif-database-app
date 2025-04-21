@@ -247,7 +247,7 @@
 			return $data;
 		},
 		'employees_designation_table' => function($data, $options = []) {
-			if(isset($data['employee_details'])) $data['employee_details'] = pkGivenLookupText($data['employee_details'], 'employees_designation_table', 'employee_details');
+			if(isset($data['employee_lookup'])) $data['employee_lookup'] = pkGivenLookupText($data['employee_lookup'], 'employees_designation_table', 'employee_lookup');
 			if(isset($data['date_of_appointment_to_designation'])) $data['date_of_appointment_to_designation'] = guessMySQLDateTime($data['date_of_appointment_to_designation']);
 			if(isset($data['reporting_officer'])) $data['reporting_officer'] = pkGivenLookupText($data['reporting_officer'], 'employees_designation_table', 'reporting_officer');
 			if(isset($data['reviewing_officer'])) $data['reviewing_officer'] = pkGivenLookupText($data['reviewing_officer'], 'employees_designation_table', 'reviewing_officer');
@@ -255,8 +255,8 @@
 			return $data;
 		},
 		'employees_appraisal_table' => function($data, $options = []) {
-			if(isset($data['employee_lookup'])) $data['employee_lookup'] = pkGivenLookupText($data['employee_lookup'], 'employees_appraisal_table', 'employee_lookup');
 			if(isset($data['employee_designation_lookup'])) $data['employee_designation_lookup'] = pkGivenLookupText($data['employee_designation_lookup'], 'employees_appraisal_table', 'employee_designation_lookup');
+			if(isset($data['reviewing_officer'])) $data['reviewing_officer'] = pkGivenLookupText($data['reviewing_officer'], 'employees_appraisal_table', 'reviewing_officer');
 
 			return $data;
 		},

@@ -9,12 +9,9 @@
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
-			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="employees_designation_table_view.php?filterer_employee_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="employees_designation_table_link"><img src="table.gif"> Employees designation & Reporting - App</a>
-			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="employees_designation_table_view.php?filterer_employee_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_employees_designation_table_link"><img src="table.gif"> Employees designation & Reporting - App</a>
-			<input type="hidden" id="employees_designation_table_hclink" value="employees_designation_table_view.php?filterer_employee_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
-			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="employees_appraisal_table_view.php?filterer_employee_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="employees_appraisal_table_link"><img src="table.gif"> Employees Appraisal  - App</a>
-			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="employees_appraisal_table_view.php?filterer_employee_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_employees_appraisal_table_link"><img src="table.gif"> Employees Appraisal  - App</a>
-			<input type="hidden" id="employees_appraisal_table_hclink" value="employees_appraisal_table_view.php?filterer_employee_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
+			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="employees_designation_table_view.php?filterer_employee_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="employees_designation_table_link"><img src="table.gif"> Employees designation & Reporting - App</a>
+			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="employees_designation_table_view.php?filterer_employee_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_employees_designation_table_link"><img src="table.gif"> Employees designation & Reporting - App</a>
+			<input type="hidden" id="employees_designation_table_hclink" value="employees_designation_table_view.php?filterer_employee_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -170,6 +167,15 @@
 							</div>
 						</div>
 						<script>/* disable empty links */ $j(() => { const e_signature = '<%%VALUE(signature)%%>'; if(e_signature == '' || e_signature == '&nbsp;' || e_signature == 'blank.gif') { $j('#signature-link').hide(); $j('#signature-image').parents('a').attr('href', '').on('click', (e) => e.preventDefault()); } });</script>
+					</div>
+				</div>
+
+				<!-- Field: Employee str -->
+				<div class="form-group employees_personal_data_table-employee_str">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Employee str</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="employee_str"><%%VALUE(employee_str)%%></div>
 					</div>
 				</div>
 

@@ -84,6 +84,12 @@
 
 		// capturing the post request data
 		$formData = $_POST;
+
+		if ($formData["appraisal_status"] == "Reviewed" && $formData["appraisal_feedback_status"] != "Reviewed"){
+			WindowMessages::add("Sorry! Can't update, Reporting officer feedback is pending.");
+			return FALSE;
+		}
+
 		// filter data with id from existing database
 		$id = makeSafe($formData["SelectedID"]);
 		$sql_querry = "SELECT * FROM employees_appraisal_table WHERE id='{$id}'";

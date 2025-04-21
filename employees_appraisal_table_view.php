@@ -19,15 +19,19 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`employees_appraisal_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, '::', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "employee_lookup",
-		"IF(    CHAR_LENGTH(`employees_designation_table1`.`designation`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `employees_designation_table1`.`designation`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Employee Reporting/Reviewing Officer */" => "employee_designation_lookup",
+		"IF(    CHAR_LENGTH(`employees_designation_table1`.`employees_designation_str`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `employees_designation_table1`.`employees_designation_str`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Employee Details */" => "employee_designation_lookup",
 		"`employees_appraisal_table`.`current_review_period`" => "current_review_period",
 		"`employees_appraisal_table`.`roles`" => "roles",
 		"`employees_appraisal_table`.`self_explanation`" => "self_explanation",
 		"`employees_appraisal_table`.`upload_file_1`" => "upload_file_1",
 		"`employees_appraisal_table`.`upload_file_2`" => "upload_file_2",
 		"`employees_appraisal_table`.`upload_file_3`" => "upload_file_3",
-		"`employees_appraisal_table`.`appraisal_status`" => "appraisal_status",
+		"`employees_appraisal_table`.`reporting_officer_feedback`" => "reporting_officer_feedback",
+		"`employees_appraisal_table`.`observations_by_reporting_officer`" => "observations_by_reporting_officer",
+		"`employees_appraisal_table`.`overall_rating`" => "overall_rating",
+		"`employees_appraisal_table`.`reporting_appraisal_status`" => "reporting_appraisal_status",
+		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Reviewing officer */" => "reviewing_officer",
+		"`employees_appraisal_table`.`reviewing_appraisal_status`" => "reviewing_appraisal_status",
 		"`employees_appraisal_table`.`created_by`" => "created_by",
 		"`employees_appraisal_table`.`created_at`" => "created_at",
 		"`employees_appraisal_table`.`last_updated_by`" => "last_updated_by",
@@ -49,20 +53,28 @@
 		12 => 12,
 		13 => 13,
 		14 => 14,
+		15 => 15,
+		16 => 16,
+		17 => 17,
+		18 => 18,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`employees_appraisal_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, '::', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "employee_lookup",
-		"IF(    CHAR_LENGTH(`employees_designation_table1`.`designation`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `employees_designation_table1`.`designation`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Employee Reporting/Reviewing Officer */" => "employee_designation_lookup",
+		"IF(    CHAR_LENGTH(`employees_designation_table1`.`employees_designation_str`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `employees_designation_table1`.`employees_designation_str`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Employee Details */" => "employee_designation_lookup",
 		"`employees_appraisal_table`.`current_review_period`" => "current_review_period",
 		"`employees_appraisal_table`.`roles`" => "roles",
 		"`employees_appraisal_table`.`self_explanation`" => "self_explanation",
 		"`employees_appraisal_table`.`upload_file_1`" => "upload_file_1",
 		"`employees_appraisal_table`.`upload_file_2`" => "upload_file_2",
 		"`employees_appraisal_table`.`upload_file_3`" => "upload_file_3",
-		"`employees_appraisal_table`.`appraisal_status`" => "appraisal_status",
+		"`employees_appraisal_table`.`reporting_officer_feedback`" => "reporting_officer_feedback",
+		"`employees_appraisal_table`.`observations_by_reporting_officer`" => "observations_by_reporting_officer",
+		"`employees_appraisal_table`.`overall_rating`" => "overall_rating",
+		"`employees_appraisal_table`.`reporting_appraisal_status`" => "reporting_appraisal_status",
+		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Reviewing officer */" => "reviewing_officer",
+		"`employees_appraisal_table`.`reviewing_appraisal_status`" => "reviewing_appraisal_status",
 		"`employees_appraisal_table`.`created_by`" => "created_by",
 		"`employees_appraisal_table`.`created_at`" => "created_at",
 		"`employees_appraisal_table`.`last_updated_by`" => "last_updated_by",
@@ -71,15 +83,19 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`employees_appraisal_table`.`id`" => "ID",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, '::', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "Employee Details",
-		"IF(    CHAR_LENGTH(`employees_designation_table1`.`designation`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `employees_designation_table1`.`designation`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Employee Reporting/Reviewing Officer */" => "Employee Reporting/Reviewing Officer",
+		"IF(    CHAR_LENGTH(`employees_designation_table1`.`employees_designation_str`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `employees_designation_table1`.`employees_designation_str`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Employee Details */" => "Employee Details",
 		"`employees_appraisal_table`.`current_review_period`" => "Current review period",
 		"`employees_appraisal_table`.`roles`" => "Roles & Responsibilities",
 		"`employees_appraisal_table`.`self_explanation`" => "Employee Self-explanation",
 		"`employees_appraisal_table`.`upload_file_1`" => "Upload file 1",
 		"`employees_appraisal_table`.`upload_file_2`" => "Upload file 2",
 		"`employees_appraisal_table`.`upload_file_3`" => "Upload file 3",
-		"`employees_appraisal_table`.`appraisal_status`" => "Appraisal status",
+		"`employees_appraisal_table`.`reporting_officer_feedback`" => "Reporting Officer Feedback on the Employee Responsibilities",
+		"`employees_appraisal_table`.`observations_by_reporting_officer`" => "Observations by the Reporting Officer",
+		"`employees_appraisal_table`.`overall_rating`" => "Overall Rating by the Reporting Officer",
+		"`employees_appraisal_table`.`reporting_appraisal_status`" => "Appraisal Feedback Status by Reporting Officer",
+		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Reviewing officer */" => "Reviewing officer",
+		"`employees_appraisal_table`.`reviewing_appraisal_status`" => "Appraisal Feedback Status by Reviewing Officer",
 		"`employees_appraisal_table`.`created_by`" => "Created by",
 		"`employees_appraisal_table`.`created_at`" => "Created at",
 		"`employees_appraisal_table`.`last_updated_by`" => "Last updated by",
@@ -89,15 +105,19 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`employees_appraisal_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, '::', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "employee_lookup",
-		"IF(    CHAR_LENGTH(`employees_designation_table1`.`designation`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `employees_designation_table1`.`designation`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Employee Reporting/Reviewing Officer */" => "employee_designation_lookup",
+		"IF(    CHAR_LENGTH(`employees_designation_table1`.`employees_designation_str`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `employees_designation_table1`.`employees_designation_str`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Employee Details */" => "employee_designation_lookup",
 		"`employees_appraisal_table`.`current_review_period`" => "current_review_period",
 		"`employees_appraisal_table`.`roles`" => "roles",
 		"`employees_appraisal_table`.`self_explanation`" => "self_explanation",
 		"`employees_appraisal_table`.`upload_file_1`" => "upload_file_1",
 		"`employees_appraisal_table`.`upload_file_2`" => "upload_file_2",
 		"`employees_appraisal_table`.`upload_file_3`" => "upload_file_3",
-		"`employees_appraisal_table`.`appraisal_status`" => "appraisal_status",
+		"`employees_appraisal_table`.`reporting_officer_feedback`" => "reporting_officer_feedback",
+		"`employees_appraisal_table`.`observations_by_reporting_officer`" => "observations_by_reporting_officer",
+		"`employees_appraisal_table`.`overall_rating`" => "overall_rating",
+		"`employees_appraisal_table`.`reporting_appraisal_status`" => "reporting_appraisal_status",
+		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Reviewing officer */" => "reviewing_officer",
+		"`employees_appraisal_table`.`reviewing_appraisal_status`" => "reviewing_appraisal_status",
 		"`employees_appraisal_table`.`created_by`" => "created_by",
 		"`employees_appraisal_table`.`created_at`" => "created_at",
 		"`employees_appraisal_table`.`last_updated_by`" => "last_updated_by",
@@ -105,9 +125,9 @@
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['employee_lookup' => 'Employee Details', 'employee_designation_lookup' => 'Employee Reporting/Reviewing Officer', ];
+	$x->filterers = ['employee_designation_lookup' => 'Employee Details', 'reviewing_officer' => 'Reviewing officer', ];
 
-	$x->QueryFrom = "`employees_appraisal_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`id`=`employees_appraisal_table`.`employee_lookup` LEFT JOIN `employees_designation_table` as employees_designation_table1 ON `employees_designation_table1`.`id`=`employees_appraisal_table`.`employee_designation_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table1`.`reporting_officer` ";
+	$x->QueryFrom = "`employees_appraisal_table` LEFT JOIN `employees_designation_table` as employees_designation_table1 ON `employees_designation_table1`.`id`=`employees_appraisal_table`.`employee_designation_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table1`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employees_appraisal_table`.`reviewing_officer` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -137,10 +157,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Employee Details', 'Employee Reporting/Reviewing Officer', 'Current review period', 'Roles & Responsibilities', 'Employee Self-explanation', 'Upload file 1', 'Upload file 2', 'Upload file 3', 'Appraisal status', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'employee_lookup', 'employee_designation_lookup', 'current_review_period', 'roles', 'self_explanation', 'upload_file_1', 'upload_file_2', 'upload_file_3', 'appraisal_status', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Employee Details', 'Current review period', 'Roles & Responsibilities', 'Employee Self-explanation', 'Upload file 1', 'Upload file 2', 'Upload file 3', 'Reporting Officer Feedback on the Employee Responsibilities', 'Observations by the Reporting Officer', 'Overall Rating by the Reporting Officer', 'Appraisal Feedback Status by Reporting Officer', 'Reviewing officer', 'Appraisal Feedback Status by Reviewing Officer', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'employee_designation_lookup', 'current_review_period', 'roles', 'self_explanation', 'upload_file_1', 'upload_file_2', 'upload_file_3', 'reporting_officer_feedback', 'observations_by_reporting_officer', 'overall_rating', 'reporting_appraisal_status', 'reviewing_officer', 'reviewing_appraisal_status', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/employees_appraisal_table_templateTV.html';

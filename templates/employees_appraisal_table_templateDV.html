@@ -23,18 +23,9 @@
 			<fieldset class="form-horizontal">
 
 				<!-- Field: Employee Details -->
-				<div class="form-group employees_appraisal_table-employee_lookup">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="employee_lookup" data-parent_link="view_parent_modal">Employee Details</label>
-					<div class="col-lg-9">
-						<div class="lookup-flex"><%%COMBO(employee_lookup)%%><%%PLINK(employee_lookup)%%><%%ADDNEW(employees_personal_data_table)%%></div>
-					</div>
-				</div>
-
-				<!-- Field: Employee Reporting/Reviewing Officer -->
 				<div class="form-group employees_appraisal_table-employee_designation_lookup">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Employee Reporting/Reviewing Officer</label>
+					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Employee Details</label>
 					<div class="col-lg-9">
 						<div class="form-control-static">
 							<span id="employee_designation_lookup-readonly"><%%COMBOTEXT(employee_designation_lookup)%%></span>
@@ -57,7 +48,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="roles">Roles & Responsibilities</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="roles" id="roles" value="<%%VALUE(roles)%%>">
+						<textarea class="form-control" name="roles" id="roles" rows=" 5"><%%VALUE(roles)%%></textarea>
 					</div>
 				</div>
 
@@ -136,12 +127,58 @@
 					</div>
 				</div>
 
-				<!-- Field: Appraisal status -->
-				<div class="form-group employees_appraisal_table-appraisal_status">
+				<!-- Field: Reporting Officer Feedback on the Employee Responsibilities -->
+				<div class="form-group employees_appraisal_table-reporting_officer_feedback">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="appraisal_status">Appraisal status</label>
+					<label class="control-label col-lg-3" for="reporting_officer_feedback">Reporting Officer Feedback on the Employee Responsibilities</label>
 					<div class="col-lg-9">
-						<%%COMBO(appraisal_status)%%>
+						<textarea class="form-control" name="reporting_officer_feedback" id="reporting_officer_feedback" rows=" 5"><%%VALUE(reporting_officer_feedback)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Observations by the Reporting Officer -->
+				<div class="form-group employees_appraisal_table-observations_by_reporting_officer">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="observations_by_reporting_officer">Observations by the Reporting Officer</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="observations_by_reporting_officer" id="observations_by_reporting_officer" rows=" 5"><%%VALUE(observations_by_reporting_officer)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Overall Rating by the Reporting Officer -->
+				<div class="form-group employees_appraisal_table-overall_rating">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="overall_rating">Overall Rating by the Reporting Officer <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#overall_rating-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="overall_rating-description"><div class="alert alert-info bspacer-xs">Scale of Rating: 1-Poor | 2-Satisfactory | 3-Average | 4-Good | 5-Excellent</div></span>
+						<%%COMBO(overall_rating)%%>
+					</div>
+				</div>
+
+				<!-- Field: Appraisal Feedback Status by Reporting Officer -->
+				<div class="form-group employees_appraisal_table-reporting_appraisal_status">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="reporting_appraisal_status">Appraisal Feedback Status by Reporting Officer</label>
+					<div class="col-lg-9">
+						<%%COMBO(reporting_appraisal_status)%%>
+					</div>
+				</div>
+
+				<!-- Field: Reviewing officer -->
+				<div class="form-group employees_appraisal_table-reviewing_officer">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="reviewing_officer" data-parent_link="view_parent_modal">Reviewing officer</label>
+					<div class="col-lg-9">
+						<div class="lookup-flex"><%%COMBO(reviewing_officer)%%><%%PLINK(reviewing_officer)%%><%%ADDNEW(user_table)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Appraisal Feedback Status by Reviewing Officer -->
+				<div class="form-group employees_appraisal_table-reviewing_appraisal_status">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="reviewing_appraisal_status">Appraisal Feedback Status by Reviewing Officer</label>
+					<div class="col-lg-9">
+						<%%COMBO(reviewing_appraisal_status)%%>
 					</div>
 				</div>
 
@@ -196,27 +233,9 @@
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
-				AppGini.once({
-					condition: function() {
-						return $j('.form-group.employees_appraisal_table-employee_lookup')
-									.find('.nicEdit-main, .select2-container, input[type=radio]')
-									.length > 0
-								// or read-only DV
-								|| (!$j('#update').length && !$j('#insert').length);
-					},
-					action: function() {
-						$j('#employees_appraisal_table_dv_container-loading').addClass('hidden');
-						$j('#employees_appraisal_table_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('employees_appraisal_table', 'employee_lookup');
-					},
-					timeout:  5000,
-					doActionOnTimeout:  true
-				});
-			} else {
-				$j('#employees_appraisal_table_dv_container-loading').addClass('hidden');
-				$j('#employees_appraisal_table_dv_container').removeClass('hidden');
-			}
+			$j('#employees_appraisal_table_dv_container-loading').addClass('hidden');
+			$j('#employees_appraisal_table_dv_container').removeClass('hidden');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('employees_appraisal_table', 'current_review_period');
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 

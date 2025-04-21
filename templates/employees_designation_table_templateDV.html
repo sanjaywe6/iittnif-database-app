@@ -22,14 +22,14 @@
 		<div class="col-md-8 col-lg-10" id="employees_designation_table_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: Employee details -->
-				<div class="form-group employees_designation_table-employee_details">
+				<!-- Field: Employee Details -->
+				<div class="form-group employees_designation_table-employee_lookup">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Employee details</label>
+					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Employee Details</label>
 					<div class="col-lg-9">
 						<div class="form-control-static">
-							<span id="employee_details-readonly"><%%COMBOTEXT(employee_details)%%></span>
-							<%%PLINK(employee_details)%%>
+							<span id="employee_lookup-readonly"><%%COMBOTEXT(employee_lookup)%%></span>
+							<%%PLINK(employee_lookup)%%>
 						</div>
 					</div>
 				</div>
@@ -76,6 +76,15 @@
 					<label class="control-label col-lg-3" for="reviewing_officer" data-parent_link="view_parent_modal">Reviewing Officer</label>
 					<div class="col-lg-9">
 						<div class="lookup-flex"><%%COMBO(reviewing_officer)%%><%%PLINK(reviewing_officer)%%><%%ADDNEW(user_table)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Employees designation str -->
+				<div class="form-group employees_designation_table-employees_designation_str">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Employees designation str</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="employees_designation_str"><%%VALUE(employees_designation_str)%%></div>
 					</div>
 				</div>
 

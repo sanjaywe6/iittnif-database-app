@@ -114,10 +114,13 @@
 		setupTable('employees_personal_data_table', []);
 
 		setupTable('employees_designation_table', []);
-		setupIndexes('employees_designation_table', ['employee_details','reporting_officer','reviewing_officer',]);
+		setupIndexes('employees_designation_table', ['employee_lookup','reporting_officer','reviewing_officer',]);
 
-		setupTable('employees_appraisal_table', []);
-		setupIndexes('employees_appraisal_table', ['employee_lookup','employee_designation_lookup',]);
+		setupTable('employees_appraisal_table', [
+				"ALTER TABLE `employees_appraisal_table` CHANGE `appraisal_feedback_status` `reporting_appraisal_status` VARCHAR(255) NULL DEFAULT 'Pending' ",
+				"ALTER TABLE `employees_appraisal_table` CHANGE `appraisal_status` `reviewing_appraisal_status` VARCHAR(255) NULL DEFAULT 'Pending' ",
+			]);
+		setupIndexes('employees_appraisal_table', ['employee_designation_lookup','reviewing_officer',]);
 
 		setupTable('employees_appraisal_feedback_table', []);
 		setupIndexes('employees_appraisal_feedback_table', ['employees_appraisal_lookup','reviewing_officer',]);

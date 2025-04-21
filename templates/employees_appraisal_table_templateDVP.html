@@ -15,15 +15,8 @@
 <div class="panel-body">
 	<fieldset class="form-horizontal">
 		<!-- Field: Employee Details -->
-		<div class="form-group employees_appraisal_table-employee_lookup" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Employee Details</label>
-			<div class="col-xs-9">
-				<div class="form-control-static"><span id="employee_lookup<%%RND1%%>"><%%COMBOTEXT(employee_lookup)%%></span></div>
-			</div>
-		</div>
-		<!-- Field: Employee Reporting/Reviewing Officer -->
 		<div class="form-group employees_appraisal_table-employee_designation_lookup" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Employee Reporting/Reviewing Officer</label>
+			<label class="col-xs-3 control-label">Employee Details</label>
 			<div class="col-xs-9">
 				<div class="form-control-static"><span id="employee_designation_lookup-readonly<%%RND1%%>"><%%COMBOTEXT(employee_designation_lookup)%%></span></div>
 			</div>
@@ -70,11 +63,46 @@
 				<div class="form-control-static"><a id="upload_file_3-link" href="link.php?t=employees_appraisal_table&f=upload_file_3&i=<%%VALUE(id)%%>" target="_blank"><i class="glyphicon glyphicon-lg glyphicon-download-alt" title="<%%VALUE(upload_file_3)%%>"></i></a><script>$j(function() { var e_upload_file_3 = '<%%VALUE(upload_file_3)%%>'; if(e_upload_file_3 == '' || e_upload_file_3 == '&nbsp;' || e_upload_file_3 == 'blank.gif') $j('#upload_file_3-link').hide(); });</script></div>
 			</div>
 		</div>
-		<!-- Field: Appraisal status -->
-		<div class="form-group employees_appraisal_table-appraisal_status" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Appraisal status</label>
+		<!-- Field: Reporting Officer Feedback on the Employee Responsibilities -->
+		<div class="form-group employees_appraisal_table-reporting_officer_feedback" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Reporting Officer Feedback on the Employee Responsibilities</label>
 			<div class="col-xs-9">
-				<div class="form-control-static"><%%COMBOTEXT(appraisal_status)%%></div>
+				<div class="form-control-static"><%%VALUE(reporting_officer_feedback)%%></div>
+			</div>
+		</div>
+		<!-- Field: Observations by the Reporting Officer -->
+		<div class="form-group employees_appraisal_table-observations_by_reporting_officer" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Observations by the Reporting Officer</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(observations_by_reporting_officer)%%></div>
+			</div>
+		</div>
+		<!-- Field: Overall Rating by the Reporting Officer -->
+		<div class="form-group employees_appraisal_table-overall_rating" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Overall Rating by the Reporting Officer</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(overall_rating)%%></div>
+			</div>
+		</div>
+		<!-- Field: Appraisal Feedback Status by Reporting Officer -->
+		<div class="form-group employees_appraisal_table-reporting_appraisal_status" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Appraisal Feedback Status by Reporting Officer</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(reporting_appraisal_status)%%></div>
+			</div>
+		</div>
+		<!-- Field: Reviewing officer -->
+		<div class="form-group employees_appraisal_table-reviewing_officer" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Reviewing officer</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="reviewing_officer<%%RND1%%>"><%%COMBOTEXT(reviewing_officer)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Appraisal Feedback Status by Reviewing Officer -->
+		<div class="form-group employees_appraisal_table-reviewing_appraisal_status" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Appraisal Feedback Status by Reviewing Officer</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(reviewing_appraisal_status)%%></div>
 			</div>
 		</div>
 	</fieldset>

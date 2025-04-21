@@ -8,7 +8,7 @@
 
 		/* data for selected record, or defaults if none is selected */
 		var data = {
-			employee_details: <?php echo json_encode(['id' => $rdata['employee_details'], 'value' => $rdata['employee_details'], 'text' => $jdata['employee_details']]); ?>,
+			employee_lookup: <?php echo json_encode(['id' => $rdata['employee_lookup'], 'value' => $rdata['employee_lookup'], 'text' => $jdata['employee_lookup']]); ?>,
 			reporting_officer: <?php echo json_encode(['id' => $rdata['reporting_officer'], 'value' => $rdata['reporting_officer'], 'text' => $jdata['reporting_officer']]); ?>,
 			reviewing_officer: <?php echo json_encode(['id' => $rdata['reviewing_officer'], 'value' => $rdata['reviewing_officer'], 'text' => $jdata['reviewing_officer']]); ?>
 		};
@@ -18,11 +18,11 @@
 		AppGini.cache[tn] = AppGini.cache[tn] || AppGini.ajaxCache();
 		var cache = AppGini.cache[tn];
 
-		/* saved value for employee_details */
+		/* saved value for employee_lookup */
 		cache.addCheck(function(u, d) {
 			if(u != 'ajax_combo.php') return false;
-			if(d.t == tn && d.f == 'employee_details' && d.id == data.employee_details.id)
-				return { results: [ data.employee_details ], more: false, elapsed: 0.01 };
+			if(d.t == tn && d.f == 'employee_lookup' && d.id == data.employee_lookup.id)
+				return { results: [ data.employee_lookup ], more: false, elapsed: 0.01 };
 			return false;
 		});
 

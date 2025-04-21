@@ -572,6 +572,13 @@
 					'group' => $tg[11],
 					'homepageShowCount' => 1
 				],
+				'r_and_d_progress' => [
+					'Caption' => 'R and D Progress',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[6],
+					'homepageShowCount' => 1
+				],
 				'panel_decision_table_tdp' => [
 					'Caption' => 'Panel Decision App',
 					'Description' => '',
@@ -723,6 +730,7 @@
 			'travel_table' => ['Travel - App', '', 'table.gif', 'Transport Apps'],
 			'travel_stay_table' => ['Stay Details - App', '', 'table.gif', 'Transport Apps'],
 			'travel_local_commute_table' => ['Local Commute - App', '', 'table.gif', 'Transport Apps'],
+			'r_and_d_progress' => ['R and D Progress', '', 'table.gif', 'Technology Development Apps'],
 			'panel_decision_table_tdp' => ['Panel Decision App', '', 'table.gif', 'Technology Development Apps'],
 			'selected_proposals_final_tdp' => ['Selected proposals final - App', '', 'table.gif', 'Technology Development Apps'],
 			'stage_wise_budget_table_tdp' => ['Stage wise budget - App', '', 'table.gif', 'Technology Development Apps'],
@@ -8051,6 +8059,92 @@
 						],
 					],
 				],
+				'r_and_d_progress' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Username',
+							'description' => '',
+						],
+					],
+					'date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Date',
+							'description' => '',
+						],
+					],
+					'labs' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Labs',
+							'description' => '',
+						],
+					],
+					'today_progress' => [
+						'appgini' => "TEXT NOT NULL",
+						'info' => [
+							'caption' => 'Today\'s Progress Done',
+							'description' => '',
+						],
+					],
+					'tomorrow_plan' => [
+						'appgini' => "TEXT NOT NULL",
+						'info' => [
+							'caption' => 'Tomorrow\'s Plan',
+							'description' => '',
+						],
+					],
+					'ceo_remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'CEO Remarks',
+							'description' => '',
+						],
+					],
+					'pd_remarks' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'PD Remarks',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
 				'panel_decision_table_tdp' => [
 					'panel_decision_id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
@@ -10704,6 +10798,7 @@
 			'travel_table' => [],
 			'travel_stay_table' => [],
 			'travel_local_commute_table' => [],
+			'r_and_d_progress' => [],
 			'panel_decision_table_tdp' => [],
 			'selected_proposals_final_tdp' => [],
 			'stage_wise_budget_table_tdp' => [],
@@ -11024,6 +11119,8 @@
 			'travel_stay_table' => [
 			],
 			'travel_local_commute_table' => [
+			],
+			'r_and_d_progress' => [
 			],
 			'panel_decision_table_tdp' => [
 			],

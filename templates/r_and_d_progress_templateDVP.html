@@ -1,0 +1,78 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Username -->
+		<div class="form-group r_and_d_progress-username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(username)%%></div>
+			</div>
+		</div>
+		<!-- Field: Date -->
+		<div class="form-group r_and_d_progress-date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(date)%%></div>
+			</div>
+		</div>
+		<!-- Field: Labs -->
+		<div class="form-group r_and_d_progress-labs" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Labs</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(labs)%%></div>
+			</div>
+		</div>
+		<!-- Field: Today's Progress Done -->
+		<div class="form-group r_and_d_progress-today_progress" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Today's Progress Done</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(today_progress)%%></div>
+			</div>
+		</div>
+		<!-- Field: Tomorrow's Plan -->
+		<div class="form-group r_and_d_progress-tomorrow_plan" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Tomorrow's Plan</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(tomorrow_plan)%%></div>
+			</div>
+		</div>
+		<!-- Field: CEO Remarks -->
+		<div class="form-group r_and_d_progress-ceo_remarks" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">CEO Remarks</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(ceo_remarks)%%></div>
+			</div>
+		</div>
+		<!-- Field: PD Remarks -->
+		<div class="form-group r_and_d_progress-pd_remarks" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">PD Remarks</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(pd_remarks)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

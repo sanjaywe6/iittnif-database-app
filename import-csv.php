@@ -395,6 +395,11 @@
 
 			return $data;
 		},
+		'r_and_d_progress' => function($data, $options = []) {
+			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
+
+			return $data;
+		},
 		'panel_decision_table_tdp' => function($data, $options = []) {
 			if(isset($data['date_of_presentation'])) $data['date_of_presentation'] = guessMySQLDateTime($data['date_of_presentation']);
 
@@ -523,6 +528,7 @@
 		'travel_table' => function($data, $options = []) { return true; },
 		'travel_stay_table' => function($data, $options = []) { return true; },
 		'travel_local_commute_table' => function($data, $options = []) { return true; },
+		'r_and_d_progress' => function($data, $options = []) { return true; },
 		'panel_decision_table_tdp' => function($data, $options = []) { return true; },
 		'selected_proposals_final_tdp' => function($data, $options = []) { return true; },
 		'stage_wise_budget_table_tdp' => function($data, $options = []) { return true; },

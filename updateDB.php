@@ -116,10 +116,7 @@
 		setupTable('employees_designation_table', []);
 		setupIndexes('employees_designation_table', ['employee_lookup','reporting_officer','reviewing_officer',]);
 
-		setupTable('employees_appraisal_table', [
-				"ALTER TABLE `employees_appraisal_table` CHANGE `appraisal_feedback_status` `reporting_appraisal_status` VARCHAR(255) NULL DEFAULT 'Pending' ",
-				"ALTER TABLE `employees_appraisal_table` CHANGE `appraisal_status` `reviewing_appraisal_status` VARCHAR(255) NULL DEFAULT 'Pending' ",
-			]);
+		setupTable('employees_appraisal_table', []);
 		setupIndexes('employees_appraisal_table', ['employee_designation_lookup','reviewing_officer',]);
 
 		setupTable('employees_appraisal_feedback_table', []);
@@ -180,6 +177,8 @@
 		setupTable('travel_stay_table', []);
 
 		setupTable('travel_local_commute_table', []);
+
+		setupTable('r_and_d_progress', []);
 
 		setupTable('panel_decision_table_tdp', []);
 

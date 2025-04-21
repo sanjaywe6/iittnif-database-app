@@ -800,6 +800,8 @@
 		],
 		'travel_local_commute_table' => [
 		],
+		'r_and_d_progress' => [
+		],
 		'panel_decision_table_tdp' => [
 		],
 		'selected_proposals_final_tdp' => [

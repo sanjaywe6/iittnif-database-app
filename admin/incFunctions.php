@@ -5892,6 +5892,13 @@
 							'description' => '',
 						],
 					],
+					'username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Username',
+							'description' => '',
+						],
+					],
 					'leave_type' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [

@@ -21,7 +21,8 @@ function employees_appraisal_table_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'current_review_period' => Request::val('current_review_period', ''),
+		'current_review_period_from' => Request::dateComponents('current_review_period_from', '1'),
+		'current_review_period_to' => Request::dateComponents('current_review_period_to', '1'),
 		'roles' => br2nl(Request::val('roles', '')),
 		'self_explanation' => br2nl(Request::val('self_explanation', '')),
 		'upload_file_1' => Request::fileUpload('upload_file_1', [
@@ -165,7 +166,8 @@ function employees_appraisal_table_update(&$selected_id, &$error_message = '') {
 	if(!check_record_permission('employees_appraisal_table', $selected_id, 'edit')) return false;
 
 	$data = [
-		'current_review_period' => Request::val('current_review_period', ''),
+		'current_review_period_from' => Request::dateComponents('current_review_period_from', ''),
+		'current_review_period_to' => Request::dateComponents('current_review_period_to', ''),
 		'roles' => br2nl(Request::val('roles', '')),
 		'self_explanation' => br2nl(Request::val('self_explanation', '')),
 		'upload_file_1' => Request::fileUpload('upload_file_1', [
@@ -323,6 +325,22 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
 	// combobox: employee_designation_lookup
 	$combo_employee_designation_lookup = new DataCombo;
+	// combobox: current_review_period_from
+	$combo_current_review_period_from = new DateCombo;
+	$combo_current_review_period_from->DateFormat = "dmy";
+	$combo_current_review_period_from->MinYear = defined('employees_appraisal_table.current_review_period_from.MinYear') ? constant('employees_appraisal_table.current_review_period_from.MinYear') : 1900;
+	$combo_current_review_period_from->MaxYear = defined('employees_appraisal_table.current_review_period_from.MaxYear') ? constant('employees_appraisal_table.current_review_period_from.MaxYear') : 2100;
+	$combo_current_review_period_from->DefaultDate = parseMySQLDate('1', '1');
+	$combo_current_review_period_from->MonthNames = $Translation['month names'];
+	$combo_current_review_period_from->NamePrefix = 'current_review_period_from';
+	// combobox: current_review_period_to
+	$combo_current_review_period_to = new DateCombo;
+	$combo_current_review_period_to->DateFormat = "dmy";
+	$combo_current_review_period_to->MinYear = defined('employees_appraisal_table.current_review_period_to.MinYear') ? constant('employees_appraisal_table.current_review_period_to.MinYear') : 1900;
+	$combo_current_review_period_to->MaxYear = defined('employees_appraisal_table.current_review_period_to.MaxYear') ? constant('employees_appraisal_table.current_review_period_to.MaxYear') : 2100;
+	$combo_current_review_period_to->DefaultDate = parseMySQLDate('1', '1');
+	$combo_current_review_period_to->MonthNames = $Translation['month names'];
+	$combo_current_review_period_to->NamePrefix = 'current_review_period_to';
 	// combobox: overall_rating
 	$combo_overall_rating = new Combo;
 	$combo_overall_rating->ListType = 0;
@@ -376,6 +394,8 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 			return error_message($Translation['No records found'], 'employees_appraisal_table_view.php', false);
 		}
 		$combo_employee_designation_lookup->SelectedData = $row['employee_designation_lookup'];
+		$combo_current_review_period_from->DefaultDate = $row['current_review_period_from'];
+		$combo_current_review_period_to->DefaultDate = $row['current_review_period_to'];
 		$combo_overall_rating->SelectedData = $row['overall_rating'];
 		$combo_reporting_appraisal_status->SelectedData = $row['reporting_appraisal_status'];
 		$combo_reviewing_officer->SelectedData = $row['reviewing_officer'];
@@ -387,10 +407,10 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
 		$combo_employee_designation_lookup->SelectedData = $filterer_employee_designation_lookup;
-		$combo_overall_rating->SelectedText = (isset($filterField[1]) && $filterField[1] == '11' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_reporting_appraisal_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '12' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
+		$combo_overall_rating->SelectedText = (isset($filterField[1]) && $filterField[1] == '12' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_reporting_appraisal_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '13' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
 		$combo_reviewing_officer->SelectedData = $filterer_reviewing_officer;
-		$combo_reviewing_appraisal_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '14' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
+		$combo_reviewing_appraisal_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '15' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
 	}
 	$combo_employee_designation_lookup->HTML = '<span id="employee_designation_lookup-container' . $rnd1 . '"></span><input type="hidden" name="employee_designation_lookup" id="employee_designation_lookup' . $rnd1 . '" value="' . html_attr($combo_employee_designation_lookup->SelectedData) . '">';
 	$combo_employee_designation_lookup->MatchText = '<span id="employee_designation_lookup-container-readonly' . $rnd1 . '"></span><input type="hidden" name="employee_designation_lookup" id="employee_designation_lookup' . $rnd1 . '" value="' . html_attr($combo_employee_designation_lookup->SelectedData) . '">';
@@ -653,7 +673,10 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\t\$j('#current_review_period').replaceWith('<div class=\"form-control-static\" id=\"current_review_period\">' + (\$j('#current_review_period').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#current_review_period_from').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#current_review_period_fromDay, #current_review_period_fromMonth, #current_review_period_fromYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#current_review_period_to').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#current_review_period_toDay, #current_review_period_toMonth, #current_review_period_toYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#roles').replaceWith('<div class=\"form-control-static\" id=\"roles\">' + (\$j('#roles').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#self_explanation').replaceWith('<div class=\"form-control-static\" id=\"self_explanation\">' + (\$j('#self_explanation').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#upload_file_1').parent().replaceWith(`<div class=\"form-control-static\" id=\"upload_file_1\">\${\$j('#upload_file_1').val() || ''}\${\$j('#upload_file_1').val() ? '<a target=\"_blank\" class=\"hspacer-lg\" href=\"' + \$j('#upload_file_1').val() + '\" target=\"_blank\"><i class=\"glyphicon glyphicon-globe\"></i></a>' : ''}</div>`);\n";
@@ -679,6 +702,20 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 	$templateCode = str_replace('<%%COMBO(employee_designation_lookup)%%>', $combo_employee_designation_lookup->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(employee_designation_lookup)%%>', $combo_employee_designation_lookup->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(employee_designation_lookup)%%>', urlencode($combo_employee_designation_lookup->MatchText), $templateCode);
+	$templateCode = str_replace(
+		'<%%COMBO(current_review_period_from)%%>', 
+		(!$fieldsAreEditable ? 
+			'<div class="form-control-static">' . $combo_current_review_period_from->GetHTML(true) . '</div>' : 
+			$combo_current_review_period_from->GetHTML()
+		), $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(current_review_period_from)%%>', $combo_current_review_period_from->GetHTML(true), $templateCode);
+	$templateCode = str_replace(
+		'<%%COMBO(current_review_period_to)%%>', 
+		(!$fieldsAreEditable ? 
+			'<div class="form-control-static">' . $combo_current_review_period_to->GetHTML(true) . '</div>' : 
+			$combo_current_review_period_to->GetHTML()
+		), $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(current_review_period_to)%%>', $combo_current_review_period_to->GetHTML(true), $templateCode);
 	$templateCode = str_replace('<%%COMBO(overall_rating)%%>', $combo_overall_rating->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(overall_rating)%%>', $combo_overall_rating->SelectedData, $templateCode);
 	$templateCode = str_replace('<%%COMBO(reporting_appraisal_status)%%>', $combo_reporting_appraisal_status->HTML, $templateCode);
@@ -708,7 +745,8 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(employee_designation_lookup)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(current_review_period)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(current_review_period_from)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(current_review_period_to)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(roles)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(self_explanation)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(upload_file_1)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="upload_file_1" id="upload_file_1" data-filetypes="ppt|pptx|pptm|pdf|ppsx|ppsm|pps|odp" data-maxsize="102400" style="max-width: calc(100% - 1.5rem);" accept=".ppt,.pptx,.pptm,.pdf,.ppsx,.ppsm,.pps,.odp">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
@@ -736,9 +774,10 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(employee_designation_lookup)%%>', safe_html($urow['employee_designation_lookup']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(employee_designation_lookup)%%>', urlencode($urow['employee_designation_lookup']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(current_review_period)%%>', safe_html($urow['current_review_period']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(current_review_period)%%>', html_attr($row['current_review_period']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(current_review_period)%%>', urlencode($urow['current_review_period']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(current_review_period_from)%%>', app_datetime($row['current_review_period_from']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(current_review_period_from)%%>', urlencode(app_datetime($urow['current_review_period_from'])), $templateCode);
+		$templateCode = str_replace('<%%VALUE(current_review_period_to)%%>', app_datetime($row['current_review_period_to']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(current_review_period_to)%%>', urlencode(app_datetime($urow['current_review_period_to'])), $templateCode);
 		$templateCode = str_replace('<%%VALUE(roles)%%>', safe_html($urow['roles'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(roles)%%>', urlencode($urow['roles']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(self_explanation)%%>', safe_html($urow['self_explanation'], $fieldsAreEditable), $templateCode);
@@ -781,8 +820,10 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(employee_designation_lookup)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(employee_designation_lookup)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(current_review_period)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(current_review_period)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(current_review_period_from)%%>', '1', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(current_review_period_from)%%>', urlencode('1'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(current_review_period_to)%%>', '1', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(current_review_period_to)%%>', urlencode('1'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(roles)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(roles)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(self_explanation)%%>', '', $templateCode);

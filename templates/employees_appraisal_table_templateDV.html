@@ -34,12 +34,21 @@
 					</div>
 				</div>
 
-				<!-- Field: Current review period -->
-				<div class="form-group employees_appraisal_table-current_review_period">
+				<!-- Field: Current Review Period From Date -->
+				<div class="form-group employees_appraisal_table-current_review_period_from">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="current_review_period">Current review period</label>
+					<label class="control-label col-lg-3" for="current_review_period_from-dd">Current Review Period From Date</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="current_review_period" id="current_review_period" value="<%%VALUE(current_review_period)%%>">
+						<%%COMBO(current_review_period_from)%%>
+					</div>
+				</div>
+
+				<!-- Field: Current Review Period To Date -->
+				<div class="form-group employees_appraisal_table-current_review_period_to">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="current_review_period_to-dd">Current Review Period To Date</label>
+					<div class="col-lg-9">
+						<%%COMBO(current_review_period_to)%%>
 					</div>
 				</div>
 
@@ -235,7 +244,7 @@
 
 			$j('#employees_appraisal_table_dv_container-loading').addClass('hidden');
 			$j('#employees_appraisal_table_dv_container').removeClass('hidden');
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('employees_appraisal_table', 'current_review_period');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('employees_appraisal_table', 'current_review_period_from');
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 

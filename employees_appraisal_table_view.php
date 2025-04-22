@@ -20,7 +20,8 @@
 	$x->QueryFieldsTV = [
 		"`employees_appraisal_table`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`employees_designation_table1`.`employees_designation_str`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `employees_designation_table1`.`employees_designation_str`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Employee Details */" => "employee_designation_lookup",
-		"`employees_appraisal_table`.`current_review_period`" => "current_review_period",
+		"if(`employees_appraisal_table`.`current_review_period_from`,date_format(`employees_appraisal_table`.`current_review_period_from`,'%d/%m/%Y'),'')" => "current_review_period_from",
+		"if(`employees_appraisal_table`.`current_review_period_to`,date_format(`employees_appraisal_table`.`current_review_period_to`,'%d/%m/%Y'),'')" => "current_review_period_to",
 		"`employees_appraisal_table`.`roles`" => "roles",
 		"`employees_appraisal_table`.`self_explanation`" => "self_explanation",
 		"`employees_appraisal_table`.`upload_file_1`" => "upload_file_1",
@@ -41,8 +42,8 @@
 	$x->SortFields = [
 		1 => '`employees_appraisal_table`.`id`',
 		2 => 2,
-		3 => 3,
-		4 => 4,
+		3 => '`employees_appraisal_table`.`current_review_period_from`',
+		4 => '`employees_appraisal_table`.`current_review_period_to`',
 		5 => 5,
 		6 => 6,
 		7 => 7,
@@ -57,13 +58,15 @@
 		16 => 16,
 		17 => 17,
 		18 => 18,
+		19 => 19,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`employees_appraisal_table`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`employees_designation_table1`.`employees_designation_str`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `employees_designation_table1`.`employees_designation_str`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Employee Details */" => "employee_designation_lookup",
-		"`employees_appraisal_table`.`current_review_period`" => "current_review_period",
+		"if(`employees_appraisal_table`.`current_review_period_from`,date_format(`employees_appraisal_table`.`current_review_period_from`,'%d/%m/%Y'),'')" => "current_review_period_from",
+		"if(`employees_appraisal_table`.`current_review_period_to`,date_format(`employees_appraisal_table`.`current_review_period_to`,'%d/%m/%Y'),'')" => "current_review_period_to",
 		"`employees_appraisal_table`.`roles`" => "roles",
 		"`employees_appraisal_table`.`self_explanation`" => "self_explanation",
 		"`employees_appraisal_table`.`upload_file_1`" => "upload_file_1",
@@ -84,7 +87,8 @@
 	$x->QueryFieldsFilters = [
 		"`employees_appraisal_table`.`id`" => "ID",
 		"IF(    CHAR_LENGTH(`employees_designation_table1`.`employees_designation_str`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `employees_designation_table1`.`employees_designation_str`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Employee Details */" => "Employee Details",
-		"`employees_appraisal_table`.`current_review_period`" => "Current review period",
+		"`employees_appraisal_table`.`current_review_period_from`" => "Current Review Period From Date",
+		"`employees_appraisal_table`.`current_review_period_to`" => "Current Review Period To Date",
 		"`employees_appraisal_table`.`roles`" => "Roles & Responsibilities",
 		"`employees_appraisal_table`.`self_explanation`" => "Employee Self-explanation",
 		"`employees_appraisal_table`.`upload_file_1`" => "Upload file 1",
@@ -106,7 +110,8 @@
 	$x->QueryFieldsQS = [
 		"`employees_appraisal_table`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`employees_designation_table1`.`employees_designation_str`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `employees_designation_table1`.`employees_designation_str`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Employee Details */" => "employee_designation_lookup",
-		"`employees_appraisal_table`.`current_review_period`" => "current_review_period",
+		"if(`employees_appraisal_table`.`current_review_period_from`,date_format(`employees_appraisal_table`.`current_review_period_from`,'%d/%m/%Y'),'')" => "current_review_period_from",
+		"if(`employees_appraisal_table`.`current_review_period_to`,date_format(`employees_appraisal_table`.`current_review_period_to`,'%d/%m/%Y'),'')" => "current_review_period_to",
 		"`employees_appraisal_table`.`roles`" => "roles",
 		"`employees_appraisal_table`.`self_explanation`" => "self_explanation",
 		"`employees_appraisal_table`.`upload_file_1`" => "upload_file_1",
@@ -157,10 +162,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Employee Details', 'Current review period', 'Roles & Responsibilities', 'Employee Self-explanation', 'Upload file 1', 'Upload file 2', 'Upload file 3', 'Reporting Officer Feedback on the Employee Responsibilities', 'Observations by the Reporting Officer', 'Overall Rating by the Reporting Officer', 'Appraisal Feedback Status by Reporting Officer', 'Reviewing officer', 'Appraisal Feedback Status by Reviewing Officer', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'employee_designation_lookup', 'current_review_period', 'roles', 'self_explanation', 'upload_file_1', 'upload_file_2', 'upload_file_3', 'reporting_officer_feedback', 'observations_by_reporting_officer', 'overall_rating', 'reporting_appraisal_status', 'reviewing_officer', 'reviewing_appraisal_status', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Employee Details', 'Current Review Period From Date', 'Current Review Period To Date', 'Roles & Responsibilities', 'Employee Self-explanation', 'Upload file 1', 'Upload file 2', 'Upload file 3', 'Reporting Officer Feedback on the Employee Responsibilities', 'Observations by the Reporting Officer', 'Overall Rating by the Reporting Officer', 'Appraisal Feedback Status by Reporting Officer', 'Reviewing officer', 'Appraisal Feedback Status by Reviewing Officer', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'employee_designation_lookup', 'current_review_period_from', 'current_review_period_to', 'roles', 'self_explanation', 'upload_file_1', 'upload_file_2', 'upload_file_3', 'reporting_officer_feedback', 'observations_by_reporting_officer', 'overall_rating', 'reporting_appraisal_status', 'reviewing_officer', 'reviewing_appraisal_status', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/employees_appraisal_table_templateTV.html';

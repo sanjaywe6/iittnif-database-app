@@ -256,6 +256,8 @@
 		},
 		'employees_appraisal_table' => function($data, $options = []) {
 			if(isset($data['employee_designation_lookup'])) $data['employee_designation_lookup'] = pkGivenLookupText($data['employee_designation_lookup'], 'employees_appraisal_table', 'employee_designation_lookup');
+			if(isset($data['current_review_period_from'])) $data['current_review_period_from'] = guessMySQLDateTime($data['current_review_period_from']);
+			if(isset($data['current_review_period_to'])) $data['current_review_period_to'] = guessMySQLDateTime($data['current_review_period_to']);
 			if(isset($data['reviewing_officer'])) $data['reviewing_officer'] = pkGivenLookupText($data['reviewing_officer'], 'employees_appraisal_table', 'reviewing_officer');
 
 			return $data;

@@ -5499,10 +5499,17 @@
 							'description' => '',
 						],
 					],
-					'current_review_period' => [
-						'appgini' => "VARCHAR(255) NULL",
+					'current_review_period_from' => [
+						'appgini' => "DATE NULL",
 						'info' => [
-							'caption' => 'Current review period',
+							'caption' => 'Current Review Period From Date',
+							'description' => '',
+						],
+					],
+					'current_review_period_to' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Current Review Period To Date',
 							'description' => '',
 						],
 					],

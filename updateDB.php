@@ -127,11 +127,7 @@
 
 		setupTable('attendence_details_table', []);
 
-		setupTable('leave_table', [
-				"ALTER TABLE leave_table ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `leave_table` CHANGE `field1` `username` VARCHAR(255) NULL ",
-				" ALTER TABLE `leave_table` CHANGE `username` `username` VARCHAR(255) NULL ",
-			]);
+		setupTable('leave_table', []);
 
 		setupTable('work_from_home_table', []);
 		setupIndexes('work_from_home_table', ['approved_by',]);

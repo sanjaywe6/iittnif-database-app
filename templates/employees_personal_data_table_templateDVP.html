@@ -113,6 +113,13 @@
 			<a href="#" onclick="$j('#signatureImg<%%RND1%%>').attr('src', ($j('#signatureImg<%%RND1%%>').attr('src').search(/thumbnail\.php/) != -1 && signatureSrc1<%%RND1%%> != '<%%BASE_UPLOAD_PATH%%>' ? signatureSrc1<%%RND1%%> : signatureSrc2<%%RND1%%>)); return false;"><img id="signatureImg<%%RND1%%>" src="thumbnail.php?t=employees_personal_data_table&f=signature&i=<%%VALUE(signature)%%>&v=dv" class="img-thumbnail"></a></div>
 			</div>
 		</div>
+		<!-- Field: Employee str -->
+		<div class="form-group employees_personal_data_table-employee_str" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Employee str</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(employee_str)%%></div>
+			</div>
+		</div>
 	</fieldset>
 </div>
 <script>

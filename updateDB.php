@@ -127,7 +127,10 @@
 
 		setupTable('attendence_details_table', []);
 
-		setupTable('leave_table', []);
+		setupTable('leave_table', [
+				" ALTER TABLE `leave_table` CHANGE `from_date` `from_date` DATETIME NOT NULL ",
+				" ALTER TABLE `leave_table` CHANGE `to_date` `to_date` DATETIME NOT NULL ",
+			]);
 
 		setupTable('work_from_home_table', []);
 		setupIndexes('work_from_home_table', ['approved_by',]);

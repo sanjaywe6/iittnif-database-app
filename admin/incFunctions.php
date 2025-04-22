@@ -5914,16 +5914,16 @@
 						],
 					],
 					'from_date' => [
-						'appgini' => "DATE NOT NULL",
+						'appgini' => "DATETIME NOT NULL",
 						'info' => [
-							'caption' => 'From date',
+							'caption' => 'From Date & Time (Date and Time for Full or Half Day)',
 							'description' => '',
 						],
 					],
 					'to_date' => [
-						'appgini' => "DATE NOT NULL",
+						'appgini' => "DATETIME NOT NULL",
 						'info' => [
-							'caption' => 'To date',
+							'caption' => 'To Date & Time (Date and Time for Full or Half Day)',
 							'description' => '',
 						],
 					],

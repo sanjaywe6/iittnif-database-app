@@ -22,8 +22,8 @@
 		"`leave_table`.`username`" => "username",
 		"`leave_table`.`leave_type`" => "leave_type",
 		"`leave_table`.`purpose_of_leave`" => "purpose_of_leave",
-		"if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
-		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
+		"if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y %H:%i'),'')" => "from_date",
+		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y %H:%i'),'')" => "to_date",
 		"`leave_table`.`approval_status`" => "approval_status",
 		"`leave_table`.`approval_remarks`" => "approval_remarks",
 		"`leave_table`.`approved_by`" => "approved_by",
@@ -55,8 +55,8 @@
 		"`leave_table`.`username`" => "username",
 		"`leave_table`.`leave_type`" => "leave_type",
 		"`leave_table`.`purpose_of_leave`" => "purpose_of_leave",
-		"if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
-		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
+		"if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y %H:%i'),'')" => "from_date",
+		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y %H:%i'),'')" => "to_date",
 		"`leave_table`.`approval_status`" => "approval_status",
 		"`leave_table`.`approval_remarks`" => "approval_remarks",
 		"`leave_table`.`approved_by`" => "approved_by",
@@ -71,8 +71,8 @@
 		"`leave_table`.`username`" => "Username",
 		"`leave_table`.`leave_type`" => "Leave type",
 		"`leave_table`.`purpose_of_leave`" => "Purpose of leave",
-		"`leave_table`.`from_date`" => "From date",
-		"`leave_table`.`to_date`" => "To date",
+		"`leave_table`.`from_date`" => "From Date & Time (Date and Time for Full or Half Day)",
+		"`leave_table`.`to_date`" => "To Date & Time (Date and Time for Full or Half Day)",
 		"`leave_table`.`approval_status`" => "Approval status",
 		"`leave_table`.`approval_remarks`" => "Approval remarks",
 		"`leave_table`.`approved_by`" => "Approved By",
@@ -88,8 +88,8 @@
 		"`leave_table`.`username`" => "username",
 		"`leave_table`.`leave_type`" => "leave_type",
 		"`leave_table`.`purpose_of_leave`" => "purpose_of_leave",
-		"if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
-		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
+		"if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y %H:%i'),'')" => "from_date",
+		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y %H:%i'),'')" => "to_date",
 		"`leave_table`.`approval_status`" => "approval_status",
 		"`leave_table`.`approval_remarks`" => "approval_remarks",
 		"`leave_table`.`approved_by`" => "approved_by",
@@ -133,7 +133,7 @@
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Leave type', 'Purpose of leave', 'From date', 'To date', 'Approval status', 'Approval remarks', 'Approved By', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColCaption = ['ID', 'Username', 'Leave type', 'Purpose of leave', 'From Date & Time (Date and Time for Full or Half Day)', 'To Date & Time (Date and Time for Full or Half Day)', 'Approval status', 'Approval remarks', 'Approved By', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
 	$x->ColFieldName = ['id', 'username', 'leave_type', 'purpose_of_leave', 'from_date', 'to_date', 'approval_status', 'approval_remarks', 'approved_by', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
 	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
 

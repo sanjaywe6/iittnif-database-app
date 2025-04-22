@@ -19,7 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`shortlisted_startups_for_fund_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`all_startup_data_table1`.`company_id`) || CHAR_LENGTH(`all_startup_data_table1`.`name_of_the_company`), CONCAT_WS('',   `all_startup_data_table1`.`company_id`, `all_startup_data_table1`.`name_of_the_company`), '') /* Select startup */" => "startup",
+		"IF(    CHAR_LENGTH(`all_startup_data_table1`.`company_id`) || CHAR_LENGTH(`all_startup_data_table1`.`name_of_the_company`), CONCAT_WS('',   `all_startup_data_table1`.`company_id`, '::', `all_startup_data_table1`.`name_of_the_company`), '') /* Select startup */" => "startup",
 		"`shortlisted_startups_for_fund_table`.`scheme`" => "scheme",
 		"`shortlisted_startups_for_fund_table`.`recommended_fund`" => "recommended_fund",
 		"`shortlisted_startups_for_fund_table`.`name_of_founder`" => "name_of_founder",
@@ -74,7 +74,7 @@
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`shortlisted_startups_for_fund_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`all_startup_data_table1`.`company_id`) || CHAR_LENGTH(`all_startup_data_table1`.`name_of_the_company`), CONCAT_WS('',   `all_startup_data_table1`.`company_id`, `all_startup_data_table1`.`name_of_the_company`), '') /* Select startup */" => "startup",
+		"IF(    CHAR_LENGTH(`all_startup_data_table1`.`company_id`) || CHAR_LENGTH(`all_startup_data_table1`.`name_of_the_company`), CONCAT_WS('',   `all_startup_data_table1`.`company_id`, '::', `all_startup_data_table1`.`name_of_the_company`), '') /* Select startup */" => "startup",
 		"`shortlisted_startups_for_fund_table`.`scheme`" => "scheme",
 		"`shortlisted_startups_for_fund_table`.`recommended_fund`" => "recommended_fund",
 		"`shortlisted_startups_for_fund_table`.`name_of_founder`" => "name_of_founder",
@@ -101,7 +101,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`shortlisted_startups_for_fund_table`.`id`" => "ID",
-		"IF(    CHAR_LENGTH(`all_startup_data_table1`.`company_id`) || CHAR_LENGTH(`all_startup_data_table1`.`name_of_the_company`), CONCAT_WS('',   `all_startup_data_table1`.`company_id`, `all_startup_data_table1`.`name_of_the_company`), '') /* Select startup */" => "Select startup",
+		"IF(    CHAR_LENGTH(`all_startup_data_table1`.`company_id`) || CHAR_LENGTH(`all_startup_data_table1`.`name_of_the_company`), CONCAT_WS('',   `all_startup_data_table1`.`company_id`, '::', `all_startup_data_table1`.`name_of_the_company`), '') /* Select startup */" => "Select startup",
 		"`shortlisted_startups_for_fund_table`.`scheme`" => "Scheme",
 		"`shortlisted_startups_for_fund_table`.`recommended_fund`" => "Recommended fund (in Lakhs INR)",
 		"`shortlisted_startups_for_fund_table`.`name_of_founder`" => "Name of founder",
@@ -129,7 +129,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`shortlisted_startups_for_fund_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`all_startup_data_table1`.`company_id`) || CHAR_LENGTH(`all_startup_data_table1`.`name_of_the_company`), CONCAT_WS('',   `all_startup_data_table1`.`company_id`, `all_startup_data_table1`.`name_of_the_company`), '') /* Select startup */" => "startup",
+		"IF(    CHAR_LENGTH(`all_startup_data_table1`.`company_id`) || CHAR_LENGTH(`all_startup_data_table1`.`name_of_the_company`), CONCAT_WS('',   `all_startup_data_table1`.`company_id`, '::', `all_startup_data_table1`.`name_of_the_company`), '') /* Select startup */" => "startup",
 		"`shortlisted_startups_for_fund_table`.`scheme`" => "scheme",
 		"`shortlisted_startups_for_fund_table`.`recommended_fund`" => "recommended_fund",
 		"`shortlisted_startups_for_fund_table`.`name_of_founder`" => "name_of_founder",

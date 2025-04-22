@@ -688,7 +688,7 @@
 			'startup' => [
 				'parent_table' => 'all_startup_data_table',
 				'parent_pk_field' => 'id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`all_startup_data_table`.`company_id`) || CHAR_LENGTH(`all_startup_data_table`.`name_of_the_company`), CONCAT_WS(\'\', `all_startup_data_table`.`company_id`, `all_startup_data_table`.`name_of_the_company`), \'\')',
+				'parent_caption' => 'IF(CHAR_LENGTH(`all_startup_data_table`.`company_id`) || CHAR_LENGTH(`all_startup_data_table`.`name_of_the_company`), CONCAT_WS(\'\', `all_startup_data_table`.`company_id`, \'::\', `all_startup_data_table`.`name_of_the_company`), \'\')',
 				'parent_from' => '`all_startup_data_table` ',
 				'filterers' => [],
 				'custom_query' => '',

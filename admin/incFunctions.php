@@ -10760,8 +10760,6 @@
 				'employees_designation_str' => 'SELECT CONCAT(
 					`employees_personal_data_table`.`employee_str`,
 					\'::\', employees_designation_table.designation,  
-					\':\', employees_designation_table.reporting_officer,  
-					\':\', employees_designation_table.reviewing_officer;
 					\':\',`employees_designation_table`.`active_status`
 					) 
 					FROM employees_personal_data_table
@@ -11085,7 +11083,7 @@
 			'all_startup_data_table' => [
 			],
 			'shortlisted_startups_for_fund_table' => [
-				'startup' => 'SELECT `all_startup_data_table`.`id`, IF(CHAR_LENGTH(`all_startup_data_table`.`company_id`) || CHAR_LENGTH(`all_startup_data_table`.`name_of_the_company`), CONCAT_WS(\'\', `all_startup_data_table`.`company_id`, `all_startup_data_table`.`name_of_the_company`), \'\') FROM `all_startup_data_table` ORDER BY 2',
+				'startup' => 'SELECT `all_startup_data_table`.`id`, IF(CHAR_LENGTH(`all_startup_data_table`.`company_id`) || CHAR_LENGTH(`all_startup_data_table`.`name_of_the_company`), CONCAT_WS(\'\', `all_startup_data_table`.`company_id`, \'::\', `all_startup_data_table`.`name_of_the_company`), \'\') FROM `all_startup_data_table` ORDER BY 2',
 			],
 			'shortlisted_startups_dd_and_agreement_table' => [
 				'startup' => 'SELECT `all_startup_data_table`.`id`, IF(CHAR_LENGTH(`all_startup_data_table`.`company_id`) || CHAR_LENGTH(`all_startup_data_table`.`name_of_the_company`), CONCAT_WS(\'\', `all_startup_data_table`.`company_id`, \'::\', `all_startup_data_table`.`name_of_the_company`), \'\') FROM `all_startup_data_table` ORDER BY 2',

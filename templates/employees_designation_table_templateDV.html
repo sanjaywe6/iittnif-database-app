@@ -25,12 +25,9 @@
 				<!-- Field: Employee Details -->
 				<div class="form-group employees_designation_table-employee_lookup">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Employee Details</label>
+					<label class="control-label col-lg-3" for="employee_lookup" data-parent_link="view_parent_modal">Employee Details</label>
 					<div class="col-lg-9">
-						<div class="form-control-static">
-							<span id="employee_lookup-readonly"><%%COMBOTEXT(employee_lookup)%%></span>
-							<%%PLINK(employee_lookup)%%>
-						</div>
+						<div class="lookup-flex"><%%COMBO(employee_lookup)%%><%%PLINK(employee_lookup)%%><%%ADDNEW(employees_personal_data_table)%%></div>
 					</div>
 				</div>
 
@@ -130,9 +127,27 @@
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-			$j('#employees_designation_table_dv_container-loading').addClass('hidden');
-			$j('#employees_designation_table_dv_container').removeClass('hidden');
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('employees_designation_table', 'designation');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
+				AppGini.once({
+					condition: function() {
+						return $j('.form-group.employees_designation_table-employee_lookup')
+									.find('.nicEdit-main, .select2-container, input[type=radio]')
+									.length > 0
+								// or read-only DV
+								|| (!$j('#update').length && !$j('#insert').length);
+					},
+					action: function() {
+						$j('#employees_designation_table_dv_container-loading').addClass('hidden');
+						$j('#employees_designation_table_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('employees_designation_table', 'employee_lookup');
+					},
+					timeout:  5000,
+					doActionOnTimeout:  true
+				});
+			} else {
+				$j('#employees_designation_table_dv_container-loading').addClass('hidden');
+				$j('#employees_designation_table_dv_container').removeClass('hidden');
+			}
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 

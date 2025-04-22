@@ -18,8 +18,10 @@ function leave_table_insert(&$error_message = '') {
 	$data = [
 		'leave_type' => Request::val('leave_type', ''),
 		'purpose_of_leave' => br2nl(Request::val('purpose_of_leave', '')),
-		'from_date' => Request::datetime('from_date', ''),
-		'to_date' => Request::datetime('to_date', ''),
+		'from_date' => Request::dateComponents('from_date', ''),
+		'to_date' => Request::dateComponents('to_date', ''),
+		'approval_status' => Request::val('approval_status', 'Under Consideration'),
+		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
@@ -69,7 +71,7 @@ function leave_table_delete($selected_id, $AllowDeleteOfParents = false, $skipCh
 			);
 	}
 
-	sql("DELETE FROM `leave_table` WHERE `leave_id`='{$selected_id}'", $eo);
+	sql("DELETE FROM `leave_table` WHERE `id`='{$selected_id}'", $eo);
 
 	// hook: leave_table_after_delete
 	if(function_exists('leave_table_after_delete')) {
@@ -90,8 +92,11 @@ function leave_table_update(&$selected_id, &$error_message = '') {
 	$data = [
 		'leave_type' => Request::val('leave_type', ''),
 		'purpose_of_leave' => br2nl(Request::val('purpose_of_leave', '')),
-		'from_date' => Request::datetime('from_date', ''),
-		'to_date' => Request::datetime('to_date', ''),
+		'from_date' => Request::dateComponents('from_date', ''),
+		'to_date' => Request::dateComponents('to_date', ''),
+		'approval_status' => Request::val('approval_status', ''),
+		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
+		'approved_by' => parseCode('<%%editorUsername%%>', false),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 	];
@@ -137,7 +142,7 @@ function leave_table_update(&$selected_id, &$error_message = '') {
 	if(!update(
 		'leave_table', 
 		backtick_keys_once($set), 
-		['`leave_id`' => $selected_id], 
+		['`id`' => $selected_id], 
 		$error_message
 	)) {
 		echo $error_message;
@@ -152,7 +157,7 @@ function leave_table_update(&$selected_id, &$error_message = '') {
 	if(function_exists('leave_table_after_update')) {
 		if($row = getRecord('leave_table', $data['selectedID'])) $data = array_map('makeSafe', $row);
 
-		$data['selectedID'] = $data['leave_id'];
+		$data['selectedID'] = $data['id'];
 		$args = ['old_data' => $old_data];
 		if(!leave_table_after_update($data, getMemberInfo(), $args)) return;
 	}
@@ -216,12 +221,46 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 		$combo_leave_type->ListData = $combo_leave_type->ListItem;
 	}
 	$combo_leave_type->SelectName = 'leave_type';
+	// combobox: from_date
+	$combo_from_date = new DateCombo;
+	$combo_from_date->DateFormat = "dmy";
+	$combo_from_date->MinYear = defined('leave_table.from_date.MinYear') ? constant('leave_table.from_date.MinYear') : 1900;
+	$combo_from_date->MaxYear = defined('leave_table.from_date.MaxYear') ? constant('leave_table.from_date.MaxYear') : 2100;
+	$combo_from_date->DefaultDate = parseMySQLDate('', '');
+	$combo_from_date->MonthNames = $Translation['month names'];
+	$combo_from_date->NamePrefix = 'from_date';
+	// combobox: to_date
+	$combo_to_date = new DateCombo;
+	$combo_to_date->DateFormat = "dmy";
+	$combo_to_date->MinYear = defined('leave_table.to_date.MinYear') ? constant('leave_table.to_date.MinYear') : 1900;
+	$combo_to_date->MaxYear = defined('leave_table.to_date.MaxYear') ? constant('leave_table.to_date.MaxYear') : 2100;
+	$combo_to_date->DefaultDate = parseMySQLDate('', '');
+	$combo_to_date->MonthNames = $Translation['month names'];
+	$combo_to_date->NamePrefix = 'to_date';
+	// combobox: approval_status
+	$combo_approval_status = new Combo;
+	$combo_approval_status->ListType = 0;
+	$combo_approval_status->MultipleSeparator = ', ';
+	$combo_approval_status->ListBoxHeight = 10;
+	$combo_approval_status->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/leave_table.approval_status.csv')) {
+		$approval_status_data = addslashes(implode('', @file(__DIR__ . '/hooks/leave_table.approval_status.csv')));
+		$combo_approval_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($approval_status_data))));
+		$combo_approval_status->ListData = $combo_approval_status->ListItem;
+	} else {
+		$combo_approval_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Approved;;Not Approved;;Under Consideration"))));
+		$combo_approval_status->ListData = $combo_approval_status->ListItem;
+	}
+	$combo_approval_status->SelectName = 'approval_status';
 
 	if($hasSelectedId) {
 		if(!($row = getRecord('leave_table', $selectedId))) {
 			return error_message($Translation['No records found'], 'leave_table_view.php', false);
 		}
 		$combo_leave_type->SelectedData = $row['leave_type'];
+		$combo_from_date->DefaultDate = $row['from_date'];
+		$combo_to_date->DefaultDate = $row['to_date'];
+		$combo_approval_status->SelectedData = $row['approval_status'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
 	} else {
@@ -229,8 +268,10 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
 		$combo_leave_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '6' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 	}
 	$combo_leave_type->Render();
+	$combo_approval_status->Render();
 
 	ob_start();
 	?>
@@ -329,24 +370,40 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 		$jsReadOnly = '';
 		$jsReadOnly .= "\t\$j('#leave_type').replaceWith('<div class=\"form-control-static\" id=\"leave_type\">' + (\$j('#leave_type').val() || '') + '</div>'); \$j('#leave_type-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#purpose_of_leave').replaceWith('<div class=\"form-control-static\" id=\"purpose_of_leave\">' + (\$j('#purpose_of_leave').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#from_date').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"from_date\">' + (\$j('#from_date').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#to_date').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"to_date\">' + (\$j('#to_date').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#from_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#from_dateDay, #from_dateMonth, #from_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#to_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#to_dateDay, #to_dateMonth, #to_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#approval_status').replaceWith('<div class=\"form-control-static\" id=\"approval_status\">' + (\$j('#approval_status').val() || '') + '</div>'); \$j('#approval_status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#approval_remarks').replaceWith('<div class=\"form-control-static\" id=\"approval_remarks\">' + (\$j('#approval_remarks').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
 		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
-		$locale = isset($Translation['datetimepicker locale']) ? ", locale: '{$Translation['datetimepicker locale']}'" : '';
-		$jsEditable .= "\t\$j('#from_date').addClass('always_shown').parents('.input-group').datetimepicker({ toolbarPlacement: 'top', sideBySide: true, showClear: true, showTodayButton: true, showClose: true, icons: { close: 'glyphicon glyphicon-ok' }, format: AppGini.datetimeFormat('dt') {$locale} });";
-		$locale = isset($Translation['datetimepicker locale']) ? ", locale: '{$Translation['datetimepicker locale']}'" : '';
-		$jsEditable .= "\t\$j('#to_date').addClass('always_shown').parents('.input-group').datetimepicker({ toolbarPlacement: 'top', sideBySide: true, showClear: true, showTodayButton: true, showClose: true, icons: { close: 'glyphicon glyphicon-ok' }, format: AppGini.datetimeFormat('dt') {$locale} });";
 		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos
 	$templateCode = str_replace('<%%COMBO(leave_type)%%>', $combo_leave_type->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(leave_type)%%>', $combo_leave_type->SelectedData, $templateCode);
+	$templateCode = str_replace(
+		'<%%COMBO(from_date)%%>', 
+		(!$fieldsAreEditable ? 
+			'<div class="form-control-static">' . $combo_from_date->GetHTML(true) . '</div>' : 
+			$combo_from_date->GetHTML()
+		), $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(from_date)%%>', $combo_from_date->GetHTML(true), $templateCode);
+	$templateCode = str_replace(
+		'<%%COMBO(to_date)%%>', 
+		(!$fieldsAreEditable ? 
+			'<div class="form-control-static">' . $combo_to_date->GetHTML(true) . '</div>' : 
+			$combo_to_date->GetHTML()
+		), $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(to_date)%%>', $combo_to_date->GetHTML(true), $templateCode);
+	$templateCode = str_replace('<%%COMBO(approval_status)%%>', $combo_approval_status->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(approval_status)%%>', $combo_approval_status->SelectedData, $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
 	$lookup_fields = [];
@@ -365,11 +422,14 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	}
 
 	// process images
-	$templateCode = str_replace('<%%UPLOADFILE(leave_id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(leave_type)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(purpose_of_leave)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(from_date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(to_date)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approval_status)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approval_remarks)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approved_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
@@ -377,17 +437,24 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 
 	// process values
 	if($hasSelectedId) {
-		$templateCode = str_replace('<%%VALUE(leave_id)%%>', safe_html($urow['leave_id']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(leave_id)%%>', urlencode($urow['leave_id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(leave_type)%%>', safe_html($urow['leave_type']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(leave_type)%%>', html_attr($row['leave_type']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(leave_type)%%>', urlencode($urow['leave_type']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(purpose_of_leave)%%>', safe_html($urow['purpose_of_leave'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(purpose_of_leave)%%>', urlencode($urow['purpose_of_leave']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(from_date)%%>', app_datetime($row['from_date'], 'dt'), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(from_date)%%>', urlencode(app_datetime($urow['from_date'], 'dt')), $templateCode);
-		$templateCode = str_replace('<%%VALUE(to_date)%%>', app_datetime($row['to_date'], 'dt'), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(to_date)%%>', urlencode(app_datetime($urow['to_date'], 'dt')), $templateCode);
+		$templateCode = str_replace('<%%VALUE(from_date)%%>', app_datetime($row['from_date']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(from_date)%%>', urlencode(app_datetime($urow['from_date'])), $templateCode);
+		$templateCode = str_replace('<%%VALUE(to_date)%%>', app_datetime($row['to_date']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(to_date)%%>', urlencode(app_datetime($urow['to_date'])), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', safe_html($urow['approval_status']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', html_attr($row['approval_status']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode($urow['approval_status']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', safe_html($urow['approval_remarks'], $fieldsAreEditable), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_remarks)%%>', urlencode($urow['approval_remarks']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approved_by)%%>', safe_html($urow['approved_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode($urow['approved_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
@@ -397,8 +464,8 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
 	} else {
-		$templateCode = str_replace('<%%VALUE(leave_id)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(leave_id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(leave_type)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(leave_type)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(purpose_of_leave)%%>', '', $templateCode);
@@ -407,6 +474,12 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 		$templateCode = str_replace('<%%URLVALUE(from_date)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(to_date)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(to_date)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_status)%%>', 'Under Consideration', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode('Under Consideration'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_remarks)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approved_by)%%>', '<%%editorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);

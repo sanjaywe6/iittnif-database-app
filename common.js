@@ -819,8 +819,8 @@ function leave_table_validateData(insertMode) {
 	const reqFields = [
 		// [field-type, field-name, field-caption], ...
 		['text', 'purpose_of_leave', 'Purpose of leave'],
-		['datetime', 'from_date', 'From date'],
-		['datetime', 'to_date', 'To date'],
+		['date', 'from_date', 'From date'],
+		['date', 'to_date', 'To date'],
 	];
 
 	reqFields.map(function(rf) {

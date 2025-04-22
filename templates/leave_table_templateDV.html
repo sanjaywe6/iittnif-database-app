@@ -40,18 +40,45 @@
 				<!-- Field: From date -->
 				<div class="form-group leave_table-from_date">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="from_date">From date<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<label class="control-label col-lg-3" for="from_date-dd">From date<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
-						<div class="input-group date datetimepicker"><input type="text" class="form-control" name="from_date" id="from_date" value="<%%VALUE(from_date)%%>" required><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>
+						<%%COMBO(from_date)%%>
 					</div>
 				</div>
 
 				<!-- Field: To date -->
 				<div class="form-group leave_table-to_date">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="to_date">To date<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<label class="control-label col-lg-3" for="to_date-dd">To date<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
-						<div class="input-group date datetimepicker"><input type="text" class="form-control" name="to_date" id="to_date" value="<%%VALUE(to_date)%%>" required><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>
+						<%%COMBO(to_date)%%>
+					</div>
+				</div>
+
+				<!-- Field: Approval status -->
+				<div class="form-group leave_table-approval_status">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="approval_status">Approval status</label>
+					<div class="col-lg-9">
+						<%%COMBO(approval_status)%%>
+					</div>
+				</div>
+
+				<!-- Field: Approval remarks -->
+				<div class="form-group leave_table-approval_remarks">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="approval_remarks">Approval remarks</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="approval_remarks" id="approval_remarks" rows=" 5"><%%VALUE(approval_remarks)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Approved By -->
+				<div class="form-group leave_table-approved_by">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Approved By</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="approved_by"><%%VALUE(approved_by)%%></div>
 					</div>
 				</div>
 
@@ -203,10 +230,10 @@
 			if(!add_new_mode) {
 				$j('body').append('<div id="admin-tools-appendix"></div>');
 				$j('#admin-tools-appendix').load(
-					'ajax_admin_tools.php?table=leave_table&id=<%%URLVALUE(leave_id)%%>',
+					'ajax_admin_tools.php?table=leave_table&id=<%%URLVALUE(id)%%>',
 					function(resp) {
 						if(!resp.length) return;
-						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=leave_table&id=<%%URLVALUE(leave_id)%%>');
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=leave_table&id=<%%URLVALUE(id)%%>');
 					}
 				);
 			}

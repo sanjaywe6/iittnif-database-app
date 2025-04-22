@@ -82,7 +82,7 @@
 
 	function leave_table_before_update(&$data, $memberInfo, &$args) {
 
-		return TRUE;
+		return restrictApprovalForApproved($data,$memberInfo,"leave_table");	
 	}
 
 	function leave_table_after_update($data, $memberInfo, &$args) {

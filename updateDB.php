@@ -116,13 +116,7 @@
 		setupTable('employees_designation_table', []);
 		setupIndexes('employees_designation_table', ['employee_lookup','reporting_officer','reviewing_officer',]);
 
-		setupTable('employees_appraisal_table', [
-				"ALTER TABLE `employees_appraisal_table` CHANGE `current_review_period` `current_review_period_from` VARCHAR(255) NULL ",
-				" ALTER TABLE `employees_appraisal_table` CHANGE `current_review_period_from` `current_review_period_from` DATE NULL ",
-				" ALTER TABLE `employees_appraisal_table` CHANGE `current_review_period_from` `current_review_period_from` DATE NULL ",
-				"ALTER TABLE `employees_appraisal_table` ADD `current_review_period_from_1` DATE NULL ",
-				"ALTER TABLE `employees_appraisal_table` CHANGE `current_review_period_from_1` `current_review_period_to` DATE NULL ",
-			]);
+		setupTable('employees_appraisal_table', []);
 		setupIndexes('employees_appraisal_table', ['employee_designation_lookup','reviewing_officer',]);
 
 		setupTable('employees_appraisal_feedback_table', []);
@@ -133,7 +127,10 @@
 
 		setupTable('attendence_details_table', []);
 
-		setupTable('leave_table', []);
+		setupTable('leave_table', [
+				" ALTER TABLE `leave_table` CHANGE `approved_by` `approved_by` VARCHAR(40) NULL ",
+				" ALTER TABLE `leave_table` CHANGE `approved_by` `approved_by` VARCHAR(255) NULL ",
+			]);
 
 		setupTable('work_from_home_table', []);
 		setupIndexes('work_from_home_table', ['approved_by',]);

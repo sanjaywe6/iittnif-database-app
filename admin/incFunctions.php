@@ -5885,7 +5885,7 @@
 					],
 				],
 				'leave_table' => [
-					'leave_id' => [
+					'id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
@@ -5907,16 +5907,37 @@
 						],
 					],
 					'from_date' => [
-						'appgini' => "DATETIME NOT NULL",
+						'appgini' => "DATE NOT NULL",
 						'info' => [
 							'caption' => 'From date',
 							'description' => '',
 						],
 					],
 					'to_date' => [
-						'appgini' => "DATETIME NOT NULL",
+						'appgini' => "DATE NOT NULL",
 						'info' => [
 							'caption' => 'To date',
+							'description' => '',
+						],
+					],
+					'approval_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Under Consideration'",
+						'info' => [
+							'caption' => 'Approval status',
+							'description' => '',
+						],
+					],
+					'approval_remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Approval remarks',
+							'description' => '',
+						],
+					],
+					'approved_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Approved By',
 							'description' => '',
 						],
 					],

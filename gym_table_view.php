@@ -23,6 +23,7 @@
 		"`gym_table`.`in`" => "in",
 		"`gym_table`.`out`" => "out",
 		"if(`gym_table`.`date`,date_format(`gym_table`.`date`,'%d/%m/%Y'),'')" => "date",
+		"`gym_table`.`remarks`" => "remarks",
 		"`gym_table`.`created_by`" => "created_by",
 		"`gym_table`.`created_at`" => "created_at",
 		"`gym_table`.`last_updated_by`" => "last_updated_by",
@@ -39,6 +40,7 @@
 		7 => 7,
 		8 => 8,
 		9 => 9,
+		10 => 10,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -48,6 +50,7 @@
 		"`gym_table`.`in`" => "in",
 		"`gym_table`.`out`" => "out",
 		"if(`gym_table`.`date`,date_format(`gym_table`.`date`,'%d/%m/%Y'),'')" => "date",
+		"`gym_table`.`remarks`" => "remarks",
 		"`gym_table`.`created_by`" => "created_by",
 		"`gym_table`.`created_at`" => "created_at",
 		"`gym_table`.`last_updated_by`" => "last_updated_by",
@@ -60,6 +63,7 @@
 		"`gym_table`.`in`" => "In Time",
 		"`gym_table`.`out`" => "Out Time",
 		"`gym_table`.`date`" => "Date",
+		"`gym_table`.`remarks`" => "Remarks (Optional)",
 		"`gym_table`.`created_by`" => "Created by",
 		"`gym_table`.`created_at`" => "Created at",
 		"`gym_table`.`last_updated_by`" => "Last updated by",
@@ -73,6 +77,7 @@
 		"`gym_table`.`in`" => "in",
 		"`gym_table`.`out`" => "out",
 		"if(`gym_table`.`date`,date_format(`gym_table`.`date`,'%d/%m/%Y'),'')" => "date",
+		"`gym_table`.`remarks`" => "remarks",
 		"`gym_table`.`created_by`" => "created_by",
 		"`gym_table`.`created_at`" => "created_at",
 		"`gym_table`.`last_updated_by`" => "last_updated_by",
@@ -112,10 +117,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'In Time', 'Out Time', 'Date', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'username', 'in', 'out', 'date', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'In Time', 'Out Time', 'Date', 'Remarks (Optional)', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'username', 'in', 'out', 'date', 'remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/gym_table_templateTV.html';

@@ -19,15 +19,6 @@
 		<div class="col-md-8 col-lg-10" id="gym_table_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: Username -->
-				<div class="form-group gym_table-username">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3">Username</label>
-					<div class="col-lg-9">
-						<div class="form-control-static" id="username"><%%VALUE(username)%%></div>
-					</div>
-				</div>
-
 				<!-- Field: In Time -->
 				<div class="form-group gym_table-in">
 					<hr class="hidden-md hidden-lg">
@@ -46,12 +37,12 @@
 					</div>
 				</div>
 
-				<!-- Field: Date -->
-				<div class="form-group gym_table-date">
+				<!-- Field: Remarks (Optional) -->
+				<div class="form-group gym_table-remarks">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3">Date</label>
+					<label class="control-label col-lg-3" for="remarks">Remarks (Optional)</label>
 					<div class="col-lg-9">
-						<div class="form-control-static" id="date"><%%VALUE(date)%%></div>
+						<textarea class="form-control" name="remarks" id="remarks" rows=" 5"><%%VALUE(remarks)%%></textarea>
 					</div>
 				</div>
 

@@ -2121,6 +2121,13 @@
 							'description' => '',
 						],
 					],
+					'remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Remarks (Optional)',
+							'description' => '',
+						],
+					],
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
@@ -2186,6 +2193,13 @@
 							'description' => '',
 						],
 					],
+					'remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Remarks (Optional)',
+							'description' => '',
+						],
+					],
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
@@ -2248,6 +2262,13 @@
 						'appgini' => "DATE NULL",
 						'info' => [
 							'caption' => 'Date',
+							'description' => '',
+						],
+					],
+					'remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Remarks (Optional)',
 							'description' => '',
 						],
 					],
@@ -2341,6 +2362,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+					'remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Remarks (Optional)',
 							'description' => '',
 						],
 					],

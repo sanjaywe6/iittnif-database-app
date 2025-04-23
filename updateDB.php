@@ -24,15 +24,21 @@
 		setupTable('cycle_table', []);
 		setupIndexes('cycle_table', ['responsible_contact_person',]);
 
-		setupTable('cycle_usage_table', []);
+		setupTable('cycle_usage_table', [
+				" ALTER TABLE `cycle_usage_table` CHANGE `remarks` `remarks` TEXT NULL ",
+			]);
 		setupIndexes('cycle_usage_table', ['cycle_lookup',]);
 
-		setupTable('gym_table', []);
+		setupTable('gym_table', [
+				" ALTER TABLE `gym_table` CHANGE `remarks` `remarks` TEXT NULL ",
+			]);
 
-		setupTable('coffee_table', []);
+		setupTable('coffee_table', [
+				" ALTER TABLE `coffee_table` CHANGE `remarks` `remarks` TEXT NULL ",
+			]);
 
 		setupTable('cafeteria_table', [
-				" ALTER TABLE `cafeteria_table` CHANGE `type` `type` VARCHAR(255) NULL DEFAULT 'Breakfast' ",
+				" ALTER TABLE `cafeteria_table` CHANGE `remarks` `remarks` TEXT NULL ",
 			]);
 
 		setupTable('event_table', []);

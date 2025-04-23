@@ -20,6 +20,7 @@ function coffee_table_insert(&$error_message = '') {
 		'cup_type' => Request::val('cup_type', 'Cup'),
 		'time' => Request::val('time', ''),
 		'date' => parseCode('<%%creationDate%%>', true, true),
+		'remarks' => br2nl(Request::val('remarks', '')),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
@@ -90,6 +91,7 @@ function coffee_table_update(&$selected_id, &$error_message = '') {
 	$data = [
 		'cup_type' => Request::val('cup_type', ''),
 		'time' => Request::val('time', ''),
+		'remarks' => br2nl(Request::val('remarks', '')),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 	];
@@ -321,6 +323,7 @@ function coffee_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 		$jsReadOnly = '';
 		$jsReadOnly .= "\t\$j('#cup_type').replaceWith('<div class=\"form-control-static\" id=\"cup_type\">' + (\$j('#cup_type').val() || '') + '</div>'); \$j('#cup_type-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#time').replaceWith('<div class=\"form-control-static\" id=\"time\">' + (\$j('#time').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#remarks').replaceWith('<div class=\"form-control-static\" id=\"remarks\">' + (\$j('#remarks').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -364,6 +367,7 @@ function coffee_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 	$templateCode = str_replace('<%%UPLOADFILE(cup_type)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(time)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(remarks)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
@@ -383,6 +387,8 @@ function coffee_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 		$templateCode = str_replace('<%%URLVALUE(time)%%>', urlencode($urow['time']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date)%%>', app_datetime($row['date']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date)%%>', urlencode(app_datetime($urow['date'])), $templateCode);
+		$templateCode = str_replace('<%%VALUE(remarks)%%>', safe_html($urow['remarks'], $fieldsAreEditable), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(remarks)%%>', urlencode($urow['remarks']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
@@ -402,6 +408,8 @@ function coffee_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 		$templateCode = str_replace('<%%URLVALUE(time)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date)%%>', '<%%creationDate%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date)%%>', urlencode('<%%creationDate%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(remarks)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(remarks)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);

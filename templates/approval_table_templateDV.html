@@ -123,8 +123,8 @@
 				<div class="form-group approval_table-remarks_for_approval">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="remarks_for_approval">Remarks for Approval</label>
-					<div class="col-lg-9">
-						<textarea class="form-control" name="remarks_for_approval" id="remarks_for_approval" rows=" 5"><%%VALUE(remarks_for_approval)%%></textarea>
+					<div class="col-lg-9 has-nicedit">
+						<%%HTMLAREA(remarks_for_approval)%%>
 					</div>
 				</div>
 
@@ -228,6 +228,12 @@
 				setTimeout(AppGini.closeParentModal, 2000);
 			}
 
+			AppGini.once({
+				condition: function() { return bkLib != undefined; },
+				action: function() {
+					if($j('textarea#remarks_for_approval').length) new nicEditor({ fullPanel : true }).panelInstance('remarks_for_approval');
+				}
+			});
 
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
@@ -253,6 +259,9 @@
 				$j('#approval_table_dv_container-loading').addClass('hidden');
 				$j('#approval_table_dv_container').removeClass('hidden');
 			}
+
+			// try to detect rich text changes by adding 'input' handler after nicedit is loaded ...
+			AppGini.detectContentEditableChanges();
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 

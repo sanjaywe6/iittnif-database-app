@@ -14,13 +14,6 @@
 
 <div class="panel-body">
 	<fieldset class="form-horizontal">
-		<!-- Field: Username -->
-		<div class="form-group gym_table-username" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Username</label>
-			<div class="col-xs-9">
-				<div class="form-control-static"><%%VALUE(username)%%></div>
-			</div>
-		</div>
 		<!-- Field: In Time -->
 		<div class="form-group gym_table-in" style="border-bottom: dotted 1px #DDD;">
 			<label class="col-xs-3 control-label">In Time</label>
@@ -35,11 +28,11 @@
 				<div class="form-control-static"><%%VALUE(out)%%></div>
 			</div>
 		</div>
-		<!-- Field: Date -->
-		<div class="form-group gym_table-date" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Date</label>
+		<!-- Field: Remarks (Optional) -->
+		<div class="form-group gym_table-remarks" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Remarks (Optional)</label>
 			<div class="col-xs-9">
-				<div class="form-control-static"><%%COMBOTEXT(date)%%></div>
+				<div class="form-control-static"><%%VALUE(remarks)%%></div>
 			</div>
 		</div>
 	</fieldset>

@@ -22,6 +22,7 @@ function cafeteria_table_insert(&$error_message = '') {
 		'date' => parseCode('<%%creationDate%%>', true, true),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
+		'remarks' => br2nl(Request::val('remarks', '')),
 	];
 
 	// record owner is current user
@@ -92,6 +93,7 @@ function cafeteria_table_update(&$selected_id, &$error_message = '') {
 		'time' => Request::val('time', ''),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
+		'remarks' => br2nl(Request::val('remarks', '')),
 	];
 
 	// get existing values
@@ -321,6 +323,7 @@ function cafeteria_table_form($selectedId = '', $allowUpdate = true, $allowInser
 		$jsReadOnly = '';
 		$jsReadOnly .= "\t\$j('#type').replaceWith('<div class=\"form-control-static\" id=\"type\">' + (\$j('#type').val() || '') + '</div>'); \$j('#type-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#time').replaceWith('<div class=\"form-control-static\" id=\"time\">' + (\$j('#time').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#remarks').replaceWith('<div class=\"form-control-static\" id=\"remarks\">' + (\$j('#remarks').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -368,6 +371,7 @@ function cafeteria_table_form($selectedId = '', $allowUpdate = true, $allowInser
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_at)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(remarks)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
@@ -391,6 +395,8 @@ function cafeteria_table_form($selectedId = '', $allowUpdate = true, $allowInser
 		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(remarks)%%>', safe_html($urow['remarks'], $fieldsAreEditable), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(remarks)%%>', urlencode($urow['remarks']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
@@ -410,6 +416,8 @@ function cafeteria_table_form($selectedId = '', $allowUpdate = true, $allowInser
 		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', '<%%editingDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode('<%%editingDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(remarks)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(remarks)%%>', urlencode(''), $templateCode);
 	}
 
 	// process translations

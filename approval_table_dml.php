@@ -27,7 +27,7 @@ function approval_table_insert(&$error_message = '') {
 		'mode_of_purchase' => Request::val('mode_of_purchase', ''),
 		'others_if_any' => br2nl(Request::val('others_if_any', '')),
 		'approval_status' => Request::val('approval_status', 'Under Consideration'),
-		'remarks_for_approval' => br2nl(Request::val('remarks_for_approval', 'None')),
+		'remarks_for_approval' => Request::val('remarks_for_approval', 'None'),
 		'image' => Request::fileUpload('image', [
 			'maxSize' => 1024000,
 			'types' => 'jpg|jpeg|gif|png|webp',
@@ -177,7 +177,7 @@ function approval_table_update(&$selected_id, &$error_message = '') {
 		'mode_of_purchase' => Request::val('mode_of_purchase', ''),
 		'others_if_any' => br2nl(Request::val('others_if_any', '')),
 		'approval_status' => Request::val('approval_status', ''),
-		'remarks_for_approval' => br2nl(Request::val('remarks_for_approval', '')),
+		'remarks_for_approval' => Request::val('remarks_for_approval', ''),
 		'image' => Request::fileUpload('image', [
 			'maxSize' => 1024000,
 			'types' => 'jpg|jpeg|gif|png|webp',
@@ -337,7 +337,7 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		$combo_type->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($type_data))));
 		$combo_type->ListData = $combo_type->ListItem;
 	} else {
-		$combo_type->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Event;;Function;;Celebration;;Product;;Service;;Hiring;;Advance;;Local Travel;;Out Station Travel;;Outstation Stay;;Technology Development Project;;Centre of Excellence;;Hackathon;;Workshop;;Seminar;;Conference;;Skill Development;;Business Development;;Startups;;Training;;Operation Dronagiri;;HRD;;Navavishkar Stay;; Navavishkar Ride;;Office Gym;;Installation;;Refurbishment"))));
+		$combo_type->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Event;;Function;;Celebration;;Product;;Service;;Hiring;;Advance;;Local Travel;;Out Station Travel;;Outstation Stay;;Technology Development Project;;Centre of Excellence;;Hackathon;;Workshop;;Seminar;;Conference;;Skill Development;;Business Development;;Startups;;Training;;Operation Dronagiri;;HRD;;Navavishkar Stay;; Navavishkar Ride;;Office Gym;;Installation;;Refurbishment;;Consultancy"))));
 		$combo_type->ListData = $combo_type->ListItem;
 	}
 	$combo_type->SelectName = 'type';
@@ -585,7 +585,6 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		$jsReadOnly .= "\t\$j('#mode_of_purchase').replaceWith('<div class=\"form-control-static\" id=\"mode_of_purchase\">' + (\$j('#mode_of_purchase').val() || '') + '</div>'); \$j('#mode_of_purchase-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#others_if_any').replaceWith('<div class=\"form-control-static\" id=\"others_if_any\">' + (\$j('#others_if_any').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#approval_status').replaceWith('<div class=\"form-control-static\" id=\"approval_status\">' + (\$j('#approval_status').val() || '') + '</div>'); \$j('#approval_status-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\t\$j('#remarks_for_approval').replaceWith('<div class=\"form-control-static\" id=\"remarks_for_approval\">' + (\$j('#remarks_for_approval').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#image').replaceWith('<div class=\"form-control-static\" id=\"image\">' + (\$j('#image').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#other_file').parent().replaceWith(`<div class=\"form-control-static\" id=\"other_file\">\${\$j('#other_file').val() || ''}\${\$j('#other_file').val() ? '<a target=\"_blank\" class=\"hspacer-lg\" href=\"' + \$j('#other_file').val() + '\" target=\"_blank\"><i class=\"glyphicon glyphicon-globe\"></i></a>' : ''}</div>`);\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
@@ -689,7 +688,12 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', safe_html($urow['approval_status']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', html_attr($row['approval_status']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode($urow['approval_status']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(remarks_for_approval)%%>', safe_html($urow['remarks_for_approval'], $fieldsAreEditable), $templateCode);
+		if($fieldsAreEditable) {
+			$templateCode = str_replace('<%%HTMLAREA(remarks_for_approval)%%>', '<textarea name="remarks_for_approval" id="remarks_for_approval" rows="5">' . safe_html(htmlspecialchars_decode($row['remarks_for_approval'])) . '</textarea>', $templateCode);
+		} else {
+			$templateCode = str_replace('<%%HTMLAREA(remarks_for_approval)%%>', '<div id="remarks_for_approval" class="form-control-static">' . $row['remarks_for_approval'] . '</div>', $templateCode);
+		}
+		$templateCode = str_replace('<%%VALUE(remarks_for_approval)%%>', nl2br($row['remarks_for_approval']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(remarks_for_approval)%%>', urlencode($urow['remarks_for_approval']), $templateCode);
 		$row['image'] = ($row['image'] != '' ? $row['image'] : 'blank.gif');
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(image)%%>', safe_html($urow['image']), $templateCode);
@@ -731,8 +735,7 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		$templateCode = str_replace('<%%URLVALUE(others_if_any)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(approval_status)%%>', 'Under Consideration', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode('Under Consideration'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(remarks_for_approval)%%>', 'None', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(remarks_for_approval)%%>', urlencode('None'), $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(remarks_for_approval)%%>', '<textarea name="remarks_for_approval" id="remarks_for_approval" rows="5">None</textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(image)%%>', 'blank.gif', $templateCode);
 		$templateCode = str_replace('<%%VALUE(other_file)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(other_file)%%>', urlencode(''), $templateCode);

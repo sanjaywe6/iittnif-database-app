@@ -25,6 +25,7 @@ function cycle_usage_table_insert(&$error_message = '') {
 		'datetime_from' => Request::datetime('datetime_from', ''),
 		'datetime_to' => Request::datetime('datetime_to', ''),
 		'total_distance_run' => Request::val('total_distance_run', ''),
+		'remarks' => br2nl(Request::val('remarks', '')),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
@@ -102,6 +103,7 @@ function cycle_usage_table_update(&$selected_id, &$error_message = '') {
 		'datetime_from' => Request::datetime('datetime_from', ''),
 		'datetime_to' => Request::datetime('datetime_to', ''),
 		'total_distance_run' => Request::val('total_distance_run', ''),
+		'remarks' => br2nl(Request::val('remarks', '')),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 	];
@@ -394,6 +396,7 @@ function cycle_usage_table_form($selectedId = '', $allowUpdate = true, $allowIns
 		$jsReadOnly .= "\t\$j('#datetime_from').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"datetime_from\">' + (\$j('#datetime_from').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#datetime_to').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"datetime_to\">' + (\$j('#datetime_to').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#total_distance_run').replaceWith('<div class=\"form-control-static\" id=\"total_distance_run\">' + (\$j('#total_distance_run').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#remarks').replaceWith('<div class=\"form-control-static\" id=\"remarks\">' + (\$j('#remarks').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -435,6 +438,7 @@ function cycle_usage_table_form($selectedId = '', $allowUpdate = true, $allowIns
 	$templateCode = str_replace('<%%UPLOADFILE(datetime_from)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(datetime_to)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(total_distance_run)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(remarks)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
@@ -456,6 +460,8 @@ function cycle_usage_table_form($selectedId = '', $allowUpdate = true, $allowIns
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(total_distance_run)%%>', safe_html($urow['total_distance_run']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(total_distance_run)%%>', html_attr($row['total_distance_run']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(total_distance_run)%%>', urlencode($urow['total_distance_run']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(remarks)%%>', safe_html($urow['remarks'], $fieldsAreEditable), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(remarks)%%>', urlencode($urow['remarks']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
@@ -477,6 +483,8 @@ function cycle_usage_table_form($selectedId = '', $allowUpdate = true, $allowIns
 		$templateCode = str_replace('<%%URLVALUE(datetime_to)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(total_distance_run)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(total_distance_run)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(remarks)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(remarks)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);

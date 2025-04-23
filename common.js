@@ -522,6 +522,12 @@ function coffee_table_validateData(insertMode) {
 
 	return !errors;
 }
+function cafeteria_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
 function event_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;

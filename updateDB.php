@@ -31,6 +31,10 @@
 
 		setupTable('coffee_table', []);
 
+		setupTable('cafeteria_table', [
+				" ALTER TABLE `cafeteria_table` CHANGE `type` `type` VARCHAR(255) NULL DEFAULT 'Breakfast' ",
+			]);
+
 		setupTable('event_table', []);
 
 		setupTable('outcomes_expected_table', []);

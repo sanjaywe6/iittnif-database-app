@@ -52,6 +52,11 @@
 
 			return $data;
 		},
+		'cafeteria_table' => function($data, $options = []) {
+			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
+
+			return $data;
+		},
 		'event_table' => function($data, $options = []) {
 			if(isset($data['event_from_date'])) $data['event_from_date'] = guessMySQLDateTime($data['event_from_date']);
 			if(isset($data['event_to_date'])) $data['event_to_date'] = guessMySQLDateTime($data['event_to_date']);
@@ -491,6 +496,7 @@
 		'cycle_usage_table' => function($data, $options = []) { return true; },
 		'gym_table' => function($data, $options = []) { return true; },
 		'coffee_table' => function($data, $options = []) { return true; },
+		'cafeteria_table' => function($data, $options = []) { return true; },
 		'event_table' => function($data, $options = []) { return true; },
 		'outcomes_expected_table' => function($data, $options = []) { return true; },
 		'event_decision_table' => function($data, $options = []) { return true; },

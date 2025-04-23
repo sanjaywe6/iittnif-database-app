@@ -180,6 +180,13 @@
 					'group' => $tg[1],
 					'homepageShowCount' => 1
 				],
+				'cafeteria_table' => [
+					'Caption' => 'Cafeteria - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[1],
+					'homepageShowCount' => 1
+				],
 				'event_table' => [
 					'Caption' => 'Event - App',
 					'Description' => '<a href="https://lookerstudio.google.com/reporting/7a6332d1-62b0-4602-baf9-7da8e4033e98"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Event App Report</b></button></a>',
@@ -688,6 +695,7 @@
 			'cycle_usage_table' => ['Cycle usage table', '', 'table.gif', 'Facilities Apps'],
 			'gym_table' => ['Gym - App', '', 'table.gif', 'Facilities Apps'],
 			'coffee_table' => ['Coffee - App', '', 'table.gif', 'Facilities Apps'],
+			'cafeteria_table' => ['Cafeteria - App', '', 'table.gif', 'Facilities Apps'],
 			'event_table' => ['Event - App', '<a href="https://lookerstudio.google.com/reporting/7a6332d1-62b0-4602-baf9-7da8e4033e98"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Event App Report</b></button></a>', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'outcomes_expected_table' => ['Outcomes Expected Table', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'event_decision_table' => ['Decision - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
@@ -2226,6 +2234,71 @@
 						'appgini' => "VARCHAR(255) NULL DEFAULT 'Cup'",
 						'info' => [
 							'caption' => 'Cup Type',
+							'description' => '',
+						],
+					],
+					'time' => [
+						'appgini' => "TIME NULL",
+						'info' => [
+							'caption' => 'Time',
+							'description' => '',
+						],
+					],
+					'date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Date',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
+				'cafeteria_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Username',
+							'description' => '',
+						],
+					],
+					'type' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Breakfast'",
+						'info' => [
+							'caption' => 'Type',
 							'description' => '',
 						],
 					],
@@ -11039,6 +11112,7 @@
 			'cycle_usage_table' => [],
 			'gym_table' => [],
 			'coffee_table' => [],
+			'cafeteria_table' => [],
 			'event_table' => [],
 			'outcomes_expected_table' => [],
 			'event_decision_table' => [],
@@ -11274,6 +11348,8 @@
 			'gym_table' => [
 			],
 			'coffee_table' => [
+			],
+			'cafeteria_table' => [
 			],
 			'event_table' => [
 			],

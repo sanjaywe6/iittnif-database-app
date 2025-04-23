@@ -94,6 +94,8 @@
 		],
 		'coffee_table' => [
 		],
+		'cafeteria_table' => [
+		],
 		'event_table' => [
 		],
 		'outcomes_expected_table' => [

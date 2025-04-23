@@ -246,7 +246,7 @@ function suggestion_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 		$combo_department->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($department_data))));
 		$combo_department->ListData = $combo_department->ListItem;
 	} else {
-		$combo_department->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Event;;TIH Apps;;Function;;Celebration;;Product;;Service;;Hiring;;Advance;;Local Travel;;Out Station Travel;;Outstation Stay;;Technology Development Project;;Centre of Excellence;;Hackathon;;Workshop;;Seminar;;Conference;;Skill Development;;Business Development;;Startups;;Training;;Operation Dronagiri;;HRD;;Navavishkar Stay;; Navavishkar Ride;;Office Gym;;Installation;;Refurbishment"))));
+		$combo_department->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Event;;CEO Office;;PD Office;;IT Department;;Technical Department;;GNSS Lab;;GIS Lab;;LiDAR Lab;;TIH Apps;;Function;;Celebration;;Product;;Service;;Hiring;;Advance;;Local Travel;;Out Station Travel;;Outstation Stay;;Technology Development Project;;Centre of Excellence;;Hackathon;;Workshop;;Seminar;;Conference;;Skill Development;;Business Development;;Startups;;Training;;Operation Dronagiri;;HRD;;Navavishkar Stay;; Navavishkar Ride;;Office Gym;;Installation;;Refurbishment"))));
 		$combo_department->ListData = $combo_department->ListItem;
 	}
 	$combo_department->SelectName = 'department';

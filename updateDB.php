@@ -94,26 +94,12 @@
 
 		setupTable('asset_table', []);
 
-		setupTable('asset_allotment_table', [
-				"ALTER TABLE `asset_allotment_table` CHANGE `asset_details` `asset_lookup` INT UNSIGNED NULL ",
-			]);
+		setupTable('asset_allotment_table', []);
 		setupIndexes('asset_allotment_table', ['asset_lookup','select_employee','alloted_by',]);
 
-		setupTable('sub_asset_table', [
-				"ALTER TABLE `asset_table_1` RENAME `sub_asset_table`",
-				"UPDATE `membership_userrecords` SET `tableName`='sub_asset_table' WHERE `tableName`='asset_table_1'",
-				"UPDATE `membership_userpermissions` SET `tableName`='sub_asset_table' WHERE `tableName`='asset_table_1'",
-				"UPDATE `membership_grouppermissions` SET `tableName`='sub_asset_table' WHERE `tableName`='asset_table_1'",
-			]);
+		setupTable('sub_asset_table', []);
 
-		setupTable('sub_asset_allotment_table', [
-				"ALTER TABLE `asset_allotment_table_1` RENAME `sub_asset_allotment_table`",
-				"UPDATE `membership_userrecords` SET `tableName`='sub_asset_allotment_table' WHERE `tableName`='asset_allotment_table_1'",
-				"UPDATE `membership_userpermissions` SET `tableName`='sub_asset_allotment_table' WHERE `tableName`='asset_allotment_table_1'",
-				"UPDATE `membership_grouppermissions` SET `tableName`='sub_asset_allotment_table' WHERE `tableName`='asset_allotment_table_1'",
-				"ALTER TABLE `sub_asset_allotment_table` CHANGE `asset_details` `asset_lookup` INT UNSIGNED NULL ",
-				"ALTER TABLE `sub_asset_allotment_table` CHANGE `asset_lookup` `sub_asset_lookup` INT UNSIGNED NULL ",
-			]);
+		setupTable('sub_asset_allotment_table', []);
 		setupIndexes('sub_asset_allotment_table', ['sub_asset_lookup','select_employee','alloted_by',]);
 
 		setupTable('it_inventory_app', []);
@@ -147,6 +133,7 @@
 		setupTable('attendence_details_table', []);
 
 		setupTable('leave_table', []);
+		setupIndexes('leave_table', ['approved_by',]);
 
 		setupTable('work_from_home_table', []);
 		setupIndexes('work_from_home_table', ['approved_by',]);

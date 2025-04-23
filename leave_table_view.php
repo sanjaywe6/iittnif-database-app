@@ -26,7 +26,7 @@
 		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y %H:%i'),'')" => "to_date",
 		"`leave_table`.`approval_status`" => "approval_status",
 		"`leave_table`.`approval_remarks`" => "approval_remarks",
-		"`leave_table`.`approved_by`" => "approved_by",
+		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved By */" => "approved_by",
 		"`leave_table`.`created_by`" => "created_by",
 		"`leave_table`.`created_at`" => "created_at",
 		"`leave_table`.`last_updated_by`" => "last_updated_by",
@@ -59,7 +59,7 @@
 		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y %H:%i'),'')" => "to_date",
 		"`leave_table`.`approval_status`" => "approval_status",
 		"`leave_table`.`approval_remarks`" => "approval_remarks",
-		"`leave_table`.`approved_by`" => "approved_by",
+		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved By */" => "approved_by",
 		"`leave_table`.`created_by`" => "created_by",
 		"`leave_table`.`created_at`" => "created_at",
 		"`leave_table`.`last_updated_by`" => "last_updated_by",
@@ -75,7 +75,7 @@
 		"`leave_table`.`to_date`" => "To Date & Time (Date and Time for Full or Half Day)",
 		"`leave_table`.`approval_status`" => "Approval status",
 		"`leave_table`.`approval_remarks`" => "Approval remarks",
-		"`leave_table`.`approved_by`" => "Approved By",
+		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved By */" => "Approved By",
 		"`leave_table`.`created_by`" => "Created by",
 		"`leave_table`.`created_at`" => "Created at",
 		"`leave_table`.`last_updated_by`" => "Last updated by",
@@ -92,7 +92,7 @@
 		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y %H:%i'),'')" => "to_date",
 		"`leave_table`.`approval_status`" => "approval_status",
 		"`leave_table`.`approval_remarks`" => "approval_remarks",
-		"`leave_table`.`approved_by`" => "approved_by",
+		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved By */" => "approved_by",
 		"`leave_table`.`created_by`" => "created_by",
 		"`leave_table`.`created_at`" => "created_at",
 		"`leave_table`.`last_updated_by`" => "last_updated_by",
@@ -100,9 +100,9 @@
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = [];
+	$x->filterers = ['approved_by' => 'Approved By', ];
 
-	$x->QueryFrom = "`leave_table` ";
+	$x->QueryFrom = "`leave_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`leave_table`.`approved_by` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 

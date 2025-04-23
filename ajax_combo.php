@@ -456,10 +456,10 @@
 		],
 		'sub_asset_allotment_table' => [
 			'sub_asset_lookup' => [
-				'parent_table' => 'asset_table',
+				'parent_table' => 'sub_asset_table',
 				'parent_pk_field' => 'id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`asset_table`.`ClassificationofAssest`) || CHAR_LENGTH(`asset_table`.`ItemDescription`), CONCAT_WS(\'\', `asset_table`.`ClassificationofAssest`, \'::\', `asset_table`.`ItemDescription`), \'\')',
-				'parent_from' => '`asset_table` ',
+				'parent_caption' => 'IF(CHAR_LENGTH(`sub_asset_table`.`ClassificationofAssest`) || CHAR_LENGTH(`sub_asset_table`.`ItemDescription`), CONCAT_WS(\'\', `sub_asset_table`.`ClassificationofAssest`, \'::\', `sub_asset_table`.`ItemDescription`), \'\')',
+				'parent_from' => '`sub_asset_table` ',
 				'filterers' => [],
 				'custom_query' => '',
 				'inherit_permissions' => false,
@@ -666,6 +666,17 @@
 		'attendence_details_table' => [
 		],
 		'leave_table' => [
+			'approved_by' => [
+				'parent_table' => 'user_table',
+				'parent_pk_field' => 'user_id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
+				'parent_from' => '`user_table` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
 		],
 		'work_from_home_table' => [
 			'approved_by' => [

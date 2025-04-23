@@ -19,24 +19,6 @@
 		<div class="col-md-8 col-lg-10" id="r_and_d_progress_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: Username -->
-				<div class="form-group r_and_d_progress-username">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3">Username</label>
-					<div class="col-lg-9">
-						<div class="form-control-static" id="username"><%%VALUE(username)%%></div>
-					</div>
-				</div>
-
-				<!-- Field: Date -->
-				<div class="form-group r_and_d_progress-date">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3">Date</label>
-					<div class="col-lg-9">
-						<div class="form-control-static" id="date"><%%VALUE(date)%%></div>
-					</div>
-				</div>
-
 				<!-- Field: Labs -->
 				<div class="form-group r_and_d_progress-labs">
 					<hr class="hidden-md hidden-lg">
@@ -78,7 +60,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="pd_remarks">PD Remarks</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="pd_remarks" id="pd_remarks" value="<%%VALUE(pd_remarks)%%>">
+						<textarea class="form-control" name="pd_remarks" id="pd_remarks" rows=" 5"><%%VALUE(pd_remarks)%%></textarea>
 					</div>
 				</div>
 

@@ -19,7 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`sub_asset_allotment_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`asset_table1`.`ClassificationofAssest`) || CHAR_LENGTH(`asset_table1`.`ItemDescription`), CONCAT_WS('',   `asset_table1`.`ClassificationofAssest`, '::', `asset_table1`.`ItemDescription`), '') /* Sub Asset Details */" => "sub_asset_lookup",
+		"IF(    CHAR_LENGTH(`sub_asset_table1`.`ClassificationofAssest`) || CHAR_LENGTH(`sub_asset_table1`.`ItemDescription`), CONCAT_WS('',   `sub_asset_table1`.`ClassificationofAssest`, '::', `sub_asset_table1`.`ItemDescription`), '') /* Sub Asset Details */" => "sub_asset_lookup",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Select employee */" => "select_employee",
 		"`sub_asset_allotment_table`.`department`" => "department",
 		"if(`sub_asset_allotment_table`.`date`,date_format(`sub_asset_allotment_table`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -52,7 +52,7 @@
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`sub_asset_allotment_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`asset_table1`.`ClassificationofAssest`) || CHAR_LENGTH(`asset_table1`.`ItemDescription`), CONCAT_WS('',   `asset_table1`.`ClassificationofAssest`, '::', `asset_table1`.`ItemDescription`), '') /* Sub Asset Details */" => "sub_asset_lookup",
+		"IF(    CHAR_LENGTH(`sub_asset_table1`.`ClassificationofAssest`) || CHAR_LENGTH(`sub_asset_table1`.`ItemDescription`), CONCAT_WS('',   `sub_asset_table1`.`ClassificationofAssest`, '::', `sub_asset_table1`.`ItemDescription`), '') /* Sub Asset Details */" => "sub_asset_lookup",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Select employee */" => "select_employee",
 		"`sub_asset_allotment_table`.`department`" => "department",
 		"if(`sub_asset_allotment_table`.`date`,date_format(`sub_asset_allotment_table`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -68,7 +68,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`sub_asset_allotment_table`.`id`" => "ID",
-		"IF(    CHAR_LENGTH(`asset_table1`.`ClassificationofAssest`) || CHAR_LENGTH(`asset_table1`.`ItemDescription`), CONCAT_WS('',   `asset_table1`.`ClassificationofAssest`, '::', `asset_table1`.`ItemDescription`), '') /* Sub Asset Details */" => "Sub Asset Details",
+		"IF(    CHAR_LENGTH(`sub_asset_table1`.`ClassificationofAssest`) || CHAR_LENGTH(`sub_asset_table1`.`ItemDescription`), CONCAT_WS('',   `sub_asset_table1`.`ClassificationofAssest`, '::', `sub_asset_table1`.`ItemDescription`), '') /* Sub Asset Details */" => "Sub Asset Details",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Select employee */" => "Select employee",
 		"`sub_asset_allotment_table`.`department`" => "Department",
 		"`sub_asset_allotment_table`.`date`" => "Date",
@@ -85,7 +85,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`sub_asset_allotment_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`asset_table1`.`ClassificationofAssest`) || CHAR_LENGTH(`asset_table1`.`ItemDescription`), CONCAT_WS('',   `asset_table1`.`ClassificationofAssest`, '::', `asset_table1`.`ItemDescription`), '') /* Sub Asset Details */" => "sub_asset_lookup",
+		"IF(    CHAR_LENGTH(`sub_asset_table1`.`ClassificationofAssest`) || CHAR_LENGTH(`sub_asset_table1`.`ItemDescription`), CONCAT_WS('',   `sub_asset_table1`.`ClassificationofAssest`, '::', `sub_asset_table1`.`ItemDescription`), '') /* Sub Asset Details */" => "sub_asset_lookup",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Select employee */" => "select_employee",
 		"`sub_asset_allotment_table`.`department`" => "department",
 		"if(`sub_asset_allotment_table`.`date`,date_format(`sub_asset_allotment_table`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -102,7 +102,7 @@
 	// Lookup fields that can be used as filterers
 	$x->filterers = ['sub_asset_lookup' => 'Sub Asset Details', 'select_employee' => 'Select employee', 'alloted_by' => 'Alloted by', ];
 
-	$x->QueryFrom = "`sub_asset_allotment_table` LEFT JOIN `asset_table` as asset_table1 ON `asset_table1`.`id`=`sub_asset_allotment_table`.`sub_asset_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`sub_asset_allotment_table`.`select_employee` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`sub_asset_allotment_table`.`alloted_by` ";
+	$x->QueryFrom = "`sub_asset_allotment_table` LEFT JOIN `sub_asset_table` as sub_asset_table1 ON `sub_asset_table1`.`id`=`sub_asset_allotment_table`.`sub_asset_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`sub_asset_allotment_table`.`select_employee` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`sub_asset_allotment_table`.`alloted_by` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 

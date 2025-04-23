@@ -305,7 +305,7 @@ function sub_asset_allotment_table_form($selectedId = '', $allowUpdate = true, $
 							});
 							$j('[name="sub_asset_lookup"]').val(resp.results[0].id);
 							$j('[id=sub_asset_lookup-container-readonly__RAND__]').html('<span class="match-text" id="sub_asset_lookup-match-text">' + resp.results[0].text + '</span>');
-							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=asset_table_view_parent]').hide(); } else { $j('.btn[id=asset_table_view_parent]').show(); }
+							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=sub_asset_table_view_parent]').hide(); } else { $j('.btn[id=sub_asset_table_view_parent]').show(); }
 
 
 							if(typeof(sub_asset_lookup_update_autofills__RAND__) == 'function') sub_asset_lookup_update_autofills__RAND__();
@@ -328,7 +328,7 @@ function sub_asset_allotment_table_form($selectedId = '', $allowUpdate = true, $
 				AppGini.current_sub_asset_lookup__RAND__.value = e.added.id;
 				AppGini.current_sub_asset_lookup__RAND__.text = e.added.text;
 				$j('[name="sub_asset_lookup"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=asset_table_view_parent]').hide(); } else { $j('.btn[id=asset_table_view_parent]').show(); }
+				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=sub_asset_table_view_parent]').hide(); } else { $j('.btn[id=sub_asset_table_view_parent]').show(); }
 
 
 				if(typeof(sub_asset_lookup_update_autofills__RAND__) == 'function') sub_asset_lookup_update_autofills__RAND__();
@@ -342,7 +342,7 @@ function sub_asset_allotment_table_form($selectedId = '', $allowUpdate = true, $
 					success: function(resp) {
 						$j('[name="sub_asset_lookup"]').val(resp.results[0].id);
 						$j('[id=sub_asset_lookup-container-readonly__RAND__]').html('<span class="match-text" id="sub_asset_lookup-match-text">' + resp.results[0].text + '</span>');
-						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=asset_table_view_parent]').hide(); } else { $j('.btn[id=asset_table_view_parent]').show(); }
+						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=sub_asset_table_view_parent]').hide(); } else { $j('.btn[id=sub_asset_table_view_parent]').show(); }
 
 						if(typeof(sub_asset_lookup_update_autofills__RAND__) == 'function') sub_asset_lookup_update_autofills__RAND__();
 					}
@@ -357,7 +357,7 @@ function sub_asset_allotment_table_form($selectedId = '', $allowUpdate = true, $
 				data: { id: AppGini.current_sub_asset_lookup__RAND__.value, t: 'sub_asset_allotment_table', f: 'sub_asset_lookup' },
 				success: function(resp) {
 					$j('[id=sub_asset_lookup-container__RAND__], [id=sub_asset_lookup-container-readonly__RAND__]').html('<span class="match-text" id="sub_asset_lookup-match-text">' + resp.results[0].text + '</span>');
-					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=asset_table_view_parent]').hide(); } else { $j('.btn[id=asset_table_view_parent]').show(); }
+					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=sub_asset_table_view_parent]').hide(); } else { $j('.btn[id=sub_asset_table_view_parent]').show(); }
 
 					if(typeof(sub_asset_lookup_update_autofills__RAND__) == 'function') sub_asset_lookup_update_autofills__RAND__();
 				}
@@ -652,7 +652,7 @@ function sub_asset_allotment_table_form($selectedId = '', $allowUpdate = true, $
 	$templateCode = str_replace('<%%COMBOTEXT(returned_date)%%>', $combo_returned_date->GetHTML(true), $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
-	$lookup_fields = ['sub_asset_lookup' => ['asset_table', 'Sub Asset Details'], 'select_employee' => ['user_table', 'Select employee'], 'alloted_by' => ['user_table', 'Alloted by'], ];
+	$lookup_fields = ['sub_asset_lookup' => ['sub_asset_table', 'Sub Asset Details'], 'select_employee' => ['user_table', 'Select employee'], 'alloted_by' => ['user_table', 'Alloted by'], ];
 	foreach($lookup_fields as $luf => $ptfc) {
 		$pt_perm = getTablePermissions($ptfc[0]);
 

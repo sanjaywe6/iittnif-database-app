@@ -22,7 +22,7 @@ function r_and_d_progress_insert(&$error_message = '') {
 		'today_progress' => br2nl(Request::val('today_progress', '')),
 		'tomorrow_plan' => br2nl(Request::val('tomorrow_plan', '')),
 		'ceo_remarks' => br2nl(Request::val('ceo_remarks', '')),
-		'pd_remarks' => Request::val('pd_remarks', ''),
+		'pd_remarks' => br2nl(Request::val('pd_remarks', '')),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
@@ -95,7 +95,7 @@ function r_and_d_progress_update(&$selected_id, &$error_message = '') {
 		'today_progress' => br2nl(Request::val('today_progress', '')),
 		'tomorrow_plan' => br2nl(Request::val('tomorrow_plan', '')),
 		'ceo_remarks' => br2nl(Request::val('ceo_remarks', '')),
-		'pd_remarks' => Request::val('pd_remarks', ''),
+		'pd_remarks' => br2nl(Request::val('pd_remarks', '')),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 	];
@@ -407,8 +407,7 @@ function r_and_d_progress_form($selectedId = '', $allowUpdate = true, $allowInse
 		$templateCode = str_replace('<%%URLVALUE(tomorrow_plan)%%>', urlencode($urow['tomorrow_plan']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(ceo_remarks)%%>', safe_html($urow['ceo_remarks'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(ceo_remarks)%%>', urlencode($urow['ceo_remarks']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(pd_remarks)%%>', safe_html($urow['pd_remarks']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(pd_remarks)%%>', html_attr($row['pd_remarks']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(pd_remarks)%%>', safe_html($urow['pd_remarks'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(pd_remarks)%%>', urlencode($urow['pd_remarks']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);

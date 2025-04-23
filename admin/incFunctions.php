@@ -100,7 +100,7 @@
 
 		/* table groups */
 		$tg = [
-			'Approval App',
+			'Approvals &amp; Sanctions',
 			'Facilities Apps',
 			'Events / Meetings / Goals Apps',
 			'HRD Apps',
@@ -681,7 +681,7 @@
 			/* 'table_name' => ['table caption', 'homepage description', 'icon', 'table group name'] */   
 			'user_table' => ['User Table', '', 'table.gif', 'Suggestion App'],
 			'suggestion' => ['Suggestion - App', '', 'table.gif', 'Suggestion App'],
-			'approval_table' => ['Approval - App', '', 'table.gif', 'Approval App'],
+			'approval_table' => ['Approval - App', '', 'table.gif', 'Approvals &amp; Sanctions'],
 			'car_table' => ['Car - App', '<a href="https://lookerstudio.google.com/reporting/58f87367-3f09-42c0-a288-cf75f313cbed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Car App Report</b></button></a>', 'table.gif', 'Facilities Apps'],
 			'car_usage_table' => ['Car usage table', '', 'table.gif', 'Facilities Apps'],
 			'cycle_table' => ['Cycle - App', '', 'table.gif', 'Facilities Apps'],
@@ -6221,7 +6221,7 @@
 						],
 					],
 					'approved_by' => [
-						'appgini' => "VARCHAR(255) NULL",
+						'appgini' => "INT UNSIGNED NULL",
 						'info' => [
 							'caption' => 'Approved By',
 							'description' => '',
@@ -8424,7 +8424,7 @@
 						],
 					],
 					'pd_remarks' => [
-						'appgini' => "VARCHAR(255) NULL",
+						'appgini' => "TEXT NULL",
 						'info' => [
 							'caption' => 'PD Remarks',
 							'description' => '',
@@ -10913,7 +10913,7 @@
 				'user_table' => ['alloted_by', 'select_employee'],
 			],
 			'sub_asset_allotment_table' => [
-				'asset_table' => ['sub_asset_lookup'],
+				'sub_asset_table' => ['sub_asset_lookup'],
 				'user_table' => ['alloted_by', 'select_employee'],
 			],
 			'it_inventory_app' => [
@@ -10943,6 +10943,9 @@
 			],
 			'beyond_workingHours_table' => [
 				'user_table' => ['select_employee'],
+			],
+			'leave_table' => [
+				'user_table' => ['approved_by'],
 			],
 			'work_from_home_table' => [
 				'user_table' => ['approved_by'],
@@ -11353,7 +11356,7 @@
 			'sub_asset_table' => [
 			],
 			'sub_asset_allotment_table' => [
-				'sub_asset_lookup' => 'SELECT `asset_table`.`id`, IF(CHAR_LENGTH(`asset_table`.`ClassificationofAssest`) || CHAR_LENGTH(`asset_table`.`ItemDescription`), CONCAT_WS(\'\', `asset_table`.`ClassificationofAssest`, \'::\', `asset_table`.`ItemDescription`), \'\') FROM `asset_table` ORDER BY 2',
+				'sub_asset_lookup' => 'SELECT `sub_asset_table`.`id`, IF(CHAR_LENGTH(`sub_asset_table`.`ClassificationofAssest`) || CHAR_LENGTH(`sub_asset_table`.`ItemDescription`), CONCAT_WS(\'\', `sub_asset_table`.`ClassificationofAssest`, \'::\', `sub_asset_table`.`ItemDescription`), \'\') FROM `sub_asset_table` ORDER BY 2',
 				'select_employee' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 				'alloted_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
@@ -11394,6 +11397,7 @@
 			'attendence_details_table' => [
 			],
 			'leave_table' => [
+				'approved_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'work_from_home_table' => [
 				'approved_by' => 'SELECT `user_table`.`user_id`, `user_table`.`user_id` FROM `user_table` ORDER BY 2',

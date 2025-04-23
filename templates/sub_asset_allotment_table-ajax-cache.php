@@ -4,11 +4,11 @@
 ?>
 <script>
 	$j(function() {
-		var tn = 'asset_allotment_table';
+		var tn = 'sub_asset_allotment_table';
 
 		/* data for selected record, or defaults if none is selected */
 		var data = {
-			asset_lookup: <?php echo json_encode(['id' => $rdata['asset_lookup'], 'value' => $rdata['asset_lookup'], 'text' => $jdata['asset_lookup']]); ?>,
+			sub_asset_lookup: <?php echo json_encode(['id' => $rdata['sub_asset_lookup'], 'value' => $rdata['sub_asset_lookup'], 'text' => $jdata['sub_asset_lookup']]); ?>,
 			select_employee: <?php echo json_encode(['id' => $rdata['select_employee'], 'value' => $rdata['select_employee'], 'text' => $jdata['select_employee']]); ?>,
 			alloted_by: <?php echo json_encode(['id' => $rdata['alloted_by'], 'value' => $rdata['alloted_by'], 'text' => $jdata['alloted_by']]); ?>
 		};
@@ -18,11 +18,11 @@
 		AppGini.cache[tn] = AppGini.cache[tn] || AppGini.ajaxCache();
 		var cache = AppGini.cache[tn];
 
-		/* saved value for asset_lookup */
+		/* saved value for sub_asset_lookup */
 		cache.addCheck(function(u, d) {
 			if(u != 'ajax_combo.php') return false;
-			if(d.t == tn && d.f == 'asset_lookup' && d.id == data.asset_lookup.id)
-				return { results: [ data.asset_lookup ], more: false, elapsed: 0.01 };
+			if(d.t == tn && d.f == 'sub_asset_lookup' && d.id == data.sub_asset_lookup.id)
+				return { results: [ data.sub_asset_lookup ], more: false, elapsed: 0.01 };
 			return false;
 		});
 

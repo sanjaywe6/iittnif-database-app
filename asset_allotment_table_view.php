@@ -19,7 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`asset_allotment_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`asset_table1`.`ClassificationofAssest`) || CHAR_LENGTH(`asset_table1`.`ItemDescription`), CONCAT_WS('',   `asset_table1`.`ClassificationofAssest`, '::', `asset_table1`.`ItemDescription`), '') /* Asset Details */" => "asset_details",
+		"IF(    CHAR_LENGTH(`asset_table1`.`ClassificationofAssest`) || CHAR_LENGTH(`asset_table1`.`ItemDescription`), CONCAT_WS('',   `asset_table1`.`ClassificationofAssest`, '::', `asset_table1`.`ItemDescription`), '') /* Asset Details */" => "asset_lookup",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Select employee */" => "select_employee",
 		"`asset_allotment_table`.`department`" => "department",
 		"if(`asset_allotment_table`.`date`,date_format(`asset_allotment_table`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -52,7 +52,7 @@
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`asset_allotment_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`asset_table1`.`ClassificationofAssest`) || CHAR_LENGTH(`asset_table1`.`ItemDescription`), CONCAT_WS('',   `asset_table1`.`ClassificationofAssest`, '::', `asset_table1`.`ItemDescription`), '') /* Asset Details */" => "asset_details",
+		"IF(    CHAR_LENGTH(`asset_table1`.`ClassificationofAssest`) || CHAR_LENGTH(`asset_table1`.`ItemDescription`), CONCAT_WS('',   `asset_table1`.`ClassificationofAssest`, '::', `asset_table1`.`ItemDescription`), '') /* Asset Details */" => "asset_lookup",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Select employee */" => "select_employee",
 		"`asset_allotment_table`.`department`" => "department",
 		"if(`asset_allotment_table`.`date`,date_format(`asset_allotment_table`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -85,7 +85,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`asset_allotment_table`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`asset_table1`.`ClassificationofAssest`) || CHAR_LENGTH(`asset_table1`.`ItemDescription`), CONCAT_WS('',   `asset_table1`.`ClassificationofAssest`, '::', `asset_table1`.`ItemDescription`), '') /* Asset Details */" => "asset_details",
+		"IF(    CHAR_LENGTH(`asset_table1`.`ClassificationofAssest`) || CHAR_LENGTH(`asset_table1`.`ItemDescription`), CONCAT_WS('',   `asset_table1`.`ClassificationofAssest`, '::', `asset_table1`.`ItemDescription`), '') /* Asset Details */" => "asset_lookup",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Select employee */" => "select_employee",
 		"`asset_allotment_table`.`department`" => "department",
 		"if(`asset_allotment_table`.`date`,date_format(`asset_allotment_table`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -100,9 +100,9 @@
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['asset_details' => 'Asset Details', 'select_employee' => 'Select employee', 'alloted_by' => 'Alloted by', ];
+	$x->filterers = ['asset_lookup' => 'Asset Details', 'select_employee' => 'Select employee', 'alloted_by' => 'Alloted by', ];
 
-	$x->QueryFrom = "`asset_allotment_table` LEFT JOIN `asset_table` as asset_table1 ON `asset_table1`.`id`=`asset_allotment_table`.`asset_details` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`asset_allotment_table`.`select_employee` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`asset_allotment_table`.`alloted_by` ";
+	$x->QueryFrom = "`asset_allotment_table` LEFT JOIN `asset_table` as asset_table1 ON `asset_table1`.`id`=`asset_allotment_table`.`asset_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`asset_allotment_table`.`select_employee` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`asset_allotment_table`.`alloted_by` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -126,7 +126,7 @@
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'asset_allotment_table_view.php';
-	$x->TableTitle = 'Asset Allotment - App';
+	$x->TableTitle = 'Master Inventory Allotment - App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`asset_allotment_table`.`id`';
 	$x->DefaultSortField = '1';
@@ -134,7 +134,7 @@
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
 	$x->ColCaption = ['ID', 'Asset Details', 'Select employee', 'Department', 'Date', 'Purpose', 'Alloted by', 'Status', 'Returned date', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'asset_details', 'select_employee', 'department', 'date', 'purpose', 'alloted_by', 'status', 'returned_date', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColFieldName = ['id', 'asset_lookup', 'select_employee', 'department', 'date', 'purpose', 'alloted_by', 'status', 'returned_date', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
 	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
 
 	// template paths below are based on the app main directory

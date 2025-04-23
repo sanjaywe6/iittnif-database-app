@@ -25,6 +25,10 @@
 			'CustodianSignature' => getUploadDir(''),
 			'primary key' => 'id'
 		],
+		'sub_asset_table' => [
+			'CustodianSignature' => getUploadDir(''),
+			'primary key' => 'id'
+		],
 		'it_inventory_app' => [
 			'custodian_signature' => getUploadDir(''),
 			'primary key' => 'it_inventory_id'

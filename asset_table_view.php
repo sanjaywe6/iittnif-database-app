@@ -181,7 +181,7 @@
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'asset_table_view.php';
-	$x->TableTitle = 'Asset table';
+	$x->TableTitle = 'Master Inventory - App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`asset_table`.`id`';
 	$x->DefaultSortField = '1';

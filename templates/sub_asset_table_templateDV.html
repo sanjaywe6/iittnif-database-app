@@ -1,16 +1,14 @@
-<!-- To change the layout of the detail view form, we recommend using JS code in hooks/asset_table-dv.js rather than editing this file -->
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/sub_asset_table-dv.js rather than editing this file -->
 
 <div id="detail-view"></div>
 <div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
 
-<div id="asset_table_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+<div id="sub_asset_table_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
 
-<div class="panel-body hidden" id="asset_table_dv_container">
+<div class="panel-body hidden" id="sub_asset_table_dv_container">
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
-			<input type="hidden" id="asset_allotment_table_hclink" value="asset_allotment_table_view.php?filterer_asset_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
-			<input type="hidden" id="sub_asset_allotment_table_hclink" value="sub_asset_allotment_table_view.php?filterer_sub_asset_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -18,11 +16,11 @@
 
 	<div class="row">
 		<!-- form inputs -->
-		<div class="col-md-8 col-lg-10" id="asset_table_dv_form">
+		<div class="col-md-8 col-lg-10" id="sub_asset_table_dv_form">
 			<fieldset class="form-horizontal">
 
 				<!-- Field: ID -->
-				<div class="form-group asset_table-id">
+				<div class="form-group sub_asset_table-id">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3">ID</label>
 					<div class="col-lg-9">
@@ -31,7 +29,7 @@
 				</div>
 
 				<!-- Field: Date -->
-				<div class="form-group asset_table-Date">
+				<div class="form-group sub_asset_table-Date">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="Date-dd">Date</label>
 					<div class="col-lg-9">
@@ -40,7 +38,7 @@
 				</div>
 
 				<!-- Field: Classification of Assest -->
-				<div class="form-group asset_table-ClassificationofAssest">
+				<div class="form-group sub_asset_table-ClassificationofAssest">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="ClassificationofAssest">Classification of Assest</label>
 					<div class="col-lg-9">
@@ -49,7 +47,7 @@
 				</div>
 
 				<!-- Field: Sub Category -->
-				<div class="form-group asset_table-SubCategory">
+				<div class="form-group sub_asset_table-SubCategory">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="SubCategory">Sub Category</label>
 					<div class="col-lg-9">
@@ -58,7 +56,7 @@
 				</div>
 
 				<!-- Field: Asset Serial No -->
-				<div class="form-group asset_table-AssetSerialNo">
+				<div class="form-group sub_asset_table-AssetSerialNo">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="AssetSerialNo">Asset Serial No</label>
 					<div class="col-lg-9">
@@ -67,7 +65,7 @@
 				</div>
 
 				<!-- Field: QR & Bar Code -->
-				<div class="form-group asset_table-QRBarCode">
+				<div class="form-group sub_asset_table-QRBarCode">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="QRBarCode">QR & Bar Code</label>
 					<div class="col-lg-9">
@@ -76,7 +74,7 @@
 				</div>
 
 				<!-- Field: Asset No -->
-				<div class="form-group asset_table-AssetNo">
+				<div class="form-group sub_asset_table-AssetNo">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="AssetNo">Asset No</label>
 					<div class="col-lg-9">
@@ -85,7 +83,7 @@
 				</div>
 
 				<!-- Field: PO. NO. -->
-				<div class="form-group asset_table-PONO">
+				<div class="form-group sub_asset_table-PONO">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="PONO">PO. NO.</label>
 					<div class="col-lg-9">
@@ -94,7 +92,7 @@
 				</div>
 
 				<!-- Field: P/O Date -->
-				<div class="form-group asset_table-PODATE">
+				<div class="form-group sub_asset_table-PODATE">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="PODATE-dd">P/O Date</label>
 					<div class="col-lg-9">
@@ -103,7 +101,7 @@
 				</div>
 
 				<!-- Field: Partculars of Supplier Vendor Name & Address -->
-				<div class="form-group asset_table-particulars_of_supplier_name_address">
+				<div class="form-group sub_asset_table-particulars_of_supplier_name_address">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="particulars_of_supplier_name_address">Partculars of Supplier Vendor Name & Address</label>
 					<div class="col-lg-9">
@@ -112,7 +110,7 @@
 				</div>
 
 				<!-- Field: Item Description -->
-				<div class="form-group asset_table-ItemDescription">
+				<div class="form-group sub_asset_table-ItemDescription">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="ItemDescription">Item Description</label>
 					<div class="col-lg-9">
@@ -121,7 +119,7 @@
 				</div>
 
 				<!-- Field: Bill No. -->
-				<div class="form-group asset_table-BillNo">
+				<div class="form-group sub_asset_table-BillNo">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="BillNo">Bill No.</label>
 					<div class="col-lg-9">
@@ -130,7 +128,7 @@
 				</div>
 
 				<!-- Field: Bill Date -->
-				<div class="form-group asset_table-BillDate">
+				<div class="form-group sub_asset_table-BillDate">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="BillDate-dd">Bill Date</label>
 					<div class="col-lg-9">
@@ -139,7 +137,7 @@
 				</div>
 
 				<!-- Field: Quantity -->
-				<div class="form-group asset_table-QUANTITY">
+				<div class="form-group sub_asset_table-QUANTITY">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="QUANTITY">Quantity</label>
 					<div class="col-lg-9">
@@ -148,7 +146,7 @@
 				</div>
 
 				<!-- Field: Cost of the Asset (in INR) -->
-				<div class="form-group asset_table-CostoftheAssetinINR">
+				<div class="form-group sub_asset_table-CostoftheAssetinINR">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="CostoftheAssetinINR">Cost of the Asset (in INR)</label>
 					<div class="col-lg-9">
@@ -157,7 +155,7 @@
 				</div>
 
 				<!-- Field: Total Invoice Value (in INR) -->
-				<div class="form-group asset_table-TotalInvoiceValueinINR">
+				<div class="form-group sub_asset_table-TotalInvoiceValueinINR">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="TotalInvoiceValueinINR">Total Invoice Value (in INR)</label>
 					<div class="col-lg-9">
@@ -166,7 +164,7 @@
 				</div>
 
 				<!-- Field: Custody Department -->
-				<div class="form-group asset_table-CustodyDepartment">
+				<div class="form-group sub_asset_table-CustodyDepartment">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="CustodyDepartment">Custody Department</label>
 					<div class="col-lg-9">
@@ -175,7 +173,7 @@
 				</div>
 
 				<!-- Field: Custodian -->
-				<div class="form-group asset_table-custodian">
+				<div class="form-group sub_asset_table-custodian">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="custodian">Custodian</label>
 					<div class="col-lg-9">
@@ -184,7 +182,7 @@
 				</div>
 
 				<!-- Field: Custodian Signature -->
-				<div class="form-group asset_table-CustodianSignature">
+				<div class="form-group sub_asset_table-CustodianSignature">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3">Custodian Signature <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#CustodianSignature-description"></i></label>
 					<div class="col-lg-9">
@@ -206,7 +204,7 @@
 				</div>
 
 				<!-- Field: Remarks -->
-				<div class="form-group asset_table-remarks">
+				<div class="form-group sub_asset_table-remarks">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="remarks">Remarks</label>
 					<div class="col-lg-9">
@@ -219,7 +217,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2" id="asset_table_dv_action_buttons">
+		<div class="col-md-4 col-lg-2" id="sub_asset_table_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>
@@ -236,16 +234,6 @@
 		</div>
 	</div>
 
-
-	<!-- child records -->
-	<hr>
-	<div class="row">
-		<div class="col-lg-10 col-lg-offset-1">
-			<div id="asset_table-children" class="children-tabs">
-				<div class="text-center"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
-			</div>
-		</div>
-	</div>
 
 </div><!-- /div class="panel-body" -->
 	<script>
@@ -265,44 +253,12 @@
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-			$j('#asset_table_dv_container-loading').addClass('hidden');
-			$j('#asset_table_dv_container').removeClass('hidden');
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('asset_table', 'Date');
+			$j('#sub_asset_table_dv_container-loading').addClass('hidden');
+			$j('#sub_asset_table_dv_container').removeClass('hidden');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('sub_asset_table', 'Date');
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 
-			if(embedded_mode) {
-				/* hide links to children tables in embedded mode */
-				$j('.detail_view a[id$=_link]').remove();
-
-				/* append embedded mode to all links */
-				var append_embedded = function() {
-					$j('a[href]:not([href^="#"]):not([href^="javascript"]):not([href$="Embedded=1"]):not([href*="link.php?t="]):not([href^="mailto:"]):not([href$=".jpg"]):not([href$=".png"]):not([href$=".gif"])').each(
-						function() {
-							$j(this).attr('href', $j(this).attr('href') + '&Embedded=1');
-						}
-					);
-				}
-				setTimeout(append_embedded, 500);
-				setTimeout(append_embedded, 1500);
-				setTimeout(append_embedded, 2500);
-				setTimeout(append_embedded, 3500);
-			}
-
-			/* when no record is selected ('add new' mode) */
-			if(add_new_mode) {
-				/* hide links to children tables */
-				$j('.detail_view a[id$=_link]').remove();
-			} else {
-				post(
-					'parent-children.php', {
-						ParentTable: 'asset_table',
-						SelectedID: '<%%VALUE(id)%%>',
-						Operation: 'show-children'
-					},
-					'asset_table-children'
-				);
-			}
 
 			if(true /* !embedded_mode */) {
 				$j('.add_new_parent').click(function() {
@@ -320,7 +276,7 @@
 							localStorage.removeItem(pt + '_last_added_id');
 							AppGini.lookupText({
 								id: new_id,
-								table: 'asset_table',
+								table: 'sub_asset_table',
 								field: field_id,
 								callback: function(data) {
 									$j('#' + field_id + '-container').select2('data', data, true);
@@ -380,21 +336,21 @@
 				}
 			});
 
-			asset_tableUniqueFields.forEach(fieldName => enforce_uniqueness('asset_table', fieldName));
+			sub_asset_tableUniqueFields.forEach(fieldName => enforce_uniqueness('sub_asset_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
 				$j('body').append('<div id="admin-tools-appendix"></div>');
 				$j('#admin-tools-appendix').load(
-					'ajax_admin_tools.php?table=asset_table&id=<%%URLVALUE(id)%%>',
+					'ajax_admin_tools.php?table=sub_asset_table&id=<%%URLVALUE(id)%%>',
 					function(resp) {
 						if(!resp.length) return;
-						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=asset_table&id=<%%URLVALUE(id)%%>');
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=sub_asset_table&id=<%%URLVALUE(id)%%>');
 					}
 				);
 			}
 		});
 
-		var asset_tableUniqueFields = [
+		var sub_asset_tableUniqueFields = [
 		];
 	</script>

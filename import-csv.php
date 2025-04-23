@@ -197,10 +197,26 @@
 			return $data;
 		},
 		'asset_allotment_table' => function($data, $options = []) {
-			if(isset($data['asset_details'])) $data['asset_details'] = pkGivenLookupText($data['asset_details'], 'asset_allotment_table', 'asset_details');
+			if(isset($data['asset_lookup'])) $data['asset_lookup'] = pkGivenLookupText($data['asset_lookup'], 'asset_allotment_table', 'asset_lookup');
 			if(isset($data['select_employee'])) $data['select_employee'] = pkGivenLookupText($data['select_employee'], 'asset_allotment_table', 'select_employee');
 			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
 			if(isset($data['alloted_by'])) $data['alloted_by'] = pkGivenLookupText($data['alloted_by'], 'asset_allotment_table', 'alloted_by');
+			if(isset($data['returned_date'])) $data['returned_date'] = guessMySQLDateTime($data['returned_date']);
+
+			return $data;
+		},
+		'sub_asset_table' => function($data, $options = []) {
+			if(isset($data['Date'])) $data['Date'] = guessMySQLDateTime($data['Date']);
+			if(isset($data['PODATE'])) $data['PODATE'] = guessMySQLDateTime($data['PODATE']);
+			if(isset($data['BillDate'])) $data['BillDate'] = guessMySQLDateTime($data['BillDate']);
+
+			return $data;
+		},
+		'sub_asset_allotment_table' => function($data, $options = []) {
+			if(isset($data['sub_asset_lookup'])) $data['sub_asset_lookup'] = pkGivenLookupText($data['sub_asset_lookup'], 'sub_asset_allotment_table', 'sub_asset_lookup');
+			if(isset($data['select_employee'])) $data['select_employee'] = pkGivenLookupText($data['select_employee'], 'sub_asset_allotment_table', 'select_employee');
+			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
+			if(isset($data['alloted_by'])) $data['alloted_by'] = pkGivenLookupText($data['alloted_by'], 'sub_asset_allotment_table', 'alloted_by');
 			if(isset($data['returned_date'])) $data['returned_date'] = guessMySQLDateTime($data['returned_date']);
 
 			return $data;
@@ -499,6 +515,8 @@
 		'sdp_participants_college_details_table' => function($data, $options = []) { return true; },
 		'asset_table' => function($data, $options = []) { return true; },
 		'asset_allotment_table' => function($data, $options = []) { return true; },
+		'sub_asset_table' => function($data, $options = []) { return true; },
+		'sub_asset_allotment_table' => function($data, $options = []) { return true; },
 		'it_inventory_app' => function($data, $options = []) { return true; },
 		'it_inventory_billing_details' => function($data, $options = []) { return true; },
 		'it_inventory_allotment_table' => function($data, $options = []) { return true; },

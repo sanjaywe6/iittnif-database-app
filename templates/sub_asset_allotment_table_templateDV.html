@@ -1,11 +1,11 @@
-<!-- To change the layout of the detail view form, we recommend using JS code in hooks/asset_allotment_table-dv.js rather than editing this file -->
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/sub_asset_allotment_table-dv.js rather than editing this file -->
 
 <div id="detail-view"></div>
 <div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
 
-<div id="asset_allotment_table_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+<div id="sub_asset_allotment_table_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
 
-<div class="panel-body hidden" id="asset_allotment_table_dv_container">
+<div class="panel-body hidden" id="sub_asset_allotment_table_dv_container">
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
@@ -16,23 +16,23 @@
 
 	<div class="row">
 		<!-- form inputs -->
-		<div class="col-md-8 col-lg-10" id="asset_allotment_table_dv_form">
+		<div class="col-md-8 col-lg-10" id="sub_asset_allotment_table_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: Asset Details -->
-				<div class="form-group asset_allotment_table-asset_lookup">
+				<!-- Field: Sub Asset Details -->
+				<div class="form-group sub_asset_allotment_table-sub_asset_lookup">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Asset Details</label>
+					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Sub Asset Details</label>
 					<div class="col-lg-9">
 						<div class="form-control-static">
-							<span id="asset_lookup-readonly"><%%COMBOTEXT(asset_lookup)%%></span>
-							<%%PLINK(asset_lookup)%%>
+							<span id="sub_asset_lookup-readonly"><%%COMBOTEXT(sub_asset_lookup)%%></span>
+							<%%PLINK(sub_asset_lookup)%%>
 						</div>
 					</div>
 				</div>
 
 				<!-- Field: Select employee -->
-				<div class="form-group asset_allotment_table-select_employee">
+				<div class="form-group sub_asset_allotment_table-select_employee">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="select_employee" data-parent_link="view_parent_modal">Select employee</label>
 					<div class="col-lg-9">
@@ -41,7 +41,7 @@
 				</div>
 
 				<!-- Field: Department -->
-				<div class="form-group asset_allotment_table-department">
+				<div class="form-group sub_asset_allotment_table-department">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="department">Department</label>
 					<div class="col-lg-9">
@@ -50,7 +50,7 @@
 				</div>
 
 				<!-- Field: Date -->
-				<div class="form-group asset_allotment_table-date">
+				<div class="form-group sub_asset_allotment_table-date">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="date-dd">Date</label>
 					<div class="col-lg-9">
@@ -59,7 +59,7 @@
 				</div>
 
 				<!-- Field: Purpose -->
-				<div class="form-group asset_allotment_table-purpose">
+				<div class="form-group sub_asset_allotment_table-purpose">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="purpose">Purpose</label>
 					<div class="col-lg-9">
@@ -68,7 +68,7 @@
 				</div>
 
 				<!-- Field: Alloted by -->
-				<div class="form-group asset_allotment_table-alloted_by">
+				<div class="form-group sub_asset_allotment_table-alloted_by">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="alloted_by" data-parent_link="view_parent_modal">Alloted by</label>
 					<div class="col-lg-9">
@@ -77,7 +77,7 @@
 				</div>
 
 				<!-- Field: Status -->
-				<div class="form-group asset_allotment_table-status">
+				<div class="form-group sub_asset_allotment_table-status">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="status">Status</label>
 					<div class="col-lg-9">
@@ -86,7 +86,7 @@
 				</div>
 
 				<!-- Field: Returned date -->
-				<div class="form-group asset_allotment_table-returned_date">
+				<div class="form-group sub_asset_allotment_table-returned_date">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="returned_date-dd">Returned date</label>
 					<div class="col-lg-9">
@@ -99,7 +99,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2" id="asset_allotment_table_dv_action_buttons">
+		<div class="col-md-4 col-lg-2" id="sub_asset_allotment_table_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>
@@ -138,23 +138,23 @@
 			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
 				AppGini.once({
 					condition: function() {
-						return $j('.form-group.asset_allotment_table-select_employee')
+						return $j('.form-group.sub_asset_allotment_table-select_employee')
 									.find('.nicEdit-main, .select2-container, input[type=radio]')
 									.length > 0
 								// or read-only DV
 								|| (!$j('#update').length && !$j('#insert').length);
 					},
 					action: function() {
-						$j('#asset_allotment_table_dv_container-loading').addClass('hidden');
-						$j('#asset_allotment_table_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('asset_allotment_table', 'select_employee');
+						$j('#sub_asset_allotment_table_dv_container-loading').addClass('hidden');
+						$j('#sub_asset_allotment_table_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('sub_asset_allotment_table', 'select_employee');
 					},
 					timeout:  5000,
 					doActionOnTimeout:  true
 				});
 			} else {
-				$j('#asset_allotment_table_dv_container-loading').addClass('hidden');
-				$j('#asset_allotment_table_dv_container').removeClass('hidden');
+				$j('#sub_asset_allotment_table_dv_container-loading').addClass('hidden');
+				$j('#sub_asset_allotment_table_dv_container').removeClass('hidden');
 			}
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
@@ -176,7 +176,7 @@
 							localStorage.removeItem(pt + '_last_added_id');
 							AppGini.lookupText({
 								id: new_id,
-								table: 'asset_allotment_table',
+								table: 'sub_asset_allotment_table',
 								field: field_id,
 								callback: function(data) {
 									$j('#' + field_id + '-container').select2('data', data, true);
@@ -236,21 +236,21 @@
 				}
 			});
 
-			asset_allotment_tableUniqueFields.forEach(fieldName => enforce_uniqueness('asset_allotment_table', fieldName));
+			sub_asset_allotment_tableUniqueFields.forEach(fieldName => enforce_uniqueness('sub_asset_allotment_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
 				$j('body').append('<div id="admin-tools-appendix"></div>');
 				$j('#admin-tools-appendix').load(
-					'ajax_admin_tools.php?table=asset_allotment_table&id=<%%URLVALUE(id)%%>',
+					'ajax_admin_tools.php?table=sub_asset_allotment_table&id=<%%URLVALUE(id)%%>',
 					function(resp) {
 						if(!resp.length) return;
-						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=asset_allotment_table&id=<%%URLVALUE(id)%%>');
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=sub_asset_allotment_table&id=<%%URLVALUE(id)%%>');
 					}
 				);
 			}
 		});
 
-		var asset_allotment_tableUniqueFields = [
+		var sub_asset_allotment_tableUniqueFields = [
 		];
 	</script>

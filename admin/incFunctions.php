@@ -342,14 +342,28 @@
 					'homepageShowCount' => 1
 				],
 				'asset_table' => [
-					'Caption' => 'Asset table',
+					'Caption' => 'Master Inventory - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[9],
 					'homepageShowCount' => 1
 				],
 				'asset_allotment_table' => [
-					'Caption' => 'Asset Allotment - App',
+					'Caption' => 'Master Inventory Allotment - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[9],
+					'homepageShowCount' => 1
+				],
+				'sub_asset_table' => [
+					'Caption' => 'Sub Inventory - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[9],
+					'homepageShowCount' => 1
+				],
+				'sub_asset_allotment_table' => [
+					'Caption' => 'Sub Inventory Allotment - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[9],
@@ -697,8 +711,10 @@
 			'space_day_college_student_table' => ['Space day college student - App', 'HRD', 'table.gif', 'HRD Apps'],
 			'school_list' => ['School List - App', 'HRD', 'table.gif', 'HRD Apps'],
 			'sdp_participants_college_details_table' => ['SDP participants college details - App', 'SDP', 'table.gif', 'SDP Apps'],
-			'asset_table' => ['Asset table', '', 'table.gif', 'Asset Management Apps'],
-			'asset_allotment_table' => ['Asset Allotment - App', '', 'table.gif', 'Asset Management Apps'],
+			'asset_table' => ['Master Inventory - App', '', 'table.gif', 'Asset Management Apps'],
+			'asset_allotment_table' => ['Master Inventory Allotment - App', '', 'table.gif', 'Asset Management Apps'],
+			'sub_asset_table' => ['Sub Inventory - App', '', 'table.gif', 'Asset Management Apps'],
+			'sub_asset_allotment_table' => ['Sub Inventory Allotment - App', '', 'table.gif', 'Asset Management Apps'],
 			'it_inventory_app' => ['IT inventory - App', '', 'table.gif', 'Asset Management Apps'],
 			'it_inventory_billing_details' => ['IT inventory billing details - App', '', 'table.gif', 'Asset Management Apps'],
 			'it_inventory_allotment_table' => ['IT inventory allotment - App', '', 'table.gif', 'Asset Management Apps'],
@@ -4643,10 +4659,273 @@
 							'description' => '',
 						],
 					],
-					'asset_details' => [
+					'asset_lookup' => [
 						'appgini' => "INT UNSIGNED NULL",
 						'info' => [
 							'caption' => 'Asset Details',
+							'description' => '',
+						],
+					],
+					'select_employee' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Select employee',
+							'description' => '',
+						],
+					],
+					'department' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Department',
+							'description' => '',
+						],
+					],
+					'date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Date',
+							'description' => '',
+						],
+					],
+					'purpose' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Purpose',
+							'description' => '',
+						],
+					],
+					'alloted_by' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Alloted by',
+							'description' => '',
+						],
+					],
+					'status' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Status',
+							'description' => '',
+						],
+					],
+					'returned_date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Returned date',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
+				'sub_asset_table' => [
+					'id' => [
+						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'Date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Date',
+							'description' => '',
+						],
+					],
+					'ClassificationofAssest' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Classification of Assest',
+							'description' => '',
+						],
+					],
+					'SubCategory' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Sub Category',
+							'description' => '',
+						],
+					],
+					'AssetSerialNo' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Asset Serial No',
+							'description' => '',
+						],
+					],
+					'QRBarCode' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'QR & Bar Code',
+							'description' => '',
+						],
+					],
+					'AssetNo' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Asset No',
+							'description' => '',
+						],
+					],
+					'PONO' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'PO. NO.',
+							'description' => '',
+						],
+					],
+					'PODATE' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'P/O Date',
+							'description' => '',
+						],
+					],
+					'particulars_of_supplier_name_address' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Partculars of Supplier Vendor Name & Address',
+							'description' => '',
+						],
+					],
+					'ItemDescription' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Item Description',
+							'description' => '',
+						],
+					],
+					'BillNo' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Bill No.',
+							'description' => '',
+						],
+					],
+					'BillDate' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Bill Date',
+							'description' => '',
+						],
+					],
+					'QUANTITY' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Quantity',
+							'description' => '',
+						],
+					],
+					'CostoftheAssetinINR' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Cost of the Asset (in INR)',
+							'description' => '',
+						],
+					],
+					'TotalInvoiceValueinINR' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Total Invoice Value (in INR)',
+							'description' => '',
+						],
+					],
+					'CustodyDepartment' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Custody Department',
+							'description' => '',
+						],
+					],
+					'custodian' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Custodian',
+							'description' => '',
+						],
+					],
+					'CustodianSignature' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Custodian Signature',
+							'description' => 'Maximum file size allowed: 100 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
+						],
+					],
+					'remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Remarks',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
+				'sub_asset_allotment_table' => [
+					'id' => [
+						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'sub_asset_lookup' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Sub Asset Details',
 							'description' => '',
 						],
 					],
@@ -10630,7 +10909,11 @@
 				'internship_fellowship_details_app' => ['iittnif_id'],
 			],
 			'asset_allotment_table' => [
-				'asset_table' => ['asset_details'],
+				'asset_table' => ['asset_lookup'],
+				'user_table' => ['alloted_by', 'select_employee'],
+			],
+			'sub_asset_allotment_table' => [
+				'asset_table' => ['sub_asset_lookup'],
 				'user_table' => ['alloted_by', 'select_employee'],
 			],
 			'it_inventory_app' => [
@@ -10778,6 +11061,8 @@
 			'sdp_participants_college_details_table' => [],
 			'asset_table' => [],
 			'asset_allotment_table' => [],
+			'sub_asset_table' => [],
+			'sub_asset_allotment_table' => [],
 			'it_inventory_app' => [],
 			'it_inventory_billing_details' => [],
 			'it_inventory_allotment_table' => [],
@@ -11061,7 +11346,14 @@
 			'asset_table' => [
 			],
 			'asset_allotment_table' => [
-				'asset_details' => 'SELECT `asset_table`.`id`, IF(CHAR_LENGTH(`asset_table`.`ClassificationofAssest`) || CHAR_LENGTH(`asset_table`.`ItemDescription`), CONCAT_WS(\'\', `asset_table`.`ClassificationofAssest`, \'::\', `asset_table`.`ItemDescription`), \'\') FROM `asset_table` ORDER BY 2',
+				'asset_lookup' => 'SELECT `asset_table`.`id`, IF(CHAR_LENGTH(`asset_table`.`ClassificationofAssest`) || CHAR_LENGTH(`asset_table`.`ItemDescription`), CONCAT_WS(\'\', `asset_table`.`ClassificationofAssest`, \'::\', `asset_table`.`ItemDescription`), \'\') FROM `asset_table` ORDER BY 2',
+				'select_employee' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+				'alloted_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+			],
+			'sub_asset_table' => [
+			],
+			'sub_asset_allotment_table' => [
+				'sub_asset_lookup' => 'SELECT `asset_table`.`id`, IF(CHAR_LENGTH(`asset_table`.`ClassificationofAssest`) || CHAR_LENGTH(`asset_table`.`ItemDescription`), CONCAT_WS(\'\', `asset_table`.`ClassificationofAssest`, \'::\', `asset_table`.`ItemDescription`), \'\') FROM `asset_table` ORDER BY 2',
 				'select_employee' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 				'alloted_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],

@@ -709,6 +709,24 @@ function asset_allotment_table_validateData(insertMode) {
 
 	return !errors;
 }
+function sub_asset_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	// check file uploads (file type and size)
+	if($j('#CustodianSignature').val() && !AppGini.checkFileUpload('CustodianSignature', 'jpg|jpeg|gif|png|webp', 102400)) {
+		AppGini.scrollTo('CustodianSignature');
+		return false;
+	}
+
+	return !errors;
+}
+function sub_asset_allotment_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
 function it_inventory_app_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;

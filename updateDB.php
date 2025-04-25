@@ -13,7 +13,9 @@
 
 		setupTable('suggestion', []);
 
-		setupTable('approval_table', []);
+		setupTable('approval_table', [
+				" ALTER TABLE `approval_table` CHANGE `approval_from` `approval_from` VARCHAR(255) NULL DEFAULT 'CEO' ",
+			]);
 		setupIndexes('approval_table', ['person_responsbility',]);
 
 		setupTable('car_table', []);
@@ -24,22 +26,14 @@
 		setupTable('cycle_table', []);
 		setupIndexes('cycle_table', ['responsible_contact_person',]);
 
-		setupTable('cycle_usage_table', [
-				" ALTER TABLE `cycle_usage_table` CHANGE `remarks` `remarks` TEXT NULL ",
-			]);
+		setupTable('cycle_usage_table', []);
 		setupIndexes('cycle_usage_table', ['cycle_lookup',]);
 
-		setupTable('gym_table', [
-				" ALTER TABLE `gym_table` CHANGE `remarks` `remarks` TEXT NULL ",
-			]);
+		setupTable('gym_table', []);
 
-		setupTable('coffee_table', [
-				" ALTER TABLE `coffee_table` CHANGE `remarks` `remarks` TEXT NULL ",
-			]);
+		setupTable('coffee_table', []);
 
-		setupTable('cafeteria_table', [
-				" ALTER TABLE `cafeteria_table` CHANGE `remarks` `remarks` TEXT NULL ",
-			]);
+		setupTable('cafeteria_table', []);
 
 		setupTable('event_table', []);
 

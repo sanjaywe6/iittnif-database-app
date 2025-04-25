@@ -16,6 +16,7 @@ function approval_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'approval_from' => Request::val('approval_from', 'CEO'),
 		'type' => Request::val('type', ''),
 		'description' => br2nl(Request::val('description', '')),
 		'quantity' => Request::val('quantity', ''),
@@ -166,6 +167,7 @@ function approval_table_update(&$selected_id, &$error_message = '') {
 	if(!check_record_permission('approval_table', $selected_id, 'edit')) return false;
 
 	$data = [
+		'approval_from' => Request::val('approval_from', ''),
 		'type' => Request::val('type', ''),
 		'description' => br2nl(Request::val('description', '')),
 		'quantity' => Request::val('quantity', ''),
@@ -326,6 +328,21 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 
 	// unique random identifier
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
+	// combobox: approval_from
+	$combo_approval_from = new Combo;
+	$combo_approval_from->ListType = 0;
+	$combo_approval_from->MultipleSeparator = ', ';
+	$combo_approval_from->ListBoxHeight = 10;
+	$combo_approval_from->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/approval_table.approval_from.csv')) {
+		$approval_from_data = addslashes(implode('', @file(__DIR__ . '/hooks/approval_table.approval_from.csv')));
+		$combo_approval_from->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($approval_from_data))));
+		$combo_approval_from->ListData = $combo_approval_from->ListItem;
+	} else {
+		$combo_approval_from->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("CEO;;PD"))));
+		$combo_approval_from->ListData = $combo_approval_from->ListItem;
+	}
+	$combo_approval_from->SelectName = 'approval_from';
 	// combobox: type
 	$combo_type = new Combo;
 	$combo_type->ListType = 0;
@@ -378,6 +395,7 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		if(!($row = getRecord('approval_table', $selectedId))) {
 			return error_message($Translation['No records found'], 'approval_table_view.php', false);
 		}
+		$combo_approval_from->SelectedData = $row['approval_from'];
 		$combo_type->SelectedData = $row['type'];
 		$combo_person_responsbility->SelectedData = $row['person_responsbility'];
 		$combo_mode_of_purchase->SelectedData = $row['mode_of_purchase'];
@@ -388,11 +406,13 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_approval_from->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('CEO'));
+		$combo_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 		$combo_person_responsbility->SelectedData = $filterer_person_responsbility;
-		$combo_mode_of_purchase->SelectedText = (isset($filterField[1]) && $filterField[1] == '10' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '12' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
+		$combo_mode_of_purchase->SelectedText = (isset($filterField[1]) && $filterField[1] == '11' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '13' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 	}
+	$combo_approval_from->Render();
 	$combo_type->Render();
 	$combo_person_responsbility->HTML = '<span id="person_responsbility-container' . $rnd1 . '"></span><input type="hidden" name="person_responsbility" id="person_responsbility' . $rnd1 . '" value="' . html_attr($combo_person_responsbility->SelectedData) . '">';
 	$combo_person_responsbility->MatchText = '<span id="person_responsbility-container-readonly' . $rnd1 . '"></span><input type="hidden" name="person_responsbility" id="person_responsbility' . $rnd1 . '" value="' . html_attr($combo_person_responsbility->SelectedData) . '">';
@@ -573,6 +593,7 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
+		$jsReadOnly .= "\t\$j('#approval_from').replaceWith('<div class=\"form-control-static\" id=\"approval_from\">' + (\$j('#approval_from').val() || '') + '</div>'); \$j('#approval_from-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#type').replaceWith('<div class=\"form-control-static\" id=\"type\">' + (\$j('#type').val() || '') + '</div>'); \$j('#type-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#description').replaceWith('<div class=\"form-control-static\" id=\"description\">' + (\$j('#description').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#quantity').replaceWith('<div class=\"form-control-static\" id=\"quantity\">' + (\$j('#quantity').val() || '') + '</div>');\n";
@@ -597,6 +618,8 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 	}
 
 	// process combos
+	$templateCode = str_replace('<%%COMBO(approval_from)%%>', $combo_approval_from->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(approval_from)%%>', $combo_approval_from->SelectedData, $templateCode);
 	$templateCode = str_replace('<%%COMBO(type)%%>', $combo_type->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(type)%%>', $combo_type->SelectedData, $templateCode);
 	$templateCode = str_replace('<%%COMBO(person_responsbility)%%>', $combo_person_responsbility->HTML, $templateCode);
@@ -625,6 +648,7 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approval_from)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(type)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(description)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(quantity)%%>', '', $templateCode);
@@ -658,6 +682,9 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_from)%%>', safe_html($urow['approval_from']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_from)%%>', html_attr($row['approval_from']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_from)%%>', urlencode($urow['approval_from']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(type)%%>', safe_html($urow['type']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(type)%%>', html_attr($row['type']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(type)%%>', urlencode($urow['type']), $templateCode);
@@ -713,6 +740,8 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_from)%%>', 'CEO', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_from)%%>', urlencode('CEO'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(type)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(type)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(description)%%>', '', $templateCode);

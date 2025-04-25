@@ -1658,6 +1658,13 @@
 							'description' => '',
 						],
 					],
+					'approval_from' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'CEO'",
+						'info' => [
+							'caption' => 'Approval From',
+							'description' => '',
+						],
+					],
 					'type' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [

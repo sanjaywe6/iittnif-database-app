@@ -817,12 +817,6 @@ function employees_appraisal_table_validateData(insertMode) {
 
 	return !errors;
 }
-function employees_appraisal_feedback_table_validateData(insertMode) {
-	$j('.has-error').removeClass('has-error');
-	var errors = false;
-
-	return !errors;
-}
 function beyond_workingHours_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;

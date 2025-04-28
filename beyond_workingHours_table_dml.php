@@ -16,12 +16,13 @@ function beyond_workingHours_table_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'select_employee' => Request::lookup('select_employee', ''),
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'reson_for_overtime' => br2nl(Request::val('reson_for_overtime', '')),
 		'start_datetime' => Request::datetime('start_datetime', ''),
 		'end_datetime' => Request::datetime('end_datetime', ''),
 		'approval_status' => Request::val('approval_status', 'Under Consideration'),
 		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
+		'approved_by' => Request::lookup('approved_by', ''),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
@@ -90,13 +91,12 @@ function beyond_workingHours_table_update(&$selected_id, &$error_message = '') {
 	if(!check_record_permission('beyond_workingHours_table', $selected_id, 'edit')) return false;
 
 	$data = [
-		'select_employee' => Request::lookup('select_employee', ''),
 		'reson_for_overtime' => br2nl(Request::val('reson_for_overtime', '')),
 		'start_datetime' => Request::datetime('start_datetime', ''),
 		'end_datetime' => Request::datetime('end_datetime', ''),
 		'approval_status' => Request::val('approval_status', ''),
 		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
-		'approved_by' => parseCode('<%%editorUsername%%>', false),
+		'approved_by' => Request::lookup('approved_by', ''),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 	];
@@ -186,14 +186,12 @@ function beyond_workingHours_table_form($selectedId = '', $allowUpdate = true, $
 	$showSaveAsCopy = !$dvprint && ($allowInsert && $hasSelectedId && !$noSaveAsCopy);
 	$fieldsAreEditable = !$dvprint && (($allowInsert && !$hasSelectedId) || ($allowUpdate && $hasSelectedId) || $showSaveAsCopy);
 
-	$filterer_select_employee = Request::val('filterer_select_employee');
+	$filterer_approved_by = Request::val('filterer_approved_by');
 
 	// populate filterers, starting from children to grand-parents
 
 	// unique random identifier
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
-	// combobox: select_employee
-	$combo_select_employee = new DataCombo;
 	// combobox: approval_status
 	$combo_approval_status = new Combo;
 	$combo_approval_status->ListType = 0;
@@ -209,59 +207,61 @@ function beyond_workingHours_table_form($selectedId = '', $allowUpdate = true, $
 		$combo_approval_status->ListData = $combo_approval_status->ListItem;
 	}
 	$combo_approval_status->SelectName = 'approval_status';
+	// combobox: approved_by
+	$combo_approved_by = new DataCombo;
 
 	if($hasSelectedId) {
 		if(!($row = getRecord('beyond_workingHours_table', $selectedId))) {
 			return error_message($Translation['No records found'], 'beyond_workingHours_table_view.php', false);
 		}
-		$combo_select_employee->SelectedData = $row['select_employee'];
 		$combo_approval_status->SelectedData = $row['approval_status'];
+		$combo_approved_by->SelectedData = $row['approved_by'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
 	} else {
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_select_employee->SelectedData = $filterer_select_employee;
 		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '7' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
+		$combo_approved_by->SelectedData = $filterer_approved_by;
 	}
-	$combo_select_employee->HTML = '<span id="select_employee-container' . $rnd1 . '"></span><input type="hidden" name="select_employee" id="select_employee' . $rnd1 . '" value="' . html_attr($combo_select_employee->SelectedData) . '">';
-	$combo_select_employee->MatchText = '<span id="select_employee-container-readonly' . $rnd1 . '"></span><input type="hidden" name="select_employee" id="select_employee' . $rnd1 . '" value="' . html_attr($combo_select_employee->SelectedData) . '">';
 	$combo_approval_status->Render();
+	$combo_approved_by->HTML = '<span id="approved_by-container' . $rnd1 . '"></span><input type="hidden" name="approved_by" id="approved_by' . $rnd1 . '" value="' . html_attr($combo_approved_by->SelectedData) . '">';
+	$combo_approved_by->MatchText = '<span id="approved_by-container-readonly' . $rnd1 . '"></span><input type="hidden" name="approved_by" id="approved_by' . $rnd1 . '" value="' . html_attr($combo_approved_by->SelectedData) . '">';
 
 	ob_start();
 	?>
 
 	<script>
 		// initial lookup values
-		AppGini.current_select_employee__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['select_employee'] : htmlspecialchars($filterer_select_employee, ENT_QUOTES)); ?>"};
+		AppGini.current_approved_by__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['approved_by'] : htmlspecialchars($filterer_approved_by, ENT_QUOTES)); ?>"};
 
 		$j(function() {
 			setTimeout(function() {
-				if(typeof(select_employee_reload__RAND__) == 'function') select_employee_reload__RAND__();
+				if(typeof(approved_by_reload__RAND__) == 'function') approved_by_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
-		function select_employee_reload__RAND__() {
+		function approved_by_reload__RAND__() {
 		<?php if($fieldsAreEditable) { ?>
 
-			$j("#select_employee-container__RAND__").select2({
+			$j("#approved_by-container__RAND__").select2({
 				/* initial default value */
 				initSelection: function(e, c) {
 					$j.ajax({
 						url: 'ajax_combo.php',
 						dataType: 'json',
-						data: { id: AppGini.current_select_employee__RAND__.value, t: 'beyond_workingHours_table', f: 'select_employee' },
+						data: { id: AppGini.current_approved_by__RAND__.value, t: 'beyond_workingHours_table', f: 'approved_by' },
 						success: function(resp) {
 							c({
 								id: resp.results[0].id,
 								text: resp.results[0].text
 							});
-							$j('[name="select_employee"]').val(resp.results[0].id);
-							$j('[id=select_employee-container-readonly__RAND__]').html('<span class="match-text" id="select_employee-match-text">' + resp.results[0].text + '</span>');
+							$j('[name="approved_by"]').val(resp.results[0].id);
+							$j('[id=approved_by-container-readonly__RAND__]').html('<span class="match-text" id="approved_by-match-text">' + resp.results[0].text + '</span>');
 							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
 
 
-							if(typeof(select_employee_update_autofills__RAND__) == 'function') select_employee_update_autofills__RAND__();
+							if(typeof(approved_by_update_autofills__RAND__) == 'function') approved_by_update_autofills__RAND__();
 						}
 					});
 				},
@@ -273,31 +273,31 @@ function beyond_workingHours_table_form($selectedId = '', $allowUpdate = true, $
 					url: 'ajax_combo.php',
 					dataType: 'json',
 					cache: true,
-					data: function(term, page) { return { s: term, p: page, t: 'beyond_workingHours_table', f: 'select_employee' }; },
+					data: function(term, page) { return { s: term, p: page, t: 'beyond_workingHours_table', f: 'approved_by' }; },
 					results: function(resp, page) { return resp; }
 				},
 				escapeMarkup: function(str) { return str; }
 			}).on('change', function(e) {
-				AppGini.current_select_employee__RAND__.value = e.added.id;
-				AppGini.current_select_employee__RAND__.text = e.added.text;
-				$j('[name="select_employee"]').val(e.added.id);
+				AppGini.current_approved_by__RAND__.value = e.added.id;
+				AppGini.current_approved_by__RAND__.text = e.added.text;
+				$j('[name="approved_by"]').val(e.added.id);
 				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
 
 
-				if(typeof(select_employee_update_autofills__RAND__) == 'function') select_employee_update_autofills__RAND__();
+				if(typeof(approved_by_update_autofills__RAND__) == 'function') approved_by_update_autofills__RAND__();
 			});
 
-			if(!$j("#select_employee-container__RAND__").length) {
+			if(!$j("#approved_by-container__RAND__").length) {
 				$j.ajax({
 					url: 'ajax_combo.php',
 					dataType: 'json',
-					data: { id: AppGini.current_select_employee__RAND__.value, t: 'beyond_workingHours_table', f: 'select_employee' },
+					data: { id: AppGini.current_approved_by__RAND__.value, t: 'beyond_workingHours_table', f: 'approved_by' },
 					success: function(resp) {
-						$j('[name="select_employee"]').val(resp.results[0].id);
-						$j('[id=select_employee-container-readonly__RAND__]').html('<span class="match-text" id="select_employee-match-text">' + resp.results[0].text + '</span>');
+						$j('[name="approved_by"]').val(resp.results[0].id);
+						$j('[id=approved_by-container-readonly__RAND__]').html('<span class="match-text" id="approved_by-match-text">' + resp.results[0].text + '</span>');
 						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
 
-						if(typeof(select_employee_update_autofills__RAND__) == 'function') select_employee_update_autofills__RAND__();
+						if(typeof(approved_by_update_autofills__RAND__) == 'function') approved_by_update_autofills__RAND__();
 					}
 				});
 			}
@@ -307,12 +307,12 @@ function beyond_workingHours_table_form($selectedId = '', $allowUpdate = true, $
 			$j.ajax({
 				url: 'ajax_combo.php',
 				dataType: 'json',
-				data: { id: AppGini.current_select_employee__RAND__.value, t: 'beyond_workingHours_table', f: 'select_employee' },
+				data: { id: AppGini.current_approved_by__RAND__.value, t: 'beyond_workingHours_table', f: 'approved_by' },
 				success: function(resp) {
-					$j('[id=select_employee-container__RAND__], [id=select_employee-container-readonly__RAND__]').html('<span class="match-text" id="select_employee-match-text">' + resp.results[0].text + '</span>');
+					$j('[id=approved_by-container__RAND__], [id=approved_by-container-readonly__RAND__]').html('<span class="match-text" id="approved_by-match-text">' + resp.results[0].text + '</span>');
 					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
 
-					if(typeof(select_employee_update_autofills__RAND__) == 'function') select_employee_update_autofills__RAND__();
+					if(typeof(approved_by_update_autofills__RAND__) == 'function') approved_by_update_autofills__RAND__();
 				}
 			});
 		<?php } ?>
@@ -403,13 +403,13 @@ function beyond_workingHours_table_form($selectedId = '', $allowUpdate = true, $
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\t\$j('#select_employee').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\t\$j('#select_employee_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\t\$j('#reson_for_overtime').replaceWith('<div class=\"form-control-static\" id=\"reson_for_overtime\">' + (\$j('#reson_for_overtime').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#start_datetime').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"start_datetime\">' + (\$j('#start_datetime').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#end_datetime').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"end_datetime\">' + (\$j('#end_datetime').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#approval_status').replaceWith('<div class=\"form-control-static\" id=\"approval_status\">' + (\$j('#approval_status').val() || '') + '</div>'); \$j('#approval_status-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#approval_remarks').replaceWith('<div class=\"form-control-static\" id=\"approval_remarks\">' + (\$j('#approval_remarks').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#approved_by').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#approved_by_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -424,14 +424,14 @@ function beyond_workingHours_table_form($selectedId = '', $allowUpdate = true, $
 	}
 
 	// process combos
-	$templateCode = str_replace('<%%COMBO(select_employee)%%>', $combo_select_employee->HTML, $templateCode);
-	$templateCode = str_replace('<%%COMBOTEXT(select_employee)%%>', $combo_select_employee->MatchText, $templateCode);
-	$templateCode = str_replace('<%%URLCOMBOTEXT(select_employee)%%>', urlencode($combo_select_employee->MatchText), $templateCode);
 	$templateCode = str_replace('<%%COMBO(approval_status)%%>', $combo_approval_status->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(approval_status)%%>', $combo_approval_status->SelectedData, $templateCode);
+	$templateCode = str_replace('<%%COMBO(approved_by)%%>', $combo_approved_by->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(approved_by)%%>', $combo_approved_by->MatchText, $templateCode);
+	$templateCode = str_replace('<%%URLCOMBOTEXT(approved_by)%%>', urlencode($combo_approved_by->MatchText), $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
-	$lookup_fields = ['select_employee' => ['user_table', 'Select Employee'], ];
+	$lookup_fields = ['approved_by' => ['user_table', 'Approved by'], ];
 	foreach($lookup_fields as $luf => $ptfc) {
 		$pt_perm = getTablePermissions($ptfc[0]);
 
@@ -448,7 +448,7 @@ function beyond_workingHours_table_form($selectedId = '', $allowUpdate = true, $
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(select_employee)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(reson_for_overtime)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(start_datetime)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(end_datetime)%%>', '', $templateCode);
@@ -465,9 +465,8 @@ function beyond_workingHours_table_form($selectedId = '', $allowUpdate = true, $
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(select_employee)%%>', safe_html($urow['select_employee']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(select_employee)%%>', html_attr($row['select_employee']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(select_employee)%%>', urlencode($urow['select_employee']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(reson_for_overtime)%%>', safe_html($urow['reson_for_overtime'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(reson_for_overtime)%%>', urlencode($urow['reson_for_overtime']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(start_datetime)%%>', app_datetime($row['start_datetime'], 'dt'), $templateCode);
@@ -481,7 +480,8 @@ function beyond_workingHours_table_form($selectedId = '', $allowUpdate = true, $
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode($urow['approval_status']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', safe_html($urow['approval_remarks'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_remarks)%%>', urlencode($urow['approval_remarks']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(approved_by)%%>', safe_html($urow['approved_by']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(approved_by)%%>', safe_html($urow['approved_by']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approved_by)%%>', html_attr($row['approved_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode($urow['approved_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
@@ -494,8 +494,8 @@ function beyond_workingHours_table_form($selectedId = '', $allowUpdate = true, $
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(select_employee)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(select_employee)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(reson_for_overtime)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(reson_for_overtime)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(start_datetime)%%>', '', $templateCode);
@@ -508,8 +508,8 @@ function beyond_workingHours_table_form($selectedId = '', $allowUpdate = true, $
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode('Under Consideration'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_remarks)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(approved_by)%%>', '<%%editorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approved_by)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);

@@ -126,11 +126,10 @@
 		setupTable('employees_appraisal_table', []);
 		setupIndexes('employees_appraisal_table', ['employee_designation_lookup','reviewing_officer',]);
 
-		setupTable('employees_appraisal_feedback_table', []);
-		setupIndexes('employees_appraisal_feedback_table', ['employees_appraisal_lookup','reviewing_officer',]);
-
-		setupTable('beyond_workingHours_table', []);
-		setupIndexes('beyond_workingHours_table', ['select_employee',]);
+		setupTable('beyond_workingHours_table', [
+				" ALTER TABLE `beyond_workingHours_table` CHANGE `approved_by` `approved_by` VARCHAR(255) NULL ",
+			]);
+		setupIndexes('beyond_workingHours_table', ['approved_by',]);
 
 		setupTable('attendence_details_table', []);
 

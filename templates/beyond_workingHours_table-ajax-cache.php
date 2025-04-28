@@ -8,7 +8,7 @@
 
 		/* data for selected record, or defaults if none is selected */
 		var data = {
-			select_employee: <?php echo json_encode(['id' => $rdata['select_employee'], 'value' => $rdata['select_employee'], 'text' => $jdata['select_employee']]); ?>
+			approved_by: <?php echo json_encode(['id' => $rdata['approved_by'], 'value' => $rdata['approved_by'], 'text' => $jdata['approved_by']]); ?>
 		};
 
 		/* initialize or continue using AppGini.cache for the current table */
@@ -16,11 +16,11 @@
 		AppGini.cache[tn] = AppGini.cache[tn] || AppGini.ajaxCache();
 		var cache = AppGini.cache[tn];
 
-		/* saved value for select_employee */
+		/* saved value for approved_by */
 		cache.addCheck(function(u, d) {
 			if(u != 'ajax_combo.php') return false;
-			if(d.t == tn && d.f == 'select_employee' && d.id == data.select_employee.id)
-				return { results: [ data.select_employee ], more: false, elapsed: 0.01 };
+			if(d.t == tn && d.f == 'approved_by' && d.id == data.approved_by.id)
+				return { results: [ data.approved_by ], more: false, elapsed: 0.01 };
 			return false;
 		});
 

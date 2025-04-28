@@ -19,15 +19,6 @@
 		<div class="col-md-8 col-lg-10" id="beyond_workingHours_table_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: Select Employee -->
-				<div class="form-group beyond_workingHours_table-select_employee">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="select_employee" data-parent_link="view_parent_modal">Select Employee</label>
-					<div class="col-lg-9">
-						<div class="lookup-flex"><%%COMBO(select_employee)%%><%%PLINK(select_employee)%%><%%ADDNEW(user_table)%%></div>
-					</div>
-				</div>
-
 				<!-- Field: Reson for overtime -->
 				<div class="form-group beyond_workingHours_table-reson_for_overtime">
 					<hr class="hidden-md hidden-lg">
@@ -76,9 +67,9 @@
 				<!-- Field: Approved by -->
 				<div class="form-group beyond_workingHours_table-approved_by">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3">Approved by</label>
+					<label class="control-label col-lg-3" for="approved_by" data-parent_link="view_parent_modal">Approved by</label>
 					<div class="col-lg-9">
-						<div class="form-control-static" id="approved_by"><%%VALUE(approved_by)%%></div>
+						<div class="lookup-flex"><%%COMBO(approved_by)%%><%%PLINK(approved_by)%%><%%ADDNEW(user_table)%%></div>
 					</div>
 				</div>
 
@@ -123,27 +114,9 @@
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
-				AppGini.once({
-					condition: function() {
-						return $j('.form-group.beyond_workingHours_table-select_employee')
-									.find('.nicEdit-main, .select2-container, input[type=radio]')
-									.length > 0
-								// or read-only DV
-								|| (!$j('#update').length && !$j('#insert').length);
-					},
-					action: function() {
-						$j('#beyond_workingHours_table_dv_container-loading').addClass('hidden');
-						$j('#beyond_workingHours_table_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('beyond_workingHours_table', 'select_employee');
-					},
-					timeout:  5000,
-					doActionOnTimeout:  true
-				});
-			} else {
-				$j('#beyond_workingHours_table_dv_container-loading').addClass('hidden');
-				$j('#beyond_workingHours_table_dv_container').removeClass('hidden');
-			}
+			$j('#beyond_workingHours_table_dv_container-loading').addClass('hidden');
+			$j('#beyond_workingHours_table_dv_container').removeClass('hidden');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('beyond_workingHours_table', 'reson_for_overtime');
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 

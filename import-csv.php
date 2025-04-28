@@ -283,16 +283,10 @@
 
 			return $data;
 		},
-		'employees_appraisal_feedback_table' => function($data, $options = []) {
-			if(isset($data['employees_appraisal_lookup'])) $data['employees_appraisal_lookup'] = pkGivenLookupText($data['employees_appraisal_lookup'], 'employees_appraisal_feedback_table', 'employees_appraisal_lookup');
-			if(isset($data['reviewing_officer'])) $data['reviewing_officer'] = pkGivenLookupText($data['reviewing_officer'], 'employees_appraisal_feedback_table', 'reviewing_officer');
-
-			return $data;
-		},
 		'beyond_workingHours_table' => function($data, $options = []) {
-			if(isset($data['select_employee'])) $data['select_employee'] = pkGivenLookupText($data['select_employee'], 'beyond_workingHours_table', 'select_employee');
 			if(isset($data['start_datetime'])) $data['start_datetime'] = guessMySQLDateTime($data['start_datetime']);
 			if(isset($data['end_datetime'])) $data['end_datetime'] = guessMySQLDateTime($data['end_datetime']);
+			if(isset($data['approved_by'])) $data['approved_by'] = pkGivenLookupText($data['approved_by'], 'beyond_workingHours_table', 'approved_by');
 
 			return $data;
 		},
@@ -532,7 +526,6 @@
 		'employees_personal_data_table' => function($data, $options = []) { return true; },
 		'employees_designation_table' => function($data, $options = []) { return true; },
 		'employees_appraisal_table' => function($data, $options = []) { return true; },
-		'employees_appraisal_feedback_table' => function($data, $options = []) { return true; },
 		'beyond_workingHours_table' => function($data, $options = []) { return true; },
 		'attendence_details_table' => function($data, $options = []) { return true; },
 		'leave_table' => function($data, $options = []) { return true; },

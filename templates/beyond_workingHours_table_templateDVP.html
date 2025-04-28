@@ -14,13 +14,6 @@
 
 <div class="panel-body">
 	<fieldset class="form-horizontal">
-		<!-- Field: Select Employee -->
-		<div class="form-group beyond_workingHours_table-select_employee" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Select Employee</label>
-			<div class="col-xs-9">
-				<div class="form-control-static"><span id="select_employee<%%RND1%%>"><%%COMBOTEXT(select_employee)%%></span></div>
-			</div>
-		</div>
 		<!-- Field: Reson for overtime -->
 		<div class="form-group beyond_workingHours_table-reson_for_overtime" style="border-bottom: dotted 1px #DDD;">
 			<label class="col-xs-3 control-label">Reson for overtime</label>
@@ -60,7 +53,7 @@
 		<div class="form-group beyond_workingHours_table-approved_by" style="border-bottom: dotted 1px #DDD;">
 			<label class="col-xs-3 control-label">Approved by</label>
 			<div class="col-xs-9">
-				<div class="form-control-static"><%%VALUE(approved_by)%%></div>
+				<div class="form-control-static"><span id="approved_by<%%RND1%%>"><%%COMBOTEXT(approved_by)%%></span></div>
 			</div>
 		</div>
 	</fieldset>

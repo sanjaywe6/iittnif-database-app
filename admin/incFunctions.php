@@ -154,7 +154,7 @@
 				],
 				'cycle_table' => [
 					'Caption' => 'Cycle - App',
-					'Description' => '',
+					'Description' => '<a href="https://lookerstudio.google.com/reporting/c941076f-d85a-4899-b163-1337a9b083ed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Cycle Usage App Report</b></button></a>',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[1],
 					'homepageShowCount' => 1
@@ -684,7 +684,7 @@
 			'approval_table' => ['Approval - App', '', 'table.gif', 'Approvals &amp; Sanctions'],
 			'car_table' => ['Car - App', '<a href="https://lookerstudio.google.com/reporting/58f87367-3f09-42c0-a288-cf75f313cbed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Car App Report</b></button></a>', 'table.gif', 'Facilities Apps'],
 			'car_usage_table' => ['Car usage table', '', 'table.gif', 'Facilities Apps'],
-			'cycle_table' => ['Cycle - App', '', 'table.gif', 'Facilities Apps'],
+			'cycle_table' => ['Cycle - App', '<a href="https://lookerstudio.google.com/reporting/c941076f-d85a-4899-b163-1337a9b083ed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Cycle Usage App Report</b></button></a>', 'table.gif', 'Facilities Apps'],
 			'cycle_usage_table' => ['Cycle usage table', '', 'table.gif', 'Facilities Apps'],
 			'gym_table' => ['Gym - App', '', 'table.gif', 'Facilities Apps'],
 			'coffee_table' => ['Coffee - App', '', 'table.gif', 'Facilities Apps'],

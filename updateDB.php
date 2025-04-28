@@ -126,9 +126,7 @@
 		setupTable('employees_appraisal_table', []);
 		setupIndexes('employees_appraisal_table', ['employee_designation_lookup','reviewing_officer',]);
 
-		setupTable('beyond_workingHours_table', [
-				" ALTER TABLE `beyond_workingHours_table` CHANGE `approved_by` `approved_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('beyond_workingHours_table', []);
 		setupIndexes('beyond_workingHours_table', ['approved_by',]);
 
 		setupTable('attendence_details_table', []);

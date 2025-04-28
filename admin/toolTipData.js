@@ -1236,22 +1236,22 @@ travel_local_commute_table_delete2Tip=["",spacer+"This option allows each member
 travel_local_commute_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Local Commute - App' table."];
 
 // r_and_d_progress table
-r_and_d_progress_addTip=["",spacer+"This option allows all members of the group to add records to the 'R and D Progressb - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
+r_and_d_progress_addTip=["",spacer+"This option allows all members of the group to add records to the 'R and D Progress - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
 
-r_and_d_progress_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'R and D Progressb - App' table."];
-r_and_d_progress_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'R and D Progressb - App' table."];
-r_and_d_progress_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'R and D Progressb - App' table."];
-r_and_d_progress_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'R and D Progressb - App' table."];
+r_and_d_progress_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'R and D Progress - App' table."];
+r_and_d_progress_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'R and D Progress - App' table."];
+r_and_d_progress_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'R and D Progress - App' table."];
+r_and_d_progress_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'R and D Progress - App' table."];
 
-r_and_d_progress_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'R and D Progressb - App' table."];
-r_and_d_progress_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'R and D Progressb - App' table."];
-r_and_d_progress_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'R and D Progressb - App' table."];
-r_and_d_progress_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'R and D Progressb - App' table, regardless of their owner."];
+r_and_d_progress_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'R and D Progress - App' table."];
+r_and_d_progress_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'R and D Progress - App' table."];
+r_and_d_progress_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'R and D Progress - App' table."];
+r_and_d_progress_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'R and D Progress - App' table, regardless of their owner."];
 
-r_and_d_progress_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'R and D Progressb - App' table."];
-r_and_d_progress_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'R and D Progressb - App' table."];
-r_and_d_progress_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'R and D Progressb - App' table."];
-r_and_d_progress_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'R and D Progressb - App' table."];
+r_and_d_progress_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'R and D Progress - App' table."];
+r_and_d_progress_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'R and D Progress - App' table."];
+r_and_d_progress_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'R and D Progress - App' table."];
+r_and_d_progress_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'R and D Progress - App' table."];
 
 // panel_decision_table_tdp table
 panel_decision_table_tdp_addTip=["",spacer+"This option allows all members of the group to add records to the 'Panel Decision App' table. A member who adds a record to the table becomes the 'owner' of that record."];

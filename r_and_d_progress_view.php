@@ -121,7 +121,7 @@
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'r_and_d_progress_view.php';
-	$x->TableTitle = 'R and D Progressb - App';
+	$x->TableTitle = 'R and D Progress - App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`r_and_d_progress`.`id`';
 	$x->DefaultSortField = '1';

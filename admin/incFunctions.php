@@ -594,7 +594,7 @@
 					'homepageShowCount' => 1
 				],
 				'r_and_d_progress' => [
-					'Caption' => 'R and D Progressb - App',
+					'Caption' => 'R and D Progress - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[6],
@@ -754,7 +754,7 @@
 			'travel_table' => ['Travel - App', '', 'table.gif', 'Transport Apps'],
 			'travel_stay_table' => ['Stay Details - App', '', 'table.gif', 'Transport Apps'],
 			'travel_local_commute_table' => ['Local Commute - App', '', 'table.gif', 'Transport Apps'],
-			'r_and_d_progress' => ['R and D Progressb - App', '', 'table.gif', 'Technology Development Apps'],
+			'r_and_d_progress' => ['R and D Progress - App', '', 'table.gif', 'Technology Development Apps'],
 			'panel_decision_table_tdp' => ['Panel Decision App', '', 'table.gif', 'Technology Development Apps'],
 			'selected_proposals_final_tdp' => ['Selected proposals final - App', '', 'table.gif', 'Technology Development Apps'],
 			'stage_wise_budget_table_tdp' => ['Stage wise budget - App', '', 'table.gif', 'Technology Development Apps'],

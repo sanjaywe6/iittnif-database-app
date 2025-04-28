@@ -13,9 +13,7 @@
 
 		setupTable('suggestion', []);
 
-		setupTable('approval_table', [
-				" ALTER TABLE `approval_table` CHANGE `approval_from` `approval_from` VARCHAR(255) NULL DEFAULT 'CEO' ",
-			]);
+		setupTable('approval_table', []);
 		setupIndexes('approval_table', ['person_responsbility',]);
 
 		setupTable('car_table', []);

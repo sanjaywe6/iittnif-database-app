@@ -112,6 +112,7 @@
 			'Asset Management Apps',
 			'Accounts &amp; Finance Apps',
 			'Transport Apps',
+			'Newsletters &amp; Updates Apps',
 			'Suggestion App'
 		];
 
@@ -121,14 +122,14 @@
 					'Caption' => 'User Table',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[12],
+					'group' => $tg[13],
 					'homepageShowCount' => 1
 				],
 				'suggestion' => [
 					'Caption' => 'Suggestion - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[12],
+					'group' => $tg[13],
 					'homepageShowCount' => 1
 				],
 				'approval_table' => [
@@ -650,7 +651,7 @@
 					'homepageShowCount' => 1
 				],
 				'summary_table_tdp' => [
-					'Caption' => 'Summary - App',
+					'Caption' => 'Summary of TDP - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[6],
@@ -661,6 +662,13 @@
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[6],
+					'homepageShowCount' => 1
+				],
+				'newsletter_table' => [
+					'Caption' => 'Newsletter - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[12],
 					'homepageShowCount' => 1
 				],
 		];
@@ -755,8 +763,9 @@
 			'panel_comments_tdp' => ['Panel comments - App', '', 'table.gif', 'Technology Development Apps'],
 			'selected_tdp' => ['Selected (Draft) - App', '', 'table.gif', 'Technology Development Apps'],
 			'address_tdp' => ['Address Details - App', '', 'table.gif', 'Technology Development Apps'],
-			'summary_table_tdp' => ['Summary - App', '', 'table.gif', 'Technology Development Apps'],
+			'summary_table_tdp' => ['Summary of TDP - App', '', 'table.gif', 'Technology Development Apps'],
 			'project_details_tdp' => ['Project details - App', '', 'table.gif', 'Technology Development Apps'],
+			'newsletter_table' => ['Newsletter - App', '', 'table.gif', 'Newsletters &amp; Updates Apps'],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) {
@@ -9697,6 +9706,78 @@
 						],
 					],
 				],
+				'newsletter_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Username',
+							'description' => '',
+						],
+					],
+					'section' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Translational R & D'",
+						'info' => [
+							'caption' => 'Section',
+							'description' => '',
+						],
+					],
+					'name_of_event' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Name/Title of Events',
+							'description' => '',
+						],
+					],
+					'dates_of_events' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Dates of Events',
+							'description' => '',
+						],
+					],
+					'writeup_about_event' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Writeup About The Events (Max 200 Words)',
+							'description' => '',
+						],
+					],
+					'img1' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'First Image',
+							'description' => 'Maximum file size allowed: 1000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
+						],
+					],
+					'img2' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Second Image',
+							'description' => 'Maximum file size allowed: 1000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
+						],
+					],
+					'created_details' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created Details',
+							'description' => '',
+						],
+					],
+					'last_updated_details' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated Details',
+							'description' => '',
+						],
+					],
+				],
 			];
 
 			$internalTablesSimple = [
@@ -11146,6 +11227,7 @@
 			'address_tdp' => [],
 			'summary_table_tdp' => [],
 			'project_details_tdp' => [],
+			'newsletter_table' => [],
 		];
 	}
 	#########################################################
@@ -11492,6 +11574,8 @@
 			],
 			'project_details_tdp' => [
 				'project_number' => 'SELECT `summary_table_tdp`.`id`, `summary_table_tdp`.`project_number` FROM `summary_table_tdp` ORDER BY 2',
+			],
+			'newsletter_table' => [
 			],
 		];
 

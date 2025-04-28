@@ -67,6 +67,11 @@
 			'upload_scanned_file_2' => getUploadDir(''),
 			'primary key' => 'payment_track_details_id'
 		],
+		'newsletter_table' => [
+			'img1' => getUploadDir(''),
+			'img2' => getUploadDir(''),
+			'primary key' => 'id'
+		],
 	];
 
 	if(!count($p)) getLink();

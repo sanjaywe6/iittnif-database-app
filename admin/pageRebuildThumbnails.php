@@ -26,6 +26,10 @@
 			'upload_scanned_file_1' => '../' . getUploadDir(''),
 			'upload_scanned_file_2' => '../' . getUploadDir(''),
 		],
+		'newsletter_table' => [
+			'img1' => '../' . getUploadDir(''),
+			'img2' => '../' . getUploadDir(''),
+		],
 	];
 
 	if(!count($p)) exit;

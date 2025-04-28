@@ -1380,22 +1380,22 @@ address_tdp_delete2Tip=["",spacer+"This option allows each member of the group t
 address_tdp_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Address Details - App' table."];
 
 // summary_table_tdp table
-summary_table_tdp_addTip=["",spacer+"This option allows all members of the group to add records to the 'Summary - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
+summary_table_tdp_addTip=["",spacer+"This option allows all members of the group to add records to the 'Summary of TDP - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
 
-summary_table_tdp_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Summary - App' table."];
-summary_table_tdp_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Summary - App' table."];
-summary_table_tdp_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Summary - App' table."];
-summary_table_tdp_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Summary - App' table."];
+summary_table_tdp_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Summary of TDP - App' table."];
+summary_table_tdp_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Summary of TDP - App' table."];
+summary_table_tdp_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Summary of TDP - App' table."];
+summary_table_tdp_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Summary of TDP - App' table."];
 
-summary_table_tdp_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Summary - App' table."];
-summary_table_tdp_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Summary - App' table."];
-summary_table_tdp_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Summary - App' table."];
-summary_table_tdp_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Summary - App' table, regardless of their owner."];
+summary_table_tdp_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Summary of TDP - App' table."];
+summary_table_tdp_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Summary of TDP - App' table."];
+summary_table_tdp_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Summary of TDP - App' table."];
+summary_table_tdp_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Summary of TDP - App' table, regardless of their owner."];
 
-summary_table_tdp_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Summary - App' table."];
-summary_table_tdp_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Summary - App' table."];
-summary_table_tdp_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Summary - App' table."];
-summary_table_tdp_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Summary - App' table."];
+summary_table_tdp_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Summary of TDP - App' table."];
+summary_table_tdp_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Summary of TDP - App' table."];
+summary_table_tdp_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Summary of TDP - App' table."];
+summary_table_tdp_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Summary of TDP - App' table."];
 
 // project_details_tdp table
 project_details_tdp_addTip=["",spacer+"This option allows all members of the group to add records to the 'Project details - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
@@ -1414,6 +1414,24 @@ project_details_tdp_delete0Tip=["",spacer+"This option prohibits all members of 
 project_details_tdp_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Project details - App' table."];
 project_details_tdp_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Project details - App' table."];
 project_details_tdp_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Project details - App' table."];
+
+// newsletter_table table
+newsletter_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Newsletter - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
+
+newsletter_table_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Newsletter - App' table."];
+newsletter_table_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Newsletter - App' table."];
+newsletter_table_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Newsletter - App' table."];
+newsletter_table_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Newsletter - App' table."];
+
+newsletter_table_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Newsletter - App' table."];
+newsletter_table_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Newsletter - App' table."];
+newsletter_table_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Newsletter - App' table."];
+newsletter_table_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Newsletter - App' table, regardless of their owner."];
+
+newsletter_table_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Newsletter - App' table."];
+newsletter_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Newsletter - App' table."];
+newsletter_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Newsletter - App' table."];
+newsletter_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Newsletter - App' table."];
 
 /*
 	Style syntax:

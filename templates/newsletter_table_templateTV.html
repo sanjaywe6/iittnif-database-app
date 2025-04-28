@@ -1,0 +1,38 @@
+		<td colspan="10" class="row">
+			<div id="newsletter_table-id-<%%VALUE(id)%%>" class="newsletter_table-id col-sm-12 h5 text-bold"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="newsletter_table-username-caption field-caption-tv">Username</dt>
+					<dd id="newsletter_table-username-<%%VALUE(id)%%>" class="newsletter_table-username"><%%SELECT%%><%%VALUE(username)%%><%%ENDSELECT%%></dd>
+
+					<dt class="newsletter_table-section-caption field-caption-tv">Section</dt>
+					<dd id="newsletter_table-section-<%%VALUE(id)%%>" class="newsletter_table-section"><%%SELECT%%><%%VALUE(section)%%><%%ENDSELECT%%></dd>
+
+					<dt class="newsletter_table-name_of_event-caption field-caption-tv">Name/Title of Events</dt>
+					<dd id="newsletter_table-name_of_event-<%%VALUE(id)%%>" class="newsletter_table-name_of_event"><%%SELECT%%><%%VALUE(name_of_event)%%><%%ENDSELECT%%></dd>
+
+					<dt class="newsletter_table-dates_of_events-caption field-caption-tv">Dates of Events</dt>
+					<dd id="newsletter_table-dates_of_events-<%%VALUE(id)%%>" class="newsletter_table-dates_of_events"><%%SELECT%%><%%VALUE(dates_of_events)%%><%%ENDSELECT%%></dd>
+
+					<dt class="newsletter_table-writeup_about_event-caption field-caption-tv">Writeup About The Events (Max 200 Words)</dt>
+					<dd id="newsletter_table-writeup_about_event-<%%VALUE(id)%%>" class="newsletter_table-writeup_about_event"><%%SELECT%%><%%VALUE(writeup_about_event)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="newsletter_table-img1-caption field-caption-tv">First Image</dt>
+					<dd id="newsletter_table-img1-<%%VALUE(id)%%>" class="newsletter_table-img1"><%%SELECT%%><img src="<%%BASE_UPLOAD_PATH%%><%%VALUE(img1)%%>" class="img-responsive img-thumbnail"><%%ENDSELECT%%></dd>
+
+					<dt class="newsletter_table-img2-caption field-caption-tv">Second Image</dt>
+					<dd id="newsletter_table-img2-<%%VALUE(id)%%>" class="newsletter_table-img2"><%%SELECT%%><img src="<%%BASE_UPLOAD_PATH%%><%%VALUE(img2)%%>" class="img-responsive img-thumbnail"><%%ENDSELECT%%></dd>
+
+					<dt class="newsletter_table-created_details-caption field-caption-tv">Created Details</dt>
+					<dd id="newsletter_table-created_details-<%%VALUE(id)%%>" class="newsletter_table-created_details"><%%SELECT%%><%%VALUE(created_details)%%><%%ENDSELECT%%></dd>
+
+					<dt class="newsletter_table-last_updated_details-caption field-caption-tv">Last updated Details</dt>
+					<dd id="newsletter_table-last_updated_details-<%%VALUE(id)%%>" class="newsletter_table-last_updated_details"><%%SELECT%%><%%VALUE(last_updated_details)%%><%%ENDSELECT%%></dd>
+
+				</dl>
+			</div>
+		</td>

@@ -1101,6 +1101,22 @@ function project_details_tdp_validateData(insertMode) {
 
 	return !errors;
 }
+function newsletter_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	// check file uploads (file type and size)
+	if($j('#img1').val() && !AppGini.checkFileUpload('img1', 'jpg|jpeg|gif|png|webp', 1024000)) {
+		AppGini.scrollTo('img1');
+		return false;
+	}
+	if($j('#img2').val() && !AppGini.checkFileUpload('img2', 'jpg|jpeg|gif|png|webp', 1024000)) {
+		AppGini.scrollTo('img2');
+		return false;
+	}
+
+	return !errors;
+}
 
 function post(url, params, update, disable, loading, success_callback) {
 	$j.ajax({

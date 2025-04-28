@@ -206,7 +206,7 @@
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'summary_table_tdp_view.php';
-	$x->TableTitle = 'Summary - App';
+	$x->TableTitle = 'Summary of TDP - App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`summary_table_tdp`.`id`';
 	$x->DefaultSortField = '1';

@@ -213,6 +213,8 @@
 		setupTable('project_details_tdp', []);
 		setupIndexes('project_details_tdp', ['project_number',]);
 
+		setupTable('newsletter_table', []);
+
 
 
 		// set up internal tables

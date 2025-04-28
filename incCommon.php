@@ -38,7 +38,7 @@
 
 	function get_table_groups($skip_authentication = false) {
 		$tables = getTableList($skip_authentication);
-		$all_groups = ['Approvals &amp; Sanctions', 'Facilities Apps', 'Events / Meetings / Goals Apps', 'HRD Apps', 'SDP Apps', 'Program Apps', 'Technology Development Apps', 'Startup Data Management Apps', 'Employee Data Management Apps', 'Asset Management Apps', 'Accounts &amp; Finance Apps', 'Transport Apps', 'Suggestion App'];
+		$all_groups = ['Approvals &amp; Sanctions', 'Facilities Apps', 'Events / Meetings / Goals Apps', 'HRD Apps', 'SDP Apps', 'Program Apps', 'Technology Development Apps', 'Startup Data Management Apps', 'Employee Data Management Apps', 'Asset Management Apps', 'Accounts &amp; Finance Apps', 'Transport Apps', 'Newsletters &amp; Updates Apps', 'Suggestion App'];
 
 		$groups = [];
 		foreach($all_groups as $grp) {
@@ -183,6 +183,7 @@
 			'address_tdp' => "`address_tdp`.`id` as 'id', IF(    CHAR_LENGTH(`panel_decision_table_tdp1`.`project_id`) || CHAR_LENGTH(`panel_decision_table_tdp1`.`project_title`), CONCAT_WS('',   `panel_decision_table_tdp1`.`project_id`, '::', `panel_decision_table_tdp1`.`project_title`), '') as 'project_id', `address_tdp`.`project_title` as 'project_title', `address_tdp`.`short_name` as 'short_name', `address_tdp`.`pincode` as 'pincode', `address_tdp`.`lattitude` as 'lattitude', `address_tdp`.`longitude` as 'longitude', `address_tdp`.`created_by` as 'created_by', `address_tdp`.`created_at` as 'created_at', `address_tdp`.`last_updated_by` as 'last_updated_by', `address_tdp`.`last_updated_at` as 'last_updated_at'",
 			'summary_table_tdp' => "`summary_table_tdp`.`id` as 'id', `summary_table_tdp`.`project_number` as 'project_number', `summary_table_tdp`.`project_title` as 'project_title', `summary_table_tdp`.`year` as 'year', `summary_table_tdp`.`pi` as 'pi', `summary_table_tdp`.`institute` as 'institute', `summary_table_tdp`.`duration_in_months` as 'duration_in_months', `summary_table_tdp`.`overall_budget` as 'overall_budget', `summary_table_tdp`.`number_of_products` as 'number_of_products', `summary_table_tdp`.`trl_status` as 'trl_status', if(`summary_table_tdp`.`sactioned_date`,date_format(`summary_table_tdp`.`sactioned_date`,'%d/%m/%Y'),'') as 'sactioned_date', `summary_table_tdp`.`ongoing_month_of_project` as 'ongoing_month_of_project', `summary_table_tdp`.`last_monthly_report` as 'last_monthly_report', `summary_table_tdp`.`no_of_ug` as 'no_of_ug', `summary_table_tdp`.`no_of_pg` as 'no_of_pg', `summary_table_tdp`.`no_of_phd` as 'no_of_phd', `summary_table_tdp`.`no_of_postdoc` as 'no_of_postdoc', if(`summary_table_tdp`.`first_milestone_amount_and_date`,date_format(`summary_table_tdp`.`first_milestone_amount_and_date`,'%d/%m/%Y'),'') as 'first_milestone_amount_and_date', if(`summary_table_tdp`.`stage_I_completion`,date_format(`summary_table_tdp`.`stage_I_completion`,'%d/%m/%Y'),'') as 'stage_I_completion', if(`summary_table_tdp`.`second_milestone_amount_and_date`,date_format(`summary_table_tdp`.`second_milestone_amount_and_date`,'%d/%m/%Y'),'') as 'second_milestone_amount_and_date', if(`summary_table_tdp`.`stage_2_completion`,date_format(`summary_table_tdp`.`stage_2_completion`,'%d/%m/%Y'),'') as 'stage_2_completion', if(`summary_table_tdp`.`third_milestone_amount_and_date`,date_format(`summary_table_tdp`.`third_milestone_amount_and_date`,'%d/%m/%Y'),'') as 'third_milestone_amount_and_date', if(`summary_table_tdp`.`stage_3_completion`,date_format(`summary_table_tdp`.`stage_3_completion`,'%d/%m/%Y'),'') as 'stage_3_completion', if(`summary_table_tdp`.`fourth_milestone_amount_and_date`,date_format(`summary_table_tdp`.`fourth_milestone_amount_and_date`,'%d/%m/%Y'),'') as 'fourth_milestone_amount_and_date', if(`summary_table_tdp`.`stage_4_completion`,date_format(`summary_table_tdp`.`stage_4_completion`,'%d/%m/%Y'),'') as 'stage_4_completion', `summary_table_tdp`.`created_by` as 'created_by', `summary_table_tdp`.`created_at` as 'created_at', `summary_table_tdp`.`last_updated_by` as 'last_updated_by', `summary_table_tdp`.`last_updated_at` as 'last_updated_at'",
 			'project_details_tdp' => "`project_details_tdp`.`id` as 'id', IF(    CHAR_LENGTH(`summary_table_tdp1`.`project_number`), CONCAT_WS('',   `summary_table_tdp1`.`project_number`), '') as 'project_number', `project_details_tdp`.`stage_1` as 'stage_1', `project_details_tdp`.`stage_2` as 'stage_2', `project_details_tdp`.`stage_3` as 'stage_3', `project_details_tdp`.`stage_4` as 'stage_4', `project_details_tdp`.`total` as 'total', `project_details_tdp`.`details` as 'details', `project_details_tdp`.`created_by` as 'created_by', `project_details_tdp`.`created_at` as 'created_at', `project_details_tdp`.`last_updated_by` as 'last_updated_by', `project_details_tdp`.`last_updated_at` as 'last_updated_at'",
+			'newsletter_table' => "`newsletter_table`.`id` as 'id', `newsletter_table`.`username` as 'username', `newsletter_table`.`section` as 'section', `newsletter_table`.`name_of_event` as 'name_of_event', `newsletter_table`.`dates_of_events` as 'dates_of_events', `newsletter_table`.`writeup_about_event` as 'writeup_about_event', `newsletter_table`.`img1` as 'img1', `newsletter_table`.`img2` as 'img2', `newsletter_table`.`created_details` as 'created_details', `newsletter_table`.`last_updated_details` as 'last_updated_details'",
 		];
 
 		if(isset($sql_fields[$table_name])) return $sql_fields[$table_name];
@@ -272,6 +273,7 @@
 			'address_tdp' => "`address_tdp` LEFT JOIN `panel_decision_table_tdp` as panel_decision_table_tdp1 ON `panel_decision_table_tdp1`.`panel_decision_id`=`address_tdp`.`project_id` ",
 			'summary_table_tdp' => "`summary_table_tdp` ",
 			'project_details_tdp' => "`project_details_tdp` LEFT JOIN `summary_table_tdp` as summary_table_tdp1 ON `summary_table_tdp1`.`id`=`project_details_tdp`.`project_number` ",
+			'newsletter_table' => "`newsletter_table` ",
 		];
 
 		$pkey = [
@@ -353,6 +355,7 @@
 			'address_tdp' => 'id',
 			'summary_table_tdp' => 'id',
 			'project_details_tdp' => 'id',
+			'newsletter_table' => 'id',
 		];
 
 		if(!isset($sql_from[$table_name])) return false;
@@ -1700,6 +1703,18 @@
 				'last_updated_by' => '',
 				'last_updated_at' => '',
 			],
+			'newsletter_table' => [
+				'id' => '',
+				'username' => '',
+				'section' => 'Translational R & D',
+				'name_of_event' => '',
+				'dates_of_events' => '',
+				'writeup_about_event' => '',
+				'img1' => '',
+				'img2' => '',
+				'created_details' => '',
+				'last_updated_details' => '',
+			],
 		];
 
 		return isset($defaults[$table]) ? $defaults[$table] : [];
@@ -2455,7 +2470,7 @@
 		if(is_array($arrTables)) {
 			foreach($arrTables as $tn => $tc) {
 				/* ---- list of tables where hide link in nav menu is set ---- */
-				$tChkHL = array_search($tn, ['user_table','suggestion','approval_table','car_table','car_usage_table','cycle_table','cycle_usage_table','gym_table','coffee_table','cafeteria_table','event_table','outcomes_expected_table','event_decision_table','meetings_table','agenda_table','decision_table','participants_table','action_actor','visiting_card_table','mou_details_table','mou_company_area_details_table','goal_setting_table','goal_progress_table','task_setting_table','subtask_setting_table','internship_fellowship_details_app','star_pnt','hrd_sdp_events_table','training_program_on_geospatial_tchnologies_table','space_day_school_details_app','space_day_college_student_table','school_list','sdp_participants_college_details_table','asset_table','asset_allotment_table','sub_asset_table','sub_asset_allotment_table','it_inventory_app','it_inventory_billing_details','it_inventory_allotment_table','computer_details_table','computer_usage_table','employees_personal_data_table','employees_designation_table','employees_appraisal_table','beyond_workingHours_table','attendence_details_table','leave_table','work_from_home_table','navavishkar_stay_table','navavishkar_stay_payment_table','email_id_allocation_table','all_startup_data_table','shortlisted_startups_for_fund_table','shortlisted_startups_dd_and_agreement_table','vikas_startup_applications_table','programs_table','evaluation_table','problem_statement_table','evaluators_table','approval_billing_table','honorarium_claim_table','all_bank_account_statement_table','payment_track_details_table','travel_table','travel_stay_table','travel_local_commute_table','r_and_d_progress','panel_decision_table_tdp','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','summary_table_tdp','project_details_tdp']);
+				$tChkHL = array_search($tn, ['user_table','suggestion','approval_table','car_table','car_usage_table','cycle_table','cycle_usage_table','gym_table','coffee_table','cafeteria_table','event_table','outcomes_expected_table','event_decision_table','meetings_table','agenda_table','decision_table','participants_table','action_actor','visiting_card_table','mou_details_table','mou_company_area_details_table','goal_setting_table','goal_progress_table','task_setting_table','subtask_setting_table','internship_fellowship_details_app','star_pnt','hrd_sdp_events_table','training_program_on_geospatial_tchnologies_table','space_day_school_details_app','space_day_college_student_table','school_list','sdp_participants_college_details_table','asset_table','asset_allotment_table','sub_asset_table','sub_asset_allotment_table','it_inventory_app','it_inventory_billing_details','it_inventory_allotment_table','computer_details_table','computer_usage_table','employees_personal_data_table','employees_designation_table','employees_appraisal_table','beyond_workingHours_table','attendence_details_table','leave_table','work_from_home_table','navavishkar_stay_table','navavishkar_stay_payment_table','email_id_allocation_table','all_startup_data_table','shortlisted_startups_for_fund_table','shortlisted_startups_dd_and_agreement_table','vikas_startup_applications_table','programs_table','evaluation_table','problem_statement_table','evaluators_table','approval_billing_table','honorarium_claim_table','all_bank_account_statement_table','payment_track_details_table','travel_table','travel_stay_table','travel_local_commute_table','r_and_d_progress','panel_decision_table_tdp','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','summary_table_tdp','project_details_tdp','newsletter_table']);
 
 				/* ---- list of tables where filter first is set ---- */
 				$tChkFF = array_search($tn, []);
@@ -4414,6 +4429,8 @@ EOT;
 					'query' => "SELECT `project_details_tdp`.`id` as 'id', IF(    CHAR_LENGTH(`summary_table_tdp1`.`project_number`), CONCAT_WS('',   `summary_table_tdp1`.`project_number`), '') as 'project_number', `project_details_tdp`.`stage_1` as 'stage_1', `project_details_tdp`.`stage_2` as 'stage_2', `project_details_tdp`.`stage_3` as 'stage_3', `project_details_tdp`.`stage_4` as 'stage_4', `project_details_tdp`.`total` as 'total', `project_details_tdp`.`details` as 'details', `project_details_tdp`.`created_by` as 'created_by', `project_details_tdp`.`created_at` as 'created_at', `project_details_tdp`.`last_updated_by` as 'last_updated_by', `project_details_tdp`.`last_updated_at` as 'last_updated_at' FROM `project_details_tdp` LEFT JOIN `summary_table_tdp` as summary_table_tdp1 ON `summary_table_tdp1`.`id`=`project_details_tdp`.`project_number` "
 				],
 			],
+			'newsletter_table' => [
+			],
 		];
 
 		if($skipPermissions) return $pcConfig;
@@ -4459,7 +4476,7 @@ EOT;
 	#########################################################
 
 	function isDetailViewEnabled($tn) {
-		$tables = ['user_table', 'suggestion', 'approval_table', 'car_table', 'car_usage_table', 'cycle_table', 'cycle_usage_table', 'gym_table', 'coffee_table', 'cafeteria_table', 'event_table', 'outcomes_expected_table', 'event_decision_table', 'meetings_table', 'agenda_table', 'decision_table', 'participants_table', 'action_actor', 'visiting_card_table', 'mou_details_table', 'mou_company_area_details_table', 'goal_setting_table', 'goal_progress_table', 'task_setting_table', 'subtask_setting_table', 'internship_fellowship_details_app', 'star_pnt', 'hrd_sdp_events_table', 'training_program_on_geospatial_tchnologies_table', 'space_day_school_details_app', 'space_day_college_student_table', 'school_list', 'sdp_participants_college_details_table', 'asset_table', 'asset_allotment_table', 'sub_asset_table', 'sub_asset_allotment_table', 'it_inventory_app', 'it_inventory_billing_details', 'it_inventory_allotment_table', 'computer_details_table', 'computer_usage_table', 'employees_personal_data_table', 'employees_designation_table', 'employees_appraisal_table', 'beyond_workingHours_table', 'attendence_details_table', 'leave_table', 'work_from_home_table', 'navavishkar_stay_table', 'navavishkar_stay_payment_table', 'email_id_allocation_table', 'all_startup_data_table', 'shortlisted_startups_for_fund_table', 'shortlisted_startups_dd_and_agreement_table', 'vikas_startup_applications_table', 'programs_table', 'evaluation_table', 'problem_statement_table', 'evaluators_table', 'approval_billing_table', 'honorarium_claim_table', 'all_bank_account_statement_table', 'payment_track_details_table', 'travel_table', 'travel_stay_table', 'travel_local_commute_table', 'r_and_d_progress', 'panel_decision_table_tdp', 'selected_proposals_final_tdp', 'stage_wise_budget_table_tdp', 'first_level_shortlisted_proposals_tdp', 'budget_table_tdp', 'panel_comments_tdp', 'selected_tdp', 'address_tdp', 'summary_table_tdp', 'project_details_tdp', ];
+		$tables = ['user_table', 'suggestion', 'approval_table', 'car_table', 'car_usage_table', 'cycle_table', 'cycle_usage_table', 'gym_table', 'coffee_table', 'cafeteria_table', 'event_table', 'outcomes_expected_table', 'event_decision_table', 'meetings_table', 'agenda_table', 'decision_table', 'participants_table', 'action_actor', 'visiting_card_table', 'mou_details_table', 'mou_company_area_details_table', 'goal_setting_table', 'goal_progress_table', 'task_setting_table', 'subtask_setting_table', 'internship_fellowship_details_app', 'star_pnt', 'hrd_sdp_events_table', 'training_program_on_geospatial_tchnologies_table', 'space_day_school_details_app', 'space_day_college_student_table', 'school_list', 'sdp_participants_college_details_table', 'asset_table', 'asset_allotment_table', 'sub_asset_table', 'sub_asset_allotment_table', 'it_inventory_app', 'it_inventory_billing_details', 'it_inventory_allotment_table', 'computer_details_table', 'computer_usage_table', 'employees_personal_data_table', 'employees_designation_table', 'employees_appraisal_table', 'beyond_workingHours_table', 'attendence_details_table', 'leave_table', 'work_from_home_table', 'navavishkar_stay_table', 'navavishkar_stay_payment_table', 'email_id_allocation_table', 'all_startup_data_table', 'shortlisted_startups_for_fund_table', 'shortlisted_startups_dd_and_agreement_table', 'vikas_startup_applications_table', 'programs_table', 'evaluation_table', 'problem_statement_table', 'evaluators_table', 'approval_billing_table', 'honorarium_claim_table', 'all_bank_account_statement_table', 'payment_track_details_table', 'travel_table', 'travel_stay_table', 'travel_local_commute_table', 'r_and_d_progress', 'panel_decision_table_tdp', 'selected_proposals_final_tdp', 'stage_wise_budget_table_tdp', 'first_level_shortlisted_proposals_tdp', 'budget_table_tdp', 'panel_comments_tdp', 'selected_tdp', 'address_tdp', 'summary_table_tdp', 'project_details_tdp', 'newsletter_table', ];
 		return in_array($tn, $tables);
 	}
 

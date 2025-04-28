@@ -936,6 +936,8 @@
 				'not_null' => false,
 			],
 		],
+		'newsletter_table' => [
+		],
 	];
 
 	// XSS prevention

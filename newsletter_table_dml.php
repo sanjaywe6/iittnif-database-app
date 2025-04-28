@@ -49,7 +49,7 @@ function newsletter_table_insert(&$error_message = '') {
 				return existing_value('newsletter_table', 'img2', Request::val('SelectedID'));
 			},
 		]),
-		'created_details' => parseCode('<%%creatorUsername%%>::<%%creationDateTime%%>', true),
+		'created_by' => parseCode('<%%creatorUsername%%>::<%%creationDateTime%%>', true),
 	];
 
 	// record owner is current user
@@ -202,7 +202,7 @@ function newsletter_table_update(&$selected_id, &$error_message = '') {
 				return existing_value('newsletter_table', 'img2', $selected_id);
 			},
 		]),
-		'last_updated_details' => parseCode('<%%editorUsername%%>::<%%editingDateTime%%>', false),
+		'last_updated_by' => parseCode('<%%editorUsername%%>::<%%editingDateTime%%>', false),
 	];
 
 	// get existing values
@@ -475,8 +475,8 @@ function newsletter_table_form($selectedId = '', $allowUpdate = true, $allowInse
 	} else {
 		$templateCode = str_replace('<%%REMOVEFILE(img2)%%>', '', $templateCode);
 	}
-	$templateCode = str_replace('<%%UPLOADFILE(created_details)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(last_updated_details)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
@@ -503,10 +503,10 @@ function newsletter_table_form($selectedId = '', $allowUpdate = true, $allowInse
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(img2)%%>', safe_html($urow['img2']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(img2)%%>', html_attr($row['img2']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(img2)%%>', urlencode($urow['img2']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_details)%%>', safe_html($urow['created_details']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_details)%%>', urlencode($urow['created_details']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_details)%%>', safe_html($urow['last_updated_details']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_details)%%>', urlencode($urow['last_updated_details']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
@@ -522,10 +522,10 @@ function newsletter_table_form($selectedId = '', $allowUpdate = true, $allowInse
 		$templateCode = str_replace('<%%URLVALUE(writeup_about_event)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(img1)%%>', 'blank.gif', $templateCode);
 		$templateCode = str_replace('<%%VALUE(img2)%%>', 'blank.gif', $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_details)%%>', '<%%creatorUsername%%>::<%%creationDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_details)%%>', urlencode('<%%creatorUsername%%>::<%%creationDateTime%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_details)%%>', '<%%editorUsername%%>::<%%editingDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_details)%%>', urlencode('<%%editorUsername%%>::<%%editingDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>::<%%creationDateTime%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>::<%%creationDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>::<%%editingDateTime%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>::<%%editingDateTime%%>'), $templateCode);
 	}
 
 	// process translations

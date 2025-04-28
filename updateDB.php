@@ -213,7 +213,10 @@
 		setupTable('project_details_tdp', []);
 		setupIndexes('project_details_tdp', ['project_number',]);
 
-		setupTable('newsletter_table', []);
+		setupTable('newsletter_table', [
+				"ALTER TABLE `newsletter_table` CHANGE `created_details` `created_by` VARCHAR(255) NULL ",
+				"ALTER TABLE `newsletter_table` CHANGE `last_updated_details` `last_updated_by` VARCHAR(255) NULL ",
+			]);
 
 
 

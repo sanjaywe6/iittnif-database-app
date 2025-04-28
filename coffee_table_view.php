@@ -25,9 +25,7 @@
 		"if(`coffee_table`.`date`,date_format(`coffee_table`.`date`,'%d/%m/%Y'),'')" => "date",
 		"`coffee_table`.`remarks`" => "remarks",
 		"`coffee_table`.`created_by`" => "created_by",
-		"`coffee_table`.`created_at`" => "created_at",
 		"`coffee_table`.`last_updated_by`" => "last_updated_by",
-		"`coffee_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -39,8 +37,6 @@
 		6 => 6,
 		7 => 7,
 		8 => 8,
-		9 => 9,
-		10 => 10,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -52,9 +48,7 @@
 		"if(`coffee_table`.`date`,date_format(`coffee_table`.`date`,'%d/%m/%Y'),'')" => "date",
 		"`coffee_table`.`remarks`" => "remarks",
 		"`coffee_table`.`created_by`" => "created_by",
-		"`coffee_table`.`created_at`" => "created_at",
 		"`coffee_table`.`last_updated_by`" => "last_updated_by",
-		"`coffee_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -64,10 +58,8 @@
 		"`coffee_table`.`time`" => "Time",
 		"`coffee_table`.`date`" => "Date",
 		"`coffee_table`.`remarks`" => "Remarks (Optional)",
-		"`coffee_table`.`created_by`" => "Created by",
-		"`coffee_table`.`created_at`" => "Created at",
-		"`coffee_table`.`last_updated_by`" => "Last updated by",
-		"`coffee_table`.`last_updated_at`" => "Last updated at",
+		"`coffee_table`.`created_by`" => "Created By",
+		"`coffee_table`.`last_updated_by`" => "Last Updated By",
 	];
 
 	// Fields that can be quick searched
@@ -79,9 +71,7 @@
 		"if(`coffee_table`.`date`,date_format(`coffee_table`.`date`,'%d/%m/%Y'),'')" => "date",
 		"`coffee_table`.`remarks`" => "remarks",
 		"`coffee_table`.`created_by`" => "created_by",
-		"`coffee_table`.`created_at`" => "created_at",
 		"`coffee_table`.`last_updated_by`" => "last_updated_by",
-		"`coffee_table`.`last_updated_at`" => "last_updated_at",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -117,10 +107,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Cup Type', 'Time', 'Date', 'Remarks (Optional)', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'username', 'cup_type', 'time', 'date', 'remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Cup Type', 'Time', 'Date', 'Remarks (Optional)', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['id', 'username', 'cup_type', 'time', 'date', 'remarks', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/coffee_table_templateTV.html';

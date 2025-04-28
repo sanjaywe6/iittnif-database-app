@@ -35,9 +35,7 @@
 		"`approval_table`.`image`" => "image",
 		"`approval_table`.`other_file`" => "other_file",
 		"`approval_table`.`created_by`" => "created_by",
-		"`approval_table`.`created_at`" => "created_at",
 		"`approval_table`.`last_updated_by`" => "last_updated_by",
-		"`approval_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -59,8 +57,6 @@
 		16 => 16,
 		17 => 17,
 		18 => 18,
-		19 => 19,
-		20 => 20,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -82,9 +78,7 @@
 		"`approval_table`.`image`" => "image",
 		"`approval_table`.`other_file`" => "other_file",
 		"`approval_table`.`created_by`" => "created_by",
-		"`approval_table`.`created_at`" => "created_at",
 		"`approval_table`.`last_updated_by`" => "last_updated_by",
-		"`approval_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -104,9 +98,7 @@
 		"`approval_table`.`remarks_for_approval`" => "Remarks for Approval",
 		"`approval_table`.`other_file`" => "Upload Other File if Any (Optional)",
 		"`approval_table`.`created_by`" => "Created By",
-		"`approval_table`.`created_at`" => "Created At",
 		"`approval_table`.`last_updated_by`" => "Last Updated By",
-		"`approval_table`.`last_updated_at`" => "Approved At",
 	];
 
 	// Fields that can be quick searched
@@ -127,9 +119,7 @@
 		"`approval_table`.`remarks_for_approval`" => "remarks_for_approval",
 		"`approval_table`.`other_file`" => "other_file",
 		"`approval_table`.`created_by`" => "created_by",
-		"`approval_table`.`created_at`" => "created_at",
 		"`approval_table`.`last_updated_by`" => "last_updated_by",
-		"`approval_table`.`last_updated_at`" => "last_updated_at",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -165,10 +155,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Approval From', 'Approval Type', 'Description', 'Quantity', 'Full Estimated Value', 'Name of Vendor', 'Purpose', 'Requested Department/Appointment', 'Person Responsbility', 'Mode of Purchase', 'Approval Status', 'Remarks for Approval', 'Upload Image if Any (Optional)', 'Upload Other File if Any (Optional)', 'Created By', 'Created At', 'Last Updated By', 'Approved At', ];
-	$x->ColFieldName = ['id', 'approval_from', 'type', 'description', 'quantity', 'full_est_value', 'name_of_vendor', 'purpose', 'requested_department', 'person_responsbility', 'mode_of_purchase', 'approval_status', 'remarks_for_approval', 'image', 'other_file', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Approval From', 'Approval Type', 'Description', 'Quantity', 'Full Estimated Value', 'Name of Vendor', 'Purpose', 'Requested Department/Appointment', 'Person Responsbility', 'Mode of Purchase', 'Approval Status', 'Remarks for Approval', 'Upload Image if Any (Optional)', 'Upload Other File if Any (Optional)', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['id', 'approval_from', 'type', 'description', 'quantity', 'full_est_value', 'name_of_vendor', 'purpose', 'requested_department', 'person_responsbility', 'mode_of_purchase', 'approval_status', 'remarks_for_approval', 'image', 'other_file', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/approval_table_templateTV.html';

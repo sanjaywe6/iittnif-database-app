@@ -26,9 +26,7 @@
 		"`cycle_usage_table`.`total_distance_run`" => "total_distance_run",
 		"`cycle_usage_table`.`remarks`" => "remarks",
 		"`cycle_usage_table`.`created_by`" => "created_by",
-		"`cycle_usage_table`.`created_at`" => "created_at",
 		"`cycle_usage_table`.`last_updated_by`" => "last_updated_by",
-		"`cycle_usage_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -41,8 +39,6 @@
 		7 => 7,
 		8 => 8,
 		9 => 9,
-		10 => 10,
-		11 => 11,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -55,9 +51,7 @@
 		"`cycle_usage_table`.`total_distance_run`" => "total_distance_run",
 		"`cycle_usage_table`.`remarks`" => "remarks",
 		"`cycle_usage_table`.`created_by`" => "created_by",
-		"`cycle_usage_table`.`created_at`" => "created_at",
 		"`cycle_usage_table`.`last_updated_by`" => "last_updated_by",
-		"`cycle_usage_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -68,10 +62,8 @@
 		"`cycle_usage_table`.`datetime_to`" => "Date and time to",
 		"`cycle_usage_table`.`total_distance_run`" => "Total distance run (In KM)",
 		"`cycle_usage_table`.`remarks`" => "Remarks (Optional)",
-		"`cycle_usage_table`.`created_by`" => "Created by",
-		"`cycle_usage_table`.`created_at`" => "Created at",
-		"`cycle_usage_table`.`last_updated_by`" => "Last updated by",
-		"`cycle_usage_table`.`last_updated_at`" => "Last updated at",
+		"`cycle_usage_table`.`created_by`" => "Created By",
+		"`cycle_usage_table`.`last_updated_by`" => "Last Updated By",
 	];
 
 	// Fields that can be quick searched
@@ -84,9 +76,7 @@
 		"`cycle_usage_table`.`total_distance_run`" => "total_distance_run",
 		"`cycle_usage_table`.`remarks`" => "remarks",
 		"`cycle_usage_table`.`created_by`" => "created_by",
-		"`cycle_usage_table`.`created_at`" => "created_at",
 		"`cycle_usage_table`.`last_updated_by`" => "last_updated_by",
-		"`cycle_usage_table`.`last_updated_at`" => "last_updated_at",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -122,10 +112,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Cycle Details', 'Used by', 'Date and time from', 'Date and time to', 'Total distance run (In KM)', 'Remarks (Optional)', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'cycle_lookup', 'used_by', 'datetime_from', 'datetime_to', 'total_distance_run', 'remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Cycle Details', 'Used by', 'Date and time from', 'Date and time to', 'Total distance run (In KM)', 'Remarks (Optional)', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['id', 'cycle_lookup', 'used_by', 'datetime_from', 'datetime_to', 'total_distance_run', 'remarks', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/cycle_usage_table_templateTV.html';

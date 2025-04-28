@@ -106,15 +106,15 @@
 	function get_sql_fields($table_name) {
 		$sql_fields = [
 			'user_table' => "`user_table`.`user_id` as 'user_id', `user_table`.`memberID` as 'memberID', `user_table`.`name` as 'name'",
-			'suggestion' => "`suggestion`.`suggestion_id` as 'suggestion_id', `suggestion`.`department` as 'department', `suggestion`.`suggestion` as 'suggestion', `suggestion`.`attachment` as 'attachment', `suggestion`.`department_remarks` as 'department_remarks', `suggestion`.`ceo_pd_remarks` as 'ceo_pd_remarks', `suggestion`.`created_by` as 'created_by', `suggestion`.`created_at` as 'created_at', `suggestion`.`last_updated_by` as 'last_updated_by', `suggestion`.`last_updated_at` as 'last_updated_at'",
-			'approval_table' => "`approval_table`.`id` as 'id', `approval_table`.`approval_from` as 'approval_from', `approval_table`.`type` as 'type', `approval_table`.`description` as 'description', `approval_table`.`quantity` as 'quantity', `approval_table`.`full_est_value` as 'full_est_value', `approval_table`.`name_of_vendor` as 'name_of_vendor', `approval_table`.`purpose` as 'purpose', `approval_table`.`requested_department` as 'requested_department', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'person_responsbility', `approval_table`.`mode_of_purchase` as 'mode_of_purchase', `approval_table`.`others_if_any` as 'others_if_any', `approval_table`.`approval_status` as 'approval_status', `approval_table`.`remarks_for_approval` as 'remarks_for_approval', `approval_table`.`image` as 'image', `approval_table`.`other_file` as 'other_file', `approval_table`.`created_by` as 'created_by', `approval_table`.`created_at` as 'created_at', `approval_table`.`last_updated_by` as 'last_updated_by', `approval_table`.`last_updated_at` as 'last_updated_at'",
-			'car_table' => "`car_table`.`id` as 'id', `car_table`.`car_number` as 'car_number', `car_table`.`registration_number` as 'registration_number', `car_table`.`car_model` as 'car_model', `car_table`.`car_vin` as 'car_vin', `car_table`.`fuel_type` as 'fuel_type', `car_table`.`seating_capacity` as 'seating_capacity', `car_table`.`car_color` as 'car_color', `car_table`.`rental_company_name` as 'rental_company_name', `car_table`.`contact_person` as 'contact_person', `car_table`.`contact_number_of_person` as 'contact_number_of_person', `car_table`.`rental_rate` as 'rental_rate', if(`car_table`.`rental_start_date`,date_format(`car_table`.`rental_start_date`,'%d/%m/%Y'),'') as 'rental_start_date', if(`car_table`.`rental_end_date`,date_format(`car_table`.`rental_end_date`,'%d/%m/%Y'),'') as 'rental_end_date', `car_table`.`purpose` as 'purpose', `car_table`.`created_by` as 'created_by', `car_table`.`created_at` as 'created_at', `car_table`.`last_updated_by` as 'last_updated_by', `car_table`.`last_updated_at` as 'last_updated_at'",
-			'car_usage_table' => "`car_usage_table`.`car_usage_id` as 'car_usage_id', IF(    CHAR_LENGTH(`car_table1`.`car_number`) || CHAR_LENGTH(`car_table1`.`car_model`), CONCAT_WS('',   `car_table1`.`car_number`, '::', `car_table1`.`car_model`), '') as 'car_lookup', `car_usage_table`.`used_by` as 'used_by', if(`car_usage_table`.`datetime_from`,date_format(`car_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'') as 'datetime_from', if(`car_usage_table`.`datetime_to`,date_format(`car_usage_table`.`datetime_to`,'%d/%m/%Y %H:%i'),'') as 'datetime_to', `car_usage_table`.`total_distance_run` as 'total_distance_run', `car_usage_table`.`purpose` as 'purpose', `car_usage_table`.`created_by` as 'created_by', `car_usage_table`.`created_at` as 'created_at', `car_usage_table`.`last_updated_by` as 'last_updated_by', `car_usage_table`.`last_updated_at` as 'last_updated_at'",
-			'cycle_table' => "`cycle_table`.`id` as 'id', `cycle_table`.`registration_number` as 'registration_number', `cycle_table`.`cycle_model` as 'cycle_model', `cycle_table`.`cycle_color` as 'cycle_color', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'responsible_contact_person', `cycle_table`.`contact_number_of_person` as 'contact_number_of_person', `cycle_table`.`purpose` as 'purpose', `cycle_table`.`created_by` as 'created_by', `cycle_table`.`created_at` as 'created_at', `cycle_table`.`last_updated_by` as 'last_updated_by', `cycle_table`.`last_updated_at` as 'last_updated_at'",
-			'cycle_usage_table' => "`cycle_usage_table`.`id` as 'id', IF(    CHAR_LENGTH(`cycle_table1`.`registration_number`) || CHAR_LENGTH(`cycle_table1`.`cycle_model`), CONCAT_WS('',   `cycle_table1`.`registration_number`, '::', `cycle_table1`.`cycle_model`), '') as 'cycle_lookup', `cycle_usage_table`.`used_by` as 'used_by', if(`cycle_usage_table`.`datetime_from`,date_format(`cycle_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'') as 'datetime_from', if(`cycle_usage_table`.`datetime_to`,date_format(`cycle_usage_table`.`datetime_to`,'%d/%m/%Y %H:%i'),'') as 'datetime_to', `cycle_usage_table`.`total_distance_run` as 'total_distance_run', `cycle_usage_table`.`remarks` as 'remarks', `cycle_usage_table`.`created_by` as 'created_by', `cycle_usage_table`.`created_at` as 'created_at', `cycle_usage_table`.`last_updated_by` as 'last_updated_by', `cycle_usage_table`.`last_updated_at` as 'last_updated_at'",
-			'gym_table' => "`gym_table`.`id` as 'id', `gym_table`.`username` as 'username', `gym_table`.`in` as 'in', `gym_table`.`out` as 'out', if(`gym_table`.`date`,date_format(`gym_table`.`date`,'%d/%m/%Y'),'') as 'date', `gym_table`.`remarks` as 'remarks', `gym_table`.`created_by` as 'created_by', `gym_table`.`created_at` as 'created_at', `gym_table`.`last_updated_by` as 'last_updated_by', `gym_table`.`last_updated_at` as 'last_updated_at'",
-			'coffee_table' => "`coffee_table`.`id` as 'id', `coffee_table`.`username` as 'username', `coffee_table`.`cup_type` as 'cup_type', `coffee_table`.`time` as 'time', if(`coffee_table`.`date`,date_format(`coffee_table`.`date`,'%d/%m/%Y'),'') as 'date', `coffee_table`.`remarks` as 'remarks', `coffee_table`.`created_by` as 'created_by', `coffee_table`.`created_at` as 'created_at', `coffee_table`.`last_updated_by` as 'last_updated_by', `coffee_table`.`last_updated_at` as 'last_updated_at'",
-			'cafeteria_table' => "`cafeteria_table`.`id` as 'id', `cafeteria_table`.`username` as 'username', `cafeteria_table`.`type` as 'type', `cafeteria_table`.`time` as 'time', if(`cafeteria_table`.`date`,date_format(`cafeteria_table`.`date`,'%d/%m/%Y'),'') as 'date', `cafeteria_table`.`created_by` as 'created_by', `cafeteria_table`.`created_at` as 'created_at', `cafeteria_table`.`last_updated_by` as 'last_updated_by', `cafeteria_table`.`last_updated_at` as 'last_updated_at', `cafeteria_table`.`remarks` as 'remarks'",
+			'suggestion' => "`suggestion`.`suggestion_id` as 'suggestion_id', `suggestion`.`department` as 'department', `suggestion`.`suggestion` as 'suggestion', `suggestion`.`attachment` as 'attachment', `suggestion`.`department_remarks` as 'department_remarks', `suggestion`.`ceo_pd_remarks` as 'ceo_pd_remarks', `suggestion`.`created_by` as 'created_by', `suggestion`.`last_updated_by` as 'last_updated_by'",
+			'approval_table' => "`approval_table`.`id` as 'id', `approval_table`.`approval_from` as 'approval_from', `approval_table`.`type` as 'type', `approval_table`.`description` as 'description', `approval_table`.`quantity` as 'quantity', `approval_table`.`full_est_value` as 'full_est_value', `approval_table`.`name_of_vendor` as 'name_of_vendor', `approval_table`.`purpose` as 'purpose', `approval_table`.`requested_department` as 'requested_department', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'person_responsbility', `approval_table`.`mode_of_purchase` as 'mode_of_purchase', `approval_table`.`others_if_any` as 'others_if_any', `approval_table`.`approval_status` as 'approval_status', `approval_table`.`remarks_for_approval` as 'remarks_for_approval', `approval_table`.`image` as 'image', `approval_table`.`other_file` as 'other_file', `approval_table`.`created_by` as 'created_by', `approval_table`.`last_updated_by` as 'last_updated_by'",
+			'car_table' => "`car_table`.`id` as 'id', `car_table`.`car_number` as 'car_number', `car_table`.`registration_number` as 'registration_number', `car_table`.`car_model` as 'car_model', `car_table`.`car_vin` as 'car_vin', `car_table`.`fuel_type` as 'fuel_type', `car_table`.`seating_capacity` as 'seating_capacity', `car_table`.`car_color` as 'car_color', `car_table`.`rental_company_name` as 'rental_company_name', `car_table`.`contact_person` as 'contact_person', `car_table`.`contact_number_of_person` as 'contact_number_of_person', `car_table`.`rental_rate` as 'rental_rate', if(`car_table`.`rental_start_date`,date_format(`car_table`.`rental_start_date`,'%d/%m/%Y'),'') as 'rental_start_date', if(`car_table`.`rental_end_date`,date_format(`car_table`.`rental_end_date`,'%d/%m/%Y'),'') as 'rental_end_date', `car_table`.`purpose` as 'purpose', `car_table`.`created_by` as 'created_by', `car_table`.`last_updated_by` as 'last_updated_by'",
+			'car_usage_table' => "`car_usage_table`.`car_usage_id` as 'car_usage_id', IF(    CHAR_LENGTH(`car_table1`.`car_number`) || CHAR_LENGTH(`car_table1`.`car_model`), CONCAT_WS('',   `car_table1`.`car_number`, '::', `car_table1`.`car_model`), '') as 'car_lookup', `car_usage_table`.`used_by` as 'used_by', if(`car_usage_table`.`datetime_from`,date_format(`car_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'') as 'datetime_from', if(`car_usage_table`.`datetime_to`,date_format(`car_usage_table`.`datetime_to`,'%d/%m/%Y %H:%i'),'') as 'datetime_to', `car_usage_table`.`total_distance_run` as 'total_distance_run', `car_usage_table`.`purpose` as 'purpose', `car_usage_table`.`created_by` as 'created_by', `car_usage_table`.`last_updated_by` as 'last_updated_by'",
+			'cycle_table' => "`cycle_table`.`id` as 'id', `cycle_table`.`registration_number` as 'registration_number', `cycle_table`.`cycle_model` as 'cycle_model', `cycle_table`.`cycle_color` as 'cycle_color', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'responsible_contact_person', `cycle_table`.`contact_number_of_person` as 'contact_number_of_person', `cycle_table`.`purpose` as 'purpose', `cycle_table`.`created_by` as 'created_by', `cycle_table`.`last_updated_by` as 'last_updated_by'",
+			'cycle_usage_table' => "`cycle_usage_table`.`id` as 'id', IF(    CHAR_LENGTH(`cycle_table1`.`registration_number`) || CHAR_LENGTH(`cycle_table1`.`cycle_model`), CONCAT_WS('',   `cycle_table1`.`registration_number`, '::', `cycle_table1`.`cycle_model`), '') as 'cycle_lookup', `cycle_usage_table`.`used_by` as 'used_by', if(`cycle_usage_table`.`datetime_from`,date_format(`cycle_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'') as 'datetime_from', if(`cycle_usage_table`.`datetime_to`,date_format(`cycle_usage_table`.`datetime_to`,'%d/%m/%Y %H:%i'),'') as 'datetime_to', `cycle_usage_table`.`total_distance_run` as 'total_distance_run', `cycle_usage_table`.`remarks` as 'remarks', `cycle_usage_table`.`created_by` as 'created_by', `cycle_usage_table`.`last_updated_by` as 'last_updated_by'",
+			'gym_table' => "`gym_table`.`id` as 'id', `gym_table`.`username` as 'username', `gym_table`.`in` as 'in', `gym_table`.`out` as 'out', if(`gym_table`.`date`,date_format(`gym_table`.`date`,'%d/%m/%Y'),'') as 'date', `gym_table`.`remarks` as 'remarks', `gym_table`.`created_by` as 'created_by', `gym_table`.`last_updated_by` as 'last_updated_by'",
+			'coffee_table' => "`coffee_table`.`id` as 'id', `coffee_table`.`username` as 'username', `coffee_table`.`cup_type` as 'cup_type', `coffee_table`.`time` as 'time', if(`coffee_table`.`date`,date_format(`coffee_table`.`date`,'%d/%m/%Y'),'') as 'date', `coffee_table`.`remarks` as 'remarks', `coffee_table`.`created_by` as 'created_by', `coffee_table`.`last_updated_by` as 'last_updated_by'",
+			'cafeteria_table' => "`cafeteria_table`.`id` as 'id', `cafeteria_table`.`username` as 'username', `cafeteria_table`.`type` as 'type', `cafeteria_table`.`time` as 'time', if(`cafeteria_table`.`date`,date_format(`cafeteria_table`.`date`,'%d/%m/%Y'),'') as 'date', `cafeteria_table`.`remarks` as 'remarks', `cafeteria_table`.`created_by` as 'created_by', `cafeteria_table`.`last_updated_by` as 'last_updated_by'",
 			'event_table' => "`event_table`.`event_id` as 'event_id', `event_table`.`event_name` as 'event_name', `event_table`.`participants` as 'participants', `event_table`.`venue` as 'venue', if(`event_table`.`event_from_date`,date_format(`event_table`.`event_from_date`,'%d/%m/%Y'),'') as 'event_from_date', if(`event_table`.`event_to_date`,date_format(`event_table`.`event_to_date`,'%d/%m/%Y'),'') as 'event_to_date', `event_table`.`event_str` as 'event_str', `event_table`.`created_by` as 'created_by', `event_table`.`created_at` as 'created_at', `event_table`.`last_updated_by` as 'last_updated_by', `event_table`.`last_updated_at` as 'last_updated_at'",
 			'outcomes_expected_table' => "`outcomes_expected_table`.`outcomes_expected_id` as 'outcomes_expected_id', IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') as 'event_lookup', `outcomes_expected_table`.`target_audience` as 'target_audience', `outcomes_expected_table`.`expected_outcomes` as 'expected_outcomes', `outcomes_expected_table`.`outcomes_expected_str` as 'outcomes_expected_str', `outcomes_expected_table`.`created_by` as 'created_by', `outcomes_expected_table`.`created_at` as 'created_at', `outcomes_expected_table`.`last_updated_by` as 'last_updated_by', `outcomes_expected_table`.`last_updated_at` as 'last_updated_at'",
 			'event_decision_table' => "`event_decision_table`.`decision_id` as 'decision_id', IF(    CHAR_LENGTH(`outcomes_expected_table1`.`outcomes_expected_str`), CONCAT_WS('',   `outcomes_expected_table1`.`outcomes_expected_str`), '') as 'outcomes_expected_lookup', `event_decision_table`.`decision_description` as 'decision_description', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'decision_actor', if(`event_decision_table`.`action_taken_with_date`,date_format(`event_decision_table`.`action_taken_with_date`,'%d/%m/%Y'),'') as 'action_taken_with_date', `event_decision_table`.`decision_status` as 'decision_status', if(`event_decision_table`.`decision_status_update_date`,date_format(`event_decision_table`.`decision_status_update_date`,'%d/%m/%Y'),'') as 'decision_status_update_date', `event_decision_table`.`decision_status_remarks_by_superior` as 'decision_status_remarks_by_superior', `event_decision_table`.`decision_str` as 'decision_str', `event_decision_table`.`created_by` as 'created_by', `event_decision_table`.`created_at` as 'created_at', `event_decision_table`.`last_updated_by` as 'last_updated_by', `event_decision_table`.`last_updated_at` as 'last_updated_at'",
@@ -183,7 +183,7 @@
 			'address_tdp' => "`address_tdp`.`id` as 'id', IF(    CHAR_LENGTH(`panel_decision_table_tdp1`.`project_id`) || CHAR_LENGTH(`panel_decision_table_tdp1`.`project_title`), CONCAT_WS('',   `panel_decision_table_tdp1`.`project_id`, '::', `panel_decision_table_tdp1`.`project_title`), '') as 'project_id', `address_tdp`.`project_title` as 'project_title', `address_tdp`.`short_name` as 'short_name', `address_tdp`.`pincode` as 'pincode', `address_tdp`.`lattitude` as 'lattitude', `address_tdp`.`longitude` as 'longitude', `address_tdp`.`created_by` as 'created_by', `address_tdp`.`created_at` as 'created_at', `address_tdp`.`last_updated_by` as 'last_updated_by', `address_tdp`.`last_updated_at` as 'last_updated_at'",
 			'summary_table_tdp' => "`summary_table_tdp`.`id` as 'id', `summary_table_tdp`.`project_number` as 'project_number', `summary_table_tdp`.`project_title` as 'project_title', `summary_table_tdp`.`year` as 'year', `summary_table_tdp`.`pi` as 'pi', `summary_table_tdp`.`institute` as 'institute', `summary_table_tdp`.`duration_in_months` as 'duration_in_months', `summary_table_tdp`.`overall_budget` as 'overall_budget', `summary_table_tdp`.`number_of_products` as 'number_of_products', `summary_table_tdp`.`trl_status` as 'trl_status', if(`summary_table_tdp`.`sactioned_date`,date_format(`summary_table_tdp`.`sactioned_date`,'%d/%m/%Y'),'') as 'sactioned_date', `summary_table_tdp`.`ongoing_month_of_project` as 'ongoing_month_of_project', `summary_table_tdp`.`last_monthly_report` as 'last_monthly_report', `summary_table_tdp`.`no_of_ug` as 'no_of_ug', `summary_table_tdp`.`no_of_pg` as 'no_of_pg', `summary_table_tdp`.`no_of_phd` as 'no_of_phd', `summary_table_tdp`.`no_of_postdoc` as 'no_of_postdoc', if(`summary_table_tdp`.`first_milestone_amount_and_date`,date_format(`summary_table_tdp`.`first_milestone_amount_and_date`,'%d/%m/%Y'),'') as 'first_milestone_amount_and_date', if(`summary_table_tdp`.`stage_I_completion`,date_format(`summary_table_tdp`.`stage_I_completion`,'%d/%m/%Y'),'') as 'stage_I_completion', if(`summary_table_tdp`.`second_milestone_amount_and_date`,date_format(`summary_table_tdp`.`second_milestone_amount_and_date`,'%d/%m/%Y'),'') as 'second_milestone_amount_and_date', if(`summary_table_tdp`.`stage_2_completion`,date_format(`summary_table_tdp`.`stage_2_completion`,'%d/%m/%Y'),'') as 'stage_2_completion', if(`summary_table_tdp`.`third_milestone_amount_and_date`,date_format(`summary_table_tdp`.`third_milestone_amount_and_date`,'%d/%m/%Y'),'') as 'third_milestone_amount_and_date', if(`summary_table_tdp`.`stage_3_completion`,date_format(`summary_table_tdp`.`stage_3_completion`,'%d/%m/%Y'),'') as 'stage_3_completion', if(`summary_table_tdp`.`fourth_milestone_amount_and_date`,date_format(`summary_table_tdp`.`fourth_milestone_amount_and_date`,'%d/%m/%Y'),'') as 'fourth_milestone_amount_and_date', if(`summary_table_tdp`.`stage_4_completion`,date_format(`summary_table_tdp`.`stage_4_completion`,'%d/%m/%Y'),'') as 'stage_4_completion', `summary_table_tdp`.`created_by` as 'created_by', `summary_table_tdp`.`created_at` as 'created_at', `summary_table_tdp`.`last_updated_by` as 'last_updated_by', `summary_table_tdp`.`last_updated_at` as 'last_updated_at'",
 			'project_details_tdp' => "`project_details_tdp`.`id` as 'id', IF(    CHAR_LENGTH(`summary_table_tdp1`.`project_number`), CONCAT_WS('',   `summary_table_tdp1`.`project_number`), '') as 'project_number', `project_details_tdp`.`stage_1` as 'stage_1', `project_details_tdp`.`stage_2` as 'stage_2', `project_details_tdp`.`stage_3` as 'stage_3', `project_details_tdp`.`stage_4` as 'stage_4', `project_details_tdp`.`total` as 'total', `project_details_tdp`.`details` as 'details', `project_details_tdp`.`created_by` as 'created_by', `project_details_tdp`.`created_at` as 'created_at', `project_details_tdp`.`last_updated_by` as 'last_updated_by', `project_details_tdp`.`last_updated_at` as 'last_updated_at'",
-			'newsletter_table' => "`newsletter_table`.`id` as 'id', `newsletter_table`.`username` as 'username', `newsletter_table`.`section` as 'section', `newsletter_table`.`name_of_event` as 'name_of_event', `newsletter_table`.`dates_of_events` as 'dates_of_events', `newsletter_table`.`writeup_about_event` as 'writeup_about_event', `newsletter_table`.`img1` as 'img1', `newsletter_table`.`img2` as 'img2', `newsletter_table`.`created_details` as 'created_details', `newsletter_table`.`last_updated_details` as 'last_updated_details'",
+			'newsletter_table' => "`newsletter_table`.`id` as 'id', `newsletter_table`.`username` as 'username', `newsletter_table`.`section` as 'section', `newsletter_table`.`name_of_event` as 'name_of_event', `newsletter_table`.`dates_of_events` as 'dates_of_events', `newsletter_table`.`writeup_about_event` as 'writeup_about_event', `newsletter_table`.`img1` as 'img1', `newsletter_table`.`img2` as 'img2', `newsletter_table`.`created_by` as 'created_by', `newsletter_table`.`last_updated_by` as 'last_updated_by'",
 		];
 
 		if(isset($sql_fields[$table_name])) return $sql_fields[$table_name];
@@ -418,9 +418,7 @@
 				'department_remarks' => '',
 				'ceo_pd_remarks' => '',
 				'created_by' => '',
-				'created_at' => '',
 				'last_updated_by' => '',
-				'last_updated_at' => '',
 			],
 			'approval_table' => [
 				'id' => '',
@@ -440,9 +438,7 @@
 				'image' => '',
 				'other_file' => '',
 				'created_by' => '',
-				'created_at' => '',
 				'last_updated_by' => '',
-				'last_updated_at' => '',
 			],
 			'car_table' => [
 				'id' => '',
@@ -461,9 +457,7 @@
 				'rental_end_date' => '',
 				'purpose' => '',
 				'created_by' => '',
-				'created_at' => '',
 				'last_updated_by' => '',
-				'last_updated_at' => '',
 			],
 			'car_usage_table' => [
 				'car_usage_id' => '',
@@ -474,9 +468,7 @@
 				'total_distance_run' => '',
 				'purpose' => '',
 				'created_by' => '',
-				'created_at' => '',
 				'last_updated_by' => '',
-				'last_updated_at' => '',
 			],
 			'cycle_table' => [
 				'id' => '',
@@ -487,9 +479,7 @@
 				'contact_number_of_person' => '',
 				'purpose' => '',
 				'created_by' => '',
-				'created_at' => '',
 				'last_updated_by' => '',
-				'last_updated_at' => '',
 			],
 			'cycle_usage_table' => [
 				'id' => '',
@@ -500,9 +490,7 @@
 				'total_distance_run' => '',
 				'remarks' => '',
 				'created_by' => '',
-				'created_at' => '',
 				'last_updated_by' => '',
-				'last_updated_at' => '',
 			],
 			'gym_table' => [
 				'id' => '',
@@ -512,9 +500,7 @@
 				'date' => '',
 				'remarks' => '',
 				'created_by' => '',
-				'created_at' => '',
 				'last_updated_by' => '',
-				'last_updated_at' => '',
 			],
 			'coffee_table' => [
 				'id' => '',
@@ -524,9 +510,7 @@
 				'date' => '',
 				'remarks' => '',
 				'created_by' => '',
-				'created_at' => '',
 				'last_updated_by' => '',
-				'last_updated_at' => '',
 			],
 			'cafeteria_table' => [
 				'id' => '',
@@ -534,11 +518,9 @@
 				'type' => 'Breakfast',
 				'time' => '',
 				'date' => '',
-				'created_by' => '',
-				'created_at' => '',
-				'last_updated_by' => '',
-				'last_updated_at' => '',
 				'remarks' => '',
+				'created_by' => '',
+				'last_updated_by' => '',
 			],
 			'event_table' => [
 				'event_id' => '',
@@ -1712,8 +1694,8 @@
 				'writeup_about_event' => '',
 				'img1' => '',
 				'img2' => '',
-				'created_details' => '',
-				'last_updated_details' => '',
+				'created_by' => '',
+				'last_updated_by' => '',
 			],
 		];
 
@@ -2657,9 +2639,9 @@ EOT;
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => [0 => 'ID', 1 => 'Approval From', 2 => 'Approval Type', 3 => 'Description', 4 => 'Quantity', 5 => 'Full Estimated Value', 6 => 'Name of Vendor', 7 => 'Purpose', 8 => 'Requested Department/Appointment', 9 => 'Person Responsbility', 10 => 'Mode of Purchase', 12 => 'Approval Status', 13 => 'Remarks for Approval', 14 => 'Upload Image if Any (Optional)', 15 => 'Upload Other File if Any (Optional)', 16 => 'Created By', 17 => 'Created At', 18 => 'Last Updated By', 19 => 'Approved At'],
-					'display-field-names' => [0 => 'id', 1 => 'approval_from', 2 => 'type', 3 => 'description', 4 => 'quantity', 5 => 'full_est_value', 6 => 'name_of_vendor', 7 => 'purpose', 8 => 'requested_department', 9 => 'person_responsbility', 10 => 'mode_of_purchase', 12 => 'approval_status', 13 => 'remarks_for_approval', 14 => 'image', 15 => 'other_file', 16 => 'created_by', 17 => 'created_at', 18 => 'last_updated_by', 19 => 'last_updated_at'],
-					'sortable-fields' => [0 => '`approval_table`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => 9, 9 => 10, 10 => 11, 11 => 12, 12 => 13, 13 => 14, 14 => 15, 15 => 16, 16 => 17, 17 => 18, 18 => 19, 19 => 20],
+					'display-fields' => [0 => 'ID', 1 => 'Approval From', 2 => 'Approval Type', 3 => 'Description', 4 => 'Quantity', 5 => 'Full Estimated Value', 6 => 'Name of Vendor', 7 => 'Purpose', 8 => 'Requested Department/Appointment', 9 => 'Person Responsbility', 10 => 'Mode of Purchase', 12 => 'Approval Status', 13 => 'Remarks for Approval', 14 => 'Upload Image if Any (Optional)', 15 => 'Upload Other File if Any (Optional)', 16 => 'Created By', 17 => 'Last Updated By'],
+					'display-field-names' => [0 => 'id', 1 => 'approval_from', 2 => 'type', 3 => 'description', 4 => 'quantity', 5 => 'full_est_value', 6 => 'name_of_vendor', 7 => 'purpose', 8 => 'requested_department', 9 => 'person_responsbility', 10 => 'mode_of_purchase', 12 => 'approval_status', 13 => 'remarks_for_approval', 14 => 'image', 15 => 'other_file', 16 => 'created_by', 17 => 'last_updated_by'],
+					'sortable-fields' => [0 => '`approval_table`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => 9, 9 => 10, 10 => 11, 11 => 12, 12 => 13, 13 => 14, 14 => 15, 15 => 16, 16 => 17, 17 => 18],
 					'records-per-page' => 10,
 					'default-sort-by' => 0,
 					'default-sort-direction' => 'desc',
@@ -2668,7 +2650,7 @@ EOT;
 					'show-page-progress' => true,
 					'template' => 'children-approval_table',
 					'template-printable' => 'children-approval_table-printable',
-					'query' => "SELECT `approval_table`.`id` as 'id', `approval_table`.`approval_from` as 'approval_from', `approval_table`.`type` as 'type', `approval_table`.`description` as 'description', `approval_table`.`quantity` as 'quantity', `approval_table`.`full_est_value` as 'full_est_value', `approval_table`.`name_of_vendor` as 'name_of_vendor', `approval_table`.`purpose` as 'purpose', `approval_table`.`requested_department` as 'requested_department', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'person_responsbility', `approval_table`.`mode_of_purchase` as 'mode_of_purchase', `approval_table`.`others_if_any` as 'others_if_any', `approval_table`.`approval_status` as 'approval_status', `approval_table`.`remarks_for_approval` as 'remarks_for_approval', `approval_table`.`image` as 'image', `approval_table`.`other_file` as 'other_file', `approval_table`.`created_by` as 'created_by', `approval_table`.`created_at` as 'created_at', `approval_table`.`last_updated_by` as 'last_updated_by', `approval_table`.`last_updated_at` as 'last_updated_at' FROM `approval_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`approval_table`.`person_responsbility` "
+					'query' => "SELECT `approval_table`.`id` as 'id', `approval_table`.`approval_from` as 'approval_from', `approval_table`.`type` as 'type', `approval_table`.`description` as 'description', `approval_table`.`quantity` as 'quantity', `approval_table`.`full_est_value` as 'full_est_value', `approval_table`.`name_of_vendor` as 'name_of_vendor', `approval_table`.`purpose` as 'purpose', `approval_table`.`requested_department` as 'requested_department', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'person_responsbility', `approval_table`.`mode_of_purchase` as 'mode_of_purchase', `approval_table`.`others_if_any` as 'others_if_any', `approval_table`.`approval_status` as 'approval_status', `approval_table`.`remarks_for_approval` as 'remarks_for_approval', `approval_table`.`image` as 'image', `approval_table`.`other_file` as 'other_file', `approval_table`.`created_by` as 'created_by', `approval_table`.`last_updated_by` as 'last_updated_by' FROM `approval_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`approval_table`.`person_responsbility` "
 				],
 			],
 			'car_table' => [
@@ -2685,9 +2667,9 @@ EOT;
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => [0 => 'ID', 1 => 'Select Car', 2 => 'Used by', 3 => 'Date and time from', 4 => 'Date and time to', 5 => 'Total distance run (In KM)', 6 => 'Purpose', 7 => 'Created by', 8 => 'Created at', 9 => 'Last updated by', 10 => 'Last updated at'],
-					'display-field-names' => [0 => 'car_usage_id', 1 => 'car_lookup', 2 => 'used_by', 3 => 'datetime_from', 4 => 'datetime_to', 5 => 'total_distance_run', 6 => 'purpose', 7 => 'created_by', 8 => 'created_at', 9 => 'last_updated_by', 10 => 'last_updated_at'],
-					'sortable-fields' => [0 => '`car_usage_table`.`car_usage_id`', 1 => 2, 2 => 3, 3 => '`car_usage_table`.`datetime_from`', 4 => '`car_usage_table`.`datetime_to`', 5 => 6, 6 => 7, 7 => 8, 8 => 9, 9 => 10, 10 => 11],
+					'display-fields' => [0 => 'ID', 1 => 'Select Car', 2 => 'Used by', 3 => 'Date and time from', 4 => 'Date and time to', 5 => 'Total distance run (In KM)', 6 => 'Purpose', 7 => 'Created By', 8 => 'Last Updated By'],
+					'display-field-names' => [0 => 'car_usage_id', 1 => 'car_lookup', 2 => 'used_by', 3 => 'datetime_from', 4 => 'datetime_to', 5 => 'total_distance_run', 6 => 'purpose', 7 => 'created_by', 8 => 'last_updated_by'],
+					'sortable-fields' => [0 => '`car_usage_table`.`car_usage_id`', 1 => 2, 2 => 3, 3 => '`car_usage_table`.`datetime_from`', 4 => '`car_usage_table`.`datetime_to`', 5 => 6, 6 => 7, 7 => 8, 8 => 9],
 					'records-per-page' => 10,
 					'default-sort-by' => 0,
 					'default-sort-direction' => 'desc',
@@ -2696,7 +2678,7 @@ EOT;
 					'show-page-progress' => true,
 					'template' => 'children-car_usage_table',
 					'template-printable' => 'children-car_usage_table-printable',
-					'query' => "SELECT `car_usage_table`.`car_usage_id` as 'car_usage_id', IF(    CHAR_LENGTH(`car_table1`.`car_number`) || CHAR_LENGTH(`car_table1`.`car_model`), CONCAT_WS('',   `car_table1`.`car_number`, '::', `car_table1`.`car_model`), '') as 'car_lookup', `car_usage_table`.`used_by` as 'used_by', if(`car_usage_table`.`datetime_from`,date_format(`car_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'') as 'datetime_from', if(`car_usage_table`.`datetime_to`,date_format(`car_usage_table`.`datetime_to`,'%d/%m/%Y %H:%i'),'') as 'datetime_to', `car_usage_table`.`total_distance_run` as 'total_distance_run', `car_usage_table`.`purpose` as 'purpose', `car_usage_table`.`created_by` as 'created_by', `car_usage_table`.`created_at` as 'created_at', `car_usage_table`.`last_updated_by` as 'last_updated_by', `car_usage_table`.`last_updated_at` as 'last_updated_at' FROM `car_usage_table` LEFT JOIN `car_table` as car_table1 ON `car_table1`.`id`=`car_usage_table`.`car_lookup` "
+					'query' => "SELECT `car_usage_table`.`car_usage_id` as 'car_usage_id', IF(    CHAR_LENGTH(`car_table1`.`car_number`) || CHAR_LENGTH(`car_table1`.`car_model`), CONCAT_WS('',   `car_table1`.`car_number`, '::', `car_table1`.`car_model`), '') as 'car_lookup', `car_usage_table`.`used_by` as 'used_by', if(`car_usage_table`.`datetime_from`,date_format(`car_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'') as 'datetime_from', if(`car_usage_table`.`datetime_to`,date_format(`car_usage_table`.`datetime_to`,'%d/%m/%Y %H:%i'),'') as 'datetime_to', `car_usage_table`.`total_distance_run` as 'total_distance_run', `car_usage_table`.`purpose` as 'purpose', `car_usage_table`.`created_by` as 'created_by', `car_usage_table`.`last_updated_by` as 'last_updated_by' FROM `car_usage_table` LEFT JOIN `car_table` as car_table1 ON `car_table1`.`id`=`car_usage_table`.`car_lookup` "
 				],
 			],
 			'cycle_table' => [
@@ -2711,9 +2693,9 @@ EOT;
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => [0 => 'ID', 1 => 'Registration number', 2 => 'Cycle model', 3 => 'Cycle color', 4 => 'Responsible Contact Person', 5 => 'Contact number of person', 6 => 'Purpose', 7 => 'Created by', 8 => 'Created at', 9 => 'Last updated by', 10 => 'Last updated at'],
-					'display-field-names' => [0 => 'id', 1 => 'registration_number', 2 => 'cycle_model', 3 => 'cycle_color', 4 => 'responsible_contact_person', 5 => 'contact_number_of_person', 6 => 'purpose', 7 => 'created_by', 8 => 'created_at', 9 => 'last_updated_by', 10 => 'last_updated_at'],
-					'sortable-fields' => [0 => '`cycle_table`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => 9, 9 => 10, 10 => 11],
+					'display-fields' => [0 => 'ID', 1 => 'Registration number', 2 => 'Cycle model', 3 => 'Cycle color', 4 => 'Responsible Contact Person', 5 => 'Contact number of person', 6 => 'Purpose', 7 => 'Created By', 8 => 'Last Updated By'],
+					'display-field-names' => [0 => 'id', 1 => 'registration_number', 2 => 'cycle_model', 3 => 'cycle_color', 4 => 'responsible_contact_person', 5 => 'contact_number_of_person', 6 => 'purpose', 7 => 'created_by', 8 => 'last_updated_by'],
+					'sortable-fields' => [0 => '`cycle_table`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => 9],
 					'records-per-page' => 10,
 					'default-sort-by' => 0,
 					'default-sort-direction' => 'desc',
@@ -2722,7 +2704,7 @@ EOT;
 					'show-page-progress' => true,
 					'template' => 'children-cycle_table',
 					'template-printable' => 'children-cycle_table-printable',
-					'query' => "SELECT `cycle_table`.`id` as 'id', `cycle_table`.`registration_number` as 'registration_number', `cycle_table`.`cycle_model` as 'cycle_model', `cycle_table`.`cycle_color` as 'cycle_color', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'responsible_contact_person', `cycle_table`.`contact_number_of_person` as 'contact_number_of_person', `cycle_table`.`purpose` as 'purpose', `cycle_table`.`created_by` as 'created_by', `cycle_table`.`created_at` as 'created_at', `cycle_table`.`last_updated_by` as 'last_updated_by', `cycle_table`.`last_updated_at` as 'last_updated_at' FROM `cycle_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`cycle_table`.`responsible_contact_person` "
+					'query' => "SELECT `cycle_table`.`id` as 'id', `cycle_table`.`registration_number` as 'registration_number', `cycle_table`.`cycle_model` as 'cycle_model', `cycle_table`.`cycle_color` as 'cycle_color', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'responsible_contact_person', `cycle_table`.`contact_number_of_person` as 'contact_number_of_person', `cycle_table`.`purpose` as 'purpose', `cycle_table`.`created_by` as 'created_by', `cycle_table`.`last_updated_by` as 'last_updated_by' FROM `cycle_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`cycle_table`.`responsible_contact_person` "
 				],
 			],
 			'cycle_usage_table' => [
@@ -2737,9 +2719,9 @@ EOT;
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => [0 => 'ID', 1 => 'Cycle Details', 2 => 'Used by', 3 => 'Date and time from', 4 => 'Date and time to', 5 => 'Total distance run (In KM)', 6 => 'Remarks (Optional)', 7 => 'Created by', 8 => 'Created at', 9 => 'Last updated by', 10 => 'Last updated at'],
-					'display-field-names' => [0 => 'id', 1 => 'cycle_lookup', 2 => 'used_by', 3 => 'datetime_from', 4 => 'datetime_to', 5 => 'total_distance_run', 6 => 'remarks', 7 => 'created_by', 8 => 'created_at', 9 => 'last_updated_by', 10 => 'last_updated_at'],
-					'sortable-fields' => [0 => '`cycle_usage_table`.`id`', 1 => 2, 2 => 3, 3 => '`cycle_usage_table`.`datetime_from`', 4 => '`cycle_usage_table`.`datetime_to`', 5 => 6, 6 => 7, 7 => 8, 8 => 9, 9 => 10, 10 => 11],
+					'display-fields' => [0 => 'ID', 1 => 'Cycle Details', 2 => 'Used by', 3 => 'Date and time from', 4 => 'Date and time to', 5 => 'Total distance run (In KM)', 6 => 'Remarks (Optional)', 7 => 'Created By', 8 => 'Last Updated By'],
+					'display-field-names' => [0 => 'id', 1 => 'cycle_lookup', 2 => 'used_by', 3 => 'datetime_from', 4 => 'datetime_to', 5 => 'total_distance_run', 6 => 'remarks', 7 => 'created_by', 8 => 'last_updated_by'],
+					'sortable-fields' => [0 => '`cycle_usage_table`.`id`', 1 => 2, 2 => 3, 3 => '`cycle_usage_table`.`datetime_from`', 4 => '`cycle_usage_table`.`datetime_to`', 5 => 6, 6 => 7, 7 => 8, 8 => 9],
 					'records-per-page' => 10,
 					'default-sort-by' => 0,
 					'default-sort-direction' => 'desc',
@@ -2748,7 +2730,7 @@ EOT;
 					'show-page-progress' => true,
 					'template' => 'children-cycle_usage_table',
 					'template-printable' => 'children-cycle_usage_table-printable',
-					'query' => "SELECT `cycle_usage_table`.`id` as 'id', IF(    CHAR_LENGTH(`cycle_table1`.`registration_number`) || CHAR_LENGTH(`cycle_table1`.`cycle_model`), CONCAT_WS('',   `cycle_table1`.`registration_number`, '::', `cycle_table1`.`cycle_model`), '') as 'cycle_lookup', `cycle_usage_table`.`used_by` as 'used_by', if(`cycle_usage_table`.`datetime_from`,date_format(`cycle_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'') as 'datetime_from', if(`cycle_usage_table`.`datetime_to`,date_format(`cycle_usage_table`.`datetime_to`,'%d/%m/%Y %H:%i'),'') as 'datetime_to', `cycle_usage_table`.`total_distance_run` as 'total_distance_run', `cycle_usage_table`.`remarks` as 'remarks', `cycle_usage_table`.`created_by` as 'created_by', `cycle_usage_table`.`created_at` as 'created_at', `cycle_usage_table`.`last_updated_by` as 'last_updated_by', `cycle_usage_table`.`last_updated_at` as 'last_updated_at' FROM `cycle_usage_table` LEFT JOIN `cycle_table` as cycle_table1 ON `cycle_table1`.`id`=`cycle_usage_table`.`cycle_lookup` "
+					'query' => "SELECT `cycle_usage_table`.`id` as 'id', IF(    CHAR_LENGTH(`cycle_table1`.`registration_number`) || CHAR_LENGTH(`cycle_table1`.`cycle_model`), CONCAT_WS('',   `cycle_table1`.`registration_number`, '::', `cycle_table1`.`cycle_model`), '') as 'cycle_lookup', `cycle_usage_table`.`used_by` as 'used_by', if(`cycle_usage_table`.`datetime_from`,date_format(`cycle_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'') as 'datetime_from', if(`cycle_usage_table`.`datetime_to`,date_format(`cycle_usage_table`.`datetime_to`,'%d/%m/%Y %H:%i'),'') as 'datetime_to', `cycle_usage_table`.`total_distance_run` as 'total_distance_run', `cycle_usage_table`.`remarks` as 'remarks', `cycle_usage_table`.`created_by` as 'created_by', `cycle_usage_table`.`last_updated_by` as 'last_updated_by' FROM `cycle_usage_table` LEFT JOIN `cycle_table` as cycle_table1 ON `cycle_table1`.`id`=`cycle_usage_table`.`cycle_lookup` "
 				],
 			],
 			'gym_table' => [

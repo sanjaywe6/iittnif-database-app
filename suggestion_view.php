@@ -25,9 +25,7 @@
 		"`suggestion`.`department_remarks`" => "department_remarks",
 		"`suggestion`.`ceo_pd_remarks`" => "ceo_pd_remarks",
 		"`suggestion`.`created_by`" => "created_by",
-		"`suggestion`.`created_at`" => "created_at",
 		"`suggestion`.`last_updated_by`" => "last_updated_by",
-		"`suggestion`.`last_updated_at`" => "last_updated_at",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -39,8 +37,6 @@
 		6 => 6,
 		7 => 7,
 		8 => 8,
-		9 => 9,
-		10 => 10,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -52,9 +48,7 @@
 		"`suggestion`.`department_remarks`" => "department_remarks",
 		"`suggestion`.`ceo_pd_remarks`" => "ceo_pd_remarks",
 		"`suggestion`.`created_by`" => "created_by",
-		"`suggestion`.`created_at`" => "created_at",
 		"`suggestion`.`last_updated_by`" => "last_updated_by",
-		"`suggestion`.`last_updated_at`" => "last_updated_at",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -65,9 +59,7 @@
 		"`suggestion`.`department_remarks`" => "Remarks of Department/Office Head",
 		"`suggestion`.`ceo_pd_remarks`" => "Remarks of CEO/PD",
 		"`suggestion`.`created_by`" => "Created By",
-		"`suggestion`.`created_at`" => "Created At",
 		"`suggestion`.`last_updated_by`" => "Last Updated By",
-		"`suggestion`.`last_updated_at`" => "Last Updated At",
 	];
 
 	// Fields that can be quick searched
@@ -79,9 +71,7 @@
 		"`suggestion`.`department_remarks`" => "department_remarks",
 		"`suggestion`.`ceo_pd_remarks`" => "ceo_pd_remarks",
 		"`suggestion`.`created_by`" => "created_by",
-		"`suggestion`.`created_at`" => "created_at",
 		"`suggestion`.`last_updated_by`" => "last_updated_by",
-		"`suggestion`.`last_updated_at`" => "last_updated_at",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -117,10 +107,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Suggestion Related to Department', 'Suggestion', 'Attachment', 'Remarks of Department/Office Head', 'Remarks of CEO/PD', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', ];
-	$x->ColFieldName = ['suggestion_id', 'department', 'suggestion', 'attachment', 'department_remarks', 'ceo_pd_remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Suggestion Related to Department', 'Suggestion', 'Attachment', 'Remarks of Department/Office Head', 'Remarks of CEO/PD', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['suggestion_id', 'department', 'suggestion', 'attachment', 'department_remarks', 'ceo_pd_remarks', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/suggestion_templateTV.html';

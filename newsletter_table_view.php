@@ -26,8 +26,8 @@
 		"`newsletter_table`.`writeup_about_event`" => "writeup_about_event",
 		"`newsletter_table`.`img1`" => "img1",
 		"`newsletter_table`.`img2`" => "img2",
-		"`newsletter_table`.`created_details`" => "created_details",
-		"`newsletter_table`.`last_updated_details`" => "last_updated_details",
+		"`newsletter_table`.`created_by`" => "created_by",
+		"`newsletter_table`.`last_updated_by`" => "last_updated_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -53,8 +53,8 @@
 		"`newsletter_table`.`writeup_about_event`" => "writeup_about_event",
 		"`newsletter_table`.`img1`" => "img1",
 		"`newsletter_table`.`img2`" => "img2",
-		"`newsletter_table`.`created_details`" => "created_details",
-		"`newsletter_table`.`last_updated_details`" => "last_updated_details",
+		"`newsletter_table`.`created_by`" => "created_by",
+		"`newsletter_table`.`last_updated_by`" => "last_updated_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -64,8 +64,8 @@
 		"`newsletter_table`.`name_of_event`" => "Name/Title of Events",
 		"`newsletter_table`.`dates_of_events`" => "Dates of Events",
 		"`newsletter_table`.`writeup_about_event`" => "Writeup About The Events (Max 200 Words)",
-		"`newsletter_table`.`created_details`" => "Created Details",
-		"`newsletter_table`.`last_updated_details`" => "Last updated Details",
+		"`newsletter_table`.`created_by`" => "Created By",
+		"`newsletter_table`.`last_updated_by`" => "Last updated By",
 	];
 
 	// Fields that can be quick searched
@@ -76,8 +76,8 @@
 		"`newsletter_table`.`name_of_event`" => "name_of_event",
 		"`newsletter_table`.`dates_of_events`" => "dates_of_events",
 		"`newsletter_table`.`writeup_about_event`" => "writeup_about_event",
-		"`newsletter_table`.`created_details`" => "created_details",
-		"`newsletter_table`.`last_updated_details`" => "last_updated_details",
+		"`newsletter_table`.`created_by`" => "created_by",
+		"`newsletter_table`.`last_updated_by`" => "last_updated_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -114,8 +114,8 @@
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Section', 'Name/Title of Events', 'Dates of Events', 'Writeup About The Events (Max 200 Words)', 'First Image', 'Second Image', 'Created Details', 'Last updated Details', ];
-	$x->ColFieldName = ['id', 'username', 'section', 'name_of_event', 'dates_of_events', 'writeup_about_event', 'img1', 'img2', 'created_details', 'last_updated_details', ];
+	$x->ColCaption = ['ID', 'Username', 'Section', 'Name/Title of Events', 'Dates of Events', 'Writeup About The Events (Max 200 Words)', 'First Image', 'Second Image', 'Created By', 'Last updated By', ];
+	$x->ColFieldName = ['id', 'username', 'section', 'name_of_event', 'dates_of_events', 'writeup_about_event', 'img1', 'img2', 'created_by', 'last_updated_by', ];
 	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
 
 	// template paths below are based on the app main directory

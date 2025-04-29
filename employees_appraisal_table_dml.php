@@ -72,6 +72,7 @@ function employees_appraisal_table_insert(&$error_message = '') {
 		'overall_rating' => Request::val('overall_rating', ''),
 		'reporting_appraisal_status' => Request::val('reporting_appraisal_status', 'Pending'),
 		'reviewing_officer' => Request::lookup('reviewing_officer', ''),
+		'reviewing_officer_remarks' => br2nl(Request::val('reviewing_officer_remarks', '')),
 		'reviewing_appraisal_status' => Request::val('reviewing_appraisal_status', 'Pending'),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
@@ -206,6 +207,7 @@ function employees_appraisal_table_update(&$selected_id, &$error_message = '') {
 		'overall_rating' => Request::val('overall_rating', ''),
 		'reporting_appraisal_status' => Request::val('reporting_appraisal_status', ''),
 		'reviewing_officer' => Request::lookup('reviewing_officer', ''),
+		'reviewing_officer_remarks' => br2nl(Request::val('reviewing_officer_remarks', '')),
 		'reviewing_appraisal_status' => Request::val('reviewing_appraisal_status', ''),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
@@ -390,7 +392,7 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 		$combo_overall_rating->SelectedText = (isset($filterField[1]) && $filterField[1] == '12' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 		$combo_reporting_appraisal_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '13' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
 		$combo_reviewing_officer->SelectedData = $filterer_reviewing_officer;
-		$combo_reviewing_appraisal_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '15' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
+		$combo_reviewing_appraisal_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '16' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
 	}
 	$combo_employee_designation_lookup->HTML = '<span id="employee_designation_lookup-container' . $rnd1 . '"></span><input type="hidden" name="employee_designation_lookup" id="employee_designation_lookup' . $rnd1 . '" value="' . html_attr($combo_employee_designation_lookup->SelectedData) . '">';
 	$combo_employee_designation_lookup->MatchText = '<span id="employee_designation_lookup-container-readonly' . $rnd1 . '"></span><input type="hidden" name="employee_designation_lookup" id="employee_designation_lookup' . $rnd1 . '" value="' . html_attr($combo_employee_designation_lookup->SelectedData) . '">';
@@ -668,6 +670,7 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 		$jsReadOnly .= "\t\$j('#reporting_appraisal_status').replaceWith('<div class=\"form-control-static\" id=\"reporting_appraisal_status\">' + (\$j('#reporting_appraisal_status').val() || '') + '</div>'); \$j('#reporting_appraisal_status-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#reviewing_officer').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#reviewing_officer_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('#reviewing_officer_remarks').replaceWith('<div class=\"form-control-static\" id=\"reviewing_officer_remarks\">' + (\$j('#reviewing_officer_remarks').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#reviewing_appraisal_status').replaceWith('<div class=\"form-control-static\" id=\"reviewing_appraisal_status\">' + (\$j('#reviewing_appraisal_status').val() || '') + '</div>'); \$j('#reviewing_appraisal_status-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
@@ -742,6 +745,7 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 	$templateCode = str_replace('<%%UPLOADFILE(overall_rating)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(reporting_appraisal_status)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(reviewing_officer)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(reviewing_officer_remarks)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(reviewing_appraisal_status)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
@@ -784,6 +788,8 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(reviewing_officer)%%>', safe_html($urow['reviewing_officer']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(reviewing_officer)%%>', html_attr($row['reviewing_officer']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(reviewing_officer)%%>', urlencode($urow['reviewing_officer']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(reviewing_officer_remarks)%%>', safe_html($urow['reviewing_officer_remarks'], $fieldsAreEditable), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(reviewing_officer_remarks)%%>', urlencode($urow['reviewing_officer_remarks']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(reviewing_appraisal_status)%%>', safe_html($urow['reviewing_appraisal_status']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(reviewing_appraisal_status)%%>', html_attr($row['reviewing_appraisal_status']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(reviewing_appraisal_status)%%>', urlencode($urow['reviewing_appraisal_status']), $templateCode);
@@ -824,6 +830,8 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 		$templateCode = str_replace('<%%URLVALUE(reporting_appraisal_status)%%>', urlencode('Pending'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(reviewing_officer)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(reviewing_officer)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(reviewing_officer_remarks)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(reviewing_officer_remarks)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(reviewing_appraisal_status)%%>', 'Pending', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(reviewing_appraisal_status)%%>', urlencode('Pending'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);

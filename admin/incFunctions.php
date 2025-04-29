@@ -5911,6 +5911,13 @@
 							'description' => '',
 						],
 					],
+					'reviewing_officer_remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Reviewing Officer Remarks',
+							'description' => '',
+						],
+					],
 					'reviewing_appraisal_status' => [
 						'appgini' => "VARCHAR(255) NULL DEFAULT 'Pending'",
 						'info' => [

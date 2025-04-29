@@ -409,7 +409,7 @@
 					'Caption' => 'Computer Uses Entry Table',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[0],
+					'group' => $tg[9],
 					'homepageShowCount' => 1
 				],
 				'computer_allotment_table' => [
@@ -735,7 +735,7 @@
 			'it_inventory_billing_details' => ['IT inventory billing details - App', '', 'table.gif', 'Asset Management Apps'],
 			'it_inventory_allotment_table' => ['IT inventory allotment - App', '', 'table.gif', 'Asset Management Apps'],
 			'computer_details_table' => ['Computer lab PC list - App', '<a href="https://lookerstudio.google.com/reporting/3dc9dac5-3945-4853-91cc-12e26b865666"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Computer lab PC Report</b></button></a>', 'table.gif', 'Asset Management Apps'],
-			'computer_user_details' => ['Computer Uses Entry Table', '', 'table.gif', 'Approvals &amp; Sanctions'],
+			'computer_user_details' => ['Computer Uses Entry Table', '', 'table.gif', 'Asset Management Apps'],
 			'computer_allotment_table' => ['PC Allotment Table', '', 'table.gif', 'Asset Management Apps'],
 			'employees_personal_data_table' => ['Employee Personal Data - App', '<a href="https://lookerstudio.google.com/reporting/e46f3806-e78c-4f09-8417-049568d4783d"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Employee Details App Report</b></button></a>', 'table.gif', 'Employee Data Management Apps'],
 			'employees_designation_table' => ['Employees designation & Reporting - App', '', 'table.gif', 'Employee Data Management Apps'],

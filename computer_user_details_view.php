@@ -97,13 +97,15 @@
 	$x->AllowPrintingDV = 1;
 	$x->AllowCSV = 1;
 	$x->AllowAdminShowSQL = showSQL();
-	$x->RecordsPerPage = 10;
+	$x->RecordsPerPage = 100;
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'computer_user_details_view.php';
 	$x->TableTitle = 'Computer Uses Entry Table';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`computer_user_details`.`id`';
+	$x->DefaultSortField = '1';
+	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, ];
 	$x->ColCaption = ['ID', 'Pc ID', 'Username', 'Entry time', 'Exit time', 'Date', 'Created By', 'Last Updated By', ];

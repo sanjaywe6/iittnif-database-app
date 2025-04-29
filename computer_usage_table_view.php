@@ -126,7 +126,7 @@
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'computer_usage_table_view.php';
-	$x->TableTitle = 'Computer usage table';
+	$x->TableTitle = 'PC Allotment Table';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`computer_usage_table`.`id`';
 	$x->DefaultSortField = '1';

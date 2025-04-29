@@ -769,7 +769,13 @@ function computer_details_table_validateData(insertMode) {
 
 	return !errors;
 }
-function computer_usage_table_validateData(insertMode) {
+function computer_user_details_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
+function computer_allotment_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
 

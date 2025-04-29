@@ -253,8 +253,14 @@
 
 			return $data;
 		},
-		'computer_usage_table' => function($data, $options = []) {
-			if(isset($data['pc_id'])) $data['pc_id'] = pkGivenLookupText($data['pc_id'], 'computer_usage_table', 'pc_id');
+		'computer_user_details' => function($data, $options = []) {
+			if(isset($data['pc_id'])) $data['pc_id'] = pkGivenLookupText($data['pc_id'], 'computer_user_details', 'pc_id');
+			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
+
+			return $data;
+		},
+		'computer_allotment_table' => function($data, $options = []) {
+			if(isset($data['pc_id'])) $data['pc_id'] = pkGivenLookupText($data['pc_id'], 'computer_allotment_table', 'pc_id');
 			if(isset($data['from_date'])) $data['from_date'] = guessMySQLDateTime($data['from_date']);
 			if(isset($data['to_date'])) $data['to_date'] = guessMySQLDateTime($data['to_date']);
 
@@ -526,7 +532,8 @@
 		'it_inventory_billing_details' => function($data, $options = []) { return true; },
 		'it_inventory_allotment_table' => function($data, $options = []) { return true; },
 		'computer_details_table' => function($data, $options = []) { return true; },
-		'computer_usage_table' => function($data, $options = []) { return true; },
+		'computer_user_details' => function($data, $options = []) { return true; },
+		'computer_allotment_table' => function($data, $options = []) { return true; },
 		'employees_personal_data_table' => function($data, $options = []) { return true; },
 		'employees_designation_table' => function($data, $options = []) { return true; },
 		'employees_appraisal_table' => function($data, $options = []) { return true; },

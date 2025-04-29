@@ -749,23 +749,41 @@ computer_details_table_delete1Tip=["",spacer+"This option allows each member of 
 computer_details_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Computer lab PC list - App' table."];
 computer_details_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Computer lab PC list - App' table."];
 
-// computer_usage_table table
-computer_usage_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Computer usage table' table. A member who adds a record to the table becomes the 'owner' of that record."];
+// computer_user_details table
+computer_user_details_addTip=["",spacer+"This option allows all members of the group to add records to the 'Computer Uses Entry Table' table. A member who adds a record to the table becomes the 'owner' of that record."];
 
-computer_usage_table_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Computer usage table' table."];
-computer_usage_table_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Computer usage table' table."];
-computer_usage_table_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Computer usage table' table."];
-computer_usage_table_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Computer usage table' table."];
+computer_user_details_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Computer Uses Entry Table' table."];
+computer_user_details_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Computer Uses Entry Table' table."];
+computer_user_details_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Computer Uses Entry Table' table."];
+computer_user_details_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Computer Uses Entry Table' table."];
 
-computer_usage_table_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Computer usage table' table."];
-computer_usage_table_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Computer usage table' table."];
-computer_usage_table_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Computer usage table' table."];
-computer_usage_table_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Computer usage table' table, regardless of their owner."];
+computer_user_details_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Computer Uses Entry Table' table."];
+computer_user_details_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Computer Uses Entry Table' table."];
+computer_user_details_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Computer Uses Entry Table' table."];
+computer_user_details_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Computer Uses Entry Table' table, regardless of their owner."];
 
-computer_usage_table_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Computer usage table' table."];
-computer_usage_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Computer usage table' table."];
-computer_usage_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Computer usage table' table."];
-computer_usage_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Computer usage table' table."];
+computer_user_details_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Computer Uses Entry Table' table."];
+computer_user_details_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Computer Uses Entry Table' table."];
+computer_user_details_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Computer Uses Entry Table' table."];
+computer_user_details_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Computer Uses Entry Table' table."];
+
+// computer_allotment_table table
+computer_allotment_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'PC Allotment Table' table. A member who adds a record to the table becomes the 'owner' of that record."];
+
+computer_allotment_table_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'PC Allotment Table' table."];
+computer_allotment_table_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'PC Allotment Table' table."];
+computer_allotment_table_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'PC Allotment Table' table."];
+computer_allotment_table_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'PC Allotment Table' table."];
+
+computer_allotment_table_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'PC Allotment Table' table."];
+computer_allotment_table_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'PC Allotment Table' table."];
+computer_allotment_table_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'PC Allotment Table' table."];
+computer_allotment_table_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'PC Allotment Table' table, regardless of their owner."];
+
+computer_allotment_table_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'PC Allotment Table' table."];
+computer_allotment_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'PC Allotment Table' table."];
+computer_allotment_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'PC Allotment Table' table."];
+computer_allotment_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'PC Allotment Table' table."];
 
 // employees_personal_data_table table
 employees_personal_data_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Employee Personal Data - App' table. A member who adds a record to the table becomes the 'owner' of that record."];

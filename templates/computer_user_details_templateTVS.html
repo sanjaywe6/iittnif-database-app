@@ -1,0 +1,15 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the computer_user_details_init() hook (in hooks/computer_user_details.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="computer_user_details-id-<%%VALUE(id)%%>" class="computer_user_details-id text-right text-bold"><%%VALUE(id)%%></td>
+		<td id="computer_user_details-pc_id-<%%VALUE(id)%%>" class="computer_user_details-pc_id text-bold"><%%VALUE(pc_id)%%></td>
+		<td id="computer_user_details-username-<%%VALUE(id)%%>" class="computer_user_details-username text-bold"><%%VALUE(username)%%></td>
+		<td id="computer_user_details-entry_time-<%%VALUE(id)%%>" class="computer_user_details-entry_time text-bold"><%%VALUE(entry_time)%%></td>
+		<td id="computer_user_details-exit_time-<%%VALUE(id)%%>" class="computer_user_details-exit_time text-bold"><%%VALUE(exit_time)%%></td>
+		<td id="computer_user_details-date-<%%VALUE(id)%%>" class="computer_user_details-date text-bold"><%%VALUE(date)%%></td>
+		<td id="computer_user_details-created_by-<%%VALUE(id)%%>" class="computer_user_details-created_by text-bold"><%%VALUE(created_by)%%></td>
+		<td id="computer_user_details-last_updated_by-<%%VALUE(id)%%>" class="computer_user_details-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>

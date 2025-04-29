@@ -115,8 +115,11 @@
 
 		setupTable('computer_details_table', []);
 
-		setupTable('computer_usage_table', []);
-		setupIndexes('computer_usage_table', ['pc_id',]);
+		setupTable('computer_user_details', []);
+		setupIndexes('computer_user_details', ['pc_id',]);
+
+		setupTable('computer_allotment_table', []);
+		setupIndexes('computer_allotment_table', ['pc_id',]);
 
 		setupTable('employees_personal_data_table', []);
 
@@ -213,10 +216,7 @@
 		setupTable('project_details_tdp', []);
 		setupIndexes('project_details_tdp', ['project_number',]);
 
-		setupTable('newsletter_table', [
-				"ALTER TABLE `newsletter_table` CHANGE `created_details` `created_by` VARCHAR(255) NULL ",
-				"ALTER TABLE `newsletter_table` CHANGE `last_updated_details` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('newsletter_table', []);
 
 
 

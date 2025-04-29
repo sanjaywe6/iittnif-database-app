@@ -554,7 +554,20 @@
 		],
 		'computer_details_table' => [
 		],
-		'computer_usage_table' => [
+		'computer_user_details' => [
+			'pc_id' => [
+				'parent_table' => 'computer_details_table',
+				'parent_pk_field' => 'id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`computer_details_table`.`pc_number`) || CHAR_LENGTH(`computer_details_table`.`pc_hostname`), CONCAT_WS(\'\', `computer_details_table`.`pc_number`, \'::\', `computer_details_table`.`pc_hostname`), \'\')',
+				'parent_from' => '`computer_details_table` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
+		],
+		'computer_allotment_table' => [
 			'pc_id' => [
 				'parent_table' => 'computer_details_table',
 				'parent_pk_field' => 'id',

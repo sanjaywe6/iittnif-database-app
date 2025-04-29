@@ -405,8 +405,15 @@
 					'group' => $tg[9],
 					'homepageShowCount' => 1
 				],
-				'computer_usage_table' => [
-					'Caption' => 'Computer usage table',
+				'computer_user_details' => [
+					'Caption' => 'Computer Uses Entry Table',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[0],
+					'homepageShowCount' => 1
+				],
+				'computer_allotment_table' => [
+					'Caption' => 'PC Allotment Table',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[9],
@@ -728,7 +735,8 @@
 			'it_inventory_billing_details' => ['IT inventory billing details - App', '', 'table.gif', 'Asset Management Apps'],
 			'it_inventory_allotment_table' => ['IT inventory allotment - App', '', 'table.gif', 'Asset Management Apps'],
 			'computer_details_table' => ['Computer lab PC list - App', '<a href="https://lookerstudio.google.com/reporting/3dc9dac5-3945-4853-91cc-12e26b865666"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Computer lab PC Report</b></button></a>', 'table.gif', 'Asset Management Apps'],
-			'computer_usage_table' => ['Computer usage table', '', 'table.gif', 'Asset Management Apps'],
+			'computer_user_details' => ['Computer Uses Entry Table', '', 'table.gif', 'Approvals &amp; Sanctions'],
+			'computer_allotment_table' => ['PC Allotment Table', '', 'table.gif', 'Asset Management Apps'],
 			'employees_personal_data_table' => ['Employee Personal Data - App', '<a href="https://lookerstudio.google.com/reporting/e46f3806-e78c-4f09-8417-049568d4783d"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Employee Details App Report</b></button></a>', 'table.gif', 'Employee Data Management Apps'],
 			'employees_designation_table' => ['Employees designation & Reporting - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'employees_appraisal_table' => ['Employees Appraisal  - App', '', 'table.gif', 'Employee Data Management Apps'],
@@ -5432,7 +5440,65 @@
 						],
 					],
 				],
-				'computer_usage_table' => [
+				'computer_user_details' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'pc_id' => [
+						'appgini' => "INT(10) UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Pc ID',
+							'description' => '',
+						],
+					],
+					'username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Username',
+							'description' => '',
+						],
+					],
+					'entry_time' => [
+						'appgini' => "TIME NULL",
+						'info' => [
+							'caption' => 'Entry time',
+							'description' => '',
+						],
+					],
+					'exit_time' => [
+						'appgini' => "TIME NULL",
+						'info' => [
+							'caption' => 'Exit time',
+							'description' => '',
+						],
+					],
+					'date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Date',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+				],
+				'computer_allotment_table' => [
 					'id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
@@ -10902,7 +10968,10 @@
 				'it_inventory_app' => ['it_inventory_lookup'],
 				'user_table' => ['alloted_by', 'select_employee'],
 			],
-			'computer_usage_table' => [
+			'computer_user_details' => [
+				'computer_details_table' => ['pc_id'],
+			],
+			'computer_allotment_table' => [
 				'computer_details_table' => ['pc_id'],
 			],
 			'employees_designation_table' => [
@@ -11043,7 +11112,8 @@
 			'it_inventory_billing_details' => [],
 			'it_inventory_allotment_table' => [],
 			'computer_details_table' => [],
-			'computer_usage_table' => [],
+			'computer_user_details' => [],
+			'computer_allotment_table' => [],
 			'employees_personal_data_table' => [
 				'employee_str' => 'SELECT CONCAT(
 					`employees_personal_data_table`.`name`,
@@ -11347,7 +11417,10 @@
 			],
 			'computer_details_table' => [
 			],
-			'computer_usage_table' => [
+			'computer_user_details' => [
+				'pc_id' => 'SELECT `computer_details_table`.`id`, IF(CHAR_LENGTH(`computer_details_table`.`pc_number`) || CHAR_LENGTH(`computer_details_table`.`pc_hostname`), CONCAT_WS(\'\', `computer_details_table`.`pc_number`, \'::\', `computer_details_table`.`pc_hostname`), \'\') FROM `computer_details_table` ORDER BY 2',
+			],
+			'computer_allotment_table' => [
 				'pc_id' => 'SELECT `computer_details_table`.`id`, IF(CHAR_LENGTH(`computer_details_table`.`pc_number`) || CHAR_LENGTH(`computer_details_table`.`pc_hostname`), CONCAT_WS(\'\', `computer_details_table`.`pc_number`, \'::\', `computer_details_table`.`pc_hostname`), \'\') FROM `computer_details_table` ORDER BY 2',
 			],
 			'employees_personal_data_table' => [

@@ -31,10 +31,9 @@
 		"`visiting_card_table`.`front_img`" => "front_img",
 		"`visiting_card_table`.`back_img`" => "back_img",
 		"`visiting_card_table`.`visiting_card_str`" => "visiting_card_str",
-		"`visiting_card_table`.`created_by`" => "created_by",
-		"`visiting_card_table`.`created_at`" => "created_at",
 		"`visiting_card_table`.`last_updated_by`" => "last_updated_by",
 		"`visiting_card_table`.`last_updated_at`" => "last_updated_at",
+		"`visiting_card_table`.`created_by`" => "created_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -54,7 +53,6 @@
 		14 => 14,
 		15 => 15,
 		16 => 16,
-		17 => 17,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -72,10 +70,9 @@
 		"`visiting_card_table`.`front_img`" => "front_img",
 		"`visiting_card_table`.`back_img`" => "back_img",
 		"`visiting_card_table`.`visiting_card_str`" => "visiting_card_str",
-		"`visiting_card_table`.`created_by`" => "created_by",
-		"`visiting_card_table`.`created_at`" => "created_at",
 		"`visiting_card_table`.`last_updated_by`" => "last_updated_by",
 		"`visiting_card_table`.`last_updated_at`" => "last_updated_at",
+		"`visiting_card_table`.`created_by`" => "created_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -90,10 +87,9 @@
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Given by */" => "Given by",
 		"`visiting_card_table`.`suggested_way_forward`" => "Suggested way forward",
 		"`visiting_card_table`.`visiting_card_str`" => "Visiting card str",
-		"`visiting_card_table`.`created_by`" => "Created by",
-		"`visiting_card_table`.`created_at`" => "Created at",
 		"`visiting_card_table`.`last_updated_by`" => "Last updated by",
 		"`visiting_card_table`.`last_updated_at`" => "Last updated at",
+		"`visiting_card_table`.`created_by`" => "Created By",
 	];
 
 	// Fields that can be quick searched
@@ -109,10 +105,9 @@
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Given by */" => "given_by",
 		"`visiting_card_table`.`suggested_way_forward`" => "suggested_way_forward",
 		"`visiting_card_table`.`visiting_card_str`" => "visiting_card_str",
-		"`visiting_card_table`.`created_by`" => "created_by",
-		"`visiting_card_table`.`created_at`" => "created_at",
 		"`visiting_card_table`.`last_updated_by`" => "last_updated_by",
 		"`visiting_card_table`.`last_updated_at`" => "last_updated_at",
+		"`visiting_card_table`.`created_by`" => "created_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -148,10 +143,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Name', 'Recommended by', 'Designation', 'Company name', 'Mobile no', 'Email', 'Company website address', 'Given by', 'Suggested way forward', 'Front img', 'Back img', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['visiting_card_id', 'name', 'recommended_by', 'designation', 'company_name', 'mobile_no', 'email', 'company_website_addr', 'given_by', 'suggested_way_forward', 'front_img', 'back_img', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16, 17, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Name', 'Recommended by', 'Designation', 'Company name', 'Mobile no', 'Email', 'Company website address', 'Given by', 'Suggested way forward', 'Front img', 'Back img', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['visiting_card_id', 'name', 'recommended_by', 'designation', 'company_name', 'mobile_no', 'email', 'company_website_addr', 'given_by', 'suggested_way_forward', 'front_img', 'back_img', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/visiting_card_table_templateTV.html';

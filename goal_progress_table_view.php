@@ -23,10 +23,9 @@
 		"`goal_progress_table`.`goal_progress`" => "goal_progress",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Remarks by */" => "remarks_by",
 		"`goal_progress_table`.`remarks`" => "remarks",
-		"`goal_progress_table`.`created_by`" => "created_by",
-		"`goal_progress_table`.`created_at`" => "created_at",
 		"`goal_progress_table`.`last_updated_by`" => "last_updated_by",
 		"`goal_progress_table`.`last_updated_at`" => "last_updated_at",
+		"`goal_progress_table`.`created_by`" => "created_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -38,7 +37,6 @@
 		6 => 6,
 		7 => 7,
 		8 => 8,
-		9 => 9,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -48,10 +46,9 @@
 		"`goal_progress_table`.`goal_progress`" => "goal_progress",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Remarks by */" => "remarks_by",
 		"`goal_progress_table`.`remarks`" => "remarks",
-		"`goal_progress_table`.`created_by`" => "created_by",
-		"`goal_progress_table`.`created_at`" => "created_at",
 		"`goal_progress_table`.`last_updated_by`" => "last_updated_by",
 		"`goal_progress_table`.`last_updated_at`" => "last_updated_at",
+		"`goal_progress_table`.`created_by`" => "created_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -60,10 +57,9 @@
 		"`goal_progress_table`.`goal_progress`" => "Goal progress",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Remarks by */" => "Remarks by",
 		"`goal_progress_table`.`remarks`" => "Remarks",
-		"`goal_progress_table`.`created_by`" => "Created by",
-		"`goal_progress_table`.`created_at`" => "Created at",
 		"`goal_progress_table`.`last_updated_by`" => "Last updated by",
 		"`goal_progress_table`.`last_updated_at`" => "Last updated at",
+		"`goal_progress_table`.`created_by`" => "Created By",
 	];
 
 	// Fields that can be quick searched
@@ -73,10 +69,9 @@
 		"`goal_progress_table`.`goal_progress`" => "goal_progress",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Remarks by */" => "remarks_by",
 		"`goal_progress_table`.`remarks`" => "remarks",
-		"`goal_progress_table`.`created_by`" => "created_by",
-		"`goal_progress_table`.`created_at`" => "created_at",
 		"`goal_progress_table`.`last_updated_by`" => "last_updated_by",
 		"`goal_progress_table`.`last_updated_at`" => "last_updated_at",
+		"`goal_progress_table`.`created_by`" => "created_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -112,10 +107,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Goal details', 'Goal progress', 'Remarks by', 'Remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'goal_lookup', 'goal_progress', 'remarks_by', 'remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Goal details', 'Goal progress', 'Remarks by', 'Remarks', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['id', 'goal_lookup', 'goal_progress', 'remarks_by', 'remarks', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/goal_progress_table_templateTV.html';

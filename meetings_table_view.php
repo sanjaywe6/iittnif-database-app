@@ -28,10 +28,9 @@
 		"if(`meetings_table`.`meeting_to_date`,date_format(`meetings_table`.`meeting_to_date`,'%d/%m/%Y'),'')" => "meeting_to_date",
 		"if(CHAR_LENGTH(`meetings_table`.`minutes_of_meeting`)>500, concat(left(`meetings_table`.`minutes_of_meeting`,500),' ...'), `meetings_table`.`minutes_of_meeting`)" => "minutes_of_meeting",
 		"`meetings_table`.`meeting_str`" => "meeting_str",
-		"`meetings_table`.`created_by`" => "created_by",
-		"`meetings_table`.`created_at`" => "created_at",
 		"`meetings_table`.`last_updated_by`" => "last_updated_by",
 		"`meetings_table`.`last_updated_at`" => "last_updated_at",
+		"`meetings_table`.`created_by`" => "created_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -48,7 +47,6 @@
 		11 => 11,
 		12 => 12,
 		13 => 13,
-		14 => 14,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -63,10 +61,9 @@
 		"if(`meetings_table`.`meeting_to_date`,date_format(`meetings_table`.`meeting_to_date`,'%d/%m/%Y'),'')" => "meeting_to_date",
 		"`meetings_table`.`minutes_of_meeting`" => "minutes_of_meeting",
 		"`meetings_table`.`meeting_str`" => "meeting_str",
-		"`meetings_table`.`created_by`" => "created_by",
-		"`meetings_table`.`created_at`" => "created_at",
 		"`meetings_table`.`last_updated_by`" => "last_updated_by",
 		"`meetings_table`.`last_updated_at`" => "last_updated_at",
+		"`meetings_table`.`created_by`" => "created_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -80,10 +77,9 @@
 		"`meetings_table`.`meeting_to_date`" => "Meeting to date",
 		"`meetings_table`.`minutes_of_meeting`" => "Minutes of Meeting",
 		"`meetings_table`.`meeting_str`" => "Meeting str",
-		"`meetings_table`.`created_by`" => "Created by",
-		"`meetings_table`.`created_at`" => "Created at",
 		"`meetings_table`.`last_updated_by`" => "Last updated by",
 		"`meetings_table`.`last_updated_at`" => "Last updated at",
+		"`meetings_table`.`created_by`" => "Created By",
 	];
 
 	// Fields that can be quick searched
@@ -98,10 +94,9 @@
 		"if(`meetings_table`.`meeting_to_date`,date_format(`meetings_table`.`meeting_to_date`,'%d/%m/%Y'),'')" => "meeting_to_date",
 		"`meetings_table`.`minutes_of_meeting`" => "Minutes of Meeting",
 		"`meetings_table`.`meeting_str`" => "meeting_str",
-		"`meetings_table`.`created_by`" => "created_by",
-		"`meetings_table`.`created_at`" => "created_at",
 		"`meetings_table`.`last_updated_by`" => "last_updated_by",
 		"`meetings_table`.`last_updated_at`" => "last_updated_at",
+		"`meetings_table`.`created_by`" => "created_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -137,10 +132,10 @@
 	$x->DefaultSortField = '`meetings_table`.`meeting_to_date`';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Meeting title', 'Participants', 'Venue', 'Meeting from date', 'Meeting to date', 'Minutes of Meeting', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['meetings_id', 'meeting_title', 'participants', 'venue', 'meeting_from_date', 'meeting_to_date', 'minutes_of_meeting', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Meeting title', 'Participants', 'Venue', 'Meeting from date', 'Meeting to date', 'Minutes of Meeting', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['meetings_id', 'meeting_title', 'participants', 'venue', 'meeting_from_date', 'meeting_to_date', 'minutes_of_meeting', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 4, 5, 6, 7, 8, 9, 11, 12, 13, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/meetings_table_templateTV.html';

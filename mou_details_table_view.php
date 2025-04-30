@@ -33,10 +33,9 @@
 		"`mou_details_table`.`country`" => "country",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Assigned MoU to */" => "assigned_mou_to",
 		"`mou_details_table`.`upload_mou`" => "upload_mou",
-		"`mou_details_table`.`created_at`" => "created_at",
-		"`mou_details_table`.`created_by`" => "created_by",
 		"`mou_details_table`.`last_updated_by`" => "last_updated_by",
 		"`mou_details_table`.`last_updated_at`" => "last_updated_at",
+		"`mou_details_table`.`created_by`" => "created_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -58,7 +57,6 @@
 		16 => 16,
 		17 => 17,
 		18 => 18,
-		19 => 19,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -78,10 +76,9 @@
 		"`mou_details_table`.`country`" => "country",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Assigned MoU to */" => "assigned_mou_to",
 		"`mou_details_table`.`upload_mou`" => "upload_mou",
-		"`mou_details_table`.`created_at`" => "created_at",
-		"`mou_details_table`.`created_by`" => "created_by",
 		"`mou_details_table`.`last_updated_by`" => "last_updated_by",
 		"`mou_details_table`.`last_updated_at`" => "last_updated_at",
+		"`mou_details_table`.`created_by`" => "created_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -100,10 +97,9 @@
 		"`mou_details_table`.`country`" => "Country",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Assigned MoU to */" => "Assigned MoU to",
 		"`mou_details_table`.`upload_mou`" => "Upload MoU (PDF or DOC format)",
-		"`mou_details_table`.`created_at`" => "Created at",
-		"`mou_details_table`.`created_by`" => "Created by",
 		"`mou_details_table`.`last_updated_by`" => "Last updated by",
 		"`mou_details_table`.`last_updated_at`" => "Last updated at",
+		"`mou_details_table`.`created_by`" => "Created By",
 	];
 
 	// Fields that can be quick searched
@@ -123,10 +119,9 @@
 		"`mou_details_table`.`country`" => "country",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Assigned MoU to */" => "assigned_mou_to",
 		"`mou_details_table`.`upload_mou`" => "upload_mou",
-		"`mou_details_table`.`created_at`" => "created_at",
-		"`mou_details_table`.`created_by`" => "created_by",
 		"`mou_details_table`.`last_updated_by`" => "last_updated_by",
 		"`mou_details_table`.`last_updated_at`" => "last_updated_at",
+		"`mou_details_table`.`created_by`" => "created_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -162,10 +157,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Type', 'Company name', 'Objectives/ Scope of the MOU', 'Agreement period (In Years)', 'Date of agreement', 'Date of expiry', 'Status', 'Point of contact (Name)', 'Contact number', 'Contact email id', 'Website link', 'Country', 'Assigned MoU to', 'Upload MoU (PDF or DOC format)', 'Created at', 'Created by', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'type', 'company_name', 'objective_of_mou', 'agreement_period', 'date_of_agreement', 'date_of_expiry', 'status', 'point_of_contact', 'contact_number', 'contact_email_id', 'website_link', 'country', 'assigned_mou_to', 'upload_mou', 'created_at', 'created_by', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Type', 'Company name', 'Objectives/ Scope of the MOU', 'Agreement period (In Years)', 'Date of agreement', 'Date of expiry', 'Status', 'Point of contact (Name)', 'Contact number', 'Contact email id', 'Website link', 'Country', 'Assigned MoU to', 'Upload MoU (PDF or DOC format)', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['id', 'type', 'company_name', 'objective_of_mou', 'agreement_period', 'date_of_agreement', 'date_of_expiry', 'status', 'point_of_contact', 'contact_number', 'contact_email_id', 'website_link', 'country', 'assigned_mou_to', 'upload_mou', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/mou_details_table_templateTV.html';

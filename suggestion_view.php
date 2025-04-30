@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`suggestion`.`suggestion_id`" => "suggestion_id",
+		"`suggestion`.`username`" => "username",
 		"`suggestion`.`department`" => "department",
 		"`suggestion`.`suggestion`" => "suggestion",
 		"`suggestion`.`attachment`" => "attachment",
@@ -37,11 +38,13 @@
 		6 => 6,
 		7 => 7,
 		8 => 8,
+		9 => 9,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`suggestion`.`suggestion_id`" => "suggestion_id",
+		"`suggestion`.`username`" => "username",
 		"`suggestion`.`department`" => "department",
 		"`suggestion`.`suggestion`" => "suggestion",
 		"`suggestion`.`attachment`" => "attachment",
@@ -53,6 +56,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`suggestion`.`suggestion_id`" => "ID",
+		"`suggestion`.`username`" => "Username",
 		"`suggestion`.`department`" => "Suggestion Related to Department",
 		"`suggestion`.`suggestion`" => "Suggestion",
 		"`suggestion`.`attachment`" => "Attachment",
@@ -65,6 +69,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`suggestion`.`suggestion_id`" => "suggestion_id",
+		"`suggestion`.`username`" => "username",
 		"`suggestion`.`department`" => "department",
 		"`suggestion`.`suggestion`" => "suggestion",
 		"`suggestion`.`attachment`" => "attachment",
@@ -107,10 +112,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Suggestion Related to Department', 'Suggestion', 'Attachment', 'Remarks of Department/Office Head', 'Remarks of CEO/PD', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['suggestion_id', 'department', 'suggestion', 'attachment', 'department_remarks', 'ceo_pd_remarks', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Suggestion Related to Department', 'Suggestion', 'Attachment', 'Remarks of Department/Office Head', 'Remarks of CEO/PD', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['suggestion_id', 'username', 'department', 'suggestion', 'attachment', 'department_remarks', 'ceo_pd_remarks', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/suggestion_templateTV.html';

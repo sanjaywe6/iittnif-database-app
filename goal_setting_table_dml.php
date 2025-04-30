@@ -22,8 +22,7 @@ function goal_setting_table_insert(&$error_message = '') {
 		'goal_set_date' => Request::dateComponents('goal_set_date', '1'),
 		'supervisor_name' => Request::lookup('supervisor_name', ''),
 		'assigned_to' => Request::lookup('assigned_to', ''),
-		'created_by' => parseCode('<%%creatorUsername%%>', true),
-		'created_at' => parseCode('<%%creationDateTime%%>', true),
+		'created_by' => parseCode('<%%creatorUsername%%>  <%%creationDateTime%%>', true),
 	];
 
 	// record owner is current user
@@ -597,10 +596,9 @@ function goal_setting_table_form($selectedId = '', $allowUpdate = true, $allowIn
 	$templateCode = str_replace('<%%UPLOADFILE(supervisor_name)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(assigned_to)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(goal_setting_str)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_at)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
@@ -624,14 +622,12 @@ function goal_setting_table_form($selectedId = '', $allowUpdate = true, $allowIn
 		$templateCode = str_replace('<%%URLVALUE(assigned_to)%%>', urlencode($urow['assigned_to']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(goal_setting_str)%%>', safe_html($urow['goal_setting_str'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(goal_setting_str)%%>', urlencode($urow['goal_setting_str']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode($urow['created_at']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(goal_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(goal_id)%%>', urlencode(''), $templateCode);
@@ -649,14 +645,12 @@ function goal_setting_table_form($selectedId = '', $allowUpdate = true, $allowIn
 		$templateCode = str_replace('<%%URLVALUE(assigned_to)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(goal_setting_str)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(goal_setting_str)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode('<%%creationDateTime%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', '<%%editingDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode('<%%editingDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>  <%%creationDateTime%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>  <%%creationDateTime%%>'), $templateCode);
 	}
 
 	// process translations

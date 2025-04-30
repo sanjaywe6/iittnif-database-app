@@ -26,10 +26,9 @@
 		"`participants_table`.`participant_type`" => "participant_type",
 		"`participants_table`.`accepted_status`" => "accepted_status",
 		"if(`participants_table`.`status_date`,date_format(`participants_table`.`status_date`,'%d/%m/%Y'),'')" => "status_date",
-		"`participants_table`.`created_by`" => "created_by",
-		"`participants_table`.`created_at`" => "created_at",
 		"`participants_table`.`last_updated_by`" => "last_updated_by",
 		"`participants_table`.`last_updated_at`" => "last_updated_at",
+		"`participants_table`.`created_by`" => "created_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -44,7 +43,6 @@
 		9 => 9,
 		10 => 10,
 		11 => 11,
-		12 => 12,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -57,10 +55,9 @@
 		"`participants_table`.`participant_type`" => "participant_type",
 		"`participants_table`.`accepted_status`" => "accepted_status",
 		"if(`participants_table`.`status_date`,date_format(`participants_table`.`status_date`,'%d/%m/%Y'),'')" => "status_date",
-		"`participants_table`.`created_by`" => "created_by",
-		"`participants_table`.`created_at`" => "created_at",
 		"`participants_table`.`last_updated_by`" => "last_updated_by",
 		"`participants_table`.`last_updated_at`" => "last_updated_at",
+		"`participants_table`.`created_by`" => "created_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -72,10 +69,9 @@
 		"`participants_table`.`participant_type`" => "Participant type",
 		"`participants_table`.`accepted_status`" => "Accepted status",
 		"`participants_table`.`status_date`" => "Status date",
-		"`participants_table`.`created_by`" => "Created by",
-		"`participants_table`.`created_at`" => "Created at",
 		"`participants_table`.`last_updated_by`" => "Last updated by",
 		"`participants_table`.`last_updated_at`" => "Last updated at",
+		"`participants_table`.`created_by`" => "Created By",
 	];
 
 	// Fields that can be quick searched
@@ -88,10 +84,9 @@
 		"`participants_table`.`participant_type`" => "participant_type",
 		"`participants_table`.`accepted_status`" => "accepted_status",
 		"if(`participants_table`.`status_date`,date_format(`participants_table`.`status_date`,'%d/%m/%Y'),'')" => "status_date",
-		"`participants_table`.`created_by`" => "created_by",
-		"`participants_table`.`created_at`" => "created_at",
 		"`participants_table`.`last_updated_by`" => "last_updated_by",
 		"`participants_table`.`last_updated_at`" => "last_updated_at",
+		"`participants_table`.`created_by`" => "created_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -127,10 +122,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Event', 'Meeting', 'Name', 'Designation', 'Participant type', 'Accepted status', 'Status date', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['participants_id', 'event_lookup', 'meeting_lookup', 'name', 'designation', 'participant_type', 'accepted_status', 'status_date', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Event', 'Meeting', 'Name', 'Designation', 'Participant type', 'Accepted status', 'Status date', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['participants_id', 'event_lookup', 'meeting_lookup', 'name', 'designation', 'participant_type', 'accepted_status', 'status_date', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/participants_table_templateTV.html';

@@ -23,10 +23,9 @@
 		"`mou_company_area_details_table`.`area`" => "area",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Assigned MoU to */" => "assigned_mou_to",
 		"`mou_company_area_details_table`.`remarks`" => "remarks",
-		"`mou_company_area_details_table`.`created_by`" => "created_by",
-		"`mou_company_area_details_table`.`created_at`" => "created_at",
 		"`mou_company_area_details_table`.`last_updated_by`" => "last_updated_by",
 		"`mou_company_area_details_table`.`last_updated_at`" => "last_updated_at",
+		"`mou_company_area_details_table`.`created_by`" => "created_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -38,7 +37,6 @@
 		6 => 6,
 		7 => 7,
 		8 => 8,
-		9 => 9,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -48,10 +46,9 @@
 		"`mou_company_area_details_table`.`area`" => "area",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Assigned MoU to */" => "assigned_mou_to",
 		"`mou_company_area_details_table`.`remarks`" => "remarks",
-		"`mou_company_area_details_table`.`created_by`" => "created_by",
-		"`mou_company_area_details_table`.`created_at`" => "created_at",
 		"`mou_company_area_details_table`.`last_updated_by`" => "last_updated_by",
 		"`mou_company_area_details_table`.`last_updated_at`" => "last_updated_at",
+		"`mou_company_area_details_table`.`created_by`" => "created_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -60,10 +57,9 @@
 		"`mou_company_area_details_table`.`area`" => "Area / Scope",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Assigned MoU to */" => "Assigned MoU to",
 		"`mou_company_area_details_table`.`remarks`" => "Remarks",
-		"`mou_company_area_details_table`.`created_by`" => "Created by",
-		"`mou_company_area_details_table`.`created_at`" => "Created at",
 		"`mou_company_area_details_table`.`last_updated_by`" => "Last updated by",
 		"`mou_company_area_details_table`.`last_updated_at`" => "Last updated at",
+		"`mou_company_area_details_table`.`created_by`" => "Created By",
 	];
 
 	// Fields that can be quick searched
@@ -73,10 +69,9 @@
 		"`mou_company_area_details_table`.`area`" => "area",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Assigned MoU to */" => "assigned_mou_to",
 		"`mou_company_area_details_table`.`remarks`" => "remarks",
-		"`mou_company_area_details_table`.`created_by`" => "created_by",
-		"`mou_company_area_details_table`.`created_at`" => "created_at",
 		"`mou_company_area_details_table`.`last_updated_by`" => "last_updated_by",
 		"`mou_company_area_details_table`.`last_updated_at`" => "last_updated_at",
+		"`mou_company_area_details_table`.`created_by`" => "created_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -112,10 +107,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Name of the company', 'Area / Scope', 'Assigned MoU to', 'Remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'name_of_the_company', 'area', 'assigned_mou_to', 'remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Name of the company', 'Area / Scope', 'Assigned MoU to', 'Remarks', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['id', 'name_of_the_company', 'area', 'assigned_mou_to', 'remarks', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/mou_company_area_details_table_templateTV.html';

@@ -16,6 +16,7 @@ function suggestion_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'department' => Request::val('department', 'Event'),
 		'suggestion' => br2nl(Request::val('suggestion', '')),
 		'attachment' => Request::fileUpload('attachment', [
@@ -260,7 +261,7 @@ function suggestion_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_department->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Event'));
+		$combo_department->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Event'));
 	}
 	$combo_department->Render();
 
@@ -379,6 +380,7 @@ function suggestion_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(suggestion_id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(department)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(suggestion)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(attachment)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="attachment" id="attachment" data-filetypes="jpg|jpeg|gif|png|webp" data-maxsize="204800" style="max-width: calc(100% - 1.5rem);" accept=".jpg,.jpeg,.gif,.png,.webp">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
@@ -396,6 +398,8 @@ function suggestion_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(suggestion_id)%%>', safe_html($urow['suggestion_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(suggestion_id)%%>', urlencode($urow['suggestion_id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(department)%%>', safe_html($urow['department']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(department)%%>', html_attr($row['department']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(department)%%>', urlencode($urow['department']), $templateCode);
@@ -415,6 +419,8 @@ function suggestion_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 	} else {
 		$templateCode = str_replace('<%%VALUE(suggestion_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(suggestion_id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(department)%%>', 'Event', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(department)%%>', urlencode('Event'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(suggestion)%%>', '', $templateCode);

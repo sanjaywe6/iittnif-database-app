@@ -11,9 +11,13 @@
 		// set up tables
 		setupTable('user_table', []);
 
-		setupTable('suggestion', []);
+		setupTable('suggestion', [
+				"ALTER TABLE `suggestion` ADD `username` VARCHAR(255) NULL ",
+			]);
 
-		setupTable('approval_table', []);
+		setupTable('approval_table', [
+				"ALTER TABLE `approval_table` ADD `username` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('approval_table', ['person_responsbility',]);
 
 		setupTable('car_table', []);
@@ -41,12 +45,7 @@
 		setupTable('event_decision_table', []);
 		setupIndexes('event_decision_table', ['outcomes_expected_lookup','decision_actor',]);
 
-		setupTable('meetings_table', [
-				"ALTER TABLE meetings_table ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `meetings_table` CHANGE `field1` `minutes_of_meeting` VARCHAR(255) NULL ",
-				" ALTER TABLE `meetings_table` CHANGE `minutes_of_meeting` `minutes_of_meeting` TEXT NULL ",
-				" ALTER TABLE `meetings_table` CHANGE `minutes_of_meeting` `minutes_of_meeting` LONGTEXT NULL ",
-			]);
+		setupTable('meetings_table', []);
 		setupIndexes('meetings_table', ['visiting_card_lookup','event_lookup',]);
 
 		setupTable('agenda_table', []);

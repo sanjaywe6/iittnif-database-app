@@ -22,10 +22,9 @@
 		"`action_actor`.`action_str`" => "action_str",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Actor */" => "actor",
 		"`action_actor`.`action_status`" => "action_status",
-		"`action_actor`.`created_by`" => "created_by",
-		"`action_actor`.`created_at`" => "created_at",
 		"`action_actor`.`last_updated_by`" => "last_updated_by",
 		"`action_actor`.`last_updated_at`" => "last_updated_at",
+		"`action_actor`.`created_by`" => "created_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -36,7 +35,6 @@
 		5 => 5,
 		6 => 6,
 		7 => 7,
-		8 => 8,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -45,10 +43,9 @@
 		"`action_actor`.`action_str`" => "action_str",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Actor */" => "actor",
 		"`action_actor`.`action_status`" => "action_status",
-		"`action_actor`.`created_by`" => "created_by",
-		"`action_actor`.`created_at`" => "created_at",
 		"`action_actor`.`last_updated_by`" => "last_updated_by",
 		"`action_actor`.`last_updated_at`" => "last_updated_at",
+		"`action_actor`.`created_by`" => "created_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -56,10 +53,9 @@
 		"`action_actor`.`action_str`" => "Action str",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Actor */" => "Actor",
 		"`action_actor`.`action_status`" => "Action status",
-		"`action_actor`.`created_by`" => "Created by",
-		"`action_actor`.`created_at`" => "Created at",
 		"`action_actor`.`last_updated_by`" => "Last updated by",
 		"`action_actor`.`last_updated_at`" => "Last updated at",
+		"`action_actor`.`created_by`" => "Created By",
 	];
 
 	// Fields that can be quick searched
@@ -68,10 +64,9 @@
 		"`action_actor`.`action_str`" => "action_str",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Actor */" => "actor",
 		"`action_actor`.`action_status`" => "action_status",
-		"`action_actor`.`created_by`" => "created_by",
-		"`action_actor`.`created_at`" => "created_at",
 		"`action_actor`.`last_updated_by`" => "last_updated_by",
 		"`action_actor`.`last_updated_at`" => "last_updated_at",
+		"`action_actor`.`created_by`" => "created_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -107,10 +102,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Actor', 'Action status', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['actor_ID', 'actor', 'action_status', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Actor', 'Action status', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['actor_ID', 'actor', 'action_status', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/action_actor_templateTV.html';

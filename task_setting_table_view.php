@@ -26,10 +26,9 @@
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Supervisor name */" => "supervisor_name",
 		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Assigned to */" => "assigned_to",
 		"`task_setting_table`.`task_setting_str`" => "task_setting_str",
-		"`task_setting_table`.`created_by`" => "created_by",
-		"`task_setting_table`.`created_at`" => "created_at",
 		"`task_setting_table`.`last_updated_by`" => "last_updated_by",
 		"`task_setting_table`.`last_updated_at`" => "last_updated_at",
+		"`task_setting_table`.`created_by`" => "created_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -44,7 +43,6 @@
 		9 => 9,
 		10 => 10,
 		11 => 11,
-		12 => 12,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -57,10 +55,9 @@
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Supervisor name */" => "supervisor_name",
 		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Assigned to */" => "assigned_to",
 		"`task_setting_table`.`task_setting_str`" => "task_setting_str",
-		"`task_setting_table`.`created_by`" => "created_by",
-		"`task_setting_table`.`created_at`" => "created_at",
 		"`task_setting_table`.`last_updated_by`" => "last_updated_by",
 		"`task_setting_table`.`last_updated_at`" => "last_updated_at",
+		"`task_setting_table`.`created_by`" => "created_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -72,10 +69,9 @@
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Supervisor name */" => "Supervisor name",
 		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Assigned to */" => "Assigned to",
 		"`task_setting_table`.`task_setting_str`" => "Task setting str",
-		"`task_setting_table`.`created_by`" => "Created by",
-		"`task_setting_table`.`created_at`" => "Created at",
 		"`task_setting_table`.`last_updated_by`" => "Last updated by",
 		"`task_setting_table`.`last_updated_at`" => "Last updated at",
+		"`task_setting_table`.`created_by`" => "Created By",
 	];
 
 	// Fields that can be quick searched
@@ -88,10 +84,9 @@
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Supervisor name */" => "supervisor_name",
 		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Assigned to */" => "assigned_to",
 		"`task_setting_table`.`task_setting_str`" => "task_setting_str",
-		"`task_setting_table`.`created_by`" => "created_by",
-		"`task_setting_table`.`created_at`" => "created_at",
 		"`task_setting_table`.`last_updated_by`" => "last_updated_by",
 		"`task_setting_table`.`last_updated_at`" => "last_updated_at",
+		"`task_setting_table`.`created_by`" => "created_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -127,10 +122,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Task status', 'Task description', 'Task duration', 'Task set date', 'Supervisor name', 'Assigned to', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['task_id', 'task_status', 'task_description', 'task_duration', 'task_set_date', 'supervisor_name', 'assigned_to', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Task status', 'Task description', 'Task duration', 'Task set date', 'Supervisor name', 'Assigned to', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['task_id', 'task_status', 'task_description', 'task_duration', 'task_set_date', 'supervisor_name', 'assigned_to', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/task_setting_table_templateTV.html';

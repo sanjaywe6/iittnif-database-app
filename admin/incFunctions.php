@@ -6274,7 +6274,7 @@
 						],
 					],
 					'leave_type' => [
-						'appgini' => "VARCHAR(255) NULL",
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Casual Leave'",
 						'info' => [
 							'caption' => 'Leave type',
 							'description' => '',

@@ -1164,7 +1164,7 @@
 				'id' => '',
 				'username' => '',
 				'emp_lookup' => '',
-				'leave_type' => '',
+				'leave_type' => 'Casual Leave',
 				'purpose_of_leave' => '',
 				'from_date' => '',
 				'to_date' => '',

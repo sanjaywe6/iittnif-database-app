@@ -18,7 +18,7 @@ function leave_table_insert(&$error_message = '') {
 	$data = [
 		'username' => parseCode('<%%creatorUsername%%>', true),
 		'emp_lookup' => Request::lookup('emp_lookup', ''),
-		'leave_type' => Request::val('leave_type', ''),
+		'leave_type' => Request::val('leave_type', 'Casual Leave'),
 		'purpose_of_leave' => br2nl(Request::val('purpose_of_leave', '')),
 		'from_date' => Request::dateComponents('from_date', ''),
 		'to_date' => Request::dateComponents('to_date', ''),
@@ -280,7 +280,7 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
 		$combo_emp_lookup->SelectedData = $filterer_emp_lookup;
-		$combo_leave_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_leave_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Casual Leave'));
 		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '8' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 		$combo_approved_by->SelectedData = $filterer_approved_by;
 	}
@@ -664,8 +664,8 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(emp_lookup)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(emp_lookup)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(leave_type)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(leave_type)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(leave_type)%%>', 'Casual Leave', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(leave_type)%%>', urlencode('Casual Leave'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(purpose_of_leave)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(purpose_of_leave)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(from_date)%%>', '', $templateCode);

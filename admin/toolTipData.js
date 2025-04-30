@@ -857,24 +857,6 @@ beyond_workingHours_table_delete1Tip=["",spacer+"This option allows each member 
 beyond_workingHours_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Beyond Working Hours Approval - App' table."];
 beyond_workingHours_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Beyond Working Hours Approval - App' table."];
 
-// attendence_details_table table
-attendence_details_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Attendence details - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
-
-attendence_details_table_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Attendence details - App' table."];
-attendence_details_table_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Attendence details - App' table."];
-attendence_details_table_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Attendence details - App' table."];
-attendence_details_table_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Attendence details - App' table."];
-
-attendence_details_table_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Attendence details - App' table."];
-attendence_details_table_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Attendence details - App' table."];
-attendence_details_table_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Attendence details - App' table."];
-attendence_details_table_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Attendence details - App' table, regardless of their owner."];
-
-attendence_details_table_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Attendence details - App' table."];
-attendence_details_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Attendence details - App' table."];
-attendence_details_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Attendence details - App' table."];
-attendence_details_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Attendence details - App' table."];
-
 // leave_table table
 leave_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Leave - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
 
@@ -892,6 +874,24 @@ leave_table_delete0Tip=["",spacer+"This option prohibits all members of the grou
 leave_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Leave - App' table."];
 leave_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Leave - App' table."];
 leave_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Leave - App' table."];
+
+// half_day_leave_table table
+half_day_leave_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Half Day Leave - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
+
+half_day_leave_table_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Half Day Leave - App' table."];
+half_day_leave_table_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Half Day Leave - App' table."];
+half_day_leave_table_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Half Day Leave - App' table."];
+half_day_leave_table_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Half Day Leave - App' table."];
+
+half_day_leave_table_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Half Day Leave - App' table."];
+half_day_leave_table_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Half Day Leave - App' table."];
+half_day_leave_table_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Half Day Leave - App' table."];
+half_day_leave_table_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Half Day Leave - App' table, regardless of their owner."];
+
+half_day_leave_table_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Half Day Leave - App' table."];
+half_day_leave_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Half Day Leave - App' table."];
+half_day_leave_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Half Day Leave - App' table."];
+half_day_leave_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Half Day Leave - App' table."];
 
 // work_from_home_table table
 work_from_home_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Work from home - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
@@ -964,6 +964,24 @@ email_id_allocation_table_delete0Tip=["",spacer+"This option prohibits all membe
 email_id_allocation_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Email id allocation - App' table."];
 email_id_allocation_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Email id allocation - App' table."];
 email_id_allocation_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Email id allocation - App' table."];
+
+// attendence_details_table table
+attendence_details_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Attendence details - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
+
+attendence_details_table_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Attendence details - App' table."];
+attendence_details_table_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Attendence details - App' table."];
+attendence_details_table_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Attendence details - App' table."];
+attendence_details_table_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Attendence details - App' table."];
+
+attendence_details_table_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Attendence details - App' table."];
+attendence_details_table_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Attendence details - App' table."];
+attendence_details_table_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Attendence details - App' table."];
+attendence_details_table_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Attendence details - App' table, regardless of their owner."];
+
+attendence_details_table_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Attendence details - App' table."];
+attendence_details_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Attendence details - App' table."];
+attendence_details_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Attendence details - App' table."];
+attendence_details_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Attendence details - App' table."];
 
 // all_startup_data_table table
 all_startup_data_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'All Startups Data - App' table. A member who adds a record to the table becomes the 'owner' of that record."];

@@ -4,7 +4,7 @@
 ?>
 <script>
 	$j(function() {
-		var tn = 'beyond_workingHours_table';
+		var tn = 'half_day_leave_table';
 
 		/* data for selected record, or defaults if none is selected */
 		var data = {

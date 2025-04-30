@@ -1,4 +1,4 @@
-		<td colspan="13" class="row">
+		<td colspan="14" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="leave_table-id-caption field-caption-tv">ID</dt>
@@ -7,25 +7,28 @@
 					<dt class="leave_table-username-caption field-caption-tv">Username</dt>
 					<dd id="leave_table-username-<%%VALUE(id)%%>" class="leave_table-username"><%%SELECT%%><%%VALUE(username)%%><%%ENDSELECT%%></dd>
 
+					<dt class="leave_table-emp_lookup-caption field-caption-tv">Employee Details</dt>
+					<dd id="leave_table-emp_lookup-<%%VALUE(id)%%>" class="leave_table-emp_lookup"><%%SELECT%%><%%VALUE(emp_lookup)%%><%%ENDSELECT%%></dd>
+
 					<dt class="leave_table-leave_type-caption field-caption-tv">Leave type</dt>
 					<dd id="leave_table-leave_type-<%%VALUE(id)%%>" class="leave_table-leave_type"><%%SELECT%%><%%VALUE(leave_type)%%><%%ENDSELECT%%></dd>
 
 					<dt class="leave_table-purpose_of_leave-caption field-caption-tv">Purpose of leave</dt>
 					<dd id="leave_table-purpose_of_leave-<%%VALUE(id)%%>" class="leave_table-purpose_of_leave"><%%SELECT%%><%%VALUE(purpose_of_leave)%%><%%ENDSELECT%%></dd>
 
-					<dt class="leave_table-from_date-caption field-caption-tv">From Date & Time (Date and Time for Full or Half Day)</dt>
+					<dt class="leave_table-from_date-caption field-caption-tv">From Date</dt>
 					<dd id="leave_table-from_date-<%%VALUE(id)%%>" class="leave_table-from_date"><%%SELECT%%><%%VALUE(from_date)%%><%%ENDSELECT%%></dd>
 
-					<dt class="leave_table-to_date-caption field-caption-tv">To Date & Time (Date and Time for Full or Half Day)</dt>
+					<dt class="leave_table-to_date-caption field-caption-tv">To Date & Time</dt>
 					<dd id="leave_table-to_date-<%%VALUE(id)%%>" class="leave_table-to_date"><%%SELECT%%><%%VALUE(to_date)%%><%%ENDSELECT%%></dd>
-
-					<dt class="leave_table-approval_status-caption field-caption-tv">Approval status</dt>
-					<dd id="leave_table-approval_status-<%%VALUE(id)%%>" class="leave_table-approval_status"><%%SELECT%%><%%VALUE(approval_status)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
+					<dt class="leave_table-approval_status-caption field-caption-tv">Approval status</dt>
+					<dd id="leave_table-approval_status-<%%VALUE(id)%%>" class="leave_table-approval_status"><%%SELECT%%><%%VALUE(approval_status)%%><%%ENDSELECT%%></dd>
+
 					<dt class="leave_table-approval_remarks-caption field-caption-tv">Approval remarks</dt>
 					<dd id="leave_table-approval_remarks-<%%VALUE(id)%%>" class="leave_table-approval_remarks"><%%SELECT%%><%%VALUE(approval_remarks)%%><%%ENDSELECT%%></dd>
 

@@ -129,6 +129,86 @@ function employees_personal_data_table_delete($selected_id, $AllowDeleteOfParent
 		return $RetMsg;
 	}
 
+	// child table: beyond_workingHours_table
+	$res = sql("SELECT `id` FROM `employees_personal_data_table` WHERE `id`='{$selected_id}'", $eo);
+	$id = db_fetch_row($res);
+	$rires = sql("SELECT COUNT(1) FROM `beyond_workingHours_table` WHERE `emp_lookup`='" . makeSafe($id[0]) . "'", $eo);
+	$rirow = db_fetch_row($rires);
+	$childrenATag = '<a class="alert-link" href="beyond_workingHours_table_view.php?filterer_emp_lookup=' . urlencode($id[0]) . '">%s</a>';
+	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation["couldn't delete"];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'beyond_workingHours_table'), $RetMsg);
+		return $RetMsg;
+	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation['confirm delete'];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'beyond_workingHours_table'), $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `employees_personal_data_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `employees_personal_data_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		return $RetMsg;
+	}
+
+	// child table: leave_table
+	$res = sql("SELECT `id` FROM `employees_personal_data_table` WHERE `id`='{$selected_id}'", $eo);
+	$id = db_fetch_row($res);
+	$rires = sql("SELECT COUNT(1) FROM `leave_table` WHERE `emp_lookup`='" . makeSafe($id[0]) . "'", $eo);
+	$rirow = db_fetch_row($rires);
+	$childrenATag = '<a class="alert-link" href="leave_table_view.php?filterer_emp_lookup=' . urlencode($id[0]) . '">%s</a>';
+	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation["couldn't delete"];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'leave_table'), $RetMsg);
+		return $RetMsg;
+	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation['confirm delete'];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'leave_table'), $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `employees_personal_data_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `employees_personal_data_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		return $RetMsg;
+	}
+
+	// child table: half_day_leave_table
+	$res = sql("SELECT `id` FROM `employees_personal_data_table` WHERE `id`='{$selected_id}'", $eo);
+	$id = db_fetch_row($res);
+	$rires = sql("SELECT COUNT(1) FROM `half_day_leave_table` WHERE `emp_lookup`='" . makeSafe($id[0]) . "'", $eo);
+	$rirow = db_fetch_row($rires);
+	$childrenATag = '<a class="alert-link" href="half_day_leave_table_view.php?filterer_emp_lookup=' . urlencode($id[0]) . '">%s</a>';
+	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation["couldn't delete"];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'half_day_leave_table'), $RetMsg);
+		return $RetMsg;
+	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation['confirm delete'];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'half_day_leave_table'), $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `employees_personal_data_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `employees_personal_data_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		return $RetMsg;
+	}
+
+	// child table: work_from_home_table
+	$res = sql("SELECT `id` FROM `employees_personal_data_table` WHERE `id`='{$selected_id}'", $eo);
+	$id = db_fetch_row($res);
+	$rires = sql("SELECT COUNT(1) FROM `work_from_home_table` WHERE `emp_lookup`='" . makeSafe($id[0]) . "'", $eo);
+	$rirow = db_fetch_row($rires);
+	$childrenATag = '<a class="alert-link" href="work_from_home_table_view.php?filterer_emp_lookup=' . urlencode($id[0]) . '">%s</a>';
+	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation["couldn't delete"];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'work_from_home_table'), $RetMsg);
+		return $RetMsg;
+	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation['confirm delete'];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'work_from_home_table'), $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `employees_personal_data_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `employees_personal_data_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		return $RetMsg;
+	}
+
 	sql("DELETE FROM `employees_personal_data_table` WHERE `id`='{$selected_id}'", $eo);
 
 	// hook: employees_personal_data_table_after_delete

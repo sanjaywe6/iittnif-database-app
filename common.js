@@ -829,12 +829,6 @@ function beyond_workingHours_table_validateData(insertMode) {
 
 	return !errors;
 }
-function attendence_details_table_validateData(insertMode) {
-	$j('.has-error').removeClass('has-error');
-	var errors = false;
-
-	return !errors;
-}
 function leave_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
@@ -843,8 +837,31 @@ function leave_table_validateData(insertMode) {
 	const reqFields = [
 		// [field-type, field-name, field-caption], ...
 		['text', 'purpose_of_leave', 'Purpose of leave'],
-		['datetime', 'from_date', 'From Date & Time (Date and Time for Full or Half Day)'],
-		['datetime', 'to_date', 'To Date & Time (Date and Time for Full or Half Day)'],
+		['date', 'from_date', 'From Date'],
+		['date', 'to_date', 'To Date & Time'],
+	];
+
+	reqFields.map(function(rf) {
+		// avoid displaying more error messages and overwhelming users
+		if(rf.length != 3 || errors) return;
+
+		if(!AppGini.Validation.fieldRequired(rf[0], rf[1], rf[2], insertMode)) errors = true;
+	});
+
+	if(errors) return false;
+
+	return !errors;
+}
+function half_day_leave_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	// check all required fields have values
+	const reqFields = [
+		// [field-type, field-name, field-caption], ...
+		['list', 'leave_type', 'Leave type'],
+		['text', 'purpose_of_leave', 'Purpose of leave'],
+		['date', 'date', 'Date'],
 	];
 
 	reqFields.map(function(rf) {
@@ -900,6 +917,12 @@ function navavishkar_stay_payment_table_validateData(insertMode) {
 	return !errors;
 }
 function email_id_allocation_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
+function attendence_details_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
 

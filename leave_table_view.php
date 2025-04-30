@@ -20,10 +20,11 @@
 	$x->QueryFieldsTV = [
 		"`leave_table`.`id`" => "id",
 		"`leave_table`.`username`" => "username",
+		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, ' - ', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "emp_lookup",
 		"`leave_table`.`leave_type`" => "leave_type",
 		"`leave_table`.`purpose_of_leave`" => "purpose_of_leave",
-		"if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y %H:%i'),'')" => "from_date",
-		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y %H:%i'),'')" => "to_date",
+		"if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
+		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
 		"`leave_table`.`approval_status`" => "approval_status",
 		"`leave_table`.`approval_remarks`" => "approval_remarks",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved By */" => "approved_by",
@@ -38,25 +39,27 @@
 		2 => 2,
 		3 => 3,
 		4 => 4,
-		5 => '`leave_table`.`from_date`',
-		6 => '`leave_table`.`to_date`',
-		7 => 7,
+		5 => 5,
+		6 => '`leave_table`.`from_date`',
+		7 => '`leave_table`.`to_date`',
 		8 => 8,
 		9 => 9,
 		10 => 10,
 		11 => 11,
 		12 => 12,
 		13 => 13,
+		14 => 14,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`leave_table`.`id`" => "id",
 		"`leave_table`.`username`" => "username",
+		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, ' - ', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "emp_lookup",
 		"`leave_table`.`leave_type`" => "leave_type",
 		"`leave_table`.`purpose_of_leave`" => "purpose_of_leave",
-		"if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y %H:%i'),'')" => "from_date",
-		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y %H:%i'),'')" => "to_date",
+		"if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
+		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
 		"`leave_table`.`approval_status`" => "approval_status",
 		"`leave_table`.`approval_remarks`" => "approval_remarks",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved By */" => "approved_by",
@@ -69,10 +72,11 @@
 	$x->QueryFieldsFilters = [
 		"`leave_table`.`id`" => "ID",
 		"`leave_table`.`username`" => "Username",
+		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, ' - ', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "Employee Details",
 		"`leave_table`.`leave_type`" => "Leave type",
 		"`leave_table`.`purpose_of_leave`" => "Purpose of leave",
-		"`leave_table`.`from_date`" => "From Date & Time (Date and Time for Full or Half Day)",
-		"`leave_table`.`to_date`" => "To Date & Time (Date and Time for Full or Half Day)",
+		"`leave_table`.`from_date`" => "From Date",
+		"`leave_table`.`to_date`" => "To Date & Time",
 		"`leave_table`.`approval_status`" => "Approval status",
 		"`leave_table`.`approval_remarks`" => "Approval remarks",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved By */" => "Approved By",
@@ -86,10 +90,11 @@
 	$x->QueryFieldsQS = [
 		"`leave_table`.`id`" => "id",
 		"`leave_table`.`username`" => "username",
+		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, ' - ', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "emp_lookup",
 		"`leave_table`.`leave_type`" => "leave_type",
 		"`leave_table`.`purpose_of_leave`" => "purpose_of_leave",
-		"if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y %H:%i'),'')" => "from_date",
-		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y %H:%i'),'')" => "to_date",
+		"if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
+		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
 		"`leave_table`.`approval_status`" => "approval_status",
 		"`leave_table`.`approval_remarks`" => "approval_remarks",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved By */" => "approved_by",
@@ -100,9 +105,9 @@
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['approved_by' => 'Approved By', ];
+	$x->filterers = ['emp_lookup' => 'Employee Details', 'approved_by' => 'Approved By', ];
 
-	$x->QueryFrom = "`leave_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`leave_table`.`approved_by` ";
+	$x->QueryFrom = "`leave_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`id`=`leave_table`.`emp_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`leave_table`.`approved_by` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -132,10 +137,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Leave type', 'Purpose of leave', 'From Date & Time (Date and Time for Full or Half Day)', 'To Date & Time (Date and Time for Full or Half Day)', 'Approval status', 'Approval remarks', 'Approved By', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'username', 'leave_type', 'purpose_of_leave', 'from_date', 'to_date', 'approval_status', 'approval_remarks', 'approved_by', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Employee Details', 'Leave type', 'Purpose of leave', 'From Date', 'To Date & Time', 'Approval status', 'Approval remarks', 'Approved By', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'username', 'emp_lookup', 'leave_type', 'purpose_of_leave', 'from_date', 'to_date', 'approval_status', 'approval_remarks', 'approved_by', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/leave_table_templateTV.html';

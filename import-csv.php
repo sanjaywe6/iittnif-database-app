@@ -290,25 +290,30 @@
 			return $data;
 		},
 		'beyond_workingHours_table' => function($data, $options = []) {
+			if(isset($data['emp_lookup'])) $data['emp_lookup'] = pkGivenLookupText($data['emp_lookup'], 'beyond_workingHours_table', 'emp_lookup');
 			if(isset($data['start_datetime'])) $data['start_datetime'] = guessMySQLDateTime($data['start_datetime']);
 			if(isset($data['end_datetime'])) $data['end_datetime'] = guessMySQLDateTime($data['end_datetime']);
 			if(isset($data['approved_by'])) $data['approved_by'] = pkGivenLookupText($data['approved_by'], 'beyond_workingHours_table', 'approved_by');
 
 			return $data;
 		},
-		'attendence_details_table' => function($data, $options = []) {
-			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
-
-			return $data;
-		},
 		'leave_table' => function($data, $options = []) {
+			if(isset($data['emp_lookup'])) $data['emp_lookup'] = pkGivenLookupText($data['emp_lookup'], 'leave_table', 'emp_lookup');
 			if(isset($data['from_date'])) $data['from_date'] = guessMySQLDateTime($data['from_date']);
 			if(isset($data['to_date'])) $data['to_date'] = guessMySQLDateTime($data['to_date']);
 			if(isset($data['approved_by'])) $data['approved_by'] = pkGivenLookupText($data['approved_by'], 'leave_table', 'approved_by');
 
 			return $data;
 		},
+		'half_day_leave_table' => function($data, $options = []) {
+			if(isset($data['emp_lookup'])) $data['emp_lookup'] = pkGivenLookupText($data['emp_lookup'], 'half_day_leave_table', 'emp_lookup');
+			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
+			if(isset($data['approved_by'])) $data['approved_by'] = pkGivenLookupText($data['approved_by'], 'half_day_leave_table', 'approved_by');
+
+			return $data;
+		},
 		'work_from_home_table' => function($data, $options = []) {
+			if(isset($data['emp_lookup'])) $data['emp_lookup'] = pkGivenLookupText($data['emp_lookup'], 'work_from_home_table', 'emp_lookup');
 			if(isset($data['from_date'])) $data['from_date'] = guessMySQLDateTime($data['from_date']);
 			if(isset($data['to_date'])) $data['to_date'] = guessMySQLDateTime($data['to_date']);
 			if(isset($data['approved_by'])) $data['approved_by'] = pkGivenLookupText($data['approved_by'], 'work_from_home_table', 'approved_by');
@@ -330,6 +335,11 @@
 		'email_id_allocation_table' => function($data, $options = []) {
 			if(isset($data['date_of_allocation'])) $data['date_of_allocation'] = guessMySQLDateTime($data['date_of_allocation']);
 			if(isset($data['reporting_manager'])) $data['reporting_manager'] = pkGivenLookupText($data['reporting_manager'], 'email_id_allocation_table', 'reporting_manager');
+
+			return $data;
+		},
+		'attendence_details_table' => function($data, $options = []) {
+			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
 
 			return $data;
 		},
@@ -538,12 +548,13 @@
 		'employees_designation_table' => function($data, $options = []) { return true; },
 		'employees_appraisal_table' => function($data, $options = []) { return true; },
 		'beyond_workingHours_table' => function($data, $options = []) { return true; },
-		'attendence_details_table' => function($data, $options = []) { return true; },
 		'leave_table' => function($data, $options = []) { return true; },
+		'half_day_leave_table' => function($data, $options = []) { return true; },
 		'work_from_home_table' => function($data, $options = []) { return true; },
 		'navavishkar_stay_table' => function($data, $options = []) { return true; },
 		'navavishkar_stay_payment_table' => function($data, $options = []) { return true; },
 		'email_id_allocation_table' => function($data, $options = []) { return true; },
+		'attendence_details_table' => function($data, $options = []) { return true; },
 		'all_startup_data_table' => function($data, $options = []) { return true; },
 		'shortlisted_startups_for_fund_table' => function($data, $options = []) { return true; },
 		'shortlisted_startups_dd_and_agreement_table' => function($data, $options = []) { return true; },

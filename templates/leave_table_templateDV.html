@@ -19,12 +19,12 @@
 		<div class="col-md-8 col-lg-10" id="leave_table_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: Username -->
-				<div class="form-group leave_table-username">
+				<!-- Field: Employee Details -->
+				<div class="form-group leave_table-emp_lookup">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3">Username</label>
+					<label class="control-label col-lg-3" for="emp_lookup" data-parent_link="view_parent_modal">Employee Details</label>
 					<div class="col-lg-9">
-						<div class="form-control-static" id="username"><%%VALUE(username)%%></div>
+						<div class="lookup-flex"><%%COMBO(emp_lookup)%%><%%PLINK(emp_lookup)%%><%%ADDNEW(employees_personal_data_table)%%></div>
 					</div>
 				</div>
 
@@ -46,21 +46,21 @@
 					</div>
 				</div>
 
-				<!-- Field: From Date & Time (Date and Time for Full or Half Day) -->
+				<!-- Field: From Date -->
 				<div class="form-group leave_table-from_date">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="from_date">From Date & Time (Date and Time for Full or Half Day)<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<label class="control-label col-lg-3" for="from_date-dd">From Date<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
-						<div class="input-group date datetimepicker"><input type="text" class="form-control" name="from_date" id="from_date" value="<%%VALUE(from_date)%%>" required><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>
+						<%%COMBO(from_date)%%>
 					</div>
 				</div>
 
-				<!-- Field: To Date & Time (Date and Time for Full or Half Day) -->
+				<!-- Field: To Date & Time -->
 				<div class="form-group leave_table-to_date">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="to_date">To Date & Time (Date and Time for Full or Half Day)<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<label class="control-label col-lg-3" for="to_date-dd">To Date & Time<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
-						<div class="input-group date datetimepicker"><input type="text" class="form-control" name="to_date" id="to_date" value="<%%VALUE(to_date)%%>" required><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>
+						<%%COMBO(to_date)%%>
 					</div>
 				</div>
 
@@ -135,7 +135,7 @@
 			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
 				AppGini.once({
 					condition: function() {
-						return $j('.form-group.leave_table-leave_type')
+						return $j('.form-group.leave_table-emp_lookup')
 									.find('.nicEdit-main, .select2-container, input[type=radio]')
 									.length > 0
 								// or read-only DV
@@ -144,7 +144,7 @@
 					action: function() {
 						$j('#leave_table_dv_container-loading').addClass('hidden');
 						$j('#leave_table_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('leave_table', 'leave_type');
+						AppGini.focusFormElement('leave_table', 'emp_lookup');
 					},
 					timeout:  5000,
 					doActionOnTimeout:  true

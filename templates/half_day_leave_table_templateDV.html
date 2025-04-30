@@ -1,11 +1,11 @@
-<!-- To change the layout of the detail view form, we recommend using JS code in hooks/work_from_home_table-dv.js rather than editing this file -->
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/half_day_leave_table-dv.js rather than editing this file -->
 
 <div id="detail-view"></div>
 <div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
 
-<div id="work_from_home_table_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+<div id="half_day_leave_table_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
 
-<div class="panel-body hidden" id="work_from_home_table_dv_container">
+<div class="panel-body hidden" id="half_day_leave_table_dv_container">
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
@@ -16,11 +16,11 @@
 
 	<div class="row">
 		<!-- form inputs -->
-		<div class="col-md-8 col-lg-10" id="work_from_home_table_dv_form">
+		<div class="col-md-8 col-lg-10" id="half_day_leave_table_dv_form">
 			<fieldset class="form-horizontal">
 
 				<!-- Field: Employee Details -->
-				<div class="form-group work_from_home_table-emp_lookup">
+				<div class="form-group half_day_leave_table-emp_lookup">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="emp_lookup" data-parent_link="view_parent_modal">Employee Details</label>
 					<div class="col-lg-9">
@@ -28,37 +28,55 @@
 					</div>
 				</div>
 
-				<!-- Field: Purpose work from home -->
-				<div class="form-group work_from_home_table-work_from_home_purpose">
+				<!-- Field: Leave type -->
+				<div class="form-group half_day_leave_table-leave_type">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="work_from_home_purpose">Purpose work from home<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<label class="control-label col-lg-3" for="leave_type">Leave type<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
-						<input maxlength="40" type="text" class="form-control" name="work_from_home_purpose" id="work_from_home_purpose" value="<%%VALUE(work_from_home_purpose)%%>" required>
+						<%%COMBO(leave_type)%%>
 					</div>
 				</div>
 
-				<!-- Field: From date -->
-				<div class="form-group work_from_home_table-from_date">
+				<!-- Field: Purpose of leave -->
+				<div class="form-group half_day_leave_table-purpose_of_leave">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="from_date-dd">From date<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<label class="control-label col-lg-3" for="purpose_of_leave">Purpose of leave<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
-						<%%COMBO(from_date)%%>
+						<textarea class="form-control" name="purpose_of_leave" id="purpose_of_leave" rows=" 5"><%%VALUE(purpose_of_leave)%%></textarea>
 					</div>
 				</div>
 
-				<!-- Field: To date -->
-				<div class="form-group work_from_home_table-to_date">
+				<!-- Field: Date -->
+				<div class="form-group half_day_leave_table-date">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="to_date-dd">To date<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<label class="control-label col-lg-3" for="date-dd">Date<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
-						<%%COMBO(to_date)%%>
+						<%%COMBO(date)%%>
 					</div>
 				</div>
 
-				<!-- Field: Approved by -->
-				<div class="form-group work_from_home_table-approved_by">
+				<!-- Field: Approval status -->
+				<div class="form-group half_day_leave_table-approval_status">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="approved_by" data-parent_link="view_parent_modal">Approved by</label>
+					<label class="control-label col-lg-3" for="approval_status">Approval status</label>
+					<div class="col-lg-9">
+						<%%COMBO(approval_status)%%>
+					</div>
+				</div>
+
+				<!-- Field: Approval remarks -->
+				<div class="form-group half_day_leave_table-approval_remarks">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="approval_remarks">Approval remarks</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="approval_remarks" id="approval_remarks" rows=" 5"><%%VALUE(approval_remarks)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Approved By -->
+				<div class="form-group half_day_leave_table-approved_by">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="approved_by" data-parent_link="view_parent_modal">Approved By</label>
 					<div class="col-lg-9">
 						<div class="lookup-flex"><%%COMBO(approved_by)%%><%%PLINK(approved_by)%%><%%ADDNEW(user_table)%%></div>
 					</div>
@@ -69,7 +87,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2" id="work_from_home_table_dv_action_buttons">
+		<div class="col-md-4 col-lg-2" id="half_day_leave_table_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>
@@ -108,23 +126,23 @@
 			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
 				AppGini.once({
 					condition: function() {
-						return $j('.form-group.work_from_home_table-emp_lookup')
+						return $j('.form-group.half_day_leave_table-emp_lookup')
 									.find('.nicEdit-main, .select2-container, input[type=radio]')
 									.length > 0
 								// or read-only DV
 								|| (!$j('#update').length && !$j('#insert').length);
 					},
 					action: function() {
-						$j('#work_from_home_table_dv_container-loading').addClass('hidden');
-						$j('#work_from_home_table_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('work_from_home_table', 'emp_lookup');
+						$j('#half_day_leave_table_dv_container-loading').addClass('hidden');
+						$j('#half_day_leave_table_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('half_day_leave_table', 'emp_lookup');
 					},
 					timeout:  5000,
 					doActionOnTimeout:  true
 				});
 			} else {
-				$j('#work_from_home_table_dv_container-loading').addClass('hidden');
-				$j('#work_from_home_table_dv_container').removeClass('hidden');
+				$j('#half_day_leave_table_dv_container-loading').addClass('hidden');
+				$j('#half_day_leave_table_dv_container').removeClass('hidden');
 			}
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
@@ -146,7 +164,7 @@
 							localStorage.removeItem(pt + '_last_added_id');
 							AppGini.lookupText({
 								id: new_id,
-								table: 'work_from_home_table',
+								table: 'half_day_leave_table',
 								field: field_id,
 								callback: function(data) {
 									$j('#' + field_id + '-container').select2('data', data, true);
@@ -206,21 +224,21 @@
 				}
 			});
 
-			work_from_home_tableUniqueFields.forEach(fieldName => enforce_uniqueness('work_from_home_table', fieldName));
+			half_day_leave_tableUniqueFields.forEach(fieldName => enforce_uniqueness('half_day_leave_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
 				$j('body').append('<div id="admin-tools-appendix"></div>');
 				$j('#admin-tools-appendix').load(
-					'ajax_admin_tools.php?table=work_from_home_table&id=<%%URLVALUE(id)%%>',
+					'ajax_admin_tools.php?table=half_day_leave_table&id=<%%URLVALUE(id)%%>',
 					function(resp) {
 						if(!resp.length) return;
-						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=work_from_home_table&id=<%%URLVALUE(id)%%>');
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=half_day_leave_table&id=<%%URLVALUE(id)%%>');
 					}
 				);
 			}
 		});
 
-		var work_from_home_tableUniqueFields = [
+		var half_day_leave_tableUniqueFields = [
 		];
 	</script>

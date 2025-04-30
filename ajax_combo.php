@@ -642,6 +642,17 @@
 			],
 		],
 		'beyond_workingHours_table' => [
+			'emp_lookup' => [
+				'parent_table' => 'employees_personal_data_table',
+				'parent_pk_field' => 'id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \' - \', `employees_personal_data_table`.`name`), \'\')',
+				'parent_from' => '`employees_personal_data_table` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
 			'approved_by' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
@@ -654,9 +665,42 @@
 				'not_null' => false,
 			],
 		],
-		'attendence_details_table' => [
-		],
 		'leave_table' => [
+			'emp_lookup' => [
+				'parent_table' => 'employees_personal_data_table',
+				'parent_pk_field' => 'id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \' - \', `employees_personal_data_table`.`name`), \'\')',
+				'parent_from' => '`employees_personal_data_table` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
+			'approved_by' => [
+				'parent_table' => 'user_table',
+				'parent_pk_field' => 'user_id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
+				'parent_from' => '`user_table` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
+		],
+		'half_day_leave_table' => [
+			'emp_lookup' => [
+				'parent_table' => 'employees_personal_data_table',
+				'parent_pk_field' => 'id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \' - \', `employees_personal_data_table`.`name`), \'\')',
+				'parent_from' => '`employees_personal_data_table` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
 			'approved_by' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
@@ -670,6 +714,17 @@
 			],
 		],
 		'work_from_home_table' => [
+			'emp_lookup' => [
+				'parent_table' => 'employees_personal_data_table',
+				'parent_pk_field' => 'id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \' - \', `employees_personal_data_table`.`name`), \'\')',
+				'parent_from' => '`employees_personal_data_table` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
 			'approved_by' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
@@ -720,6 +775,8 @@
 				'list_type' => 0,
 				'not_null' => false,
 			],
+		],
+		'attendence_details_table' => [
 		],
 		'all_startup_data_table' => [
 		],

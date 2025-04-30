@@ -447,15 +447,15 @@
 					'group' => $tg[8],
 					'homepageShowCount' => 1
 				],
-				'attendence_details_table' => [
-					'Caption' => 'Attendence details - App',
-					'Description' => '<a href="https://lookerstudio.google.com/reporting/dd61ce5a-ccb5-4d55-b0a4-5233454f4b2c"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Attendence App View</b></button></a>',
+				'leave_table' => [
+					'Caption' => 'Leave - App',
+					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[8],
 					'homepageShowCount' => 1
 				],
-				'leave_table' => [
-					'Caption' => 'Leave - App',
+				'half_day_leave_table' => [
+					'Caption' => 'Half Day Leave - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[8],
@@ -485,6 +485,13 @@
 				'email_id_allocation_table' => [
 					'Caption' => 'Email id allocation - App',
 					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[8],
+					'homepageShowCount' => 1
+				],
+				'attendence_details_table' => [
+					'Caption' => 'Attendence details - App',
+					'Description' => '<a href="https://lookerstudio.google.com/reporting/dd61ce5a-ccb5-4d55-b0a4-5233454f4b2c"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Attendence App View</b></button></a>',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[8],
 					'homepageShowCount' => 1
@@ -741,12 +748,13 @@
 			'employees_designation_table' => ['Employees designation & Reporting - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'employees_appraisal_table' => ['Employees Appraisal  - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'beyond_workingHours_table' => ['Beyond Working Hours Approval - App', '', 'table.gif', 'Employee Data Management Apps'],
-			'attendence_details_table' => ['Attendence details - App', '<a href="https://lookerstudio.google.com/reporting/dd61ce5a-ccb5-4d55-b0a4-5233454f4b2c"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Attendence App View</b></button></a>', 'table.gif', 'Employee Data Management Apps'],
 			'leave_table' => ['Leave - App', '', 'table.gif', 'Employee Data Management Apps'],
+			'half_day_leave_table' => ['Half Day Leave - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'work_from_home_table' => ['Work from home - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'navavishkar_stay_table' => ['Navavishkar Stay - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'navavishkar_stay_payment_table' => ['Navavishkar Stay Payment - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'email_id_allocation_table' => ['Email id allocation - App', '', 'table.gif', 'Employee Data Management Apps'],
+			'attendence_details_table' => ['Attendence details - App', '<a href="https://lookerstudio.google.com/reporting/dd61ce5a-ccb5-4d55-b0a4-5233454f4b2c"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Attendence App View</b></button></a>', 'table.gif', 'Employee Data Management Apps'],
 			'all_startup_data_table' => ['All Startups Data - App', '', 'table.gif', 'Startup Data Management Apps'],
 			'shortlisted_startups_for_fund_table' => ['Shortlisted startups for fund - App', '', 'table.gif', 'Startup Data Management Apps'],
 			'shortlisted_startups_dd_and_agreement_table' => ['Shortlisted startups DD and Agreement - App', '', 'table.gif', 'Startup Data Management Apps'],
@@ -6158,6 +6166,13 @@
 							'description' => '',
 						],
 					],
+					'emp_lookup' => [
+						'appgini' => "INT(10) UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Employee Details',
+							'description' => '',
+						],
+					],
 					'reson_for_overtime' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
@@ -6236,7 +6251,7 @@
 						],
 					],
 				],
-				'attendence_details_table' => [
+				'leave_table' => [
 					'id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
@@ -6251,59 +6266,59 @@
 							'description' => '',
 						],
 					],
-					'enrollment_no' => [
+					'emp_lookup' => [
+						'appgini' => "INT(10) UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Employee Details',
+							'description' => '',
+						],
+					],
+					'leave_type' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Enrollment No.',
+							'caption' => 'Leave type',
 							'description' => '',
 						],
 					],
-					'name' => [
-						'appgini' => "VARCHAR(255) NULL",
+					'purpose_of_leave' => [
+						'appgini' => "TEXT NOT NULL",
 						'info' => [
-							'caption' => 'Name in device scanner',
+							'caption' => 'Purpose of leave',
 							'description' => '',
 						],
 					],
-					'mode' => [
-						'appgini' => "VARCHAR(255) NULL",
+					'from_date' => [
+						'appgini' => "DATE NOT NULL",
 						'info' => [
-							'caption' => 'Mode of punch',
+							'caption' => 'From Date',
 							'description' => '',
 						],
 					],
-					'date' => [
-						'appgini' => "DATE NULL",
+					'to_date' => [
+						'appgini' => "DATE NOT NULL",
 						'info' => [
-							'caption' => 'Date',
+							'caption' => 'To Date & Time',
 							'description' => '',
 						],
 					],
-					'in_time' => [
-						'appgini' => "TIME NULL",
+					'approval_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Under Consideration'",
 						'info' => [
-							'caption' => 'Punch In Time',
+							'caption' => 'Approval status',
 							'description' => '',
 						],
 					],
-					'out_time' => [
-						'appgini' => "TIME NULL",
-						'info' => [
-							'caption' => 'Punch Out Time',
-							'description' => '',
-						],
-					],
-					'working_hours' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Working hours',
-							'description' => '',
-						],
-					],
-					'remarks' => [
+					'approval_remarks' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
-							'caption' => 'Remarks',
+							'caption' => 'Approval remarks',
+							'description' => '',
+						],
+					],
+					'approved_by' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Approved By',
 							'description' => '',
 						],
 					],
@@ -6336,7 +6351,7 @@
 						],
 					],
 				],
-				'leave_table' => [
+				'half_day_leave_table' => [
 					'id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
@@ -6351,8 +6366,15 @@
 							'description' => '',
 						],
 					],
+					'emp_lookup' => [
+						'appgini' => "INT(10) UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Employee Details',
+							'description' => '',
+						],
+					],
 					'leave_type' => [
-						'appgini' => "VARCHAR(255) NULL",
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT 'Morning - Afternoon Shift (1st Half)'",
 						'info' => [
 							'caption' => 'Leave type',
 							'description' => '',
@@ -6365,17 +6387,10 @@
 							'description' => '',
 						],
 					],
-					'from_date' => [
-						'appgini' => "DATETIME NOT NULL",
+					'date' => [
+						'appgini' => "DATE NOT NULL",
 						'info' => [
-							'caption' => 'From Date & Time (Date and Time for Full or Half Day)',
-							'description' => '',
-						],
-					],
-					'to_date' => [
-						'appgini' => "DATETIME NOT NULL",
-						'info' => [
-							'caption' => 'To Date & Time (Date and Time for Full or Half Day)',
+							'caption' => 'Date',
 							'description' => '',
 						],
 					],
@@ -6441,6 +6456,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Username',
+							'description' => '',
+						],
+					],
+					'emp_lookup' => [
+						'appgini' => "INT(10) UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Employee Details',
 							'description' => '',
 						],
 					],
@@ -6776,6 +6798,99 @@
 						'appgini' => "INT UNSIGNED NULL",
 						'info' => [
 							'caption' => 'Reporting manager',
+							'description' => '',
+						],
+					],
+					'remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Remarks',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
+				'attendence_details_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'enrollment_no' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Enrollment No.',
+							'description' => '',
+						],
+					],
+					'name' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Name in device scanner',
+							'description' => '',
+						],
+					],
+					'mode' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Mode of punch',
+							'description' => '',
+						],
+					],
+					'date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Date',
+							'description' => '',
+						],
+					],
+					'in_time' => [
+						'appgini' => "TIME NULL",
+						'info' => [
+							'caption' => 'Punch In Time',
+							'description' => '',
+						],
+					],
+					'out_time' => [
+						'appgini' => "TIME NULL",
+						'info' => [
+							'caption' => 'Punch Out Time',
+							'description' => '',
+						],
+					],
+					'working_hours' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Working hours',
 							'description' => '',
 						],
 					],
@@ -11235,12 +11350,19 @@
 				'user_table' => ['reviewing_officer'],
 			],
 			'beyond_workingHours_table' => [
+				'employees_personal_data_table' => ['emp_lookup'],
 				'user_table' => ['approved_by'],
 			],
 			'leave_table' => [
+				'employees_personal_data_table' => ['emp_lookup'],
+				'user_table' => ['approved_by'],
+			],
+			'half_day_leave_table' => [
+				'employees_personal_data_table' => ['emp_lookup'],
 				'user_table' => ['approved_by'],
 			],
 			'work_from_home_table' => [
+				'employees_personal_data_table' => ['emp_lookup'],
 				'user_table' => ['approved_by'],
 			],
 			'navavishkar_stay_table' => [
@@ -11391,12 +11513,13 @@
 					    TIMESTAMPDIFF(SECOND, `beyond_workingHours_table`.`start_datetime`, `beyond_workingHours_table`.`end_datetime`)/3600 AS DifferenceInSeconds
 					FROM `beyond_workingHours_table` WHERE id = %ID%;',
 			],
-			'attendence_details_table' => [],
 			'leave_table' => [],
+			'half_day_leave_table' => [],
 			'work_from_home_table' => [],
 			'navavishkar_stay_table' => [],
 			'navavishkar_stay_payment_table' => [],
 			'email_id_allocation_table' => [],
+			'attendence_details_table' => [],
 			'all_startup_data_table' => [],
 			'shortlisted_startups_for_fund_table' => [],
 			'shortlisted_startups_dd_and_agreement_table' => [],
@@ -11687,14 +11810,19 @@
 				'reviewing_officer' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'beyond_workingHours_table' => [
+				'emp_lookup' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \' - \', `employees_personal_data_table`.`name`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
 				'approved_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
-			'attendence_details_table' => [
-			],
 			'leave_table' => [
+				'emp_lookup' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \' - \', `employees_personal_data_table`.`name`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
+				'approved_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+			],
+			'half_day_leave_table' => [
+				'emp_lookup' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \' - \', `employees_personal_data_table`.`name`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
 				'approved_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'work_from_home_table' => [
+				'emp_lookup' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \' - \', `employees_personal_data_table`.`name`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
 				'approved_by' => 'SELECT `user_table`.`user_id`, `user_table`.`user_id` FROM `user_table` ORDER BY 2',
 			],
 			'navavishkar_stay_table' => [
@@ -11705,6 +11833,8 @@
 			],
 			'email_id_allocation_table' => [
 				'reporting_manager' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+			],
+			'attendence_details_table' => [
 			],
 			'all_startup_data_table' => [
 			],

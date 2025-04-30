@@ -94,6 +94,15 @@
 					</div>
 				</div>
 
+				<!-- Field: Minutes of Meeting -->
+				<div class="form-group meetings_table-minutes_of_meeting">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="minutes_of_meeting">Minutes of Meeting</label>
+					<div class="col-lg-9 has-nicedit">
+						<%%HTMLAREA(minutes_of_meeting)%%>
+					</div>
+				</div>
+
 			</fieldset>
 		</div>
 
@@ -141,6 +150,12 @@
 				setTimeout(AppGini.closeParentModal, 2000);
 			}
 
+			AppGini.once({
+				condition: function() { return bkLib != undefined; },
+				action: function() {
+					if($j('textarea#minutes_of_meeting').length) new nicEditor({ fullPanel : true }).panelInstance('minutes_of_meeting');
+				}
+			});
 
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
@@ -148,6 +163,9 @@
 			$j('#meetings_table_dv_container-loading').addClass('hidden');
 			$j('#meetings_table_dv_container').removeClass('hidden');
 			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('meetings_table', 'meeting_title');
+
+			// try to detect rich text changes by adding 'input' handler after nicedit is loaded ...
+			AppGini.detectContentEditableChanges();
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 

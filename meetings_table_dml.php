@@ -31,6 +31,7 @@ function meetings_table_insert(&$error_message = '') {
 		'venue' => Request::val('venue', ''),
 		'meeting_from_date' => Request::dateComponents('meeting_from_date', '1'),
 		'meeting_to_date' => Request::dateComponents('meeting_to_date', '1'),
+		'minutes_of_meeting' => Request::val('minutes_of_meeting', ''),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
@@ -154,6 +155,7 @@ function meetings_table_update(&$selected_id, &$error_message = '') {
 		'venue' => Request::val('venue', ''),
 		'meeting_from_date' => Request::dateComponents('meeting_from_date', ''),
 		'meeting_to_date' => Request::dateComponents('meeting_to_date', ''),
+		'minutes_of_meeting' => Request::val('minutes_of_meeting', ''),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 	];
@@ -609,6 +611,7 @@ function meetings_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 	$templateCode = str_replace('<%%UPLOADFILE(venue)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(meeting_from_date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(meeting_to_date)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(minutes_of_meeting)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(meeting_str)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
@@ -635,6 +638,13 @@ function meetings_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		$templateCode = str_replace('<%%URLVALUE(meeting_from_date)%%>', urlencode(app_datetime($urow['meeting_from_date'])), $templateCode);
 		$templateCode = str_replace('<%%VALUE(meeting_to_date)%%>', app_datetime($row['meeting_to_date']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(meeting_to_date)%%>', urlencode(app_datetime($urow['meeting_to_date'])), $templateCode);
+		if($fieldsAreEditable) {
+			$templateCode = str_replace('<%%HTMLAREA(minutes_of_meeting)%%>', '<textarea name="minutes_of_meeting" id="minutes_of_meeting" rows="5">' . safe_html(htmlspecialchars_decode($row['minutes_of_meeting'])) . '</textarea>', $templateCode);
+		} else {
+			$templateCode = str_replace('<%%HTMLAREA(minutes_of_meeting)%%>', '<div id="minutes_of_meeting" class="form-control-static">' . $row['minutes_of_meeting'] . '</div>', $templateCode);
+		}
+		$templateCode = str_replace('<%%VALUE(minutes_of_meeting)%%>', nl2br($row['minutes_of_meeting']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(minutes_of_meeting)%%>', urlencode($urow['minutes_of_meeting']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(meeting_str)%%>', safe_html($urow['meeting_str']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(meeting_str)%%>', urlencode($urow['meeting_str']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
@@ -662,6 +672,7 @@ function meetings_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		$templateCode = str_replace('<%%URLVALUE(meeting_from_date)%%>', urlencode('1'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(meeting_to_date)%%>', '1', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(meeting_to_date)%%>', urlencode('1'), $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(minutes_of_meeting)%%>', '<textarea name="minutes_of_meeting" id="minutes_of_meeting" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(meeting_str)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(meeting_str)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);

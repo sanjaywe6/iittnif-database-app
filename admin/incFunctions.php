@@ -2557,6 +2557,13 @@
 							'description' => '',
 						],
 					],
+					'minutes_of_meeting' => [
+						'appgini' => "LONGTEXT NULL",
+						'info' => [
+							'caption' => 'Minutes of Meeting',
+							'description' => '',
+						],
+					],
 					'meeting_str' => [
 						'appgini' => "TEXT NULL",
 						'info' => [

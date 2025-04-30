@@ -1,30 +1,71 @@
-<!-- Edit this file to change the layout of each record in the table view -->
-<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+		<td colspan="20" class="row">
+			<div id="employees_appraisal_table-id-<%%VALUE(id)%%>" class="employees_appraisal_table-id col-sm-12 h5 text-bold"><%%VALUE(id)%%></div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="employees_appraisal_table-employee_designation_lookup-caption field-caption-tv">Employee Details</dt>
+					<dd id="employees_appraisal_table-employee_designation_lookup-<%%VALUE(id)%%>" class="employees_appraisal_table-employee_designation_lookup text-bold"><%%VALUE(employee_designation_lookup)%%></dd>
 
-<!-- If you wish to hide the table view header that contains the column titles, -->
-<!-- add the following to the employees_appraisal_table_init() hook (in hooks/employees_appraisal_table.php file) -->
-<!--     $options->ShowTableHeader = 0;     -->
+					<dt class="employees_appraisal_table-current_review_period_from-caption field-caption-tv">Current Review Period From Date</dt>
+					<dd id="employees_appraisal_table-current_review_period_from-<%%VALUE(id)%%>" class="employees_appraisal_table-current_review_period_from text-bold"><%%VALUE(current_review_period_from)%%></dd>
 
-		<td id="employees_appraisal_table-id-<%%VALUE(id)%%>" class="employees_appraisal_table-id text-right text-bold"><%%VALUE(id)%%></td>
-		<td id="employees_appraisal_table-employee_designation_lookup-<%%VALUE(id)%%>" class="employees_appraisal_table-employee_designation_lookup text-bold"><%%VALUE(employee_designation_lookup)%%></td>
-		<td id="employees_appraisal_table-current_review_period_from-<%%VALUE(id)%%>" class="employees_appraisal_table-current_review_period_from text-bold"><%%VALUE(current_review_period_from)%%></td>
-		<td id="employees_appraisal_table-current_review_period_to-<%%VALUE(id)%%>" class="employees_appraisal_table-current_review_period_to text-bold"><%%VALUE(current_review_period_to)%%></td>
-		<td id="employees_appraisal_table-roles-<%%VALUE(id)%%>" class="employees_appraisal_table-roles text-bold"><%%VALUE(roles)%%></td>
-		<td id="employees_appraisal_table-self_explanation-<%%VALUE(id)%%>" class="employees_appraisal_table-self_explanation text-bold"><%%VALUE(self_explanation)%%></td>
-		<td id="employees_appraisal_table-upload_file_1-<%%VALUE(id)%%>" class="employees_appraisal_table-upload_file_1 text-bold"><a href="link.php?t=employees_appraisal_table&f=upload_file_1&i=<%%VALUE(id)%%>" target="_blank" title="<%%VALUE(upload_file_1)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-download-alt text-info"></i></a></td>
-		<td id="employees_appraisal_table-upload_file_2-<%%VALUE(id)%%>" class="employees_appraisal_table-upload_file_2 text-bold"><a href="link.php?t=employees_appraisal_table&f=upload_file_2&i=<%%VALUE(id)%%>" target="_blank" title="<%%VALUE(upload_file_2)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-download-alt text-info"></i></a></td>
-		<td id="employees_appraisal_table-upload_file_3-<%%VALUE(id)%%>" class="employees_appraisal_table-upload_file_3 text-bold"><a href="link.php?t=employees_appraisal_table&f=upload_file_3&i=<%%VALUE(id)%%>" target="_blank" title="<%%VALUE(upload_file_3)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-download-alt text-info"></i></a></td>
-		<td id="employees_appraisal_table-reporting_officer_feedback-<%%VALUE(id)%%>" class="employees_appraisal_table-reporting_officer_feedback text-bold"><%%VALUE(reporting_officer_feedback)%%></td>
-		<td id="employees_appraisal_table-observations_by_reporting_officer-<%%VALUE(id)%%>" class="employees_appraisal_table-observations_by_reporting_officer text-bold"><%%VALUE(observations_by_reporting_officer)%%></td>
-		<td id="employees_appraisal_table-overall_rating-<%%VALUE(id)%%>" class="employees_appraisal_table-overall_rating text-bold"><%%VALUE(overall_rating)%%></td>
-		<td id="employees_appraisal_table-reporting_appraisal_status-<%%VALUE(id)%%>" class="employees_appraisal_table-reporting_appraisal_status text-bold"><%%VALUE(reporting_appraisal_status)%%></td>
-		<td id="employees_appraisal_table-reviewing_officer-<%%VALUE(id)%%>" class="employees_appraisal_table-reviewing_officer text-bold"><%%VALUE(reviewing_officer)%%></td>
-		<td id="employees_appraisal_table-reviewing_officer_remarks-<%%VALUE(id)%%>" class="employees_appraisal_table-reviewing_officer_remarks text-bold"><%%VALUE(reviewing_officer_remarks)%%></td>
-		<td id="employees_appraisal_table-reviewing_appraisal_status-<%%VALUE(id)%%>" class="employees_appraisal_table-reviewing_appraisal_status text-bold"><%%VALUE(reviewing_appraisal_status)%%></td>
-		<td id="employees_appraisal_table-created_by-<%%VALUE(id)%%>" class="employees_appraisal_table-created_by text-bold"><%%VALUE(created_by)%%></td>
-		<td id="employees_appraisal_table-created_at-<%%VALUE(id)%%>" class="employees_appraisal_table-created_at text-bold"><%%VALUE(created_at)%%></td>
-		<td id="employees_appraisal_table-last_updated_by-<%%VALUE(id)%%>" class="employees_appraisal_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
-		<td id="employees_appraisal_table-last_updated_at-<%%VALUE(id)%%>" class="employees_appraisal_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>
+					<dt class="employees_appraisal_table-current_review_period_to-caption field-caption-tv">Current Review Period To Date</dt>
+					<dd id="employees_appraisal_table-current_review_period_to-<%%VALUE(id)%%>" class="employees_appraisal_table-current_review_period_to text-bold"><%%VALUE(current_review_period_to)%%></dd>
+
+					<dt class="employees_appraisal_table-roles-caption field-caption-tv">Roles & Responsibilities</dt>
+					<dd id="employees_appraisal_table-roles-<%%VALUE(id)%%>" class="employees_appraisal_table-roles text-bold"><%%VALUE(roles)%%></dd>
+
+					<dt class="employees_appraisal_table-self_explanation-caption field-caption-tv">Employee Self-explanation</dt>
+					<dd id="employees_appraisal_table-self_explanation-<%%VALUE(id)%%>" class="employees_appraisal_table-self_explanation text-bold"><%%VALUE(self_explanation)%%></dd>
+
+					<dt class="employees_appraisal_table-upload_file_1-caption field-caption-tv">Upload file 1</dt>
+					<dd id="employees_appraisal_table-upload_file_1-<%%VALUE(id)%%>" class="employees_appraisal_table-upload_file_1 text-bold"><a href="link.php?t=employees_appraisal_table&f=upload_file_1&i=<%%VALUE(id)%%>" target="_blank" title="<%%VALUE(upload_file_1)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-download-alt text-info"></i></a></dd>
+
+					<dt class="employees_appraisal_table-upload_file_2-caption field-caption-tv">Upload file 2</dt>
+					<dd id="employees_appraisal_table-upload_file_2-<%%VALUE(id)%%>" class="employees_appraisal_table-upload_file_2 text-bold"><a href="link.php?t=employees_appraisal_table&f=upload_file_2&i=<%%VALUE(id)%%>" target="_blank" title="<%%VALUE(upload_file_2)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-download-alt text-info"></i></a></dd>
+
+					<dt class="employees_appraisal_table-upload_file_3-caption field-caption-tv">Upload file 3</dt>
+					<dd id="employees_appraisal_table-upload_file_3-<%%VALUE(id)%%>" class="employees_appraisal_table-upload_file_3 text-bold"><a href="link.php?t=employees_appraisal_table&f=upload_file_3&i=<%%VALUE(id)%%>" target="_blank" title="<%%VALUE(upload_file_3)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-download-alt text-info"></i></a></dd>
+
+					<dt class="employees_appraisal_table-reporting_officer_feedback-caption field-caption-tv">Reporting Officer Feedback on the Employee Responsibilities</dt>
+					<dd id="employees_appraisal_table-reporting_officer_feedback-<%%VALUE(id)%%>" class="employees_appraisal_table-reporting_officer_feedback text-bold"><%%VALUE(reporting_officer_feedback)%%></dd>
+
+					<dt class="employees_appraisal_table-observations_by_reporting_officer-caption field-caption-tv">Observations by the Reporting Officer</dt>
+					<dd id="employees_appraisal_table-observations_by_reporting_officer-<%%VALUE(id)%%>" class="employees_appraisal_table-observations_by_reporting_officer text-bold"><%%VALUE(observations_by_reporting_officer)%%></dd>
+
+				</dl>
+			</div>
+			<div class="col-md-6">
+				<dl class="dl-horizontal">
+					<dt class="employees_appraisal_table-overall_rating-caption field-caption-tv">Overall Rating by the Reporting Officer</dt>
+					<dd id="employees_appraisal_table-overall_rating-<%%VALUE(id)%%>" class="employees_appraisal_table-overall_rating text-bold"><%%VALUE(overall_rating)%%></dd>
+
+					<dt class="employees_appraisal_table-reporting_appraisal_status-caption field-caption-tv">Appraisal Feedback Status by Reporting Officer</dt>
+					<dd id="employees_appraisal_table-reporting_appraisal_status-<%%VALUE(id)%%>" class="employees_appraisal_table-reporting_appraisal_status text-bold"><%%VALUE(reporting_appraisal_status)%%></dd>
+
+					<dt class="employees_appraisal_table-reviewing_officer-caption field-caption-tv">Reviewing officer</dt>
+					<dd id="employees_appraisal_table-reviewing_officer-<%%VALUE(id)%%>" class="employees_appraisal_table-reviewing_officer text-bold"><%%VALUE(reviewing_officer)%%></dd>
+
+					<dt class="employees_appraisal_table-reviewing_officer_remarks-caption field-caption-tv">Reviewing Officer Remarks</dt>
+					<dd id="employees_appraisal_table-reviewing_officer_remarks-<%%VALUE(id)%%>" class="employees_appraisal_table-reviewing_officer_remarks text-bold"><%%VALUE(reviewing_officer_remarks)%%></dd>
+
+					<dt class="employees_appraisal_table-reviewing_appraisal_status-caption field-caption-tv">Appraisal Feedback Status by Reviewing Officer</dt>
+					<dd id="employees_appraisal_table-reviewing_appraisal_status-<%%VALUE(id)%%>" class="employees_appraisal_table-reviewing_appraisal_status text-bold"><%%VALUE(reviewing_appraisal_status)%%></dd>
+
+					<dt class="employees_appraisal_table-created_by-caption field-caption-tv">Created by</dt>
+					<dd id="employees_appraisal_table-created_by-<%%VALUE(id)%%>" class="employees_appraisal_table-created_by text-bold"><%%VALUE(created_by)%%></dd>
+
+					<dt class="employees_appraisal_table-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="employees_appraisal_table-created_at-<%%VALUE(id)%%>" class="employees_appraisal_table-created_at text-bold"><%%VALUE(created_at)%%></dd>
+
+					<dt class="employees_appraisal_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
+					<dd id="employees_appraisal_table-last_updated_by-<%%VALUE(id)%%>" class="employees_appraisal_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></dd>
+
+					<dt class="employees_appraisal_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
+					<dd id="employees_appraisal_table-last_updated_at-<%%VALUE(id)%%>" class="employees_appraisal_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></dd>
+
+				</dl>
+			</div>
+		</td>
 		<script>$j(function() {
 			var e_upload_file_1 = '<%%VALUE(upload_file_1)%%>'; if(e_upload_file_1 == '' || e_upload_file_1 == '&nbsp;') $j(/*<*/ '#employees_appraisal_table-upload_file_1-<%%VALUE(id)%%>' /*>*/).html('');
 			var e_upload_file_2 = '<%%VALUE(upload_file_2)%%>'; if(e_upload_file_2 == '' || e_upload_file_2 == '&nbsp;') $j(/*<*/ '#employees_appraisal_table-upload_file_2-<%%VALUE(id)%%>' /*>*/).html('');

@@ -26,6 +26,7 @@
 		"`meetings_table`.`venue`" => "venue",
 		"if(`meetings_table`.`meeting_from_date`,date_format(`meetings_table`.`meeting_from_date`,'%d/%m/%Y'),'')" => "meeting_from_date",
 		"if(`meetings_table`.`meeting_to_date`,date_format(`meetings_table`.`meeting_to_date`,'%d/%m/%Y'),'')" => "meeting_to_date",
+		"if(CHAR_LENGTH(`meetings_table`.`minutes_of_meeting`)>500, concat(left(`meetings_table`.`minutes_of_meeting`,500),' ...'), `meetings_table`.`minutes_of_meeting`)" => "minutes_of_meeting",
 		"`meetings_table`.`meeting_str`" => "meeting_str",
 		"`meetings_table`.`created_by`" => "created_by",
 		"`meetings_table`.`created_at`" => "created_at",
@@ -47,6 +48,7 @@
 		11 => 11,
 		12 => 12,
 		13 => 13,
+		14 => 14,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -59,6 +61,7 @@
 		"`meetings_table`.`venue`" => "venue",
 		"if(`meetings_table`.`meeting_from_date`,date_format(`meetings_table`.`meeting_from_date`,'%d/%m/%Y'),'')" => "meeting_from_date",
 		"if(`meetings_table`.`meeting_to_date`,date_format(`meetings_table`.`meeting_to_date`,'%d/%m/%Y'),'')" => "meeting_to_date",
+		"`meetings_table`.`minutes_of_meeting`" => "minutes_of_meeting",
 		"`meetings_table`.`meeting_str`" => "meeting_str",
 		"`meetings_table`.`created_by`" => "created_by",
 		"`meetings_table`.`created_at`" => "created_at",
@@ -75,6 +78,7 @@
 		"`meetings_table`.`venue`" => "Venue",
 		"`meetings_table`.`meeting_from_date`" => "Meeting from date",
 		"`meetings_table`.`meeting_to_date`" => "Meeting to date",
+		"`meetings_table`.`minutes_of_meeting`" => "Minutes of Meeting",
 		"`meetings_table`.`meeting_str`" => "Meeting str",
 		"`meetings_table`.`created_by`" => "Created by",
 		"`meetings_table`.`created_at`" => "Created at",
@@ -92,6 +96,7 @@
 		"`meetings_table`.`venue`" => "venue",
 		"if(`meetings_table`.`meeting_from_date`,date_format(`meetings_table`.`meeting_from_date`,'%d/%m/%Y'),'')" => "meeting_from_date",
 		"if(`meetings_table`.`meeting_to_date`,date_format(`meetings_table`.`meeting_to_date`,'%d/%m/%Y'),'')" => "meeting_to_date",
+		"`meetings_table`.`minutes_of_meeting`" => "Minutes of Meeting",
 		"`meetings_table`.`meeting_str`" => "meeting_str",
 		"`meetings_table`.`created_by`" => "created_by",
 		"`meetings_table`.`created_at`" => "created_at",
@@ -132,10 +137,10 @@
 	$x->DefaultSortField = '`meetings_table`.`meeting_to_date`';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Meeting title', 'Participants', 'Venue', 'Meeting from date', 'Meeting to date', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['meetings_id', 'meeting_title', 'participants', 'venue', 'meeting_from_date', 'meeting_to_date', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 4, 5, 6, 7, 8, 10, 11, 12, 13, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Meeting title', 'Participants', 'Venue', 'Meeting from date', 'Meeting to date', 'Minutes of Meeting', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['meetings_id', 'meeting_title', 'participants', 'venue', 'meeting_from_date', 'meeting_to_date', 'minutes_of_meeting', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/meetings_table_templateTV.html';

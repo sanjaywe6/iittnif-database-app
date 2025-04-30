@@ -1,8 +1,11 @@
-		<td colspan="11" class="row">
+		<td colspan="12" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="decision_table-decision_id-caption field-caption-tv">ID</dt>
 					<dd id="decision_table-decision_id-<%%VALUE(decision_id)%%>" class="decision_table-decision_id text-right"><%%SELECT%%><%%VALUE(decision_id)%%><%%ENDSELECT%%></dd>
+
+					<dt class="decision_table-username-caption field-caption-tv">Username</dt>
+					<dd id="decision_table-username-<%%VALUE(decision_id)%%>" class="decision_table-username"><%%SELECT%%><%%VALUE(username)%%><%%ENDSELECT%%></dd>
 
 					<dt class="decision_table-agenda_lookup-caption field-caption-tv">Agenda of Meeting</dt>
 					<dd id="decision_table-agenda_lookup-<%%VALUE(decision_id)%%>" class="decision_table-agenda_lookup"><%%SELECT%%><%%VALUE(agenda_lookup)%%><%%ENDSELECT%%></dd>
@@ -16,13 +19,13 @@
 					<dt class="decision_table-action_taken_with_date-caption field-caption-tv">Action taken with date</dt>
 					<dd id="decision_table-action_taken_with_date-<%%VALUE(decision_id)%%>" class="decision_table-action_taken_with_date"><%%SELECT%%><%%VALUE(action_taken_with_date)%%><%%ENDSELECT%%></dd>
 
-					<dt class="decision_table-decision_status-caption field-caption-tv">Decision status</dt>
-					<dd id="decision_table-decision_status-<%%VALUE(decision_id)%%>" class="decision_table-decision_status"><%%SELECT%%><%%VALUE(decision_status)%%><%%ENDSELECT%%></dd>
-
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
+					<dt class="decision_table-decision_status-caption field-caption-tv">Decision status</dt>
+					<dd id="decision_table-decision_status-<%%VALUE(decision_id)%%>" class="decision_table-decision_status"><%%SELECT%%><%%VALUE(decision_status)%%><%%ENDSELECT%%></dd>
+
 					<dt class="decision_table-decision_status_update_date-caption field-caption-tv">Decision status update date</dt>
 					<dd id="decision_table-decision_status_update_date-<%%VALUE(decision_id)%%>" class="decision_table-decision_status_update_date"><%%SELECT%%><%%VALUE(decision_status_update_date)%%><%%ENDSELECT%%></dd>
 

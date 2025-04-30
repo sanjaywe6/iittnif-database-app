@@ -16,6 +16,7 @@ function space_day_college_student_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'name_of_student' => Request::val('name_of_student', ''),
 		'registration_number' => Request::val('registration_number', ''),
 		'degree_department' => Request::val('degree_department', ''),
@@ -223,7 +224,7 @@ function space_day_college_student_table_form($selectedId = '', $allowUpdate = t
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_gender->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_gender->SelectedText = (isset($filterField[1]) && $filterField[1] == '6' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
 	$combo_gender->Render();
 
@@ -362,6 +363,7 @@ function space_day_college_student_table_form($selectedId = '', $allowUpdate = t
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(name_of_student)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(registration_number)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(degree_department)%%>', '', $templateCode);
@@ -380,6 +382,8 @@ function space_day_college_student_table_form($selectedId = '', $allowUpdate = t
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(name_of_student)%%>', safe_html($urow['name_of_student']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(name_of_student)%%>', html_attr($row['name_of_student']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(name_of_student)%%>', urlencode($urow['name_of_student']), $templateCode);
@@ -418,6 +422,8 @@ function space_day_college_student_table_form($selectedId = '', $allowUpdate = t
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(name_of_student)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(name_of_student)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(registration_number)%%>', '', $templateCode);

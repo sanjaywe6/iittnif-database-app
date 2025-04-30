@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`cycle_table`.`id`" => "id",
+		"`cycle_table`.`username`" => "username",
 		"`cycle_table`.`registration_number`" => "registration_number",
 		"`cycle_table`.`cycle_model`" => "cycle_model",
 		"`cycle_table`.`cycle_color`" => "cycle_color",
@@ -39,11 +40,13 @@
 		7 => 7,
 		8 => 8,
 		9 => 9,
+		10 => 10,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`cycle_table`.`id`" => "id",
+		"`cycle_table`.`username`" => "username",
 		"`cycle_table`.`registration_number`" => "registration_number",
 		"`cycle_table`.`cycle_model`" => "cycle_model",
 		"`cycle_table`.`cycle_color`" => "cycle_color",
@@ -56,6 +59,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`cycle_table`.`id`" => "ID",
+		"`cycle_table`.`username`" => "Username",
 		"`cycle_table`.`registration_number`" => "Registration number",
 		"`cycle_table`.`cycle_model`" => "Cycle model",
 		"`cycle_table`.`cycle_color`" => "Cycle color",
@@ -69,6 +73,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`cycle_table`.`id`" => "id",
+		"`cycle_table`.`username`" => "username",
 		"`cycle_table`.`registration_number`" => "registration_number",
 		"`cycle_table`.`cycle_model`" => "cycle_model",
 		"`cycle_table`.`cycle_color`" => "cycle_color",
@@ -112,10 +117,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Registration number', 'Cycle model', 'Cycle color', 'Responsible Contact Person', 'Contact number of person', 'Purpose', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['id', 'registration_number', 'cycle_model', 'cycle_color', 'responsible_contact_person', 'contact_number_of_person', 'purpose', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Registration number', 'Cycle model', 'Cycle color', 'Responsible Contact Person', 'Contact number of person', 'Purpose', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['id', 'username', 'registration_number', 'cycle_model', 'cycle_color', 'responsible_contact_person', 'contact_number_of_person', 'purpose', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/cycle_table_templateTV.html';

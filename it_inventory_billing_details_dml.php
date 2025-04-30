@@ -21,6 +21,7 @@ function it_inventory_billing_details_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'po_no' => Request::val('po_no', ''),
 		'po_date' => Request::dateComponents('po_date', '1'),
 		'particulars_of_supplier' => Request::val('particulars_of_supplier', ''),
@@ -511,6 +512,7 @@ function it_inventory_billing_details_form($selectedId = '', $allowUpdate = true
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(it_inventory_biling_details_id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(it_inventory_lookup)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(po_no)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(po_date)%%>', '', $templateCode);
@@ -536,6 +538,8 @@ function it_inventory_billing_details_form($selectedId = '', $allowUpdate = true
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(it_inventory_biling_details_id)%%>', safe_html($urow['it_inventory_biling_details_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(it_inventory_biling_details_id)%%>', urlencode($urow['it_inventory_biling_details_id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(it_inventory_lookup)%%>', safe_html($urow['it_inventory_lookup']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(it_inventory_lookup)%%>', urlencode($urow['it_inventory_lookup']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(po_no)%%>', safe_html($urow['po_no']), $templateCode);
@@ -577,6 +581,8 @@ function it_inventory_billing_details_form($selectedId = '', $allowUpdate = true
 	} else {
 		$templateCode = str_replace('<%%VALUE(it_inventory_biling_details_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(it_inventory_biling_details_id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(it_inventory_lookup)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(it_inventory_lookup)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(po_no)%%>', '', $templateCode);
@@ -646,7 +652,7 @@ function it_inventory_billing_details_form($selectedId = '', $allowUpdate = true
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
-	if(isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>')
+	if(isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>')
 		$templateCode.="\n<input type=hidden name=it_inventory_lookup value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery

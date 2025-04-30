@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`travel_table`.`id`" => "id",
+		"`travel_table`.`username`" => "username",
 		"`travel_table`.`first_name`" => "first_name",
 		"`travel_table`.`last_name`" => "last_name",
 		"`travel_table`.`age`" => "age",
@@ -48,20 +49,22 @@
 		7 => 7,
 		8 => 8,
 		9 => 9,
-		10 => '`travel_table`.`date_from`',
-		11 => '`travel_table`.`date_to`',
-		12 => 12,
+		10 => 10,
+		11 => '`travel_table`.`date_from`',
+		12 => '`travel_table`.`date_to`',
 		13 => 13,
 		14 => 14,
 		15 => 15,
 		16 => 16,
 		17 => 17,
 		18 => 18,
+		19 => 19,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`travel_table`.`id`" => "id",
+		"`travel_table`.`username`" => "username",
 		"`travel_table`.`first_name`" => "first_name",
 		"`travel_table`.`last_name`" => "last_name",
 		"`travel_table`.`age`" => "age",
@@ -83,6 +86,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`travel_table`.`id`" => "ID",
+		"`travel_table`.`username`" => "Username",
 		"`travel_table`.`first_name`" => "First name",
 		"`travel_table`.`last_name`" => "Last name",
 		"`travel_table`.`age`" => "Age",
@@ -105,6 +109,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`travel_table`.`id`" => "id",
+		"`travel_table`.`username`" => "username",
 		"`travel_table`.`first_name`" => "first_name",
 		"`travel_table`.`last_name`" => "last_name",
 		"`travel_table`.`age`" => "age",
@@ -157,10 +162,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'First name', 'Last name', 'Age', 'Gender', 'Mobile number', 'Travel type', 'From Place', 'To Place', 'Date from', 'Date to', 'Travel description', 'Approval Status', 'Approval remarks', 'Created by', 'Approved by', 'Created at', 'Approved at', ];
-	$x->ColFieldName = ['id', 'first_name', 'last_name', 'age', 'gender', 'mobile_number', 'travel_type', 'from_place', 'to_place', 'date_from', 'date_to', 'travel_description', 'approval_status', 'approval_remarks', 'created_by', 'approved_by', 'created_at', 'approved_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'First name', 'Last name', 'Age', 'Gender', 'Mobile number', 'Travel type', 'From Place', 'To Place', 'Date from', 'Date to', 'Travel description', 'Approval Status', 'Approval remarks', 'Created by', 'Approved by', 'Created at', 'Approved at', ];
+	$x->ColFieldName = ['id', 'username', 'first_name', 'last_name', 'age', 'gender', 'mobile_number', 'travel_type', 'from_place', 'to_place', 'date_from', 'date_to', 'travel_description', 'approval_status', 'approval_remarks', 'created_by', 'approved_by', 'created_at', 'approved_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/travel_table_templateTV.html';

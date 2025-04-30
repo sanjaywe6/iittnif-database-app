@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`mou_company_area_details_table`.`id`" => "id",
+		"`mou_company_area_details_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`mou_details_table1`.`company_name`), CONCAT_WS('',   `mou_details_table1`.`company_name`), '') /* Name of the company */" => "name_of_the_company",
 		"`mou_company_area_details_table`.`area`" => "area",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Assigned MoU to */" => "assigned_mou_to",
@@ -30,18 +31,20 @@
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
 		1 => '`mou_company_area_details_table`.`id`',
-		2 => '`mou_details_table1`.`company_name`',
-		3 => 3,
+		2 => 2,
+		3 => '`mou_details_table1`.`company_name`',
 		4 => 4,
 		5 => 5,
 		6 => 6,
 		7 => 7,
 		8 => 8,
+		9 => 9,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`mou_company_area_details_table`.`id`" => "id",
+		"`mou_company_area_details_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`mou_details_table1`.`company_name`), CONCAT_WS('',   `mou_details_table1`.`company_name`), '') /* Name of the company */" => "name_of_the_company",
 		"`mou_company_area_details_table`.`area`" => "area",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Assigned MoU to */" => "assigned_mou_to",
@@ -53,6 +56,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`mou_company_area_details_table`.`id`" => "ID",
+		"`mou_company_area_details_table`.`username`" => "Username",
 		"IF(    CHAR_LENGTH(`mou_details_table1`.`company_name`), CONCAT_WS('',   `mou_details_table1`.`company_name`), '') /* Name of the company */" => "Name of the company",
 		"`mou_company_area_details_table`.`area`" => "Area / Scope",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Assigned MoU to */" => "Assigned MoU to",
@@ -65,6 +69,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`mou_company_area_details_table`.`id`" => "id",
+		"`mou_company_area_details_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`mou_details_table1`.`company_name`), CONCAT_WS('',   `mou_details_table1`.`company_name`), '') /* Name of the company */" => "name_of_the_company",
 		"`mou_company_area_details_table`.`area`" => "area",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Assigned MoU to */" => "assigned_mou_to",
@@ -107,10 +112,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Name of the company', 'Area / Scope', 'Assigned MoU to', 'Remarks', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['id', 'name_of_the_company', 'area', 'assigned_mou_to', 'remarks', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Name of the company', 'Area / Scope', 'Assigned MoU to', 'Remarks', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['id', 'username', 'name_of_the_company', 'area', 'assigned_mou_to', 'remarks', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/mou_company_area_details_table_templateTV.html';

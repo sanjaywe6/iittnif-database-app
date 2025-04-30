@@ -16,6 +16,7 @@ function computer_details_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'pc_number' => Request::val('pc_number', ''),
 		'pc_hostname' => Request::val('pc_hostname', ''),
 		'pc_mac_address' => Request::val('pc_mac_address', ''),
@@ -293,9 +294,9 @@ function computer_details_table_form($selectedId = '', $allowUpdate = true, $all
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_maintained_by->SelectedText = (isset($filterField[1]) && $filterField[1] == '7' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_assigned_to_user->SelectedText = (isset($filterField[1]) && $filterField[1] == '8' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_remote_access->SelectedText = (isset($filterField[1]) && $filterField[1] == '9' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_maintained_by->SelectedText = (isset($filterField[1]) && $filterField[1] == '8' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_assigned_to_user->SelectedText = (isset($filterField[1]) && $filterField[1] == '9' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_remote_access->SelectedText = (isset($filterField[1]) && $filterField[1] == '10' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
 	$combo_maintained_by->Render();
 	$combo_assigned_to_user->Render();
@@ -439,6 +440,7 @@ function computer_details_table_form($selectedId = '', $allowUpdate = true, $all
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(pc_number)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(pc_hostname)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(pc_mac_address)%%>', '', $templateCode);
@@ -456,6 +458,8 @@ function computer_details_table_form($selectedId = '', $allowUpdate = true, $all
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(pc_number)%%>', safe_html($urow['pc_number']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(pc_number)%%>', html_attr($row['pc_number']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(pc_number)%%>', urlencode($urow['pc_number']), $templateCode);
@@ -491,6 +495,8 @@ function computer_details_table_form($selectedId = '', $allowUpdate = true, $all
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(pc_number)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(pc_number)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(pc_hostname)%%>', '', $templateCode);

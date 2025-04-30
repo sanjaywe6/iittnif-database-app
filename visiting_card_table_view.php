@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`visiting_card_table`.`visiting_card_id`" => "visiting_card_id",
+		"`visiting_card_table`.`username`" => "username",
 		"`visiting_card_table`.`name`" => "name",
 		"`visiting_card_table`.`recommended_by`" => "recommended_by",
 		"`visiting_card_table`.`designation`" => "designation",
@@ -53,11 +54,13 @@
 		14 => 14,
 		15 => 15,
 		16 => 16,
+		17 => 17,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`visiting_card_table`.`visiting_card_id`" => "visiting_card_id",
+		"`visiting_card_table`.`username`" => "username",
 		"`visiting_card_table`.`name`" => "name",
 		"`visiting_card_table`.`recommended_by`" => "recommended_by",
 		"`visiting_card_table`.`designation`" => "designation",
@@ -77,6 +80,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`visiting_card_table`.`visiting_card_id`" => "ID",
+		"`visiting_card_table`.`username`" => "Username",
 		"`visiting_card_table`.`name`" => "Name",
 		"`visiting_card_table`.`recommended_by`" => "Recommended by",
 		"`visiting_card_table`.`designation`" => "Designation",
@@ -95,6 +99,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`visiting_card_table`.`visiting_card_id`" => "visiting_card_id",
+		"`visiting_card_table`.`username`" => "username",
 		"`visiting_card_table`.`name`" => "name",
 		"`visiting_card_table`.`recommended_by`" => "recommended_by",
 		"`visiting_card_table`.`designation`" => "designation",
@@ -143,10 +148,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Name', 'Recommended by', 'Designation', 'Company name', 'Mobile no', 'Email', 'Company website address', 'Given by', 'Suggested way forward', 'Front img', 'Back img', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['visiting_card_id', 'name', 'recommended_by', 'designation', 'company_name', 'mobile_no', 'email', 'company_website_addr', 'given_by', 'suggested_way_forward', 'front_img', 'back_img', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Name', 'Recommended by', 'Designation', 'Company name', 'Mobile no', 'Email', 'Company website address', 'Given by', 'Suggested way forward', 'Front img', 'Back img', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['visiting_card_id', 'username', 'name', 'recommended_by', 'designation', 'company_name', 'mobile_no', 'email', 'company_website_addr', 'given_by', 'suggested_way_forward', 'front_img', 'back_img', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/visiting_card_table_templateTV.html';

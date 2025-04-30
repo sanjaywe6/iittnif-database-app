@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`internship_fellowship_details_app`.`id`" => "id",
+		"`internship_fellowship_details_app`.`username`" => "username",
 		"`internship_fellowship_details_app`.`standard`" => "standard",
 		"`internship_fellowship_details_app`.`iittnif_id`" => "iittnif_id",
 		"`internship_fellowship_details_app`.`name_of_the_candidate`" => "name_of_the_candidate",
@@ -67,11 +68,13 @@
 		21 => 21,
 		22 => 22,
 		23 => 23,
+		24 => 24,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`internship_fellowship_details_app`.`id`" => "id",
+		"`internship_fellowship_details_app`.`username`" => "username",
 		"`internship_fellowship_details_app`.`standard`" => "standard",
 		"`internship_fellowship_details_app`.`iittnif_id`" => "iittnif_id",
 		"`internship_fellowship_details_app`.`name_of_the_candidate`" => "name_of_the_candidate",
@@ -98,6 +101,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`internship_fellowship_details_app`.`id`" => "ID",
+		"`internship_fellowship_details_app`.`username`" => "Username",
 		"`internship_fellowship_details_app`.`standard`" => "Standard",
 		"`internship_fellowship_details_app`.`iittnif_id`" => "IITTNiF id",
 		"`internship_fellowship_details_app`.`name_of_the_candidate`" => "Name of the Candidate",
@@ -125,6 +129,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`internship_fellowship_details_app`.`id`" => "id",
+		"`internship_fellowship_details_app`.`username`" => "username",
 		"`internship_fellowship_details_app`.`standard`" => "standard",
 		"`internship_fellowship_details_app`.`iittnif_id`" => "iittnif_id",
 		"`internship_fellowship_details_app`.`name_of_the_candidate`" => "name_of_the_candidate",
@@ -182,10 +187,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Standard', 'IITTNiF id', 'Name of the Candidate', 'Type of Internship/Fellowship', 'Year', 'Project title', 'Gender', 'Department', 'Institute ID number', 'Institute', 'Latitude', 'Longitude', 'Start date', 'End date', 'Status', 'Cotegory', 'Report link', 'Outcomes', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'standard', 'iittnif_id', 'name_of_the_candidate', 'type_of_internship_fellowship', 'year', 'project_title', 'gender', 'department', 'institute_id_number', 'institute', 'latitude', 'longitude', 'start_date', 'end_date', 'status', 'cotegory', 'report_link', 'outcomes', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Standard', 'IITTNiF id', 'Name of the Candidate', 'Type of Internship/Fellowship', 'Year', 'Project title', 'Gender', 'Department', 'Institute ID number', 'Institute', 'Latitude', 'Longitude', 'Start date', 'End date', 'Status', 'Cotegory', 'Report link', 'Outcomes', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'username', 'standard', 'iittnif_id', 'name_of_the_candidate', 'type_of_internship_fellowship', 'year', 'project_title', 'gender', 'department', 'institute_id_number', 'institute', 'latitude', 'longitude', 'start_date', 'end_date', 'status', 'cotegory', 'report_link', 'outcomes', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/internship_fellowship_details_app_templateTV.html';

@@ -1,7 +1,10 @@
-		<td colspan="20" class="row">
+		<td colspan="21" class="row">
 			<div id="employees_appraisal_table-id-<%%VALUE(id)%%>" class="employees_appraisal_table-id col-sm-12 h5 text-bold"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
+					<dt class="employees_appraisal_table-username-caption field-caption-tv">Username</dt>
+					<dd id="employees_appraisal_table-username-<%%VALUE(id)%%>" class="employees_appraisal_table-username"><%%SELECT%%><%%VALUE(username)%%><%%ENDSELECT%%></dd>
+
 					<dt class="employees_appraisal_table-employee_designation_lookup-caption field-caption-tv">Employee Details</dt>
 					<dd id="employees_appraisal_table-employee_designation_lookup-<%%VALUE(id)%%>" class="employees_appraisal_table-employee_designation_lookup"><%%SELECT%%><%%VALUE(employee_designation_lookup)%%><%%ENDSELECT%%></dd>
 
@@ -29,13 +32,13 @@
 					<dt class="employees_appraisal_table-reporting_officer_feedback-caption field-caption-tv">Reporting Officer Feedback on the Employee Responsibilities</dt>
 					<dd id="employees_appraisal_table-reporting_officer_feedback-<%%VALUE(id)%%>" class="employees_appraisal_table-reporting_officer_feedback"><%%SELECT%%><%%VALUE(reporting_officer_feedback)%%><%%ENDSELECT%%></dd>
 
-					<dt class="employees_appraisal_table-observations_by_reporting_officer-caption field-caption-tv">Observations by the Reporting Officer</dt>
-					<dd id="employees_appraisal_table-observations_by_reporting_officer-<%%VALUE(id)%%>" class="employees_appraisal_table-observations_by_reporting_officer"><%%SELECT%%><%%VALUE(observations_by_reporting_officer)%%><%%ENDSELECT%%></dd>
-
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
+					<dt class="employees_appraisal_table-observations_by_reporting_officer-caption field-caption-tv">Observations by the Reporting Officer</dt>
+					<dd id="employees_appraisal_table-observations_by_reporting_officer-<%%VALUE(id)%%>" class="employees_appraisal_table-observations_by_reporting_officer"><%%SELECT%%><%%VALUE(observations_by_reporting_officer)%%><%%ENDSELECT%%></dd>
+
 					<dt class="employees_appraisal_table-overall_rating-caption field-caption-tv">Overall Rating by the Reporting Officer</dt>
 					<dd id="employees_appraisal_table-overall_rating-<%%VALUE(id)%%>" class="employees_appraisal_table-overall_rating"><%%SELECT%%><%%VALUE(overall_rating)%%><%%ENDSELECT%%></dd>
 

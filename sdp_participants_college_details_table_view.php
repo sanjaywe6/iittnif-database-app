@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`sdp_participants_college_details_table`.`id`" => "id",
+		"`sdp_participants_college_details_table`.`username`" => "username",
 		"`sdp_participants_college_details_table`.`participants_type`" => "participants_type",
 		"`sdp_participants_college_details_table`.`school_college_name`" => "school_college_name",
 		"`sdp_participants_college_details_table`.`location`" => "location",
@@ -42,18 +43,20 @@
 		5 => 5,
 		6 => 6,
 		7 => 7,
-		8 => '`sdp_participants_college_details_table`.`start_date`',
-		9 => '`sdp_participants_college_details_table`.`end_date`',
-		10 => 10,
+		8 => 8,
+		9 => '`sdp_participants_college_details_table`.`start_date`',
+		10 => '`sdp_participants_college_details_table`.`end_date`',
 		11 => 11,
 		12 => 12,
 		13 => 13,
 		14 => 14,
+		15 => 15,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`sdp_participants_college_details_table`.`id`" => "id",
+		"`sdp_participants_college_details_table`.`username`" => "username",
 		"`sdp_participants_college_details_table`.`participants_type`" => "participants_type",
 		"`sdp_participants_college_details_table`.`school_college_name`" => "school_college_name",
 		"`sdp_participants_college_details_table`.`location`" => "location",
@@ -71,6 +74,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`sdp_participants_college_details_table`.`id`" => "ID",
+		"`sdp_participants_college_details_table`.`username`" => "Username",
 		"`sdp_participants_college_details_table`.`participants_type`" => "Participants type",
 		"`sdp_participants_college_details_table`.`school_college_name`" => "School/College name",
 		"`sdp_participants_college_details_table`.`location`" => "Location",
@@ -89,6 +93,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`sdp_participants_college_details_table`.`id`" => "id",
+		"`sdp_participants_college_details_table`.`username`" => "username",
 		"`sdp_participants_college_details_table`.`participants_type`" => "participants_type",
 		"`sdp_participants_college_details_table`.`school_college_name`" => "school_college_name",
 		"`sdp_participants_college_details_table`.`location`" => "location",
@@ -137,10 +142,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Participants type', 'School/College name', 'Location', 'Latitude', 'Longitude', 'Number of participants', 'Start date', 'End date', 'State', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'participants_type', 'school_college_name', 'location', 'latitude', 'longitude', 'number_of_participants', 'start_date', 'end_date', 'state', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Participants type', 'School/College name', 'Location', 'Latitude', 'Longitude', 'Number of participants', 'Start date', 'End date', 'State', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'username', 'participants_type', 'school_college_name', 'location', 'latitude', 'longitude', 'number_of_participants', 'start_date', 'end_date', 'state', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/sdp_participants_college_details_table_templateTV.html';

@@ -21,6 +21,7 @@ function asset_allotment_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'select_employee' => Request::lookup('select_employee', ''),
 		'department' => Request::val('department', ''),
 		'date' => Request::dateComponents('date', '1'),
@@ -262,7 +263,7 @@ function asset_allotment_table_form($selectedId = '', $allowUpdate = true, $allo
 		$combo_asset_lookup->SelectedData = $filterer_asset_lookup;
 		$combo_select_employee->SelectedData = $filterer_select_employee;
 		$combo_alloted_by->SelectedData = $filterer_alloted_by;
-		$combo_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '8' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '9' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
 	$combo_asset_lookup->HTML = '<span id="asset_lookup-container' . $rnd1 . '"></span><input type="hidden" name="asset_lookup" id="asset_lookup' . $rnd1 . '" value="' . html_attr($combo_asset_lookup->SelectedData) . '">';
 	$combo_asset_lookup->MatchText = '<span id="asset_lookup-container-readonly' . $rnd1 . '"></span><input type="hidden" name="asset_lookup" id="asset_lookup' . $rnd1 . '" value="' . html_attr($combo_asset_lookup->SelectedData) . '">';
@@ -669,6 +670,7 @@ function asset_allotment_table_form($selectedId = '', $allowUpdate = true, $allo
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(asset_lookup)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(select_employee)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(department)%%>', '', $templateCode);
@@ -686,6 +688,8 @@ function asset_allotment_table_form($selectedId = '', $allowUpdate = true, $allo
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(asset_lookup)%%>', safe_html($urow['asset_lookup']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(asset_lookup)%%>', urlencode($urow['asset_lookup']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(select_employee)%%>', safe_html($urow['select_employee']), $templateCode);
@@ -717,6 +721,8 @@ function asset_allotment_table_form($selectedId = '', $allowUpdate = true, $allo
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(asset_lookup)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(asset_lookup)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(select_employee)%%>', '', $templateCode);
@@ -781,7 +787,7 @@ function asset_allotment_table_form($selectedId = '', $allowUpdate = true, $allo
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
-	if(isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>')
+	if(isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>')
 		$templateCode.="\n<input type=hidden name=asset_lookup value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery

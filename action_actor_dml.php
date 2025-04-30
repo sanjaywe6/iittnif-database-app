@@ -17,6 +17,7 @@ function action_actor_insert(&$error_message = '') {
 
 	$data = [
 		'actor_ID' => Request::val('actor_ID', ''),
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'actor' => Request::lookup('actor', ''),
 		'action_status' => Request::val('action_status', ''),
 		'created_by' => parseCode('<%%creatorUsername%%>  <%%creationDateTime%%>', true),
@@ -426,6 +427,7 @@ function action_actor_form($selectedId = '', $allowUpdate = true, $allowInsert =
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(actor_ID)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(action_str)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(actor)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(action_status)%%>', '', $templateCode);
@@ -438,6 +440,8 @@ function action_actor_form($selectedId = '', $allowUpdate = true, $allowInsert =
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(actor_ID)%%>', safe_html($urow['actor_ID']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(actor_ID)%%>', html_attr($row['actor_ID']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(actor_ID)%%>', urlencode($urow['actor_ID']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(action_str)%%>', safe_html($urow['action_str'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(action_str)%%>', urlencode($urow['action_str']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(actor)%%>', safe_html($urow['actor']), $templateCode);
@@ -455,6 +459,8 @@ function action_actor_form($selectedId = '', $allowUpdate = true, $allowInsert =
 	} else {
 		$templateCode = str_replace('<%%VALUE(actor_ID)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(actor_ID)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(action_str)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(action_str)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(actor)%%>', '', $templateCode);

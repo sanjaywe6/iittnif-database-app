@@ -16,6 +16,7 @@ function school_list_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'district_name' => Request::val('district_name', ''),
 		'school_code' => Request::val('school_code', ''),
 		'school_name' => Request::val('school_name', ''),
@@ -333,6 +334,7 @@ function school_list_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(district_name)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(school_code)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(school_name)%%>', '', $templateCode);
@@ -348,6 +350,8 @@ function school_list_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(district_name)%%>', safe_html($urow['district_name']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(district_name)%%>', html_attr($row['district_name']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(district_name)%%>', urlencode($urow['district_name']), $templateCode);
@@ -377,6 +381,8 @@ function school_list_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(district_name)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(district_name)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(school_code)%%>', '', $templateCode);

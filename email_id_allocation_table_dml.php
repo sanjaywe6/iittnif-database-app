@@ -16,6 +16,7 @@ function email_id_allocation_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'name_of_person' => Request::val('name_of_person', ''),
 		'allocated_email_id' => Request::val('allocated_email_id', ''),
 		'alternative_email_id' => Request::val('alternative_email_id', ''),
@@ -232,7 +233,7 @@ function email_id_allocation_table_form($selectedId = '', $allowUpdate = true, $
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '6' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '7' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 		$combo_reporting_manager->SelectedData = $filterer_reporting_manager;
 	}
 	$combo_status->Render();
@@ -463,6 +464,7 @@ function email_id_allocation_table_form($selectedId = '', $allowUpdate = true, $
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(email_id_allocation_id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(name_of_person)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(allocated_email_id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(alternative_email_id)%%>', '', $templateCode);
@@ -479,6 +481,8 @@ function email_id_allocation_table_form($selectedId = '', $allowUpdate = true, $
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(email_id_allocation_id)%%>', safe_html($urow['email_id_allocation_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(email_id_allocation_id)%%>', urlencode($urow['email_id_allocation_id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(name_of_person)%%>', safe_html($urow['name_of_person']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(name_of_person)%%>', html_attr($row['name_of_person']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(name_of_person)%%>', urlencode($urow['name_of_person']), $templateCode);
@@ -509,6 +513,8 @@ function email_id_allocation_table_form($selectedId = '', $allowUpdate = true, $
 	} else {
 		$templateCode = str_replace('<%%VALUE(email_id_allocation_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(email_id_allocation_id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(name_of_person)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(name_of_person)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(allocated_email_id)%%>', '', $templateCode);

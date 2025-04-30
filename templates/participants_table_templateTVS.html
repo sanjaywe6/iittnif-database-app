@@ -1,8 +1,11 @@
-		<td colspan="11" class="row">
+		<td colspan="12" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="participants_table-participants_id-caption field-caption-tv">ID</dt>
 					<dd id="participants_table-participants_id-<%%VALUE(participants_id)%%>" class="participants_table-participants_id text-right text-bold"><%%VALUE(participants_id)%%></dd>
+
+					<dt class="participants_table-username-caption field-caption-tv">Username</dt>
+					<dd id="participants_table-username-<%%VALUE(participants_id)%%>" class="participants_table-username text-bold"><%%VALUE(username)%%></dd>
 
 					<dt class="participants_table-event_lookup-caption field-caption-tv">Event</dt>
 					<dd id="participants_table-event_lookup-<%%VALUE(participants_id)%%>" class="participants_table-event_lookup text-bold"><%%VALUE(event_lookup)%%></dd>
@@ -16,13 +19,13 @@
 					<dt class="participants_table-designation-caption field-caption-tv">Designation</dt>
 					<dd id="participants_table-designation-<%%VALUE(participants_id)%%>" class="participants_table-designation text-bold"><%%VALUE(designation)%%></dd>
 
-					<dt class="participants_table-participant_type-caption field-caption-tv">Participant type</dt>
-					<dd id="participants_table-participant_type-<%%VALUE(participants_id)%%>" class="participants_table-participant_type text-bold"><%%VALUE(participant_type)%%></dd>
-
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
+					<dt class="participants_table-participant_type-caption field-caption-tv">Participant type</dt>
+					<dd id="participants_table-participant_type-<%%VALUE(participants_id)%%>" class="participants_table-participant_type text-bold"><%%VALUE(participant_type)%%></dd>
+
 					<dt class="participants_table-accepted_status-caption field-caption-tv">Accepted status</dt>
 					<dd id="participants_table-accepted_status-<%%VALUE(participants_id)%%>" class="participants_table-accepted_status text-bold"><%%VALUE(accepted_status)%%></dd>
 

@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`it_inventory_allotment_table`.`it_inventory_allotment_id`" => "it_inventory_allotment_id",
+		"`it_inventory_allotment_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`it_inventory_app1`.`it_inventory_str`), CONCAT_WS('',   `it_inventory_app1`.`it_inventory_str`), '') /* IT inventory  */" => "it_inventory_lookup",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Select employee */" => "select_employee",
 		"`it_inventory_allotment_table`.`department`" => "department",
@@ -35,23 +36,25 @@
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
 		1 => '`it_inventory_allotment_table`.`it_inventory_allotment_id`',
-		2 => '`it_inventory_app1`.`it_inventory_str`',
-		3 => 3,
+		2 => 2,
+		3 => '`it_inventory_app1`.`it_inventory_str`',
 		4 => 4,
-		5 => '`it_inventory_allotment_table`.`date`',
-		6 => 6,
+		5 => 5,
+		6 => '`it_inventory_allotment_table`.`date`',
 		7 => 7,
 		8 => 8,
-		9 => '`it_inventory_allotment_table`.`returned_date`',
-		10 => 10,
+		9 => 9,
+		10 => '`it_inventory_allotment_table`.`returned_date`',
 		11 => 11,
 		12 => 12,
 		13 => 13,
+		14 => 14,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`it_inventory_allotment_table`.`it_inventory_allotment_id`" => "it_inventory_allotment_id",
+		"`it_inventory_allotment_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`it_inventory_app1`.`it_inventory_str`), CONCAT_WS('',   `it_inventory_app1`.`it_inventory_str`), '') /* IT inventory  */" => "it_inventory_lookup",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Select employee */" => "select_employee",
 		"`it_inventory_allotment_table`.`department`" => "department",
@@ -68,6 +71,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`it_inventory_allotment_table`.`it_inventory_allotment_id`" => "ID",
+		"`it_inventory_allotment_table`.`username`" => "Username",
 		"IF(    CHAR_LENGTH(`it_inventory_app1`.`it_inventory_str`), CONCAT_WS('',   `it_inventory_app1`.`it_inventory_str`), '') /* IT inventory  */" => "IT inventory ",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Select employee */" => "Select employee",
 		"`it_inventory_allotment_table`.`department`" => "Department",
@@ -85,6 +89,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`it_inventory_allotment_table`.`it_inventory_allotment_id`" => "it_inventory_allotment_id",
+		"`it_inventory_allotment_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`it_inventory_app1`.`it_inventory_str`), CONCAT_WS('',   `it_inventory_app1`.`it_inventory_str`), '') /* IT inventory  */" => "it_inventory_lookup",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Select employee */" => "select_employee",
 		"`it_inventory_allotment_table`.`department`" => "department",
@@ -132,10 +137,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'IT inventory ', 'Select employee', 'Department', 'Date', 'Purpose', 'Alloted by', 'Status', 'Returned date', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['it_inventory_allotment_id', 'it_inventory_lookup', 'select_employee', 'department', 'date', 'purpose', 'alloted_by', 'status', 'returned_date', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'IT inventory ', 'Select employee', 'Department', 'Date', 'Purpose', 'Alloted by', 'Status', 'Returned date', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['it_inventory_allotment_id', 'username', 'it_inventory_lookup', 'select_employee', 'department', 'date', 'purpose', 'alloted_by', 'status', 'returned_date', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/it_inventory_allotment_table_templateTV.html';

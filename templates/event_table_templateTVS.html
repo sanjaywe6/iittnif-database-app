@@ -1,8 +1,11 @@
-		<td colspan="9" class="row">
+		<td colspan="10" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="event_table-event_id-caption field-caption-tv">ID</dt>
 					<dd id="event_table-event_id-<%%VALUE(event_id)%%>" class="event_table-event_id text-right text-bold"><%%VALUE(event_id)%%></dd>
+
+					<dt class="event_table-username-caption field-caption-tv">Username</dt>
+					<dd id="event_table-username-<%%VALUE(event_id)%%>" class="event_table-username text-bold"><%%VALUE(username)%%></dd>
 
 					<dt class="event_table-event_name-caption field-caption-tv">Event name</dt>
 					<dd id="event_table-event_name-<%%VALUE(event_id)%%>" class="event_table-event_name text-bold"><%%VALUE(event_name)%%></dd>
@@ -13,13 +16,13 @@
 					<dt class="event_table-venue-caption field-caption-tv">Venue</dt>
 					<dd id="event_table-venue-<%%VALUE(event_id)%%>" class="event_table-venue text-bold"><%%VALUE(venue)%%></dd>
 
-					<dt class="event_table-event_from_date-caption field-caption-tv">Event from date</dt>
-					<dd id="event_table-event_from_date-<%%VALUE(event_id)%%>" class="event_table-event_from_date text-bold"><%%VALUE(event_from_date)%%></dd>
-
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
+					<dt class="event_table-event_from_date-caption field-caption-tv">Event from date</dt>
+					<dd id="event_table-event_from_date-<%%VALUE(event_id)%%>" class="event_table-event_from_date text-bold"><%%VALUE(event_from_date)%%></dd>
+
 					<dt class="event_table-event_to_date-caption field-caption-tv">Event to date</dt>
 					<dd id="event_table-event_to_date-<%%VALUE(event_id)%%>" class="event_table-event_to_date text-bold"><%%VALUE(event_to_date)%%></dd>
 

@@ -16,6 +16,7 @@ function visiting_card_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'name' => Request::val('name', ''),
 		'recommended_by' => Request::val('recommended_by', ''),
 		'designation' => Request::val('designation', ''),
@@ -332,9 +333,9 @@ function visiting_card_table_form($selectedId = '', $allowUpdate = true, $allowI
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_recommended_by->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_recommended_by->SelectedText = (isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 		$combo_given_by->SelectedData = $filterer_given_by;
-		$combo_suggested_way_forward->SelectedText = (isset($filterField[1]) && $filterField[1] == '10' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_suggested_way_forward->SelectedText = (isset($filterField[1]) && $filterField[1] == '11' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
 	$combo_recommended_by->Render();
 	$combo_given_by->HTML = '<span id="given_by-container' . $rnd1 . '"></span><input type="hidden" name="given_by" id="given_by' . $rnd1 . '" value="' . html_attr($combo_given_by->SelectedData) . '">';
@@ -563,6 +564,7 @@ function visiting_card_table_form($selectedId = '', $allowUpdate = true, $allowI
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(visiting_card_id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(name)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(recommended_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(designation)%%>', '', $templateCode);
@@ -593,6 +595,8 @@ function visiting_card_table_form($selectedId = '', $allowUpdate = true, $allowI
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(visiting_card_id)%%>', safe_html($urow['visiting_card_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(visiting_card_id)%%>', urlencode($urow['visiting_card_id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(name)%%>', safe_html($urow['name']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(name)%%>', html_attr($row['name']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(name)%%>', urlencode($urow['name']), $templateCode);
@@ -639,6 +643,8 @@ function visiting_card_table_form($selectedId = '', $allowUpdate = true, $allowI
 	} else {
 		$templateCode = str_replace('<%%VALUE(visiting_card_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(visiting_card_id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(name)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(name)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(recommended_by)%%>', '', $templateCode);

@@ -20,6 +20,7 @@
 	$x->QueryFieldsTV = [
 		"`computer_allotment_table`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`computer_details_table1`.`pc_number`) || CHAR_LENGTH(`computer_details_table1`.`pc_hostname`), CONCAT_WS('',   `computer_details_table1`.`pc_number`, '::', `computer_details_table1`.`pc_hostname`), '') /* Pc ID */" => "pc_id",
+		"`computer_allotment_table`.`username`" => "username",
 		"`computer_allotment_table`.`name_of_user`" => "name_of_user",
 		"`computer_allotment_table`.`role`" => "role",
 		"if(`computer_allotment_table`.`from_date`,date_format(`computer_allotment_table`.`from_date`,'%d/%m/%Y %H:%i'),'')" => "from_date",
@@ -38,21 +39,23 @@
 		2 => 2,
 		3 => 3,
 		4 => 4,
-		5 => '`computer_allotment_table`.`from_date`',
-		6 => '`computer_allotment_table`.`to_date`',
-		7 => 7,
+		5 => 5,
+		6 => '`computer_allotment_table`.`from_date`',
+		7 => '`computer_allotment_table`.`to_date`',
 		8 => 8,
 		9 => 9,
 		10 => 10,
 		11 => 11,
 		12 => 12,
 		13 => 13,
+		14 => 14,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`computer_allotment_table`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`computer_details_table1`.`pc_number`) || CHAR_LENGTH(`computer_details_table1`.`pc_hostname`), CONCAT_WS('',   `computer_details_table1`.`pc_number`, '::', `computer_details_table1`.`pc_hostname`), '') /* Pc ID */" => "pc_id",
+		"`computer_allotment_table`.`username`" => "username",
 		"`computer_allotment_table`.`name_of_user`" => "name_of_user",
 		"`computer_allotment_table`.`role`" => "role",
 		"if(`computer_allotment_table`.`from_date`,date_format(`computer_allotment_table`.`from_date`,'%d/%m/%Y %H:%i'),'')" => "from_date",
@@ -69,6 +72,7 @@
 	$x->QueryFieldsFilters = [
 		"`computer_allotment_table`.`id`" => "ID",
 		"IF(    CHAR_LENGTH(`computer_details_table1`.`pc_number`) || CHAR_LENGTH(`computer_details_table1`.`pc_hostname`), CONCAT_WS('',   `computer_details_table1`.`pc_number`, '::', `computer_details_table1`.`pc_hostname`), '') /* Pc ID */" => "Pc ID",
+		"`computer_allotment_table`.`username`" => "Username",
 		"`computer_allotment_table`.`name_of_user`" => "Name of user",
 		"`computer_allotment_table`.`role`" => "Role",
 		"`computer_allotment_table`.`from_date`" => "From date",
@@ -86,6 +90,7 @@
 	$x->QueryFieldsQS = [
 		"`computer_allotment_table`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`computer_details_table1`.`pc_number`) || CHAR_LENGTH(`computer_details_table1`.`pc_hostname`), CONCAT_WS('',   `computer_details_table1`.`pc_number`, '::', `computer_details_table1`.`pc_hostname`), '') /* Pc ID */" => "pc_id",
+		"`computer_allotment_table`.`username`" => "username",
 		"`computer_allotment_table`.`name_of_user`" => "name_of_user",
 		"`computer_allotment_table`.`role`" => "role",
 		"if(`computer_allotment_table`.`from_date`,date_format(`computer_allotment_table`.`from_date`,'%d/%m/%Y %H:%i'),'')" => "from_date",
@@ -132,10 +137,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Pc ID', 'Name of user', 'Role', 'From date', 'To date', 'Purpose', 'Email ID', 'Mobile number', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'pc_id', 'name_of_user', 'role', 'from_date', 'to_date', 'purpose', 'email_d', 'mobile_number', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Pc ID', 'Username', 'Name of user', 'Role', 'From date', 'To date', 'Purpose', 'Email ID', 'Mobile number', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'pc_id', 'username', 'name_of_user', 'role', 'from_date', 'to_date', 'purpose', 'email_d', 'mobile_number', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/computer_allotment_table_templateTV.html';

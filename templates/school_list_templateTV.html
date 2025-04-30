@@ -1,8 +1,11 @@
-		<td colspan="11" class="row">
+		<td colspan="12" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="school_list-id-caption field-caption-tv">ID</dt>
 					<dd id="school_list-id-<%%VALUE(id)%%>" class="school_list-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></dd>
+
+					<dt class="school_list-username-caption field-caption-tv">Username</dt>
+					<dd id="school_list-username-<%%VALUE(id)%%>" class="school_list-username"><%%SELECT%%><%%VALUE(username)%%><%%ENDSELECT%%></dd>
 
 					<dt class="school_list-district_name-caption field-caption-tv">District name</dt>
 					<dd id="school_list-district_name-<%%VALUE(id)%%>" class="school_list-district_name"><%%SELECT%%><%%VALUE(district_name)%%><%%ENDSELECT%%></dd>
@@ -16,13 +19,13 @@
 					<dt class="school_list-pincode-caption field-caption-tv">Pincode</dt>
 					<dd id="school_list-pincode-<%%VALUE(id)%%>" class="school_list-pincode"><%%SELECT%%><%%VALUE(pincode)%%><%%ENDSELECT%%></dd>
 
-					<dt class="school_list-school_type-caption field-caption-tv">School type</dt>
-					<dd id="school_list-school_type-<%%VALUE(id)%%>" class="school_list-school_type"><%%SELECT%%><%%VALUE(school_type)%%><%%ENDSELECT%%></dd>
-
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
+					<dt class="school_list-school_type-caption field-caption-tv">School type</dt>
+					<dd id="school_list-school_type-<%%VALUE(id)%%>" class="school_list-school_type"><%%SELECT%%><%%VALUE(school_type)%%><%%ENDSELECT%%></dd>
+
 					<dt class="school_list-school_phone_number-caption field-caption-tv">School phone number</dt>
 					<dd id="school_list-school_phone_number-<%%VALUE(id)%%>" class="school_list-school_phone_number"><%%SELECT%%><%%VALUE(school_phone_number)%%><%%ENDSELECT%%></dd>
 

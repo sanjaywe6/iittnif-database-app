@@ -21,6 +21,7 @@ function subtask_setting_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'subtask_status' => Request::val('subtask_status', ''),
 		'subtask_description' => br2nl(Request::val('subtask_description', '')),
 		'subtask_duration' => Request::val('subtask_duration', ''),
@@ -264,8 +265,8 @@ function subtask_setting_table_form($selectedId = '', $allowUpdate = true, $allo
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
 		$combo_task_lookup->SelectedData = $filterer_task_lookup;
-		$combo_subtask_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_subtask_duration->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_subtask_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_subtask_duration->SelectedText = (isset($filterField[1]) && $filterField[1] == '6' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 		$combo_supervisor_name->SelectedData = $filterer_supervisor_name;
 		$combo_assigned_to->SelectedData = $filterer_assigned_to;
 	}
@@ -668,6 +669,7 @@ function subtask_setting_table_form($selectedId = '', $allowUpdate = true, $allo
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(subtask_id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(task_lookup)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(subtask_status)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(subtask_description)%%>', '', $templateCode);
@@ -684,6 +686,8 @@ function subtask_setting_table_form($selectedId = '', $allowUpdate = true, $allo
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(subtask_id)%%>', safe_html($urow['subtask_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(subtask_id)%%>', urlencode($urow['subtask_id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(task_lookup)%%>', safe_html($urow['task_lookup']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(task_lookup)%%>', urlencode($urow['task_lookup']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(subtask_status)%%>', safe_html($urow['subtask_status']), $templateCode);
@@ -713,6 +717,8 @@ function subtask_setting_table_form($selectedId = '', $allowUpdate = true, $allo
 	} else {
 		$templateCode = str_replace('<%%VALUE(subtask_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(subtask_id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(task_lookup)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(task_lookup)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(subtask_status)%%>', '', $templateCode);
@@ -775,7 +781,7 @@ function subtask_setting_table_form($selectedId = '', $allowUpdate = true, $allo
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
-	if(isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>')
+	if(isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>')
 		$templateCode.="\n<input type=hidden name=task_lookup value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery

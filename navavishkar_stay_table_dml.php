@@ -21,6 +21,7 @@ function navavishkar_stay_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'full_name' => Request::val('full_name', ''),
 		'emp_id' => Request::val('emp_id', ''),
 		'department' => Request::val('department', ''),
@@ -282,7 +283,7 @@ function navavishkar_stay_table_form($selectedId = '', $allowUpdate = true, $all
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '12' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '13' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 		$combo_approved_by->SelectedData = $filterer_approved_by;
 	}
 	$combo_approval_status->Render();
@@ -530,6 +531,7 @@ function navavishkar_stay_table_form($selectedId = '', $allowUpdate = true, $all
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(full_name)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(emp_id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(department)%%>', '', $templateCode);
@@ -552,6 +554,8 @@ function navavishkar_stay_table_form($selectedId = '', $allowUpdate = true, $all
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(full_name)%%>', safe_html($urow['full_name']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(full_name)%%>', html_attr($row['full_name']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(full_name)%%>', urlencode($urow['full_name']), $templateCode);
@@ -597,6 +601,8 @@ function navavishkar_stay_table_form($selectedId = '', $allowUpdate = true, $all
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(full_name)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(full_name)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(emp_id)%%>', '', $templateCode);
@@ -671,7 +677,7 @@ function navavishkar_stay_table_form($selectedId = '', $allowUpdate = true, $all
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
-	if(isset($filterField[1]) && $filterField[1] == '14' && $filterOperator[1] == '<=>')
+	if(isset($filterField[1]) && $filterField[1] == '15' && $filterOperator[1] == '<=>')
 		$templateCode.="\n<input type=hidden name=approved_by value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery

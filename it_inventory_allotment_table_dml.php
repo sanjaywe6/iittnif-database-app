@@ -21,6 +21,7 @@ function it_inventory_allotment_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'select_employee' => Request::lookup('select_employee', ''),
 		'department' => Request::val('department', ''),
 		'date' => Request::dateComponents('date', '1'),
@@ -262,7 +263,7 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 		$combo_it_inventory_lookup->SelectedData = $filterer_it_inventory_lookup;
 		$combo_select_employee->SelectedData = $filterer_select_employee;
 		$combo_alloted_by->SelectedData = $filterer_alloted_by;
-		$combo_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '8' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '9' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
 	$combo_it_inventory_lookup->HTML = '<span id="it_inventory_lookup-container' . $rnd1 . '"></span><input type="hidden" name="it_inventory_lookup" id="it_inventory_lookup' . $rnd1 . '" value="' . html_attr($combo_it_inventory_lookup->SelectedData) . '">';
 	$combo_it_inventory_lookup->MatchText = '<span id="it_inventory_lookup-container-readonly' . $rnd1 . '"></span><input type="hidden" name="it_inventory_lookup" id="it_inventory_lookup' . $rnd1 . '" value="' . html_attr($combo_it_inventory_lookup->SelectedData) . '">';
@@ -669,6 +670,7 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(it_inventory_allotment_id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(it_inventory_lookup)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(select_employee)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(department)%%>', '', $templateCode);
@@ -686,6 +688,8 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(it_inventory_allotment_id)%%>', safe_html($urow['it_inventory_allotment_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(it_inventory_allotment_id)%%>', urlencode($urow['it_inventory_allotment_id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(it_inventory_lookup)%%>', safe_html($urow['it_inventory_lookup']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(it_inventory_lookup)%%>', urlencode($urow['it_inventory_lookup']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(select_employee)%%>', safe_html($urow['select_employee']), $templateCode);
@@ -717,6 +721,8 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 	} else {
 		$templateCode = str_replace('<%%VALUE(it_inventory_allotment_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(it_inventory_allotment_id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(it_inventory_lookup)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(it_inventory_lookup)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(select_employee)%%>', '', $templateCode);
@@ -781,7 +787,7 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
-	if(isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>')
+	if(isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>')
 		$templateCode.="\n<input type=hidden name=it_inventory_lookup value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery

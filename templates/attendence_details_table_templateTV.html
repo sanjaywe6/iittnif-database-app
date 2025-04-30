@@ -1,8 +1,11 @@
-		<td colspan="13" class="row">
+		<td colspan="14" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="attendence_details_table-id-caption field-caption-tv">ID</dt>
 					<dd id="attendence_details_table-id-<%%VALUE(id)%%>" class="attendence_details_table-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></dd>
+
+					<dt class="attendence_details_table-username-caption field-caption-tv">Username</dt>
+					<dd id="attendence_details_table-username-<%%VALUE(id)%%>" class="attendence_details_table-username"><%%SELECT%%><%%VALUE(username)%%><%%ENDSELECT%%></dd>
 
 					<dt class="attendence_details_table-enrollment_no-caption field-caption-tv">Enrollment No.</dt>
 					<dd id="attendence_details_table-enrollment_no-<%%VALUE(id)%%>" class="attendence_details_table-enrollment_no"><%%SELECT%%><%%VALUE(enrollment_no)%%><%%ENDSELECT%%></dd>
@@ -19,13 +22,13 @@
 					<dt class="attendence_details_table-in_time-caption field-caption-tv">Punch In Time</dt>
 					<dd id="attendence_details_table-in_time-<%%VALUE(id)%%>" class="attendence_details_table-in_time"><%%SELECT%%><%%VALUE(in_time)%%><%%ENDSELECT%%></dd>
 
-					<dt class="attendence_details_table-out_time-caption field-caption-tv">Punch Out Time</dt>
-					<dd id="attendence_details_table-out_time-<%%VALUE(id)%%>" class="attendence_details_table-out_time"><%%SELECT%%><%%VALUE(out_time)%%><%%ENDSELECT%%></dd>
-
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
+					<dt class="attendence_details_table-out_time-caption field-caption-tv">Punch Out Time</dt>
+					<dd id="attendence_details_table-out_time-<%%VALUE(id)%%>" class="attendence_details_table-out_time"><%%SELECT%%><%%VALUE(out_time)%%><%%ENDSELECT%%></dd>
+
 					<dt class="attendence_details_table-working_hours-caption field-caption-tv">Working hours</dt>
 					<dd id="attendence_details_table-working_hours-<%%VALUE(id)%%>" class="attendence_details_table-working_hours"><%%SELECT%%><%%VALUE(working_hours)%%><%%ENDSELECT%%></dd>
 

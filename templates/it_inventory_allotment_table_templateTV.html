@@ -1,8 +1,11 @@
-		<td colspan="13" class="row">
+		<td colspan="14" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="it_inventory_allotment_table-it_inventory_allotment_id-caption field-caption-tv">ID</dt>
 					<dd id="it_inventory_allotment_table-it_inventory_allotment_id-<%%VALUE(it_inventory_allotment_id)%%>" class="it_inventory_allotment_table-it_inventory_allotment_id text-right"><%%SELECT%%><%%VALUE(it_inventory_allotment_id)%%><%%ENDSELECT%%></dd>
+
+					<dt class="it_inventory_allotment_table-username-caption field-caption-tv">Username</dt>
+					<dd id="it_inventory_allotment_table-username-<%%VALUE(it_inventory_allotment_id)%%>" class="it_inventory_allotment_table-username"><%%SELECT%%><%%VALUE(username)%%><%%ENDSELECT%%></dd>
 
 					<dt class="it_inventory_allotment_table-it_inventory_lookup-caption field-caption-tv">IT inventory </dt>
 					<dd id="it_inventory_allotment_table-it_inventory_lookup-<%%VALUE(it_inventory_allotment_id)%%>" class="it_inventory_allotment_table-it_inventory_lookup"><%%SELECT%%><%%VALUE(it_inventory_lookup)%%><%%ENDSELECT%%></dd>
@@ -19,13 +22,13 @@
 					<dt class="it_inventory_allotment_table-purpose-caption field-caption-tv">Purpose</dt>
 					<dd id="it_inventory_allotment_table-purpose-<%%VALUE(it_inventory_allotment_id)%%>" class="it_inventory_allotment_table-purpose"><%%SELECT%%><%%VALUE(purpose)%%><%%ENDSELECT%%></dd>
 
-					<dt class="it_inventory_allotment_table-alloted_by-caption field-caption-tv">Alloted by</dt>
-					<dd id="it_inventory_allotment_table-alloted_by-<%%VALUE(it_inventory_allotment_id)%%>" class="it_inventory_allotment_table-alloted_by"><%%SELECT%%><%%VALUE(alloted_by)%%><%%ENDSELECT%%></dd>
-
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
+					<dt class="it_inventory_allotment_table-alloted_by-caption field-caption-tv">Alloted by</dt>
+					<dd id="it_inventory_allotment_table-alloted_by-<%%VALUE(it_inventory_allotment_id)%%>" class="it_inventory_allotment_table-alloted_by"><%%SELECT%%><%%VALUE(alloted_by)%%><%%ENDSELECT%%></dd>
+
 					<dt class="it_inventory_allotment_table-status-caption field-caption-tv">Status</dt>
 					<dd id="it_inventory_allotment_table-status-<%%VALUE(it_inventory_allotment_id)%%>" class="it_inventory_allotment_table-status"><%%SELECT%%><%%VALUE(status)%%><%%ENDSELECT%%></dd>
 

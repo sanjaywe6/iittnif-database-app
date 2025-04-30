@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`task_setting_table`.`task_id`" => "task_id",
+		"`task_setting_table`.`username`" => "username",
 		"`task_setting_table`.`task_status`" => "task_status",
 		"`task_setting_table`.`task_description`" => "task_description",
 		"`task_setting_table`.`task_duration`" => "task_duration",
@@ -36,18 +37,20 @@
 		2 => 2,
 		3 => 3,
 		4 => 4,
-		5 => '`task_setting_table`.`task_set_date`',
-		6 => 6,
+		5 => 5,
+		6 => '`task_setting_table`.`task_set_date`',
 		7 => 7,
 		8 => 8,
 		9 => 9,
 		10 => 10,
 		11 => 11,
+		12 => 12,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`task_setting_table`.`task_id`" => "task_id",
+		"`task_setting_table`.`username`" => "username",
 		"`task_setting_table`.`task_status`" => "task_status",
 		"`task_setting_table`.`task_description`" => "task_description",
 		"`task_setting_table`.`task_duration`" => "task_duration",
@@ -62,6 +65,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`task_setting_table`.`task_id`" => "ID",
+		"`task_setting_table`.`username`" => "Username",
 		"`task_setting_table`.`task_status`" => "Task status",
 		"`task_setting_table`.`task_description`" => "Task description",
 		"`task_setting_table`.`task_duration`" => "Task duration",
@@ -77,6 +81,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`task_setting_table`.`task_id`" => "task_id",
+		"`task_setting_table`.`username`" => "username",
 		"`task_setting_table`.`task_status`" => "task_status",
 		"`task_setting_table`.`task_description`" => "task_description",
 		"`task_setting_table`.`task_duration`" => "task_duration",
@@ -122,10 +127,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Task status', 'Task description', 'Task duration', 'Task set date', 'Supervisor name', 'Assigned to', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['task_id', 'task_status', 'task_description', 'task_duration', 'task_set_date', 'supervisor_name', 'assigned_to', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Task status', 'Task description', 'Task duration', 'Task set date', 'Supervisor name', 'Assigned to', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['task_id', 'username', 'task_status', 'task_description', 'task_duration', 'task_set_date', 'supervisor_name', 'assigned_to', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/task_setting_table_templateTV.html';

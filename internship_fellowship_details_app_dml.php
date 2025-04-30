@@ -16,6 +16,7 @@ function internship_fellowship_details_app_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'standard' => Request::val('standard', ''),
 		'iittnif_id' => Request::val('iittnif_id', ''),
 		'name_of_the_candidate' => Request::val('name_of_the_candidate', ''),
@@ -277,8 +278,8 @@ function internship_fellowship_details_app_form($selectedId = '', $allowUpdate =
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_gender->SelectedText = (isset($filterField[1]) && $filterField[1] == '8' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Male'));
-		$combo_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '16' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Yet to Start'));
+		$combo_gender->SelectedText = (isset($filterField[1]) && $filterField[1] == '9' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Male'));
+		$combo_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '17' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Yet to Start'));
 	}
 	$combo_gender->Render();
 	$combo_status->Render();
@@ -429,6 +430,7 @@ function internship_fellowship_details_app_form($selectedId = '', $allowUpdate =
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(standard)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(iittnif_id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(name_of_the_candidate)%%>', '', $templateCode);
@@ -456,6 +458,8 @@ function internship_fellowship_details_app_form($selectedId = '', $allowUpdate =
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(standard)%%>', safe_html($urow['standard']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(standard)%%>', html_attr($row['standard']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(standard)%%>', urlencode($urow['standard']), $templateCode);
@@ -519,6 +523,8 @@ function internship_fellowship_details_app_form($selectedId = '', $allowUpdate =
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(standard)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(standard)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(iittnif_id)%%>', '', $templateCode);

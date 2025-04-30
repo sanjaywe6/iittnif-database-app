@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`computer_details_table`.`id`" => "id",
+		"`computer_details_table`.`username`" => "username",
 		"`computer_details_table`.`pc_number`" => "pc_number",
 		"`computer_details_table`.`pc_hostname`" => "pc_hostname",
 		"`computer_details_table`.`pc_mac_address`" => "pc_mac_address",
@@ -47,11 +48,13 @@
 		11 => 11,
 		12 => 12,
 		13 => 13,
+		14 => 14,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`computer_details_table`.`id`" => "id",
+		"`computer_details_table`.`username`" => "username",
 		"`computer_details_table`.`pc_number`" => "pc_number",
 		"`computer_details_table`.`pc_hostname`" => "pc_hostname",
 		"`computer_details_table`.`pc_mac_address`" => "pc_mac_address",
@@ -68,6 +71,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`computer_details_table`.`id`" => "ID",
+		"`computer_details_table`.`username`" => "Username",
 		"`computer_details_table`.`pc_number`" => "PC number",
 		"`computer_details_table`.`pc_hostname`" => "PC hostname",
 		"`computer_details_table`.`pc_mac_address`" => "PC MAC address",
@@ -85,6 +89,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`computer_details_table`.`id`" => "id",
+		"`computer_details_table`.`username`" => "username",
 		"`computer_details_table`.`pc_number`" => "pc_number",
 		"`computer_details_table`.`pc_hostname`" => "pc_hostname",
 		"`computer_details_table`.`pc_mac_address`" => "pc_mac_address",
@@ -132,10 +137,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'PC number', 'PC hostname', 'PC MAC address', 'Room number', 'Desk number', 'Maintained by', 'Assigned to user', 'Remote access', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'pc_number', 'pc_hostname', 'pc_mac_address', 'room_number', 'desk_number', 'maintained_by', 'assigned_to_user', 'remote_access', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'PC number', 'PC hostname', 'PC MAC address', 'Room number', 'Desk number', 'Maintained by', 'Assigned to user', 'Remote access', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'username', 'pc_number', 'pc_hostname', 'pc_mac_address', 'room_number', 'desk_number', 'maintained_by', 'assigned_to_user', 'remote_access', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/computer_details_table_templateTV.html';

@@ -16,6 +16,7 @@ function travel_local_commute_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'first_name' => Request::val('first_name', ''),
 		'last_name' => Request::val('last_name', ''),
 		'age' => Request::val('age', ''),
@@ -259,9 +260,9 @@ function travel_local_commute_table_form($selectedId = '', $allowUpdate = true, 
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_gender->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Male'));
-		$combo_local_commute_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '7' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Cab'));
-		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '11' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
+		$combo_gender->SelectedText = (isset($filterField[1]) && $filterField[1] == '6' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Male'));
+		$combo_local_commute_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '8' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Cab'));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '12' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 	}
 	$combo_gender->Render();
 	$combo_local_commute_type->Render();
@@ -408,6 +409,7 @@ function travel_local_commute_table_form($selectedId = '', $allowUpdate = true, 
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(first_name)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_name)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(age)%%>', '', $templateCode);
@@ -428,6 +430,8 @@ function travel_local_commute_table_form($selectedId = '', $allowUpdate = true, 
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(first_name)%%>', safe_html($urow['first_name']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(first_name)%%>', html_attr($row['first_name']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(first_name)%%>', urlencode($urow['first_name']), $templateCode);
@@ -470,6 +474,8 @@ function travel_local_commute_table_form($selectedId = '', $allowUpdate = true, 
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(first_name)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(first_name)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_name)%%>', '', $templateCode);

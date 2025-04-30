@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`event_table`.`event_id`" => "event_id",
+		"`event_table`.`username`" => "username",
 		"`event_table`.`event_name`" => "event_name",
 		"`event_table`.`participants`" => "participants",
 		"`event_table`.`venue`" => "venue",
@@ -35,17 +36,19 @@
 		2 => 2,
 		3 => 3,
 		4 => 4,
-		5 => '`event_table`.`event_from_date`',
-		6 => '`event_table`.`event_to_date`',
-		7 => 7,
+		5 => 5,
+		6 => '`event_table`.`event_from_date`',
+		7 => '`event_table`.`event_to_date`',
 		8 => 8,
 		9 => 9,
 		10 => 10,
+		11 => 11,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`event_table`.`event_id`" => "event_id",
+		"`event_table`.`username`" => "username",
 		"`event_table`.`event_name`" => "event_name",
 		"`event_table`.`participants`" => "participants",
 		"`event_table`.`venue`" => "venue",
@@ -59,6 +62,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`event_table`.`event_id`" => "ID",
+		"`event_table`.`username`" => "Username",
 		"`event_table`.`event_name`" => "Event name",
 		"`event_table`.`participants`" => "Participants",
 		"`event_table`.`venue`" => "Venue",
@@ -73,6 +77,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`event_table`.`event_id`" => "event_id",
+		"`event_table`.`username`" => "username",
 		"`event_table`.`event_name`" => "event_name",
 		"`event_table`.`participants`" => "participants",
 		"`event_table`.`venue`" => "venue",
@@ -114,13 +119,13 @@
 	$x->TableTitle = 'Event - App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`event_table`.`event_id`';
-	$x->DefaultSortField = '`event_table`.`event_from_date`';
+	$x->DefaultSortField = '5';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Event name', 'Participants', 'Venue', 'Event from date', 'Event to date', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['event_id', 'event_name', 'participants', 'venue', 'event_from_date', 'event_to_date', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 8, 9, 10, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Event name', 'Participants', 'Venue', 'Event from date', 'Event to date', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['event_id', 'username', 'event_name', 'participants', 'venue', 'event_from_date', 'event_to_date', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/event_table_templateTV.html';

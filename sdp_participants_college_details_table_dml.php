@@ -16,6 +16,7 @@ function sdp_participants_college_details_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'participants_type' => Request::val('participants_type', ''),
 		'school_college_name' => Request::val('school_college_name', ''),
 		'location' => Request::val('location', ''),
@@ -376,6 +377,7 @@ function sdp_participants_college_details_table_form($selectedId = '', $allowUpd
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(participants_type)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(school_college_name)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(location)%%>', '', $templateCode);
@@ -394,6 +396,8 @@ function sdp_participants_college_details_table_form($selectedId = '', $allowUpd
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(participants_type)%%>', safe_html($urow['participants_type']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(participants_type)%%>', html_attr($row['participants_type']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(participants_type)%%>', urlencode($urow['participants_type']), $templateCode);
@@ -430,6 +434,8 @@ function sdp_participants_college_details_table_form($selectedId = '', $allowUpd
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(participants_type)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(participants_type)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(school_college_name)%%>', '', $templateCode);

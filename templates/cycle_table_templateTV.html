@@ -1,8 +1,11 @@
-		<td colspan="9" class="row">
+		<td colspan="10" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="cycle_table-id-caption field-caption-tv">ID</dt>
 					<dd id="cycle_table-id-<%%VALUE(id)%%>" class="cycle_table-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></dd>
+
+					<dt class="cycle_table-username-caption field-caption-tv">Username</dt>
+					<dd id="cycle_table-username-<%%VALUE(id)%%>" class="cycle_table-username"><%%SELECT%%><%%VALUE(username)%%><%%ENDSELECT%%></dd>
 
 					<dt class="cycle_table-registration_number-caption field-caption-tv">Registration number</dt>
 					<dd id="cycle_table-registration_number-<%%VALUE(id)%%>" class="cycle_table-registration_number"><%%SELECT%%><%%VALUE(registration_number)%%><%%ENDSELECT%%></dd>
@@ -13,13 +16,13 @@
 					<dt class="cycle_table-cycle_color-caption field-caption-tv">Cycle color</dt>
 					<dd id="cycle_table-cycle_color-<%%VALUE(id)%%>" class="cycle_table-cycle_color"><%%SELECT%%><%%VALUE(cycle_color)%%><%%ENDSELECT%%></dd>
 
-					<dt class="cycle_table-responsible_contact_person-caption field-caption-tv">Responsible Contact Person</dt>
-					<dd id="cycle_table-responsible_contact_person-<%%VALUE(id)%%>" class="cycle_table-responsible_contact_person"><%%SELECT%%><%%VALUE(responsible_contact_person)%%><%%ENDSELECT%%></dd>
-
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
+					<dt class="cycle_table-responsible_contact_person-caption field-caption-tv">Responsible Contact Person</dt>
+					<dd id="cycle_table-responsible_contact_person-<%%VALUE(id)%%>" class="cycle_table-responsible_contact_person"><%%SELECT%%><%%VALUE(responsible_contact_person)%%><%%ENDSELECT%%></dd>
+
 					<dt class="cycle_table-contact_number_of_person-caption field-caption-tv">Contact number of person</dt>
 					<dd id="cycle_table-contact_number_of_person-<%%VALUE(id)%%>" class="cycle_table-contact_number_of_person"><%%SELECT%%><%%VALUE(contact_number_of_person)%%><%%ENDSELECT%%></dd>
 

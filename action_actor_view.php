@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`action_actor`.`actor_ID`" => "actor_ID",
+		"`action_actor`.`username`" => "username",
 		"`action_actor`.`action_str`" => "action_str",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Actor */" => "actor",
 		"`action_actor`.`action_status`" => "action_status",
@@ -35,11 +36,13 @@
 		5 => 5,
 		6 => 6,
 		7 => 7,
+		8 => 8,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`action_actor`.`actor_ID`" => "actor_ID",
+		"`action_actor`.`username`" => "username",
 		"`action_actor`.`action_str`" => "action_str",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Actor */" => "actor",
 		"`action_actor`.`action_status`" => "action_status",
@@ -50,6 +53,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`action_actor`.`actor_ID`" => "ID",
+		"`action_actor`.`username`" => "Username",
 		"`action_actor`.`action_str`" => "Action str",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Actor */" => "Actor",
 		"`action_actor`.`action_status`" => "Action status",
@@ -61,6 +65,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`action_actor`.`actor_ID`" => "actor_ID",
+		"`action_actor`.`username`" => "username",
 		"`action_actor`.`action_str`" => "action_str",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Actor */" => "actor",
 		"`action_actor`.`action_status`" => "action_status",
@@ -102,10 +107,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Actor', 'Action status', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['actor_ID', 'actor', 'action_status', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Actor', 'Action status', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['actor_ID', 'username', 'actor', 'action_status', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 2, 4, 5, 6, 7, 8, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/action_actor_templateTV.html';

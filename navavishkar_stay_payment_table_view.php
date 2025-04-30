@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`navavishkar_stay_payment_table`.`id`" => "id",
+		"`navavishkar_stay_payment_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`navavishkar_stay_table1`.`full_name`) || CHAR_LENGTH(`navavishkar_stay_table1`.`emp_id`), CONCAT_WS('',   `navavishkar_stay_table1`.`full_name`, '::', `navavishkar_stay_table1`.`emp_id`), '') /* Navavishakr stay details */" => "navavishakr_stay_details",
 		"`navavishkar_stay_payment_table`.`payment_status`" => "payment_status",
 		"`navavishkar_stay_payment_table`.`amount`" => "amount",
@@ -43,11 +44,13 @@
 		9 => 9,
 		10 => 10,
 		11 => 11,
+		12 => 12,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`navavishkar_stay_payment_table`.`id`" => "id",
+		"`navavishkar_stay_payment_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`navavishkar_stay_table1`.`full_name`) || CHAR_LENGTH(`navavishkar_stay_table1`.`emp_id`), CONCAT_WS('',   `navavishkar_stay_table1`.`full_name`, '::', `navavishkar_stay_table1`.`emp_id`), '') /* Navavishakr stay details */" => "navavishakr_stay_details",
 		"`navavishkar_stay_payment_table`.`payment_status`" => "payment_status",
 		"`navavishkar_stay_payment_table`.`amount`" => "amount",
@@ -62,6 +65,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`navavishkar_stay_payment_table`.`id`" => "ID",
+		"`navavishkar_stay_payment_table`.`username`" => "Username",
 		"IF(    CHAR_LENGTH(`navavishkar_stay_table1`.`full_name`) || CHAR_LENGTH(`navavishkar_stay_table1`.`emp_id`), CONCAT_WS('',   `navavishkar_stay_table1`.`full_name`, '::', `navavishkar_stay_table1`.`emp_id`), '') /* Navavishakr stay details */" => "Navavishakr stay details",
 		"`navavishkar_stay_payment_table`.`payment_status`" => "Payment status",
 		"`navavishkar_stay_payment_table`.`amount`" => "Amount (INR)",
@@ -77,6 +81,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`navavishkar_stay_payment_table`.`id`" => "id",
+		"`navavishkar_stay_payment_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`navavishkar_stay_table1`.`full_name`) || CHAR_LENGTH(`navavishkar_stay_table1`.`emp_id`), CONCAT_WS('',   `navavishkar_stay_table1`.`full_name`, '::', `navavishkar_stay_table1`.`emp_id`), '') /* Navavishakr stay details */" => "navavishakr_stay_details",
 		"`navavishkar_stay_payment_table`.`payment_status`" => "payment_status",
 		"`navavishkar_stay_payment_table`.`amount`" => "amount",
@@ -122,10 +127,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Navavishakr stay details', 'Payment status', 'Amount (INR)', 'Additional Facilities Provided (Optional)', 'Upload Payment Image', 'Remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'navavishakr_stay_details', 'payment_status', 'amount', 'additional_facilities_provided', 'payment_img', 'remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Navavishakr stay details', 'Payment status', 'Amount (INR)', 'Additional Facilities Provided (Optional)', 'Upload Payment Image', 'Remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'username', 'navavishakr_stay_details', 'payment_status', 'amount', 'additional_facilities_provided', 'payment_img', 'remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/navavishkar_stay_payment_table_templateTV.html';

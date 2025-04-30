@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`it_inventory_app`.`it_inventory_id`" => "it_inventory_id",
+		"`it_inventory_app`.`username`" => "username",
 		"if(`it_inventory_app`.`date`,date_format(`it_inventory_app`.`date`,'%d/%m/%Y'),'')" => "date",
 		"`it_inventory_app`.`description`" => "description",
 		"`it_inventory_app`.`classification_of_asset`" => "classification_of_asset",
@@ -42,8 +43,8 @@
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
 		1 => '`it_inventory_app`.`it_inventory_id`',
-		2 => '`it_inventory_app`.`date`',
-		3 => 3,
+		2 => 2,
+		3 => '`it_inventory_app`.`date`',
 		4 => 4,
 		5 => 5,
 		6 => 6,
@@ -53,19 +54,21 @@
 		10 => 10,
 		11 => 11,
 		12 => 12,
-		13 => '`it_inventory_app`.`date_of_useful_life_of_assets_ends`',
-		14 => 14,
+		13 => 13,
+		14 => '`it_inventory_app`.`date_of_useful_life_of_assets_ends`',
 		15 => 15,
 		16 => 16,
 		17 => 17,
 		18 => 18,
 		19 => 19,
 		20 => 20,
+		21 => 21,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`it_inventory_app`.`it_inventory_id`" => "it_inventory_id",
+		"`it_inventory_app`.`username`" => "username",
 		"if(`it_inventory_app`.`date`,date_format(`it_inventory_app`.`date`,'%d/%m/%Y'),'')" => "date",
 		"`it_inventory_app`.`description`" => "description",
 		"`it_inventory_app`.`classification_of_asset`" => "classification_of_asset",
@@ -89,6 +92,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`it_inventory_app`.`it_inventory_id`" => "ID",
+		"`it_inventory_app`.`username`" => "Username",
 		"`it_inventory_app`.`date`" => "Date",
 		"`it_inventory_app`.`description`" => "Description",
 		"`it_inventory_app`.`classification_of_asset`" => "Classification of asset",
@@ -112,6 +116,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`it_inventory_app`.`it_inventory_id`" => "it_inventory_id",
+		"`it_inventory_app`.`username`" => "username",
 		"if(`it_inventory_app`.`date`,date_format(`it_inventory_app`.`date`,'%d/%m/%Y'),'')" => "date",
 		"`it_inventory_app`.`description`" => "description",
 		"`it_inventory_app`.`classification_of_asset`" => "classification_of_asset",
@@ -165,10 +170,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Date', 'Description', 'Classification of asset', 'Sub category', 'Qty', 'Asset serial number', 'Qr and bar code', 'Custody department', 'Custodian', 'Custodian signature', 'Number of years useful life of assets', 'Date of useful life of assets ends', 'Remarks', 'Sactioned by', 'It inventory str', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['it_inventory_id', 'date', 'description', 'classification_of_asset', 'sub_category', 'qty', 'asset_serial_number', 'qr_and_bar_code', 'custody_department', 'custodian', 'custodian_signature', 'no_of_years_useful_life_of_assets', 'date_of_useful_life_of_assets_ends', 'remarks', 'sactioned_by', 'it_inventory_str', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Date', 'Description', 'Classification of asset', 'Sub category', 'Qty', 'Asset serial number', 'Qr and bar code', 'Custody department', 'Custodian', 'Custodian signature', 'Number of years useful life of assets', 'Date of useful life of assets ends', 'Remarks', 'Sactioned by', 'It inventory str', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['it_inventory_id', 'username', 'date', 'description', 'classification_of_asset', 'sub_category', 'qty', 'asset_serial_number', 'qr_and_bar_code', 'custody_department', 'custodian', 'custodian_signature', 'no_of_years_useful_life_of_assets', 'date_of_useful_life_of_assets_ends', 'remarks', 'sactioned_by', 'it_inventory_str', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/it_inventory_app_templateTV.html';

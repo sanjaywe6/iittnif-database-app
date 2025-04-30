@@ -16,6 +16,7 @@ function training_program_on_geospatial_tchnologies_table_insert(&$error_message
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'certificate_number' => Request::val('certificate_number', ''),
 		'datetime' => Request::dateComponents('datetime', '1'),
 		'salutation' => Request::val('salutation', ''),
@@ -279,7 +280,7 @@ function training_program_on_geospatial_tchnologies_table_form($selectedId = '',
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_gender->SelectedText = (isset($filterField[1]) && $filterField[1] == '10' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_gender->SelectedText = (isset($filterField[1]) && $filterField[1] == '11' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
 	$combo_gender->Render();
 
@@ -453,6 +454,7 @@ function training_program_on_geospatial_tchnologies_table_form($selectedId = '',
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(certificate_number)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(datetime)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(salutation)%%>', '', $templateCode);
@@ -490,6 +492,8 @@ function training_program_on_geospatial_tchnologies_table_form($selectedId = '',
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(certificate_number)%%>', safe_html($urow['certificate_number']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(certificate_number)%%>', html_attr($row['certificate_number']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(certificate_number)%%>', urlencode($urow['certificate_number']), $templateCode);
@@ -583,6 +587,8 @@ function training_program_on_geospatial_tchnologies_table_form($selectedId = '',
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(certificate_number)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(certificate_number)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(datetime)%%>', '1', $templateCode);

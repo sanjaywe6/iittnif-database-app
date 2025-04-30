@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`hrd_sdp_events_table`.`id`" => "id",
+		"`hrd_sdp_events_table`.`username`" => "username",
 		"`hrd_sdp_events_table`.`year`" => "year",
 		"`hrd_sdp_events_table`.`program_name`" => "program_name",
 		"`hrd_sdp_events_table`.`area_of_workshop`" => "area_of_workshop",
@@ -41,19 +42,21 @@
 		4 => 4,
 		5 => 5,
 		6 => 6,
-		7 => '`hrd_sdp_events_table`.`start_date`',
-		8 => '`hrd_sdp_events_table`.`end_date`',
-		9 => 9,
+		7 => 7,
+		8 => '`hrd_sdp_events_table`.`start_date`',
+		9 => '`hrd_sdp_events_table`.`end_date`',
 		10 => 10,
 		11 => 11,
 		12 => 12,
 		13 => 13,
 		14 => 14,
+		15 => 15,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`hrd_sdp_events_table`.`id`" => "id",
+		"`hrd_sdp_events_table`.`username`" => "username",
 		"`hrd_sdp_events_table`.`year`" => "year",
 		"`hrd_sdp_events_table`.`program_name`" => "program_name",
 		"`hrd_sdp_events_table`.`area_of_workshop`" => "area_of_workshop",
@@ -71,6 +74,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`hrd_sdp_events_table`.`id`" => "ID",
+		"`hrd_sdp_events_table`.`username`" => "Username",
 		"`hrd_sdp_events_table`.`year`" => "Year",
 		"`hrd_sdp_events_table`.`program_name`" => "Program name",
 		"`hrd_sdp_events_table`.`area_of_workshop`" => "Topic/Area of Workshop",
@@ -89,6 +93,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`hrd_sdp_events_table`.`id`" => "id",
+		"`hrd_sdp_events_table`.`username`" => "username",
 		"`hrd_sdp_events_table`.`year`" => "year",
 		"`hrd_sdp_events_table`.`program_name`" => "program_name",
 		"`hrd_sdp_events_table`.`area_of_workshop`" => "area_of_workshop",
@@ -137,10 +142,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Year', 'Program name', 'Topic/Area of Workshop', 'Host name', 'Location', 'Start date', 'End date', 'Number of participants', 'More details', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'year', 'program_name', 'area_of_workshop', 'host_name', 'location', 'start_date', 'end_date', 'number_of_participants', 'more_details', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Year', 'Program name', 'Topic/Area of Workshop', 'Host name', 'Location', 'Start date', 'End date', 'Number of participants', 'More details', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'username', 'year', 'program_name', 'area_of_workshop', 'host_name', 'location', 'start_date', 'end_date', 'number_of_participants', 'more_details', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/hrd_sdp_events_table_templateTV.html';

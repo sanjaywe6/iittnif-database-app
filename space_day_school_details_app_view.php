@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`space_day_school_details_app`.`id`" => "id",
+		"`space_day_school_details_app`.`username`" => "username",
 		"`space_day_school_details_app`.`school_name`" => "school_name",
 		"`space_day_school_details_app`.`profile_type`" => "profile_type",
 		"`space_day_school_details_app`.`name_of_student_teacher`" => "name_of_student_teacher",
@@ -43,11 +44,13 @@
 		9 => 9,
 		10 => 10,
 		11 => 11,
+		12 => 12,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`space_day_school_details_app`.`id`" => "id",
+		"`space_day_school_details_app`.`username`" => "username",
 		"`space_day_school_details_app`.`school_name`" => "school_name",
 		"`space_day_school_details_app`.`profile_type`" => "profile_type",
 		"`space_day_school_details_app`.`name_of_student_teacher`" => "name_of_student_teacher",
@@ -62,6 +65,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`space_day_school_details_app`.`id`" => "ID",
+		"`space_day_school_details_app`.`username`" => "Username",
 		"`space_day_school_details_app`.`school_name`" => "School name",
 		"`space_day_school_details_app`.`profile_type`" => "Profile type",
 		"`space_day_school_details_app`.`name_of_student_teacher`" => "Name of Student/Teacher",
@@ -77,6 +81,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`space_day_school_details_app`.`id`" => "id",
+		"`space_day_school_details_app`.`username`" => "username",
 		"`space_day_school_details_app`.`school_name`" => "school_name",
 		"`space_day_school_details_app`.`profile_type`" => "profile_type",
 		"`space_day_school_details_app`.`name_of_student_teacher`" => "name_of_student_teacher",
@@ -122,10 +127,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'School name', 'Profile type', 'Name of Student/Teacher', 'Gender', 'Class(If student) / Subject Handled (If Teacher)', 'Contact number', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'school_name', 'profile_type', 'name_of_student_teacher', 'gender', 'class_subject', 'contact_number', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'School name', 'Profile type', 'Name of Student/Teacher', 'Gender', 'Class(If student) / Subject Handled (If Teacher)', 'Contact number', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'username', 'school_name', 'profile_type', 'name_of_student_teacher', 'gender', 'class_subject', 'contact_number', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/space_day_school_details_app_templateTV.html';

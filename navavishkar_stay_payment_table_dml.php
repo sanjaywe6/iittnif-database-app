@@ -21,6 +21,7 @@ function navavishkar_stay_payment_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'payment_status' => Request::val('payment_status', 'Pending'),
 		'amount' => Request::val('amount', ''),
 		'additional_facilities_provided' => Request::val('additional_facilities_provided', ''),
@@ -272,7 +273,7 @@ function navavishkar_stay_payment_table_form($selectedId = '', $allowUpdate = tr
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
 		$combo_navavishakr_stay_details->SelectedData = $filterer_navavishakr_stay_details;
-		$combo_payment_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
+		$combo_payment_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
 	}
 	$combo_navavishakr_stay_details->HTML = '<span id="navavishakr_stay_details-container' . $rnd1 . '"></span><input type="hidden" name="navavishakr_stay_details" id="navavishakr_stay_details' . $rnd1 . '" value="' . html_attr($combo_navavishakr_stay_details->SelectedData) . '">';
 	$combo_navavishakr_stay_details->MatchText = '<span id="navavishakr_stay_details-container-readonly' . $rnd1 . '"></span><input type="hidden" name="navavishakr_stay_details" id="navavishakr_stay_details' . $rnd1 . '" value="' . html_attr($combo_navavishakr_stay_details->SelectedData) . '">';
@@ -491,6 +492,7 @@ function navavishkar_stay_payment_table_form($selectedId = '', $allowUpdate = tr
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(navavishakr_stay_details)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(payment_status)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(amount)%%>', '', $templateCode);
@@ -506,6 +508,8 @@ function navavishkar_stay_payment_table_form($selectedId = '', $allowUpdate = tr
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(navavishakr_stay_details)%%>', safe_html($urow['navavishakr_stay_details']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(navavishakr_stay_details)%%>', urlencode($urow['navavishakr_stay_details']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(payment_status)%%>', safe_html($urow['payment_status']), $templateCode);
@@ -533,6 +537,8 @@ function navavishkar_stay_payment_table_form($selectedId = '', $allowUpdate = tr
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(navavishakr_stay_details)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(navavishakr_stay_details)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(payment_status)%%>', 'Pending', $templateCode);
@@ -593,7 +599,7 @@ function navavishkar_stay_payment_table_form($selectedId = '', $allowUpdate = tr
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
-	if(isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>')
+	if(isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>')
 		$templateCode.="\n<input type=hidden name=navavishakr_stay_details value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery

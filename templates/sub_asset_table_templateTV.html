@@ -1,7 +1,10 @@
-		<td colspan="24" class="row">
+		<td colspan="25" class="row">
 			<div id="sub_asset_table-id-<%%VALUE(id)%%>" class="sub_asset_table-id col-sm-12 h5 text-bold"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
+					<dt class="sub_asset_table-username-caption field-caption-tv">Username</dt>
+					<dd id="sub_asset_table-username-<%%VALUE(id)%%>" class="sub_asset_table-username"><%%SELECT%%><%%VALUE(username)%%><%%ENDSELECT%%></dd>
+
 					<dt class="sub_asset_table-Date-caption field-caption-tv">Date</dt>
 					<dd id="sub_asset_table-Date-<%%VALUE(id)%%>" class="sub_asset_table-Date"><%%SELECT%%><%%VALUE(Date)%%><%%ENDSELECT%%></dd>
 
@@ -35,13 +38,13 @@
 					<dt class="sub_asset_table-BillNo-caption field-caption-tv">Bill No.</dt>
 					<dd id="sub_asset_table-BillNo-<%%VALUE(id)%%>" class="sub_asset_table-BillNo"><%%SELECT%%><%%VALUE(BillNo)%%><%%ENDSELECT%%></dd>
 
-					<dt class="sub_asset_table-BillDate-caption field-caption-tv">Bill Date</dt>
-					<dd id="sub_asset_table-BillDate-<%%VALUE(id)%%>" class="sub_asset_table-BillDate"><%%SELECT%%><%%VALUE(BillDate)%%><%%ENDSELECT%%></dd>
-
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
+					<dt class="sub_asset_table-BillDate-caption field-caption-tv">Bill Date</dt>
+					<dd id="sub_asset_table-BillDate-<%%VALUE(id)%%>" class="sub_asset_table-BillDate"><%%SELECT%%><%%VALUE(BillDate)%%><%%ENDSELECT%%></dd>
+
 					<dt class="sub_asset_table-QUANTITY-caption field-caption-tv">Quantity</dt>
 					<dd id="sub_asset_table-QUANTITY-<%%VALUE(id)%%>" class="sub_asset_table-QUANTITY"><%%SELECT%%><%%VALUE(QUANTITY)%%><%%ENDSELECT%%></dd>
 

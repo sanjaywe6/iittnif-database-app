@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`travel_local_commute_table`.`id`" => "id",
+		"`travel_local_commute_table`.`username`" => "username",
 		"`travel_local_commute_table`.`first_name`" => "first_name",
 		"`travel_local_commute_table`.`last_name`" => "last_name",
 		"`travel_local_commute_table`.`age`" => "age",
@@ -53,11 +54,13 @@
 		14 => 14,
 		15 => 15,
 		16 => 16,
+		17 => 17,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`travel_local_commute_table`.`id`" => "id",
+		"`travel_local_commute_table`.`username`" => "username",
 		"`travel_local_commute_table`.`first_name`" => "first_name",
 		"`travel_local_commute_table`.`last_name`" => "last_name",
 		"`travel_local_commute_table`.`age`" => "age",
@@ -77,6 +80,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`travel_local_commute_table`.`id`" => "ID",
+		"`travel_local_commute_table`.`username`" => "Username",
 		"`travel_local_commute_table`.`first_name`" => "First name",
 		"`travel_local_commute_table`.`last_name`" => "Last name",
 		"`travel_local_commute_table`.`age`" => "Age",
@@ -97,6 +101,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`travel_local_commute_table`.`id`" => "id",
+		"`travel_local_commute_table`.`username`" => "username",
 		"`travel_local_commute_table`.`first_name`" => "first_name",
 		"`travel_local_commute_table`.`last_name`" => "last_name",
 		"`travel_local_commute_table`.`age`" => "age",
@@ -147,10 +152,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'First name', 'Last name', 'Age', 'Gender', 'Mobile number', 'Local Commute Type', 'From Place', 'To Place', 'Description', 'Approval Status', 'Approval remarks', 'Created by', 'Approved by', 'Created at', 'Approved at', ];
-	$x->ColFieldName = ['id', 'first_name', 'last_name', 'age', 'gender', 'mobile_number', 'local_commute_type', 'from_place', 'to_place', 'description', 'approval_status', 'approval_remarks', 'created_by', 'approved_by', 'created_at', 'approved_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'First name', 'Last name', 'Age', 'Gender', 'Mobile number', 'Local Commute Type', 'From Place', 'To Place', 'Description', 'Approval Status', 'Approval remarks', 'Created by', 'Approved by', 'Created at', 'Approved at', ];
+	$x->ColFieldName = ['id', 'username', 'first_name', 'last_name', 'age', 'gender', 'mobile_number', 'local_commute_type', 'from_place', 'to_place', 'description', 'approval_status', 'approval_remarks', 'created_by', 'approved_by', 'created_at', 'approved_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/travel_local_commute_table_templateTV.html';

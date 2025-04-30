@@ -21,6 +21,7 @@ function star_pnt_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'name_of_the_candidate' => Request::val('name_of_the_candidate', ''),
 		'institute' => Request::val('institute', ''),
 		'workspace' => Request::val('workspace', ''),
@@ -429,6 +430,7 @@ function star_pnt_form($selectedId = '', $allowUpdate = true, $allowInsert = tru
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(iittnif_id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(name_of_the_candidate)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(institute)%%>', '', $templateCode);
@@ -444,6 +446,8 @@ function star_pnt_form($selectedId = '', $allowUpdate = true, $allowInsert = tru
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(iittnif_id)%%>', safe_html($urow['iittnif_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(iittnif_id)%%>', urlencode($urow['iittnif_id']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(name_of_the_candidate)%%>', safe_html($urow['name_of_the_candidate']), $templateCode);
@@ -471,6 +475,8 @@ function star_pnt_form($selectedId = '', $allowUpdate = true, $allowInsert = tru
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(iittnif_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(iittnif_id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(name_of_the_candidate)%%>', '', $templateCode);
@@ -531,7 +537,7 @@ function star_pnt_form($selectedId = '', $allowUpdate = true, $allowInsert = tru
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
-	if(isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>')
+	if(isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>')
 		$templateCode.="\n<input type=hidden name=iittnif_id value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery

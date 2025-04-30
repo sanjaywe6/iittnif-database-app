@@ -16,6 +16,7 @@ function space_day_school_details_app_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'school_name' => Request::val('school_name', ''),
 		'profile_type' => Request::val('profile_type', ''),
 		'name_of_student_teacher' => Request::val('name_of_student_teacher', ''),
@@ -233,8 +234,8 @@ function space_day_school_details_app_form($selectedId = '', $allowUpdate = true
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_profile_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_gender->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_profile_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_gender->SelectedText = (isset($filterField[1]) && $filterField[1] == '6' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
 	$combo_profile_type->Render();
 	$combo_gender->Render();
@@ -373,6 +374,7 @@ function space_day_school_details_app_form($selectedId = '', $allowUpdate = true
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(school_name)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(profile_type)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(name_of_student_teacher)%%>', '', $templateCode);
@@ -388,6 +390,8 @@ function space_day_school_details_app_form($selectedId = '', $allowUpdate = true
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(school_name)%%>', safe_html($urow['school_name']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(school_name)%%>', html_attr($row['school_name']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(school_name)%%>', urlencode($urow['school_name']), $templateCode);
@@ -417,6 +421,8 @@ function space_day_school_details_app_form($selectedId = '', $allowUpdate = true
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(school_name)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(school_name)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(profile_type)%%>', '', $templateCode);

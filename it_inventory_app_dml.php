@@ -16,6 +16,7 @@ function it_inventory_app_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'date' => Request::dateComponents('date', '1'),
 		'description' => br2nl(Request::val('description', '')),
 		'classification_of_asset' => Request::val('classification_of_asset', ''),
@@ -554,6 +555,7 @@ function it_inventory_app_form($selectedId = '', $allowUpdate = true, $allowInse
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(it_inventory_id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(description)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(classification_of_asset)%%>', '', $templateCode);
@@ -583,6 +585,8 @@ function it_inventory_app_form($selectedId = '', $allowUpdate = true, $allowInse
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(it_inventory_id)%%>', safe_html($urow['it_inventory_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(it_inventory_id)%%>', urlencode($urow['it_inventory_id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date)%%>', app_datetime($row['date']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date)%%>', urlencode(app_datetime($urow['date'])), $templateCode);
 		$templateCode = str_replace('<%%VALUE(description)%%>', safe_html($urow['description'], $fieldsAreEditable), $templateCode);
@@ -636,6 +640,8 @@ function it_inventory_app_form($selectedId = '', $allowUpdate = true, $allowInse
 	} else {
 		$templateCode = str_replace('<%%VALUE(it_inventory_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(it_inventory_id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date)%%>', '1', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date)%%>', urlencode('1'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(description)%%>', '', $templateCode);

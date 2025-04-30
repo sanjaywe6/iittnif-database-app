@@ -16,6 +16,7 @@ function event_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'event_name' => Request::val('event_name', ''),
 		'participants' => Request::val('participants', ''),
 		'venue' => Request::val('venue', ''),
@@ -423,6 +424,7 @@ function event_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(event_id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(event_name)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(participants)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(venue)%%>', '', $templateCode);
@@ -437,6 +439,8 @@ function event_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(event_id)%%>', safe_html($urow['event_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(event_id)%%>', urlencode($urow['event_id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(event_name)%%>', safe_html($urow['event_name']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(event_name)%%>', html_attr($row['event_name']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(event_name)%%>', urlencode($urow['event_name']), $templateCode);
@@ -461,6 +465,8 @@ function event_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	} else {
 		$templateCode = str_replace('<%%VALUE(event_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(event_id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(event_name)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(event_name)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(participants)%%>', '', $templateCode);

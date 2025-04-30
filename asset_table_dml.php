@@ -16,6 +16,7 @@ function asset_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'Date' => Request::dateComponents('Date', ''),
 		'ClassificationofAssest' => Request::val('ClassificationofAssest', ''),
 		'SubCategory' => Request::val('SubCategory', ''),
@@ -485,6 +486,7 @@ function asset_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(Date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(ClassificationofAssest)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(SubCategory)%%>', '', $templateCode);
@@ -513,6 +515,8 @@ function asset_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(Date)%%>', app_datetime($row['Date']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(Date)%%>', urlencode(app_datetime($urow['Date'])), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(ClassificationofAssest)%%>', safe_html($urow['ClassificationofAssest']), $templateCode);
@@ -575,6 +579,8 @@ function asset_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(Date)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(Date)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(ClassificationofAssest)%%>', '', $templateCode);

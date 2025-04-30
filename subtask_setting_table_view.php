@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`subtask_setting_table`.`subtask_id`" => "subtask_id",
+		"`subtask_setting_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`task_setting_table1`.`task_description`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `task_setting_table1`.`task_description`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Task */" => "task_lookup",
 		"`subtask_setting_table`.`subtask_status`" => "subtask_status",
 		"`subtask_setting_table`.`subtask_description`" => "subtask_description",
@@ -38,18 +39,20 @@
 		3 => 3,
 		4 => 4,
 		5 => 5,
-		6 => '`subtask_setting_table`.`subtask_set_date`',
-		7 => 7,
+		6 => 6,
+		7 => '`subtask_setting_table`.`subtask_set_date`',
 		8 => 8,
 		9 => 9,
 		10 => 10,
 		11 => 11,
 		12 => 12,
+		13 => 13,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`subtask_setting_table`.`subtask_id`" => "subtask_id",
+		"`subtask_setting_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`task_setting_table1`.`task_description`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `task_setting_table1`.`task_description`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Task */" => "task_lookup",
 		"`subtask_setting_table`.`subtask_status`" => "subtask_status",
 		"`subtask_setting_table`.`subtask_description`" => "subtask_description",
@@ -65,6 +68,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`subtask_setting_table`.`subtask_id`" => "ID",
+		"`subtask_setting_table`.`username`" => "Username",
 		"IF(    CHAR_LENGTH(`task_setting_table1`.`task_description`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `task_setting_table1`.`task_description`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Task */" => "Task",
 		"`subtask_setting_table`.`subtask_status`" => "Subtask status",
 		"`subtask_setting_table`.`subtask_description`" => "Subtask description",
@@ -81,6 +85,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`subtask_setting_table`.`subtask_id`" => "subtask_id",
+		"`subtask_setting_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`task_setting_table1`.`task_description`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `task_setting_table1`.`task_description`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Task */" => "task_lookup",
 		"`subtask_setting_table`.`subtask_status`" => "subtask_status",
 		"`subtask_setting_table`.`subtask_description`" => "subtask_description",
@@ -127,10 +132,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Task', 'Subtask status', 'Subtask description', 'Subtask duration', 'Subtask set date', 'Supervisor name', 'Assigned to', 'Subtask setting str', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['subtask_id', 'task_lookup', 'subtask_status', 'subtask_description', 'subtask_duration', 'subtask_set_date', 'supervisor_name', 'assigned_to', 'subtask_setting_str', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Task', 'Subtask status', 'Subtask description', 'Subtask duration', 'Subtask set date', 'Supervisor name', 'Assigned to', 'Subtask setting str', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['subtask_id', 'username', 'task_lookup', 'subtask_status', 'subtask_description', 'subtask_duration', 'subtask_set_date', 'supervisor_name', 'assigned_to', 'subtask_setting_str', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/subtask_setting_table_templateTV.html';

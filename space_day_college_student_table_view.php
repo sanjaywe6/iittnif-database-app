@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`space_day_college_student_table`.`id`" => "id",
+		"`space_day_college_student_table`.`username`" => "username",
 		"`space_day_college_student_table`.`name_of_student`" => "name_of_student",
 		"`space_day_college_student_table`.`registration_number`" => "registration_number",
 		"`space_day_college_student_table`.`degree_department`" => "degree_department",
@@ -49,11 +50,13 @@
 		12 => 12,
 		13 => 13,
 		14 => 14,
+		15 => 15,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`space_day_college_student_table`.`id`" => "id",
+		"`space_day_college_student_table`.`username`" => "username",
 		"`space_day_college_student_table`.`name_of_student`" => "name_of_student",
 		"`space_day_college_student_table`.`registration_number`" => "registration_number",
 		"`space_day_college_student_table`.`degree_department`" => "degree_department",
@@ -71,6 +74,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`space_day_college_student_table`.`id`" => "ID",
+		"`space_day_college_student_table`.`username`" => "Username",
 		"`space_day_college_student_table`.`name_of_student`" => "Name of the student",
 		"`space_day_college_student_table`.`registration_number`" => "Registration number",
 		"`space_day_college_student_table`.`degree_department`" => "Degree & Department",
@@ -89,6 +93,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`space_day_college_student_table`.`id`" => "id",
+		"`space_day_college_student_table`.`username`" => "username",
 		"`space_day_college_student_table`.`name_of_student`" => "name_of_student",
 		"`space_day_college_student_table`.`registration_number`" => "registration_number",
 		"`space_day_college_student_table`.`degree_department`" => "degree_department",
@@ -137,10 +142,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Name of the student', 'Registration number', 'Degree & Department', 'Gender', 'Home address', 'Email id', 'Contact number', 'Interest', 'College name', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'name_of_student', 'registration_number', 'degree_department', 'gender', 'home_address', 'email_id', 'contact_number', 'interest', 'college_name', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Name of the student', 'Registration number', 'Degree & Department', 'Gender', 'Home address', 'Email id', 'Contact number', 'Interest', 'College name', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'username', 'name_of_student', 'registration_number', 'degree_department', 'gender', 'home_address', 'email_id', 'contact_number', 'interest', 'college_name', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/space_day_college_student_table_templateTV.html';

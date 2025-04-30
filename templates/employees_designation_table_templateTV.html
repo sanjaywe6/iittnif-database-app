@@ -1,8 +1,11 @@
-		<td colspan="11" class="row">
+		<td colspan="12" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="employees_designation_table-id-caption field-caption-tv">ID</dt>
 					<dd id="employees_designation_table-id-<%%VALUE(id)%%>" class="employees_designation_table-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></dd>
+
+					<dt class="employees_designation_table-username-caption field-caption-tv">Username</dt>
+					<dd id="employees_designation_table-username-<%%VALUE(id)%%>" class="employees_designation_table-username"><%%SELECT%%><%%VALUE(username)%%><%%ENDSELECT%%></dd>
 
 					<dt class="employees_designation_table-employee_lookup-caption field-caption-tv">Employee Details</dt>
 					<dd id="employees_designation_table-employee_lookup-<%%VALUE(id)%%>" class="employees_designation_table-employee_lookup"><%%SELECT%%><%%VALUE(employee_lookup)%%><%%ENDSELECT%%></dd>
@@ -16,13 +19,13 @@
 					<dt class="employees_designation_table-active_status-caption field-caption-tv">Active status</dt>
 					<dd id="employees_designation_table-active_status-<%%VALUE(id)%%>" class="employees_designation_table-active_status"><%%SELECT%%><%%VALUE(active_status)%%><%%ENDSELECT%%></dd>
 
-					<dt class="employees_designation_table-reporting_officer-caption field-caption-tv">Reporting Officer</dt>
-					<dd id="employees_designation_table-reporting_officer-<%%VALUE(id)%%>" class="employees_designation_table-reporting_officer"><%%SELECT%%><%%VALUE(reporting_officer)%%><%%ENDSELECT%%></dd>
-
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
+					<dt class="employees_designation_table-reporting_officer-caption field-caption-tv">Reporting Officer</dt>
+					<dd id="employees_designation_table-reporting_officer-<%%VALUE(id)%%>" class="employees_designation_table-reporting_officer"><%%SELECT%%><%%VALUE(reporting_officer)%%><%%ENDSELECT%%></dd>
+
 					<dt class="employees_designation_table-reviewing_officer-caption field-caption-tv">Reviewing Officer</dt>
 					<dd id="employees_designation_table-reviewing_officer-<%%VALUE(id)%%>" class="employees_designation_table-reviewing_officer"><%%SELECT%%><%%VALUE(reviewing_officer)%%><%%ENDSELECT%%></dd>
 

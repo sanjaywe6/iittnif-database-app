@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`email_id_allocation_table`.`email_id_allocation_id`" => "email_id_allocation_id",
+		"`email_id_allocation_table`.`username`" => "username",
 		"`email_id_allocation_table`.`name_of_person`" => "name_of_person",
 		"`email_id_allocation_table`.`allocated_email_id`" => "allocated_email_id",
 		"`email_id_allocation_table`.`alternative_email_id`" => "alternative_email_id",
@@ -37,19 +38,21 @@
 		2 => 2,
 		3 => 3,
 		4 => 4,
-		5 => '`email_id_allocation_table`.`date_of_allocation`',
-		6 => 6,
+		5 => 5,
+		6 => '`email_id_allocation_table`.`date_of_allocation`',
 		7 => 7,
 		8 => 8,
 		9 => 9,
 		10 => 10,
 		11 => 11,
 		12 => 12,
+		13 => 13,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`email_id_allocation_table`.`email_id_allocation_id`" => "email_id_allocation_id",
+		"`email_id_allocation_table`.`username`" => "username",
 		"`email_id_allocation_table`.`name_of_person`" => "name_of_person",
 		"`email_id_allocation_table`.`allocated_email_id`" => "allocated_email_id",
 		"`email_id_allocation_table`.`alternative_email_id`" => "alternative_email_id",
@@ -65,6 +68,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`email_id_allocation_table`.`email_id_allocation_id`" => "ID",
+		"`email_id_allocation_table`.`username`" => "Username",
 		"`email_id_allocation_table`.`name_of_person`" => "Name of person",
 		"`email_id_allocation_table`.`allocated_email_id`" => "Allocated email id",
 		"`email_id_allocation_table`.`alternative_email_id`" => "Alternative email id",
@@ -81,6 +85,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`email_id_allocation_table`.`email_id_allocation_id`" => "email_id_allocation_id",
+		"`email_id_allocation_table`.`username`" => "username",
 		"`email_id_allocation_table`.`name_of_person`" => "name_of_person",
 		"`email_id_allocation_table`.`allocated_email_id`" => "allocated_email_id",
 		"`email_id_allocation_table`.`alternative_email_id`" => "alternative_email_id",
@@ -127,10 +132,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Name of person', 'Allocated email id', 'Alternative email id', 'Date of allocation', 'Status', 'Reporting manager', 'Remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['email_id_allocation_id', 'name_of_person', 'allocated_email_id', 'alternative_email_id', 'date_of_allocation', 'status', 'reporting_manager', 'remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Name of person', 'Allocated email id', 'Alternative email id', 'Date of allocation', 'Status', 'Reporting manager', 'Remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['email_id_allocation_id', 'username', 'name_of_person', 'allocated_email_id', 'alternative_email_id', 'date_of_allocation', 'status', 'reporting_manager', 'remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/email_id_allocation_table_templateTV.html';

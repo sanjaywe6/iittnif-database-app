@@ -16,6 +16,7 @@ function work_from_home_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'work_from_home_purpose' => Request::val('work_from_home_purpose', ''),
 		'from_date' => Request::dateComponents('from_date', '1'),
 		'to_date' => Request::dateComponents('to_date', '1'),
@@ -69,7 +70,7 @@ function work_from_home_table_delete($selected_id, $AllowDeleteOfParents = false
 			);
 	}
 
-	sql("DELETE FROM `work_from_home_table` WHERE `work_from_home_id`='{$selected_id}'", $eo);
+	sql("DELETE FROM `work_from_home_table` WHERE `id`='{$selected_id}'", $eo);
 
 	// hook: work_from_home_table_after_delete
 	if(function_exists('work_from_home_table_after_delete')) {
@@ -137,7 +138,7 @@ function work_from_home_table_update(&$selected_id, &$error_message = '') {
 	if(!update(
 		'work_from_home_table', 
 		backtick_keys_once($set), 
-		['`work_from_home_id`' => $selected_id], 
+		['`id`' => $selected_id], 
 		$error_message
 	)) {
 		echo $error_message;
@@ -152,7 +153,7 @@ function work_from_home_table_update(&$selected_id, &$error_message = '') {
 	if(function_exists('work_from_home_table_after_update')) {
 		if($row = getRecord('work_from_home_table', $data['selectedID'])) $data = array_map('makeSafe', $row);
 
-		$data['selectedID'] = $data['work_from_home_id'];
+		$data['selectedID'] = $data['id'];
 		$args = ['old_data' => $old_data];
 		if(!work_from_home_table_after_update($data, getMemberInfo(), $args)) return;
 	}
@@ -465,7 +466,8 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 	}
 
 	// process images
-	$templateCode = str_replace('<%%UPLOADFILE(work_from_home_id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(work_from_home_purpose)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(from_date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(to_date)%%>', '', $templateCode);
@@ -477,8 +479,10 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 
 	// process values
 	if($hasSelectedId) {
-		$templateCode = str_replace('<%%VALUE(work_from_home_id)%%>', safe_html($urow['work_from_home_id']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(work_from_home_id)%%>', urlencode($urow['work_from_home_id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(work_from_home_purpose)%%>', safe_html($urow['work_from_home_purpose']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(work_from_home_purpose)%%>', html_attr($row['work_from_home_purpose']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(work_from_home_purpose)%%>', urlencode($urow['work_from_home_purpose']), $templateCode);
@@ -498,8 +502,10 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
 	} else {
-		$templateCode = str_replace('<%%VALUE(work_from_home_id)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(work_from_home_id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(work_from_home_purpose)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(work_from_home_purpose)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(from_date)%%>', '1', $templateCode);

@@ -16,6 +16,7 @@ function goal_setting_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'goal_status' => Request::val('goal_status', ''),
 		'goal_description' => br2nl(Request::val('goal_description', '')),
 		'goal_duration' => Request::val('goal_duration', ''),
@@ -269,8 +270,8 @@ function goal_setting_table_form($selectedId = '', $allowUpdate = true, $allowIn
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_goal_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_goal_duration->SelectedText = (isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_goal_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_goal_duration->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 		$combo_supervisor_name->SelectedData = $filterer_supervisor_name;
 		$combo_assigned_to->SelectedData = $filterer_assigned_to;
 	}
@@ -589,6 +590,7 @@ function goal_setting_table_form($selectedId = '', $allowUpdate = true, $allowIn
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(goal_id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(goal_status)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(goal_description)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(goal_duration)%%>', '', $templateCode);
@@ -604,6 +606,8 @@ function goal_setting_table_form($selectedId = '', $allowUpdate = true, $allowIn
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(goal_id)%%>', safe_html($urow['goal_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(goal_id)%%>', urlencode($urow['goal_id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(goal_status)%%>', safe_html($urow['goal_status']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(goal_status)%%>', html_attr($row['goal_status']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(goal_status)%%>', urlencode($urow['goal_status']), $templateCode);
@@ -631,6 +635,8 @@ function goal_setting_table_form($selectedId = '', $allowUpdate = true, $allowIn
 	} else {
 		$templateCode = str_replace('<%%VALUE(goal_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(goal_id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(goal_status)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(goal_status)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(goal_description)%%>', '', $templateCode);

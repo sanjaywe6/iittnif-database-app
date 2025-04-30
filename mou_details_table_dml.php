@@ -16,6 +16,7 @@ function mou_details_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'type' => Request::val('type', ''),
 		'company_name' => br2nl(Request::val('company_name', '')),
 		'objective_of_mou' => br2nl(Request::val('objective_of_mou', '')),
@@ -319,8 +320,8 @@ function mou_details_table_form($selectedId = '', $allowUpdate = true, $allowIns
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '8' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '9' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 		$combo_assigned_mou_to->SelectedData = $filterer_assigned_mou_to;
 	}
 	$combo_type->Render();
@@ -569,6 +570,7 @@ function mou_details_table_form($selectedId = '', $allowUpdate = true, $allowIns
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(type)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(company_name)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(objective_of_mou)%%>', '', $templateCode);
@@ -596,6 +598,8 @@ function mou_details_table_form($selectedId = '', $allowUpdate = true, $allowIns
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(type)%%>', safe_html($urow['type']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(type)%%>', html_attr($row['type']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(type)%%>', urlencode($urow['type']), $templateCode);
@@ -643,6 +647,8 @@ function mou_details_table_form($selectedId = '', $allowUpdate = true, $allowIns
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(type)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(type)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(company_name)%%>', '', $templateCode);

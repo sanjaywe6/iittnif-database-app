@@ -21,6 +21,7 @@ function employees_appraisal_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'current_review_period_from' => Request::dateComponents('current_review_period_from', '1'),
 		'current_review_period_to' => Request::dateComponents('current_review_period_to', '1'),
 		'roles' => br2nl(Request::val('roles', '')),
@@ -389,10 +390,10 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
 		$combo_employee_designation_lookup->SelectedData = $filterer_employee_designation_lookup;
-		$combo_overall_rating->SelectedText = (isset($filterField[1]) && $filterField[1] == '12' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_reporting_appraisal_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '13' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
+		$combo_overall_rating->SelectedText = (isset($filterField[1]) && $filterField[1] == '13' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_reporting_appraisal_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '14' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
 		$combo_reviewing_officer->SelectedData = $filterer_reviewing_officer;
-		$combo_reviewing_appraisal_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '16' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
+		$combo_reviewing_appraisal_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '17' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
 	}
 	$combo_employee_designation_lookup->HTML = '<span id="employee_designation_lookup-container' . $rnd1 . '"></span><input type="hidden" name="employee_designation_lookup" id="employee_designation_lookup' . $rnd1 . '" value="' . html_attr($combo_employee_designation_lookup->SelectedData) . '">';
 	$combo_employee_designation_lookup->MatchText = '<span id="employee_designation_lookup-container-readonly' . $rnd1 . '"></span><input type="hidden" name="employee_designation_lookup" id="employee_designation_lookup' . $rnd1 . '" value="' . html_attr($combo_employee_designation_lookup->SelectedData) . '">';
@@ -727,6 +728,7 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(employee_designation_lookup)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(current_review_period_from)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(current_review_period_to)%%>', '', $templateCode);
@@ -756,6 +758,8 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(employee_designation_lookup)%%>', safe_html($urow['employee_designation_lookup']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(employee_designation_lookup)%%>', urlencode($urow['employee_designation_lookup']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(current_review_period_from)%%>', app_datetime($row['current_review_period_from']), $templateCode);
@@ -804,6 +808,8 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(employee_designation_lookup)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(employee_designation_lookup)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(current_review_period_from)%%>', '1', $templateCode);
@@ -888,7 +894,7 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
-	if(isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>')
+	if(isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>')
 		$templateCode.="\n<input type=hidden name=employee_designation_lookup value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery

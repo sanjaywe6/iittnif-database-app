@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`cycle_usage_table`.`id`" => "id",
+		"`cycle_usage_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`cycle_table1`.`registration_number`) || CHAR_LENGTH(`cycle_table1`.`cycle_model`), CONCAT_WS('',   `cycle_table1`.`registration_number`, '::', `cycle_table1`.`cycle_model`), '') /* Cycle Details */" => "cycle_lookup",
 		"`cycle_usage_table`.`used_by`" => "used_by",
 		"if(`cycle_usage_table`.`datetime_from`,date_format(`cycle_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'')" => "datetime_from",
@@ -33,17 +34,19 @@
 		1 => '`cycle_usage_table`.`id`',
 		2 => 2,
 		3 => 3,
-		4 => '`cycle_usage_table`.`datetime_from`',
-		5 => '`cycle_usage_table`.`datetime_to`',
-		6 => 6,
+		4 => 4,
+		5 => '`cycle_usage_table`.`datetime_from`',
+		6 => '`cycle_usage_table`.`datetime_to`',
 		7 => 7,
 		8 => 8,
 		9 => 9,
+		10 => 10,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`cycle_usage_table`.`id`" => "id",
+		"`cycle_usage_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`cycle_table1`.`registration_number`) || CHAR_LENGTH(`cycle_table1`.`cycle_model`), CONCAT_WS('',   `cycle_table1`.`registration_number`, '::', `cycle_table1`.`cycle_model`), '') /* Cycle Details */" => "cycle_lookup",
 		"`cycle_usage_table`.`used_by`" => "used_by",
 		"if(`cycle_usage_table`.`datetime_from`,date_format(`cycle_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'')" => "datetime_from",
@@ -56,6 +59,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`cycle_usage_table`.`id`" => "ID",
+		"`cycle_usage_table`.`username`" => "Username",
 		"IF(    CHAR_LENGTH(`cycle_table1`.`registration_number`) || CHAR_LENGTH(`cycle_table1`.`cycle_model`), CONCAT_WS('',   `cycle_table1`.`registration_number`, '::', `cycle_table1`.`cycle_model`), '') /* Cycle Details */" => "Cycle Details",
 		"`cycle_usage_table`.`used_by`" => "Used by",
 		"`cycle_usage_table`.`datetime_from`" => "Date and time from",
@@ -69,6 +73,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`cycle_usage_table`.`id`" => "id",
+		"`cycle_usage_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`cycle_table1`.`registration_number`) || CHAR_LENGTH(`cycle_table1`.`cycle_model`), CONCAT_WS('',   `cycle_table1`.`registration_number`, '::', `cycle_table1`.`cycle_model`), '') /* Cycle Details */" => "cycle_lookup",
 		"`cycle_usage_table`.`used_by`" => "used_by",
 		"if(`cycle_usage_table`.`datetime_from`,date_format(`cycle_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'')" => "datetime_from",
@@ -112,10 +117,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Cycle Details', 'Used by', 'Date and time from', 'Date and time to', 'Total distance run (In KM)', 'Remarks (Optional)', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['id', 'cycle_lookup', 'used_by', 'datetime_from', 'datetime_to', 'total_distance_run', 'remarks', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Cycle Details', 'Used by', 'Date and time from', 'Date and time to', 'Total distance run (In KM)', 'Remarks (Optional)', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['id', 'username', 'cycle_lookup', 'used_by', 'datetime_from', 'datetime_to', 'total_distance_run', 'remarks', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/cycle_usage_table_templateTV.html';

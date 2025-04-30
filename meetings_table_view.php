@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`meetings_table`.`meetings_id`" => "meetings_id",
+		"`meetings_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`visiting_card_table1`.`visiting_card_str`), CONCAT_WS('',   `visiting_card_table1`.`visiting_card_str`), '') /* Visiting card details */" => "visiting_card_lookup",
 		"IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') /* Event Details */" => "event_lookup",
 		"`meetings_table`.`meeting_title`" => "meeting_title",
@@ -35,23 +36,25 @@
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
 		1 => '`meetings_table`.`meetings_id`',
-		2 => '`visiting_card_table1`.`visiting_card_str`',
-		3 => '`event_table1`.`event_str`',
-		4 => 4,
+		2 => 2,
+		3 => '`visiting_card_table1`.`visiting_card_str`',
+		4 => '`event_table1`.`event_str`',
 		5 => 5,
 		6 => 6,
-		7 => '`meetings_table`.`meeting_from_date`',
-		8 => '`meetings_table`.`meeting_to_date`',
-		9 => 9,
+		7 => 7,
+		8 => '`meetings_table`.`meeting_from_date`',
+		9 => '`meetings_table`.`meeting_to_date`',
 		10 => 10,
 		11 => 11,
 		12 => 12,
 		13 => 13,
+		14 => 14,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`meetings_table`.`meetings_id`" => "meetings_id",
+		"`meetings_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`visiting_card_table1`.`visiting_card_str`), CONCAT_WS('',   `visiting_card_table1`.`visiting_card_str`), '') /* Visiting card details */" => "visiting_card_lookup",
 		"IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') /* Event Details */" => "event_lookup",
 		"`meetings_table`.`meeting_title`" => "meeting_title",
@@ -68,6 +71,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`meetings_table`.`meetings_id`" => "ID",
+		"`meetings_table`.`username`" => "Username",
 		"IF(    CHAR_LENGTH(`visiting_card_table1`.`visiting_card_str`), CONCAT_WS('',   `visiting_card_table1`.`visiting_card_str`), '') /* Visiting card details */" => "Visiting card details",
 		"IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') /* Event Details */" => "Event Details",
 		"`meetings_table`.`meeting_title`" => "Meeting title",
@@ -85,6 +89,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`meetings_table`.`meetings_id`" => "meetings_id",
+		"`meetings_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`visiting_card_table1`.`visiting_card_str`), CONCAT_WS('',   `visiting_card_table1`.`visiting_card_str`), '') /* Visiting card details */" => "visiting_card_lookup",
 		"IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') /* Event Details */" => "event_lookup",
 		"`meetings_table`.`meeting_title`" => "meeting_title",
@@ -129,13 +134,13 @@
 	$x->TableTitle = 'Meetings - App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`meetings_table`.`meetings_id`';
-	$x->DefaultSortField = '`meetings_table`.`meeting_to_date`';
+	$x->DefaultSortField = '`meetings_table`.`meeting_from_date`';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Meeting title', 'Participants', 'Venue', 'Meeting from date', 'Meeting to date', 'Minutes of Meeting', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['meetings_id', 'meeting_title', 'participants', 'venue', 'meeting_from_date', 'meeting_to_date', 'minutes_of_meeting', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 4, 5, 6, 7, 8, 9, 11, 12, 13, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Meeting title', 'Participants', 'Venue', 'Meeting from date', 'Meeting to date', 'Minutes of Meeting', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['meetings_id', 'username', 'meeting_title', 'participants', 'venue', 'meeting_from_date', 'meeting_to_date', 'minutes_of_meeting', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 2, 5, 6, 7, 8, 9, 10, 12, 13, 14, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/meetings_table_templateTV.html';

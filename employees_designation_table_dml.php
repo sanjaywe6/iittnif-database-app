@@ -16,6 +16,7 @@ function employees_designation_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'employee_lookup' => Request::lookup('employee_lookup', ''),
 		'designation' => Request::val('designation', ''),
 		'date_of_appointment_to_designation' => Request::dateComponents('date_of_appointment_to_designation', ''),
@@ -259,7 +260,7 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
 		$combo_employee_lookup->SelectedData = $filterer_employee_lookup;
-		$combo_active_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_active_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '6' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 		$combo_reporting_officer->SelectedData = $filterer_reporting_officer;
 		$combo_reviewing_officer->SelectedData = $filterer_reviewing_officer;
 	}
@@ -660,6 +661,7 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(employee_lookup)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(designation)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date_of_appointment_to_designation)%%>', '', $templateCode);
@@ -676,6 +678,8 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(employee_lookup)%%>', safe_html($urow['employee_lookup']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(employee_lookup)%%>', html_attr($row['employee_lookup']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(employee_lookup)%%>', urlencode($urow['employee_lookup']), $templateCode);
@@ -706,6 +710,8 @@ function employees_designation_table_form($selectedId = '', $allowUpdate = true,
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(employee_lookup)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(employee_lookup)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(designation)%%>', '', $templateCode);

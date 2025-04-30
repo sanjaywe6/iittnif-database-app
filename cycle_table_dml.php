@@ -16,6 +16,7 @@ function cycle_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'registration_number' => Request::val('registration_number', ''),
 		'cycle_model' => Request::val('cycle_model', ''),
 		'cycle_color' => Request::val('cycle_color', ''),
@@ -441,6 +442,7 @@ function cycle_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(registration_number)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(cycle_model)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(cycle_color)%%>', '', $templateCode);
@@ -454,6 +456,8 @@ function cycle_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(registration_number)%%>', safe_html($urow['registration_number']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(registration_number)%%>', html_attr($row['registration_number']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(registration_number)%%>', urlencode($urow['registration_number']), $templateCode);
@@ -478,6 +482,8 @@ function cycle_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(registration_number)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(registration_number)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(cycle_model)%%>', '', $templateCode);

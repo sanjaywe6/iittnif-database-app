@@ -1,8 +1,11 @@
-		<td colspan="13" class="row">
+		<td colspan="14" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="computer_details_table-id-caption field-caption-tv">ID</dt>
 					<dd id="computer_details_table-id-<%%VALUE(id)%%>" class="computer_details_table-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></dd>
+
+					<dt class="computer_details_table-username-caption field-caption-tv">Username</dt>
+					<dd id="computer_details_table-username-<%%VALUE(id)%%>" class="computer_details_table-username"><%%SELECT%%><%%VALUE(username)%%><%%ENDSELECT%%></dd>
 
 					<dt class="computer_details_table-pc_number-caption field-caption-tv">PC number</dt>
 					<dd id="computer_details_table-pc_number-<%%VALUE(id)%%>" class="computer_details_table-pc_number"><%%SELECT%%><%%VALUE(pc_number)%%><%%ENDSELECT%%></dd>
@@ -19,13 +22,13 @@
 					<dt class="computer_details_table-desk_number-caption field-caption-tv">Desk number</dt>
 					<dd id="computer_details_table-desk_number-<%%VALUE(id)%%>" class="computer_details_table-desk_number"><%%SELECT%%><%%VALUE(desk_number)%%><%%ENDSELECT%%></dd>
 
-					<dt class="computer_details_table-maintained_by-caption field-caption-tv">Maintained by</dt>
-					<dd id="computer_details_table-maintained_by-<%%VALUE(id)%%>" class="computer_details_table-maintained_by"><%%SELECT%%><%%VALUE(maintained_by)%%><%%ENDSELECT%%></dd>
-
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
+					<dt class="computer_details_table-maintained_by-caption field-caption-tv">Maintained by</dt>
+					<dd id="computer_details_table-maintained_by-<%%VALUE(id)%%>" class="computer_details_table-maintained_by"><%%SELECT%%><%%VALUE(maintained_by)%%><%%ENDSELECT%%></dd>
+
 					<dt class="computer_details_table-assigned_to_user-caption field-caption-tv">Assigned to user</dt>
 					<dd id="computer_details_table-assigned_to_user-<%%VALUE(id)%%>" class="computer_details_table-assigned_to_user"><%%SELECT%%><%%VALUE(assigned_to_user)%%><%%ENDSELECT%%></dd>
 

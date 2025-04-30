@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`participants_table`.`participants_id`" => "participants_id",
+		"`participants_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') /* Event */" => "event_lookup",
 		"IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') /* Meeting */" => "meeting_lookup",
 		"`participants_table`.`name`" => "name",
@@ -33,21 +34,23 @@
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
 		1 => '`participants_table`.`participants_id`',
-		2 => '`event_table1`.`event_str`',
-		3 => '`meetings_table1`.`meeting_str`',
-		4 => 4,
+		2 => 2,
+		3 => '`event_table1`.`event_str`',
+		4 => '`meetings_table1`.`meeting_str`',
 		5 => 5,
 		6 => 6,
 		7 => 7,
-		8 => '`participants_table`.`status_date`',
-		9 => 9,
+		8 => 8,
+		9 => '`participants_table`.`status_date`',
 		10 => 10,
 		11 => 11,
+		12 => 12,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`participants_table`.`participants_id`" => "participants_id",
+		"`participants_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') /* Event */" => "event_lookup",
 		"IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') /* Meeting */" => "meeting_lookup",
 		"`participants_table`.`name`" => "name",
@@ -62,6 +65,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`participants_table`.`participants_id`" => "ID",
+		"`participants_table`.`username`" => "Username",
 		"IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') /* Event */" => "Event",
 		"IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') /* Meeting */" => "Meeting",
 		"`participants_table`.`name`" => "Name",
@@ -77,6 +81,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`participants_table`.`participants_id`" => "participants_id",
+		"`participants_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') /* Event */" => "event_lookup",
 		"IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') /* Meeting */" => "meeting_lookup",
 		"`participants_table`.`name`" => "name",
@@ -122,10 +127,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Event', 'Meeting', 'Name', 'Designation', 'Participant type', 'Accepted status', 'Status date', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['participants_id', 'event_lookup', 'meeting_lookup', 'name', 'designation', 'participant_type', 'accepted_status', 'status_date', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Event', 'Meeting', 'Name', 'Designation', 'Participant type', 'Accepted status', 'Status date', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['participants_id', 'username', 'event_lookup', 'meeting_lookup', 'name', 'designation', 'participant_type', 'accepted_status', 'status_date', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/participants_table_templateTV.html';

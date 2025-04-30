@@ -16,6 +16,7 @@ function task_setting_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'task_status' => Request::val('task_status', ''),
 		'task_description' => br2nl(Request::val('task_description', '')),
 		'task_duration' => Request::val('task_duration', ''),
@@ -269,8 +270,8 @@ function task_setting_table_form($selectedId = '', $allowUpdate = true, $allowIn
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_task_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_task_duration->SelectedText = (isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_task_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_task_duration->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 		$combo_supervisor_name->SelectedData = $filterer_supervisor_name;
 		$combo_assigned_to->SelectedData = $filterer_assigned_to;
 	}
@@ -589,6 +590,7 @@ function task_setting_table_form($selectedId = '', $allowUpdate = true, $allowIn
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(task_id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(task_status)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(task_description)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(task_duration)%%>', '', $templateCode);
@@ -604,6 +606,8 @@ function task_setting_table_form($selectedId = '', $allowUpdate = true, $allowIn
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(task_id)%%>', safe_html($urow['task_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(task_id)%%>', urlencode($urow['task_id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(task_status)%%>', safe_html($urow['task_status']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(task_status)%%>', html_attr($row['task_status']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(task_status)%%>', urlencode($urow['task_status']), $templateCode);
@@ -631,6 +635,8 @@ function task_setting_table_form($selectedId = '', $allowUpdate = true, $allowIn
 	} else {
 		$templateCode = str_replace('<%%VALUE(task_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(task_id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(task_status)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(task_status)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(task_description)%%>', '', $templateCode);

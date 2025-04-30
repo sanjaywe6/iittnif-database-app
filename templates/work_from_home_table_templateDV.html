@@ -185,10 +185,10 @@
 			if(!add_new_mode) {
 				$j('body').append('<div id="admin-tools-appendix"></div>');
 				$j('#admin-tools-appendix').load(
-					'ajax_admin_tools.php?table=work_from_home_table&id=<%%URLVALUE(work_from_home_id)%%>',
+					'ajax_admin_tools.php?table=work_from_home_table&id=<%%URLVALUE(id)%%>',
 					function(resp) {
 						if(!resp.length) return;
-						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=work_from_home_table&id=<%%URLVALUE(work_from_home_id)%%>');
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=work_from_home_table&id=<%%URLVALUE(id)%%>');
 					}
 				);
 			}

@@ -18,7 +18,8 @@
 
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
-		"`work_from_home_table`.`work_from_home_id`" => "work_from_home_id",
+		"`work_from_home_table`.`id`" => "id",
+		"`work_from_home_table`.`username`" => "username",
 		"`work_from_home_table`.`work_from_home_purpose`" => "work_from_home_purpose",
 		"if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
 		"if(`work_from_home_table`.`to_date`,date_format(`work_from_home_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
@@ -30,20 +31,22 @@
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
-		1 => '`work_from_home_table`.`work_from_home_id`',
+		1 => '`work_from_home_table`.`id`',
 		2 => 2,
-		3 => '`work_from_home_table`.`from_date`',
-		4 => '`work_from_home_table`.`to_date`',
-		5 => '`user_table1`.`user_id`',
-		6 => 6,
+		3 => 3,
+		4 => '`work_from_home_table`.`from_date`',
+		5 => '`work_from_home_table`.`to_date`',
+		6 => '`user_table1`.`user_id`',
 		7 => 7,
 		8 => 8,
 		9 => 9,
+		10 => 10,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
-		"`work_from_home_table`.`work_from_home_id`" => "work_from_home_id",
+		"`work_from_home_table`.`id`" => "id",
+		"`work_from_home_table`.`username`" => "username",
 		"`work_from_home_table`.`work_from_home_purpose`" => "work_from_home_purpose",
 		"if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
 		"if(`work_from_home_table`.`to_date`,date_format(`work_from_home_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
@@ -55,7 +58,8 @@
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
-		"`work_from_home_table`.`work_from_home_id`" => "ID",
+		"`work_from_home_table`.`id`" => "ID",
+		"`work_from_home_table`.`username`" => "Username",
 		"`work_from_home_table`.`work_from_home_purpose`" => "Purpose work from home",
 		"`work_from_home_table`.`from_date`" => "From date",
 		"`work_from_home_table`.`to_date`" => "To date",
@@ -68,7 +72,8 @@
 
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
-		"`work_from_home_table`.`work_from_home_id`" => "work_from_home_id",
+		"`work_from_home_table`.`id`" => "id",
+		"`work_from_home_table`.`username`" => "username",
 		"`work_from_home_table`.`work_from_home_purpose`" => "work_from_home_purpose",
 		"if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
 		"if(`work_from_home_table`.`to_date`,date_format(`work_from_home_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
@@ -108,14 +113,14 @@
 	$x->ScriptFileName = 'work_from_home_table_view.php';
 	$x->TableTitle = 'Work from home - App';
 	$x->TableIcon = 'table.gif';
-	$x->PrimaryKey = '`work_from_home_table`.`work_from_home_id`';
+	$x->PrimaryKey = '`work_from_home_table`.`id`';
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Purpose work from home', 'From date', 'To date', 'Approved by', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['work_from_home_id', 'work_from_home_purpose', 'from_date', 'to_date', 'approved_by', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Purpose work from home', 'From date', 'To date', 'Approved by', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'username', 'work_from_home_purpose', 'from_date', 'to_date', 'approved_by', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/work_from_home_table_templateTV.html';

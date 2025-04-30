@@ -1,8 +1,11 @@
-		<td colspan="9" class="row">
+		<td colspan="10" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="cycle_usage_table-id-caption field-caption-tv">ID</dt>
 					<dd id="cycle_usage_table-id-<%%VALUE(id)%%>" class="cycle_usage_table-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></dd>
+
+					<dt class="cycle_usage_table-username-caption field-caption-tv">Username</dt>
+					<dd id="cycle_usage_table-username-<%%VALUE(id)%%>" class="cycle_usage_table-username"><%%SELECT%%><%%VALUE(username)%%><%%ENDSELECT%%></dd>
 
 					<dt class="cycle_usage_table-cycle_lookup-caption field-caption-tv">Cycle Details</dt>
 					<dd id="cycle_usage_table-cycle_lookup-<%%VALUE(id)%%>" class="cycle_usage_table-cycle_lookup"><%%SELECT%%><%%VALUE(cycle_lookup)%%><%%ENDSELECT%%></dd>
@@ -13,13 +16,13 @@
 					<dt class="cycle_usage_table-datetime_from-caption field-caption-tv">Date and time from</dt>
 					<dd id="cycle_usage_table-datetime_from-<%%VALUE(id)%%>" class="cycle_usage_table-datetime_from"><%%SELECT%%><%%VALUE(datetime_from)%%><%%ENDSELECT%%></dd>
 
-					<dt class="cycle_usage_table-datetime_to-caption field-caption-tv">Date and time to</dt>
-					<dd id="cycle_usage_table-datetime_to-<%%VALUE(id)%%>" class="cycle_usage_table-datetime_to"><%%SELECT%%><%%VALUE(datetime_to)%%><%%ENDSELECT%%></dd>
-
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
+					<dt class="cycle_usage_table-datetime_to-caption field-caption-tv">Date and time to</dt>
+					<dd id="cycle_usage_table-datetime_to-<%%VALUE(id)%%>" class="cycle_usage_table-datetime_to"><%%SELECT%%><%%VALUE(datetime_to)%%><%%ENDSELECT%%></dd>
+
 					<dt class="cycle_usage_table-total_distance_run-caption field-caption-tv">Total distance run (In KM)</dt>
 					<dd id="cycle_usage_table-total_distance_run-<%%VALUE(id)%%>" class="cycle_usage_table-total_distance_run"><%%SELECT%%><%%VALUE(total_distance_run)%%><%%ENDSELECT%%></dd>
 

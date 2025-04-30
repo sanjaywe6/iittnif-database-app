@@ -21,6 +21,7 @@ function computer_allotment_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'name_of_user' => Request::val('name_of_user', ''),
 		'role' => Request::val('role', ''),
 		'from_date' => Request::datetime('from_date', ''),
@@ -234,7 +235,7 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
 		$combo_pc_id->SelectedData = $filterer_pc_id;
-		$combo_role->SelectedText = (isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_role->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
 	$combo_pc_id->HTML = '<span id="pc_id-container' . $rnd1 . '"></span><input type="hidden" name="pc_id" id="pc_id' . $rnd1 . '" value="' . html_attr($combo_pc_id->SelectedData) . '">';
 	$combo_pc_id->MatchText = '<span id="pc_id-container-readonly' . $rnd1 . '"></span><input type="hidden" name="pc_id" id="pc_id' . $rnd1 . '" value="' . html_attr($combo_pc_id->SelectedData) . '">';
@@ -460,6 +461,7 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(pc_id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(name_of_user)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(role)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(from_date)%%>', '', $templateCode);
@@ -478,6 +480,8 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(pc_id)%%>', safe_html($urow['pc_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(pc_id)%%>', urlencode($urow['pc_id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(name_of_user)%%>', safe_html($urow['name_of_user']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(name_of_user)%%>', html_attr($row['name_of_user']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(name_of_user)%%>', urlencode($urow['name_of_user']), $templateCode);
@@ -510,6 +514,8 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(pc_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(pc_id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(name_of_user)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(name_of_user)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(role)%%>', '', $templateCode);

@@ -16,6 +16,7 @@ function hrd_sdp_events_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'year' => Request::val('year', ''),
 		'program_name' => Request::val('program_name', ''),
 		'area_of_workshop' => br2nl(Request::val('area_of_workshop', '')),
@@ -376,6 +377,7 @@ function hrd_sdp_events_table_form($selectedId = '', $allowUpdate = true, $allow
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(year)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(program_name)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(area_of_workshop)%%>', '', $templateCode);
@@ -394,6 +396,8 @@ function hrd_sdp_events_table_form($selectedId = '', $allowUpdate = true, $allow
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(year)%%>', safe_html($urow['year']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(year)%%>', html_attr($row['year']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(year)%%>', urlencode($urow['year']), $templateCode);
@@ -429,6 +433,8 @@ function hrd_sdp_events_table_form($selectedId = '', $allowUpdate = true, $allow
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(year)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(year)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(program_name)%%>', '', $templateCode);

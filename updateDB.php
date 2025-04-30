@@ -11,13 +11,9 @@
 		// set up tables
 		setupTable('user_table', []);
 
-		setupTable('suggestion', [
-				"ALTER TABLE `suggestion` ADD `username` VARCHAR(255) NULL ",
-			]);
+		setupTable('suggestion', []);
 
-		setupTable('approval_table', [
-				"ALTER TABLE `approval_table` ADD `username` VARCHAR(255) NULL ",
-			]);
+		setupTable('approval_table', []);
 		setupIndexes('approval_table', ['person_responsbility',]);
 
 		setupTable('car_table', []);
@@ -98,59 +94,100 @@
 
 		setupTable('sdp_participants_college_details_table', []);
 
-		setupTable('asset_table', []);
+		setupTable('asset_table', [
+				"ALTER TABLE `asset_table` ADD `username` VARCHAR(255) NULL ",
+			]);
 
-		setupTable('asset_allotment_table', []);
+		setupTable('asset_allotment_table', [
+				"ALTER TABLE `asset_allotment_table` ADD `username` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('asset_allotment_table', ['asset_lookup','select_employee','alloted_by',]);
 
-		setupTable('sub_asset_table', []);
+		setupTable('sub_asset_table', [
+				"ALTER TABLE `sub_asset_table` ADD `username` VARCHAR(255) NULL ",
+			]);
 
-		setupTable('sub_asset_allotment_table', []);
+		setupTable('sub_asset_allotment_table', [
+				"ALTER TABLE `sub_asset_allotment_table` ADD `username` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('sub_asset_allotment_table', ['sub_asset_lookup','select_employee','alloted_by',]);
 
-		setupTable('it_inventory_app', []);
+		setupTable('it_inventory_app', [
+				"ALTER TABLE `it_inventory_app` ADD `username` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('it_inventory_app', ['sactioned_by',]);
 
-		setupTable('it_inventory_billing_details', []);
+		setupTable('it_inventory_billing_details', [
+				"ALTER TABLE `it_inventory_billing_details` ADD `username` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('it_inventory_billing_details', ['it_inventory_lookup',]);
 
-		setupTable('it_inventory_allotment_table', []);
+		setupTable('it_inventory_allotment_table', [
+				"ALTER TABLE `it_inventory_allotment_table` ADD `username` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('it_inventory_allotment_table', ['it_inventory_lookup','select_employee','alloted_by',]);
 
-		setupTable('computer_details_table', []);
+		setupTable('computer_details_table', [
+				"ALTER TABLE `computer_details_table` ADD `username` VARCHAR(255) NULL ",
+			]);
 
 		setupTable('computer_user_details', []);
 		setupIndexes('computer_user_details', ['pc_id',]);
 
-		setupTable('computer_allotment_table', []);
+		setupTable('computer_allotment_table', [
+				"ALTER TABLE `computer_allotment_table` ADD `username` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('computer_allotment_table', ['pc_id',]);
 
-		setupTable('employees_personal_data_table', []);
+		setupTable('employees_personal_data_table', [
+				"ALTER TABLE `employees_personal_data_table` ADD `username` VARCHAR(255) NULL ",
+			]);
 
-		setupTable('employees_designation_table', []);
+		setupTable('employees_designation_table', [
+				"ALTER TABLE `employees_designation_table` ADD `username` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('employees_designation_table', ['employee_lookup','reporting_officer','reviewing_officer',]);
 
-		setupTable('employees_appraisal_table', []);
+		setupTable('employees_appraisal_table', [
+				"ALTER TABLE `employees_appraisal_table` ADD `username` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('employees_appraisal_table', ['employee_designation_lookup','reviewing_officer',]);
 
-		setupTable('beyond_workingHours_table', []);
+		setupTable('beyond_workingHours_table', [
+				"ALTER TABLE `beyond_workingHours_table` ADD `username_1` VARCHAR(255) NULL ",
+				"ALTER TABLE `beyond_workingHours_table` DROP `username_1`",
+			]);
 		setupIndexes('beyond_workingHours_table', ['approved_by',]);
 
-		setupTable('attendence_details_table', []);
+		setupTable('attendence_details_table', [
+				"ALTER TABLE `attendence_details_table` ADD `username` VARCHAR(255) NULL ",
+			]);
 
-		setupTable('leave_table', []);
+		setupTable('leave_table', [
+				"ALTER TABLE `leave_table` ADD `username_1` VARCHAR(255) NULL ",
+				"ALTER TABLE `leave_table` DROP `username_1`",
+			]);
 		setupIndexes('leave_table', ['approved_by',]);
 
-		setupTable('work_from_home_table', []);
+		setupTable('work_from_home_table', [
+				"ALTER TABLE `work_from_home_table` ADD `username` VARCHAR(255) NULL ",
+				"ALTER TABLE `work_from_home_table` CHANGE `work_from_home_id` `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT ",
+			]);
 		setupIndexes('work_from_home_table', ['approved_by',]);
 
-		setupTable('navavishkar_stay_table', []);
+		setupTable('navavishkar_stay_table', [
+				"ALTER TABLE `navavishkar_stay_table` ADD `username` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('navavishkar_stay_table', ['approved_by',]);
 
-		setupTable('navavishkar_stay_payment_table', []);
+		setupTable('navavishkar_stay_payment_table', [
+				"ALTER TABLE `navavishkar_stay_payment_table` ADD `username` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('navavishkar_stay_payment_table', ['navavishakr_stay_details',]);
 
-		setupTable('email_id_allocation_table', []);
+		setupTable('email_id_allocation_table', [
+				"ALTER TABLE `email_id_allocation_table` ADD `username` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('email_id_allocation_table', ['reporting_manager',]);
 
 		setupTable('all_startup_data_table', []);
@@ -184,13 +221,22 @@
 
 		setupTable('payment_track_details_table', []);
 
-		setupTable('travel_table', []);
+		setupTable('travel_table', [
+				"ALTER TABLE `travel_table` ADD `username` VARCHAR(255) NULL ",
+			]);
 
-		setupTable('travel_stay_table', []);
+		setupTable('travel_stay_table', [
+				"ALTER TABLE `travel_stay_table` ADD `username` VARCHAR(255) NULL ",
+			]);
 
-		setupTable('travel_local_commute_table', []);
+		setupTable('travel_local_commute_table', [
+				"ALTER TABLE `travel_local_commute_table` ADD `username` VARCHAR(255) NULL ",
+			]);
 
-		setupTable('r_and_d_progress', []);
+		setupTable('r_and_d_progress', [
+				"ALTER TABLE `r_and_d_progress` ADD `username_1` VARCHAR(255) NULL ",
+				"ALTER TABLE `r_and_d_progress` DROP `username_1`",
+			]);
 
 		setupTable('panel_decision_table_tdp', []);
 
@@ -220,7 +266,10 @@
 		setupTable('project_details_tdp', []);
 		setupIndexes('project_details_tdp', ['project_number',]);
 
-		setupTable('newsletter_table', []);
+		setupTable('newsletter_table', [
+				"ALTER TABLE `newsletter_table` ADD `username_1` VARCHAR(255) NULL ",
+				"ALTER TABLE `newsletter_table` DROP `username_1`",
+			]);
 
 
 

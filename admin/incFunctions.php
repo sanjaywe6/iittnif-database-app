@@ -139,6 +139,13 @@
 					'group' => $tg[0],
 					'homepageShowCount' => 1
 				],
+				'techlead_web_page' => [
+					'Caption' => 'Tech Lead Web Page  - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[0],
+					'homepageShowCount' => 1
+				],
 				'car_table' => [
 					'Caption' => 'Car - App',
 					'Description' => '<a href="https://lookerstudio.google.com/reporting/58f87367-3f09-42c0-a288-cf75f313cbed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Car App Report</b></button></a>',
@@ -704,6 +711,7 @@
 			'user_table' => ['User Table', '', 'table.gif', 'Suggestion App'],
 			'suggestion' => ['Suggestion - App', '', 'table.gif', 'Suggestion App'],
 			'approval_table' => ['Approval - App', '', 'table.gif', 'Approvals &amp; Sanctions'],
+			'techlead_web_page' => ['Tech Lead Web Page  - App', '', 'table.gif', 'Approvals &amp; Sanctions'],
 			'car_table' => ['Car - App', '<a href="https://lookerstudio.google.com/reporting/58f87367-3f09-42c0-a288-cf75f313cbed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Car App Report</b></button></a>', 'table.gif', 'Facilities Apps'],
 			'car_usage_table' => ['Car usage table', '', 'table.gif', 'Facilities Apps'],
 			'cycle_table' => ['Cycle - App', '<a href="https://lookerstudio.google.com/reporting/c941076f-d85a-4899-b163-1337a9b083ed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Cycle Usage App Report</b></button></a>', 'table.gif', 'Facilities Apps'],
@@ -1791,6 +1799,92 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+				],
+				'techlead_web_page' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Username',
+							'description' => '',
+						],
+					],
+					'techlead' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'GNSS Tech Lead'",
+						'info' => [
+							'caption' => 'Tech Lead',
+							'description' => '',
+						],
+					],
+					'category' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Foundational Research'",
+						'info' => [
+							'caption' => 'Category',
+							'description' => '',
+						],
+					],
+					'content' => [
+						'appgini' => "TEXT NOT NULL",
+						'info' => [
+							'caption' => 'Web Page Content',
+							'description' => '',
+						],
+					],
+					'img1' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Upload Image First',
+							'description' => 'Maximum file size allowed: 10000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
+						],
+					],
+					'img2' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Upload Image Second',
+							'description' => 'Maximum file size allowed: 10000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
+						],
+					],
+					'approval_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Pending'",
+						'info' => [
+							'caption' => 'Approval status',
+							'description' => '',
+						],
+					],
+					'approved_by' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Approved by',
+							'description' => '',
+						],
+					],
+					'website_update_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Pending'",
+						'info' => [
+							'caption' => 'Website Update Status',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated By',
 							'description' => '',
 						],
 					],
@@ -11256,6 +11350,9 @@
 			'approval_table' => [
 				'user_table' => ['person_responsbility'],
 			],
+			'techlead_web_page' => [
+				'user_table' => ['approved_by'],
+			],
 			'car_usage_table' => [
 				'car_table' => ['car_lookup'],
 			],
@@ -11448,6 +11545,7 @@
 			'user_table' => [],
 			'suggestion' => [],
 			'approval_table' => [],
+			'techlead_web_page' => [],
 			'car_table' => [],
 			'car_usage_table' => [],
 			'cycle_table' => [],
@@ -11676,6 +11774,9 @@
 			],
 			'approval_table' => [
 				'person_responsbility' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+			],
+			'techlead_web_page' => [
+				'approved_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \' - \', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'car_table' => [
 			],

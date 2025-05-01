@@ -8,6 +8,10 @@
 		'approval_table' => [
 			'image' => getUploadDir(''),
 		],
+		'techlead_web_page' => [
+			'img1' => getUploadDir(''),
+			'img2' => getUploadDir(''),
+		],
 		'visiting_card_table' => [
 			'front_img' => getUploadDir(''),
 			'back_img' => getUploadDir(''),

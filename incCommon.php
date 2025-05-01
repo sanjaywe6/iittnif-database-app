@@ -108,6 +108,7 @@
 			'user_table' => "`user_table`.`user_id` as 'user_id', `user_table`.`memberID` as 'memberID', `user_table`.`name` as 'name'",
 			'suggestion' => "`suggestion`.`suggestion_id` as 'suggestion_id', `suggestion`.`username` as 'username', `suggestion`.`department` as 'department', `suggestion`.`suggestion` as 'suggestion', `suggestion`.`attachment` as 'attachment', `suggestion`.`department_remarks` as 'department_remarks', `suggestion`.`ceo_pd_remarks` as 'ceo_pd_remarks', `suggestion`.`created_by` as 'created_by', `suggestion`.`last_updated_by` as 'last_updated_by'",
 			'approval_table' => "`approval_table`.`id` as 'id', `approval_table`.`username` as 'username', `approval_table`.`approval_from` as 'approval_from', `approval_table`.`type` as 'type', `approval_table`.`description` as 'description', `approval_table`.`quantity` as 'quantity', `approval_table`.`full_est_value` as 'full_est_value', `approval_table`.`name_of_vendor` as 'name_of_vendor', `approval_table`.`purpose` as 'purpose', `approval_table`.`requested_department` as 'requested_department', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'person_responsbility', `approval_table`.`mode_of_purchase` as 'mode_of_purchase', `approval_table`.`others_if_any` as 'others_if_any', `approval_table`.`approval_status` as 'approval_status', `approval_table`.`remarks_for_approval` as 'remarks_for_approval', `approval_table`.`image` as 'image', `approval_table`.`other_file` as 'other_file', `approval_table`.`created_by` as 'created_by', `approval_table`.`last_updated_by` as 'last_updated_by'",
+			'techlead_web_page' => "`techlead_web_page`.`id` as 'id', `techlead_web_page`.`username` as 'username', `techlead_web_page`.`techlead` as 'techlead', `techlead_web_page`.`category` as 'category', `techlead_web_page`.`content` as 'content', `techlead_web_page`.`img1` as 'img1', `techlead_web_page`.`img2` as 'img2', `techlead_web_page`.`approval_status` as 'approval_status', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, ' - ', `user_table1`.`name`), '') as 'approved_by', `techlead_web_page`.`website_update_status` as 'website_update_status', `techlead_web_page`.`created_by` as 'created_by', `techlead_web_page`.`last_updated_by` as 'last_updated_by'",
 			'car_table' => "`car_table`.`id` as 'id', `car_table`.`username` as 'username', `car_table`.`car_number` as 'car_number', `car_table`.`registration_number` as 'registration_number', `car_table`.`car_model` as 'car_model', `car_table`.`car_vin` as 'car_vin', `car_table`.`fuel_type` as 'fuel_type', `car_table`.`seating_capacity` as 'seating_capacity', `car_table`.`car_color` as 'car_color', `car_table`.`rental_company_name` as 'rental_company_name', `car_table`.`contact_person` as 'contact_person', `car_table`.`contact_number_of_person` as 'contact_number_of_person', `car_table`.`rental_rate` as 'rental_rate', if(`car_table`.`rental_start_date`,date_format(`car_table`.`rental_start_date`,'%d/%m/%Y'),'') as 'rental_start_date', if(`car_table`.`rental_end_date`,date_format(`car_table`.`rental_end_date`,'%d/%m/%Y'),'') as 'rental_end_date', `car_table`.`purpose` as 'purpose', `car_table`.`created_by` as 'created_by', `car_table`.`last_updated_by` as 'last_updated_by'",
 			'car_usage_table' => "`car_usage_table`.`car_usage_id` as 'car_usage_id', `car_usage_table`.`username` as 'username', IF(    CHAR_LENGTH(`car_table1`.`car_number`) || CHAR_LENGTH(`car_table1`.`car_model`), CONCAT_WS('',   `car_table1`.`car_number`, '::', `car_table1`.`car_model`), '') as 'car_lookup', `car_usage_table`.`used_by` as 'used_by', if(`car_usage_table`.`datetime_from`,date_format(`car_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'') as 'datetime_from', if(`car_usage_table`.`datetime_to`,date_format(`car_usage_table`.`datetime_to`,'%d/%m/%Y %H:%i'),'') as 'datetime_to', `car_usage_table`.`total_distance_run` as 'total_distance_run', `car_usage_table`.`purpose` as 'purpose', `car_usage_table`.`created_by` as 'created_by', `car_usage_table`.`last_updated_by` as 'last_updated_by'",
 			'cycle_table' => "`cycle_table`.`id` as 'id', `cycle_table`.`username` as 'username', `cycle_table`.`registration_number` as 'registration_number', `cycle_table`.`cycle_model` as 'cycle_model', `cycle_table`.`cycle_color` as 'cycle_color', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'responsible_contact_person', `cycle_table`.`contact_number_of_person` as 'contact_number_of_person', `cycle_table`.`purpose` as 'purpose', `cycle_table`.`created_by` as 'created_by', `cycle_table`.`last_updated_by` as 'last_updated_by'",
@@ -200,6 +201,7 @@
 			'user_table' => "`user_table` ",
 			'suggestion' => "`suggestion` ",
 			'approval_table' => "`approval_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`approval_table`.`person_responsbility` ",
+			'techlead_web_page' => "`techlead_web_page` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`techlead_web_page`.`approved_by` ",
 			'car_table' => "`car_table` ",
 			'car_usage_table' => "`car_usage_table` LEFT JOIN `car_table` as car_table1 ON `car_table1`.`id`=`car_usage_table`.`car_lookup` ",
 			'cycle_table' => "`cycle_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`cycle_table`.`responsible_contact_person` ",
@@ -284,6 +286,7 @@
 			'user_table' => 'user_id',
 			'suggestion' => 'suggestion_id',
 			'approval_table' => 'id',
+			'techlead_web_page' => 'id',
 			'car_table' => 'id',
 			'car_usage_table' => 'car_usage_id',
 			'cycle_table' => 'id',
@@ -445,6 +448,20 @@
 				'remarks_for_approval' => 'None',
 				'image' => '',
 				'other_file' => '',
+				'created_by' => '',
+				'last_updated_by' => '',
+			],
+			'techlead_web_page' => [
+				'id' => '',
+				'username' => '',
+				'techlead' => 'GNSS Tech Lead',
+				'category' => 'Foundational Research',
+				'content' => '',
+				'img1' => '',
+				'img2' => '',
+				'approval_status' => 'Pending',
+				'approved_by' => '',
+				'website_update_status' => 'Pending',
 				'created_by' => '',
 				'last_updated_by' => '',
 			],
@@ -2521,7 +2538,7 @@
 		if(is_array($arrTables)) {
 			foreach($arrTables as $tn => $tc) {
 				/* ---- list of tables where hide link in nav menu is set ---- */
-				$tChkHL = array_search($tn, ['user_table','suggestion','approval_table','car_table','car_usage_table','cycle_table','cycle_usage_table','gym_table','coffee_table','cafeteria_table','event_table','outcomes_expected_table','event_decision_table','meetings_table','agenda_table','decision_table','participants_table','action_actor','visiting_card_table','mou_details_table','mou_company_area_details_table','goal_setting_table','goal_progress_table','task_setting_table','subtask_setting_table','internship_fellowship_details_app','star_pnt','hrd_sdp_events_table','training_program_on_geospatial_tchnologies_table','space_day_school_details_app','space_day_college_student_table','school_list','sdp_participants_college_details_table','asset_table','asset_allotment_table','sub_asset_table','sub_asset_allotment_table','it_inventory_app','it_inventory_billing_details','it_inventory_allotment_table','computer_details_table','computer_user_details','computer_allotment_table','employees_personal_data_table','employees_designation_table','employees_appraisal_table','beyond_workingHours_table','leave_table','half_day_leave_table','work_from_home_table','navavishkar_stay_table','navavishkar_stay_payment_table','email_id_allocation_table','attendence_details_table','all_startup_data_table','shortlisted_startups_for_fund_table','shortlisted_startups_dd_and_agreement_table','vikas_startup_applications_table','programs_table','evaluation_table','problem_statement_table','evaluators_table','approval_billing_table','honorarium_claim_table','all_bank_account_statement_table','payment_track_details_table','travel_table','travel_stay_table','travel_local_commute_table','r_and_d_progress','panel_decision_table_tdp','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','summary_table_tdp','project_details_tdp','newsletter_table']);
+				$tChkHL = array_search($tn, ['user_table','suggestion','approval_table','techlead_web_page','car_table','car_usage_table','cycle_table','cycle_usage_table','gym_table','coffee_table','cafeteria_table','event_table','outcomes_expected_table','event_decision_table','meetings_table','agenda_table','decision_table','participants_table','action_actor','visiting_card_table','mou_details_table','mou_company_area_details_table','goal_setting_table','goal_progress_table','task_setting_table','subtask_setting_table','internship_fellowship_details_app','star_pnt','hrd_sdp_events_table','training_program_on_geospatial_tchnologies_table','space_day_school_details_app','space_day_college_student_table','school_list','sdp_participants_college_details_table','asset_table','asset_allotment_table','sub_asset_table','sub_asset_allotment_table','it_inventory_app','it_inventory_billing_details','it_inventory_allotment_table','computer_details_table','computer_user_details','computer_allotment_table','employees_personal_data_table','employees_designation_table','employees_appraisal_table','beyond_workingHours_table','leave_table','half_day_leave_table','work_from_home_table','navavishkar_stay_table','navavishkar_stay_payment_table','email_id_allocation_table','attendence_details_table','all_startup_data_table','shortlisted_startups_for_fund_table','shortlisted_startups_dd_and_agreement_table','vikas_startup_applications_table','programs_table','evaluation_table','problem_statement_table','evaluators_table','approval_billing_table','honorarium_claim_table','all_bank_account_statement_table','payment_track_details_table','travel_table','travel_stay_table','travel_local_commute_table','r_and_d_progress','panel_decision_table_tdp','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','summary_table_tdp','project_details_tdp','newsletter_table']);
 
 				/* ---- list of tables where filter first is set ---- */
 				$tChkFF = array_search($tn, []);
@@ -2720,6 +2737,32 @@ EOT;
 					'template' => 'children-approval_table',
 					'template-printable' => 'children-approval_table-printable',
 					'query' => "SELECT `approval_table`.`id` as 'id', `approval_table`.`username` as 'username', `approval_table`.`approval_from` as 'approval_from', `approval_table`.`type` as 'type', `approval_table`.`description` as 'description', `approval_table`.`quantity` as 'quantity', `approval_table`.`full_est_value` as 'full_est_value', `approval_table`.`name_of_vendor` as 'name_of_vendor', `approval_table`.`purpose` as 'purpose', `approval_table`.`requested_department` as 'requested_department', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'person_responsbility', `approval_table`.`mode_of_purchase` as 'mode_of_purchase', `approval_table`.`others_if_any` as 'others_if_any', `approval_table`.`approval_status` as 'approval_status', `approval_table`.`remarks_for_approval` as 'remarks_for_approval', `approval_table`.`image` as 'image', `approval_table`.`other_file` as 'other_file', `approval_table`.`created_by` as 'created_by', `approval_table`.`last_updated_by` as 'last_updated_by' FROM `approval_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`approval_table`.`person_responsbility` "
+				],
+			],
+			'techlead_web_page' => [
+				'approved_by' => [
+					'parent-table' => 'user_table',
+					'parent-primary-key' => 'user_id',
+					'child-primary-key' => 'id',
+					'child-primary-key-index' => 0,
+					'tab-label' => 'Translational r d content table <span class="hidden child-label-techlead_web_page child-field-caption">(Approved by)</span>',
+					'auto-close' => false,
+					'table-icon' => 'table.gif',
+					'display-refresh' => true,
+					'display-add-new' => true,
+					'forced-where' => '',
+					'display-fields' => [0 => 'ID', 1 => 'Username', 2 => 'Tech Lead', 3 => 'Category', 4 => 'Web Page Content', 5 => 'Upload Image First', 6 => 'Upload Image Second', 7 => 'Approval status', 8 => 'Approved by', 9 => 'Website Update Status', 10 => 'Created By', 11 => 'Last updated By'],
+					'display-field-names' => [0 => 'id', 1 => 'username', 2 => 'techlead', 3 => 'category', 4 => 'content', 5 => 'img1', 6 => 'img2', 7 => 'approval_status', 8 => 'approved_by', 9 => 'website_update_status', 10 => 'created_by', 11 => 'last_updated_by'],
+					'sortable-fields' => [0 => '`techlead_web_page`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => 9, 9 => 10, 10 => 11, 11 => 12],
+					'records-per-page' => 10,
+					'default-sort-by' => 0,
+					'default-sort-direction' => 'desc',
+					'open-detail-view-on-click' => true,
+					'display-page-selector' => true,
+					'show-page-progress' => true,
+					'template' => 'children-techlead_web_page',
+					'template-printable' => 'children-techlead_web_page-printable',
+					'query' => "SELECT `techlead_web_page`.`id` as 'id', `techlead_web_page`.`username` as 'username', `techlead_web_page`.`techlead` as 'techlead', `techlead_web_page`.`category` as 'category', `techlead_web_page`.`content` as 'content', `techlead_web_page`.`img1` as 'img1', `techlead_web_page`.`img2` as 'img2', `techlead_web_page`.`approval_status` as 'approval_status', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, ' - ', `user_table1`.`name`), '') as 'approved_by', `techlead_web_page`.`website_update_status` as 'website_update_status', `techlead_web_page`.`created_by` as 'created_by', `techlead_web_page`.`last_updated_by` as 'last_updated_by' FROM `techlead_web_page` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`techlead_web_page`.`approved_by` "
 				],
 			],
 			'car_table' => [
@@ -4675,7 +4718,7 @@ EOT;
 	#########################################################
 
 	function isDetailViewEnabled($tn) {
-		$tables = ['user_table', 'suggestion', 'approval_table', 'car_table', 'car_usage_table', 'cycle_table', 'cycle_usage_table', 'gym_table', 'coffee_table', 'cafeteria_table', 'event_table', 'outcomes_expected_table', 'event_decision_table', 'meetings_table', 'agenda_table', 'decision_table', 'participants_table', 'action_actor', 'visiting_card_table', 'mou_details_table', 'mou_company_area_details_table', 'goal_setting_table', 'goal_progress_table', 'task_setting_table', 'subtask_setting_table', 'internship_fellowship_details_app', 'star_pnt', 'hrd_sdp_events_table', 'training_program_on_geospatial_tchnologies_table', 'space_day_school_details_app', 'space_day_college_student_table', 'school_list', 'sdp_participants_college_details_table', 'asset_table', 'asset_allotment_table', 'sub_asset_table', 'sub_asset_allotment_table', 'it_inventory_app', 'it_inventory_billing_details', 'it_inventory_allotment_table', 'computer_details_table', 'computer_user_details', 'computer_allotment_table', 'employees_personal_data_table', 'employees_designation_table', 'employees_appraisal_table', 'beyond_workingHours_table', 'leave_table', 'half_day_leave_table', 'work_from_home_table', 'navavishkar_stay_table', 'navavishkar_stay_payment_table', 'email_id_allocation_table', 'attendence_details_table', 'all_startup_data_table', 'shortlisted_startups_for_fund_table', 'shortlisted_startups_dd_and_agreement_table', 'vikas_startup_applications_table', 'programs_table', 'evaluation_table', 'problem_statement_table', 'evaluators_table', 'approval_billing_table', 'honorarium_claim_table', 'all_bank_account_statement_table', 'payment_track_details_table', 'travel_table', 'travel_stay_table', 'travel_local_commute_table', 'r_and_d_progress', 'panel_decision_table_tdp', 'selected_proposals_final_tdp', 'stage_wise_budget_table_tdp', 'first_level_shortlisted_proposals_tdp', 'budget_table_tdp', 'panel_comments_tdp', 'selected_tdp', 'address_tdp', 'summary_table_tdp', 'project_details_tdp', 'newsletter_table', ];
+		$tables = ['user_table', 'suggestion', 'approval_table', 'techlead_web_page', 'car_table', 'car_usage_table', 'cycle_table', 'cycle_usage_table', 'gym_table', 'coffee_table', 'cafeteria_table', 'event_table', 'outcomes_expected_table', 'event_decision_table', 'meetings_table', 'agenda_table', 'decision_table', 'participants_table', 'action_actor', 'visiting_card_table', 'mou_details_table', 'mou_company_area_details_table', 'goal_setting_table', 'goal_progress_table', 'task_setting_table', 'subtask_setting_table', 'internship_fellowship_details_app', 'star_pnt', 'hrd_sdp_events_table', 'training_program_on_geospatial_tchnologies_table', 'space_day_school_details_app', 'space_day_college_student_table', 'school_list', 'sdp_participants_college_details_table', 'asset_table', 'asset_allotment_table', 'sub_asset_table', 'sub_asset_allotment_table', 'it_inventory_app', 'it_inventory_billing_details', 'it_inventory_allotment_table', 'computer_details_table', 'computer_user_details', 'computer_allotment_table', 'employees_personal_data_table', 'employees_designation_table', 'employees_appraisal_table', 'beyond_workingHours_table', 'leave_table', 'half_day_leave_table', 'work_from_home_table', 'navavishkar_stay_table', 'navavishkar_stay_payment_table', 'email_id_allocation_table', 'attendence_details_table', 'all_startup_data_table', 'shortlisted_startups_for_fund_table', 'shortlisted_startups_dd_and_agreement_table', 'vikas_startup_applications_table', 'programs_table', 'evaluation_table', 'problem_statement_table', 'evaluators_table', 'approval_billing_table', 'honorarium_claim_table', 'all_bank_account_statement_table', 'payment_track_details_table', 'travel_table', 'travel_stay_table', 'travel_local_commute_table', 'r_and_d_progress', 'panel_decision_table_tdp', 'selected_proposals_final_tdp', 'stage_wise_budget_table_tdp', 'first_level_shortlisted_proposals_tdp', 'budget_table_tdp', 'panel_comments_tdp', 'selected_tdp', 'address_tdp', 'summary_table_tdp', 'project_details_tdp', 'newsletter_table', ];
 		return in_array($tn, $tables);
 	}
 

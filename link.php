@@ -12,6 +12,11 @@
 			'other_file' => getUploadDir(''),
 			'primary key' => 'id'
 		],
+		'techlead_web_page' => [
+			'img1' => getUploadDir(''),
+			'img2' => getUploadDir(''),
+			'primary key' => 'id'
+		],
 		'visiting_card_table' => [
 			'front_img' => getUploadDir(''),
 			'back_img' => getUploadDir(''),

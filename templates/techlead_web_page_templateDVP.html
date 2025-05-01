@@ -1,0 +1,89 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Tech Lead -->
+		<div class="form-group techlead_web_page-techlead" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Tech Lead</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(techlead)%%></div>
+			</div>
+		</div>
+		<!-- Field: Category -->
+		<div class="form-group techlead_web_page-category" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Category</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(category)%%></div>
+			</div>
+		</div>
+		<!-- Field: Web Page Content -->
+		<div class="form-group techlead_web_page-content" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Web Page Content</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(content)%%></div>
+			</div>
+		</div>
+		<!-- Field: Upload Image First -->
+		<div class="form-group techlead_web_page-img1" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Upload Image First</label>
+			<div class="col-xs-9">
+				<div class="form-control-static">
+<img src="<%%BASE_UPLOAD_PATH%%><%%VALUE(img1)%%>" class="img-responsive img-thumbnail">
+</div>
+			</div>
+		</div>
+		<!-- Field: Upload Image Second -->
+		<div class="form-group techlead_web_page-img2" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Upload Image Second</label>
+			<div class="col-xs-9">
+				<div class="form-control-static">
+<img src="<%%BASE_UPLOAD_PATH%%><%%VALUE(img2)%%>" class="img-responsive img-thumbnail">
+</div>
+			</div>
+		</div>
+		<!-- Field: Approval status -->
+		<div class="form-group techlead_web_page-approval_status" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Approval status</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(approval_status)%%></div>
+			</div>
+		</div>
+		<!-- Field: Approved by -->
+		<div class="form-group techlead_web_page-approved_by" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Approved by</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="approved_by<%%RND1%%>"><%%COMBOTEXT(approved_by)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Website Update Status -->
+		<div class="form-group techlead_web_page-website_update_status" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Website Update Status</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(website_update_status)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

@@ -16,6 +16,9 @@
 		setupTable('approval_table', []);
 		setupIndexes('approval_table', ['person_responsbility',]);
 
+		setupTable('techlead_web_page', []);
+		setupIndexes('techlead_web_page', ['approved_by',]);
+
 		setupTable('car_table', []);
 
 		setupTable('car_usage_table', []);
@@ -132,9 +135,7 @@
 		setupTable('beyond_workingHours_table', []);
 		setupIndexes('beyond_workingHours_table', ['emp_lookup','approved_by',]);
 
-		setupTable('leave_table', [
-				" ALTER TABLE `leave_table` CHANGE `leave_type` `leave_type` VARCHAR(255) NULL DEFAULT 'Casual Leave' ",
-			]);
+		setupTable('leave_table', []);
 		setupIndexes('leave_table', ['emp_lookup','approved_by',]);
 
 		setupTable('half_day_leave_table', []);

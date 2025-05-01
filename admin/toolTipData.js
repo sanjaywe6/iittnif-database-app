@@ -65,6 +65,24 @@ approval_table_delete1Tip=["",spacer+"This option allows each member of the grou
 approval_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Approval - App' table."];
 approval_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Approval - App' table."];
 
+// techlead_web_page table
+techlead_web_page_addTip=["",spacer+"This option allows all members of the group to add records to the 'Tech Lead Web Page  - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
+
+techlead_web_page_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Tech Lead Web Page  - App' table."];
+techlead_web_page_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Tech Lead Web Page  - App' table."];
+techlead_web_page_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Tech Lead Web Page  - App' table."];
+techlead_web_page_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Tech Lead Web Page  - App' table."];
+
+techlead_web_page_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Tech Lead Web Page  - App' table."];
+techlead_web_page_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Tech Lead Web Page  - App' table."];
+techlead_web_page_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Tech Lead Web Page  - App' table."];
+techlead_web_page_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Tech Lead Web Page  - App' table, regardless of their owner."];
+
+techlead_web_page_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Tech Lead Web Page  - App' table."];
+techlead_web_page_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Tech Lead Web Page  - App' table."];
+techlead_web_page_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Tech Lead Web Page  - App' table."];
+techlead_web_page_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Tech Lead Web Page  - App' table."];
+
 // car_table table
 car_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Car - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
 

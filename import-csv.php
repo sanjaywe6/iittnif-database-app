@@ -17,6 +17,11 @@
 
 			return $data;
 		},
+		'techlead_web_page' => function($data, $options = []) {
+			if(isset($data['approved_by'])) $data['approved_by'] = pkGivenLookupText($data['approved_by'], 'techlead_web_page', 'approved_by');
+
+			return $data;
+		},
 		'car_table' => function($data, $options = []) {
 			if(isset($data['rental_start_date'])) $data['rental_start_date'] = guessMySQLDateTime($data['rental_start_date']);
 			if(isset($data['rental_end_date'])) $data['rental_end_date'] = guessMySQLDateTime($data['rental_end_date']);
@@ -504,6 +509,7 @@
 		'user_table' => function($data, $options = []) { return true; },
 		'suggestion' => function($data, $options = []) { return true; },
 		'approval_table' => function($data, $options = []) { return true; },
+		'techlead_web_page' => function($data, $options = []) { return true; },
 		'car_table' => function($data, $options = []) { return true; },
 		'car_usage_table' => function($data, $options = []) { return true; },
 		'cycle_table' => function($data, $options = []) { return true; },

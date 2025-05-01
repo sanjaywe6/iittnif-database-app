@@ -1,0 +1,288 @@
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/techlead_web_page-dv.js rather than editing this file -->
+
+<div id="detail-view"></div>
+<div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
+
+<div id="techlead_web_page_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+
+<div class="panel-body hidden" id="techlead_web_page_dv_container">
+	<!-- child links -->
+	<div class="row vspacer-md">
+		<div class="col-xs-12 children-links">
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<hr class="hidden-xs hidden-sm">
+
+	<div class="row">
+		<!-- form inputs -->
+		<div class="col-md-8 col-lg-10" id="techlead_web_page_dv_form">
+			<fieldset class="form-horizontal">
+
+				<!-- Field: Tech Lead -->
+				<div class="form-group techlead_web_page-techlead">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="techlead">Tech Lead</label>
+					<div class="col-lg-9">
+						<%%COMBO(techlead)%%>
+					</div>
+				</div>
+
+				<!-- Field: Category -->
+				<div class="form-group techlead_web_page-category">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="category">Category</label>
+					<div class="col-lg-9">
+						<%%COMBO(category)%%>
+					</div>
+				</div>
+
+				<!-- Field: Web Page Content -->
+				<div class="form-group techlead_web_page-content">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="content">Web Page Content<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9 has-nicedit">
+						<%%HTMLAREA(content)%%>
+					</div>
+				</div>
+
+				<!-- Field: Upload Image First -->
+				<div class="form-group techlead_web_page-img1">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Upload Image First <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#img1-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="img1-description"><div class="alert alert-info bspacer-xs">Maximum file size allowed: 10000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp</div></span>
+						<div class="form-control-static well well-sm">
+							<div class="row" style="margin-right: 0; margin-left: 0;">
+								<div class="col-lg-8 col-md-6" style="padding-left: 0;"><img src="<%%BASE_UPLOAD_PATH%%><%%VALUE(img1)%%>" class="img-responsive img-thumbnail" id="img1-image"></div>
+								<div class="hidden-md hidden-lg vspacer-lg"></div>
+								<div class="col-lg-4 col-md-6 well upload-toolbox">
+									<%%REMOVEFILE(img1)%%>
+									<%%UPLOADFILE(img1)%%>
+									<div class="text-bold text-danger file-type-error hidden"><%%TRANSLATION(invalid file type)%%></div>
+									<div class="text-bold text-danger file-size-error hidden"><%%TRANSLATION(file too large)%%></div>
+								</div>
+							</div>
+						</div>
+						<script>/* disable empty links */ $j(() => { const e_img1 = '<%%VALUE(img1)%%>'; if(e_img1 == '' || e_img1 == '&nbsp;' || e_img1 == 'blank.gif') { $j('#img1-link').hide(); $j('#img1-image').parents('a').attr('href', '').on('click', (e) => e.preventDefault()); } });</script>
+					</div>
+				</div>
+
+				<!-- Field: Upload Image Second -->
+				<div class="form-group techlead_web_page-img2">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Upload Image Second <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#img2-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="img2-description"><div class="alert alert-info bspacer-xs">Maximum file size allowed: 10000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp</div></span>
+						<div class="form-control-static well well-sm">
+							<div class="row" style="margin-right: 0; margin-left: 0;">
+								<div class="col-lg-8 col-md-6" style="padding-left: 0;"><img src="<%%BASE_UPLOAD_PATH%%><%%VALUE(img2)%%>" class="img-responsive img-thumbnail" id="img2-image"></div>
+								<div class="hidden-md hidden-lg vspacer-lg"></div>
+								<div class="col-lg-4 col-md-6 well upload-toolbox">
+									<%%REMOVEFILE(img2)%%>
+									<%%UPLOADFILE(img2)%%>
+									<div class="text-bold text-danger file-type-error hidden"><%%TRANSLATION(invalid file type)%%></div>
+									<div class="text-bold text-danger file-size-error hidden"><%%TRANSLATION(file too large)%%></div>
+								</div>
+							</div>
+						</div>
+						<script>/* disable empty links */ $j(() => { const e_img2 = '<%%VALUE(img2)%%>'; if(e_img2 == '' || e_img2 == '&nbsp;' || e_img2 == 'blank.gif') { $j('#img2-link').hide(); $j('#img2-image').parents('a').attr('href', '').on('click', (e) => e.preventDefault()); } });</script>
+					</div>
+				</div>
+
+				<!-- Field: Approval status -->
+				<div class="form-group techlead_web_page-approval_status">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="approval_status">Approval status</label>
+					<div class="col-lg-9">
+						<%%COMBO(approval_status)%%>
+					</div>
+				</div>
+
+				<!-- Field: Approved by -->
+				<div class="form-group techlead_web_page-approved_by">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="approved_by" data-parent_link="view_parent_modal">Approved by</label>
+					<div class="col-lg-9">
+						<div class="lookup-flex"><%%COMBO(approved_by)%%><%%PLINK(approved_by)%%><%%ADDNEW(user_table)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Website Update Status -->
+				<div class="form-group techlead_web_page-website_update_status">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="website_update_status">Website Update Status</label>
+					<div class="col-lg-9">
+						<%%COMBO(website_update_status)%%>
+					</div>
+				</div>
+
+			</fieldset>
+		</div>
+
+		<!-- DV action buttons -->
+		<hr class="hidden-md hidden-lg">
+		<div class="col-md-4 col-lg-2" id="techlead_web_page_dv_action_buttons">
+			<div class="btn-toolbar">
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%UPDATE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%DESELECT_BUTTON%%>
+					<%%DVPRINT_BUTTON%%>
+					<%%DELETE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%INSERT_BUTTON%%>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div><!-- /div class="panel-body" -->
+	<script>
+		$j(function() {
+			var add_new_mode = (!$j('input[name=SelectedID]').val());
+			var embedded_mode = ($j('input[name=Embedded]').val() == 1);
+
+			/* auto-close embedded page? */
+			var autoclose_mode = ($j('input[name=AutoClose]').val() == 1);
+			var record_added_ok = (location.search.split('record-added-ok=').length == 2);
+			var record_updated_ok = (location.search.split('record-updated-ok=').length == 2);
+			if((record_added_ok || record_updated_ok) && embedded_mode && autoclose_mode) {
+				setTimeout(AppGini.closeParentModal, 2000);
+			}
+
+			AppGini.once({
+				condition: function() { return bkLib != undefined; },
+				action: function() {
+					if($j('textarea#content').length) new nicEditor({ fullPanel : true }).panelInstance('content');
+				}
+			});
+
+			/* enable DV action buttons to float on scrolling down the form */
+			enable_dvab_floating();
+
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
+				AppGini.once({
+					condition: function() {
+						return $j('.form-group.techlead_web_page-techlead')
+									.find('.nicEdit-main, .select2-container, input[type=radio]')
+									.length > 0
+								// or read-only DV
+								|| (!$j('#update').length && !$j('#insert').length);
+					},
+					action: function() {
+						$j('#techlead_web_page_dv_container-loading').addClass('hidden');
+						$j('#techlead_web_page_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('techlead_web_page', 'techlead');
+					},
+					timeout:  5000,
+					doActionOnTimeout:  true
+				});
+			} else {
+				$j('#techlead_web_page_dv_container-loading').addClass('hidden');
+				$j('#techlead_web_page_dv_container').removeClass('hidden');
+			}
+
+			// try to detect rich text changes by adding 'input' handler after nicedit is loaded ...
+			AppGini.detectContentEditableChanges();
+
+			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
+
+
+			if(true /* !embedded_mode */) {
+				$j('.add_new_parent').click(function() {
+					var pt = $j(this).attr('id').replace(/_add_new$/, '');
+					modal_window({
+						url: pt + '_view.php?addNew_x=1&Embedded=1',
+						close: function() {
+							var field_id = $j('#' + pt + '_add_new').prevAll('input:hidden').eq(0).attr('id');
+							$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+							/* if a new parent was added, select it */
+							var new_id = localStorage.getItem(pt + '_last_added_id');
+							if(new_id === null) return;
+
+							localStorage.removeItem(pt + '_last_added_id');
+							AppGini.lookupText({
+								id: new_id,
+								table: 'techlead_web_page',
+								field: field_id,
+								callback: function(data) {
+									$j('#' + field_id + '-container').select2('data', data, true);
+								}
+							});
+						},
+						size: 'full',
+						title: $j(this).attr('title')
+					});
+				});
+			}
+
+			AppGini.hideViewParentLinks();
+
+			$j('form').on('click', '.view_parent', function() {
+				var pt = $j(this).attr('id').replace(/_view_parent$/, '');
+				if($j(this).prevAll('input:hidden').length) {
+					var parent_id = $j(this).prevAll('input:hidden').eq(0).val();
+				} else {
+					var parent_id = $j(this).prevAll().children('input:hidden').eq(0).val();
+				}
+
+				/* handle radio lookups */
+				if($j(this).prevAll('[type=radio]').length) {
+					parent_id = $j(this).prevAll('[type=radio]').eq(0).val();
+				}
+
+				if(parent_id != '{empty_value}' && parent_id != undefined && parent_id != '') {
+					var parent_link = $j(this).parents('.form-group').children('label').data('parent_link');
+					switch(parent_link) {
+						case 'view_parent_hidden':
+							break;
+						case 'view_parent_modal':
+							modal_window({
+								url: pt + '_view.php?Embedded=1&SelectedID=' + encodeURIComponent(parent_id),
+								close: function() {
+									var field_id = $j('#' + pt + '_view_parent').prevAll('input:hidden').eq(0).attr('id');
+									$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+									// in case the parent record was updated, we should update auto-fills
+									var updaterName = field_id + '_update_autofills';
+									if(typeof(window[updaterName]) == 'function')
+										window[updaterName]();
+								},
+								size: 'full',
+								title: $j(this).attr('title')
+							});
+							break;
+						case 'view_parent_same_window':
+							window.location = pt + '_view.php?Embedded=' + (embedded_mode ? '1' : '') + '&SelectedID=' + encodeURIComponent(parent_id);
+							break;
+						case 'view_parent_new_window':
+							window.open(pt + '_view.php?SelectedID=' + encodeURIComponent(parent_id));
+							break;
+					}
+
+				}
+			});
+
+			techlead_web_pageUniqueFields.forEach(fieldName => enforce_uniqueness('techlead_web_page', fieldName));
+
+			/* load admin tools for admin user */
+			if(!add_new_mode) {
+				$j('body').append('<div id="admin-tools-appendix"></div>');
+				$j('#admin-tools-appendix').load(
+					'ajax_admin_tools.php?table=techlead_web_page&id=<%%URLVALUE(id)%%>',
+					function(resp) {
+						if(!resp.length) return;
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=techlead_web_page&id=<%%URLVALUE(id)%%>');
+					}
+				);
+			}
+		});
+
+		var techlead_web_pageUniqueFields = [
+		];
+	</script>

@@ -1833,7 +1833,7 @@
 						],
 					],
 					'content' => [
-						'appgini' => "TEXT NOT NULL",
+						'appgini' => "TEXT NULL",
 						'info' => [
 							'caption' => 'Web Page Content',
 							'description' => '',
@@ -1871,6 +1871,13 @@
 						'appgini' => "VARCHAR(255) NULL DEFAULT 'Pending'",
 						'info' => [
 							'caption' => 'Website Update Status',
+							'description' => '',
+						],
+					],
+					'website_update_date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Website Update Date',
 							'description' => '',
 						],
 					],

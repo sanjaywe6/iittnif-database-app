@@ -19,6 +19,7 @@
 		},
 		'techlead_web_page' => function($data, $options = []) {
 			if(isset($data['approved_by'])) $data['approved_by'] = pkGivenLookupText($data['approved_by'], 'techlead_web_page', 'approved_by');
+			if(isset($data['website_update_date'])) $data['website_update_date'] = guessMySQLDateTime($data['website_update_date']);
 
 			return $data;
 		},

@@ -51,6 +51,7 @@ function techlead_web_page_insert(&$error_message = '') {
 		'approval_status' => Request::val('approval_status', 'Pending'),
 		'approved_by' => Request::lookup('approved_by', ''),
 		'website_update_status' => Request::val('website_update_status', 'Pending'),
+		'website_update_date' => Request::dateComponents('website_update_date', '1'),
 		'created_by' => parseCode('<%%creatorUsername%%>::<%%creationDateTime%%>', true),
 	];
 
@@ -206,14 +207,10 @@ function techlead_web_page_update(&$selected_id, &$error_message = '') {
 		'approval_status' => Request::val('approval_status', ''),
 		'approved_by' => Request::lookup('approved_by', ''),
 		'website_update_status' => Request::val('website_update_status', ''),
+		'website_update_date' => Request::dateComponents('website_update_date', ''),
 		'last_updated_by' => parseCode('<%%editorUsername%%>::<%%editingDateTime%%>', false),
 	];
 
-	if($data['content'] === '') {
-		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Web Page Content': {$Translation['field not null']}<br><br>";
-		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
-		exit;
-	}
 	// get existing values
 	$old_data = getRecord('techlead_web_page', $selected_id);
 	if(is_array($old_data)) {
@@ -367,6 +364,14 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		$combo_website_update_status->ListData = $combo_website_update_status->ListItem;
 	}
 	$combo_website_update_status->SelectName = 'website_update_status';
+	// combobox: website_update_date
+	$combo_website_update_date = new DateCombo;
+	$combo_website_update_date->DateFormat = "dmy";
+	$combo_website_update_date->MinYear = defined('techlead_web_page.website_update_date.MinYear') ? constant('techlead_web_page.website_update_date.MinYear') : 1900;
+	$combo_website_update_date->MaxYear = defined('techlead_web_page.website_update_date.MaxYear') ? constant('techlead_web_page.website_update_date.MaxYear') : 2100;
+	$combo_website_update_date->DefaultDate = parseMySQLDate('1', '1');
+	$combo_website_update_date->MonthNames = $Translation['month names'];
+	$combo_website_update_date->NamePrefix = 'website_update_date';
 
 	if($hasSelectedId) {
 		if(!($row = getRecord('techlead_web_page', $selectedId))) {
@@ -377,6 +382,7 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		$combo_approval_status->SelectedData = $row['approval_status'];
 		$combo_approved_by->SelectedData = $row['approved_by'];
 		$combo_website_update_status->SelectedData = $row['website_update_status'];
+		$combo_website_update_date->DefaultDate = $row['website_update_date'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
 	} else {
@@ -578,6 +584,8 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		$jsReadOnly .= "\t\$j('#approved_by').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#approved_by_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\t\$j('#website_update_status').replaceWith('<div class=\"form-control-static\" id=\"website_update_status\">' + (\$j('#website_update_status').val() || '') + '</div>'); \$j('#website_update_status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#website_update_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#website_update_dateDay, #website_update_dateMonth, #website_update_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -599,6 +607,13 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 	$templateCode = str_replace('<%%URLCOMBOTEXT(approved_by)%%>', urlencode($combo_approved_by->MatchText), $templateCode);
 	$templateCode = str_replace('<%%COMBO(website_update_status)%%>', $combo_website_update_status->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(website_update_status)%%>', $combo_website_update_status->SelectedData, $templateCode);
+	$templateCode = str_replace(
+		'<%%COMBO(website_update_date)%%>', 
+		(!$fieldsAreEditable ? 
+			'<div class="form-control-static">' . $combo_website_update_date->GetHTML(true) . '</div>' : 
+			$combo_website_update_date->GetHTML()
+		), $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(website_update_date)%%>', $combo_website_update_date->GetHTML(true), $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
 	$lookup_fields = ['approved_by' => ['user_table', 'Approved by'], ];
@@ -637,6 +652,7 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 	$templateCode = str_replace('<%%UPLOADFILE(approval_status)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(approved_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(website_update_status)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(website_update_date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
 
@@ -676,6 +692,8 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(website_update_status)%%>', safe_html($urow['website_update_status']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(website_update_status)%%>', html_attr($row['website_update_status']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(website_update_status)%%>', urlencode($urow['website_update_status']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(website_update_date)%%>', app_datetime($row['website_update_date']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(website_update_date)%%>', urlencode(app_datetime($urow['website_update_date'])), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
@@ -698,6 +716,8 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(website_update_status)%%>', 'Pending', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(website_update_status)%%>', urlencode('Pending'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(website_update_date)%%>', '1', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(website_update_date)%%>', urlencode('1'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>::<%%creationDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>::<%%creationDateTime%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>::<%%editingDateTime%%>', $templateCode);

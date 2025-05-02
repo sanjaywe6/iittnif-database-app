@@ -16,8 +16,9 @@
 		setupTable('approval_table', []);
 		setupIndexes('approval_table', ['person_responsbility',]);
 
-		setupTable('techlead_web_page', []);
-		setupIndexes('techlead_web_page', ['approved_by',]);
+		setupTable('techlead_web_page', [
+				"ALTER TABLE `techlead_web_page` DROP `approved_by`",
+			]);
 
 		setupTable('car_table', []);
 

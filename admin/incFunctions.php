@@ -1874,42 +1874,35 @@
 					'approval_status' => [
 						'appgini' => "VARCHAR(255) NULL DEFAULT 'Pending'",
 						'info' => [
-							'caption' => 'Approval status',
-							'description' => '',
-						],
-					],
-					'approved_by' => [
-						'appgini' => "INT UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Approved by',
+							'caption' => 'Approval Status by CEO',
 							'description' => '',
 						],
 					],
 					'approval_remarks' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
-							'caption' => 'Approval remarks',
+							'caption' => 'Approval Remarks by CEO',
 							'description' => '',
 						],
 					],
 					'website_update_status' => [
 						'appgini' => "VARCHAR(255) NULL DEFAULT 'Pending'",
 						'info' => [
-							'caption' => 'Website Update Status',
+							'caption' => 'Website Update Status by IT Team',
 							'description' => '',
 						],
 					],
 					'website_update_remarks' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
-							'caption' => 'Website Update Remarks',
+							'caption' => 'Website Update Remarks by IT Team',
 							'description' => '',
 						],
 					],
 					'website_update_date' => [
 						'appgini' => "DATE NULL",
 						'info' => [
-							'caption' => 'Website Updated Date',
+							'caption' => 'Website Updated Date by IT Team',
 							'description' => '',
 						],
 					],
@@ -11389,9 +11382,6 @@
 			'approval_table' => [
 				'user_table' => ['person_responsbility'],
 			],
-			'techlead_web_page' => [
-				'user_table' => ['approved_by'],
-			],
 			'car_usage_table' => [
 				'car_table' => ['car_lookup'],
 			],
@@ -11815,7 +11805,6 @@
 				'person_responsbility' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'techlead_web_page' => [
-				'approved_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \' - \', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'car_table' => [
 			],

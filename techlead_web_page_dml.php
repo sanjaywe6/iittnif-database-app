@@ -19,7 +19,9 @@ function techlead_web_page_insert(&$error_message = '') {
 		'username' => parseCode('<%%creatorUsername%%>', true),
 		'techlead' => Request::val('techlead', 'GNSS Tech Lead'),
 		'category' => Request::val('category', 'Foundational Research'),
+		'content_title' => Request::val('content_title', ''),
 		'content' => Request::val('content', ''),
+		'content_learn_more' => Request::val('content_learn_more', ''),
 		'img1' => Request::fileUpload('img1', [
 			'maxSize' => 10240000,
 			'types' => 'jpg|jpeg|gif|png|webp',
@@ -147,7 +149,9 @@ function techlead_web_page_update(&$selected_id, &$error_message = '') {
 	$data = [
 		'techlead' => Request::val('techlead', ''),
 		'category' => Request::val('category', ''),
+		'content_title' => Request::val('content_title', ''),
 		'content' => Request::val('content', ''),
+		'content_learn_more' => Request::val('content_learn_more', ''),
 		'img1' => Request::fileUpload('img1', [
 			'maxSize' => 10240000,
 			'types' => 'jpg|jpeg|gif|png|webp',
@@ -400,9 +404,9 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		$filterValue = Request::val('FilterValue');
 		$combo_techlead->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('GNSS Tech Lead'));
 		$combo_category->SelectedText = (isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Foundational Research'));
-		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '8' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '10' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
 		$combo_approved_by->SelectedData = $filterer_approved_by;
-		$combo_website_update_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '11' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
+		$combo_website_update_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '13' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
 	}
 	$combo_techlead->Render();
 	$combo_category->Render();
@@ -587,6 +591,7 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		$jsReadOnly = '';
 		$jsReadOnly .= "\t\$j('#techlead').replaceWith('<div class=\"form-control-static\" id=\"techlead\">' + (\$j('#techlead').val() || '') + '</div>'); \$j('#techlead-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#category').replaceWith('<div class=\"form-control-static\" id=\"category\">' + (\$j('#category').val() || '') + '</div>'); \$j('#category-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#content_title').replaceWith('<div class=\"form-control-static\" id=\"content_title\">' + (\$j('#content_title').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#img1').replaceWith('<div class=\"form-control-static\" id=\"img1\">' + (\$j('#img1').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#img2').replaceWith('<div class=\"form-control-static\" id=\"img2\">' + (\$j('#img2').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#approval_status').replaceWith('<div class=\"form-control-static\" id=\"approval_status\">' + (\$j('#approval_status').val() || '') + '</div>'); \$j('#approval_status-multi-selection-help').hide();\n";
@@ -645,7 +650,9 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(techlead)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(category)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(content_title)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(content)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(content_learn_more)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(img1)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="img1" id="img1" data-filetypes="jpg|jpeg|gif|png|webp" data-maxsize="10240000" style="max-width: calc(100% - 1.5rem);" accept="capture=camera,image/*">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
 	if($allowUpdate && $row['img1'] != '') {
 		$templateCode = str_replace('<%%REMOVEFILE(img1)%%>', '<input type="checkbox" name="img1_remove" id="img1_remove" value="1"> <label for="img1_remove" style="color: red; font-weight: bold;">'.$Translation['remove image'].'</label>', $templateCode);
@@ -679,6 +686,9 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(category)%%>', safe_html($urow['category']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(category)%%>', html_attr($row['category']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(category)%%>', urlencode($urow['category']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(content_title)%%>', safe_html($urow['content_title']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(content_title)%%>', html_attr($row['content_title']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(content_title)%%>', urlencode($urow['content_title']), $templateCode);
 		if($fieldsAreEditable) {
 			$templateCode = str_replace('<%%HTMLAREA(content)%%>', '<textarea name="content" id="content" rows="5">' . safe_html(htmlspecialchars_decode($row['content'])) . '</textarea>', $templateCode);
 		} else {
@@ -686,6 +696,13 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		}
 		$templateCode = str_replace('<%%VALUE(content)%%>', nl2br($row['content']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(content)%%>', urlencode($urow['content']), $templateCode);
+		if($fieldsAreEditable) {
+			$templateCode = str_replace('<%%HTMLAREA(content_learn_more)%%>', '<textarea name="content_learn_more" id="content_learn_more" rows="5">' . safe_html(htmlspecialchars_decode($row['content_learn_more'])) . '</textarea>', $templateCode);
+		} else {
+			$templateCode = str_replace('<%%HTMLAREA(content_learn_more)%%>', '<div id="content_learn_more" class="form-control-static">' . $row['content_learn_more'] . '</div>', $templateCode);
+		}
+		$templateCode = str_replace('<%%VALUE(content_learn_more)%%>', nl2br($row['content_learn_more']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(content_learn_more)%%>', urlencode($urow['content_learn_more']), $templateCode);
 		$row['img1'] = ($row['img1'] != '' ? $row['img1'] : 'blank.gif');
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(img1)%%>', safe_html($urow['img1']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(img1)%%>', html_attr($row['img1']), $templateCode);
@@ -732,7 +749,10 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		$templateCode = str_replace('<%%URLVALUE(techlead)%%>', urlencode('GNSS Tech Lead'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(category)%%>', 'Foundational Research', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(category)%%>', urlencode('Foundational Research'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(content_title)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(content_title)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%HTMLAREA(content)%%>', '<textarea name="content" id="content" rows="5"></textarea>', $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(content_learn_more)%%>', '<textarea name="content_learn_more" id="content_learn_more" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(img1)%%>', 'blank.gif', $templateCode);
 		$templateCode = str_replace('<%%VALUE(img2)%%>', 'blank.gif', $templateCode);
 		$templateCode = str_replace('<%%VALUE(approval_status)%%>', 'Pending', $templateCode);

@@ -1832,10 +1832,24 @@
 							'description' => '',
 						],
 					],
+					'content_title' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Web Page Content Title',
+							'description' => '',
+						],
+					],
 					'content' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
-							'caption' => 'Web Page Content',
+							'caption' => 'Web Page Content Material',
+							'description' => '',
+						],
+					],
+					'content_learn_more' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Web Page Content Learn More Section',
 							'description' => '',
 						],
 					],

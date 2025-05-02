@@ -17,13 +17,9 @@
 		setupIndexes('approval_table', ['person_responsbility',]);
 
 		setupTable('techlead_web_page', [
-				"ALTER TABLE techlead_web_page ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `techlead_web_page` CHANGE `field1` `web_page_content_title` VARCHAR(255) NULL ",
-				"ALTER TABLE techlead_web_page ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `techlead_web_page` CHANGE `field1` `web_page_content_learn_more` VARCHAR(255) NULL ",
-				"ALTER TABLE `techlead_web_page` CHANGE `web_page_content_title` `content_title` VARCHAR(255) NULL ",
-				"ALTER TABLE `techlead_web_page` CHANGE `web_page_content_learn_more` `content_learn_more` VARCHAR(255) NULL ",
-				" ALTER TABLE `techlead_web_page` CHANGE `content_learn_more` `content_learn_more` TEXT NULL ",
+				" ALTER TABLE `techlead_web_page` CHANGE `content_learn_more` `content_learn_more` TEXT NOT NULL ",
+				" ALTER TABLE `techlead_web_page` CHANGE `content` `content` TEXT NOT NULL ",
+				" ALTER TABLE `techlead_web_page` CHANGE `content_title` `content_title` VARCHAR(255) NOT NULL ",
 			]);
 		setupIndexes('techlead_web_page', ['approved_by',]);
 

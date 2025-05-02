@@ -50,9 +50,9 @@ function techlead_web_page_insert(&$error_message = '') {
 		]),
 		'approval_status' => Request::val('approval_status', 'Pending'),
 		'approved_by' => Request::lookup('approved_by', ''),
-		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
+		'approval_remarks' => Request::val('approval_remarks', ''),
 		'website_update_status' => Request::val('website_update_status', 'Pending'),
-		'website_update_remarks' => br2nl(Request::val('website_update_remarks', '')),
+		'website_update_remarks' => Request::val('website_update_remarks', 'None'),
 		'website_update_date' => Request::dateComponents('website_update_date', ''),
 		'created_by' => parseCode('<%%creatorUsername%%>::<%%creationDateTime%%>', true),
 	];
@@ -208,9 +208,9 @@ function techlead_web_page_update(&$selected_id, &$error_message = '') {
 		]),
 		'approval_status' => Request::val('approval_status', ''),
 		'approved_by' => Request::lookup('approved_by', ''),
-		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
+		'approval_remarks' => Request::val('approval_remarks', ''),
 		'website_update_status' => Request::val('website_update_status', ''),
-		'website_update_remarks' => br2nl(Request::val('website_update_remarks', '')),
+		'website_update_remarks' => Request::val('website_update_remarks', ''),
 		'website_update_date' => Request::dateComponents('website_update_date', ''),
 		'last_updated_by' => parseCode('<%%editorUsername%%>::<%%editingDateTime%%>', false),
 	];
@@ -592,9 +592,7 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		$jsReadOnly .= "\t\$j('#approval_status').replaceWith('<div class=\"form-control-static\" id=\"approval_status\">' + (\$j('#approval_status').val() || '') + '</div>'); \$j('#approval_status-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#approved_by').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#approved_by_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\t\$j('#approval_remarks').replaceWith('<div class=\"form-control-static\" id=\"approval_remarks\">' + (\$j('#approval_remarks').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#website_update_status').replaceWith('<div class=\"form-control-static\" id=\"website_update_status\">' + (\$j('#website_update_status').val() || '') + '</div>'); \$j('#website_update_status-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\t\$j('#website_update_remarks').replaceWith('<div class=\"form-control-static\" id=\"website_update_remarks\">' + (\$j('#website_update_remarks').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#website_update_date').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#website_update_dateDay, #website_update_dateMonth, #website_update_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
@@ -702,12 +700,22 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(approved_by)%%>', safe_html($urow['approved_by']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approved_by)%%>', html_attr($row['approved_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode($urow['approved_by']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', safe_html($urow['approval_remarks'], $fieldsAreEditable), $templateCode);
+		if($fieldsAreEditable) {
+			$templateCode = str_replace('<%%HTMLAREA(approval_remarks)%%>', '<textarea name="approval_remarks" id="approval_remarks" rows="5">' . safe_html(htmlspecialchars_decode($row['approval_remarks'])) . '</textarea>', $templateCode);
+		} else {
+			$templateCode = str_replace('<%%HTMLAREA(approval_remarks)%%>', '<div id="approval_remarks" class="form-control-static">' . $row['approval_remarks'] . '</div>', $templateCode);
+		}
+		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', nl2br($row['approval_remarks']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_remarks)%%>', urlencode($urow['approval_remarks']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(website_update_status)%%>', safe_html($urow['website_update_status']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(website_update_status)%%>', html_attr($row['website_update_status']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(website_update_status)%%>', urlencode($urow['website_update_status']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(website_update_remarks)%%>', safe_html($urow['website_update_remarks'], $fieldsAreEditable), $templateCode);
+		if($fieldsAreEditable) {
+			$templateCode = str_replace('<%%HTMLAREA(website_update_remarks)%%>', '<textarea name="website_update_remarks" id="website_update_remarks" rows="5">' . safe_html(htmlspecialchars_decode($row['website_update_remarks'])) . '</textarea>', $templateCode);
+		} else {
+			$templateCode = str_replace('<%%HTMLAREA(website_update_remarks)%%>', '<div id="website_update_remarks" class="form-control-static">' . $row['website_update_remarks'] . '</div>', $templateCode);
+		}
+		$templateCode = str_replace('<%%VALUE(website_update_remarks)%%>', nl2br($row['website_update_remarks']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(website_update_remarks)%%>', urlencode($urow['website_update_remarks']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(website_update_date)%%>', app_datetime($row['website_update_date']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(website_update_date)%%>', urlencode(app_datetime($urow['website_update_date'])), $templateCode);
@@ -731,12 +739,10 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode('Pending'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(approved_by)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(approval_remarks)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(approval_remarks)%%>', '<textarea name="approval_remarks" id="approval_remarks" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(website_update_status)%%>', 'Pending', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(website_update_status)%%>', urlencode('Pending'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(website_update_remarks)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(website_update_remarks)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(website_update_remarks)%%>', '<textarea name="website_update_remarks" id="website_update_remarks" rows="5">None</textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(website_update_date)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(website_update_date)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>::<%%creationDateTime%%>', $templateCode);

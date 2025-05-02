@@ -17,7 +17,7 @@
 		setupIndexes('approval_table', ['person_responsbility',]);
 
 		setupTable('techlead_web_page', [
-				" ALTER TABLE `techlead_web_page` CHANGE `website_update_date` `website_update_date` DATE NULL ",
+				" ALTER TABLE `techlead_web_page` CHANGE `website_update_remarks` `website_update_remarks` TEXT NULL ",
 			]);
 		setupIndexes('techlead_web_page', ['approved_by',]);
 

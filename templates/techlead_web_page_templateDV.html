@@ -111,8 +111,8 @@
 				<div class="form-group techlead_web_page-approval_remarks">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="approval_remarks">Approval remarks</label>
-					<div class="col-lg-9">
-						<textarea class="form-control" name="approval_remarks" id="approval_remarks" rows=" 5"><%%VALUE(approval_remarks)%%></textarea>
+					<div class="col-lg-9 has-nicedit">
+						<%%HTMLAREA(approval_remarks)%%>
 					</div>
 				</div>
 
@@ -129,8 +129,8 @@
 				<div class="form-group techlead_web_page-website_update_remarks">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="website_update_remarks">Website Update Remarks</label>
-					<div class="col-lg-9">
-						<textarea class="form-control" name="website_update_remarks" id="website_update_remarks" rows=" 5"><%%VALUE(website_update_remarks)%%></textarea>
+					<div class="col-lg-9 has-nicedit">
+						<%%HTMLAREA(website_update_remarks)%%>
 					</div>
 				</div>
 
@@ -184,6 +184,8 @@
 				condition: function() { return bkLib != undefined; },
 				action: function() {
 					if($j('textarea#content').length) new nicEditor({ fullPanel : true }).panelInstance('content');
+					if($j('textarea#approval_remarks').length) new nicEditor({ fullPanel : true }).panelInstance('approval_remarks');
+					if($j('textarea#website_update_remarks').length) new nicEditor({ fullPanel : true }).panelInstance('website_update_remarks');
 				}
 			});
 

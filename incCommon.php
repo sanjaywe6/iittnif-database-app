@@ -463,7 +463,7 @@
 				'approved_by' => '',
 				'approval_remarks' => '',
 				'website_update_status' => 'Pending',
-				'website_update_remarks' => '',
+				'website_update_remarks' => 'None',
 				'website_update_date' => '',
 				'created_by' => '',
 				'last_updated_by' => '',

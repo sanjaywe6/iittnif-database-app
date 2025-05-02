@@ -28,6 +28,7 @@ function techlead_web_page_insert(&$error_message = '') {
 			'noRename' => false,
 			'dir' => '',
 			'success' => function($name, $selected_id) {
+				Thumbnail::create($name, getThumbnailSpecs('techlead_web_page', 'img1', 'tv'));
 			},
 			'failure' => function($selected_id, $fileRemoved) {
 				if(!strlen(Request::val('SelectedID'))) return '';
@@ -42,6 +43,7 @@ function techlead_web_page_insert(&$error_message = '') {
 			'noRename' => false,
 			'dir' => '',
 			'success' => function($name, $selected_id) {
+				Thumbnail::create($name, getThumbnailSpecs('techlead_web_page', 'img2', 'tv'));
 			},
 			'failure' => function($selected_id, $fileRemoved) {
 				if(!strlen(Request::val('SelectedID'))) return '';
@@ -159,6 +161,7 @@ function techlead_web_page_update(&$selected_id, &$error_message = '') {
 			'dir' => '',
 			'id' => $selected_id,
 			'success' => function($name, $selected_id) {
+				Thumbnail::create($name, getThumbnailSpecs('techlead_web_page', 'img1', 'tv'));
 			},
 			'removeOnSuccess' => true,
 			'removeOnRequest' => false,
@@ -188,6 +191,7 @@ function techlead_web_page_update(&$selected_id, &$error_message = '') {
 			'dir' => '',
 			'id' => $selected_id,
 			'success' => function($name, $selected_id) {
+				Thumbnail::create($name, getThumbnailSpecs('techlead_web_page', 'img2', 'tv'));
 			},
 			'removeOnSuccess' => true,
 			'removeOnRequest' => true,
@@ -341,7 +345,7 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		$combo_techlead->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($techlead_data))));
 		$combo_techlead->ListData = $combo_techlead->ListItem;
 	} else {
-		$combo_techlead->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("GNSS Tech Lead;;GIS Tech Lead;;LiDAR Tech Lead;;Quantum Navigation Tech Lead;;Computer Vision Tech Lead;;AI/ML Tech Lead;;"))));
+		$combo_techlead->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("GNSS Tech Lead;;GIS Tech Lead;;LiDAR Tech Lead;;Quantum Navigation Tech Lead;;Computer Vision Tech Lead;;AI/ML Tech Lead;;Geo-Intel Tech Lead"))));
 		$combo_techlead->ListData = $combo_techlead->ListItem;
 	}
 	$combo_techlead->SelectName = 'techlead';
@@ -356,7 +360,7 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		$combo_category->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($category_data))));
 		$combo_category->ListData = $combo_category->ListItem;
 	} else {
-		$combo_category->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Foundational Research;;In-House Translational R & D;;IIT Tirupati Faculty Translational R & D;;PI Based Translational R & D;;Startup Based Translational R & D;;Lab Services;;R & D Products;;Call for Proposals;;Startups - Spin-Off Startups;;Startups - VIKAS Startups;;Other Startups;;Events;;Webinars;;Podcast;;Social Media Posts;;Hirings;;Hackathons;;HRD;;SDP;;Collaborations;;Business Development;;Revenue"))));
+		$combo_category->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Foundational Research;;In-House Translational R & D;;IIT Tirupati Faculty Translational R & D;;PI Based Translational R & D;;Startup Based Translational R & D;;Lab Services;;R & D Products;;Centre of Excellence;;R & D Club;;Community;;Call for Proposals;;Startups - Spin-Off Startups;;Startups - VIKAS Startups;;Other Startups;;Events;;Webinars;;Podcast;;Social Media Posts;;Hirings;;Hackathons;;HRD;;SDP;;Collaborations;;Business Development;;Revenue"))));
 		$combo_category->ListData = $combo_category->ListItem;
 	}
 	$combo_category->SelectName = 'category';

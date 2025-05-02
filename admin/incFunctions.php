@@ -830,6 +830,10 @@
 			return ['width'=>50, 'height'=>50, 'identifier'=>'_tv'];
 		elseif($tableName=='approval_table' && $fieldName=='image' && $view=='dv')
 			return ['width'=>250, 'height'=>250, 'identifier'=>'_dv'];
+		elseif($tableName=='techlead_web_page' && $fieldName=='img1' && $view=='tv')
+			return ['width'=>50, 'height'=>50, 'identifier'=>'_tv'];
+		elseif($tableName=='techlead_web_page' && $fieldName=='img2' && $view=='tv')
+			return ['width'=>50, 'height'=>50, 'identifier'=>'_tv'];
 		elseif($tableName=='visiting_card_table' && $fieldName=='front_img' && $view=='tv')
 			return ['width'=>50, 'height'=>50, 'identifier'=>'_tv'];
 		elseif($tableName=='visiting_card_table' && $fieldName=='front_img' && $view=='dv')

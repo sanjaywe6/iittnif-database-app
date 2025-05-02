@@ -16,11 +16,7 @@
 		setupTable('approval_table', []);
 		setupIndexes('approval_table', ['person_responsbility',]);
 
-		setupTable('techlead_web_page', [
-				" ALTER TABLE `techlead_web_page` CHANGE `content_learn_more` `content_learn_more` TEXT NOT NULL ",
-				" ALTER TABLE `techlead_web_page` CHANGE `content` `content` TEXT NOT NULL ",
-				" ALTER TABLE `techlead_web_page` CHANGE `content_title` `content_title` VARCHAR(255) NOT NULL ",
-			]);
+		setupTable('techlead_web_page', []);
 		setupIndexes('techlead_web_page', ['approved_by',]);
 
 		setupTable('car_table', []);

@@ -46,10 +46,10 @@
 					</div>
 				</div>
 
-				<!-- Field: Upload Image First -->
+				<!-- Field: Upload Image First (Required) -->
 				<div class="form-group techlead_web_page-img1">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3">Upload Image First <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#img1-description"></i></label>
+					<label class="control-label col-lg-3">Upload Image First (Required)<span class="text-danger"><%%TRANSLATION(*)%%></span> <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#img1-description"></i></label>
 					<div class="col-lg-9">
 						<span class="help-block bspacer-xs collapse" id="img1-description"><div class="alert alert-info bspacer-xs">Maximum file size allowed: 10000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp</div></span>
 						<div class="form-control-static well well-sm">
@@ -57,7 +57,6 @@
 								<div class="col-lg-8 col-md-6" style="padding-left: 0;"><img src="<%%BASE_UPLOAD_PATH%%><%%VALUE(img1)%%>" class="img-responsive img-thumbnail" id="img1-image"></div>
 								<div class="hidden-md hidden-lg vspacer-lg"></div>
 								<div class="col-lg-4 col-md-6 well upload-toolbox">
-									<%%REMOVEFILE(img1)%%>
 									<%%UPLOADFILE(img1)%%>
 									<div class="text-bold text-danger file-type-error hidden"><%%TRANSLATION(invalid file type)%%></div>
 									<div class="text-bold text-danger file-size-error hidden"><%%TRANSLATION(file too large)%%></div>
@@ -68,10 +67,10 @@
 					</div>
 				</div>
 
-				<!-- Field: Upload Image Second -->
+				<!-- Field: Upload Image Second (Optional) -->
 				<div class="form-group techlead_web_page-img2">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3">Upload Image Second <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#img2-description"></i></label>
+					<label class="control-label col-lg-3">Upload Image Second (Optional) <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#img2-description"></i></label>
 					<div class="col-lg-9">
 						<span class="help-block bspacer-xs collapse" id="img2-description"><div class="alert alert-info bspacer-xs">Maximum file size allowed: 10000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp</div></span>
 						<div class="form-control-static well well-sm">
@@ -108,6 +107,15 @@
 					</div>
 				</div>
 
+				<!-- Field: Approval remarks -->
+				<div class="form-group techlead_web_page-approval_remarks">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="approval_remarks">Approval remarks</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="approval_remarks" id="approval_remarks" rows=" 5"><%%VALUE(approval_remarks)%%></textarea>
+					</div>
+				</div>
+
 				<!-- Field: Website Update Status -->
 				<div class="form-group techlead_web_page-website_update_status">
 					<hr class="hidden-md hidden-lg">
@@ -117,10 +125,19 @@
 					</div>
 				</div>
 
-				<!-- Field: Website Update Date -->
+				<!-- Field: Website Update Remarks -->
+				<div class="form-group techlead_web_page-website_update_remarks">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="website_update_remarks">Website Update Remarks</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="website_update_remarks" id="website_update_remarks" rows=" 5"><%%VALUE(website_update_remarks)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Website Updated Date -->
 				<div class="form-group techlead_web_page-website_update_date">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="website_update_date-dd">Website Update Date</label>
+					<label class="control-label col-lg-3" for="website_update_date-dd">Website Updated Date</label>
 					<div class="col-lg-9">
 						<%%COMBO(website_update_date)%%>
 					</div>

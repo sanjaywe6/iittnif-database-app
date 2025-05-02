@@ -1840,16 +1840,16 @@
 						],
 					],
 					'img1' => [
-						'appgini' => "VARCHAR(255) NULL",
+						'appgini' => "VARCHAR(255) NOT NULL",
 						'info' => [
-							'caption' => 'Upload Image First',
+							'caption' => 'Upload Image First (Required)',
 							'description' => 'Maximum file size allowed: 10000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
 						],
 					],
 					'img2' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Upload Image Second',
+							'caption' => 'Upload Image Second (Optional)',
 							'description' => 'Maximum file size allowed: 10000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
 						],
 					],
@@ -1867,6 +1867,13 @@
 							'description' => '',
 						],
 					],
+					'approval_remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Approval remarks',
+							'description' => '',
+						],
+					],
 					'website_update_status' => [
 						'appgini' => "VARCHAR(255) NULL DEFAULT 'Pending'",
 						'info' => [
@@ -1874,10 +1881,17 @@
 							'description' => '',
 						],
 					],
+					'website_update_remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Website Update Remarks',
+							'description' => '',
+						],
+					],
 					'website_update_date' => [
 						'appgini' => "DATE NULL",
 						'info' => [
-							'caption' => 'Website Update Date',
+							'caption' => 'Website Updated Date',
 							'description' => '',
 						],
 					],

@@ -27,7 +27,9 @@
 		"`techlead_web_page`.`img2`" => "img2",
 		"`techlead_web_page`.`approval_status`" => "approval_status",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, ' - ', `user_table1`.`name`), '') /* Approved by */" => "approved_by",
+		"`techlead_web_page`.`approval_remarks`" => "approval_remarks",
 		"`techlead_web_page`.`website_update_status`" => "website_update_status",
+		"`techlead_web_page`.`website_update_remarks`" => "website_update_remarks",
 		"if(`techlead_web_page`.`website_update_date`,date_format(`techlead_web_page`.`website_update_date`,'%d/%m/%Y'),'')" => "website_update_date",
 		"`techlead_web_page`.`created_by`" => "created_by",
 		"`techlead_web_page`.`last_updated_by`" => "last_updated_by",
@@ -44,9 +46,11 @@
 		8 => 8,
 		9 => 9,
 		10 => 10,
-		11 => '`techlead_web_page`.`website_update_date`',
+		11 => 11,
 		12 => 12,
-		13 => 13,
+		13 => '`techlead_web_page`.`website_update_date`',
+		14 => 14,
+		15 => 15,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -60,7 +64,9 @@
 		"`techlead_web_page`.`img2`" => "img2",
 		"`techlead_web_page`.`approval_status`" => "approval_status",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, ' - ', `user_table1`.`name`), '') /* Approved by */" => "approved_by",
+		"`techlead_web_page`.`approval_remarks`" => "approval_remarks",
 		"`techlead_web_page`.`website_update_status`" => "website_update_status",
+		"`techlead_web_page`.`website_update_remarks`" => "website_update_remarks",
 		"if(`techlead_web_page`.`website_update_date`,date_format(`techlead_web_page`.`website_update_date`,'%d/%m/%Y'),'')" => "website_update_date",
 		"`techlead_web_page`.`created_by`" => "created_by",
 		"`techlead_web_page`.`last_updated_by`" => "last_updated_by",
@@ -74,8 +80,10 @@
 		"`techlead_web_page`.`content`" => "Web Page Content",
 		"`techlead_web_page`.`approval_status`" => "Approval status",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, ' - ', `user_table1`.`name`), '') /* Approved by */" => "Approved by",
+		"`techlead_web_page`.`approval_remarks`" => "Approval remarks",
 		"`techlead_web_page`.`website_update_status`" => "Website Update Status",
-		"`techlead_web_page`.`website_update_date`" => "Website Update Date",
+		"`techlead_web_page`.`website_update_remarks`" => "Website Update Remarks",
+		"`techlead_web_page`.`website_update_date`" => "Website Updated Date",
 		"`techlead_web_page`.`created_by`" => "Created By",
 		"`techlead_web_page`.`last_updated_by`" => "Last updated By",
 	];
@@ -89,7 +97,9 @@
 		"`techlead_web_page`.`content`" => "content",
 		"`techlead_web_page`.`approval_status`" => "approval_status",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, ' - ', `user_table1`.`name`), '') /* Approved by */" => "approved_by",
+		"`techlead_web_page`.`approval_remarks`" => "approval_remarks",
 		"`techlead_web_page`.`website_update_status`" => "website_update_status",
+		"`techlead_web_page`.`website_update_remarks`" => "website_update_remarks",
 		"if(`techlead_web_page`.`website_update_date`,date_format(`techlead_web_page`.`website_update_date`,'%d/%m/%Y'),'')" => "website_update_date",
 		"`techlead_web_page`.`created_by`" => "created_by",
 		"`techlead_web_page`.`last_updated_by`" => "last_updated_by",
@@ -128,10 +138,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Tech Lead', 'Category', 'Web Page Content', 'Upload Image First', 'Upload Image Second', 'Approval status', 'Approved by', 'Website Update Status', 'Website Update Date', 'Created By', 'Last updated By', ];
-	$x->ColFieldName = ['id', 'username', 'techlead', 'category', 'content', 'img1', 'img2', 'approval_status', 'approved_by', 'website_update_status', 'website_update_date', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Tech Lead', 'Category', 'Web Page Content', 'Upload Image First (Required)', 'Upload Image Second (Optional)', 'Approval status', 'Approved by', 'Approval remarks', 'Website Update Status', 'Website Update Remarks', 'Website Updated Date', 'Created By', 'Last updated By', ];
+	$x->ColFieldName = ['id', 'username', 'techlead', 'category', 'content', 'img1', 'img2', 'approval_status', 'approved_by', 'approval_remarks', 'website_update_status', 'website_update_remarks', 'website_update_date', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/techlead_web_page_templateTV.html';

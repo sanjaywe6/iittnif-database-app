@@ -35,18 +35,18 @@
 				<div class="form-control-static"><%%VALUE(content)%%></div>
 			</div>
 		</div>
-		<!-- Field: Upload Image First -->
+		<!-- Field: Upload Image First (Required) -->
 		<div class="form-group techlead_web_page-img1" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Upload Image First</label>
+			<label class="col-xs-3 control-label">Upload Image First (Required)</label>
 			<div class="col-xs-9">
 				<div class="form-control-static">
 <img src="<%%BASE_UPLOAD_PATH%%><%%VALUE(img1)%%>" class="img-responsive img-thumbnail">
 </div>
 			</div>
 		</div>
-		<!-- Field: Upload Image Second -->
+		<!-- Field: Upload Image Second (Optional) -->
 		<div class="form-group techlead_web_page-img2" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Upload Image Second</label>
+			<label class="col-xs-3 control-label">Upload Image Second (Optional)</label>
 			<div class="col-xs-9">
 				<div class="form-control-static">
 <img src="<%%BASE_UPLOAD_PATH%%><%%VALUE(img2)%%>" class="img-responsive img-thumbnail">
@@ -67,6 +67,13 @@
 				<div class="form-control-static"><span id="approved_by<%%RND1%%>"><%%COMBOTEXT(approved_by)%%></span></div>
 			</div>
 		</div>
+		<!-- Field: Approval remarks -->
+		<div class="form-group techlead_web_page-approval_remarks" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Approval remarks</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(approval_remarks)%%></div>
+			</div>
+		</div>
 		<!-- Field: Website Update Status -->
 		<div class="form-group techlead_web_page-website_update_status" style="border-bottom: dotted 1px #DDD;">
 			<label class="col-xs-3 control-label">Website Update Status</label>
@@ -74,9 +81,16 @@
 				<div class="form-control-static"><%%COMBOTEXT(website_update_status)%%></div>
 			</div>
 		</div>
-		<!-- Field: Website Update Date -->
+		<!-- Field: Website Update Remarks -->
+		<div class="form-group techlead_web_page-website_update_remarks" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Website Update Remarks</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(website_update_remarks)%%></div>
+			</div>
+		</div>
+		<!-- Field: Website Updated Date -->
 		<div class="form-group techlead_web_page-website_update_date" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Website Update Date</label>
+			<label class="col-xs-3 control-label">Website Updated Date</label>
 			<div class="col-xs-9">
 				<div class="form-control-static"><%%COMBOTEXT(website_update_date)%%></div>
 			</div>

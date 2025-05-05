@@ -221,21 +221,6 @@ function techlead_web_page_update(&$selected_id, &$error_message = '') {
 		'last_updated_by' => parseCode('<%%editorUsername%%>::<%%editingDateTime%%>', false),
 	];
 
-	if($data['content_title'] === '') {
-		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Web Page Content Title': {$Translation['field not null']}<br><br>";
-		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
-		exit;
-	}
-	if($data['content'] === '') {
-		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Web Page Content Material': {$Translation['field not null']}<br><br>";
-		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
-		exit;
-	}
-	if($data['content_learn_more'] === '') {
-		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Web Page Content Learn More Section': {$Translation['field not null']}<br><br>";
-		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
-		exit;
-	}
 	if($data['img1'] === '') {
 		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Upload Image First (Required)': {$Translation['field not null']}<br><br>";
 		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';

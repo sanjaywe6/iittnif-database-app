@@ -493,9 +493,6 @@ function techlead_web_page_validateData(insertMode) {
 	// check all required fields have values
 	const reqFields = [
 		// [field-type, field-name, field-caption], ...
-		['text', 'content_title', 'Web Page Content Title'],
-		['html', 'content', 'Web Page Content Material'],
-		['html', 'content_learn_more', 'Web Page Content Learn More Section'],
 		['image', 'img1', 'Upload Image First (Required)'],
 	];
 

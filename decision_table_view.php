@@ -28,9 +28,8 @@
 		"if(`decision_table`.`decision_status_update_date`,date_format(`decision_table`.`decision_status_update_date`,'%d/%m/%Y'),'')" => "decision_status_update_date",
 		"`decision_table`.`decision_status_remarks_by_superior`" => "decision_status_remarks_by_superior",
 		"`decision_table`.`decision_str`" => "decision_str",
-		"`decision_table`.`last_updated_by`" => "last_updated_by",
-		"`decision_table`.`last_updated_at`" => "last_updated_at",
 		"`decision_table`.`created_by`" => "created_by",
+		"`decision_table`.`last_updated_by`" => "last_updated_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -46,7 +45,6 @@
 		10 => 10,
 		11 => 11,
 		12 => 12,
-		13 => 13,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -61,9 +59,8 @@
 		"if(`decision_table`.`decision_status_update_date`,date_format(`decision_table`.`decision_status_update_date`,'%d/%m/%Y'),'')" => "decision_status_update_date",
 		"`decision_table`.`decision_status_remarks_by_superior`" => "decision_status_remarks_by_superior",
 		"`decision_table`.`decision_str`" => "decision_str",
-		"`decision_table`.`last_updated_by`" => "last_updated_by",
-		"`decision_table`.`last_updated_at`" => "last_updated_at",
 		"`decision_table`.`created_by`" => "created_by",
+		"`decision_table`.`last_updated_by`" => "last_updated_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -77,9 +74,8 @@
 		"`decision_table`.`decision_status_update_date`" => "Decision status update date",
 		"`decision_table`.`decision_status_remarks_by_superior`" => "Decision status remarks by superior",
 		"`decision_table`.`decision_str`" => "Decision str",
-		"`decision_table`.`last_updated_by`" => "Last updated by",
-		"`decision_table`.`last_updated_at`" => "Last updated at",
 		"`decision_table`.`created_by`" => "Created By",
+		"`decision_table`.`last_updated_by`" => "Last Updated By",
 	];
 
 	// Fields that can be quick searched
@@ -94,9 +90,8 @@
 		"if(`decision_table`.`decision_status_update_date`,date_format(`decision_table`.`decision_status_update_date`,'%d/%m/%Y'),'')" => "decision_status_update_date",
 		"`decision_table`.`decision_status_remarks_by_superior`" => "decision_status_remarks_by_superior",
 		"`decision_table`.`decision_str`" => "decision_str",
-		"`decision_table`.`last_updated_by`" => "last_updated_by",
-		"`decision_table`.`last_updated_at`" => "last_updated_at",
 		"`decision_table`.`created_by`" => "created_by",
+		"`decision_table`.`last_updated_by`" => "last_updated_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -132,10 +127,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Agenda of Meeting', 'Decision description', 'Decision actor', 'Action taken with date', 'Decision status', 'Decision status update date', 'Decision status remarks by superior', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['decision_id', 'username', 'agenda_lookup', 'decision_description', 'decision_actor', 'action_taken_with_date', 'decision_status', 'decision_status_update_date', 'decision_status_remarks_by_superior', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Agenda of Meeting', 'Decision description', 'Decision actor', 'Action taken with date', 'Decision status', 'Decision status update date', 'Decision status remarks by superior', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['decision_id', 'username', 'agenda_lookup', 'decision_description', 'decision_actor', 'action_taken_with_date', 'decision_status', 'decision_status_update_date', 'decision_status_remarks_by_superior', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/decision_table_templateTV.html';

@@ -23,9 +23,8 @@
 		"IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') /* Meeting */" => "meeting_lookup",
 		"`agenda_table`.`agenda_description`" => "agenda_description",
 		"`agenda_table`.`agenda_str`" => "agenda_str",
-		"`agenda_table`.`last_updated_by`" => "last_updated_by",
-		"`agenda_table`.`last_updated_at`" => "last_updated_at",
 		"`agenda_table`.`created_by`" => "created_by",
+		"`agenda_table`.`last_updated_by`" => "last_updated_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -36,7 +35,6 @@
 		5 => 5,
 		6 => 6,
 		7 => 7,
-		8 => 8,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -46,9 +44,8 @@
 		"IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') /* Meeting */" => "meeting_lookup",
 		"`agenda_table`.`agenda_description`" => "agenda_description",
 		"`agenda_table`.`agenda_str`" => "agenda_str",
-		"`agenda_table`.`last_updated_by`" => "last_updated_by",
-		"`agenda_table`.`last_updated_at`" => "last_updated_at",
 		"`agenda_table`.`created_by`" => "created_by",
+		"`agenda_table`.`last_updated_by`" => "last_updated_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -57,9 +54,8 @@
 		"IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') /* Meeting */" => "Meeting",
 		"`agenda_table`.`agenda_description`" => "Agenda description",
 		"`agenda_table`.`agenda_str`" => "Agenda str",
-		"`agenda_table`.`last_updated_by`" => "Last updated by",
-		"`agenda_table`.`last_updated_at`" => "Last updated at",
 		"`agenda_table`.`created_by`" => "Created By",
+		"`agenda_table`.`last_updated_by`" => "Last Updated By",
 	];
 
 	// Fields that can be quick searched
@@ -69,9 +65,8 @@
 		"IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') /* Meeting */" => "meeting_lookup",
 		"`agenda_table`.`agenda_description`" => "agenda_description",
 		"`agenda_table`.`agenda_str`" => "agenda_str",
-		"`agenda_table`.`last_updated_by`" => "last_updated_by",
-		"`agenda_table`.`last_updated_at`" => "last_updated_at",
 		"`agenda_table`.`created_by`" => "created_by",
+		"`agenda_table`.`last_updated_by`" => "last_updated_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -105,10 +100,10 @@
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`agenda_table`.`agenda_id`';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Meeting', 'Agenda description', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['agenda_id', 'username', 'meeting_lookup', 'agenda_description', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 6, 7, 8, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Meeting', 'Agenda description', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['agenda_id', 'username', 'meeting_lookup', 'agenda_description', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 6, 7, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/agenda_table_templateTV.html';

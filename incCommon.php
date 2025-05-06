@@ -119,11 +119,11 @@
 			'event_table' => "`event_table`.`event_id` as 'event_id', `event_table`.`username` as 'username', `event_table`.`event_name` as 'event_name', `event_table`.`participants` as 'participants', `event_table`.`venue` as 'venue', if(`event_table`.`event_from_date`,date_format(`event_table`.`event_from_date`,'%d/%m/%Y'),'') as 'event_from_date', if(`event_table`.`event_to_date`,date_format(`event_table`.`event_to_date`,'%d/%m/%Y'),'') as 'event_to_date', `event_table`.`event_str` as 'event_str', `event_table`.`created_by` as 'created_by', `event_table`.`last_updated_by` as 'last_updated_by'",
 			'outcomes_expected_table' => "`outcomes_expected_table`.`outcomes_expected_id` as 'outcomes_expected_id', `outcomes_expected_table`.`username` as 'username', IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') as 'event_lookup', `outcomes_expected_table`.`target_audience` as 'target_audience', `outcomes_expected_table`.`expected_outcomes` as 'expected_outcomes', `outcomes_expected_table`.`outcomes_expected_str` as 'outcomes_expected_str', `outcomes_expected_table`.`created_by` as 'created_by', `outcomes_expected_table`.`last_updated_by` as 'last_updated_by'",
 			'event_decision_table' => "`event_decision_table`.`decision_id` as 'decision_id', `event_decision_table`.`username` as 'username', IF(    CHAR_LENGTH(`outcomes_expected_table1`.`outcomes_expected_str`), CONCAT_WS('',   `outcomes_expected_table1`.`outcomes_expected_str`), '') as 'outcomes_expected_lookup', `event_decision_table`.`decision_description` as 'decision_description', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'decision_actor', if(`event_decision_table`.`action_taken_with_date`,date_format(`event_decision_table`.`action_taken_with_date`,'%d/%m/%Y'),'') as 'action_taken_with_date', `event_decision_table`.`decision_status` as 'decision_status', if(`event_decision_table`.`decision_status_update_date`,date_format(`event_decision_table`.`decision_status_update_date`,'%d/%m/%Y'),'') as 'decision_status_update_date', `event_decision_table`.`decision_status_remarks_by_superior` as 'decision_status_remarks_by_superior', `event_decision_table`.`decision_str` as 'decision_str', `event_decision_table`.`created_by` as 'created_by', `event_decision_table`.`last_updated_by` as 'last_updated_by'",
-			'meetings_table' => "`meetings_table`.`meetings_id` as 'meetings_id', `meetings_table`.`username` as 'username', IF(    CHAR_LENGTH(`visiting_card_table1`.`visiting_card_str`), CONCAT_WS('',   `visiting_card_table1`.`visiting_card_str`), '') as 'visiting_card_lookup', IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') as 'event_lookup', `meetings_table`.`meeting_title` as 'meeting_title', `meetings_table`.`participants` as 'participants', `meetings_table`.`venue` as 'venue', if(`meetings_table`.`meeting_from_date`,date_format(`meetings_table`.`meeting_from_date`,'%d/%m/%Y'),'') as 'meeting_from_date', if(`meetings_table`.`meeting_to_date`,date_format(`meetings_table`.`meeting_to_date`,'%d/%m/%Y'),'') as 'meeting_to_date', `meetings_table`.`minutes_of_meeting` as 'minutes_of_meeting', `meetings_table`.`meeting_str` as 'meeting_str', `meetings_table`.`last_updated_by` as 'last_updated_by', `meetings_table`.`last_updated_at` as 'last_updated_at', `meetings_table`.`created_by` as 'created_by'",
-			'agenda_table' => "`agenda_table`.`agenda_id` as 'agenda_id', `agenda_table`.`username` as 'username', IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') as 'meeting_lookup', `agenda_table`.`agenda_description` as 'agenda_description', `agenda_table`.`agenda_str` as 'agenda_str', `agenda_table`.`last_updated_by` as 'last_updated_by', `agenda_table`.`last_updated_at` as 'last_updated_at', `agenda_table`.`created_by` as 'created_by'",
-			'decision_table' => "`decision_table`.`decision_id` as 'decision_id', `decision_table`.`username` as 'username', IF(    CHAR_LENGTH(`agenda_table1`.`agenda_str`), CONCAT_WS('',   `agenda_table1`.`agenda_str`), '') as 'agenda_lookup', `decision_table`.`decision_description` as 'decision_description', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'decision_actor', if(`decision_table`.`action_taken_with_date`,date_format(`decision_table`.`action_taken_with_date`,'%d/%m/%Y'),'') as 'action_taken_with_date', `decision_table`.`decision_status` as 'decision_status', if(`decision_table`.`decision_status_update_date`,date_format(`decision_table`.`decision_status_update_date`,'%d/%m/%Y'),'') as 'decision_status_update_date', `decision_table`.`decision_status_remarks_by_superior` as 'decision_status_remarks_by_superior', `decision_table`.`decision_str` as 'decision_str', `decision_table`.`last_updated_by` as 'last_updated_by', `decision_table`.`last_updated_at` as 'last_updated_at', `decision_table`.`created_by` as 'created_by'",
-			'participants_table' => "`participants_table`.`participants_id` as 'participants_id', `participants_table`.`username` as 'username', IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') as 'event_lookup', IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') as 'meeting_lookup', `participants_table`.`name` as 'name', `participants_table`.`designation` as 'designation', `participants_table`.`participant_type` as 'participant_type', `participants_table`.`accepted_status` as 'accepted_status', if(`participants_table`.`status_date`,date_format(`participants_table`.`status_date`,'%d/%m/%Y'),'') as 'status_date', `participants_table`.`last_updated_by` as 'last_updated_by', `participants_table`.`last_updated_at` as 'last_updated_at', `participants_table`.`created_by` as 'created_by'",
-			'action_actor' => "`action_actor`.`actor_ID` as 'actor_ID', `action_actor`.`username` as 'username', `action_actor`.`action_str` as 'action_str', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'actor', `action_actor`.`action_status` as 'action_status', `action_actor`.`last_updated_by` as 'last_updated_by', `action_actor`.`last_updated_at` as 'last_updated_at', `action_actor`.`created_by` as 'created_by'",
+			'meetings_table' => "`meetings_table`.`meetings_id` as 'meetings_id', `meetings_table`.`username` as 'username', IF(    CHAR_LENGTH(`visiting_card_table1`.`visiting_card_str`), CONCAT_WS('',   `visiting_card_table1`.`visiting_card_str`), '') as 'visiting_card_lookup', IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') as 'event_lookup', `meetings_table`.`meeting_title` as 'meeting_title', `meetings_table`.`participants` as 'participants', `meetings_table`.`venue` as 'venue', if(`meetings_table`.`meeting_from_date`,date_format(`meetings_table`.`meeting_from_date`,'%d/%m/%Y'),'') as 'meeting_from_date', if(`meetings_table`.`meeting_to_date`,date_format(`meetings_table`.`meeting_to_date`,'%d/%m/%Y'),'') as 'meeting_to_date', `meetings_table`.`minutes_of_meeting` as 'minutes_of_meeting', `meetings_table`.`meeting_str` as 'meeting_str', `meetings_table`.`created_by` as 'created_by', `meetings_table`.`last_updated_by` as 'last_updated_by'",
+			'agenda_table' => "`agenda_table`.`agenda_id` as 'agenda_id', `agenda_table`.`username` as 'username', IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') as 'meeting_lookup', `agenda_table`.`agenda_description` as 'agenda_description', `agenda_table`.`agenda_str` as 'agenda_str', `agenda_table`.`created_by` as 'created_by', `agenda_table`.`last_updated_by` as 'last_updated_by'",
+			'decision_table' => "`decision_table`.`decision_id` as 'decision_id', `decision_table`.`username` as 'username', IF(    CHAR_LENGTH(`agenda_table1`.`agenda_str`), CONCAT_WS('',   `agenda_table1`.`agenda_str`), '') as 'agenda_lookup', `decision_table`.`decision_description` as 'decision_description', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'decision_actor', if(`decision_table`.`action_taken_with_date`,date_format(`decision_table`.`action_taken_with_date`,'%d/%m/%Y'),'') as 'action_taken_with_date', `decision_table`.`decision_status` as 'decision_status', if(`decision_table`.`decision_status_update_date`,date_format(`decision_table`.`decision_status_update_date`,'%d/%m/%Y'),'') as 'decision_status_update_date', `decision_table`.`decision_status_remarks_by_superior` as 'decision_status_remarks_by_superior', `decision_table`.`decision_str` as 'decision_str', `decision_table`.`created_by` as 'created_by', `decision_table`.`last_updated_by` as 'last_updated_by'",
+			'participants_table' => "`participants_table`.`participants_id` as 'participants_id', `participants_table`.`username` as 'username', IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') as 'event_lookup', IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') as 'meeting_lookup', `participants_table`.`name` as 'name', `participants_table`.`designation` as 'designation', `participants_table`.`participant_type` as 'participant_type', `participants_table`.`accepted_status` as 'accepted_status', if(`participants_table`.`status_date`,date_format(`participants_table`.`status_date`,'%d/%m/%Y'),'') as 'status_date', `participants_table`.`created_by` as 'created_by', `participants_table`.`last_updated_by` as 'last_updated_by'",
+			'action_actor' => "`action_actor`.`actor_ID` as 'actor_ID', `action_actor`.`username` as 'username', `action_actor`.`action_str` as 'action_str', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'actor', `action_actor`.`action_status` as 'action_status', `action_actor`.`created_by` as 'created_by', `action_actor`.`last_updated_by` as 'last_updated_by'",
 			'visiting_card_table' => "`visiting_card_table`.`visiting_card_id` as 'visiting_card_id', `visiting_card_table`.`username` as 'username', `visiting_card_table`.`name` as 'name', `visiting_card_table`.`recommended_by` as 'recommended_by', `visiting_card_table`.`designation` as 'designation', `visiting_card_table`.`company_name` as 'company_name', `visiting_card_table`.`mobile_no` as 'mobile_no', `visiting_card_table`.`email` as 'email', `visiting_card_table`.`company_website_addr` as 'company_website_addr', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'given_by', `visiting_card_table`.`suggested_way_forward` as 'suggested_way_forward', `visiting_card_table`.`front_img` as 'front_img', `visiting_card_table`.`back_img` as 'back_img', `visiting_card_table`.`visiting_card_str` as 'visiting_card_str', `visiting_card_table`.`last_updated_by` as 'last_updated_by', `visiting_card_table`.`last_updated_at` as 'last_updated_at', `visiting_card_table`.`created_by` as 'created_by'",
 			'mou_details_table' => "`mou_details_table`.`id` as 'id', `mou_details_table`.`username` as 'username', `mou_details_table`.`type` as 'type', `mou_details_table`.`company_name` as 'company_name', `mou_details_table`.`objective_of_mou` as 'objective_of_mou', `mou_details_table`.`agreement_period` as 'agreement_period', if(`mou_details_table`.`date_of_agreement`,date_format(`mou_details_table`.`date_of_agreement`,'%d/%m/%Y'),'') as 'date_of_agreement', if(`mou_details_table`.`date_of_expiry`,date_format(`mou_details_table`.`date_of_expiry`,'%d/%m/%Y'),'') as 'date_of_expiry', `mou_details_table`.`status` as 'status', `mou_details_table`.`point_of_contact` as 'point_of_contact', `mou_details_table`.`contact_number` as 'contact_number', `mou_details_table`.`contact_email_id` as 'contact_email_id', `mou_details_table`.`website_link` as 'website_link', `mou_details_table`.`country` as 'country', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'assigned_mou_to', `mou_details_table`.`upload_mou` as 'upload_mou', `mou_details_table`.`last_updated_by` as 'last_updated_by', `mou_details_table`.`last_updated_at` as 'last_updated_at', `mou_details_table`.`created_by` as 'created_by'",
 			'mou_company_area_details_table' => "`mou_company_area_details_table`.`id` as 'id', `mou_company_area_details_table`.`username` as 'username', IF(    CHAR_LENGTH(`mou_details_table1`.`company_name`), CONCAT_WS('',   `mou_details_table1`.`company_name`), '') as 'name_of_the_company', `mou_company_area_details_table`.`area` as 'area', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'assigned_mou_to', `mou_company_area_details_table`.`remarks` as 'remarks', `mou_company_area_details_table`.`last_updated_by` as 'last_updated_by', `mou_company_area_details_table`.`last_updated_at` as 'last_updated_at', `mou_company_area_details_table`.`created_by` as 'created_by'",
@@ -603,9 +603,8 @@
 				'meeting_to_date' => '1',
 				'minutes_of_meeting' => 'None',
 				'meeting_str' => '',
-				'last_updated_by' => '',
-				'last_updated_at' => '',
 				'created_by' => '',
+				'last_updated_by' => '',
 			],
 			'agenda_table' => [
 				'agenda_id' => '',
@@ -613,9 +612,8 @@
 				'meeting_lookup' => '',
 				'agenda_description' => '',
 				'agenda_str' => '',
-				'last_updated_by' => '',
-				'last_updated_at' => '',
 				'created_by' => '',
+				'last_updated_by' => '',
 			],
 			'decision_table' => [
 				'decision_id' => '',
@@ -628,9 +626,8 @@
 				'decision_status_update_date' => '',
 				'decision_status_remarks_by_superior' => '',
 				'decision_str' => '',
-				'last_updated_by' => '',
-				'last_updated_at' => '',
 				'created_by' => '',
+				'last_updated_by' => '',
 			],
 			'participants_table' => [
 				'participants_id' => '',
@@ -642,9 +639,8 @@
 				'participant_type' => '',
 				'accepted_status' => '',
 				'status_date' => '',
-				'last_updated_by' => '',
-				'last_updated_at' => '',
 				'created_by' => '',
+				'last_updated_by' => '',
 			],
 			'action_actor' => [
 				'actor_ID' => '',
@@ -652,9 +648,8 @@
 				'action_str' => '',
 				'actor' => '',
 				'action_status' => '',
-				'last_updated_by' => '',
-				'last_updated_at' => '',
 				'created_by' => '',
+				'last_updated_by' => '',
 			],
 			'visiting_card_table' => [
 				'visiting_card_id' => '',
@@ -2918,9 +2913,9 @@ EOT;
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => [0 => 'ID', 1 => 'Username', 4 => 'Meeting title', 5 => 'Participants', 6 => 'Venue', 7 => 'Meeting from date', 8 => 'Meeting to date', 9 => 'Minutes of Meeting', 11 => 'Last updated by', 12 => 'Last updated at', 13 => 'Created By'],
-					'display-field-names' => [0 => 'meetings_id', 1 => 'username', 4 => 'meeting_title', 5 => 'participants', 6 => 'venue', 7 => 'meeting_from_date', 8 => 'meeting_to_date', 9 => 'minutes_of_meeting', 11 => 'last_updated_by', 12 => 'last_updated_at', 13 => 'created_by'],
-					'sortable-fields' => [0 => '`meetings_table`.`meetings_id`', 1 => 2, 2 => '`visiting_card_table1`.`visiting_card_str`', 3 => '`event_table1`.`event_str`', 4 => 5, 5 => 6, 6 => 7, 7 => '`meetings_table`.`meeting_from_date`', 8 => '`meetings_table`.`meeting_to_date`', 9 => 10, 10 => 11, 11 => 12, 12 => 13, 13 => 14],
+					'display-fields' => [0 => 'ID', 1 => 'Username', 4 => 'Meeting title', 5 => 'Participants', 6 => 'Venue', 7 => 'Meeting from date', 8 => 'Meeting to date', 9 => 'Minutes of Meeting', 11 => 'Created By', 12 => 'Last Updated By'],
+					'display-field-names' => [0 => 'meetings_id', 1 => 'username', 4 => 'meeting_title', 5 => 'participants', 6 => 'venue', 7 => 'meeting_from_date', 8 => 'meeting_to_date', 9 => 'minutes_of_meeting', 11 => 'created_by', 12 => 'last_updated_by'],
+					'sortable-fields' => [0 => '`meetings_table`.`meetings_id`', 1 => 2, 2 => '`visiting_card_table1`.`visiting_card_str`', 3 => '`event_table1`.`event_str`', 4 => 5, 5 => 6, 6 => 7, 7 => '`meetings_table`.`meeting_from_date`', 8 => '`meetings_table`.`meeting_to_date`', 9 => 10, 10 => 11, 11 => 12, 12 => 13],
 					'records-per-page' => 10,
 					'default-sort-by' => 7,
 					'default-sort-direction' => 'desc',
@@ -2929,7 +2924,7 @@ EOT;
 					'show-page-progress' => true,
 					'template' => 'children-meetings_table',
 					'template-printable' => 'children-meetings_table-printable',
-					'query' => "SELECT `meetings_table`.`meetings_id` as 'meetings_id', `meetings_table`.`username` as 'username', IF(    CHAR_LENGTH(`visiting_card_table1`.`visiting_card_str`), CONCAT_WS('',   `visiting_card_table1`.`visiting_card_str`), '') as 'visiting_card_lookup', IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') as 'event_lookup', `meetings_table`.`meeting_title` as 'meeting_title', `meetings_table`.`participants` as 'participants', `meetings_table`.`venue` as 'venue', if(`meetings_table`.`meeting_from_date`,date_format(`meetings_table`.`meeting_from_date`,'%d/%m/%Y'),'') as 'meeting_from_date', if(`meetings_table`.`meeting_to_date`,date_format(`meetings_table`.`meeting_to_date`,'%d/%m/%Y'),'') as 'meeting_to_date', if(CHAR_LENGTH(`meetings_table`.`minutes_of_meeting`)>500, concat(left(`meetings_table`.`minutes_of_meeting`,500),' ...'), `meetings_table`.`minutes_of_meeting`) as 'minutes_of_meeting', `meetings_table`.`meeting_str` as 'meeting_str', `meetings_table`.`last_updated_by` as 'last_updated_by', `meetings_table`.`last_updated_at` as 'last_updated_at', `meetings_table`.`created_by` as 'created_by' FROM `meetings_table` LEFT JOIN `visiting_card_table` as visiting_card_table1 ON `visiting_card_table1`.`visiting_card_id`=`meetings_table`.`visiting_card_lookup` LEFT JOIN `event_table` as event_table1 ON `event_table1`.`event_id`=`meetings_table`.`event_lookup` "
+					'query' => "SELECT `meetings_table`.`meetings_id` as 'meetings_id', `meetings_table`.`username` as 'username', IF(    CHAR_LENGTH(`visiting_card_table1`.`visiting_card_str`), CONCAT_WS('',   `visiting_card_table1`.`visiting_card_str`), '') as 'visiting_card_lookup', IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') as 'event_lookup', `meetings_table`.`meeting_title` as 'meeting_title', `meetings_table`.`participants` as 'participants', `meetings_table`.`venue` as 'venue', if(`meetings_table`.`meeting_from_date`,date_format(`meetings_table`.`meeting_from_date`,'%d/%m/%Y'),'') as 'meeting_from_date', if(`meetings_table`.`meeting_to_date`,date_format(`meetings_table`.`meeting_to_date`,'%d/%m/%Y'),'') as 'meeting_to_date', if(CHAR_LENGTH(`meetings_table`.`minutes_of_meeting`)>500, concat(left(`meetings_table`.`minutes_of_meeting`,500),' ...'), `meetings_table`.`minutes_of_meeting`) as 'minutes_of_meeting', `meetings_table`.`meeting_str` as 'meeting_str', `meetings_table`.`created_by` as 'created_by', `meetings_table`.`last_updated_by` as 'last_updated_by' FROM `meetings_table` LEFT JOIN `visiting_card_table` as visiting_card_table1 ON `visiting_card_table1`.`visiting_card_id`=`meetings_table`.`visiting_card_lookup` LEFT JOIN `event_table` as event_table1 ON `event_table1`.`event_id`=`meetings_table`.`event_lookup` "
 				],
 				'event_lookup' => [
 					'parent-table' => 'event_table',
@@ -2942,9 +2937,9 @@ EOT;
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => [0 => 'ID', 1 => 'Username', 4 => 'Meeting title', 5 => 'Participants', 6 => 'Venue', 7 => 'Meeting from date', 8 => 'Meeting to date', 9 => 'Minutes of Meeting', 11 => 'Last updated by', 12 => 'Last updated at', 13 => 'Created By'],
-					'display-field-names' => [0 => 'meetings_id', 1 => 'username', 4 => 'meeting_title', 5 => 'participants', 6 => 'venue', 7 => 'meeting_from_date', 8 => 'meeting_to_date', 9 => 'minutes_of_meeting', 11 => 'last_updated_by', 12 => 'last_updated_at', 13 => 'created_by'],
-					'sortable-fields' => [0 => '`meetings_table`.`meetings_id`', 1 => 2, 2 => '`visiting_card_table1`.`visiting_card_str`', 3 => '`event_table1`.`event_str`', 4 => 5, 5 => 6, 6 => 7, 7 => '`meetings_table`.`meeting_from_date`', 8 => '`meetings_table`.`meeting_to_date`', 9 => 10, 10 => 11, 11 => 12, 12 => 13, 13 => 14],
+					'display-fields' => [0 => 'ID', 1 => 'Username', 4 => 'Meeting title', 5 => 'Participants', 6 => 'Venue', 7 => 'Meeting from date', 8 => 'Meeting to date', 9 => 'Minutes of Meeting', 11 => 'Created By', 12 => 'Last Updated By'],
+					'display-field-names' => [0 => 'meetings_id', 1 => 'username', 4 => 'meeting_title', 5 => 'participants', 6 => 'venue', 7 => 'meeting_from_date', 8 => 'meeting_to_date', 9 => 'minutes_of_meeting', 11 => 'created_by', 12 => 'last_updated_by'],
+					'sortable-fields' => [0 => '`meetings_table`.`meetings_id`', 1 => 2, 2 => '`visiting_card_table1`.`visiting_card_str`', 3 => '`event_table1`.`event_str`', 4 => 5, 5 => 6, 6 => 7, 7 => '`meetings_table`.`meeting_from_date`', 8 => '`meetings_table`.`meeting_to_date`', 9 => 10, 10 => 11, 11 => 12, 12 => 13],
 					'records-per-page' => 10,
 					'default-sort-by' => 7,
 					'default-sort-direction' => 'desc',
@@ -2953,7 +2948,7 @@ EOT;
 					'show-page-progress' => true,
 					'template' => 'children-meetings_table',
 					'template-printable' => 'children-meetings_table-printable',
-					'query' => "SELECT `meetings_table`.`meetings_id` as 'meetings_id', `meetings_table`.`username` as 'username', IF(    CHAR_LENGTH(`visiting_card_table1`.`visiting_card_str`), CONCAT_WS('',   `visiting_card_table1`.`visiting_card_str`), '') as 'visiting_card_lookup', IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') as 'event_lookup', `meetings_table`.`meeting_title` as 'meeting_title', `meetings_table`.`participants` as 'participants', `meetings_table`.`venue` as 'venue', if(`meetings_table`.`meeting_from_date`,date_format(`meetings_table`.`meeting_from_date`,'%d/%m/%Y'),'') as 'meeting_from_date', if(`meetings_table`.`meeting_to_date`,date_format(`meetings_table`.`meeting_to_date`,'%d/%m/%Y'),'') as 'meeting_to_date', if(CHAR_LENGTH(`meetings_table`.`minutes_of_meeting`)>500, concat(left(`meetings_table`.`minutes_of_meeting`,500),' ...'), `meetings_table`.`minutes_of_meeting`) as 'minutes_of_meeting', `meetings_table`.`meeting_str` as 'meeting_str', `meetings_table`.`last_updated_by` as 'last_updated_by', `meetings_table`.`last_updated_at` as 'last_updated_at', `meetings_table`.`created_by` as 'created_by' FROM `meetings_table` LEFT JOIN `visiting_card_table` as visiting_card_table1 ON `visiting_card_table1`.`visiting_card_id`=`meetings_table`.`visiting_card_lookup` LEFT JOIN `event_table` as event_table1 ON `event_table1`.`event_id`=`meetings_table`.`event_lookup` "
+					'query' => "SELECT `meetings_table`.`meetings_id` as 'meetings_id', `meetings_table`.`username` as 'username', IF(    CHAR_LENGTH(`visiting_card_table1`.`visiting_card_str`), CONCAT_WS('',   `visiting_card_table1`.`visiting_card_str`), '') as 'visiting_card_lookup', IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') as 'event_lookup', `meetings_table`.`meeting_title` as 'meeting_title', `meetings_table`.`participants` as 'participants', `meetings_table`.`venue` as 'venue', if(`meetings_table`.`meeting_from_date`,date_format(`meetings_table`.`meeting_from_date`,'%d/%m/%Y'),'') as 'meeting_from_date', if(`meetings_table`.`meeting_to_date`,date_format(`meetings_table`.`meeting_to_date`,'%d/%m/%Y'),'') as 'meeting_to_date', if(CHAR_LENGTH(`meetings_table`.`minutes_of_meeting`)>500, concat(left(`meetings_table`.`minutes_of_meeting`,500),' ...'), `meetings_table`.`minutes_of_meeting`) as 'minutes_of_meeting', `meetings_table`.`meeting_str` as 'meeting_str', `meetings_table`.`created_by` as 'created_by', `meetings_table`.`last_updated_by` as 'last_updated_by' FROM `meetings_table` LEFT JOIN `visiting_card_table` as visiting_card_table1 ON `visiting_card_table1`.`visiting_card_id`=`meetings_table`.`visiting_card_lookup` LEFT JOIN `event_table` as event_table1 ON `event_table1`.`event_id`=`meetings_table`.`event_lookup` "
 				],
 			],
 			'agenda_table' => [
@@ -2968,9 +2963,9 @@ EOT;
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => [0 => 'ID', 1 => 'Username', 2 => 'Meeting', 3 => 'Agenda description', 5 => 'Last updated by', 6 => 'Last updated at', 7 => 'Created By'],
-					'display-field-names' => [0 => 'agenda_id', 1 => 'username', 2 => 'meeting_lookup', 3 => 'agenda_description', 5 => 'last_updated_by', 6 => 'last_updated_at', 7 => 'created_by'],
-					'sortable-fields' => [0 => '`agenda_table`.`agenda_id`', 1 => 2, 2 => '`meetings_table1`.`meeting_str`', 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8],
+					'display-fields' => [0 => 'ID', 1 => 'Username', 2 => 'Meeting', 3 => 'Agenda description', 5 => 'Created By', 6 => 'Last Updated By'],
+					'display-field-names' => [0 => 'agenda_id', 1 => 'username', 2 => 'meeting_lookup', 3 => 'agenda_description', 5 => 'created_by', 6 => 'last_updated_by'],
+					'sortable-fields' => [0 => '`agenda_table`.`agenda_id`', 1 => 2, 2 => '`meetings_table1`.`meeting_str`', 3 => 4, 4 => 5, 5 => 6, 6 => 7],
 					'records-per-page' => 10,
 					'default-sort-by' => false,
 					'default-sort-direction' => 'desc',
@@ -2979,7 +2974,7 @@ EOT;
 					'show-page-progress' => true,
 					'template' => 'children-agenda_table',
 					'template-printable' => 'children-agenda_table-printable',
-					'query' => "SELECT `agenda_table`.`agenda_id` as 'agenda_id', `agenda_table`.`username` as 'username', IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') as 'meeting_lookup', `agenda_table`.`agenda_description` as 'agenda_description', `agenda_table`.`agenda_str` as 'agenda_str', `agenda_table`.`last_updated_by` as 'last_updated_by', `agenda_table`.`last_updated_at` as 'last_updated_at', `agenda_table`.`created_by` as 'created_by' FROM `agenda_table` LEFT JOIN `meetings_table` as meetings_table1 ON `meetings_table1`.`meetings_id`=`agenda_table`.`meeting_lookup` "
+					'query' => "SELECT `agenda_table`.`agenda_id` as 'agenda_id', `agenda_table`.`username` as 'username', IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') as 'meeting_lookup', `agenda_table`.`agenda_description` as 'agenda_description', `agenda_table`.`agenda_str` as 'agenda_str', `agenda_table`.`created_by` as 'created_by', `agenda_table`.`last_updated_by` as 'last_updated_by' FROM `agenda_table` LEFT JOIN `meetings_table` as meetings_table1 ON `meetings_table1`.`meetings_id`=`agenda_table`.`meeting_lookup` "
 				],
 			],
 			'decision_table' => [
@@ -2994,9 +2989,9 @@ EOT;
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => [0 => 'ID', 1 => 'Username', 2 => 'Agenda of Meeting', 3 => 'Decision description', 4 => 'Decision actor', 5 => 'Action taken with date', 6 => 'Decision status', 7 => 'Decision status update date', 8 => 'Decision status remarks by superior', 10 => 'Last updated by', 11 => 'Last updated at', 12 => 'Created By'],
-					'display-field-names' => [0 => 'decision_id', 1 => 'username', 2 => 'agenda_lookup', 3 => 'decision_description', 4 => 'decision_actor', 5 => 'action_taken_with_date', 6 => 'decision_status', 7 => 'decision_status_update_date', 8 => 'decision_status_remarks_by_superior', 10 => 'last_updated_by', 11 => 'last_updated_at', 12 => 'created_by'],
-					'sortable-fields' => [0 => '`decision_table`.`decision_id`', 1 => 2, 2 => '`agenda_table1`.`agenda_str`', 3 => 4, 4 => 5, 5 => '`decision_table`.`action_taken_with_date`', 6 => 7, 7 => '`decision_table`.`decision_status_update_date`', 8 => 9, 9 => 10, 10 => 11, 11 => 12, 12 => 13],
+					'display-fields' => [0 => 'ID', 1 => 'Username', 2 => 'Agenda of Meeting', 3 => 'Decision description', 4 => 'Decision actor', 5 => 'Action taken with date', 6 => 'Decision status', 7 => 'Decision status update date', 8 => 'Decision status remarks by superior', 10 => 'Created By', 11 => 'Last Updated By'],
+					'display-field-names' => [0 => 'decision_id', 1 => 'username', 2 => 'agenda_lookup', 3 => 'decision_description', 4 => 'decision_actor', 5 => 'action_taken_with_date', 6 => 'decision_status', 7 => 'decision_status_update_date', 8 => 'decision_status_remarks_by_superior', 10 => 'created_by', 11 => 'last_updated_by'],
+					'sortable-fields' => [0 => '`decision_table`.`decision_id`', 1 => 2, 2 => '`agenda_table1`.`agenda_str`', 3 => 4, 4 => 5, 5 => '`decision_table`.`action_taken_with_date`', 6 => 7, 7 => '`decision_table`.`decision_status_update_date`', 8 => 9, 9 => 10, 10 => 11, 11 => 12],
 					'records-per-page' => 10,
 					'default-sort-by' => 0,
 					'default-sort-direction' => 'desc',
@@ -3005,7 +3000,7 @@ EOT;
 					'show-page-progress' => true,
 					'template' => 'children-decision_table',
 					'template-printable' => 'children-decision_table-printable',
-					'query' => "SELECT `decision_table`.`decision_id` as 'decision_id', `decision_table`.`username` as 'username', IF(    CHAR_LENGTH(`agenda_table1`.`agenda_str`), CONCAT_WS('',   `agenda_table1`.`agenda_str`), '') as 'agenda_lookup', `decision_table`.`decision_description` as 'decision_description', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'decision_actor', if(`decision_table`.`action_taken_with_date`,date_format(`decision_table`.`action_taken_with_date`,'%d/%m/%Y'),'') as 'action_taken_with_date', `decision_table`.`decision_status` as 'decision_status', if(`decision_table`.`decision_status_update_date`,date_format(`decision_table`.`decision_status_update_date`,'%d/%m/%Y'),'') as 'decision_status_update_date', `decision_table`.`decision_status_remarks_by_superior` as 'decision_status_remarks_by_superior', `decision_table`.`decision_str` as 'decision_str', `decision_table`.`last_updated_by` as 'last_updated_by', `decision_table`.`last_updated_at` as 'last_updated_at', `decision_table`.`created_by` as 'created_by' FROM `decision_table` LEFT JOIN `agenda_table` as agenda_table1 ON `agenda_table1`.`agenda_id`=`decision_table`.`agenda_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`decision_table`.`decision_actor` "
+					'query' => "SELECT `decision_table`.`decision_id` as 'decision_id', `decision_table`.`username` as 'username', IF(    CHAR_LENGTH(`agenda_table1`.`agenda_str`), CONCAT_WS('',   `agenda_table1`.`agenda_str`), '') as 'agenda_lookup', `decision_table`.`decision_description` as 'decision_description', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'decision_actor', if(`decision_table`.`action_taken_with_date`,date_format(`decision_table`.`action_taken_with_date`,'%d/%m/%Y'),'') as 'action_taken_with_date', `decision_table`.`decision_status` as 'decision_status', if(`decision_table`.`decision_status_update_date`,date_format(`decision_table`.`decision_status_update_date`,'%d/%m/%Y'),'') as 'decision_status_update_date', `decision_table`.`decision_status_remarks_by_superior` as 'decision_status_remarks_by_superior', `decision_table`.`decision_str` as 'decision_str', `decision_table`.`created_by` as 'created_by', `decision_table`.`last_updated_by` as 'last_updated_by' FROM `decision_table` LEFT JOIN `agenda_table` as agenda_table1 ON `agenda_table1`.`agenda_id`=`decision_table`.`agenda_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`decision_table`.`decision_actor` "
 				],
 				'decision_actor' => [
 					'parent-table' => 'user_table',
@@ -3018,9 +3013,9 @@ EOT;
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => [0 => 'ID', 1 => 'Username', 2 => 'Agenda of Meeting', 3 => 'Decision description', 4 => 'Decision actor', 5 => 'Action taken with date', 6 => 'Decision status', 7 => 'Decision status update date', 8 => 'Decision status remarks by superior', 10 => 'Last updated by', 11 => 'Last updated at', 12 => 'Created By'],
-					'display-field-names' => [0 => 'decision_id', 1 => 'username', 2 => 'agenda_lookup', 3 => 'decision_description', 4 => 'decision_actor', 5 => 'action_taken_with_date', 6 => 'decision_status', 7 => 'decision_status_update_date', 8 => 'decision_status_remarks_by_superior', 10 => 'last_updated_by', 11 => 'last_updated_at', 12 => 'created_by'],
-					'sortable-fields' => [0 => '`decision_table`.`decision_id`', 1 => 2, 2 => '`agenda_table1`.`agenda_str`', 3 => 4, 4 => 5, 5 => '`decision_table`.`action_taken_with_date`', 6 => 7, 7 => '`decision_table`.`decision_status_update_date`', 8 => 9, 9 => 10, 10 => 11, 11 => 12, 12 => 13],
+					'display-fields' => [0 => 'ID', 1 => 'Username', 2 => 'Agenda of Meeting', 3 => 'Decision description', 4 => 'Decision actor', 5 => 'Action taken with date', 6 => 'Decision status', 7 => 'Decision status update date', 8 => 'Decision status remarks by superior', 10 => 'Created By', 11 => 'Last Updated By'],
+					'display-field-names' => [0 => 'decision_id', 1 => 'username', 2 => 'agenda_lookup', 3 => 'decision_description', 4 => 'decision_actor', 5 => 'action_taken_with_date', 6 => 'decision_status', 7 => 'decision_status_update_date', 8 => 'decision_status_remarks_by_superior', 10 => 'created_by', 11 => 'last_updated_by'],
+					'sortable-fields' => [0 => '`decision_table`.`decision_id`', 1 => 2, 2 => '`agenda_table1`.`agenda_str`', 3 => 4, 4 => 5, 5 => '`decision_table`.`action_taken_with_date`', 6 => 7, 7 => '`decision_table`.`decision_status_update_date`', 8 => 9, 9 => 10, 10 => 11, 11 => 12],
 					'records-per-page' => 10,
 					'default-sort-by' => 0,
 					'default-sort-direction' => 'desc',
@@ -3029,7 +3024,7 @@ EOT;
 					'show-page-progress' => true,
 					'template' => 'children-decision_table',
 					'template-printable' => 'children-decision_table-printable',
-					'query' => "SELECT `decision_table`.`decision_id` as 'decision_id', `decision_table`.`username` as 'username', IF(    CHAR_LENGTH(`agenda_table1`.`agenda_str`), CONCAT_WS('',   `agenda_table1`.`agenda_str`), '') as 'agenda_lookup', `decision_table`.`decision_description` as 'decision_description', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'decision_actor', if(`decision_table`.`action_taken_with_date`,date_format(`decision_table`.`action_taken_with_date`,'%d/%m/%Y'),'') as 'action_taken_with_date', `decision_table`.`decision_status` as 'decision_status', if(`decision_table`.`decision_status_update_date`,date_format(`decision_table`.`decision_status_update_date`,'%d/%m/%Y'),'') as 'decision_status_update_date', `decision_table`.`decision_status_remarks_by_superior` as 'decision_status_remarks_by_superior', `decision_table`.`decision_str` as 'decision_str', `decision_table`.`last_updated_by` as 'last_updated_by', `decision_table`.`last_updated_at` as 'last_updated_at', `decision_table`.`created_by` as 'created_by' FROM `decision_table` LEFT JOIN `agenda_table` as agenda_table1 ON `agenda_table1`.`agenda_id`=`decision_table`.`agenda_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`decision_table`.`decision_actor` "
+					'query' => "SELECT `decision_table`.`decision_id` as 'decision_id', `decision_table`.`username` as 'username', IF(    CHAR_LENGTH(`agenda_table1`.`agenda_str`), CONCAT_WS('',   `agenda_table1`.`agenda_str`), '') as 'agenda_lookup', `decision_table`.`decision_description` as 'decision_description', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'decision_actor', if(`decision_table`.`action_taken_with_date`,date_format(`decision_table`.`action_taken_with_date`,'%d/%m/%Y'),'') as 'action_taken_with_date', `decision_table`.`decision_status` as 'decision_status', if(`decision_table`.`decision_status_update_date`,date_format(`decision_table`.`decision_status_update_date`,'%d/%m/%Y'),'') as 'decision_status_update_date', `decision_table`.`decision_status_remarks_by_superior` as 'decision_status_remarks_by_superior', `decision_table`.`decision_str` as 'decision_str', `decision_table`.`created_by` as 'created_by', `decision_table`.`last_updated_by` as 'last_updated_by' FROM `decision_table` LEFT JOIN `agenda_table` as agenda_table1 ON `agenda_table1`.`agenda_id`=`decision_table`.`agenda_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`decision_table`.`decision_actor` "
 				],
 			],
 			'participants_table' => [
@@ -3044,9 +3039,9 @@ EOT;
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => [0 => 'ID', 1 => 'Username', 2 => 'Event', 3 => 'Meeting', 4 => 'Name', 5 => 'Designation', 6 => 'Participant type', 7 => 'Accepted status', 8 => 'Status date', 9 => 'Last updated by', 10 => 'Last updated at', 11 => 'Created By'],
-					'display-field-names' => [0 => 'participants_id', 1 => 'username', 2 => 'event_lookup', 3 => 'meeting_lookup', 4 => 'name', 5 => 'designation', 6 => 'participant_type', 7 => 'accepted_status', 8 => 'status_date', 9 => 'last_updated_by', 10 => 'last_updated_at', 11 => 'created_by'],
-					'sortable-fields' => [0 => '`participants_table`.`participants_id`', 1 => 2, 2 => '`event_table1`.`event_str`', 3 => '`meetings_table1`.`meeting_str`', 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => '`participants_table`.`status_date`', 9 => 10, 10 => 11, 11 => 12],
+					'display-fields' => [0 => 'ID', 1 => 'Username', 2 => 'Event', 3 => 'Meeting', 4 => 'Name', 5 => 'Designation', 6 => 'Participant type', 7 => 'Accepted status', 8 => 'Status date', 9 => 'Created By', 10 => 'Last Updated By'],
+					'display-field-names' => [0 => 'participants_id', 1 => 'username', 2 => 'event_lookup', 3 => 'meeting_lookup', 4 => 'name', 5 => 'designation', 6 => 'participant_type', 7 => 'accepted_status', 8 => 'status_date', 9 => 'created_by', 10 => 'last_updated_by'],
+					'sortable-fields' => [0 => '`participants_table`.`participants_id`', 1 => 2, 2 => '`event_table1`.`event_str`', 3 => '`meetings_table1`.`meeting_str`', 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => '`participants_table`.`status_date`', 9 => 10, 10 => 11],
 					'records-per-page' => 10,
 					'default-sort-by' => 0,
 					'default-sort-direction' => 'desc',
@@ -3055,7 +3050,7 @@ EOT;
 					'show-page-progress' => true,
 					'template' => 'children-participants_table',
 					'template-printable' => 'children-participants_table-printable',
-					'query' => "SELECT `participants_table`.`participants_id` as 'participants_id', `participants_table`.`username` as 'username', IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') as 'event_lookup', IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') as 'meeting_lookup', `participants_table`.`name` as 'name', `participants_table`.`designation` as 'designation', `participants_table`.`participant_type` as 'participant_type', `participants_table`.`accepted_status` as 'accepted_status', if(`participants_table`.`status_date`,date_format(`participants_table`.`status_date`,'%d/%m/%Y'),'') as 'status_date', `participants_table`.`last_updated_by` as 'last_updated_by', `participants_table`.`last_updated_at` as 'last_updated_at', `participants_table`.`created_by` as 'created_by' FROM `participants_table` LEFT JOIN `event_table` as event_table1 ON `event_table1`.`event_id`=`participants_table`.`event_lookup` LEFT JOIN `meetings_table` as meetings_table1 ON `meetings_table1`.`meetings_id`=`participants_table`.`meeting_lookup` "
+					'query' => "SELECT `participants_table`.`participants_id` as 'participants_id', `participants_table`.`username` as 'username', IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') as 'event_lookup', IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') as 'meeting_lookup', `participants_table`.`name` as 'name', `participants_table`.`designation` as 'designation', `participants_table`.`participant_type` as 'participant_type', `participants_table`.`accepted_status` as 'accepted_status', if(`participants_table`.`status_date`,date_format(`participants_table`.`status_date`,'%d/%m/%Y'),'') as 'status_date', `participants_table`.`created_by` as 'created_by', `participants_table`.`last_updated_by` as 'last_updated_by' FROM `participants_table` LEFT JOIN `event_table` as event_table1 ON `event_table1`.`event_id`=`participants_table`.`event_lookup` LEFT JOIN `meetings_table` as meetings_table1 ON `meetings_table1`.`meetings_id`=`participants_table`.`meeting_lookup` "
 				],
 				'meeting_lookup' => [
 					'parent-table' => 'meetings_table',
@@ -3068,9 +3063,9 @@ EOT;
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => [0 => 'ID', 1 => 'Username', 2 => 'Event', 3 => 'Meeting', 4 => 'Name', 5 => 'Designation', 6 => 'Participant type', 7 => 'Accepted status', 8 => 'Status date', 9 => 'Last updated by', 10 => 'Last updated at', 11 => 'Created By'],
-					'display-field-names' => [0 => 'participants_id', 1 => 'username', 2 => 'event_lookup', 3 => 'meeting_lookup', 4 => 'name', 5 => 'designation', 6 => 'participant_type', 7 => 'accepted_status', 8 => 'status_date', 9 => 'last_updated_by', 10 => 'last_updated_at', 11 => 'created_by'],
-					'sortable-fields' => [0 => '`participants_table`.`participants_id`', 1 => 2, 2 => '`event_table1`.`event_str`', 3 => '`meetings_table1`.`meeting_str`', 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => '`participants_table`.`status_date`', 9 => 10, 10 => 11, 11 => 12],
+					'display-fields' => [0 => 'ID', 1 => 'Username', 2 => 'Event', 3 => 'Meeting', 4 => 'Name', 5 => 'Designation', 6 => 'Participant type', 7 => 'Accepted status', 8 => 'Status date', 9 => 'Created By', 10 => 'Last Updated By'],
+					'display-field-names' => [0 => 'participants_id', 1 => 'username', 2 => 'event_lookup', 3 => 'meeting_lookup', 4 => 'name', 5 => 'designation', 6 => 'participant_type', 7 => 'accepted_status', 8 => 'status_date', 9 => 'created_by', 10 => 'last_updated_by'],
+					'sortable-fields' => [0 => '`participants_table`.`participants_id`', 1 => 2, 2 => '`event_table1`.`event_str`', 3 => '`meetings_table1`.`meeting_str`', 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => '`participants_table`.`status_date`', 9 => 10, 10 => 11],
 					'records-per-page' => 10,
 					'default-sort-by' => 0,
 					'default-sort-direction' => 'desc',
@@ -3079,7 +3074,7 @@ EOT;
 					'show-page-progress' => true,
 					'template' => 'children-participants_table',
 					'template-printable' => 'children-participants_table-printable',
-					'query' => "SELECT `participants_table`.`participants_id` as 'participants_id', `participants_table`.`username` as 'username', IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') as 'event_lookup', IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') as 'meeting_lookup', `participants_table`.`name` as 'name', `participants_table`.`designation` as 'designation', `participants_table`.`participant_type` as 'participant_type', `participants_table`.`accepted_status` as 'accepted_status', if(`participants_table`.`status_date`,date_format(`participants_table`.`status_date`,'%d/%m/%Y'),'') as 'status_date', `participants_table`.`last_updated_by` as 'last_updated_by', `participants_table`.`last_updated_at` as 'last_updated_at', `participants_table`.`created_by` as 'created_by' FROM `participants_table` LEFT JOIN `event_table` as event_table1 ON `event_table1`.`event_id`=`participants_table`.`event_lookup` LEFT JOIN `meetings_table` as meetings_table1 ON `meetings_table1`.`meetings_id`=`participants_table`.`meeting_lookup` "
+					'query' => "SELECT `participants_table`.`participants_id` as 'participants_id', `participants_table`.`username` as 'username', IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') as 'event_lookup', IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') as 'meeting_lookup', `participants_table`.`name` as 'name', `participants_table`.`designation` as 'designation', `participants_table`.`participant_type` as 'participant_type', `participants_table`.`accepted_status` as 'accepted_status', if(`participants_table`.`status_date`,date_format(`participants_table`.`status_date`,'%d/%m/%Y'),'') as 'status_date', `participants_table`.`created_by` as 'created_by', `participants_table`.`last_updated_by` as 'last_updated_by' FROM `participants_table` LEFT JOIN `event_table` as event_table1 ON `event_table1`.`event_id`=`participants_table`.`event_lookup` LEFT JOIN `meetings_table` as meetings_table1 ON `meetings_table1`.`meetings_id`=`participants_table`.`meeting_lookup` "
 				],
 			],
 			'action_actor' => [
@@ -3094,9 +3089,9 @@ EOT;
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => [0 => 'ID', 1 => 'Username', 3 => 'Actor', 4 => 'Action status', 5 => 'Last updated by', 6 => 'Last updated at', 7 => 'Created By'],
-					'display-field-names' => [0 => 'actor_ID', 1 => 'username', 3 => 'actor', 4 => 'action_status', 5 => 'last_updated_by', 6 => 'last_updated_at', 7 => 'created_by'],
-					'sortable-fields' => [0 => 1, 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8],
+					'display-fields' => [0 => 'ID', 1 => 'Username', 3 => 'Actor', 4 => 'Action status', 5 => 'Created By', 6 => 'Last Updated By'],
+					'display-field-names' => [0 => 'actor_ID', 1 => 'username', 3 => 'actor', 4 => 'action_status', 5 => 'created_by', 6 => 'last_updated_by'],
+					'sortable-fields' => [0 => 1, 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => 7],
 					'records-per-page' => 10,
 					'default-sort-by' => 0,
 					'default-sort-direction' => 'desc',
@@ -3105,7 +3100,7 @@ EOT;
 					'show-page-progress' => true,
 					'template' => 'children-action_actor',
 					'template-printable' => 'children-action_actor-printable',
-					'query' => "SELECT `action_actor`.`actor_ID` as 'actor_ID', `action_actor`.`username` as 'username', `action_actor`.`action_str` as 'action_str', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'actor', `action_actor`.`action_status` as 'action_status', `action_actor`.`last_updated_by` as 'last_updated_by', `action_actor`.`last_updated_at` as 'last_updated_at', `action_actor`.`created_by` as 'created_by' FROM `action_actor` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`action_actor`.`actor` "
+					'query' => "SELECT `action_actor`.`actor_ID` as 'actor_ID', `action_actor`.`username` as 'username', `action_actor`.`action_str` as 'action_str', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'actor', `action_actor`.`action_status` as 'action_status', `action_actor`.`created_by` as 'created_by', `action_actor`.`last_updated_by` as 'last_updated_by' FROM `action_actor` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`action_actor`.`actor` "
 				],
 			],
 			'visiting_card_table' => [

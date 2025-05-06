@@ -43,19 +43,41 @@
 		setupTable('event_decision_table', []);
 		setupIndexes('event_decision_table', ['outcomes_expected_lookup','decision_actor',]);
 
-		setupTable('meetings_table', []);
+		setupTable('meetings_table', [
+				"ALTER TABLE `meetings_table` DROP `last_updated_by`",
+				"ALTER TABLE `meetings_table` DROP `last_updated_at`",
+				"ALTER TABLE `meetings_table` ADD `last_updated_by` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('meetings_table', ['visiting_card_lookup','event_lookup',]);
 
-		setupTable('agenda_table', []);
+		setupTable('agenda_table', [
+				"ALTER TABLE `agenda_table` DROP `last_updated_by`",
+				"ALTER TABLE `agenda_table` DROP `last_updated_at`",
+				"ALTER TABLE `agenda_table` ADD `last_updated_by` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('agenda_table', ['meeting_lookup',]);
 
-		setupTable('decision_table', []);
+		setupTable('decision_table', [
+				"ALTER TABLE `decision_table` DROP `last_updated_by`",
+				"ALTER TABLE `decision_table` DROP `last_updated_at`",
+				"ALTER TABLE `decision_table` ADD `last_updated_by` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('decision_table', ['agenda_lookup','decision_actor',]);
 
-		setupTable('participants_table', []);
+		setupTable('participants_table', [
+				"ALTER TABLE `participants_table` DROP `last_updated_by`",
+				"ALTER TABLE `participants_table` DROP `last_updated_at`",
+				"ALTER TABLE `participants_table` ADD `last_updated_by` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('participants_table', ['event_lookup','meeting_lookup',]);
 
-		setupTable('action_actor', []);
+		setupTable('action_actor', [
+				"ALTER TABLE `action_actor` DROP `last_updated_by`",
+				"ALTER TABLE `action_actor` DROP `last_updated_at`",
+				"ALTER TABLE `action_actor` ADD `last_updated_by` VARCHAR(255) NULL ",
+				"ALTER TABLE `action_actor` ADD `last_updated_by_1` VARCHAR(255) NULL ",
+				"ALTER TABLE `action_actor` DROP `last_updated_by_1`",
+			]);
 		setupIndexes('action_actor', ['actor',]);
 
 		setupTable('visiting_card_table', []);

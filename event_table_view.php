@@ -26,9 +26,8 @@
 		"if(`event_table`.`event_from_date`,date_format(`event_table`.`event_from_date`,'%d/%m/%Y'),'')" => "event_from_date",
 		"if(`event_table`.`event_to_date`,date_format(`event_table`.`event_to_date`,'%d/%m/%Y'),'')" => "event_to_date",
 		"`event_table`.`event_str`" => "event_str",
-		"`event_table`.`last_updated_by`" => "last_updated_by",
-		"`event_table`.`last_updated_at`" => "last_updated_at",
 		"`event_table`.`created_by`" => "created_by",
+		"`event_table`.`last_updated_by`" => "last_updated_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -42,7 +41,6 @@
 		8 => 8,
 		9 => 9,
 		10 => 10,
-		11 => 11,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -55,9 +53,8 @@
 		"if(`event_table`.`event_from_date`,date_format(`event_table`.`event_from_date`,'%d/%m/%Y'),'')" => "event_from_date",
 		"if(`event_table`.`event_to_date`,date_format(`event_table`.`event_to_date`,'%d/%m/%Y'),'')" => "event_to_date",
 		"`event_table`.`event_str`" => "event_str",
-		"`event_table`.`last_updated_by`" => "last_updated_by",
-		"`event_table`.`last_updated_at`" => "last_updated_at",
 		"`event_table`.`created_by`" => "created_by",
+		"`event_table`.`last_updated_by`" => "last_updated_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -69,9 +66,8 @@
 		"`event_table`.`event_from_date`" => "Event from date",
 		"`event_table`.`event_to_date`" => "Event to date",
 		"`event_table`.`event_str`" => "Event str",
-		"`event_table`.`last_updated_by`" => "Last updated by",
-		"`event_table`.`last_updated_at`" => "Last updated at",
 		"`event_table`.`created_by`" => "Created By",
+		"`event_table`.`last_updated_by`" => "Last Updated By",
 	];
 
 	// Fields that can be quick searched
@@ -84,9 +80,8 @@
 		"if(`event_table`.`event_from_date`,date_format(`event_table`.`event_from_date`,'%d/%m/%Y'),'')" => "event_from_date",
 		"if(`event_table`.`event_to_date`,date_format(`event_table`.`event_to_date`,'%d/%m/%Y'),'')" => "event_to_date",
 		"`event_table`.`event_str`" => "event_str",
-		"`event_table`.`last_updated_by`" => "last_updated_by",
-		"`event_table`.`last_updated_at`" => "last_updated_at",
 		"`event_table`.`created_by`" => "created_by",
+		"`event_table`.`last_updated_by`" => "last_updated_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -122,10 +117,10 @@
 	$x->DefaultSortField = '5';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Event name', 'Participants', 'Venue', 'Event from date', 'Event to date', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['event_id', 'username', 'event_name', 'participants', 'venue', 'event_from_date', 'event_to_date', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Event name', 'Participants', 'Venue', 'Event from date', 'Event to date', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['event_id', 'username', 'event_name', 'participants', 'venue', 'event_from_date', 'event_to_date', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 9, 10, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/event_table_templateTV.html';

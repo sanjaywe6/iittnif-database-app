@@ -24,9 +24,8 @@
 		"`outcomes_expected_table`.`target_audience`" => "target_audience",
 		"`outcomes_expected_table`.`expected_outcomes`" => "expected_outcomes",
 		"`outcomes_expected_table`.`outcomes_expected_str`" => "outcomes_expected_str",
-		"`outcomes_expected_table`.`last_updated_by`" => "last_updated_by",
-		"`outcomes_expected_table`.`last_updated_at`" => "last_updated_at",
 		"`outcomes_expected_table`.`created_by`" => "created_by",
+		"`outcomes_expected_table`.`last_updated_by`" => "last_updated_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -38,7 +37,6 @@
 		6 => 6,
 		7 => 7,
 		8 => 8,
-		9 => 9,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -49,9 +47,8 @@
 		"`outcomes_expected_table`.`target_audience`" => "target_audience",
 		"`outcomes_expected_table`.`expected_outcomes`" => "expected_outcomes",
 		"`outcomes_expected_table`.`outcomes_expected_str`" => "outcomes_expected_str",
-		"`outcomes_expected_table`.`last_updated_by`" => "last_updated_by",
-		"`outcomes_expected_table`.`last_updated_at`" => "last_updated_at",
 		"`outcomes_expected_table`.`created_by`" => "created_by",
+		"`outcomes_expected_table`.`last_updated_by`" => "last_updated_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -61,9 +58,8 @@
 		"`outcomes_expected_table`.`target_audience`" => "Target audience",
 		"`outcomes_expected_table`.`expected_outcomes`" => "Expected outcomes",
 		"`outcomes_expected_table`.`outcomes_expected_str`" => "Outcomes expected str",
-		"`outcomes_expected_table`.`last_updated_by`" => "Last updated by",
-		"`outcomes_expected_table`.`last_updated_at`" => "Last updated at",
 		"`outcomes_expected_table`.`created_by`" => "Created By",
+		"`outcomes_expected_table`.`last_updated_by`" => "Last Updated By",
 	];
 
 	// Fields that can be quick searched
@@ -74,9 +70,8 @@
 		"`outcomes_expected_table`.`target_audience`" => "target_audience",
 		"`outcomes_expected_table`.`expected_outcomes`" => "expected_outcomes",
 		"`outcomes_expected_table`.`outcomes_expected_str`" => "outcomes_expected_str",
-		"`outcomes_expected_table`.`last_updated_by`" => "last_updated_by",
-		"`outcomes_expected_table`.`last_updated_at`" => "last_updated_at",
 		"`outcomes_expected_table`.`created_by`" => "created_by",
+		"`outcomes_expected_table`.`last_updated_by`" => "last_updated_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -112,10 +107,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Event', 'Target audience', 'Expected outcomes', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['outcomes_expected_id', 'username', 'event_lookup', 'target_audience', 'expected_outcomes', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 7, 8, 9, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Event', 'Target audience', 'Expected outcomes', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['outcomes_expected_id', 'username', 'event_lookup', 'target_audience', 'expected_outcomes', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 7, 8, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/outcomes_expected_table_templateTV.html';

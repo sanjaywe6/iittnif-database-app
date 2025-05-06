@@ -80,9 +80,9 @@
 		"`techlead_web_page`.`username`" => "Username",
 		"`techlead_web_page`.`techlead`" => "Tech Lead",
 		"`techlead_web_page`.`category`" => "Category",
-		"`techlead_web_page`.`content_title`" => "Web Page Content Title",
-		"`techlead_web_page`.`content`" => "Web Page Content Material",
-		"`techlead_web_page`.`content_learn_more`" => "Web Page Content Learn More Section",
+		"`techlead_web_page`.`content_title`" => "Web Page Sub-section Title",
+		"`techlead_web_page`.`content`" => "Web Page Sub-section Material",
+		"`techlead_web_page`.`content_learn_more`" => "Web Page Sub-section Learn More Content",
 		"`techlead_web_page`.`approval_status`" => "Approval Status by CEO",
 		"`techlead_web_page`.`approval_remarks`" => "Approval Remarks by CEO",
 		"`techlead_web_page`.`website_update_status`" => "Website Update Status by IT Team",
@@ -99,8 +99,8 @@
 		"`techlead_web_page`.`techlead`" => "techlead",
 		"`techlead_web_page`.`category`" => "category",
 		"`techlead_web_page`.`content_title`" => "content_title",
-		"`techlead_web_page`.`content`" => "Web Page Content Material",
-		"`techlead_web_page`.`content_learn_more`" => "Web Page Content Learn More Section",
+		"`techlead_web_page`.`content`" => "Web Page Sub-section Material",
+		"`techlead_web_page`.`content_learn_more`" => "Web Page Sub-section Learn More Content",
 		"`techlead_web_page`.`approval_status`" => "approval_status",
 		"`techlead_web_page`.`approval_remarks`" => "approval_remarks",
 		"`techlead_web_page`.`website_update_status`" => "website_update_status",
@@ -144,7 +144,7 @@
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Tech Lead', 'Category', 'Web Page Content Title', 'Web Page Content Material', 'Web Page Content Learn More Section', 'Upload Image First (Required)', 'Upload Image Second (Optional)', 'Approval Status by CEO', 'Approval Remarks by CEO', 'Website Update Status by IT Team', 'Website Update Remarks by IT Team', 'Website Updated Date by IT Team', 'Created By', 'Last updated By', ];
+	$x->ColCaption = ['ID', 'Username', 'Tech Lead', 'Category', 'Web Page Sub-section Title', 'Web Page Sub-section Material', 'Web Page Sub-section Learn More Content', 'Upload Image First (Required)', 'Upload Image Second (Optional)', 'Approval Status by CEO', 'Approval Remarks by CEO', 'Website Update Status by IT Team', 'Website Update Remarks by IT Team', 'Website Updated Date by IT Team', 'Created By', 'Last updated By', ];
 	$x->ColFieldName = ['id', 'username', 'techlead', 'category', 'content_title', 'content', 'content_learn_more', 'img1', 'img2', 'approval_status', 'approval_remarks', 'website_update_status', 'website_update_remarks', 'website_update_date', 'created_by', 'last_updated_by', ];
 	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, ];
 

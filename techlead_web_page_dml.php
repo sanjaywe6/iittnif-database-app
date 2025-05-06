@@ -163,7 +163,7 @@ function techlead_web_page_update(&$selected_id, &$error_message = '') {
 				Thumbnail::create($name, getThumbnailSpecs('techlead_web_page', 'img1', 'tv'));
 			},
 			'removeOnSuccess' => true,
-			'removeOnRequest' => false,
+			'removeOnRequest' => true,
 			'remove' => function($selected_id) {
 				// delete old file from server
 				$oldFile = existing_value('techlead_web_page', 'img1', $selected_id);
@@ -221,11 +221,6 @@ function techlead_web_page_update(&$selected_id, &$error_message = '') {
 		'last_updated_by' => parseCode('<%%editorUsername%%>::<%%editingDateTime%%>', false),
 	];
 
-	if($data['img1'] === '') {
-		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Upload Image First (Required)': {$Translation['field not null']}<br><br>";
-		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
-		exit;
-	}
 	// get existing values
 	$old_data = getRecord('techlead_web_page', $selected_id);
 	if(is_array($old_data)) {

@@ -1839,26 +1839,26 @@
 					'content_title' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Web Page Content Title',
+							'caption' => 'Web Page Sub-section Title',
 							'description' => '',
 						],
 					],
 					'content' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
-							'caption' => 'Web Page Content Material',
+							'caption' => 'Web Page Sub-section Material',
 							'description' => '',
 						],
 					],
 					'content_learn_more' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
-							'caption' => 'Web Page Content Learn More Section',
+							'caption' => 'Web Page Sub-section Learn More Content',
 							'description' => '',
 						],
 					],
 					'img1' => [
-						'appgini' => "VARCHAR(255) NOT NULL",
+						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Upload Image First (Required)',
 							'description' => 'Maximum file size allowed: 10000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',

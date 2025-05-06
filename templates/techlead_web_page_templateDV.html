@@ -37,28 +37,28 @@
 					</div>
 				</div>
 
-				<!-- Field: Web Page Content Title -->
+				<!-- Field: Web Page Sub-section Title -->
 				<div class="form-group techlead_web_page-content_title">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="content_title">Web Page Content Title</label>
+					<label class="control-label col-lg-3" for="content_title">Web Page Sub-section Title</label>
 					<div class="col-lg-9">
 						<input maxlength="255" type="text" class="form-control" name="content_title" id="content_title" value="<%%VALUE(content_title)%%>">
 					</div>
 				</div>
 
-				<!-- Field: Web Page Content Material -->
+				<!-- Field: Web Page Sub-section Material -->
 				<div class="form-group techlead_web_page-content">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="content">Web Page Content Material</label>
+					<label class="control-label col-lg-3" for="content">Web Page Sub-section Material</label>
 					<div class="col-lg-9 has-nicedit">
 						<%%HTMLAREA(content)%%>
 					</div>
 				</div>
 
-				<!-- Field: Web Page Content Learn More Section -->
+				<!-- Field: Web Page Sub-section Learn More Content -->
 				<div class="form-group techlead_web_page-content_learn_more">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="content_learn_more">Web Page Content Learn More Section</label>
+					<label class="control-label col-lg-3" for="content_learn_more">Web Page Sub-section Learn More Content</label>
 					<div class="col-lg-9 has-nicedit">
 						<%%HTMLAREA(content_learn_more)%%>
 					</div>
@@ -67,7 +67,7 @@
 				<!-- Field: Upload Image First (Required) -->
 				<div class="form-group techlead_web_page-img1">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3">Upload Image First (Required)<span class="text-danger"><%%TRANSLATION(*)%%></span> <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#img1-description"></i></label>
+					<label class="control-label col-lg-3">Upload Image First (Required) <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#img1-description"></i></label>
 					<div class="col-lg-9">
 						<span class="help-block bspacer-xs collapse" id="img1-description"><div class="alert alert-info bspacer-xs">Maximum file size allowed: 10000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp</div></span>
 						<div class="form-control-static well well-sm">
@@ -75,6 +75,7 @@
 								<div class="col-lg-8 col-md-6" style="padding-left: 0;"><img src="<%%BASE_UPLOAD_PATH%%><%%VALUE(img1)%%>" class="img-responsive img-thumbnail" id="img1-image"></div>
 								<div class="hidden-md hidden-lg vspacer-lg"></div>
 								<div class="col-lg-4 col-md-6 well upload-toolbox">
+									<%%REMOVEFILE(img1)%%>
 									<%%UPLOADFILE(img1)%%>
 									<div class="text-bold text-danger file-type-error hidden"><%%TRANSLATION(invalid file type)%%></div>
 									<div class="text-bold text-danger file-size-error hidden"><%%TRANSLATION(file too large)%%></div>

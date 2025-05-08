@@ -19,6 +19,7 @@ function techlead_web_page_insert(&$error_message = '') {
 		'username' => parseCode('<%%creatorUsername%%>', true),
 		'techlead' => Request::val('techlead', 'GNSS Tech Lead'),
 		'category' => Request::val('category', 'Foundational Research'),
+		'author' => Request::val('author', ''),
 		'content_title' => Request::val('content_title', ''),
 		'content' => Request::val('content', ''),
 		'content_learn_more' => Request::val('content_learn_more', ''),
@@ -150,6 +151,7 @@ function techlead_web_page_update(&$selected_id, &$error_message = '') {
 	$data = [
 		'techlead' => Request::val('techlead', ''),
 		'category' => Request::val('category', ''),
+		'author' => Request::val('author', ''),
 		'content_title' => Request::val('content_title', ''),
 		'content' => Request::val('content', ''),
 		'content_learn_more' => Request::val('content_learn_more', ''),
@@ -397,8 +399,8 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		$filterValue = Request::val('FilterValue');
 		$combo_techlead->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('GNSS Tech Lead'));
 		$combo_category->SelectedText = (isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Foundational Research'));
-		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '10' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
-		$combo_website_update_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '12' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '11' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
+		$combo_website_update_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '13' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
 	}
 	$combo_techlead->Render();
 	$combo_category->Render();
@@ -502,6 +504,7 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		$jsReadOnly = '';
 		$jsReadOnly .= "\t\$j('#techlead').replaceWith('<div class=\"form-control-static\" id=\"techlead\">' + (\$j('#techlead').val() || '') + '</div>'); \$j('#techlead-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#category').replaceWith('<div class=\"form-control-static\" id=\"category\">' + (\$j('#category').val() || '') + '</div>'); \$j('#category-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#author').replaceWith('<div class=\"form-control-static\" id=\"author\">' + (\$j('#author').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#content_title').replaceWith('<div class=\"form-control-static\" id=\"content_title\">' + (\$j('#content_title').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#img1').replaceWith('<div class=\"form-control-static\" id=\"img1\">' + (\$j('#img1').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#img2').replaceWith('<div class=\"form-control-static\" id=\"img2\">' + (\$j('#img2').val() || '') + '</div>');\n";
@@ -556,6 +559,7 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(techlead)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(category)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(author)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(content_title)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(content)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(content_learn_more)%%>', '', $templateCode);
@@ -591,6 +595,9 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(category)%%>', safe_html($urow['category']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(category)%%>', html_attr($row['category']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(category)%%>', urlencode($urow['category']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(author)%%>', safe_html($urow['author']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(author)%%>', html_attr($row['author']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(author)%%>', urlencode($urow['author']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(content_title)%%>', safe_html($urow['content_title']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(content_title)%%>', html_attr($row['content_title']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(content_title)%%>', urlencode($urow['content_title']), $templateCode);
@@ -651,6 +658,8 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		$templateCode = str_replace('<%%URLVALUE(techlead)%%>', urlencode('GNSS Tech Lead'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(category)%%>', 'Foundational Research', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(category)%%>', urlencode('Foundational Research'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(author)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(author)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(content_title)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(content_title)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%HTMLAREA(content)%%>', '<textarea name="content" id="content" rows="5"></textarea>', $templateCode);

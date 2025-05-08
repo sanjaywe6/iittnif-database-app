@@ -1,4 +1,4 @@
-		<td colspan="16" class="row">
+		<td colspan="17" class="row">
 			<div id="techlead_web_page-id-<%%VALUE(id)%%>" class="techlead_web_page-id col-sm-12 h5 text-bold"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
@@ -10,6 +10,9 @@
 
 					<dt class="techlead_web_page-category-caption field-caption-tv">Category</dt>
 					<dd id="techlead_web_page-category-<%%VALUE(id)%%>" class="techlead_web_page-category"><%%SELECT%%><%%VALUE(category)%%><%%ENDSELECT%%></dd>
+
+					<dt class="techlead_web_page-author-caption field-caption-tv">Author/Team/Manager</dt>
+					<dd id="techlead_web_page-author-<%%VALUE(id)%%>" class="techlead_web_page-author"><%%SELECT%%><%%VALUE(author)%%><%%ENDSELECT%%></dd>
 
 					<dt class="techlead_web_page-content_title-caption field-caption-tv">Web Page Sub-section Title</dt>
 					<dd id="techlead_web_page-content_title-<%%VALUE(id)%%>" class="techlead_web_page-content_title"><%%SELECT%%><%%VALUE(content_title)%%><%%ENDSELECT%%></dd>
@@ -23,13 +26,13 @@
 					<dt class="techlead_web_page-img1-caption field-caption-tv">Upload Image First (Required)</dt>
 					<dd id="techlead_web_page-img1-<%%VALUE(id)%%>" class="techlead_web_page-img1"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(img1)%%>" data-lightbox="techlead_web_page-img1"><img src="thumbnail.php?i=<%%VALUE(img1)%%>&t=techlead_web_page&f=img1&v=tv" class="img-thumbnail"></a></dd>
 
-					<dt class="techlead_web_page-img2-caption field-caption-tv">Upload Image Second (Optional)</dt>
-					<dd id="techlead_web_page-img2-<%%VALUE(id)%%>" class="techlead_web_page-img2"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(img2)%%>" data-lightbox="techlead_web_page-img2"><img src="thumbnail.php?i=<%%VALUE(img2)%%>&t=techlead_web_page&f=img2&v=tv" class="img-thumbnail"></a></dd>
-
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
+					<dt class="techlead_web_page-img2-caption field-caption-tv">Upload Image Second (Optional)</dt>
+					<dd id="techlead_web_page-img2-<%%VALUE(id)%%>" class="techlead_web_page-img2"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(img2)%%>" data-lightbox="techlead_web_page-img2"><img src="thumbnail.php?i=<%%VALUE(img2)%%>&t=techlead_web_page&f=img2&v=tv" class="img-thumbnail"></a></dd>
+
 					<dt class="techlead_web_page-approval_status-caption field-caption-tv">Approval Status by CEO</dt>
 					<dd id="techlead_web_page-approval_status-<%%VALUE(id)%%>" class="techlead_web_page-approval_status"><%%SELECT%%><%%VALUE(approval_status)%%><%%ENDSELECT%%></dd>
 

@@ -16,7 +16,10 @@
 		setupTable('approval_table', []);
 		setupIndexes('approval_table', ['person_responsbility',]);
 
-		setupTable('techlead_web_page', []);
+		setupTable('techlead_web_page', [
+				"ALTER TABLE techlead_web_page ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `techlead_web_page` CHANGE `field1` `author` VARCHAR(255) NULL ",
+			]);
 
 		setupTable('car_table', []);
 
@@ -43,41 +46,19 @@
 		setupTable('event_decision_table', []);
 		setupIndexes('event_decision_table', ['outcomes_expected_lookup','decision_actor',]);
 
-		setupTable('meetings_table', [
-				"ALTER TABLE `meetings_table` DROP `last_updated_by`",
-				"ALTER TABLE `meetings_table` DROP `last_updated_at`",
-				"ALTER TABLE `meetings_table` ADD `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('meetings_table', []);
 		setupIndexes('meetings_table', ['visiting_card_lookup','event_lookup',]);
 
-		setupTable('agenda_table', [
-				"ALTER TABLE `agenda_table` DROP `last_updated_by`",
-				"ALTER TABLE `agenda_table` DROP `last_updated_at`",
-				"ALTER TABLE `agenda_table` ADD `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('agenda_table', []);
 		setupIndexes('agenda_table', ['meeting_lookup',]);
 
-		setupTable('decision_table', [
-				"ALTER TABLE `decision_table` DROP `last_updated_by`",
-				"ALTER TABLE `decision_table` DROP `last_updated_at`",
-				"ALTER TABLE `decision_table` ADD `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('decision_table', []);
 		setupIndexes('decision_table', ['agenda_lookup','decision_actor',]);
 
-		setupTable('participants_table', [
-				"ALTER TABLE `participants_table` DROP `last_updated_by`",
-				"ALTER TABLE `participants_table` DROP `last_updated_at`",
-				"ALTER TABLE `participants_table` ADD `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('participants_table', []);
 		setupIndexes('participants_table', ['event_lookup','meeting_lookup',]);
 
-		setupTable('action_actor', [
-				"ALTER TABLE `action_actor` DROP `last_updated_by`",
-				"ALTER TABLE `action_actor` DROP `last_updated_at`",
-				"ALTER TABLE `action_actor` ADD `last_updated_by` VARCHAR(255) NULL ",
-				"ALTER TABLE `action_actor` ADD `last_updated_by_1` VARCHAR(255) NULL ",
-				"ALTER TABLE `action_actor` DROP `last_updated_by_1`",
-			]);
+		setupTable('action_actor', []);
 		setupIndexes('action_actor', ['actor',]);
 
 		setupTable('visiting_card_table', []);

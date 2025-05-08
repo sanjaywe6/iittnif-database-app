@@ -1836,6 +1836,13 @@
 							'description' => '',
 						],
 					],
+					'author' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Author/Team/Manager',
+							'description' => '',
+						],
+					],
 					'content_title' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [

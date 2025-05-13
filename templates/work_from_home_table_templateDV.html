@@ -19,15 +19,6 @@
 		<div class="col-md-8 col-lg-10" id="work_from_home_table_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: Employee Details -->
-				<div class="form-group work_from_home_table-emp_lookup">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="emp_lookup" data-parent_link="view_parent_modal">Employee Details</label>
-					<div class="col-lg-9">
-						<div class="lookup-flex"><%%COMBO(emp_lookup)%%><%%PLINK(emp_lookup)%%><%%ADDNEW(employees_personal_data_table)%%></div>
-					</div>
-				</div>
-
 				<!-- Field: Purpose work from home -->
 				<div class="form-group work_from_home_table-work_from_home_purpose">
 					<hr class="hidden-md hidden-lg">
@@ -105,27 +96,9 @@
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
-				AppGini.once({
-					condition: function() {
-						return $j('.form-group.work_from_home_table-emp_lookup')
-									.find('.nicEdit-main, .select2-container, input[type=radio]')
-									.length > 0
-								// or read-only DV
-								|| (!$j('#update').length && !$j('#insert').length);
-					},
-					action: function() {
-						$j('#work_from_home_table_dv_container-loading').addClass('hidden');
-						$j('#work_from_home_table_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('work_from_home_table', 'emp_lookup');
-					},
-					timeout:  5000,
-					doActionOnTimeout:  true
-				});
-			} else {
-				$j('#work_from_home_table_dv_container-loading').addClass('hidden');
-				$j('#work_from_home_table_dv_container').removeClass('hidden');
-			}
+			$j('#work_from_home_table_dv_container-loading').addClass('hidden');
+			$j('#work_from_home_table_dv_container').removeClass('hidden');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('work_from_home_table', 'work_from_home_purpose');
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 

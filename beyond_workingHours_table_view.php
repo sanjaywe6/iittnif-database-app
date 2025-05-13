@@ -20,7 +20,6 @@
 	$x->QueryFieldsTV = [
 		"`beyond_workingHours_table`.`id`" => "id",
 		"`beyond_workingHours_table`.`username`" => "username",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, ' - ', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "emp_lookup",
 		"`beyond_workingHours_table`.`reson_for_overtime`" => "reson_for_overtime",
 		"if(`beyond_workingHours_table`.`start_datetime`,date_format(`beyond_workingHours_table`.`start_datetime`,'%d/%m/%Y %H:%i'),'')" => "start_datetime",
 		"if(`beyond_workingHours_table`.`end_datetime`,date_format(`beyond_workingHours_table`.`end_datetime`,'%d/%m/%Y %H:%i'),'')" => "end_datetime",
@@ -38,9 +37,9 @@
 		1 => '`beyond_workingHours_table`.`id`',
 		2 => 2,
 		3 => 3,
-		4 => 4,
-		5 => '`beyond_workingHours_table`.`start_datetime`',
-		6 => '`beyond_workingHours_table`.`end_datetime`',
+		4 => '`beyond_workingHours_table`.`start_datetime`',
+		5 => '`beyond_workingHours_table`.`end_datetime`',
+		6 => 6,
 		7 => 7,
 		8 => 8,
 		9 => 9,
@@ -48,14 +47,12 @@
 		11 => 11,
 		12 => 12,
 		13 => 13,
-		14 => 14,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`beyond_workingHours_table`.`id`" => "id",
 		"`beyond_workingHours_table`.`username`" => "username",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, ' - ', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "emp_lookup",
 		"`beyond_workingHours_table`.`reson_for_overtime`" => "reson_for_overtime",
 		"if(`beyond_workingHours_table`.`start_datetime`,date_format(`beyond_workingHours_table`.`start_datetime`,'%d/%m/%Y %H:%i'),'')" => "start_datetime",
 		"if(`beyond_workingHours_table`.`end_datetime`,date_format(`beyond_workingHours_table`.`end_datetime`,'%d/%m/%Y %H:%i'),'')" => "end_datetime",
@@ -72,7 +69,6 @@
 	$x->QueryFieldsFilters = [
 		"`beyond_workingHours_table`.`id`" => "ID",
 		"`beyond_workingHours_table`.`username`" => "Username",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, ' - ', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "Employee Details",
 		"`beyond_workingHours_table`.`reson_for_overtime`" => "Reson for overtime",
 		"`beyond_workingHours_table`.`start_datetime`" => "Start Date & Time",
 		"`beyond_workingHours_table`.`end_datetime`" => "End Date & Time",
@@ -90,7 +86,6 @@
 	$x->QueryFieldsQS = [
 		"`beyond_workingHours_table`.`id`" => "id",
 		"`beyond_workingHours_table`.`username`" => "username",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, ' - ', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "emp_lookup",
 		"`beyond_workingHours_table`.`reson_for_overtime`" => "reson_for_overtime",
 		"if(`beyond_workingHours_table`.`start_datetime`,date_format(`beyond_workingHours_table`.`start_datetime`,'%d/%m/%Y %H:%i'),'')" => "start_datetime",
 		"if(`beyond_workingHours_table`.`end_datetime`,date_format(`beyond_workingHours_table`.`end_datetime`,'%d/%m/%Y %H:%i'),'')" => "end_datetime",
@@ -105,9 +100,9 @@
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['emp_lookup' => 'Employee Details', 'approved_by' => 'Approved by', ];
+	$x->filterers = ['approved_by' => 'Approved by', ];
 
-	$x->QueryFrom = "`beyond_workingHours_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`id`=`beyond_workingHours_table`.`emp_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`beyond_workingHours_table`.`approved_by` ";
+	$x->QueryFrom = "`beyond_workingHours_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`beyond_workingHours_table`.`approved_by` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -137,10 +132,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Employee Details', 'Reson for overtime', 'Start Date & Time', 'End Date & Time', 'Number of hours', 'Approval status', 'Approval remarks', 'Approved by', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'username', 'emp_lookup', 'reson_for_overtime', 'start_datetime', 'end_datetime', 'number_of_hours', 'approval_status', 'approval_remarks', 'approved_by', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Reson for overtime', 'Start Date & Time', 'End Date & Time', 'Number of hours', 'Approval status', 'Approval remarks', 'Approved by', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'username', 'reson_for_overtime', 'start_datetime', 'end_datetime', 'number_of_hours', 'approval_status', 'approval_remarks', 'approved_by', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/beyond_workingHours_table_templateTV.html';

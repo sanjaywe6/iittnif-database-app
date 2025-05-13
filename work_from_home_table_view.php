@@ -20,7 +20,6 @@
 	$x->QueryFieldsTV = [
 		"`work_from_home_table`.`id`" => "id",
 		"`work_from_home_table`.`username`" => "username",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, ' - ', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "emp_lookup",
 		"`work_from_home_table`.`work_from_home_purpose`" => "work_from_home_purpose",
 		"if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
 		"if(`work_from_home_table`.`to_date`,date_format(`work_from_home_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
@@ -35,21 +34,19 @@
 		1 => '`work_from_home_table`.`id`',
 		2 => 2,
 		3 => 3,
-		4 => 4,
-		5 => '`work_from_home_table`.`from_date`',
-		6 => '`work_from_home_table`.`to_date`',
-		7 => '`user_table1`.`user_id`',
+		4 => '`work_from_home_table`.`from_date`',
+		5 => '`work_from_home_table`.`to_date`',
+		6 => '`user_table1`.`user_id`',
+		7 => 7,
 		8 => 8,
 		9 => 9,
 		10 => 10,
-		11 => 11,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`work_from_home_table`.`id`" => "id",
 		"`work_from_home_table`.`username`" => "username",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, ' - ', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "emp_lookup",
 		"`work_from_home_table`.`work_from_home_purpose`" => "work_from_home_purpose",
 		"if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
 		"if(`work_from_home_table`.`to_date`,date_format(`work_from_home_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
@@ -63,7 +60,6 @@
 	$x->QueryFieldsFilters = [
 		"`work_from_home_table`.`id`" => "ID",
 		"`work_from_home_table`.`username`" => "Username",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, ' - ', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "Employee Details",
 		"`work_from_home_table`.`work_from_home_purpose`" => "Purpose work from home",
 		"`work_from_home_table`.`from_date`" => "From date",
 		"`work_from_home_table`.`to_date`" => "To date",
@@ -78,7 +74,6 @@
 	$x->QueryFieldsQS = [
 		"`work_from_home_table`.`id`" => "id",
 		"`work_from_home_table`.`username`" => "username",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, ' - ', `employees_personal_data_table1`.`name`), '') /* Employee Details */" => "emp_lookup",
 		"`work_from_home_table`.`work_from_home_purpose`" => "work_from_home_purpose",
 		"if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
 		"if(`work_from_home_table`.`to_date`,date_format(`work_from_home_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
@@ -90,9 +85,9 @@
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['emp_lookup' => 'Employee Details', 'approved_by' => 'Approved by', ];
+	$x->filterers = ['approved_by' => 'Approved by', ];
 
-	$x->QueryFrom = "`work_from_home_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`id`=`work_from_home_table`.`emp_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`work_from_home_table`.`approved_by` ";
+	$x->QueryFrom = "`work_from_home_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`work_from_home_table`.`approved_by` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -122,10 +117,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Employee Details', 'Purpose work from home', 'From date', 'To date', 'Approved by', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'username', 'emp_lookup', 'work_from_home_purpose', 'from_date', 'to_date', 'approved_by', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'Purpose work from home', 'From date', 'To date', 'Approved by', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'username', 'work_from_home_purpose', 'from_date', 'to_date', 'approved_by', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/work_from_home_table_templateTV.html';

@@ -6243,13 +6243,6 @@
 							'description' => '',
 						],
 					],
-					'emp_lookup' => [
-						'appgini' => "INT(10) UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Employee Details',
-							'description' => '',
-						],
-					],
 					'reson_for_overtime' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
@@ -6340,13 +6333,6 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Username',
-							'description' => '',
-						],
-					],
-					'emp_lookup' => [
-						'appgini' => "INT(10) UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Employee Details',
 							'description' => '',
 						],
 					],
@@ -6443,13 +6429,6 @@
 							'description' => '',
 						],
 					],
-					'emp_lookup' => [
-						'appgini' => "INT(10) UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Employee Details',
-							'description' => '',
-						],
-					],
 					'leave_type' => [
 						'appgini' => "VARCHAR(255) NOT NULL DEFAULT 'Morning - Afternoon Shift (1st Half)'",
 						'info' => [
@@ -6533,13 +6512,6 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Username',
-							'description' => '',
-						],
-					],
-					'emp_lookup' => [
-						'appgini' => "INT(10) UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Employee Details',
 							'description' => '',
 						],
 					],
@@ -11427,19 +11399,15 @@
 				'user_table' => ['reviewing_officer'],
 			],
 			'beyond_workingHours_table' => [
-				'employees_personal_data_table' => ['emp_lookup'],
 				'user_table' => ['approved_by'],
 			],
 			'leave_table' => [
-				'employees_personal_data_table' => ['emp_lookup'],
 				'user_table' => ['approved_by'],
 			],
 			'half_day_leave_table' => [
-				'employees_personal_data_table' => ['emp_lookup'],
 				'user_table' => ['approved_by'],
 			],
 			'work_from_home_table' => [
-				'employees_personal_data_table' => ['emp_lookup'],
 				'user_table' => ['approved_by'],
 			],
 			'navavishkar_stay_table' => [
@@ -11890,19 +11858,15 @@
 				'reviewing_officer' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'beyond_workingHours_table' => [
-				'emp_lookup' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \' - \', `employees_personal_data_table`.`name`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
 				'approved_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'leave_table' => [
-				'emp_lookup' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \' - \', `employees_personal_data_table`.`name`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
 				'approved_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'half_day_leave_table' => [
-				'emp_lookup' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \' - \', `employees_personal_data_table`.`name`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
 				'approved_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'work_from_home_table' => [
-				'emp_lookup' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \' - \', `employees_personal_data_table`.`name`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
 				'approved_by' => 'SELECT `user_table`.`user_id`, `user_table`.`user_id` FROM `user_table` ORDER BY 2',
 			],
 			'navavishkar_stay_table' => [

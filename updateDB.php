@@ -16,10 +16,7 @@
 		setupTable('approval_table', []);
 		setupIndexes('approval_table', ['person_responsbility',]);
 
-		setupTable('techlead_web_page', [
-				"ALTER TABLE techlead_web_page ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `techlead_web_page` CHANGE `field1` `author` VARCHAR(255) NULL ",
-			]);
+		setupTable('techlead_web_page', []);
 
 		setupTable('car_table', []);
 
@@ -134,17 +131,25 @@
 		setupTable('employees_appraisal_table', []);
 		setupIndexes('employees_appraisal_table', ['employee_designation_lookup','reviewing_officer',]);
 
-		setupTable('beyond_workingHours_table', []);
-		setupIndexes('beyond_workingHours_table', ['emp_lookup','approved_by',]);
+		setupTable('beyond_workingHours_table', [
+				"ALTER TABLE `beyond_workingHours_table` DROP `emp_lookup`",
+			]);
+		setupIndexes('beyond_workingHours_table', ['approved_by',]);
 
-		setupTable('leave_table', []);
-		setupIndexes('leave_table', ['emp_lookup','approved_by',]);
+		setupTable('leave_table', [
+				"ALTER TABLE `leave_table` DROP `emp_lookup`",
+			]);
+		setupIndexes('leave_table', ['approved_by',]);
 
-		setupTable('half_day_leave_table', []);
-		setupIndexes('half_day_leave_table', ['emp_lookup','approved_by',]);
+		setupTable('half_day_leave_table', [
+				"ALTER TABLE `half_day_leave_table` DROP `emp_lookup`",
+			]);
+		setupIndexes('half_day_leave_table', ['approved_by',]);
 
-		setupTable('work_from_home_table', []);
-		setupIndexes('work_from_home_table', ['emp_lookup','approved_by',]);
+		setupTable('work_from_home_table', [
+				"ALTER TABLE `work_from_home_table` DROP `emp_lookup`",
+			]);
+		setupIndexes('work_from_home_table', ['approved_by',]);
 
 		setupTable('navavishkar_stay_table', []);
 		setupIndexes('navavishkar_stay_table', ['approved_by',]);

@@ -113,10 +113,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Section', 'Name/Title of Events', 'Dates of Events', 'Writeup About The Events (Max 200 Words)', 'First Image', 'Second Image', 'Created By', 'Last updated By', ];
-	$x->ColFieldName = ['id', 'username', 'section', 'name_of_event', 'dates_of_events', 'writeup_about_event', 'img1', 'img2', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Section', 'Name/Title of Events', 'Dates of Events', 'Writeup About The Events (Max 200 Words)', 'First Image', 'Second Image', 'Created By', 'Last updated By', ];
+	$x->ColFieldName = ['id', 'section', 'name_of_event', 'dates_of_events', 'writeup_about_event', 'img1', 'img2', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/newsletter_table_templateTV.html';

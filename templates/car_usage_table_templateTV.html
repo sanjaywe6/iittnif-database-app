@@ -1,11 +1,8 @@
-		<td colspan="10" class="row">
+		<td colspan="9" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="car_usage_table-car_usage_id-caption field-caption-tv">ID</dt>
 					<dd id="car_usage_table-car_usage_id-<%%VALUE(car_usage_id)%%>" class="car_usage_table-car_usage_id text-right"><%%SELECT%%><%%VALUE(car_usage_id)%%><%%ENDSELECT%%></dd>
-
-					<dt class="car_usage_table-username-caption field-caption-tv">Username</dt>
-					<dd id="car_usage_table-username-<%%VALUE(car_usage_id)%%>" class="car_usage_table-username"><%%SELECT%%><%%VALUE(username)%%><%%ENDSELECT%%></dd>
 
 					<dt class="car_usage_table-car_lookup-caption field-caption-tv">Select Car</dt>
 					<dd id="car_usage_table-car_lookup-<%%VALUE(car_usage_id)%%>" class="car_usage_table-car_lookup"><%%SELECT%%><%%VALUE(car_lookup)%%><%%ENDSELECT%%></dd>
@@ -16,13 +13,13 @@
 					<dt class="car_usage_table-datetime_from-caption field-caption-tv">Date and time from</dt>
 					<dd id="car_usage_table-datetime_from-<%%VALUE(car_usage_id)%%>" class="car_usage_table-datetime_from"><%%SELECT%%><%%VALUE(datetime_from)%%><%%ENDSELECT%%></dd>
 
+					<dt class="car_usage_table-datetime_to-caption field-caption-tv">Date and time to</dt>
+					<dd id="car_usage_table-datetime_to-<%%VALUE(car_usage_id)%%>" class="car_usage_table-datetime_to"><%%SELECT%%><%%VALUE(datetime_to)%%><%%ENDSELECT%%></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="car_usage_table-datetime_to-caption field-caption-tv">Date and time to</dt>
-					<dd id="car_usage_table-datetime_to-<%%VALUE(car_usage_id)%%>" class="car_usage_table-datetime_to"><%%SELECT%%><%%VALUE(datetime_to)%%><%%ENDSELECT%%></dd>
-
 					<dt class="car_usage_table-total_distance_run-caption field-caption-tv">Total distance run (In KM)</dt>
 					<dd id="car_usage_table-total_distance_run-<%%VALUE(car_usage_id)%%>" class="car_usage_table-total_distance_run"><%%SELECT%%><%%VALUE(total_distance_run)%%><%%ENDSELECT%%></dd>
 

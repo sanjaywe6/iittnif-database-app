@@ -107,10 +107,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Type', 'Time', 'Date', 'Remarks (Optional)', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['id', 'username', 'type', 'time', 'date', 'remarks', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Type', 'Time', 'Date', 'Remarks (Optional)', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['id', 'type', 'time', 'date', 'remarks', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/cafeteria_table_templateTV.html';

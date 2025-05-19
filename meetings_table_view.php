@@ -132,10 +132,10 @@
 	$x->DefaultSortField = '`meetings_table`.`meeting_from_date`';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Meeting title', 'Participants', 'Venue', 'Meeting from date', 'Meeting to date', 'Minutes of Meeting', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['meetings_id', 'username', 'meeting_title', 'participants', 'venue', 'meeting_from_date', 'meeting_to_date', 'minutes_of_meeting', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 5, 6, 7, 8, 9, 10, 12, 13, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Meeting title', 'Participants', 'Venue', 'Meeting from date', 'Meeting to date', 'Minutes of Meeting', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['meetings_id', 'meeting_title', 'participants', 'venue', 'meeting_from_date', 'meeting_to_date', 'minutes_of_meeting', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 5, 6, 7, 8, 9, 10, 12, 13, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/meetings_table_templateTV.html';

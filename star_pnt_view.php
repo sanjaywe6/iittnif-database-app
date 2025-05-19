@@ -127,10 +127,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'IITTNiF id', 'Name of the Candidate', 'Institute', 'Workspace', 'Year and department', 'Project title', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'username', 'iittnif_id', 'name_of_the_candidate', 'institute', 'workspace', 'year_and_department', 'project_title', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'IITTNiF id', 'Name of the Candidate', 'Institute', 'Workspace', 'Year and department', 'Project title', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'iittnif_id', 'name_of_the_candidate', 'institute', 'workspace', 'year_and_department', 'project_title', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/star_pnt_templateTV.html';

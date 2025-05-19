@@ -142,10 +142,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Participants type', 'School/College name', 'Location', 'Latitude', 'Longitude', 'Number of participants', 'Start date', 'End date', 'State', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'username', 'participants_type', 'school_college_name', 'location', 'latitude', 'longitude', 'number_of_participants', 'start_date', 'end_date', 'state', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Participants type', 'School/College name', 'Location', 'Latitude', 'Longitude', 'Number of participants', 'Start date', 'End date', 'State', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'participants_type', 'school_college_name', 'location', 'latitude', 'longitude', 'number_of_participants', 'start_date', 'end_date', 'state', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/sdp_participants_college_details_table_templateTV.html';

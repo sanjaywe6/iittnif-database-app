@@ -107,10 +107,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'In Time', 'Out Time', 'Date', 'Remarks (Optional)', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['id', 'username', 'in', 'out', 'date', 'remarks', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'In Time', 'Out Time', 'Date', 'Remarks (Optional)', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['id', 'in', 'out', 'date', 'remarks', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/gym_table_templateTV.html';

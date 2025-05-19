@@ -127,10 +127,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Expected Outcomes of Meeting', 'Decision description', 'Decision actor', 'Action taken with date', 'Decision status', 'Decision status update date', 'Decision status remarks by superior', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['decision_id', 'username', 'outcomes_expected_lookup', 'decision_description', 'decision_actor', 'action_taken_with_date', 'decision_status', 'decision_status_update_date', 'decision_status_remarks_by_superior', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Expected Outcomes of Meeting', 'Decision description', 'Decision actor', 'Action taken with date', 'Decision status', 'Decision status update date', 'Decision status remarks by superior', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['decision_id', 'outcomes_expected_lookup', 'decision_description', 'decision_actor', 'action_taken_with_date', 'decision_status', 'decision_status_update_date', 'decision_status_remarks_by_superior', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 11, 12, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/event_decision_table_templateTV.html';

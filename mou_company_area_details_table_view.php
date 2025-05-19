@@ -112,10 +112,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Name of the company', 'Area / Scope', 'Assigned MoU to', 'Remarks', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['id', 'username', 'name_of_the_company', 'area', 'assigned_mou_to', 'remarks', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Name of the company', 'Area / Scope', 'Assigned MoU to', 'Remarks', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['id', 'name_of_the_company', 'area', 'assigned_mou_to', 'remarks', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/mou_company_area_details_table_templateTV.html';

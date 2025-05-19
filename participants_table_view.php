@@ -122,10 +122,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Event', 'Meeting', 'Name', 'Designation', 'Participant type', 'Accepted status', 'Status date', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['participants_id', 'username', 'event_lookup', 'meeting_lookup', 'name', 'designation', 'participant_type', 'accepted_status', 'status_date', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Event', 'Meeting', 'Name', 'Designation', 'Participant type', 'Accepted status', 'Status date', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['participants_id', 'event_lookup', 'meeting_lookup', 'name', 'designation', 'participant_type', 'accepted_status', 'status_date', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/participants_table_templateTV.html';

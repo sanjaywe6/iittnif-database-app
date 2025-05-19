@@ -131,24 +131,16 @@
 		setupTable('employees_appraisal_table', []);
 		setupIndexes('employees_appraisal_table', ['employee_designation_lookup','reviewing_officer',]);
 
-		setupTable('beyond_workingHours_table', [
-				"ALTER TABLE `beyond_workingHours_table` DROP `emp_lookup`",
-			]);
+		setupTable('beyond_workingHours_table', []);
 		setupIndexes('beyond_workingHours_table', ['approved_by',]);
 
-		setupTable('leave_table', [
-				"ALTER TABLE `leave_table` DROP `emp_lookup`",
-			]);
+		setupTable('leave_table', []);
 		setupIndexes('leave_table', ['approved_by',]);
 
-		setupTable('half_day_leave_table', [
-				"ALTER TABLE `half_day_leave_table` DROP `emp_lookup`",
-			]);
+		setupTable('half_day_leave_table', []);
 		setupIndexes('half_day_leave_table', ['approved_by',]);
 
-		setupTable('work_from_home_table', [
-				"ALTER TABLE `work_from_home_table` DROP `emp_lookup`",
-			]);
+		setupTable('work_from_home_table', []);
 		setupIndexes('work_from_home_table', ['approved_by',]);
 
 		setupTable('navavishkar_stay_table', []);

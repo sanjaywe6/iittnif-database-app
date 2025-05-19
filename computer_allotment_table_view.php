@@ -137,10 +137,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Pc ID', 'Username', 'Name of user', 'Role', 'From date', 'To date', 'Purpose', 'Email ID', 'Mobile number', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'pc_id', 'username', 'name_of_user', 'role', 'from_date', 'to_date', 'purpose', 'email_d', 'mobile_number', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Pc ID', 'Name of user', 'Role', 'From date', 'To date', 'Purpose', 'Email ID', 'Mobile number', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'pc_id', 'name_of_user', 'role', 'from_date', 'to_date', 'purpose', 'email_d', 'mobile_number', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/computer_allotment_table_templateTV.html';

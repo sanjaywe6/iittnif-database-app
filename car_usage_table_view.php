@@ -117,10 +117,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Select Car', 'Used by', 'Date and time from', 'Date and time to', 'Total distance run (In KM)', 'Purpose', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['car_usage_id', 'username', 'car_lookup', 'used_by', 'datetime_from', 'datetime_to', 'total_distance_run', 'purpose', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Select Car', 'Used by', 'Date and time from', 'Date and time to', 'Total distance run (In KM)', 'Purpose', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['car_usage_id', 'car_lookup', 'used_by', 'datetime_from', 'datetime_to', 'total_distance_run', 'purpose', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/car_usage_table_templateTV.html';

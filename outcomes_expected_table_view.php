@@ -107,10 +107,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Event', 'Target audience', 'Expected outcomes', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['outcomes_expected_id', 'username', 'event_lookup', 'target_audience', 'expected_outcomes', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 7, 8, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Event', 'Target audience', 'Expected outcomes', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['outcomes_expected_id', 'event_lookup', 'target_audience', 'expected_outcomes', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 7, 8, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/outcomes_expected_table_templateTV.html';

@@ -162,10 +162,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Full Name', 'Employee ID', 'Department', 'Designation', 'Contact Email', 'Contact Number', 'Room number', 'Check in date', 'Checkout date', 'Reason for stay', 'Approval status', 'Approval remarks', 'Approved By', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'username', 'full_name', 'emp_id', 'department', 'designation', 'contact_email', 'contact_number', 'room_number', 'check_in_date', 'checkout_date', 'reason_for_stay', 'approval_status', 'approval_remarks', 'approved_by', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Full Name', 'Employee ID', 'Department', 'Designation', 'Contact Email', 'Contact Number', 'Room number', 'Check in date', 'Checkout date', 'Reason for stay', 'Approval status', 'Approval remarks', 'Approved By', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'full_name', 'emp_id', 'department', 'designation', 'contact_email', 'contact_number', 'room_number', 'check_in_date', 'checkout_date', 'reason_for_stay', 'approval_status', 'approval_remarks', 'approved_by', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/navavishkar_stay_table_templateTV.html';

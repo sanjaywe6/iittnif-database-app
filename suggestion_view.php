@@ -112,10 +112,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Suggestion Related to Department', 'Suggestion', 'Attachment', 'Remarks of Department/Office Head', 'Remarks of CEO/PD', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['suggestion_id', 'username', 'department', 'suggestion', 'attachment', 'department_remarks', 'ceo_pd_remarks', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Suggestion Related to Department', 'Suggestion', 'Attachment', 'Remarks of Department/Office Head', 'Remarks of CEO/PD', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['suggestion_id', 'department', 'suggestion', 'attachment', 'department_remarks', 'ceo_pd_remarks', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/suggestion_templateTV.html';

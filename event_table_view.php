@@ -117,10 +117,10 @@
 	$x->DefaultSortField = '5';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Event name', 'Participants', 'Venue', 'Event from date', 'Event to date', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['event_id', 'username', 'event_name', 'participants', 'venue', 'event_from_date', 'event_to_date', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 9, 10, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Event name', 'Participants', 'Venue', 'Event from date', 'Event to date', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['event_id', 'event_name', 'participants', 'venue', 'event_from_date', 'event_to_date', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 9, 10, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/event_table_templateTV.html';

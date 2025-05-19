@@ -127,10 +127,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'School name', 'Profile type', 'Name of Student/Teacher', 'Gender', 'Class(If student) / Subject Handled (If Teacher)', 'Contact number', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'username', 'school_name', 'profile_type', 'name_of_student_teacher', 'gender', 'class_subject', 'contact_number', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'School name', 'Profile type', 'Name of Student/Teacher', 'Gender', 'Class(If student) / Subject Handled (If Teacher)', 'Contact number', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'school_name', 'profile_type', 'name_of_student_teacher', 'gender', 'class_subject', 'contact_number', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/space_day_school_details_app_templateTV.html';

@@ -132,10 +132,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Leave type', 'Purpose of leave', 'From Date', 'To Date & Time', 'Approval status', 'Approval remarks', 'Approved By', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'username', 'leave_type', 'purpose_of_leave', 'from_date', 'to_date', 'approval_status', 'approval_remarks', 'approved_by', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Leave type', 'Purpose of leave', 'From Date', 'To Date & Time', 'Approval status', 'Approval remarks', 'Approved By', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'leave_type', 'purpose_of_leave', 'from_date', 'to_date', 'approval_status', 'approval_remarks', 'approved_by', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/leave_table_templateTV.html';

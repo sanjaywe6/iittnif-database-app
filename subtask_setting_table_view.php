@@ -132,10 +132,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Task', 'Subtask status', 'Subtask description', 'Subtask duration', 'Subtask set date', 'Supervisor name', 'Assigned to', 'Subtask setting str', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['subtask_id', 'username', 'task_lookup', 'subtask_status', 'subtask_description', 'subtask_duration', 'subtask_set_date', 'supervisor_name', 'assigned_to', 'subtask_setting_str', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Task', 'Subtask status', 'Subtask description', 'Subtask duration', 'Subtask set date', 'Supervisor name', 'Assigned to', 'Subtask setting str', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['subtask_id', 'task_lookup', 'subtask_status', 'subtask_description', 'subtask_duration', 'subtask_set_date', 'supervisor_name', 'assigned_to', 'subtask_setting_str', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/subtask_setting_table_templateTV.html';

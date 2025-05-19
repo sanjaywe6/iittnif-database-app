@@ -148,10 +148,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Name', 'Recommended by', 'Designation', 'Company name', 'Mobile no', 'Email', 'Company website address', 'Given by', 'Suggested way forward', 'Front img', 'Back img', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['visiting_card_id', 'username', 'name', 'recommended_by', 'designation', 'company_name', 'mobile_no', 'email', 'company_website_addr', 'given_by', 'suggested_way_forward', 'front_img', 'back_img', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Name', 'Recommended by', 'Designation', 'Company name', 'Mobile no', 'Email', 'Company website address', 'Given by', 'Suggested way forward', 'Front img', 'Back img', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['visiting_card_id', 'name', 'recommended_by', 'designation', 'company_name', 'mobile_no', 'email', 'company_website_addr', 'given_by', 'suggested_way_forward', 'front_img', 'back_img', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/visiting_card_table_templateTV.html';

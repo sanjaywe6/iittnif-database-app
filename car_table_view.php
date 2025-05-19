@@ -157,10 +157,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Car number', 'Registration number', 'Car model', 'Car Vehicle Identification Number', 'Fuel type', 'Seating capacity', 'Car color', 'Rental company name', 'Contact person', 'Contact number of person', 'Rental rate (In INR)', 'Rental start date', 'Rental end date', 'Purpose', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['id', 'username', 'car_number', 'registration_number', 'car_model', 'car_vin', 'fuel_type', 'seating_capacity', 'car_color', 'rental_company_name', 'contact_person', 'contact_number_of_person', 'rental_rate', 'rental_start_date', 'rental_end_date', 'purpose', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Car number', 'Registration number', 'Car model', 'Car Vehicle Identification Number', 'Fuel type', 'Seating capacity', 'Car color', 'Rental company name', 'Contact person', 'Contact number of person', 'Rental rate (In INR)', 'Rental start date', 'Rental end date', 'Purpose', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['id', 'car_number', 'registration_number', 'car_model', 'car_vin', 'fuel_type', 'seating_capacity', 'car_color', 'rental_company_name', 'contact_person', 'contact_number_of_person', 'rental_rate', 'rental_start_date', 'rental_end_date', 'purpose', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/car_table_templateTV.html';

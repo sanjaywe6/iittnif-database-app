@@ -137,10 +137,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Sub Asset Details', 'Select employee', 'Department', 'Date', 'Purpose', 'Alloted by', 'Status', 'Returned date', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'username', 'sub_asset_lookup', 'select_employee', 'department', 'date', 'purpose', 'alloted_by', 'status', 'returned_date', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Sub Asset Details', 'Select employee', 'Department', 'Date', 'Purpose', 'Alloted by', 'Status', 'Returned date', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'sub_asset_lookup', 'select_employee', 'department', 'date', 'purpose', 'alloted_by', 'status', 'returned_date', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/sub_asset_allotment_table_templateTV.html';

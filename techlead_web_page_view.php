@@ -148,10 +148,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Tech Lead', 'Category', 'Author/Team/Manager', 'Web Page Sub-section Title', 'Web Page Sub-section Material', 'Web Page Sub-section Learn More Content', 'Upload Image First (Required)', 'Upload Image Second (Optional)', 'Approval Status by CEO', 'Approval Remarks by CEO', 'Website Update Status by IT Team', 'Website Update Remarks by IT Team', 'Website Updated Date by IT Team', 'Created By', 'Last updated By', ];
-	$x->ColFieldName = ['id', 'username', 'techlead', 'category', 'author', 'content_title', 'content', 'content_learn_more', 'img1', 'img2', 'approval_status', 'approval_remarks', 'website_update_status', 'website_update_remarks', 'website_update_date', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Tech Lead', 'Category', 'Author/Team/Manager', 'Web Page Sub-section Title', 'Web Page Sub-section Material', 'Web Page Sub-section Learn More Content', 'Upload Image First (Required)', 'Upload Image Second (Optional)', 'Approval Status by CEO', 'Approval Remarks by CEO', 'Website Update Status by IT Team', 'Website Update Remarks by IT Team', 'Website Updated Date by IT Team', 'Created By', 'Last updated By', ];
+	$x->ColFieldName = ['id', 'techlead', 'category', 'author', 'content_title', 'content', 'content_learn_more', 'img1', 'img2', 'approval_status', 'approval_remarks', 'website_update_status', 'website_update_remarks', 'website_update_date', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/techlead_web_page_templateTV.html';

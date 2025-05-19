@@ -112,10 +112,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Goal details', 'Goal progress', 'Remarks by', 'Remarks', 'Last updated by', 'Created By', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'username', 'goal_lookup', 'goal_progress', 'remarks_by', 'remarks', 'last_updated_by', 'created_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Goal details', 'Goal progress', 'Remarks by', 'Remarks', 'Last updated by', 'Created By', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'goal_lookup', 'goal_progress', 'remarks_by', 'remarks', 'last_updated_by', 'created_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/goal_progress_table_templateTV.html';

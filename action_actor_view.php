@@ -102,10 +102,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Actor', 'Action status', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['actor_ID', 'username', 'actor', 'action_status', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 4, 5, 6, 7, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Actor', 'Action status', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['actor_ID', 'actor', 'action_status', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 4, 5, 6, 7, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/action_actor_templateTV.html';

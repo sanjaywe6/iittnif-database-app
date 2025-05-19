@@ -1,11 +1,8 @@
-		<td colspan="16" class="row">
+		<td colspan="15" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="visiting_card_table-visiting_card_id-caption field-caption-tv">ID</dt>
 					<dd id="visiting_card_table-visiting_card_id-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-visiting_card_id text-right"><%%SELECT%%><%%VALUE(visiting_card_id)%%><%%ENDSELECT%%></dd>
-
-					<dt class="visiting_card_table-username-caption field-caption-tv">Username</dt>
-					<dd id="visiting_card_table-username-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-username"><%%SELECT%%><%%VALUE(username)%%><%%ENDSELECT%%></dd>
 
 					<dt class="visiting_card_table-name-caption field-caption-tv">Name</dt>
 					<dd id="visiting_card_table-name-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-name"><%%SELECT%%><%%VALUE(name)%%><%%ENDSELECT%%></dd>
@@ -25,13 +22,13 @@
 					<dt class="visiting_card_table-email-caption field-caption-tv">Email</dt>
 					<dd id="visiting_card_table-email-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-email"><a href="mailto:<%%VALUE(email)%%>" title="<%%VALUE(email)%%>" class="btn btn-default"><i class="glyphicon glyphicon-envelope text-info"></i></a></dd>
 
+					<dt class="visiting_card_table-company_website_addr-caption field-caption-tv">Company website address</dt>
+					<dd id="visiting_card_table-company_website_addr-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-company_website_addr"><%%SELECT%%><%%VALUE(company_website_addr)%%><%%ENDSELECT%%></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="visiting_card_table-company_website_addr-caption field-caption-tv">Company website address</dt>
-					<dd id="visiting_card_table-company_website_addr-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-company_website_addr"><%%SELECT%%><%%VALUE(company_website_addr)%%><%%ENDSELECT%%></dd>
-
 					<dt class="visiting_card_table-given_by-caption field-caption-tv">Given by</dt>
 					<dd id="visiting_card_table-given_by-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-given_by"><%%SELECT%%><%%VALUE(given_by)%%><%%ENDSELECT%%></dd>
 

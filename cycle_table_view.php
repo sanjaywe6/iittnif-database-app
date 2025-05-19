@@ -117,10 +117,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Registration number', 'Cycle model', 'Cycle color', 'Responsible Contact Person', 'Contact number of person', 'Purpose', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['id', 'username', 'registration_number', 'cycle_model', 'cycle_color', 'responsible_contact_person', 'contact_number_of_person', 'purpose', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Registration number', 'Cycle model', 'Cycle color', 'Responsible Contact Person', 'Contact number of person', 'Purpose', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['id', 'registration_number', 'cycle_model', 'cycle_color', 'responsible_contact_person', 'contact_number_of_person', 'purpose', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/cycle_table_templateTV.html';

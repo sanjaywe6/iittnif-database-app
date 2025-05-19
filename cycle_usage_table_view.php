@@ -117,10 +117,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Cycle Details', 'Used by', 'Date and time from', 'Date and time to', 'Total distance run (In KM)', 'Remarks (Optional)', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['id', 'username', 'cycle_lookup', 'used_by', 'datetime_from', 'datetime_to', 'total_distance_run', 'remarks', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Cycle Details', 'Used by', 'Date and time from', 'Date and time to', 'Total distance run (In KM)', 'Remarks (Optional)', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['id', 'cycle_lookup', 'used_by', 'datetime_from', 'datetime_to', 'total_distance_run', 'remarks', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/cycle_usage_table_templateTV.html';

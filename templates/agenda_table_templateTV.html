@@ -1,22 +1,19 @@
-		<td colspan="6" class="row">
+		<td colspan="5" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="agenda_table-agenda_id-caption field-caption-tv">ID</dt>
 					<dd id="agenda_table-agenda_id-<%%VALUE(agenda_id)%%>" class="agenda_table-agenda_id text-right"><%%SELECT%%><%%VALUE(agenda_id)%%><%%ENDSELECT%%></dd>
 
-					<dt class="agenda_table-username-caption field-caption-tv">Username</dt>
-					<dd id="agenda_table-username-<%%VALUE(agenda_id)%%>" class="agenda_table-username"><%%SELECT%%><%%VALUE(username)%%><%%ENDSELECT%%></dd>
-
 					<dt class="agenda_table-meeting_lookup-caption field-caption-tv">Meeting</dt>
 					<dd id="agenda_table-meeting_lookup-<%%VALUE(agenda_id)%%>" class="agenda_table-meeting_lookup"><%%SELECT%%><%%VALUE(meeting_lookup)%%><%%ENDSELECT%%></dd>
+
+					<dt class="agenda_table-agenda_description-caption field-caption-tv">Agenda description</dt>
+					<dd id="agenda_table-agenda_description-<%%VALUE(agenda_id)%%>" class="agenda_table-agenda_description"><%%SELECT%%><%%VALUE(agenda_description)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="agenda_table-agenda_description-caption field-caption-tv">Agenda description</dt>
-					<dd id="agenda_table-agenda_description-<%%VALUE(agenda_id)%%>" class="agenda_table-agenda_description"><%%SELECT%%><%%VALUE(agenda_description)%%><%%ENDSELECT%%></dd>
-
 					<dt class="agenda_table-created_by-caption field-caption-tv">Created By</dt>
 					<dd id="agenda_table-created_by-<%%VALUE(agenda_id)%%>" class="agenda_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
 

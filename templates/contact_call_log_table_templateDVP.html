@@ -1,0 +1,64 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Contact Number -->
+		<div class="form-group contact_call_log_table-number" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Contact Number</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(number)%%></div>
+			</div>
+		</div>
+		<!-- Field: Query -->
+		<div class="form-group contact_call_log_table-query" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Query</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(query)%%></div>
+			</div>
+		</div>
+		<!-- Field: Reply for query -->
+		<div class="form-group contact_call_log_table-reply" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Reply for query</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(reply)%%></div>
+			</div>
+		</div>
+		<!-- Field: CEO Remarks -->
+		<div class="form-group contact_call_log_table-remarks_ceo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">CEO Remarks</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(remarks_ceo)%%></div>
+			</div>
+		</div>
+		<!-- Field: PD Remarks -->
+		<div class="form-group contact_call_log_table-remarks_pd" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">PD Remarks</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(remarks_pd)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

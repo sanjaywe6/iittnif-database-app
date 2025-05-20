@@ -223,6 +223,8 @@
 
 		setupTable('newsletter_table', []);
 
+		setupTable('contact_call_log_table', []);
+
 
 
 		// set up internal tables

@@ -19,7 +19,6 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`newsletter_table`.`id`" => "id",
-		"`newsletter_table`.`username`" => "username",
 		"`newsletter_table`.`section`" => "section",
 		"`newsletter_table`.`name_of_event`" => "name_of_event",
 		"`newsletter_table`.`dates_of_events`" => "dates_of_events",
@@ -40,13 +39,11 @@
 		7 => 7,
 		8 => 8,
 		9 => 9,
-		10 => 10,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`newsletter_table`.`id`" => "id",
-		"`newsletter_table`.`username`" => "username",
 		"`newsletter_table`.`section`" => "section",
 		"`newsletter_table`.`name_of_event`" => "name_of_event",
 		"`newsletter_table`.`dates_of_events`" => "dates_of_events",
@@ -59,7 +56,6 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`newsletter_table`.`id`" => "ID",
-		"`newsletter_table`.`username`" => "Username",
 		"`newsletter_table`.`section`" => "Section",
 		"`newsletter_table`.`name_of_event`" => "Name/Title of Events",
 		"`newsletter_table`.`dates_of_events`" => "Dates of Events",
@@ -71,7 +67,6 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`newsletter_table`.`id`" => "id",
-		"`newsletter_table`.`username`" => "username",
 		"`newsletter_table`.`section`" => "section",
 		"`newsletter_table`.`name_of_event`" => "name_of_event",
 		"`newsletter_table`.`dates_of_events`" => "dates_of_events",
@@ -116,7 +111,7 @@
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
 	$x->ColCaption = ['ID', 'Section', 'Name/Title of Events', 'Dates of Events', 'Writeup About The Events (Max 200 Words)', 'First Image', 'Second Image', 'Created By', 'Last updated By', ];
 	$x->ColFieldName = ['id', 'section', 'name_of_event', 'dates_of_events', 'writeup_about_event', 'img1', 'img2', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/newsletter_table_templateTV.html';

@@ -143,7 +143,7 @@
 	$x->TemplateDV = 'templates/attendence_details_table_templateDV.html';
 	$x->TemplateDVP = 'templates/attendence_details_table_templateDVP.html';
 
-	$x->ShowTableHeader = 0;
+	$x->ShowTableHeader = 1;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
 	$x->HasCalculatedFields = false;

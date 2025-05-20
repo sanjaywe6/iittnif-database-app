@@ -113,7 +113,7 @@
 			'Accounts &amp; Finance Apps',
 			'Transport Apps',
 			'Newsletters &amp; Updates Apps',
-			'Suggestion App'
+			'Suggestions &amp; Others App'
 		];
 
 		$all_tables = [
@@ -692,6 +692,13 @@
 					'group' => $tg[12],
 					'homepageShowCount' => 1
 				],
+				'contact_call_log_table' => [
+					'Caption' => 'Contact Call Log - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[13],
+					'homepageShowCount' => 0
+				],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) return $all_tables;
@@ -708,8 +715,8 @@
 		$arrAccessTables = [];
 		$arrTables = [
 			/* 'table_name' => ['table caption', 'homepage description', 'icon', 'table group name'] */   
-			'user_table' => ['User Table', '', 'table.gif', 'Suggestion App'],
-			'suggestion' => ['Suggestion - App', '', 'table.gif', 'Suggestion App'],
+			'user_table' => ['User Table', '', 'table.gif', 'Suggestions &amp; Others App'],
+			'suggestion' => ['Suggestion - App', '', 'table.gif', 'Suggestions &amp; Others App'],
 			'approval_table' => ['Approval - App', '', 'table.gif', 'Approvals &amp; Sanctions'],
 			'techlead_web_page' => ['Tech Manager Web Page  - App', '', 'table.gif', 'Approvals &amp; Sanctions'],
 			'car_table' => ['Car - App', '<a href="https://lookerstudio.google.com/reporting/58f87367-3f09-42c0-a288-cf75f313cbed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Car App Report</b></button></a>', 'table.gif', 'Facilities Apps'],
@@ -790,6 +797,7 @@
 			'summary_table_tdp' => ['Summary of TDP - App', '', 'table.gif', 'Technology Development Apps'],
 			'project_details_tdp' => ['Project details - App', '', 'table.gif', 'Technology Development Apps'],
 			'newsletter_table' => ['Newsletter - App', '', 'table.gif', 'Newsletters &amp; Updates Apps'],
+			'contact_call_log_table' => ['Contact Call Log - App', '', 'table.gif', 'Suggestions &amp; Others App'],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) {
@@ -10070,13 +10078,6 @@
 							'description' => '',
 						],
 					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
-							'description' => '',
-						],
-					],
 					'section' => [
 						'appgini' => "VARCHAR(255) NULL DEFAULT 'Translational R & D'",
 						'info' => [
@@ -10117,6 +10118,64 @@
 						'info' => [
 							'caption' => 'Second Image',
 							'description' => 'Maximum file size allowed: 1000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated By',
+							'description' => '',
+						],
+					],
+				],
+				'contact_call_log_table' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'number' => [
+						'appgini' => "VARCHAR(40) NULL",
+						'info' => [
+							'caption' => 'Contact Number',
+							'description' => '',
+						],
+					],
+					'query' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Query',
+							'description' => '',
+						],
+					],
+					'reply' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Reply for query',
+							'description' => '',
+						],
+					],
+					'remarks_ceo' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'CEO Remarks',
+							'description' => '',
+						],
+					],
+					'remarks_pd' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'PD Remarks',
+							'description' => '',
 						],
 					],
 					'created_by' => [
@@ -11593,6 +11652,7 @@
 			'summary_table_tdp' => [],
 			'project_details_tdp' => [],
 			'newsletter_table' => [],
+			'contact_call_log_table' => [],
 		];
 	}
 	#########################################################
@@ -11949,6 +12009,8 @@
 				'project_number' => 'SELECT `summary_table_tdp`.`id`, `summary_table_tdp`.`project_number` FROM `summary_table_tdp` ORDER BY 2',
 			],
 			'newsletter_table' => [
+			],
+			'contact_call_log_table' => [
 			],
 		];
 

@@ -16,7 +16,6 @@ function newsletter_table_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'username' => parseCode('<%%creatorUsername%%>', true),
 		'section' => Request::val('section', 'Translational R & D'),
 		'name_of_event' => Request::val('name_of_event', ''),
 		'dates_of_events' => Request::val('dates_of_events', ''),
@@ -322,7 +321,7 @@ function newsletter_table_form($selectedId = '', $allowUpdate = true, $allowInse
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_section->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Translational R & D'));
+		$combo_section->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Translational R & D'));
 	}
 	$combo_section->Render();
 
@@ -458,7 +457,6 @@ function newsletter_table_form($selectedId = '', $allowUpdate = true, $allowInse
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(section)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(name_of_event)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(dates_of_events)%%>', '', $templateCode);
@@ -482,8 +480,6 @@ function newsletter_table_form($selectedId = '', $allowUpdate = true, $allowInse
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(section)%%>', safe_html($urow['section']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(section)%%>', html_attr($row['section']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(section)%%>', urlencode($urow['section']), $templateCode);
@@ -510,8 +506,6 @@ function newsletter_table_form($selectedId = '', $allowUpdate = true, $allowInse
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(section)%%>', 'Translational R & D', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(section)%%>', urlencode('Translational R & D'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(name_of_event)%%>', '', $templateCode);

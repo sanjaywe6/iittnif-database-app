@@ -498,6 +498,10 @@
 
 			return $data;
 		},
+		'contact_call_log_table' => function($data, $options = []) {
+
+			return $data;
+		},
 	];
 
 	// accept a record as an assoc array, return a boolean indicating whether to import or skip record
@@ -584,6 +588,7 @@
 		'summary_table_tdp' => function($data, $options = []) { return true; },
 		'project_details_tdp' => function($data, $options = []) { return true; },
 		'newsletter_table' => function($data, $options = []) { return true; },
+		'contact_call_log_table' => function($data, $options = []) { return true; },
 	];
 
 	/*

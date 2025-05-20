@@ -966,6 +966,8 @@
 		],
 		'newsletter_table' => [
 		],
+		'contact_call_log_table' => [
+		],
 	];
 
 	// XSS prevention

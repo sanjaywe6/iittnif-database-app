@@ -140,7 +140,7 @@
 					'homepageShowCount' => 1
 				],
 				'techlead_web_page' => [
-					'Caption' => 'Tech Lead Web Page  - App',
+					'Caption' => 'Tech Manager Web Page  - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[0],
@@ -711,7 +711,7 @@
 			'user_table' => ['User Table', '', 'table.gif', 'Suggestion App'],
 			'suggestion' => ['Suggestion - App', '', 'table.gif', 'Suggestion App'],
 			'approval_table' => ['Approval - App', '', 'table.gif', 'Approvals &amp; Sanctions'],
-			'techlead_web_page' => ['Tech Lead Web Page  - App', '', 'table.gif', 'Approvals &amp; Sanctions'],
+			'techlead_web_page' => ['Tech Manager Web Page  - App', '', 'table.gif', 'Approvals &amp; Sanctions'],
 			'car_table' => ['Car - App', '<a href="https://lookerstudio.google.com/reporting/58f87367-3f09-42c0-a288-cf75f313cbed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Car App Report</b></button></a>', 'table.gif', 'Facilities Apps'],
 			'car_usage_table' => ['Car usage table', '', 'table.gif', 'Facilities Apps'],
 			'cycle_table' => ['Cycle - App', '<a href="https://lookerstudio.google.com/reporting/c941076f-d85a-4899-b163-1337a9b083ed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Cycle Usage App Report</b></button></a>', 'table.gif', 'Facilities Apps'],

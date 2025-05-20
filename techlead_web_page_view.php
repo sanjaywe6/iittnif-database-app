@@ -142,7 +142,7 @@
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'techlead_web_page_view.php';
-	$x->TableTitle = 'Tech Lead Web Page  - App';
+	$x->TableTitle = 'Tech Manager Web Page  - App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`techlead_web_page`.`id`';
 	$x->DefaultSortField = '1';

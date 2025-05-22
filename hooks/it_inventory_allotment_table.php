@@ -72,7 +72,7 @@
 
 	function it_inventory_allotment_table_before_insert(&$data, $memberInfo, &$args) {
 
-		return TRUE;
+		return approvalBeforeInsert($data, $memberInfo);
 	}
 
 	function it_inventory_allotment_table_after_insert($data, $memberInfo, &$args) {
@@ -82,7 +82,7 @@
 
 	function it_inventory_allotment_table_before_update(&$data, $memberInfo, &$args) {
 
-		return TRUE;
+		return approvalBeforeUpdate($data, $memberInfo, "it_inventory_allotment_table");
 	}
 
 	function it_inventory_allotment_table_after_update($data, $memberInfo, &$args) {

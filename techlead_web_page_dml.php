@@ -53,7 +53,7 @@ function techlead_web_page_insert(&$error_message = '') {
 				return existing_value('techlead_web_page', 'img2', Request::val('SelectedID'));
 			},
 		]),
-		'approval_status' => Request::val('approval_status', 'Pending'),
+		'approval_status' => Request::val('approval_status', 'Under Consideration'),
 		'approval_remarks' => Request::val('approval_remarks', ''),
 		'website_update_status' => Request::val('website_update_status', 'Pending'),
 		'website_update_remarks' => Request::val('website_update_remarks', 'None'),
@@ -354,7 +354,7 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		$combo_approval_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($approval_status_data))));
 		$combo_approval_status->ListData = $combo_approval_status->ListItem;
 	} else {
-		$combo_approval_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Pending;;Approved"))));
+		$combo_approval_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Approved by CEO;;Not Approved by CEO;;Approved by PD;;Not Approved by PD;;Under Consideration"))));
 		$combo_approval_status->ListData = $combo_approval_status->ListItem;
 	}
 	$combo_approval_status->SelectName = 'approval_status';
@@ -399,7 +399,7 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		$filterValue = Request::val('FilterValue');
 		$combo_techlead->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('GNSS Tech Lead'));
 		$combo_category->SelectedText = (isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Foundational Research'));
-		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '11' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '11' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 		$combo_website_update_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '13' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
 	}
 	$combo_techlead->Render();
@@ -666,8 +666,8 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		$templateCode = str_replace('<%%HTMLAREA(content_learn_more)%%>', '<textarea name="content_learn_more" id="content_learn_more" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(img1)%%>', 'blank.gif', $templateCode);
 		$templateCode = str_replace('<%%VALUE(img2)%%>', 'blank.gif', $templateCode);
-		$templateCode = str_replace('<%%VALUE(approval_status)%%>', 'Pending', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode('Pending'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_status)%%>', 'Under Consideration', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode('Under Consideration'), $templateCode);
 		$templateCode = str_replace('<%%HTMLAREA(approval_remarks)%%>', '<textarea name="approval_remarks" id="approval_remarks" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(website_update_status)%%>', 'Pending', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(website_update_status)%%>', urlencode('Pending'), $templateCode);

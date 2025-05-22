@@ -68,7 +68,7 @@
 
 		// loop to verify the valid user for approval
 		if ($formData["approval_status"]=="Approved by CEO" xor $formData["approval_status"]=="Not Approved by CEO" xor $formData["approval_status"]=="Approved by PD" xor $formData["approval_status"]=="Not Approved by PD" ){
-			if ($memberInfo["groupID"] == 2){
+			if ($memberInfo["groupID"] == 3){
 				return TRUE;
 			}
 			else{
@@ -91,7 +91,7 @@
 
 		// loop to verify the valid user for approval
 		if ($formData["approval_status"]=="Approved by CEO" xor $formData["approval_status"]=="Not Approved by CEO" xor $formData["approval_status"]=="Approved by PD" xor $formData["approval_status"]=="Not Approved by PD" ){
-			if ($memberInfo["groupID"] == 2){
+			if ($memberInfo["groupID"] == 3){
 				return TRUE;
 			}
 			else{
@@ -109,7 +109,7 @@
 				// if already approved then block the update
 				if ($row["approval_status"] == "Approved by CEO" xor $row["approval_status"] == "Not Approved by CEO" xor $row["approval_status"] == "Approved by PD" xor $row["approval_status"] == "Not Approved by PD"){
 
-					if ($memberInfo["groupID"] == 2){
+					if ($memberInfo["groupID"] == 3){
 						return TRUE;
 					}
 					else{

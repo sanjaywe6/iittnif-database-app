@@ -25,7 +25,6 @@
 		"if(`half_day_leave_table`.`date`,date_format(`half_day_leave_table`.`date`,'%d/%m/%Y'),'')" => "date",
 		"`half_day_leave_table`.`approval_status`" => "approval_status",
 		"`half_day_leave_table`.`approval_remarks`" => "approval_remarks",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved By */" => "approved_by",
 		"`half_day_leave_table`.`created_by`" => "created_by",
 		"`half_day_leave_table`.`created_at`" => "created_at",
 		"`half_day_leave_table`.`last_updated_by`" => "last_updated_by",
@@ -44,7 +43,6 @@
 		9 => 9,
 		10 => 10,
 		11 => 11,
-		12 => 12,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -56,7 +54,6 @@
 		"if(`half_day_leave_table`.`date`,date_format(`half_day_leave_table`.`date`,'%d/%m/%Y'),'')" => "date",
 		"`half_day_leave_table`.`approval_status`" => "approval_status",
 		"`half_day_leave_table`.`approval_remarks`" => "approval_remarks",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved By */" => "approved_by",
 		"`half_day_leave_table`.`created_by`" => "created_by",
 		"`half_day_leave_table`.`created_at`" => "created_at",
 		"`half_day_leave_table`.`last_updated_by`" => "last_updated_by",
@@ -71,7 +68,6 @@
 		"`half_day_leave_table`.`date`" => "Date",
 		"`half_day_leave_table`.`approval_status`" => "Approval status",
 		"`half_day_leave_table`.`approval_remarks`" => "Approval remarks",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved By */" => "Approved By",
 		"`half_day_leave_table`.`created_by`" => "Created by",
 		"`half_day_leave_table`.`created_at`" => "Created at",
 		"`half_day_leave_table`.`last_updated_by`" => "Last updated by",
@@ -87,7 +83,6 @@
 		"if(`half_day_leave_table`.`date`,date_format(`half_day_leave_table`.`date`,'%d/%m/%Y'),'')" => "date",
 		"`half_day_leave_table`.`approval_status`" => "approval_status",
 		"`half_day_leave_table`.`approval_remarks`" => "approval_remarks",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved By */" => "approved_by",
 		"`half_day_leave_table`.`created_by`" => "created_by",
 		"`half_day_leave_table`.`created_at`" => "created_at",
 		"`half_day_leave_table`.`last_updated_by`" => "last_updated_by",
@@ -95,9 +90,9 @@
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['approved_by' => 'Approved By', ];
+	$x->filterers = [];
 
-	$x->QueryFrom = "`half_day_leave_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`half_day_leave_table`.`approved_by` ";
+	$x->QueryFrom = "`half_day_leave_table` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -127,10 +122,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Leave type', 'Purpose of leave', 'Date', 'Approval status', 'Approval remarks', 'Approved By', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'leave_type', 'purpose_of_leave', 'date', 'approval_status', 'approval_remarks', 'approved_by', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Leave type', 'Purpose of leave', 'Date', 'Approval status', 'Approval remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'leave_type', 'purpose_of_leave', 'date', 'approval_status', 'approval_remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/half_day_leave_table_templateTV.html';

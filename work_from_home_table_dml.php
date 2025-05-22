@@ -20,7 +20,7 @@ function work_from_home_table_insert(&$error_message = '') {
 		'work_from_home_purpose' => Request::val('work_from_home_purpose', ''),
 		'from_date' => Request::dateComponents('from_date', '1'),
 		'to_date' => Request::dateComponents('to_date', '1'),
-		'approved_by' => Request::lookup('approved_by', ''),
+		'approval_status' => Request::val('approval_status', 'Under Consideration'),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
@@ -92,7 +92,7 @@ function work_from_home_table_update(&$selected_id, &$error_message = '') {
 		'work_from_home_purpose' => Request::val('work_from_home_purpose', ''),
 		'from_date' => Request::dateComponents('from_date', ''),
 		'to_date' => Request::dateComponents('to_date', ''),
-		'approved_by' => Request::lookup('approved_by', ''),
+		'approval_status' => Request::val('approval_status', ''),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 	];
@@ -197,7 +197,6 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 	$showSaveAsCopy = !$dvprint && ($allowInsert && $hasSelectedId && !$noSaveAsCopy);
 	$fieldsAreEditable = !$dvprint && (($allowInsert && !$hasSelectedId) || ($allowUpdate && $hasSelectedId) || $showSaveAsCopy);
 
-	$filterer_approved_by = Request::val('filterer_approved_by');
 
 	// populate filterers, starting from children to grand-parents
 
@@ -219,8 +218,21 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 	$combo_to_date->DefaultDate = parseMySQLDate('1', '1');
 	$combo_to_date->MonthNames = $Translation['month names'];
 	$combo_to_date->NamePrefix = 'to_date';
-	// combobox: approved_by
-	$combo_approved_by = new DataCombo;
+	// combobox: approval_status
+	$combo_approval_status = new Combo;
+	$combo_approval_status->ListType = 0;
+	$combo_approval_status->MultipleSeparator = ', ';
+	$combo_approval_status->ListBoxHeight = 10;
+	$combo_approval_status->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/work_from_home_table.approval_status.csv')) {
+		$approval_status_data = addslashes(implode('', @file(__DIR__ . '/hooks/work_from_home_table.approval_status.csv')));
+		$combo_approval_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($approval_status_data))));
+		$combo_approval_status->ListData = $combo_approval_status->ListItem;
+	} else {
+		$combo_approval_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Approved by CEO;;Not Approved by CEO;;Approved by PD;;Not Approved by PD;;Under Consideration"))));
+		$combo_approval_status->ListData = $combo_approval_status->ListItem;
+	}
+	$combo_approval_status->SelectName = 'approval_status';
 
 	if($hasSelectedId) {
 		if(!($row = getRecord('work_from_home_table', $selectedId))) {
@@ -228,107 +240,27 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 		}
 		$combo_from_date->DefaultDate = $row['from_date'];
 		$combo_to_date->DefaultDate = $row['to_date'];
-		$combo_approved_by->SelectedData = $row['approved_by'];
+		$combo_approval_status->SelectedData = $row['approval_status'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
 	} else {
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_approved_by->SelectedData = $filterer_approved_by;
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '6' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 	}
-	$combo_approved_by->HTML = '<span id="approved_by-container' . $rnd1 . '"></span><input type="hidden" name="approved_by" id="approved_by' . $rnd1 . '" value="' . html_attr($combo_approved_by->SelectedData) . '">';
-	$combo_approved_by->MatchText = '<span id="approved_by-container-readonly' . $rnd1 . '"></span><input type="hidden" name="approved_by" id="approved_by' . $rnd1 . '" value="' . html_attr($combo_approved_by->SelectedData) . '">';
+	$combo_approval_status->Render();
 
 	ob_start();
 	?>
 
 	<script>
 		// initial lookup values
-		AppGini.current_approved_by__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['approved_by'] : htmlspecialchars($filterer_approved_by, ENT_QUOTES)); ?>"};
 
 		$j(function() {
 			setTimeout(function() {
-				if(typeof(approved_by_reload__RAND__) == 'function') approved_by_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
-		function approved_by_reload__RAND__() {
-		<?php if($fieldsAreEditable) { ?>
-
-			$j("#approved_by-container__RAND__").select2({
-				/* initial default value */
-				initSelection: function(e, c) {
-					$j.ajax({
-						url: 'ajax_combo.php',
-						dataType: 'json',
-						data: { id: AppGini.current_approved_by__RAND__.value, t: 'work_from_home_table', f: 'approved_by' },
-						success: function(resp) {
-							c({
-								id: resp.results[0].id,
-								text: resp.results[0].text
-							});
-							$j('[name="approved_by"]').val(resp.results[0].id);
-							$j('[id=approved_by-container-readonly__RAND__]').html('<span class="match-text" id="approved_by-match-text">' + resp.results[0].text + '</span>');
-							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
-
-
-							if(typeof(approved_by_update_autofills__RAND__) == 'function') approved_by_update_autofills__RAND__();
-						}
-					});
-				},
-				width: '100%',
-				formatNoMatches: function(term) { return '<?php echo addslashes($Translation['No matches found!']); ?>'; },
-				minimumResultsForSearch: 5,
-				loadMorePadding: 200,
-				ajax: {
-					url: 'ajax_combo.php',
-					dataType: 'json',
-					cache: true,
-					data: function(term, page) { return { s: term, p: page, t: 'work_from_home_table', f: 'approved_by' }; },
-					results: function(resp, page) { return resp; }
-				},
-				escapeMarkup: function(str) { return str; }
-			}).on('change', function(e) {
-				AppGini.current_approved_by__RAND__.value = e.added.id;
-				AppGini.current_approved_by__RAND__.text = e.added.text;
-				$j('[name="approved_by"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
-
-
-				if(typeof(approved_by_update_autofills__RAND__) == 'function') approved_by_update_autofills__RAND__();
-			});
-
-			if(!$j("#approved_by-container__RAND__").length) {
-				$j.ajax({
-					url: 'ajax_combo.php',
-					dataType: 'json',
-					data: { id: AppGini.current_approved_by__RAND__.value, t: 'work_from_home_table', f: 'approved_by' },
-					success: function(resp) {
-						$j('[name="approved_by"]').val(resp.results[0].id);
-						$j('[id=approved_by-container-readonly__RAND__]').html('<span class="match-text" id="approved_by-match-text">' + resp.results[0].text + '</span>');
-						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
-
-						if(typeof(approved_by_update_autofills__RAND__) == 'function') approved_by_update_autofills__RAND__();
-					}
-				});
-			}
-
-		<?php } else { ?>
-
-			$j.ajax({
-				url: 'ajax_combo.php',
-				dataType: 'json',
-				data: { id: AppGini.current_approved_by__RAND__.value, t: 'work_from_home_table', f: 'approved_by' },
-				success: function(resp) {
-					$j('[id=approved_by-container__RAND__], [id=approved_by-container-readonly__RAND__]').html('<span class="match-text" id="approved_by-match-text">' + resp.results[0].text + '</span>');
-					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
-
-					if(typeof(approved_by_update_autofills__RAND__) == 'function') approved_by_update_autofills__RAND__();
-				}
-			});
-		<?php } ?>
-
-		}
 	</script>
 	<?php
 
@@ -419,8 +351,7 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 		$jsReadOnly .= "\t\$j('#from_dateDay, #from_dateMonth, #from_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#to_date').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#to_dateDay, #to_dateMonth, #to_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\t\$j('#approved_by').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\t\$j('#approved_by_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('#approval_status').replaceWith('<div class=\"form-control-static\" id=\"approval_status\">' + (\$j('#approval_status').val() || '') + '</div>'); \$j('#approval_status-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -445,12 +376,11 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 			$combo_to_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(to_date)%%>', $combo_to_date->GetHTML(true), $templateCode);
-	$templateCode = str_replace('<%%COMBO(approved_by)%%>', $combo_approved_by->HTML, $templateCode);
-	$templateCode = str_replace('<%%COMBOTEXT(approved_by)%%>', $combo_approved_by->MatchText, $templateCode);
-	$templateCode = str_replace('<%%URLCOMBOTEXT(approved_by)%%>', urlencode($combo_approved_by->MatchText), $templateCode);
+	$templateCode = str_replace('<%%COMBO(approval_status)%%>', $combo_approval_status->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(approval_status)%%>', $combo_approval_status->SelectedData, $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
-	$lookup_fields = ['approved_by' => ['user_table', 'Approved by'], ];
+	$lookup_fields = [];
 	foreach($lookup_fields as $luf => $ptfc) {
 		$pt_perm = getTablePermissions($ptfc[0]);
 
@@ -471,7 +401,7 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 	$templateCode = str_replace('<%%UPLOADFILE(work_from_home_purpose)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(from_date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(to_date)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(approved_by)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approval_status)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
@@ -490,9 +420,9 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 		$templateCode = str_replace('<%%URLVALUE(from_date)%%>', urlencode(app_datetime($urow['from_date'])), $templateCode);
 		$templateCode = str_replace('<%%VALUE(to_date)%%>', app_datetime($row['to_date']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(to_date)%%>', urlencode(app_datetime($urow['to_date'])), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(approved_by)%%>', safe_html($urow['approved_by']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approved_by)%%>', html_attr($row['approved_by']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode($urow['approved_by']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', safe_html($urow['approval_status']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', html_attr($row['approval_status']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode($urow['approval_status']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
@@ -512,8 +442,8 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 		$templateCode = str_replace('<%%URLVALUE(from_date)%%>', urlencode('1'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(to_date)%%>', '1', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(to_date)%%>', urlencode('1'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(approved_by)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_status)%%>', 'Under Consideration', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode('Under Consideration'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);

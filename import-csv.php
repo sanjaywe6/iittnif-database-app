@@ -249,7 +249,6 @@
 			if(isset($data['select_employee'])) $data['select_employee'] = pkGivenLookupText($data['select_employee'], 'it_inventory_allotment_table', 'select_employee');
 			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
 			if(isset($data['alloted_by'])) $data['alloted_by'] = pkGivenLookupText($data['alloted_by'], 'it_inventory_allotment_table', 'alloted_by');
-			if(isset($data['approved_by'])) $data['approved_by'] = pkGivenLookupText($data['approved_by'], 'it_inventory_allotment_table', 'approved_by');
 			if(isset($data['returned_date'])) $data['returned_date'] = guessMySQLDateTime($data['returned_date']);
 
 			return $data;
@@ -297,34 +296,29 @@
 		'beyond_workingHours_table' => function($data, $options = []) {
 			if(isset($data['start_datetime'])) $data['start_datetime'] = guessMySQLDateTime($data['start_datetime']);
 			if(isset($data['end_datetime'])) $data['end_datetime'] = guessMySQLDateTime($data['end_datetime']);
-			if(isset($data['approved_by'])) $data['approved_by'] = pkGivenLookupText($data['approved_by'], 'beyond_workingHours_table', 'approved_by');
 
 			return $data;
 		},
 		'leave_table' => function($data, $options = []) {
 			if(isset($data['from_date'])) $data['from_date'] = guessMySQLDateTime($data['from_date']);
 			if(isset($data['to_date'])) $data['to_date'] = guessMySQLDateTime($data['to_date']);
-			if(isset($data['approved_by'])) $data['approved_by'] = pkGivenLookupText($data['approved_by'], 'leave_table', 'approved_by');
 
 			return $data;
 		},
 		'half_day_leave_table' => function($data, $options = []) {
 			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
-			if(isset($data['approved_by'])) $data['approved_by'] = pkGivenLookupText($data['approved_by'], 'half_day_leave_table', 'approved_by');
 
 			return $data;
 		},
 		'work_from_home_table' => function($data, $options = []) {
 			if(isset($data['from_date'])) $data['from_date'] = guessMySQLDateTime($data['from_date']);
 			if(isset($data['to_date'])) $data['to_date'] = guessMySQLDateTime($data['to_date']);
-			if(isset($data['approved_by'])) $data['approved_by'] = pkGivenLookupText($data['approved_by'], 'work_from_home_table', 'approved_by');
 
 			return $data;
 		},
 		'navavishkar_stay_table' => function($data, $options = []) {
 			if(isset($data['check_in_date'])) $data['check_in_date'] = guessMySQLDateTime($data['check_in_date']);
 			if(isset($data['checkout_date'])) $data['checkout_date'] = guessMySQLDateTime($data['checkout_date']);
-			if(isset($data['approved_by'])) $data['approved_by'] = pkGivenLookupText($data['approved_by'], 'navavishkar_stay_table', 'approved_by');
 
 			return $data;
 		},

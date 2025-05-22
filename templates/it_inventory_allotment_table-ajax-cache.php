@@ -9,8 +9,7 @@
 		/* data for selected record, or defaults if none is selected */
 		var data = {
 			select_employee: <?php echo json_encode(['id' => $rdata['select_employee'], 'value' => $rdata['select_employee'], 'text' => $jdata['select_employee']]); ?>,
-			alloted_by: <?php echo json_encode(['id' => $rdata['alloted_by'], 'value' => $rdata['alloted_by'], 'text' => $jdata['alloted_by']]); ?>,
-			approved_by: <?php echo json_encode(['id' => $rdata['approved_by'], 'value' => $rdata['approved_by'], 'text' => $jdata['approved_by']]); ?>
+			alloted_by: <?php echo json_encode(['id' => $rdata['alloted_by'], 'value' => $rdata['alloted_by'], 'text' => $jdata['alloted_by']]); ?>
 		};
 
 		/* initialize or continue using AppGini.cache for the current table */
@@ -31,14 +30,6 @@
 			if(u != 'ajax_combo.php') return false;
 			if(d.t == tn && d.f == 'alloted_by' && d.id == data.alloted_by.id)
 				return { results: [ data.alloted_by ], more: false, elapsed: 0.01 };
-			return false;
-		});
-
-		/* saved value for approved_by */
-		cache.addCheck(function(u, d) {
-			if(u != 'ajax_combo.php') return false;
-			if(d.t == tn && d.f == 'approved_by' && d.id == data.approved_by.id)
-				return { results: [ data.approved_by ], more: false, elapsed: 0.01 };
 			return false;
 		});
 

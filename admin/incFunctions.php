@@ -1887,7 +1887,7 @@
 						],
 					],
 					'approval_status' => [
-						'appgini' => "VARCHAR(255) NULL DEFAULT 'Pending'",
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Under Consideration'",
 						'info' => [
 							'caption' => 'Approval Status by CEO',
 							'description' => '',
@@ -5565,13 +5565,6 @@
 							'description' => '',
 						],
 					],
-					'approved_by' => [
-						'appgini' => "INT UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Approved By',
-							'description' => '',
-						],
-					],
 					'approval_remarks' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
@@ -6321,13 +6314,6 @@
 							'description' => '',
 						],
 					],
-					'approved_by' => [
-						'appgini' => "INT UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Approved by',
-							'description' => '',
-						],
-					],
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
@@ -6414,13 +6400,6 @@
 							'description' => '',
 						],
 					],
-					'approved_by' => [
-						'appgini' => "INT UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Approved By',
-							'description' => '',
-						],
-					],
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
@@ -6500,13 +6479,6 @@
 							'description' => '',
 						],
 					],
-					'approved_by' => [
-						'appgini' => "INT UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Approved By',
-							'description' => '',
-						],
-					],
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
@@ -6572,10 +6544,10 @@
 							'description' => '',
 						],
 					],
-					'approved_by' => [
-						'appgini' => "INT UNSIGNED NULL",
+					'approval_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Under Consideration'",
 						'info' => [
-							'caption' => 'Approved by',
+							'caption' => 'Approval status',
 							'description' => '',
 						],
 					],
@@ -6704,13 +6676,6 @@
 						'appgini' => "TEXT NULL",
 						'info' => [
 							'caption' => 'Approval remarks',
-							'description' => '',
-						],
-					],
-					'approved_by' => [
-						'appgini' => "INT UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Approved By',
 							'description' => '',
 						],
 					],
@@ -11469,7 +11434,7 @@
 			],
 			'it_inventory_allotment_table' => [
 				'employees_personal_data_table' => ['select_employee'],
-				'user_table' => ['approved_by', 'alloted_by'],
+				'user_table' => ['alloted_by'],
 			],
 			'computer_user_details' => [
 				'computer_details_table' => ['pc_id'],
@@ -11484,21 +11449,6 @@
 			'employees_appraisal_table' => [
 				'employees_designation_table' => ['employee_designation_lookup'],
 				'user_table' => ['reviewing_officer'],
-			],
-			'beyond_workingHours_table' => [
-				'user_table' => ['approved_by'],
-			],
-			'leave_table' => [
-				'user_table' => ['approved_by'],
-			],
-			'half_day_leave_table' => [
-				'user_table' => ['approved_by'],
-			],
-			'work_from_home_table' => [
-				'user_table' => ['approved_by'],
-			],
-			'navavishkar_stay_table' => [
-				'user_table' => ['approved_by'],
 			],
 			'navavishkar_stay_payment_table' => [
 				'navavishkar_stay_table' => ['navavishakr_stay_details'],
@@ -11924,7 +11874,6 @@
 			'it_inventory_allotment_table' => [
 				'select_employee' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`id`, \'  \', `employees_personal_data_table`.`name`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
 				'alloted_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
-				'approved_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'computer_details_table' => [
 			],
@@ -11946,22 +11895,17 @@
 				'reviewing_officer' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'beyond_workingHours_table' => [
-				'approved_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'leave_table' => [
-				'approved_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'half_day_leave_table' => [
-				'approved_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'work_from_home_table' => [
-				'approved_by' => 'SELECT `user_table`.`user_id`, `user_table`.`user_id` FROM `user_table` ORDER BY 2',
 			],
 			'navavishkar_stay_table' => [
-				'approved_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'navavishkar_stay_payment_table' => [
-				'navavishakr_stay_details' => 'SELECT `navavishkar_stay_table`.`id`, IF(CHAR_LENGTH(`navavishkar_stay_table`.`full_name`) || CHAR_LENGTH(`navavishkar_stay_table`.`emp_id`), CONCAT_WS(\'\', `navavishkar_stay_table`.`full_name`, \'::\', `navavishkar_stay_table`.`emp_id`), \'\') FROM `navavishkar_stay_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`navavishkar_stay_table`.`approved_by` ORDER BY 2',
+				'navavishakr_stay_details' => 'SELECT `navavishkar_stay_table`.`id`, IF(CHAR_LENGTH(`navavishkar_stay_table`.`full_name`) || CHAR_LENGTH(`navavishkar_stay_table`.`emp_id`), CONCAT_WS(\'\', `navavishkar_stay_table`.`full_name`, \'::\', `navavishkar_stay_table`.`emp_id`), \'\') FROM `navavishkar_stay_table` ORDER BY 2',
 			],
 			'email_id_allocation_table' => [
 				'reporting_manager' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',

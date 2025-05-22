@@ -23,7 +23,7 @@
 		"`work_from_home_table`.`work_from_home_purpose`" => "work_from_home_purpose",
 		"if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
 		"if(`work_from_home_table`.`to_date`,date_format(`work_from_home_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
-		"IF(    CHAR_LENGTH(`user_table1`.`user_id`), CONCAT_WS('',   `user_table1`.`user_id`), '') /* Approved by */" => "approved_by",
+		"`work_from_home_table`.`approval_status`" => "approval_status",
 		"`work_from_home_table`.`created_by`" => "created_by",
 		"`work_from_home_table`.`created_at`" => "created_at",
 		"`work_from_home_table`.`last_updated_by`" => "last_updated_by",
@@ -36,7 +36,7 @@
 		3 => 3,
 		4 => '`work_from_home_table`.`from_date`',
 		5 => '`work_from_home_table`.`to_date`',
-		6 => '`user_table1`.`user_id`',
+		6 => 6,
 		7 => 7,
 		8 => 8,
 		9 => 9,
@@ -50,7 +50,7 @@
 		"`work_from_home_table`.`work_from_home_purpose`" => "work_from_home_purpose",
 		"if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
 		"if(`work_from_home_table`.`to_date`,date_format(`work_from_home_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
-		"IF(    CHAR_LENGTH(`user_table1`.`user_id`), CONCAT_WS('',   `user_table1`.`user_id`), '') /* Approved by */" => "approved_by",
+		"`work_from_home_table`.`approval_status`" => "approval_status",
 		"`work_from_home_table`.`created_by`" => "created_by",
 		"`work_from_home_table`.`created_at`" => "created_at",
 		"`work_from_home_table`.`last_updated_by`" => "last_updated_by",
@@ -63,7 +63,7 @@
 		"`work_from_home_table`.`work_from_home_purpose`" => "Purpose work from home",
 		"`work_from_home_table`.`from_date`" => "From date",
 		"`work_from_home_table`.`to_date`" => "To date",
-		"IF(    CHAR_LENGTH(`user_table1`.`user_id`), CONCAT_WS('',   `user_table1`.`user_id`), '') /* Approved by */" => "Approved by",
+		"`work_from_home_table`.`approval_status`" => "Approval status",
 		"`work_from_home_table`.`created_by`" => "Created by",
 		"`work_from_home_table`.`created_at`" => "Created at",
 		"`work_from_home_table`.`last_updated_by`" => "Last updated by",
@@ -77,7 +77,7 @@
 		"`work_from_home_table`.`work_from_home_purpose`" => "work_from_home_purpose",
 		"if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
 		"if(`work_from_home_table`.`to_date`,date_format(`work_from_home_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
-		"IF(    CHAR_LENGTH(`user_table1`.`user_id`), CONCAT_WS('',   `user_table1`.`user_id`), '') /* Approved by */" => "approved_by",
+		"`work_from_home_table`.`approval_status`" => "approval_status",
 		"`work_from_home_table`.`created_by`" => "created_by",
 		"`work_from_home_table`.`created_at`" => "created_at",
 		"`work_from_home_table`.`last_updated_by`" => "last_updated_by",
@@ -85,9 +85,9 @@
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['approved_by' => 'Approved by', ];
+	$x->filterers = [];
 
-	$x->QueryFrom = "`work_from_home_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`work_from_home_table`.`approved_by` ";
+	$x->QueryFrom = "`work_from_home_table` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -118,8 +118,8 @@
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Purpose work from home', 'From date', 'To date', 'Approved by', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'work_from_home_purpose', 'from_date', 'to_date', 'approved_by', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColCaption = ['ID', 'Purpose work from home', 'From date', 'To date', 'Approval status', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'work_from_home_purpose', 'from_date', 'to_date', 'approval_status', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
 	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, ];
 
 	// template paths below are based on the app main directory

@@ -26,7 +26,6 @@
 		"`beyond_workingHours_table`.`number_of_hours`" => "number_of_hours",
 		"`beyond_workingHours_table`.`approval_status`" => "approval_status",
 		"`beyond_workingHours_table`.`approval_remarks`" => "approval_remarks",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved by */" => "approved_by",
 		"`beyond_workingHours_table`.`created_by`" => "created_by",
 		"`beyond_workingHours_table`.`created_at`" => "created_at",
 		"`beyond_workingHours_table`.`last_updated_by`" => "last_updated_by",
@@ -46,7 +45,6 @@
 		10 => 10,
 		11 => 11,
 		12 => 12,
-		13 => 13,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -59,7 +57,6 @@
 		"`beyond_workingHours_table`.`number_of_hours`" => "number_of_hours",
 		"`beyond_workingHours_table`.`approval_status`" => "approval_status",
 		"`beyond_workingHours_table`.`approval_remarks`" => "approval_remarks",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved by */" => "approved_by",
 		"`beyond_workingHours_table`.`created_by`" => "created_by",
 		"`beyond_workingHours_table`.`created_at`" => "created_at",
 		"`beyond_workingHours_table`.`last_updated_by`" => "last_updated_by",
@@ -75,7 +72,6 @@
 		"`beyond_workingHours_table`.`number_of_hours`" => "Number of hours",
 		"`beyond_workingHours_table`.`approval_status`" => "Approval status",
 		"`beyond_workingHours_table`.`approval_remarks`" => "Approval remarks",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved by */" => "Approved by",
 		"`beyond_workingHours_table`.`created_by`" => "Created by",
 		"`beyond_workingHours_table`.`created_at`" => "Created at",
 		"`beyond_workingHours_table`.`last_updated_by`" => "Last updated by",
@@ -92,7 +88,6 @@
 		"`beyond_workingHours_table`.`number_of_hours`" => "number_of_hours",
 		"`beyond_workingHours_table`.`approval_status`" => "approval_status",
 		"`beyond_workingHours_table`.`approval_remarks`" => "approval_remarks",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved by */" => "approved_by",
 		"`beyond_workingHours_table`.`created_by`" => "created_by",
 		"`beyond_workingHours_table`.`created_at`" => "created_at",
 		"`beyond_workingHours_table`.`last_updated_by`" => "last_updated_by",
@@ -100,9 +95,9 @@
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['approved_by' => 'Approved by', ];
+	$x->filterers = [];
 
-	$x->QueryFrom = "`beyond_workingHours_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`beyond_workingHours_table`.`approved_by` ";
+	$x->QueryFrom = "`beyond_workingHours_table` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -132,10 +127,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Reson for overtime', 'Start Date & Time', 'End Date & Time', 'Number of hours', 'Approval status', 'Approval remarks', 'Approved by', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'reson_for_overtime', 'start_datetime', 'end_datetime', 'number_of_hours', 'approval_status', 'approval_remarks', 'approved_by', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Reson for overtime', 'Start Date & Time', 'End Date & Time', 'Number of hours', 'Approval status', 'Approval remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'reson_for_overtime', 'start_datetime', 'end_datetime', 'number_of_hours', 'approval_status', 'approval_remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/beyond_workingHours_table_templateTV.html';

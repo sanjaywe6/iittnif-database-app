@@ -25,7 +25,6 @@ function it_inventory_allotment_table_insert(&$error_message = '') {
 		'alloted_by' => Request::lookup('alloted_by', ''),
 		'allotment_status' => Request::val('allotment_status', 'Pending to allot'),
 		'approval_status' => Request::val('approval_status', 'Under Consideration'),
-		'approved_by' => Request::lookup('approved_by', ''),
 		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
 		'return_status' => Request::val('return_status', 'Not Returned'),
 		'returned_date' => Request::dateComponents('returned_date', ''),
@@ -105,7 +104,6 @@ function it_inventory_allotment_table_update(&$selected_id, &$error_message = ''
 		'alloted_by' => Request::lookup('alloted_by', ''),
 		'allotment_status' => Request::val('allotment_status', ''),
 		'approval_status' => Request::val('approval_status', ''),
-		'approved_by' => Request::lookup('approved_by', ''),
 		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
 		'return_status' => Request::val('return_status', ''),
 		'returned_date' => Request::dateComponents('returned_date', ''),
@@ -200,7 +198,6 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 
 	$filterer_select_employee = Request::val('filterer_select_employee');
 	$filterer_alloted_by = Request::val('filterer_alloted_by');
-	$filterer_approved_by = Request::val('filterer_approved_by');
 
 	// populate filterers, starting from children to grand-parents
 
@@ -244,12 +241,10 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 		$combo_approval_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($approval_status_data))));
 		$combo_approval_status->ListData = $combo_approval_status->ListItem;
 	} else {
-		$combo_approval_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Approved;;Not Approved;;Under Consideration"))));
+		$combo_approval_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Approved by CEO;;Not Approved by CEO;;Approved by PD;;Not Approved by PD;;Under Consideration"))));
 		$combo_approval_status->ListData = $combo_approval_status->ListItem;
 	}
 	$combo_approval_status->SelectName = 'approval_status';
-	// combobox: approved_by
-	$combo_approved_by = new DataCombo;
 	// combobox: return_status
 	$combo_return_status = new Combo;
 	$combo_return_status->ListType = 0;
@@ -283,7 +278,6 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 		$combo_alloted_by->SelectedData = $row['alloted_by'];
 		$combo_allotment_status->SelectedData = $row['allotment_status'];
 		$combo_approval_status->SelectedData = $row['approval_status'];
-		$combo_approved_by->SelectedData = $row['approved_by'];
 		$combo_return_status->SelectedData = $row['return_status'];
 		$combo_returned_date->DefaultDate = $row['returned_date'];
 		$urow = $row; /* unsanitized data */
@@ -296,8 +290,7 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 		$combo_alloted_by->SelectedData = $filterer_alloted_by;
 		$combo_allotment_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '9' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending to allot'));
 		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '10' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
-		$combo_approved_by->SelectedData = $filterer_approved_by;
-		$combo_return_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '13' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Not Returned'));
+		$combo_return_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '12' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Not Returned'));
 	}
 	$combo_select_employee->HTML = '<span id="select_employee-container' . $rnd1 . '"></span><input type="hidden" name="select_employee" id="select_employee' . $rnd1 . '" value="' . html_attr($combo_select_employee->SelectedData) . '">';
 	$combo_select_employee->MatchText = '<span id="select_employee-container-readonly' . $rnd1 . '"></span><input type="hidden" name="select_employee" id="select_employee' . $rnd1 . '" value="' . html_attr($combo_select_employee->SelectedData) . '">';
@@ -305,8 +298,6 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 	$combo_alloted_by->MatchText = '<span id="alloted_by-container-readonly' . $rnd1 . '"></span><input type="hidden" name="alloted_by" id="alloted_by' . $rnd1 . '" value="' . html_attr($combo_alloted_by->SelectedData) . '">';
 	$combo_allotment_status->Render();
 	$combo_approval_status->Render();
-	$combo_approved_by->HTML = '<span id="approved_by-container' . $rnd1 . '"></span><input type="hidden" name="approved_by" id="approved_by' . $rnd1 . '" value="' . html_attr($combo_approved_by->SelectedData) . '">';
-	$combo_approved_by->MatchText = '<span id="approved_by-container-readonly' . $rnd1 . '"></span><input type="hidden" name="approved_by" id="approved_by' . $rnd1 . '" value="' . html_attr($combo_approved_by->SelectedData) . '">';
 	$combo_return_status->Render();
 
 	ob_start();
@@ -316,13 +307,11 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 		// initial lookup values
 		AppGini.current_select_employee__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['select_employee'] : htmlspecialchars($filterer_select_employee, ENT_QUOTES)); ?>"};
 		AppGini.current_alloted_by__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['alloted_by'] : htmlspecialchars($filterer_alloted_by, ENT_QUOTES)); ?>"};
-		AppGini.current_approved_by__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['approved_by'] : htmlspecialchars($filterer_approved_by, ENT_QUOTES)); ?>"};
 
 		$j(function() {
 			setTimeout(function() {
 				if(typeof(select_employee_reload__RAND__) == 'function') select_employee_reload__RAND__();
 				if(typeof(alloted_by_reload__RAND__) == 'function') alloted_by_reload__RAND__();
-				if(typeof(approved_by_reload__RAND__) == 'function') approved_by_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
 		function select_employee_reload__RAND__() {
@@ -479,83 +468,6 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 		<?php } ?>
 
 		}
-		function approved_by_reload__RAND__() {
-		<?php if($fieldsAreEditable) { ?>
-
-			$j("#approved_by-container__RAND__").select2({
-				/* initial default value */
-				initSelection: function(e, c) {
-					$j.ajax({
-						url: 'ajax_combo.php',
-						dataType: 'json',
-						data: { id: AppGini.current_approved_by__RAND__.value, t: 'it_inventory_allotment_table', f: 'approved_by' },
-						success: function(resp) {
-							c({
-								id: resp.results[0].id,
-								text: resp.results[0].text
-							});
-							$j('[name="approved_by"]').val(resp.results[0].id);
-							$j('[id=approved_by-container-readonly__RAND__]').html('<span class="match-text" id="approved_by-match-text">' + resp.results[0].text + '</span>');
-							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
-
-
-							if(typeof(approved_by_update_autofills__RAND__) == 'function') approved_by_update_autofills__RAND__();
-						}
-					});
-				},
-				width: '100%',
-				formatNoMatches: function(term) { return '<?php echo addslashes($Translation['No matches found!']); ?>'; },
-				minimumResultsForSearch: 5,
-				loadMorePadding: 200,
-				ajax: {
-					url: 'ajax_combo.php',
-					dataType: 'json',
-					cache: true,
-					data: function(term, page) { return { s: term, p: page, t: 'it_inventory_allotment_table', f: 'approved_by' }; },
-					results: function(resp, page) { return resp; }
-				},
-				escapeMarkup: function(str) { return str; }
-			}).on('change', function(e) {
-				AppGini.current_approved_by__RAND__.value = e.added.id;
-				AppGini.current_approved_by__RAND__.text = e.added.text;
-				$j('[name="approved_by"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
-
-
-				if(typeof(approved_by_update_autofills__RAND__) == 'function') approved_by_update_autofills__RAND__();
-			});
-
-			if(!$j("#approved_by-container__RAND__").length) {
-				$j.ajax({
-					url: 'ajax_combo.php',
-					dataType: 'json',
-					data: { id: AppGini.current_approved_by__RAND__.value, t: 'it_inventory_allotment_table', f: 'approved_by' },
-					success: function(resp) {
-						$j('[name="approved_by"]').val(resp.results[0].id);
-						$j('[id=approved_by-container-readonly__RAND__]').html('<span class="match-text" id="approved_by-match-text">' + resp.results[0].text + '</span>');
-						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
-
-						if(typeof(approved_by_update_autofills__RAND__) == 'function') approved_by_update_autofills__RAND__();
-					}
-				});
-			}
-
-		<?php } else { ?>
-
-			$j.ajax({
-				url: 'ajax_combo.php',
-				dataType: 'json',
-				data: { id: AppGini.current_approved_by__RAND__.value, t: 'it_inventory_allotment_table', f: 'approved_by' },
-				success: function(resp) {
-					$j('[id=approved_by-container__RAND__], [id=approved_by-container-readonly__RAND__]').html('<span class="match-text" id="approved_by-match-text">' + resp.results[0].text + '</span>');
-					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
-
-					if(typeof(approved_by_update_autofills__RAND__) == 'function') approved_by_update_autofills__RAND__();
-				}
-			});
-		<?php } ?>
-
-		}
 	</script>
 	<?php
 
@@ -652,8 +564,6 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 		$jsReadOnly .= "\t\$j('#alloted_by_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\t\$j('#allotment_status').replaceWith('<div class=\"form-control-static\" id=\"allotment_status\">' + (\$j('#allotment_status').val() || '') + '</div>'); \$j('#allotment_status-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#approval_status').replaceWith('<div class=\"form-control-static\" id=\"approval_status\">' + (\$j('#approval_status').val() || '') + '</div>'); \$j('#approval_status-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\t\$j('#approved_by').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\t\$j('#approved_by_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\t\$j('#approval_remarks').replaceWith('<div class=\"form-control-static\" id=\"approval_remarks\">' + (\$j('#approval_remarks').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#return_status').replaceWith('<div class=\"form-control-static\" id=\"return_status\">' + (\$j('#return_status').val() || '') + '</div>'); \$j('#return_status-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#returned_date').prop('readonly', true);\n";
@@ -685,9 +595,6 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 	$templateCode = str_replace('<%%COMBOTEXT(allotment_status)%%>', $combo_allotment_status->SelectedData, $templateCode);
 	$templateCode = str_replace('<%%COMBO(approval_status)%%>', $combo_approval_status->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(approval_status)%%>', $combo_approval_status->SelectedData, $templateCode);
-	$templateCode = str_replace('<%%COMBO(approved_by)%%>', $combo_approved_by->HTML, $templateCode);
-	$templateCode = str_replace('<%%COMBOTEXT(approved_by)%%>', $combo_approved_by->MatchText, $templateCode);
-	$templateCode = str_replace('<%%URLCOMBOTEXT(approved_by)%%>', urlencode($combo_approved_by->MatchText), $templateCode);
 	$templateCode = str_replace('<%%COMBO(return_status)%%>', $combo_return_status->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(return_status)%%>', $combo_return_status->SelectedData, $templateCode);
 	$templateCode = str_replace(
@@ -699,7 +606,7 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 	$templateCode = str_replace('<%%COMBOTEXT(returned_date)%%>', $combo_returned_date->GetHTML(true), $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
-	$lookup_fields = ['select_employee' => ['employees_personal_data_table', 'Select employee'], 'alloted_by' => ['user_table', 'Alloted by'], 'approved_by' => ['user_table', 'Approved By'], ];
+	$lookup_fields = ['select_employee' => ['employees_personal_data_table', 'Select employee'], 'alloted_by' => ['user_table', 'Alloted by'], ];
 	foreach($lookup_fields as $luf => $ptfc) {
 		$pt_perm = getTablePermissions($ptfc[0]);
 
@@ -725,7 +632,6 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 	$templateCode = str_replace('<%%UPLOADFILE(alloted_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(allotment_status)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(approval_status)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(approved_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(approval_remarks)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(return_status)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(returned_date)%%>', '', $templateCode);
@@ -761,9 +667,6 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', safe_html($urow['approval_status']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', html_attr($row['approval_status']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode($urow['approval_status']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(approved_by)%%>', safe_html($urow['approved_by']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approved_by)%%>', html_attr($row['approved_by']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode($urow['approved_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', safe_html($urow['approval_remarks'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_remarks)%%>', urlencode($urow['approval_remarks']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(return_status)%%>', safe_html($urow['return_status']), $templateCode);
@@ -800,8 +703,6 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 		$templateCode = str_replace('<%%URLVALUE(allotment_status)%%>', urlencode('Pending to allot'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(approval_status)%%>', 'Under Consideration', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode('Under Consideration'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(approved_by)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_remarks)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(return_status)%%>', 'Not Returned', $templateCode);

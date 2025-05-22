@@ -32,7 +32,6 @@
 		"`navavishkar_stay_table`.`reason_for_stay`" => "reason_for_stay",
 		"`navavishkar_stay_table`.`approval_status`" => "approval_status",
 		"`navavishkar_stay_table`.`approval_remarks`" => "approval_remarks",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved By */" => "approved_by",
 		"`navavishkar_stay_table`.`created_by`" => "created_by",
 		"`navavishkar_stay_table`.`created_at`" => "created_at",
 		"`navavishkar_stay_table`.`last_updated_by`" => "last_updated_by",
@@ -58,7 +57,6 @@
 		16 => 16,
 		17 => 17,
 		18 => 18,
-		19 => 19,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -77,7 +75,6 @@
 		"`navavishkar_stay_table`.`reason_for_stay`" => "reason_for_stay",
 		"`navavishkar_stay_table`.`approval_status`" => "approval_status",
 		"`navavishkar_stay_table`.`approval_remarks`" => "approval_remarks",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved By */" => "approved_by",
 		"`navavishkar_stay_table`.`created_by`" => "created_by",
 		"`navavishkar_stay_table`.`created_at`" => "created_at",
 		"`navavishkar_stay_table`.`last_updated_by`" => "last_updated_by",
@@ -99,7 +96,6 @@
 		"`navavishkar_stay_table`.`reason_for_stay`" => "Reason for stay",
 		"`navavishkar_stay_table`.`approval_status`" => "Approval status",
 		"`navavishkar_stay_table`.`approval_remarks`" => "Approval remarks",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved By */" => "Approved By",
 		"`navavishkar_stay_table`.`created_by`" => "Created by",
 		"`navavishkar_stay_table`.`created_at`" => "Created at",
 		"`navavishkar_stay_table`.`last_updated_by`" => "Last updated by",
@@ -122,7 +118,6 @@
 		"`navavishkar_stay_table`.`reason_for_stay`" => "reason_for_stay",
 		"`navavishkar_stay_table`.`approval_status`" => "approval_status",
 		"`navavishkar_stay_table`.`approval_remarks`" => "approval_remarks",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved By */" => "approved_by",
 		"`navavishkar_stay_table`.`created_by`" => "created_by",
 		"`navavishkar_stay_table`.`created_at`" => "created_at",
 		"`navavishkar_stay_table`.`last_updated_by`" => "last_updated_by",
@@ -130,9 +125,9 @@
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['approved_by' => 'Approved By', ];
+	$x->filterers = [];
 
-	$x->QueryFrom = "`navavishkar_stay_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`navavishkar_stay_table`.`approved_by` ";
+	$x->QueryFrom = "`navavishkar_stay_table` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -162,10 +157,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Full Name', 'Employee ID', 'Department', 'Designation', 'Contact Email', 'Contact Number', 'Room number', 'Check in date', 'Checkout date', 'Reason for stay', 'Approval status', 'Approval remarks', 'Approved By', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'full_name', 'emp_id', 'department', 'designation', 'contact_email', 'contact_number', 'room_number', 'check_in_date', 'checkout_date', 'reason_for_stay', 'approval_status', 'approval_remarks', 'approved_by', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Full Name', 'Employee ID', 'Department', 'Designation', 'Contact Email', 'Contact Number', 'Room number', 'Check in date', 'Checkout date', 'Reason for stay', 'Approval status', 'Approval remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'full_name', 'emp_id', 'department', 'designation', 'contact_email', 'contact_number', 'room_number', 'check_in_date', 'checkout_date', 'reason_for_stay', 'approval_status', 'approval_remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/navavishkar_stay_table_templateTV.html';

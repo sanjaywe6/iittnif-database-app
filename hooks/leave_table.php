@@ -72,7 +72,7 @@
 
 	function leave_table_before_insert(&$data, $memberInfo, &$args) {
 
-		return TRUE;
+		return approvalBeforeInsert($data, $memberInfo);
 	}
 
 	function leave_table_after_insert($data, $memberInfo, &$args) {
@@ -82,7 +82,7 @@
 
 	function leave_table_before_update(&$data, $memberInfo, &$args) {
 
-		return restrictApprovalForApproved($data,$memberInfo,"leave_table");	
+		return approvalBeforeUpdate($data, $memberInfo, "leave_table");	
 	}
 
 	function leave_table_after_update($data, $memberInfo, &$args) {

@@ -26,7 +26,6 @@
 		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
 		"`leave_table`.`approval_status`" => "approval_status",
 		"`leave_table`.`approval_remarks`" => "approval_remarks",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved By */" => "approved_by",
 		"`leave_table`.`created_by`" => "created_by",
 		"`leave_table`.`created_at`" => "created_at",
 		"`leave_table`.`last_updated_by`" => "last_updated_by",
@@ -46,7 +45,6 @@
 		10 => 10,
 		11 => 11,
 		12 => 12,
-		13 => 13,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -59,7 +57,6 @@
 		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
 		"`leave_table`.`approval_status`" => "approval_status",
 		"`leave_table`.`approval_remarks`" => "approval_remarks",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved By */" => "approved_by",
 		"`leave_table`.`created_by`" => "created_by",
 		"`leave_table`.`created_at`" => "created_at",
 		"`leave_table`.`last_updated_by`" => "last_updated_by",
@@ -75,7 +72,6 @@
 		"`leave_table`.`to_date`" => "To Date & Time",
 		"`leave_table`.`approval_status`" => "Approval status",
 		"`leave_table`.`approval_remarks`" => "Approval remarks",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved By */" => "Approved By",
 		"`leave_table`.`created_by`" => "Created by",
 		"`leave_table`.`created_at`" => "Created at",
 		"`leave_table`.`last_updated_by`" => "Last updated by",
@@ -92,7 +88,6 @@
 		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
 		"`leave_table`.`approval_status`" => "approval_status",
 		"`leave_table`.`approval_remarks`" => "approval_remarks",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Approved By */" => "approved_by",
 		"`leave_table`.`created_by`" => "created_by",
 		"`leave_table`.`created_at`" => "created_at",
 		"`leave_table`.`last_updated_by`" => "last_updated_by",
@@ -100,9 +95,9 @@
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['approved_by' => 'Approved By', ];
+	$x->filterers = [];
 
-	$x->QueryFrom = "`leave_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`leave_table`.`approved_by` ";
+	$x->QueryFrom = "`leave_table` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -132,10 +127,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Leave type', 'Purpose of leave', 'From Date', 'To Date & Time', 'Approval status', 'Approval remarks', 'Approved By', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'leave_type', 'purpose_of_leave', 'from_date', 'to_date', 'approval_status', 'approval_remarks', 'approved_by', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Leave type', 'Purpose of leave', 'From Date', 'To Date & Time', 'Approval status', 'Approval remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'leave_type', 'purpose_of_leave', 'from_date', 'to_date', 'approval_status', 'approval_remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/leave_table_templateTV.html';

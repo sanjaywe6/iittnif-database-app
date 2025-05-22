@@ -399,7 +399,7 @@
 					'homepageShowCount' => 1
 				],
 				'it_inventory_allotment_table' => [
-					'Caption' => 'IT inventory allotment - App',
+					'Caption' => 'IT inventory Allotment - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[9],
@@ -755,7 +755,7 @@
 			'sub_asset_allotment_table' => ['Sub Inventory Allotment - App', '', 'table.gif', 'Asset Management Apps'],
 			'it_inventory_app' => ['IT inventory - App', '', 'table.gif', 'Asset Management Apps'],
 			'it_inventory_billing_details' => ['IT inventory billing details - App', '', 'table.gif', 'Asset Management Apps'],
-			'it_inventory_allotment_table' => ['IT inventory allotment - App', '', 'table.gif', 'Asset Management Apps'],
+			'it_inventory_allotment_table' => ['IT inventory Allotment - App', '', 'table.gif', 'Asset Management Apps'],
 			'computer_details_table' => ['Computer lab PC list - App', '<a href="https://lookerstudio.google.com/reporting/3dc9dac5-3945-4853-91cc-12e26b865666"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Computer lab PC Report</b></button></a>', 'table.gif', 'Asset Management Apps'],
 			'computer_user_details' => ['Computer Uses Entry Table', '', 'table.gif', 'Asset Management Apps'],
 			'computer_allotment_table' => ['PC Allotment Table', '', 'table.gif', 'Asset Management Apps'],
@@ -5495,7 +5495,7 @@
 					],
 				],
 				'it_inventory_allotment_table' => [
-					'it_inventory_allotment_id' => [
+					'id' => [
 						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
@@ -5509,15 +5509,8 @@
 							'description' => '',
 						],
 					],
-					'it_inventory_lookup' => [
-						'appgini' => "INT(10) UNSIGNED NULL",
-						'info' => [
-							'caption' => 'IT inventory ',
-							'description' => '',
-						],
-					],
 					'select_employee' => [
-						'appgini' => "INT UNSIGNED NULL",
+						'appgini' => "INT(10) UNSIGNED NULL",
 						'info' => [
 							'caption' => 'Select employee',
 							'description' => '',
@@ -5537,6 +5530,13 @@
 							'description' => '',
 						],
 					],
+					'inventory_details' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Inventory Details',
+							'description' => '',
+						],
+					],
 					'purpose' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
@@ -5551,10 +5551,38 @@
 							'description' => '',
 						],
 					],
-					'status' => [
-						'appgini' => "VARCHAR(255) NULL",
+					'allotment_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Pending to allot'",
 						'info' => [
-							'caption' => 'Status',
+							'caption' => 'Allotment Status',
+							'description' => '',
+						],
+					],
+					'approval_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Under Consideration'",
+						'info' => [
+							'caption' => 'Approval status',
+							'description' => '',
+						],
+					],
+					'approved_by' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Approved By',
+							'description' => '',
+						],
+					],
+					'approval_remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Approval remarks',
+							'description' => '',
+						],
+					],
+					'return_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Not Returned'",
+						'info' => [
+							'caption' => 'Return status',
 							'description' => '',
 						],
 					],
@@ -11440,8 +11468,8 @@
 				'it_inventory_app' => ['it_inventory_lookup'],
 			],
 			'it_inventory_allotment_table' => [
-				'it_inventory_app' => ['it_inventory_lookup'],
-				'user_table' => ['alloted_by', 'select_employee'],
+				'employees_personal_data_table' => ['select_employee'],
+				'user_table' => ['approved_by', 'alloted_by'],
 			],
 			'computer_user_details' => [
 				'computer_details_table' => ['pc_id'],
@@ -11894,9 +11922,9 @@
 				'it_inventory_lookup' => 'SELECT `it_inventory_app`.`it_inventory_id`, IF(CHAR_LENGTH(`it_inventory_app`.`it_inventory_str`), CONCAT_WS(\'\', `it_inventory_app`.`it_inventory_str`, \'::\'), \'\') FROM `it_inventory_app` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`it_inventory_app`.`sactioned_by` ORDER BY 2',
 			],
 			'it_inventory_allotment_table' => [
-				'it_inventory_lookup' => 'SELECT `it_inventory_app`.`it_inventory_id`, `it_inventory_app`.`it_inventory_str` FROM `it_inventory_app` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`it_inventory_app`.`sactioned_by` ORDER BY 2',
-				'select_employee' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+				'select_employee' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`id`, \'  \', `employees_personal_data_table`.`name`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
 				'alloted_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+				'approved_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'computer_details_table' => [
 			],

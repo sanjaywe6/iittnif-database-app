@@ -15,29 +15,24 @@ function it_inventory_allotment_table_insert(&$error_message = '') {
 		return false;
 	}
 
-	// automatic it_inventory_lookup if passed as filterer
-	if(Request::val('filterer_it_inventory_lookup')) {
-		$_REQUEST['it_inventory_lookup'] = Request::val('filterer_it_inventory_lookup');
-	}
-
 	$data = [
 		'username' => parseCode('<%%creatorUsername%%>', true),
 		'select_employee' => Request::lookup('select_employee', ''),
 		'department' => Request::val('department', ''),
 		'date' => Request::dateComponents('date', '1'),
+		'inventory_details' => br2nl(Request::val('inventory_details', '')),
 		'purpose' => br2nl(Request::val('purpose', '')),
 		'alloted_by' => Request::lookup('alloted_by', ''),
-		'status' => Request::val('status', ''),
-		'returned_date' => Request::dateComponents('returned_date', '1'),
+		'allotment_status' => Request::val('allotment_status', 'Pending to allot'),
+		'approval_status' => Request::val('approval_status', 'Under Consideration'),
+		'approved_by' => Request::lookup('approved_by', ''),
+		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
+		'return_status' => Request::val('return_status', 'Not Returned'),
+		'returned_date' => Request::dateComponents('returned_date', ''),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
 
-
-	// automatic it_inventory_lookup if passed as filterer
-	if(Request::val('filterer_it_inventory_lookup')) {
-		$data['it_inventory_lookup'] = Request::val('filterer_it_inventory_lookup');
-	}
 	// record owner is current user
 	$recordOwner = getLoggedMemberID();
 
@@ -83,7 +78,7 @@ function it_inventory_allotment_table_delete($selected_id, $AllowDeleteOfParents
 			);
 	}
 
-	sql("DELETE FROM `it_inventory_allotment_table` WHERE `it_inventory_allotment_id`='{$selected_id}'", $eo);
+	sql("DELETE FROM `it_inventory_allotment_table` WHERE `id`='{$selected_id}'", $eo);
 
 	// hook: it_inventory_allotment_table_after_delete
 	if(function_exists('it_inventory_allotment_table_after_delete')) {
@@ -105,9 +100,14 @@ function it_inventory_allotment_table_update(&$selected_id, &$error_message = ''
 		'select_employee' => Request::lookup('select_employee', ''),
 		'department' => Request::val('department', ''),
 		'date' => Request::dateComponents('date', ''),
+		'inventory_details' => br2nl(Request::val('inventory_details', '')),
 		'purpose' => br2nl(Request::val('purpose', '')),
 		'alloted_by' => Request::lookup('alloted_by', ''),
-		'status' => Request::val('status', ''),
+		'allotment_status' => Request::val('allotment_status', ''),
+		'approval_status' => Request::val('approval_status', ''),
+		'approved_by' => Request::lookup('approved_by', ''),
+		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
+		'return_status' => Request::val('return_status', ''),
 		'returned_date' => Request::dateComponents('returned_date', ''),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
@@ -139,7 +139,7 @@ function it_inventory_allotment_table_update(&$selected_id, &$error_message = ''
 	if(!update(
 		'it_inventory_allotment_table', 
 		backtick_keys_once($set), 
-		['`it_inventory_allotment_id`' => $selected_id], 
+		['`id`' => $selected_id], 
 		$error_message
 	)) {
 		echo $error_message;
@@ -154,7 +154,7 @@ function it_inventory_allotment_table_update(&$selected_id, &$error_message = ''
 	if(function_exists('it_inventory_allotment_table_after_update')) {
 		if($row = getRecord('it_inventory_allotment_table', $data['selectedID'])) $data = array_map('makeSafe', $row);
 
-		$data['selectedID'] = $data['it_inventory_allotment_id'];
+		$data['selectedID'] = $data['id'];
 		$args = ['old_data' => $old_data];
 		if(!it_inventory_allotment_table_after_update($data, getMemberInfo(), $args)) return;
 	}
@@ -198,16 +198,14 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 	$showSaveAsCopy = !$dvprint && ($allowInsert && $hasSelectedId && !$noSaveAsCopy);
 	$fieldsAreEditable = !$dvprint && (($allowInsert && !$hasSelectedId) || ($allowUpdate && $hasSelectedId) || $showSaveAsCopy);
 
-	$filterer_it_inventory_lookup = Request::val('filterer_it_inventory_lookup');
 	$filterer_select_employee = Request::val('filterer_select_employee');
 	$filterer_alloted_by = Request::val('filterer_alloted_by');
+	$filterer_approved_by = Request::val('filterer_approved_by');
 
 	// populate filterers, starting from children to grand-parents
 
 	// unique random identifier
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
-	// combobox: it_inventory_lookup
-	$combo_it_inventory_lookup = new DataCombo;
 	// combobox: select_employee
 	$combo_select_employee = new DataCombo;
 	// combobox: date
@@ -220,27 +218,59 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 	$combo_date->NamePrefix = 'date';
 	// combobox: alloted_by
 	$combo_alloted_by = new DataCombo;
-	// combobox: status
-	$combo_status = new Combo;
-	$combo_status->ListType = 0;
-	$combo_status->MultipleSeparator = ', ';
-	$combo_status->ListBoxHeight = 10;
-	$combo_status->RadiosPerLine = 1;
-	if(is_file(__DIR__ . '/hooks/it_inventory_allotment_table.status.csv')) {
-		$status_data = addslashes(implode('', @file(__DIR__ . '/hooks/it_inventory_allotment_table.status.csv')));
-		$combo_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($status_data))));
-		$combo_status->ListData = $combo_status->ListItem;
+	// combobox: allotment_status
+	$combo_allotment_status = new Combo;
+	$combo_allotment_status->ListType = 0;
+	$combo_allotment_status->MultipleSeparator = ', ';
+	$combo_allotment_status->ListBoxHeight = 10;
+	$combo_allotment_status->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/it_inventory_allotment_table.allotment_status.csv')) {
+		$allotment_status_data = addslashes(implode('', @file(__DIR__ . '/hooks/it_inventory_allotment_table.allotment_status.csv')));
+		$combo_allotment_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($allotment_status_data))));
+		$combo_allotment_status->ListData = $combo_allotment_status->ListItem;
 	} else {
-		$combo_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("alloted;;Pending to allot;;returned"))));
-		$combo_status->ListData = $combo_status->ListItem;
+		$combo_allotment_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Alloted;;Pending to Allot;;Returned"))));
+		$combo_allotment_status->ListData = $combo_allotment_status->ListItem;
 	}
-	$combo_status->SelectName = 'status';
+	$combo_allotment_status->SelectName = 'allotment_status';
+	// combobox: approval_status
+	$combo_approval_status = new Combo;
+	$combo_approval_status->ListType = 0;
+	$combo_approval_status->MultipleSeparator = ', ';
+	$combo_approval_status->ListBoxHeight = 10;
+	$combo_approval_status->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/it_inventory_allotment_table.approval_status.csv')) {
+		$approval_status_data = addslashes(implode('', @file(__DIR__ . '/hooks/it_inventory_allotment_table.approval_status.csv')));
+		$combo_approval_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($approval_status_data))));
+		$combo_approval_status->ListData = $combo_approval_status->ListItem;
+	} else {
+		$combo_approval_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Approved;;Not Approved;;Under Consideration"))));
+		$combo_approval_status->ListData = $combo_approval_status->ListItem;
+	}
+	$combo_approval_status->SelectName = 'approval_status';
+	// combobox: approved_by
+	$combo_approved_by = new DataCombo;
+	// combobox: return_status
+	$combo_return_status = new Combo;
+	$combo_return_status->ListType = 0;
+	$combo_return_status->MultipleSeparator = ', ';
+	$combo_return_status->ListBoxHeight = 10;
+	$combo_return_status->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/it_inventory_allotment_table.return_status.csv')) {
+		$return_status_data = addslashes(implode('', @file(__DIR__ . '/hooks/it_inventory_allotment_table.return_status.csv')));
+		$combo_return_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($return_status_data))));
+		$combo_return_status->ListData = $combo_return_status->ListItem;
+	} else {
+		$combo_return_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Not Returned;;Returned"))));
+		$combo_return_status->ListData = $combo_return_status->ListItem;
+	}
+	$combo_return_status->SelectName = 'return_status';
 	// combobox: returned_date
 	$combo_returned_date = new DateCombo;
 	$combo_returned_date->DateFormat = "dmy";
 	$combo_returned_date->MinYear = defined('it_inventory_allotment_table.returned_date.MinYear') ? constant('it_inventory_allotment_table.returned_date.MinYear') : 1900;
 	$combo_returned_date->MaxYear = defined('it_inventory_allotment_table.returned_date.MaxYear') ? constant('it_inventory_allotment_table.returned_date.MaxYear') : 2100;
-	$combo_returned_date->DefaultDate = parseMySQLDate('1', '1');
+	$combo_returned_date->DefaultDate = parseMySQLDate('', '');
 	$combo_returned_date->MonthNames = $Translation['month names'];
 	$combo_returned_date->NamePrefix = 'returned_date';
 
@@ -248,11 +278,13 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 		if(!($row = getRecord('it_inventory_allotment_table', $selectedId))) {
 			return error_message($Translation['No records found'], 'it_inventory_allotment_table_view.php', false);
 		}
-		$combo_it_inventory_lookup->SelectedData = $row['it_inventory_lookup'];
 		$combo_select_employee->SelectedData = $row['select_employee'];
 		$combo_date->DefaultDate = $row['date'];
 		$combo_alloted_by->SelectedData = $row['alloted_by'];
-		$combo_status->SelectedData = $row['status'];
+		$combo_allotment_status->SelectedData = $row['allotment_status'];
+		$combo_approval_status->SelectedData = $row['approval_status'];
+		$combo_approved_by->SelectedData = $row['approved_by'];
+		$combo_return_status->SelectedData = $row['return_status'];
 		$combo_returned_date->DefaultDate = $row['returned_date'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
@@ -260,112 +292,39 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_it_inventory_lookup->SelectedData = $filterer_it_inventory_lookup;
 		$combo_select_employee->SelectedData = $filterer_select_employee;
 		$combo_alloted_by->SelectedData = $filterer_alloted_by;
-		$combo_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '9' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_allotment_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '9' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending to allot'));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '10' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
+		$combo_approved_by->SelectedData = $filterer_approved_by;
+		$combo_return_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '13' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Not Returned'));
 	}
-	$combo_it_inventory_lookup->HTML = '<span id="it_inventory_lookup-container' . $rnd1 . '"></span><input type="hidden" name="it_inventory_lookup" id="it_inventory_lookup' . $rnd1 . '" value="' . html_attr($combo_it_inventory_lookup->SelectedData) . '">';
-	$combo_it_inventory_lookup->MatchText = '<span id="it_inventory_lookup-container-readonly' . $rnd1 . '"></span><input type="hidden" name="it_inventory_lookup" id="it_inventory_lookup' . $rnd1 . '" value="' . html_attr($combo_it_inventory_lookup->SelectedData) . '">';
 	$combo_select_employee->HTML = '<span id="select_employee-container' . $rnd1 . '"></span><input type="hidden" name="select_employee" id="select_employee' . $rnd1 . '" value="' . html_attr($combo_select_employee->SelectedData) . '">';
 	$combo_select_employee->MatchText = '<span id="select_employee-container-readonly' . $rnd1 . '"></span><input type="hidden" name="select_employee" id="select_employee' . $rnd1 . '" value="' . html_attr($combo_select_employee->SelectedData) . '">';
 	$combo_alloted_by->HTML = '<span id="alloted_by-container' . $rnd1 . '"></span><input type="hidden" name="alloted_by" id="alloted_by' . $rnd1 . '" value="' . html_attr($combo_alloted_by->SelectedData) . '">';
 	$combo_alloted_by->MatchText = '<span id="alloted_by-container-readonly' . $rnd1 . '"></span><input type="hidden" name="alloted_by" id="alloted_by' . $rnd1 . '" value="' . html_attr($combo_alloted_by->SelectedData) . '">';
-	$combo_status->Render();
+	$combo_allotment_status->Render();
+	$combo_approval_status->Render();
+	$combo_approved_by->HTML = '<span id="approved_by-container' . $rnd1 . '"></span><input type="hidden" name="approved_by" id="approved_by' . $rnd1 . '" value="' . html_attr($combo_approved_by->SelectedData) . '">';
+	$combo_approved_by->MatchText = '<span id="approved_by-container-readonly' . $rnd1 . '"></span><input type="hidden" name="approved_by" id="approved_by' . $rnd1 . '" value="' . html_attr($combo_approved_by->SelectedData) . '">';
+	$combo_return_status->Render();
 
 	ob_start();
 	?>
 
 	<script>
 		// initial lookup values
-		AppGini.current_it_inventory_lookup__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['it_inventory_lookup'] : htmlspecialchars($filterer_it_inventory_lookup, ENT_QUOTES)); ?>"};
 		AppGini.current_select_employee__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['select_employee'] : htmlspecialchars($filterer_select_employee, ENT_QUOTES)); ?>"};
 		AppGini.current_alloted_by__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['alloted_by'] : htmlspecialchars($filterer_alloted_by, ENT_QUOTES)); ?>"};
+		AppGini.current_approved_by__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['approved_by'] : htmlspecialchars($filterer_approved_by, ENT_QUOTES)); ?>"};
 
 		$j(function() {
 			setTimeout(function() {
-				if(typeof(it_inventory_lookup_reload__RAND__) == 'function') it_inventory_lookup_reload__RAND__();
 				if(typeof(select_employee_reload__RAND__) == 'function') select_employee_reload__RAND__();
 				if(typeof(alloted_by_reload__RAND__) == 'function') alloted_by_reload__RAND__();
+				if(typeof(approved_by_reload__RAND__) == 'function') approved_by_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
-		function it_inventory_lookup_reload__RAND__() {
-		<?php if($fieldsAreEditable) { ?>
-
-			$j("#it_inventory_lookup-container__RAND__").select2({
-				/* initial default value */
-				initSelection: function(e, c) {
-					$j.ajax({
-						url: 'ajax_combo.php',
-						dataType: 'json',
-						data: { id: AppGini.current_it_inventory_lookup__RAND__.value, t: 'it_inventory_allotment_table', f: 'it_inventory_lookup' },
-						success: function(resp) {
-							c({
-								id: resp.results[0].id,
-								text: resp.results[0].text
-							});
-							$j('[name="it_inventory_lookup"]').val(resp.results[0].id);
-							$j('[id=it_inventory_lookup-container-readonly__RAND__]').html('<span class="match-text" id="it_inventory_lookup-match-text">' + resp.results[0].text + '</span>');
-							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=it_inventory_app_view_parent]').hide(); } else { $j('.btn[id=it_inventory_app_view_parent]').show(); }
-
-
-							if(typeof(it_inventory_lookup_update_autofills__RAND__) == 'function') it_inventory_lookup_update_autofills__RAND__();
-						}
-					});
-				},
-				width: '100%',
-				formatNoMatches: function(term) { return '<?php echo addslashes($Translation['No matches found!']); ?>'; },
-				minimumResultsForSearch: 5,
-				loadMorePadding: 200,
-				ajax: {
-					url: 'ajax_combo.php',
-					dataType: 'json',
-					cache: true,
-					data: function(term, page) { return { s: term, p: page, t: 'it_inventory_allotment_table', f: 'it_inventory_lookup' }; },
-					results: function(resp, page) { return resp; }
-				},
-				escapeMarkup: function(str) { return str; }
-			}).on('change', function(e) {
-				AppGini.current_it_inventory_lookup__RAND__.value = e.added.id;
-				AppGini.current_it_inventory_lookup__RAND__.text = e.added.text;
-				$j('[name="it_inventory_lookup"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=it_inventory_app_view_parent]').hide(); } else { $j('.btn[id=it_inventory_app_view_parent]').show(); }
-
-
-				if(typeof(it_inventory_lookup_update_autofills__RAND__) == 'function') it_inventory_lookup_update_autofills__RAND__();
-			});
-
-			if(!$j("#it_inventory_lookup-container__RAND__").length) {
-				$j.ajax({
-					url: 'ajax_combo.php',
-					dataType: 'json',
-					data: { id: AppGini.current_it_inventory_lookup__RAND__.value, t: 'it_inventory_allotment_table', f: 'it_inventory_lookup' },
-					success: function(resp) {
-						$j('[name="it_inventory_lookup"]').val(resp.results[0].id);
-						$j('[id=it_inventory_lookup-container-readonly__RAND__]').html('<span class="match-text" id="it_inventory_lookup-match-text">' + resp.results[0].text + '</span>');
-						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=it_inventory_app_view_parent]').hide(); } else { $j('.btn[id=it_inventory_app_view_parent]').show(); }
-
-						if(typeof(it_inventory_lookup_update_autofills__RAND__) == 'function') it_inventory_lookup_update_autofills__RAND__();
-					}
-				});
-			}
-
-		<?php } else { ?>
-
-			$j.ajax({
-				url: 'ajax_combo.php',
-				dataType: 'json',
-				data: { id: AppGini.current_it_inventory_lookup__RAND__.value, t: 'it_inventory_allotment_table', f: 'it_inventory_lookup' },
-				success: function(resp) {
-					$j('[id=it_inventory_lookup-container__RAND__], [id=it_inventory_lookup-container-readonly__RAND__]').html('<span class="match-text" id="it_inventory_lookup-match-text">' + resp.results[0].text + '</span>');
-					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=it_inventory_app_view_parent]').hide(); } else { $j('.btn[id=it_inventory_app_view_parent]').show(); }
-
-					if(typeof(it_inventory_lookup_update_autofills__RAND__) == 'function') it_inventory_lookup_update_autofills__RAND__();
-				}
-			});
-		<?php } ?>
-
-		}
 		function select_employee_reload__RAND__() {
 		<?php if($fieldsAreEditable) { ?>
 
@@ -383,7 +342,7 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 							});
 							$j('[name="select_employee"]').val(resp.results[0].id);
 							$j('[id=select_employee-container-readonly__RAND__]').html('<span class="match-text" id="select_employee-match-text">' + resp.results[0].text + '</span>');
-							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
+							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=employees_personal_data_table_view_parent]').hide(); } else { $j('.btn[id=employees_personal_data_table_view_parent]').show(); }
 
 
 							if(typeof(select_employee_update_autofills__RAND__) == 'function') select_employee_update_autofills__RAND__();
@@ -406,7 +365,7 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 				AppGini.current_select_employee__RAND__.value = e.added.id;
 				AppGini.current_select_employee__RAND__.text = e.added.text;
 				$j('[name="select_employee"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
+				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=employees_personal_data_table_view_parent]').hide(); } else { $j('.btn[id=employees_personal_data_table_view_parent]').show(); }
 
 
 				if(typeof(select_employee_update_autofills__RAND__) == 'function') select_employee_update_autofills__RAND__();
@@ -420,7 +379,7 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 					success: function(resp) {
 						$j('[name="select_employee"]').val(resp.results[0].id);
 						$j('[id=select_employee-container-readonly__RAND__]').html('<span class="match-text" id="select_employee-match-text">' + resp.results[0].text + '</span>');
-						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
+						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=employees_personal_data_table_view_parent]').hide(); } else { $j('.btn[id=employees_personal_data_table_view_parent]').show(); }
 
 						if(typeof(select_employee_update_autofills__RAND__) == 'function') select_employee_update_autofills__RAND__();
 					}
@@ -435,7 +394,7 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 				data: { id: AppGini.current_select_employee__RAND__.value, t: 'it_inventory_allotment_table', f: 'select_employee' },
 				success: function(resp) {
 					$j('[id=select_employee-container__RAND__], [id=select_employee-container-readonly__RAND__]').html('<span class="match-text" id="select_employee-match-text">' + resp.results[0].text + '</span>');
-					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
+					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=employees_personal_data_table_view_parent]').hide(); } else { $j('.btn[id=employees_personal_data_table_view_parent]').show(); }
 
 					if(typeof(select_employee_update_autofills__RAND__) == 'function') select_employee_update_autofills__RAND__();
 				}
@@ -515,6 +474,83 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
 
 					if(typeof(alloted_by_update_autofills__RAND__) == 'function') alloted_by_update_autofills__RAND__();
+				}
+			});
+		<?php } ?>
+
+		}
+		function approved_by_reload__RAND__() {
+		<?php if($fieldsAreEditable) { ?>
+
+			$j("#approved_by-container__RAND__").select2({
+				/* initial default value */
+				initSelection: function(e, c) {
+					$j.ajax({
+						url: 'ajax_combo.php',
+						dataType: 'json',
+						data: { id: AppGini.current_approved_by__RAND__.value, t: 'it_inventory_allotment_table', f: 'approved_by' },
+						success: function(resp) {
+							c({
+								id: resp.results[0].id,
+								text: resp.results[0].text
+							});
+							$j('[name="approved_by"]').val(resp.results[0].id);
+							$j('[id=approved_by-container-readonly__RAND__]').html('<span class="match-text" id="approved_by-match-text">' + resp.results[0].text + '</span>');
+							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
+
+
+							if(typeof(approved_by_update_autofills__RAND__) == 'function') approved_by_update_autofills__RAND__();
+						}
+					});
+				},
+				width: '100%',
+				formatNoMatches: function(term) { return '<?php echo addslashes($Translation['No matches found!']); ?>'; },
+				minimumResultsForSearch: 5,
+				loadMorePadding: 200,
+				ajax: {
+					url: 'ajax_combo.php',
+					dataType: 'json',
+					cache: true,
+					data: function(term, page) { return { s: term, p: page, t: 'it_inventory_allotment_table', f: 'approved_by' }; },
+					results: function(resp, page) { return resp; }
+				},
+				escapeMarkup: function(str) { return str; }
+			}).on('change', function(e) {
+				AppGini.current_approved_by__RAND__.value = e.added.id;
+				AppGini.current_approved_by__RAND__.text = e.added.text;
+				$j('[name="approved_by"]').val(e.added.id);
+				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
+
+
+				if(typeof(approved_by_update_autofills__RAND__) == 'function') approved_by_update_autofills__RAND__();
+			});
+
+			if(!$j("#approved_by-container__RAND__").length) {
+				$j.ajax({
+					url: 'ajax_combo.php',
+					dataType: 'json',
+					data: { id: AppGini.current_approved_by__RAND__.value, t: 'it_inventory_allotment_table', f: 'approved_by' },
+					success: function(resp) {
+						$j('[name="approved_by"]').val(resp.results[0].id);
+						$j('[id=approved_by-container-readonly__RAND__]').html('<span class="match-text" id="approved_by-match-text">' + resp.results[0].text + '</span>');
+						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
+
+						if(typeof(approved_by_update_autofills__RAND__) == 'function') approved_by_update_autofills__RAND__();
+					}
+				});
+			}
+
+		<?php } else { ?>
+
+			$j.ajax({
+				url: 'ajax_combo.php',
+				dataType: 'json',
+				data: { id: AppGini.current_approved_by__RAND__.value, t: 'it_inventory_allotment_table', f: 'approved_by' },
+				success: function(resp) {
+					$j('[id=approved_by-container__RAND__], [id=approved_by-container-readonly__RAND__]').html('<span class="match-text" id="approved_by-match-text">' + resp.results[0].text + '</span>');
+					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
+
+					if(typeof(approved_by_update_autofills__RAND__) == 'function') approved_by_update_autofills__RAND__();
 				}
 			});
 		<?php } ?>
@@ -610,10 +646,16 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 		$jsReadOnly .= "\t\$j('#department').replaceWith('<div class=\"form-control-static\" id=\"department\">' + (\$j('#department').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#date').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#dateDay, #dateMonth, #dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#inventory_details').replaceWith('<div class=\"form-control-static\" id=\"inventory_details\">' + (\$j('#inventory_details').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#purpose').replaceWith('<div class=\"form-control-static\" id=\"purpose\">' + (\$j('#purpose').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#alloted_by').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#alloted_by_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\t\$j('#status').replaceWith('<div class=\"form-control-static\" id=\"status\">' + (\$j('#status').val() || '') + '</div>'); \$j('#status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#allotment_status').replaceWith('<div class=\"form-control-static\" id=\"allotment_status\">' + (\$j('#allotment_status').val() || '') + '</div>'); \$j('#allotment_status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#approval_status').replaceWith('<div class=\"form-control-static\" id=\"approval_status\">' + (\$j('#approval_status').val() || '') + '</div>'); \$j('#approval_status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#approved_by').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#approved_by_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('#approval_remarks').replaceWith('<div class=\"form-control-static\" id=\"approval_remarks\">' + (\$j('#approval_remarks').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#return_status').replaceWith('<div class=\"form-control-static\" id=\"return_status\">' + (\$j('#return_status').val() || '') + '</div>'); \$j('#return_status-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#returned_date').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#returned_dateDay, #returned_dateMonth, #returned_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
@@ -626,9 +668,6 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 	}
 
 	// process combos
-	$templateCode = str_replace('<%%COMBO(it_inventory_lookup)%%>', $combo_it_inventory_lookup->HTML, $templateCode);
-	$templateCode = str_replace('<%%COMBOTEXT(it_inventory_lookup)%%>', $combo_it_inventory_lookup->MatchText, $templateCode);
-	$templateCode = str_replace('<%%URLCOMBOTEXT(it_inventory_lookup)%%>', urlencode($combo_it_inventory_lookup->MatchText), $templateCode);
 	$templateCode = str_replace('<%%COMBO(select_employee)%%>', $combo_select_employee->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(select_employee)%%>', $combo_select_employee->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(select_employee)%%>', urlencode($combo_select_employee->MatchText), $templateCode);
@@ -642,8 +681,15 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 	$templateCode = str_replace('<%%COMBO(alloted_by)%%>', $combo_alloted_by->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(alloted_by)%%>', $combo_alloted_by->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(alloted_by)%%>', urlencode($combo_alloted_by->MatchText), $templateCode);
-	$templateCode = str_replace('<%%COMBO(status)%%>', $combo_status->HTML, $templateCode);
-	$templateCode = str_replace('<%%COMBOTEXT(status)%%>', $combo_status->SelectedData, $templateCode);
+	$templateCode = str_replace('<%%COMBO(allotment_status)%%>', $combo_allotment_status->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(allotment_status)%%>', $combo_allotment_status->SelectedData, $templateCode);
+	$templateCode = str_replace('<%%COMBO(approval_status)%%>', $combo_approval_status->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(approval_status)%%>', $combo_approval_status->SelectedData, $templateCode);
+	$templateCode = str_replace('<%%COMBO(approved_by)%%>', $combo_approved_by->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(approved_by)%%>', $combo_approved_by->MatchText, $templateCode);
+	$templateCode = str_replace('<%%URLCOMBOTEXT(approved_by)%%>', urlencode($combo_approved_by->MatchText), $templateCode);
+	$templateCode = str_replace('<%%COMBO(return_status)%%>', $combo_return_status->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(return_status)%%>', $combo_return_status->SelectedData, $templateCode);
 	$templateCode = str_replace(
 		'<%%COMBO(returned_date)%%>', 
 		(!$fieldsAreEditable ? 
@@ -653,7 +699,7 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 	$templateCode = str_replace('<%%COMBOTEXT(returned_date)%%>', $combo_returned_date->GetHTML(true), $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
-	$lookup_fields = ['it_inventory_lookup' => ['it_inventory_app', 'IT inventory '], 'select_employee' => ['user_table', 'Select employee'], 'alloted_by' => ['user_table', 'Alloted by'], ];
+	$lookup_fields = ['select_employee' => ['employees_personal_data_table', 'Select employee'], 'alloted_by' => ['user_table', 'Alloted by'], 'approved_by' => ['user_table', 'Approved By'], ];
 	foreach($lookup_fields as $luf => $ptfc) {
 		$pt_perm = getTablePermissions($ptfc[0]);
 
@@ -669,15 +715,19 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 	}
 
 	// process images
-	$templateCode = str_replace('<%%UPLOADFILE(it_inventory_allotment_id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(it_inventory_lookup)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(select_employee)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(department)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(inventory_details)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(purpose)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(alloted_by)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(status)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(allotment_status)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approval_status)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approved_by)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approval_remarks)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(return_status)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(returned_date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
@@ -686,12 +736,10 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 
 	// process values
 	if($hasSelectedId) {
-		$templateCode = str_replace('<%%VALUE(it_inventory_allotment_id)%%>', safe_html($urow['it_inventory_allotment_id']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(it_inventory_allotment_id)%%>', urlencode($urow['it_inventory_allotment_id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(it_inventory_lookup)%%>', safe_html($urow['it_inventory_lookup']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(it_inventory_lookup)%%>', urlencode($urow['it_inventory_lookup']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(select_employee)%%>', safe_html($urow['select_employee']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(select_employee)%%>', html_attr($row['select_employee']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(select_employee)%%>', urlencode($urow['select_employee']), $templateCode);
@@ -700,14 +748,27 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 		$templateCode = str_replace('<%%URLVALUE(department)%%>', urlencode($urow['department']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date)%%>', app_datetime($row['date']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date)%%>', urlencode(app_datetime($urow['date'])), $templateCode);
+		$templateCode = str_replace('<%%VALUE(inventory_details)%%>', safe_html($urow['inventory_details'], $fieldsAreEditable), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(inventory_details)%%>', urlencode($urow['inventory_details']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(purpose)%%>', safe_html($urow['purpose'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(purpose)%%>', urlencode($urow['purpose']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(alloted_by)%%>', safe_html($urow['alloted_by']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(alloted_by)%%>', html_attr($row['alloted_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(alloted_by)%%>', urlencode($urow['alloted_by']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(status)%%>', safe_html($urow['status']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(status)%%>', html_attr($row['status']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(status)%%>', urlencode($urow['status']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(allotment_status)%%>', safe_html($urow['allotment_status']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(allotment_status)%%>', html_attr($row['allotment_status']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(allotment_status)%%>', urlencode($urow['allotment_status']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', safe_html($urow['approval_status']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', html_attr($row['approval_status']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode($urow['approval_status']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(approved_by)%%>', safe_html($urow['approved_by']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approved_by)%%>', html_attr($row['approved_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode($urow['approved_by']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', safe_html($urow['approval_remarks'], $fieldsAreEditable), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_remarks)%%>', urlencode($urow['approval_remarks']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(return_status)%%>', safe_html($urow['return_status']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(return_status)%%>', html_attr($row['return_status']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(return_status)%%>', urlencode($urow['return_status']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(returned_date)%%>', app_datetime($row['returned_date']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(returned_date)%%>', urlencode(app_datetime($urow['returned_date'])), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
@@ -719,26 +780,34 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
 	} else {
-		$templateCode = str_replace('<%%VALUE(it_inventory_allotment_id)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(it_inventory_allotment_id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(it_inventory_lookup)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(it_inventory_lookup)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(select_employee)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(select_employee)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(department)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(department)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date)%%>', '1', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date)%%>', urlencode('1'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(inventory_details)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(inventory_details)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(purpose)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(purpose)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(alloted_by)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(alloted_by)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(status)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(status)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(returned_date)%%>', '1', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(returned_date)%%>', urlencode('1'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(allotment_status)%%>', 'Pending to allot', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(allotment_status)%%>', urlencode('Pending to allot'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_status)%%>', 'Under Consideration', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode('Under Consideration'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approved_by)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approved_by)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_remarks)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(return_status)%%>', 'Not Returned', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(return_status)%%>', urlencode('Not Returned'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(returned_date)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(returned_date)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);
@@ -787,8 +856,6 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
-	if(isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>')
-		$templateCode.="\n<input type=hidden name=it_inventory_lookup value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery
 	$templateCode = preg_replace('/blank.gif" data-lightbox=".*?"/', 'blank.gif"', $templateCode);

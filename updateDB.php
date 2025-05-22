@@ -113,7 +113,7 @@
 		setupIndexes('it_inventory_billing_details', ['it_inventory_lookup',]);
 
 		setupTable('it_inventory_allotment_table', []);
-		setupIndexes('it_inventory_allotment_table', ['it_inventory_lookup','select_employee','alloted_by',]);
+		setupIndexes('it_inventory_allotment_table', ['select_employee','alloted_by','approved_by',]);
 
 		setupTable('computer_details_table', []);
 

@@ -8,23 +8,15 @@
 
 		/* data for selected record, or defaults if none is selected */
 		var data = {
-			it_inventory_lookup: <?php echo json_encode(['id' => $rdata['it_inventory_lookup'], 'value' => $rdata['it_inventory_lookup'], 'text' => $jdata['it_inventory_lookup']]); ?>,
 			select_employee: <?php echo json_encode(['id' => $rdata['select_employee'], 'value' => $rdata['select_employee'], 'text' => $jdata['select_employee']]); ?>,
-			alloted_by: <?php echo json_encode(['id' => $rdata['alloted_by'], 'value' => $rdata['alloted_by'], 'text' => $jdata['alloted_by']]); ?>
+			alloted_by: <?php echo json_encode(['id' => $rdata['alloted_by'], 'value' => $rdata['alloted_by'], 'text' => $jdata['alloted_by']]); ?>,
+			approved_by: <?php echo json_encode(['id' => $rdata['approved_by'], 'value' => $rdata['approved_by'], 'text' => $jdata['approved_by']]); ?>
 		};
 
 		/* initialize or continue using AppGini.cache for the current table */
 		AppGini.cache = AppGini.cache || {};
 		AppGini.cache[tn] = AppGini.cache[tn] || AppGini.ajaxCache();
 		var cache = AppGini.cache[tn];
-
-		/* saved value for it_inventory_lookup */
-		cache.addCheck(function(u, d) {
-			if(u != 'ajax_combo.php') return false;
-			if(d.t == tn && d.f == 'it_inventory_lookup' && d.id == data.it_inventory_lookup.id)
-				return { results: [ data.it_inventory_lookup ], more: false, elapsed: 0.01 };
-			return false;
-		});
 
 		/* saved value for select_employee */
 		cache.addCheck(function(u, d) {
@@ -39,6 +31,14 @@
 			if(u != 'ajax_combo.php') return false;
 			if(d.t == tn && d.f == 'alloted_by' && d.id == data.alloted_by.id)
 				return { results: [ data.alloted_by ], more: false, elapsed: 0.01 };
+			return false;
+		});
+
+		/* saved value for approved_by */
+		cache.addCheck(function(u, d) {
+			if(u != 'ajax_combo.php') return false;
+			if(d.t == tn && d.f == 'approved_by' && d.id == data.approved_by.id)
+				return { results: [ data.approved_by ], more: false, elapsed: 0.01 };
 			return false;
 		});
 

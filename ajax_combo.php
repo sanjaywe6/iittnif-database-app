@@ -520,18 +520,18 @@
 			],
 		],
 		'it_inventory_allotment_table' => [
-			'it_inventory_lookup' => [
-				'parent_table' => 'it_inventory_app',
-				'parent_pk_field' => 'it_inventory_id',
-				'parent_caption' => '`it_inventory_app`.`it_inventory_str`',
-				'parent_from' => '`it_inventory_app` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`it_inventory_app`.`sactioned_by` ',
+			'select_employee' => [
+				'parent_table' => 'employees_personal_data_table',
+				'parent_pk_field' => 'id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`employees_personal_data_table`.`id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`id`, \'  \', `employees_personal_data_table`.`name`), \'\')',
+				'parent_from' => '`employees_personal_data_table` ',
 				'filterers' => [],
 				'custom_query' => '',
 				'inherit_permissions' => false,
 				'list_type' => 0,
 				'not_null' => false,
 			],
-			'select_employee' => [
+			'alloted_by' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
 				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
@@ -542,7 +542,7 @@
 				'list_type' => 0,
 				'not_null' => false,
 			],
-			'alloted_by' => [
+			'approved_by' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
 				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',

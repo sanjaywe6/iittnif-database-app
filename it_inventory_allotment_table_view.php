@@ -18,15 +18,19 @@
 
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
-		"`it_inventory_allotment_table`.`it_inventory_allotment_id`" => "it_inventory_allotment_id",
+		"`it_inventory_allotment_table`.`id`" => "id",
 		"`it_inventory_allotment_table`.`username`" => "username",
-		"IF(    CHAR_LENGTH(`it_inventory_app1`.`it_inventory_str`), CONCAT_WS('',   `it_inventory_app1`.`it_inventory_str`), '') /* IT inventory  */" => "it_inventory_lookup",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Select employee */" => "select_employee",
+		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`id`, '  ', `employees_personal_data_table1`.`name`), '') /* Select employee */" => "select_employee",
 		"`it_inventory_allotment_table`.`department`" => "department",
 		"if(`it_inventory_allotment_table`.`date`,date_format(`it_inventory_allotment_table`.`date`,'%d/%m/%Y'),'')" => "date",
+		"`it_inventory_allotment_table`.`inventory_details`" => "inventory_details",
 		"`it_inventory_allotment_table`.`purpose`" => "purpose",
-		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Alloted by */" => "alloted_by",
-		"`it_inventory_allotment_table`.`status`" => "status",
+		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Alloted by */" => "alloted_by",
+		"`it_inventory_allotment_table`.`allotment_status`" => "allotment_status",
+		"`it_inventory_allotment_table`.`approval_status`" => "approval_status",
+		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Approved By */" => "approved_by",
+		"`it_inventory_allotment_table`.`approval_remarks`" => "approval_remarks",
+		"`it_inventory_allotment_table`.`return_status`" => "return_status",
 		"if(`it_inventory_allotment_table`.`returned_date`,date_format(`it_inventory_allotment_table`.`returned_date`,'%d/%m/%Y'),'')" => "returned_date",
 		"`it_inventory_allotment_table`.`created_by`" => "created_by",
 		"`it_inventory_allotment_table`.`created_at`" => "created_at",
@@ -35,33 +39,41 @@
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
-		1 => '`it_inventory_allotment_table`.`it_inventory_allotment_id`',
+		1 => '`it_inventory_allotment_table`.`id`',
 		2 => 2,
-		3 => '`it_inventory_app1`.`it_inventory_str`',
+		3 => 3,
 		4 => 4,
-		5 => 5,
-		6 => '`it_inventory_allotment_table`.`date`',
+		5 => '`it_inventory_allotment_table`.`date`',
+		6 => 6,
 		7 => 7,
 		8 => 8,
 		9 => 9,
-		10 => '`it_inventory_allotment_table`.`returned_date`',
+		10 => 10,
 		11 => 11,
 		12 => 12,
 		13 => 13,
-		14 => 14,
+		14 => '`it_inventory_allotment_table`.`returned_date`',
+		15 => 15,
+		16 => 16,
+		17 => 17,
+		18 => 18,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
-		"`it_inventory_allotment_table`.`it_inventory_allotment_id`" => "it_inventory_allotment_id",
+		"`it_inventory_allotment_table`.`id`" => "id",
 		"`it_inventory_allotment_table`.`username`" => "username",
-		"IF(    CHAR_LENGTH(`it_inventory_app1`.`it_inventory_str`), CONCAT_WS('',   `it_inventory_app1`.`it_inventory_str`), '') /* IT inventory  */" => "it_inventory_lookup",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Select employee */" => "select_employee",
+		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`id`, '  ', `employees_personal_data_table1`.`name`), '') /* Select employee */" => "select_employee",
 		"`it_inventory_allotment_table`.`department`" => "department",
 		"if(`it_inventory_allotment_table`.`date`,date_format(`it_inventory_allotment_table`.`date`,'%d/%m/%Y'),'')" => "date",
+		"`it_inventory_allotment_table`.`inventory_details`" => "inventory_details",
 		"`it_inventory_allotment_table`.`purpose`" => "purpose",
-		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Alloted by */" => "alloted_by",
-		"`it_inventory_allotment_table`.`status`" => "status",
+		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Alloted by */" => "alloted_by",
+		"`it_inventory_allotment_table`.`allotment_status`" => "allotment_status",
+		"`it_inventory_allotment_table`.`approval_status`" => "approval_status",
+		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Approved By */" => "approved_by",
+		"`it_inventory_allotment_table`.`approval_remarks`" => "approval_remarks",
+		"`it_inventory_allotment_table`.`return_status`" => "return_status",
 		"if(`it_inventory_allotment_table`.`returned_date`,date_format(`it_inventory_allotment_table`.`returned_date`,'%d/%m/%Y'),'')" => "returned_date",
 		"`it_inventory_allotment_table`.`created_by`" => "created_by",
 		"`it_inventory_allotment_table`.`created_at`" => "created_at",
@@ -70,15 +82,19 @@
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
-		"`it_inventory_allotment_table`.`it_inventory_allotment_id`" => "ID",
+		"`it_inventory_allotment_table`.`id`" => "ID",
 		"`it_inventory_allotment_table`.`username`" => "Username",
-		"IF(    CHAR_LENGTH(`it_inventory_app1`.`it_inventory_str`), CONCAT_WS('',   `it_inventory_app1`.`it_inventory_str`), '') /* IT inventory  */" => "IT inventory ",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Select employee */" => "Select employee",
+		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`id`, '  ', `employees_personal_data_table1`.`name`), '') /* Select employee */" => "Select employee",
 		"`it_inventory_allotment_table`.`department`" => "Department",
 		"`it_inventory_allotment_table`.`date`" => "Date",
+		"`it_inventory_allotment_table`.`inventory_details`" => "Inventory Details",
 		"`it_inventory_allotment_table`.`purpose`" => "Purpose",
-		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Alloted by */" => "Alloted by",
-		"`it_inventory_allotment_table`.`status`" => "Status",
+		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Alloted by */" => "Alloted by",
+		"`it_inventory_allotment_table`.`allotment_status`" => "Allotment Status",
+		"`it_inventory_allotment_table`.`approval_status`" => "Approval status",
+		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Approved By */" => "Approved By",
+		"`it_inventory_allotment_table`.`approval_remarks`" => "Approval remarks",
+		"`it_inventory_allotment_table`.`return_status`" => "Return status",
 		"`it_inventory_allotment_table`.`returned_date`" => "Returned date",
 		"`it_inventory_allotment_table`.`created_by`" => "Created by",
 		"`it_inventory_allotment_table`.`created_at`" => "Created at",
@@ -88,15 +104,19 @@
 
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
-		"`it_inventory_allotment_table`.`it_inventory_allotment_id`" => "it_inventory_allotment_id",
+		"`it_inventory_allotment_table`.`id`" => "id",
 		"`it_inventory_allotment_table`.`username`" => "username",
-		"IF(    CHAR_LENGTH(`it_inventory_app1`.`it_inventory_str`), CONCAT_WS('',   `it_inventory_app1`.`it_inventory_str`), '') /* IT inventory  */" => "it_inventory_lookup",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Select employee */" => "select_employee",
+		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`id`, '  ', `employees_personal_data_table1`.`name`), '') /* Select employee */" => "select_employee",
 		"`it_inventory_allotment_table`.`department`" => "department",
 		"if(`it_inventory_allotment_table`.`date`,date_format(`it_inventory_allotment_table`.`date`,'%d/%m/%Y'),'')" => "date",
+		"`it_inventory_allotment_table`.`inventory_details`" => "inventory_details",
 		"`it_inventory_allotment_table`.`purpose`" => "purpose",
-		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Alloted by */" => "alloted_by",
-		"`it_inventory_allotment_table`.`status`" => "status",
+		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Alloted by */" => "alloted_by",
+		"`it_inventory_allotment_table`.`allotment_status`" => "allotment_status",
+		"`it_inventory_allotment_table`.`approval_status`" => "approval_status",
+		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Approved By */" => "approved_by",
+		"`it_inventory_allotment_table`.`approval_remarks`" => "approval_remarks",
+		"`it_inventory_allotment_table`.`return_status`" => "return_status",
 		"if(`it_inventory_allotment_table`.`returned_date`,date_format(`it_inventory_allotment_table`.`returned_date`,'%d/%m/%Y'),'')" => "returned_date",
 		"`it_inventory_allotment_table`.`created_by`" => "created_by",
 		"`it_inventory_allotment_table`.`created_at`" => "created_at",
@@ -105,9 +125,9 @@
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['it_inventory_lookup' => 'IT inventory ', 'select_employee' => 'Select employee', 'alloted_by' => 'Alloted by', ];
+	$x->filterers = ['select_employee' => 'Select employee', 'alloted_by' => 'Alloted by', 'approved_by' => 'Approved By', ];
 
-	$x->QueryFrom = "`it_inventory_allotment_table` LEFT JOIN `it_inventory_app` as it_inventory_app1 ON `it_inventory_app1`.`it_inventory_id`=`it_inventory_allotment_table`.`it_inventory_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`it_inventory_allotment_table`.`select_employee` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`it_inventory_allotment_table`.`alloted_by` ";
+	$x->QueryFrom = "`it_inventory_allotment_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`id`=`it_inventory_allotment_table`.`select_employee` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`it_inventory_allotment_table`.`alloted_by` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`it_inventory_allotment_table`.`approved_by` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -131,16 +151,16 @@
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'it_inventory_allotment_table_view.php';
-	$x->TableTitle = 'IT inventory allotment - App';
+	$x->TableTitle = 'IT inventory Allotment - App';
 	$x->TableIcon = 'table.gif';
-	$x->PrimaryKey = '`it_inventory_allotment_table`.`it_inventory_allotment_id`';
+	$x->PrimaryKey = '`it_inventory_allotment_table`.`id`';
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'IT inventory ', 'Select employee', 'Department', 'Date', 'Purpose', 'Alloted by', 'Status', 'Returned date', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['it_inventory_allotment_id', 'it_inventory_lookup', 'select_employee', 'department', 'date', 'purpose', 'alloted_by', 'status', 'returned_date', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Select employee', 'Department', 'Date', 'Inventory Details', 'Purpose', 'Alloted by', 'Allotment Status', 'Approval status', 'Approved By', 'Approval remarks', 'Return status', 'Returned date', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'select_employee', 'department', 'date', 'inventory_details', 'purpose', 'alloted_by', 'allotment_status', 'approval_status', 'approved_by', 'approval_remarks', 'return_status', 'returned_date', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/it_inventory_allotment_table_templateTV.html';

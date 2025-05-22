@@ -19,15 +19,12 @@
 		<div class="col-md-8 col-lg-10" id="it_inventory_allotment_table_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: IT inventory  -->
-				<div class="form-group it_inventory_allotment_table-it_inventory_lookup">
+				<!-- Field: ID -->
+				<div class="form-group it_inventory_allotment_table-id">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">IT inventory </label>
+					<label class="control-label col-lg-3">ID</label>
 					<div class="col-lg-9">
-						<div class="form-control-static">
-							<span id="it_inventory_lookup-readonly"><%%COMBOTEXT(it_inventory_lookup)%%></span>
-							<%%PLINK(it_inventory_lookup)%%>
-						</div>
+						<div class="form-control-static" id="id"><%%VALUE(id)%%></div>
 					</div>
 				</div>
 
@@ -36,7 +33,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="select_employee" data-parent_link="view_parent_modal">Select employee</label>
 					<div class="col-lg-9">
-						<div class="lookup-flex"><%%COMBO(select_employee)%%><%%PLINK(select_employee)%%><%%ADDNEW(user_table)%%></div>
+						<div class="lookup-flex"><%%COMBO(select_employee)%%><%%PLINK(select_employee)%%><%%ADDNEW(employees_personal_data_table)%%></div>
 					</div>
 				</div>
 
@@ -58,6 +55,15 @@
 					</div>
 				</div>
 
+				<!-- Field: Inventory Details -->
+				<div class="form-group it_inventory_allotment_table-inventory_details">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="inventory_details">Inventory Details</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="inventory_details" id="inventory_details" rows=" 5"><%%VALUE(inventory_details)%%></textarea>
+					</div>
+				</div>
+
 				<!-- Field: Purpose -->
 				<div class="form-group it_inventory_allotment_table-purpose">
 					<hr class="hidden-md hidden-lg">
@@ -76,12 +82,48 @@
 					</div>
 				</div>
 
-				<!-- Field: Status -->
-				<div class="form-group it_inventory_allotment_table-status">
+				<!-- Field: Allotment Status -->
+				<div class="form-group it_inventory_allotment_table-allotment_status">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="status">Status</label>
+					<label class="control-label col-lg-3" for="allotment_status">Allotment Status</label>
 					<div class="col-lg-9">
-						<%%COMBO(status)%%>
+						<%%COMBO(allotment_status)%%>
+					</div>
+				</div>
+
+				<!-- Field: Approval status -->
+				<div class="form-group it_inventory_allotment_table-approval_status">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="approval_status">Approval status</label>
+					<div class="col-lg-9">
+						<%%COMBO(approval_status)%%>
+					</div>
+				</div>
+
+				<!-- Field: Approved By -->
+				<div class="form-group it_inventory_allotment_table-approved_by">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="approved_by" data-parent_link="view_parent_modal">Approved By</label>
+					<div class="col-lg-9">
+						<div class="lookup-flex"><%%COMBO(approved_by)%%><%%PLINK(approved_by)%%><%%ADDNEW(user_table)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Approval remarks -->
+				<div class="form-group it_inventory_allotment_table-approval_remarks">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="approval_remarks">Approval remarks</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="approval_remarks" id="approval_remarks" rows=" 5"><%%VALUE(approval_remarks)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Return status -->
+				<div class="form-group it_inventory_allotment_table-return_status">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="return_status">Return status</label>
+					<div class="col-lg-9">
+						<%%COMBO(return_status)%%>
 					</div>
 				</div>
 
@@ -242,10 +284,10 @@
 			if(!add_new_mode) {
 				$j('body').append('<div id="admin-tools-appendix"></div>');
 				$j('#admin-tools-appendix').load(
-					'ajax_admin_tools.php?table=it_inventory_allotment_table&id=<%%URLVALUE(it_inventory_allotment_id)%%>',
+					'ajax_admin_tools.php?table=it_inventory_allotment_table&id=<%%URLVALUE(id)%%>',
 					function(resp) {
 						if(!resp.length) return;
-						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=it_inventory_allotment_table&id=<%%URLVALUE(it_inventory_allotment_id)%%>');
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=it_inventory_allotment_table&id=<%%URLVALUE(id)%%>');
 					}
 				);
 			}

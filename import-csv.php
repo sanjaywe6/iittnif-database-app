@@ -246,10 +246,10 @@
 			return $data;
 		},
 		'it_inventory_allotment_table' => function($data, $options = []) {
-			if(isset($data['it_inventory_lookup'])) $data['it_inventory_lookup'] = pkGivenLookupText($data['it_inventory_lookup'], 'it_inventory_allotment_table', 'it_inventory_lookup');
 			if(isset($data['select_employee'])) $data['select_employee'] = pkGivenLookupText($data['select_employee'], 'it_inventory_allotment_table', 'select_employee');
 			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
 			if(isset($data['alloted_by'])) $data['alloted_by'] = pkGivenLookupText($data['alloted_by'], 'it_inventory_allotment_table', 'alloted_by');
+			if(isset($data['approved_by'])) $data['approved_by'] = pkGivenLookupText($data['approved_by'], 'it_inventory_allotment_table', 'approved_by');
 			if(isset($data['returned_date'])) $data['returned_date'] = guessMySQLDateTime($data['returned_date']);
 
 			return $data;

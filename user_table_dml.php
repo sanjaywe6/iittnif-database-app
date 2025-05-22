@@ -468,9 +468,9 @@ function user_table_delete($selected_id, $AllowDeleteOfParents = false, $skipChe
 	// child table: it_inventory_allotment_table
 	$res = sql("SELECT `user_id` FROM `user_table` WHERE `user_id`='{$selected_id}'", $eo);
 	$user_id = db_fetch_row($res);
-	$rires = sql("SELECT COUNT(1) FROM `it_inventory_allotment_table` WHERE `select_employee`='" . makeSafe($user_id[0]) . "'", $eo);
+	$rires = sql("SELECT COUNT(1) FROM `it_inventory_allotment_table` WHERE `alloted_by`='" . makeSafe($user_id[0]) . "'", $eo);
 	$rirow = db_fetch_row($rires);
-	$childrenATag = '<a class="alert-link" href="it_inventory_allotment_table_view.php?filterer_select_employee=' . urlencode($user_id[0]) . '">%s</a>';
+	$childrenATag = '<a class="alert-link" href="it_inventory_allotment_table_view.php?filterer_alloted_by=' . urlencode($user_id[0]) . '">%s</a>';
 	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
 		$RetMsg = $Translation["couldn't delete"];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
@@ -488,9 +488,9 @@ function user_table_delete($selected_id, $AllowDeleteOfParents = false, $skipChe
 	// child table: it_inventory_allotment_table
 	$res = sql("SELECT `user_id` FROM `user_table` WHERE `user_id`='{$selected_id}'", $eo);
 	$user_id = db_fetch_row($res);
-	$rires = sql("SELECT COUNT(1) FROM `it_inventory_allotment_table` WHERE `alloted_by`='" . makeSafe($user_id[0]) . "'", $eo);
+	$rires = sql("SELECT COUNT(1) FROM `it_inventory_allotment_table` WHERE `approved_by`='" . makeSafe($user_id[0]) . "'", $eo);
 	$rirow = db_fetch_row($rires);
-	$childrenATag = '<a class="alert-link" href="it_inventory_allotment_table_view.php?filterer_alloted_by=' . urlencode($user_id[0]) . '">%s</a>';
+	$childrenATag = '<a class="alert-link" href="it_inventory_allotment_table_view.php?filterer_approved_by=' . urlencode($user_id[0]) . '">%s</a>';
 	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
 		$RetMsg = $Translation["couldn't delete"];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);

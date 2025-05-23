@@ -16,9 +16,7 @@
 		setupTable('approval_table', []);
 		setupIndexes('approval_table', ['person_responsbility',]);
 
-		setupTable('techlead_web_page', [
-				" ALTER TABLE `techlead_web_page` CHANGE `approval_status` `approval_status` VARCHAR(255) NULL DEFAULT 'Under Consideration' ",
-			]);
+		setupTable('techlead_web_page', []);
 
 		setupTable('car_table', []);
 
@@ -133,28 +131,15 @@
 		setupTable('employees_appraisal_table', []);
 		setupIndexes('employees_appraisal_table', ['employee_designation_lookup','reviewing_officer',]);
 
-		setupTable('beyond_workingHours_table', [
-				"ALTER TABLE `beyond_workingHours_table` DROP `approved_by`",
-			]);
+		setupTable('beyond_workingHours_table', []);
 
-		setupTable('leave_table', [
-				"ALTER TABLE `leave_table` DROP `approved_by`",
-			]);
+		setupTable('leave_table', []);
 
-		setupTable('half_day_leave_table', [
-				"ALTER TABLE `half_day_leave_table` DROP `approved_by`",
-			]);
+		setupTable('half_day_leave_table', []);
 
-		setupTable('work_from_home_table', [
-				"ALTER TABLE `work_from_home_table` CHANGE `approved_by` `approval_status` INT UNSIGNED NULL ",
-				" ALTER TABLE `work_from_home_table` CHANGE `approval_status` `approval_status` INT UNSIGNED NULL ",
-				" ALTER TABLE `work_from_home_table` CHANGE `approval_status` `approval_status` VARCHAR(40) NULL DEFAULT 'Under Consideration' ",
-				" ALTER TABLE `work_from_home_table` CHANGE `approval_status` `approval_status` VARCHAR(255) NULL DEFAULT 'Under Consideration' ",
-			]);
+		setupTable('work_from_home_table', []);
 
-		setupTable('navavishkar_stay_table', [
-				"ALTER TABLE `navavishkar_stay_table` DROP `approved_by`",
-			]);
+		setupTable('navavishkar_stay_table', []);
 
 		setupTable('navavishkar_stay_payment_table', []);
 		setupIndexes('navavishkar_stay_payment_table', ['navavishakr_stay_details',]);

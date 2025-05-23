@@ -21,7 +21,6 @@ function event_decision_table_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'username' => parseCode('<%%creatorUsername%%>', true),
 		'decision_description' => br2nl(Request::val('decision_description', '')),
 		'decision_actor' => Request::lookup('decision_actor', ''),
 		'action_taken_with_date' => Request::dateComponents('action_taken_with_date', ''),
@@ -254,7 +253,7 @@ function event_decision_table_form($selectedId = '', $allowUpdate = true, $allow
 		$filterValue = Request::val('FilterValue');
 		$combo_outcomes_expected_lookup->SelectedData = $filterer_outcomes_expected_lookup;
 		$combo_decision_actor->SelectedData = $filterer_decision_actor;
-		$combo_decision_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '7' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Yet to Start'));
+		$combo_decision_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '6' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Yet to Start'));
 	}
 	$combo_outcomes_expected_lookup->HTML = '<span id="outcomes_expected_lookup-container' . $rnd1 . '"></span><input type="hidden" name="outcomes_expected_lookup" id="outcomes_expected_lookup' . $rnd1 . '" value="' . html_attr($combo_outcomes_expected_lookup->SelectedData) . '">';
 	$combo_outcomes_expected_lookup->MatchText = '<span id="outcomes_expected_lookup-container-readonly' . $rnd1 . '"></span><input type="hidden" name="outcomes_expected_lookup" id="outcomes_expected_lookup' . $rnd1 . '" value="' . html_attr($combo_outcomes_expected_lookup->SelectedData) . '">';
@@ -575,7 +574,6 @@ function event_decision_table_form($selectedId = '', $allowUpdate = true, $allow
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(decision_id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(outcomes_expected_lookup)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(decision_description)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(decision_actor)%%>', '', $templateCode);
@@ -591,8 +589,6 @@ function event_decision_table_form($selectedId = '', $allowUpdate = true, $allow
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(decision_id)%%>', safe_html($urow['decision_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(decision_id)%%>', urlencode($urow['decision_id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(outcomes_expected_lookup)%%>', safe_html($urow['outcomes_expected_lookup']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(outcomes_expected_lookup)%%>', urlencode($urow['outcomes_expected_lookup']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(decision_description)%%>', safe_html($urow['decision_description'], $fieldsAreEditable), $templateCode);
@@ -619,8 +615,6 @@ function event_decision_table_form($selectedId = '', $allowUpdate = true, $allow
 	} else {
 		$templateCode = str_replace('<%%VALUE(decision_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(decision_id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(outcomes_expected_lookup)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(outcomes_expected_lookup)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(decision_description)%%>', '', $templateCode);
@@ -681,7 +675,7 @@ function event_decision_table_form($selectedId = '', $allowUpdate = true, $allow
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
-	if(isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>')
+	if(isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>')
 		$templateCode.="\n<input type=hidden name=outcomes_expected_lookup value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery

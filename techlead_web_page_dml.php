@@ -16,7 +16,6 @@ function techlead_web_page_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'username' => parseCode('<%%creatorUsername%%>', true),
 		'techlead' => Request::val('techlead', 'GNSS Tech Lead'),
 		'category' => Request::val('category', 'Foundational Research'),
 		'author' => Request::val('author', ''),
@@ -397,10 +396,10 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_techlead->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('GNSS Tech Lead'));
-		$combo_category->SelectedText = (isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Foundational Research'));
-		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '11' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
-		$combo_website_update_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '13' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
+		$combo_techlead->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('GNSS Tech Lead'));
+		$combo_category->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Foundational Research'));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '10' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
+		$combo_website_update_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '12' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Pending'));
 	}
 	$combo_techlead->Render();
 	$combo_category->Render();
@@ -556,7 +555,6 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(techlead)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(category)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(author)%%>', '', $templateCode);
@@ -587,8 +585,6 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(techlead)%%>', safe_html($urow['techlead']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(techlead)%%>', html_attr($row['techlead']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(techlead)%%>', urlencode($urow['techlead']), $templateCode);
@@ -652,8 +648,6 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(techlead)%%>', 'GNSS Tech Lead', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(techlead)%%>', urlencode('GNSS Tech Lead'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(category)%%>', 'Foundational Research', $templateCode);

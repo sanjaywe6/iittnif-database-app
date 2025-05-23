@@ -19,7 +19,6 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`cafeteria_table`.`id`" => "id",
-		"`cafeteria_table`.`username`" => "username",
 		"`cafeteria_table`.`type`" => "type",
 		"`cafeteria_table`.`time`" => "time",
 		"if(`cafeteria_table`.`date`,date_format(`cafeteria_table`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -31,18 +30,16 @@
 	$x->SortFields = [
 		1 => '`cafeteria_table`.`id`',
 		2 => 2,
-		3 => 3,
-		4 => '`cafeteria_table`.`time`',
-		5 => '`cafeteria_table`.`date`',
+		3 => '`cafeteria_table`.`time`',
+		4 => '`cafeteria_table`.`date`',
+		5 => 5,
 		6 => 6,
 		7 => 7,
-		8 => 8,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`cafeteria_table`.`id`" => "id",
-		"`cafeteria_table`.`username`" => "username",
 		"`cafeteria_table`.`type`" => "type",
 		"`cafeteria_table`.`time`" => "time",
 		"if(`cafeteria_table`.`date`,date_format(`cafeteria_table`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -53,7 +50,6 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`cafeteria_table`.`id`" => "ID",
-		"`cafeteria_table`.`username`" => "Username",
 		"`cafeteria_table`.`type`" => "Type",
 		"`cafeteria_table`.`time`" => "Time",
 		"`cafeteria_table`.`date`" => "Date",
@@ -65,7 +61,6 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`cafeteria_table`.`id`" => "id",
-		"`cafeteria_table`.`username`" => "username",
 		"`cafeteria_table`.`type`" => "type",
 		"`cafeteria_table`.`time`" => "time",
 		"if(`cafeteria_table`.`date`,date_format(`cafeteria_table`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -110,7 +105,7 @@
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, ];
 	$x->ColCaption = ['ID', 'Type', 'Time', 'Date', 'Remarks (Optional)', 'Created By', 'Last Updated By', ];
 	$x->ColFieldName = ['id', 'type', 'time', 'date', 'remarks', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/cafeteria_table_templateTV.html';

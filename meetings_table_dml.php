@@ -26,7 +26,6 @@ function meetings_table_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'username' => parseCode('<%%creatorUsername%%>', true),
 		'meeting_title' => Request::val('meeting_title', ''),
 		'participants' => br2nl(Request::val('participants', '')),
 		'venue' => Request::val('venue', ''),
@@ -603,7 +602,6 @@ function meetings_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(meetings_id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(visiting_card_lookup)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(event_lookup)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(meeting_title)%%>', '', $templateCode);
@@ -620,8 +618,6 @@ function meetings_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(meetings_id)%%>', safe_html($urow['meetings_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(meetings_id)%%>', urlencode($urow['meetings_id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(visiting_card_lookup)%%>', safe_html($urow['visiting_card_lookup']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(visiting_card_lookup)%%>', urlencode($urow['visiting_card_lookup']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(event_lookup)%%>', safe_html($urow['event_lookup']), $templateCode);
@@ -654,8 +650,6 @@ function meetings_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 	} else {
 		$templateCode = str_replace('<%%VALUE(meetings_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(meetings_id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(visiting_card_lookup)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(visiting_card_lookup)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(event_lookup)%%>', '', $templateCode);
@@ -717,9 +711,9 @@ function meetings_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
-	if(isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>')
+	if(isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>')
 		$templateCode.="\n<input type=hidden name=visiting_card_lookup value=\"" . html_attr($filterValue[1]) . "\">\n";
-	if(isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>')
+	if(isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>')
 		$templateCode.="\n<input type=hidden name=event_lookup value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery

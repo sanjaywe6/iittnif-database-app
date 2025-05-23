@@ -19,7 +19,6 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`car_usage_table`.`car_usage_id`" => "car_usage_id",
-		"`car_usage_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`car_table1`.`car_number`) || CHAR_LENGTH(`car_table1`.`car_model`), CONCAT_WS('',   `car_table1`.`car_number`, '::', `car_table1`.`car_model`), '') /* Select Car */" => "car_lookup",
 		"`car_usage_table`.`used_by`" => "used_by",
 		"if(`car_usage_table`.`datetime_from`,date_format(`car_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'')" => "datetime_from",
@@ -34,19 +33,17 @@
 		1 => '`car_usage_table`.`car_usage_id`',
 		2 => 2,
 		3 => 3,
-		4 => 4,
-		5 => '`car_usage_table`.`datetime_from`',
-		6 => '`car_usage_table`.`datetime_to`',
+		4 => '`car_usage_table`.`datetime_from`',
+		5 => '`car_usage_table`.`datetime_to`',
+		6 => 6,
 		7 => 7,
 		8 => 8,
 		9 => 9,
-		10 => 10,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`car_usage_table`.`car_usage_id`" => "car_usage_id",
-		"`car_usage_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`car_table1`.`car_number`) || CHAR_LENGTH(`car_table1`.`car_model`), CONCAT_WS('',   `car_table1`.`car_number`, '::', `car_table1`.`car_model`), '') /* Select Car */" => "car_lookup",
 		"`car_usage_table`.`used_by`" => "used_by",
 		"if(`car_usage_table`.`datetime_from`,date_format(`car_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'')" => "datetime_from",
@@ -59,7 +56,6 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`car_usage_table`.`car_usage_id`" => "ID",
-		"`car_usage_table`.`username`" => "Username",
 		"IF(    CHAR_LENGTH(`car_table1`.`car_number`) || CHAR_LENGTH(`car_table1`.`car_model`), CONCAT_WS('',   `car_table1`.`car_number`, '::', `car_table1`.`car_model`), '') /* Select Car */" => "Select Car",
 		"`car_usage_table`.`used_by`" => "Used by",
 		"`car_usage_table`.`datetime_from`" => "Date and time from",
@@ -73,7 +69,6 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`car_usage_table`.`car_usage_id`" => "car_usage_id",
-		"`car_usage_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`car_table1`.`car_number`) || CHAR_LENGTH(`car_table1`.`car_model`), CONCAT_WS('',   `car_table1`.`car_number`, '::', `car_table1`.`car_model`), '') /* Select Car */" => "car_lookup",
 		"`car_usage_table`.`used_by`" => "used_by",
 		"if(`car_usage_table`.`datetime_from`,date_format(`car_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'')" => "datetime_from",
@@ -120,7 +115,7 @@
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
 	$x->ColCaption = ['ID', 'Select Car', 'Used by', 'Date and time from', 'Date and time to', 'Total distance run (In KM)', 'Purpose', 'Created By', 'Last Updated By', ];
 	$x->ColFieldName = ['car_usage_id', 'car_lookup', 'used_by', 'datetime_from', 'datetime_to', 'total_distance_run', 'purpose', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/car_usage_table_templateTV.html';

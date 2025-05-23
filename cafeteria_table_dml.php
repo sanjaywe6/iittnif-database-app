@@ -16,7 +16,6 @@ function cafeteria_table_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'username' => parseCode('<%%creatorUsername%%>', true),
 		'type' => Request::val('type', 'Breakfast'),
 		'time' => Request::val('time', ''),
 		'date' => parseCode('<%%creationDate%%>', true, true),
@@ -220,7 +219,7 @@ function cafeteria_table_form($selectedId = '', $allowUpdate = true, $allowInser
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Breakfast'));
+		$combo_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Breakfast'));
 	}
 	$combo_type->Render();
 
@@ -361,7 +360,6 @@ function cafeteria_table_form($selectedId = '', $allowUpdate = true, $allowInser
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(type)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(time)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date)%%>', '', $templateCode);
@@ -373,8 +371,6 @@ function cafeteria_table_form($selectedId = '', $allowUpdate = true, $allowInser
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(type)%%>', safe_html($urow['type']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(type)%%>', html_attr($row['type']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(type)%%>', urlencode($urow['type']), $templateCode);
@@ -392,8 +388,6 @@ function cafeteria_table_form($selectedId = '', $allowUpdate = true, $allowInser
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(type)%%>', 'Breakfast', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(type)%%>', urlencode('Breakfast'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(time)%%>', '', $templateCode);

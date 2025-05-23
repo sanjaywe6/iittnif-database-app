@@ -1,4 +1,4 @@
-		<td colspan="11" class="row">
+		<td colspan="10" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="goal_setting_table-goal_id-caption field-caption-tv">ID</dt>
@@ -16,27 +16,24 @@
 					<dt class="goal_setting_table-goal_set_date-caption field-caption-tv">Goal set date</dt>
 					<dd id="goal_setting_table-goal_set_date-<%%VALUE(goal_id)%%>" class="goal_setting_table-goal_set_date"><%%SELECT%%><%%VALUE(goal_set_date)%%><%%ENDSELECT%%></dd>
 
-					<dt class="goal_setting_table-supervisor_name-caption field-caption-tv">Supervisor name</dt>
-					<dd id="goal_setting_table-supervisor_name-<%%VALUE(goal_id)%%>" class="goal_setting_table-supervisor_name"><%%SELECT%%><%%VALUE(supervisor_name)%%><%%ENDSELECT%%></dd>
-
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
+					<dt class="goal_setting_table-supervisor_name-caption field-caption-tv">Supervisor name</dt>
+					<dd id="goal_setting_table-supervisor_name-<%%VALUE(goal_id)%%>" class="goal_setting_table-supervisor_name"><%%SELECT%%><%%VALUE(supervisor_name)%%><%%ENDSELECT%%></dd>
+
 					<dt class="goal_setting_table-assigned_to-caption field-caption-tv">Assigned to</dt>
 					<dd id="goal_setting_table-assigned_to-<%%VALUE(goal_id)%%>" class="goal_setting_table-assigned_to"><%%SELECT%%><%%VALUE(assigned_to)%%><%%ENDSELECT%%></dd>
 
 					<dt class="goal_setting_table-goal_setting_str-caption field-caption-tv">Goal setting str</dt>
 					<dd id="goal_setting_table-goal_setting_str-<%%VALUE(goal_id)%%>" class="goal_setting_table-goal_setting_str"><%%SELECT%%><%%VALUE(goal_setting_str)%%><%%ENDSELECT%%></dd>
 
-					<dt class="goal_setting_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
-					<dd id="goal_setting_table-last_updated_by-<%%VALUE(goal_id)%%>" class="goal_setting_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
-
-					<dt class="goal_setting_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
-					<dd id="goal_setting_table-last_updated_at-<%%VALUE(goal_id)%%>" class="goal_setting_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></dd>
-
 					<dt class="goal_setting_table-created_by-caption field-caption-tv">Created By</dt>
 					<dd id="goal_setting_table-created_by-<%%VALUE(goal_id)%%>" class="goal_setting_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="goal_setting_table-last_updated_by-caption field-caption-tv">Last Updated By</dt>
+					<dd id="goal_setting_table-last_updated_by-<%%VALUE(goal_id)%%>" class="goal_setting_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>

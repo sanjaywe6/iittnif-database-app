@@ -19,7 +19,6 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`outcomes_expected_table`.`outcomes_expected_id`" => "outcomes_expected_id",
-		"`outcomes_expected_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') /* Event */" => "event_lookup",
 		"`outcomes_expected_table`.`target_audience`" => "target_audience",
 		"`outcomes_expected_table`.`expected_outcomes`" => "expected_outcomes",
@@ -30,19 +29,17 @@
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
 		1 => '`outcomes_expected_table`.`outcomes_expected_id`',
-		2 => 2,
-		3 => '`event_table1`.`event_str`',
+		2 => '`event_table1`.`event_str`',
+		3 => 3,
 		4 => 4,
 		5 => 5,
 		6 => 6,
 		7 => 7,
-		8 => 8,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`outcomes_expected_table`.`outcomes_expected_id`" => "outcomes_expected_id",
-		"`outcomes_expected_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') /* Event */" => "event_lookup",
 		"`outcomes_expected_table`.`target_audience`" => "target_audience",
 		"`outcomes_expected_table`.`expected_outcomes`" => "expected_outcomes",
@@ -53,7 +50,6 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`outcomes_expected_table`.`outcomes_expected_id`" => "ID",
-		"`outcomes_expected_table`.`username`" => "Username",
 		"IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') /* Event */" => "Event",
 		"`outcomes_expected_table`.`target_audience`" => "Target audience",
 		"`outcomes_expected_table`.`expected_outcomes`" => "Expected outcomes",
@@ -65,7 +61,6 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`outcomes_expected_table`.`outcomes_expected_id`" => "outcomes_expected_id",
-		"`outcomes_expected_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`event_table1`.`event_str`), CONCAT_WS('',   `event_table1`.`event_str`), '') /* Event */" => "event_lookup",
 		"`outcomes_expected_table`.`target_audience`" => "target_audience",
 		"`outcomes_expected_table`.`expected_outcomes`" => "expected_outcomes",
@@ -110,7 +105,7 @@
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, ];
 	$x->ColCaption = ['ID', 'Event', 'Target audience', 'Expected outcomes', 'Created By', 'Last Updated By', ];
 	$x->ColFieldName = ['outcomes_expected_id', 'event_lookup', 'target_audience', 'expected_outcomes', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 3, 4, 5, 7, 8, ];
+	$x->ColNumber  = [1, 2, 3, 4, 6, 7, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/outcomes_expected_table_templateTV.html';

@@ -19,7 +19,6 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`mou_details_table`.`id`" => "id",
-		"`mou_details_table`.`username`" => "username",
 		"`mou_details_table`.`type`" => "type",
 		"`mou_details_table`.`company_name`" => "company_name",
 		"`mou_details_table`.`objective_of_mou`" => "objective_of_mou",
@@ -34,9 +33,8 @@
 		"`mou_details_table`.`country`" => "country",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Assigned MoU to */" => "assigned_mou_to",
 		"`mou_details_table`.`upload_mou`" => "upload_mou",
-		"`mou_details_table`.`last_updated_by`" => "last_updated_by",
-		"`mou_details_table`.`last_updated_at`" => "last_updated_at",
 		"`mou_details_table`.`created_by`" => "created_by",
+		"`mou_details_table`.`last_updated_by`" => "last_updated_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -45,9 +43,9 @@
 		3 => 3,
 		4 => 4,
 		5 => 5,
-		6 => 6,
-		7 => '`mou_details_table`.`date_of_agreement`',
-		8 => '`mou_details_table`.`date_of_expiry`',
+		6 => '`mou_details_table`.`date_of_agreement`',
+		7 => '`mou_details_table`.`date_of_expiry`',
+		8 => 8,
 		9 => 9,
 		10 => 10,
 		11 => 11,
@@ -57,14 +55,11 @@
 		15 => 15,
 		16 => 16,
 		17 => 17,
-		18 => 18,
-		19 => 19,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`mou_details_table`.`id`" => "id",
-		"`mou_details_table`.`username`" => "username",
 		"`mou_details_table`.`type`" => "type",
 		"`mou_details_table`.`company_name`" => "company_name",
 		"`mou_details_table`.`objective_of_mou`" => "objective_of_mou",
@@ -79,14 +74,12 @@
 		"`mou_details_table`.`country`" => "country",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Assigned MoU to */" => "assigned_mou_to",
 		"`mou_details_table`.`upload_mou`" => "upload_mou",
-		"`mou_details_table`.`last_updated_by`" => "last_updated_by",
-		"`mou_details_table`.`last_updated_at`" => "last_updated_at",
 		"`mou_details_table`.`created_by`" => "created_by",
+		"`mou_details_table`.`last_updated_by`" => "last_updated_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`mou_details_table`.`id`" => "ID",
-		"`mou_details_table`.`username`" => "Username",
 		"`mou_details_table`.`type`" => "Type",
 		"`mou_details_table`.`company_name`" => "Company name",
 		"`mou_details_table`.`objective_of_mou`" => "Objectives/ Scope of the MOU",
@@ -101,15 +94,13 @@
 		"`mou_details_table`.`country`" => "Country",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Assigned MoU to */" => "Assigned MoU to",
 		"`mou_details_table`.`upload_mou`" => "Upload MoU (PDF or DOC format)",
-		"`mou_details_table`.`last_updated_by`" => "Last updated by",
-		"`mou_details_table`.`last_updated_at`" => "Last updated at",
 		"`mou_details_table`.`created_by`" => "Created By",
+		"`mou_details_table`.`last_updated_by`" => "Last Updated By",
 	];
 
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`mou_details_table`.`id`" => "id",
-		"`mou_details_table`.`username`" => "username",
 		"`mou_details_table`.`type`" => "type",
 		"`mou_details_table`.`company_name`" => "company_name",
 		"`mou_details_table`.`objective_of_mou`" => "objective_of_mou",
@@ -124,9 +115,8 @@
 		"`mou_details_table`.`country`" => "country",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Assigned MoU to */" => "assigned_mou_to",
 		"`mou_details_table`.`upload_mou`" => "upload_mou",
-		"`mou_details_table`.`last_updated_by`" => "last_updated_by",
-		"`mou_details_table`.`last_updated_at`" => "last_updated_at",
 		"`mou_details_table`.`created_by`" => "created_by",
+		"`mou_details_table`.`last_updated_by`" => "last_updated_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -162,10 +152,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Type', 'Company name', 'Objectives/ Scope of the MOU', 'Agreement period (In Years)', 'Date of agreement', 'Date of expiry', 'Status', 'Point of contact (Name)', 'Contact number', 'Contact email id', 'Website link', 'Country', 'Assigned MoU to', 'Upload MoU (PDF or DOC format)', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['id', 'type', 'company_name', 'objective_of_mou', 'agreement_period', 'date_of_agreement', 'date_of_expiry', 'status', 'point_of_contact', 'contact_number', 'contact_email_id', 'website_link', 'country', 'assigned_mou_to', 'upload_mou', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Type', 'Company name', 'Objectives/ Scope of the MOU', 'Agreement period (In Years)', 'Date of agreement', 'Date of expiry', 'Status', 'Point of contact (Name)', 'Contact number', 'Contact email id', 'Website link', 'Country', 'Assigned MoU to', 'Upload MoU (PDF or DOC format)', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['id', 'type', 'company_name', 'objective_of_mou', 'agreement_period', 'date_of_agreement', 'date_of_expiry', 'status', 'point_of_contact', 'contact_number', 'contact_email_id', 'website_link', 'country', 'assigned_mou_to', 'upload_mou', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/mou_details_table_templateTV.html';

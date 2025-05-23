@@ -21,7 +21,6 @@ function car_usage_table_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'username' => parseCode('<%%creatorUsername%%>', true),
 		'used_by' => Request::val('used_by', ''),
 		'datetime_from' => Request::datetime('datetime_from', ''),
 		'datetime_to' => Request::datetime('datetime_to', ''),
@@ -432,7 +431,6 @@ function car_usage_table_form($selectedId = '', $allowUpdate = true, $allowInser
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(car_usage_id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(car_lookup)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(used_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(datetime_from)%%>', '', $templateCode);
@@ -446,8 +444,6 @@ function car_usage_table_form($selectedId = '', $allowUpdate = true, $allowInser
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(car_usage_id)%%>', safe_html($urow['car_usage_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(car_usage_id)%%>', urlencode($urow['car_usage_id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(car_lookup)%%>', safe_html($urow['car_lookup']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(car_lookup)%%>', urlencode($urow['car_lookup']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(used_by)%%>', safe_html($urow['used_by']), $templateCode);
@@ -469,8 +465,6 @@ function car_usage_table_form($selectedId = '', $allowUpdate = true, $allowInser
 	} else {
 		$templateCode = str_replace('<%%VALUE(car_usage_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(car_usage_id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(car_lookup)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(car_lookup)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(used_by)%%>', '', $templateCode);
@@ -527,7 +521,7 @@ function car_usage_table_form($selectedId = '', $allowUpdate = true, $allowInser
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
-	if(isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>')
+	if(isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>')
 		$templateCode.="\n<input type=hidden name=car_lookup value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery

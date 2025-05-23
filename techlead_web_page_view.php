@@ -19,7 +19,6 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`techlead_web_page`.`id`" => "id",
-		"`techlead_web_page`.`username`" => "username",
 		"`techlead_web_page`.`techlead`" => "techlead",
 		"`techlead_web_page`.`category`" => "category",
 		"`techlead_web_page`.`author`" => "author",
@@ -51,16 +50,14 @@
 		11 => 11,
 		12 => 12,
 		13 => 13,
-		14 => 14,
-		15 => '`techlead_web_page`.`website_update_date`',
+		14 => '`techlead_web_page`.`website_update_date`',
+		15 => 15,
 		16 => 16,
-		17 => 17,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`techlead_web_page`.`id`" => "id",
-		"`techlead_web_page`.`username`" => "username",
 		"`techlead_web_page`.`techlead`" => "techlead",
 		"`techlead_web_page`.`category`" => "category",
 		"`techlead_web_page`.`author`" => "author",
@@ -80,7 +77,6 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`techlead_web_page`.`id`" => "ID",
-		"`techlead_web_page`.`username`" => "Username",
 		"`techlead_web_page`.`techlead`" => "Tech Lead",
 		"`techlead_web_page`.`category`" => "Category",
 		"`techlead_web_page`.`author`" => "Author/Team/Manager",
@@ -99,7 +95,6 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`techlead_web_page`.`id`" => "id",
-		"`techlead_web_page`.`username`" => "username",
 		"`techlead_web_page`.`techlead`" => "techlead",
 		"`techlead_web_page`.`category`" => "category",
 		"`techlead_web_page`.`author`" => "author",
@@ -151,7 +146,7 @@
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
 	$x->ColCaption = ['ID', 'Tech Lead', 'Category', 'Author/Team/Manager', 'Web Page Sub-section Title', 'Web Page Sub-section Material', 'Web Page Sub-section Learn More Content', 'Upload Image First (Required)', 'Upload Image Second (Optional)', 'Approval Status by CEO', 'Approval Remarks by CEO', 'Website Update Status by IT Team', 'Website Update Remarks by IT Team', 'Website Updated Date by IT Team', 'Created By', 'Last updated By', ];
 	$x->ColFieldName = ['id', 'techlead', 'category', 'author', 'content_title', 'content', 'content_learn_more', 'img1', 'img2', 'approval_status', 'approval_remarks', 'website_update_status', 'website_update_remarks', 'website_update_date', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/techlead_web_page_templateTV.html';

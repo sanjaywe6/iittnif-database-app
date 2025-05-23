@@ -19,7 +19,6 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`goal_setting_table`.`goal_id`" => "goal_id",
-		"`goal_setting_table`.`username`" => "username",
 		"`goal_setting_table`.`goal_status`" => "goal_status",
 		"`goal_setting_table`.`goal_description`" => "goal_description",
 		"`goal_setting_table`.`goal_duration`" => "goal_duration",
@@ -27,9 +26,8 @@
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Supervisor name */" => "supervisor_name",
 		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Assigned to */" => "assigned_to",
 		"`goal_setting_table`.`goal_setting_str`" => "goal_setting_str",
-		"`goal_setting_table`.`last_updated_by`" => "last_updated_by",
-		"`goal_setting_table`.`last_updated_at`" => "last_updated_at",
 		"`goal_setting_table`.`created_by`" => "created_by",
+		"`goal_setting_table`.`last_updated_by`" => "last_updated_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -37,20 +35,17 @@
 		2 => 2,
 		3 => 3,
 		4 => 4,
-		5 => 5,
-		6 => '`goal_setting_table`.`goal_set_date`',
+		5 => '`goal_setting_table`.`goal_set_date`',
+		6 => 6,
 		7 => 7,
 		8 => 8,
 		9 => 9,
 		10 => 10,
-		11 => 11,
-		12 => 12,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`goal_setting_table`.`goal_id`" => "goal_id",
-		"`goal_setting_table`.`username`" => "username",
 		"`goal_setting_table`.`goal_status`" => "goal_status",
 		"`goal_setting_table`.`goal_description`" => "goal_description",
 		"`goal_setting_table`.`goal_duration`" => "goal_duration",
@@ -58,14 +53,12 @@
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Supervisor name */" => "supervisor_name",
 		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Assigned to */" => "assigned_to",
 		"`goal_setting_table`.`goal_setting_str`" => "goal_setting_str",
-		"`goal_setting_table`.`last_updated_by`" => "last_updated_by",
-		"`goal_setting_table`.`last_updated_at`" => "last_updated_at",
 		"`goal_setting_table`.`created_by`" => "created_by",
+		"`goal_setting_table`.`last_updated_by`" => "last_updated_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`goal_setting_table`.`goal_id`" => "ID",
-		"`goal_setting_table`.`username`" => "Username",
 		"`goal_setting_table`.`goal_status`" => "Goal status",
 		"`goal_setting_table`.`goal_description`" => "Goal description",
 		"`goal_setting_table`.`goal_duration`" => "Goal duration",
@@ -73,15 +66,13 @@
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Supervisor name */" => "Supervisor name",
 		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Assigned to */" => "Assigned to",
 		"`goal_setting_table`.`goal_setting_str`" => "Goal setting str",
-		"`goal_setting_table`.`last_updated_by`" => "Last updated by",
-		"`goal_setting_table`.`last_updated_at`" => "Last updated at",
 		"`goal_setting_table`.`created_by`" => "Created By",
+		"`goal_setting_table`.`last_updated_by`" => "Last Updated By",
 	];
 
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`goal_setting_table`.`goal_id`" => "goal_id",
-		"`goal_setting_table`.`username`" => "username",
 		"`goal_setting_table`.`goal_status`" => "goal_status",
 		"`goal_setting_table`.`goal_description`" => "goal_description",
 		"`goal_setting_table`.`goal_duration`" => "goal_duration",
@@ -89,9 +80,8 @@
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Supervisor name */" => "supervisor_name",
 		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Assigned to */" => "assigned_to",
 		"`goal_setting_table`.`goal_setting_str`" => "goal_setting_str",
-		"`goal_setting_table`.`last_updated_by`" => "last_updated_by",
-		"`goal_setting_table`.`last_updated_at`" => "last_updated_at",
 		"`goal_setting_table`.`created_by`" => "created_by",
+		"`goal_setting_table`.`last_updated_by`" => "last_updated_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -127,10 +117,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Goal status', 'Goal description', 'Goal duration', 'Goal set date', 'Supervisor name', 'Assigned to', 'Goal setting str', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['goal_id', 'goal_status', 'goal_description', 'goal_duration', 'goal_set_date', 'supervisor_name', 'assigned_to', 'goal_setting_str', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Goal status', 'Goal description', 'Goal duration', 'Goal set date', 'Supervisor name', 'Assigned to', 'Goal setting str', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['goal_id', 'goal_status', 'goal_description', 'goal_duration', 'goal_set_date', 'supervisor_name', 'assigned_to', 'goal_setting_str', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/goal_setting_table_templateTV.html';

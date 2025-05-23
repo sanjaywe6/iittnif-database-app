@@ -21,7 +21,6 @@ function agenda_table_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'username' => parseCode('<%%creatorUsername%%>', true),
 		'agenda_description' => br2nl(Request::val('agenda_description', '')),
 		'created_by' => parseCode('<%%creatorUsername%%>  <%%creationDateTime%%>', true),
 	];
@@ -436,7 +435,6 @@ function agenda_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(agenda_id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(meeting_lookup)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(agenda_description)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(agenda_str)%%>', '', $templateCode);
@@ -447,8 +445,6 @@ function agenda_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(agenda_id)%%>', safe_html($urow['agenda_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(agenda_id)%%>', urlencode($urow['agenda_id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(meeting_lookup)%%>', safe_html($urow['meeting_lookup']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(meeting_lookup)%%>', urlencode($urow['meeting_lookup']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(agenda_description)%%>', safe_html($urow['agenda_description'], $fieldsAreEditable), $templateCode);
@@ -462,8 +458,6 @@ function agenda_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 	} else {
 		$templateCode = str_replace('<%%VALUE(agenda_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(agenda_id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(meeting_lookup)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(meeting_lookup)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(agenda_description)%%>', '', $templateCode);
@@ -514,7 +508,7 @@ function agenda_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
-	if(isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>')
+	if(isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>')
 		$templateCode.="\n<input type=hidden name=meeting_lookup value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery

@@ -19,7 +19,6 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`subtask_setting_table`.`subtask_id`" => "subtask_id",
-		"`subtask_setting_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`task_setting_table1`.`task_description`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `task_setting_table1`.`task_description`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Task */" => "task_lookup",
 		"`subtask_setting_table`.`subtask_status`" => "subtask_status",
 		"`subtask_setting_table`.`subtask_description`" => "subtask_description",
@@ -28,9 +27,8 @@
 		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Supervisor name */" => "supervisor_name",
 		"IF(    CHAR_LENGTH(`user_table3`.`memberID`) || CHAR_LENGTH(`user_table3`.`name`), CONCAT_WS('',   `user_table3`.`memberID`, '::', `user_table3`.`name`), '') /* Assigned to */" => "assigned_to",
 		"`subtask_setting_table`.`subtask_setting_str`" => "subtask_setting_str",
-		"`subtask_setting_table`.`last_updated_by`" => "last_updated_by",
-		"`subtask_setting_table`.`last_updated_at`" => "last_updated_at",
 		"`subtask_setting_table`.`created_by`" => "created_by",
+		"`subtask_setting_table`.`last_updated_by`" => "last_updated_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -39,20 +37,17 @@
 		3 => 3,
 		4 => 4,
 		5 => 5,
-		6 => 6,
-		7 => '`subtask_setting_table`.`subtask_set_date`',
+		6 => '`subtask_setting_table`.`subtask_set_date`',
+		7 => 7,
 		8 => 8,
 		9 => 9,
 		10 => 10,
 		11 => 11,
-		12 => 12,
-		13 => 13,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`subtask_setting_table`.`subtask_id`" => "subtask_id",
-		"`subtask_setting_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`task_setting_table1`.`task_description`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `task_setting_table1`.`task_description`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Task */" => "task_lookup",
 		"`subtask_setting_table`.`subtask_status`" => "subtask_status",
 		"`subtask_setting_table`.`subtask_description`" => "subtask_description",
@@ -61,14 +56,12 @@
 		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Supervisor name */" => "supervisor_name",
 		"IF(    CHAR_LENGTH(`user_table3`.`memberID`) || CHAR_LENGTH(`user_table3`.`name`), CONCAT_WS('',   `user_table3`.`memberID`, '::', `user_table3`.`name`), '') /* Assigned to */" => "assigned_to",
 		"`subtask_setting_table`.`subtask_setting_str`" => "subtask_setting_str",
-		"`subtask_setting_table`.`last_updated_by`" => "last_updated_by",
-		"`subtask_setting_table`.`last_updated_at`" => "last_updated_at",
 		"`subtask_setting_table`.`created_by`" => "created_by",
+		"`subtask_setting_table`.`last_updated_by`" => "last_updated_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`subtask_setting_table`.`subtask_id`" => "ID",
-		"`subtask_setting_table`.`username`" => "Username",
 		"IF(    CHAR_LENGTH(`task_setting_table1`.`task_description`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `task_setting_table1`.`task_description`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Task */" => "Task",
 		"`subtask_setting_table`.`subtask_status`" => "Subtask status",
 		"`subtask_setting_table`.`subtask_description`" => "Subtask description",
@@ -77,15 +70,13 @@
 		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Supervisor name */" => "Supervisor name",
 		"IF(    CHAR_LENGTH(`user_table3`.`memberID`) || CHAR_LENGTH(`user_table3`.`name`), CONCAT_WS('',   `user_table3`.`memberID`, '::', `user_table3`.`name`), '') /* Assigned to */" => "Assigned to",
 		"`subtask_setting_table`.`subtask_setting_str`" => "Subtask setting str",
-		"`subtask_setting_table`.`last_updated_by`" => "Last updated by",
-		"`subtask_setting_table`.`last_updated_at`" => "Last updated at",
 		"`subtask_setting_table`.`created_by`" => "Created By",
+		"`subtask_setting_table`.`last_updated_by`" => "Last Updated By",
 	];
 
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`subtask_setting_table`.`subtask_id`" => "subtask_id",
-		"`subtask_setting_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`task_setting_table1`.`task_description`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `task_setting_table1`.`task_description`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Task */" => "task_lookup",
 		"`subtask_setting_table`.`subtask_status`" => "subtask_status",
 		"`subtask_setting_table`.`subtask_description`" => "subtask_description",
@@ -94,9 +85,8 @@
 		"IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') /* Supervisor name */" => "supervisor_name",
 		"IF(    CHAR_LENGTH(`user_table3`.`memberID`) || CHAR_LENGTH(`user_table3`.`name`), CONCAT_WS('',   `user_table3`.`memberID`, '::', `user_table3`.`name`), '') /* Assigned to */" => "assigned_to",
 		"`subtask_setting_table`.`subtask_setting_str`" => "subtask_setting_str",
-		"`subtask_setting_table`.`last_updated_by`" => "last_updated_by",
-		"`subtask_setting_table`.`last_updated_at`" => "last_updated_at",
 		"`subtask_setting_table`.`created_by`" => "created_by",
+		"`subtask_setting_table`.`last_updated_by`" => "last_updated_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -132,10 +122,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Task', 'Subtask status', 'Subtask description', 'Subtask duration', 'Subtask set date', 'Supervisor name', 'Assigned to', 'Subtask setting str', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['subtask_id', 'task_lookup', 'subtask_status', 'subtask_description', 'subtask_duration', 'subtask_set_date', 'supervisor_name', 'assigned_to', 'subtask_setting_str', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Task', 'Subtask status', 'Subtask description', 'Subtask duration', 'Subtask set date', 'Supervisor name', 'Assigned to', 'Subtask setting str', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['subtask_id', 'task_lookup', 'subtask_status', 'subtask_description', 'subtask_duration', 'subtask_set_date', 'supervisor_name', 'assigned_to', 'subtask_setting_str', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/subtask_setting_table_templateTV.html';

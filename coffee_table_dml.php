@@ -16,7 +16,6 @@ function coffee_table_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'username' => parseCode('<%%creatorUsername%%>', true),
 		'cup_type' => Request::val('cup_type', 'Cup'),
 		'time' => Request::val('time', ''),
 		'date' => parseCode('<%%creationDate%%>', true, true),
@@ -220,7 +219,7 @@ function coffee_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_cup_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Cup'));
+		$combo_cup_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Cup'));
 	}
 	$combo_cup_type->Render();
 
@@ -361,7 +360,6 @@ function coffee_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(cup_type)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(time)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date)%%>', '', $templateCode);
@@ -373,8 +371,6 @@ function coffee_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(cup_type)%%>', safe_html($urow['cup_type']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(cup_type)%%>', html_attr($row['cup_type']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(cup_type)%%>', urlencode($urow['cup_type']), $templateCode);
@@ -392,8 +388,6 @@ function coffee_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(cup_type)%%>', 'Cup', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(cup_type)%%>', urlencode('Cup'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(time)%%>', '', $templateCode);

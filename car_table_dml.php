@@ -16,7 +16,6 @@ function car_table_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'username' => parseCode('<%%creatorUsername%%>', true),
 		'car_number' => Request::val('car_number', ''),
 		'registration_number' => Request::val('registration_number', ''),
 		'car_model' => Request::val('car_model', ''),
@@ -270,7 +269,7 @@ function car_table_form($selectedId = '', $allowUpdate = true, $allowInsert = tr
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_fuel_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '7' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_fuel_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '6' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
 	$combo_fuel_type->Render();
 
@@ -430,7 +429,6 @@ function car_table_form($selectedId = '', $allowUpdate = true, $allowInsert = tr
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(car_number)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(registration_number)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(car_model)%%>', '', $templateCode);
@@ -452,8 +450,6 @@ function car_table_form($selectedId = '', $allowUpdate = true, $allowInsert = tr
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(car_number)%%>', safe_html($urow['car_number']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(car_number)%%>', html_attr($row['car_number']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(car_number)%%>', urlencode($urow['car_number']), $templateCode);
@@ -500,8 +496,6 @@ function car_table_form($selectedId = '', $allowUpdate = true, $allowInsert = tr
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(car_number)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(car_number)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(registration_number)%%>', '', $templateCode);

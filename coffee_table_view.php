@@ -19,7 +19,6 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`coffee_table`.`id`" => "id",
-		"`coffee_table`.`username`" => "username",
 		"`coffee_table`.`cup_type`" => "cup_type",
 		"`coffee_table`.`time`" => "time",
 		"if(`coffee_table`.`date`,date_format(`coffee_table`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -31,18 +30,16 @@
 	$x->SortFields = [
 		1 => '`coffee_table`.`id`',
 		2 => 2,
-		3 => 3,
-		4 => '`coffee_table`.`time`',
-		5 => '`coffee_table`.`date`',
+		3 => '`coffee_table`.`time`',
+		4 => '`coffee_table`.`date`',
+		5 => 5,
 		6 => 6,
 		7 => 7,
-		8 => 8,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`coffee_table`.`id`" => "id",
-		"`coffee_table`.`username`" => "username",
 		"`coffee_table`.`cup_type`" => "cup_type",
 		"`coffee_table`.`time`" => "time",
 		"if(`coffee_table`.`date`,date_format(`coffee_table`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -53,7 +50,6 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`coffee_table`.`id`" => "ID",
-		"`coffee_table`.`username`" => "Username",
 		"`coffee_table`.`cup_type`" => "Cup Type",
 		"`coffee_table`.`time`" => "Time",
 		"`coffee_table`.`date`" => "Date",
@@ -65,7 +61,6 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`coffee_table`.`id`" => "id",
-		"`coffee_table`.`username`" => "username",
 		"`coffee_table`.`cup_type`" => "cup_type",
 		"`coffee_table`.`time`" => "time",
 		"if(`coffee_table`.`date`,date_format(`coffee_table`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -110,7 +105,7 @@
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, ];
 	$x->ColCaption = ['ID', 'Cup Type', 'Time', 'Date', 'Remarks (Optional)', 'Created By', 'Last Updated By', ];
 	$x->ColFieldName = ['id', 'cup_type', 'time', 'date', 'remarks', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/coffee_table_templateTV.html';

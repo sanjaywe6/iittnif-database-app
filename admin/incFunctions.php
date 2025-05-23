@@ -1688,13 +1688,6 @@
 							'description' => '',
 						],
 					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
-							'description' => '',
-						],
-					],
 					'approval_from' => [
 						'appgini' => "VARCHAR(255) NULL DEFAULT 'CEO'",
 						'info' => [
@@ -1823,13 +1816,6 @@
 							'description' => '',
 						],
 					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
-							'description' => '',
-						],
-					],
 					'techlead' => [
 						'appgini' => "VARCHAR(255) NULL DEFAULT 'GNSS Tech Lead'",
 						'info' => [
@@ -1941,13 +1927,6 @@
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
 							'description' => '',
 						],
 					],
@@ -2072,13 +2051,6 @@
 							'description' => '',
 						],
 					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
-							'description' => '',
-						],
-					],
 					'car_lookup' => [
 						'appgini' => "INT(10) UNSIGNED NULL",
 						'info' => [
@@ -2141,13 +2113,6 @@
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
 							'description' => '',
 						],
 					],
@@ -2216,13 +2181,6 @@
 							'description' => '',
 						],
 					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
-							'description' => '',
-						],
-					],
 					'cycle_lookup' => [
 						'appgini' => "INT(10) UNSIGNED NULL",
 						'info' => [
@@ -2288,13 +2246,6 @@
 							'description' => '',
 						],
 					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
-							'description' => '',
-						],
-					],
 					'in' => [
 						'appgini' => "TIME NULL",
 						'info' => [
@@ -2343,13 +2294,6 @@
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
 							'description' => '',
 						],
 					],
@@ -2404,13 +2348,6 @@
 							'description' => '',
 						],
 					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
-							'description' => '',
-						],
-					],
 					'type' => [
 						'appgini' => "VARCHAR(255) NULL DEFAULT 'Breakfast'",
 						'info' => [
@@ -2459,13 +2396,6 @@
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
 							'description' => '',
 						],
 					],
@@ -2534,13 +2464,6 @@
 							'description' => '',
 						],
 					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
-							'description' => '',
-						],
-					],
 					'event_lookup' => [
 						'appgini' => "INT(10) UNSIGNED NULL",
 						'info' => [
@@ -2589,13 +2512,6 @@
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
 							'description' => '',
 						],
 					],
@@ -2675,13 +2591,6 @@
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
 							'description' => '',
 						],
 					],
@@ -2771,13 +2680,6 @@
 							'description' => '',
 						],
 					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
-							'description' => '',
-						],
-					],
 					'meeting_lookup' => [
 						'appgini' => "INT(10) UNSIGNED NULL",
 						'info' => [
@@ -2819,13 +2721,6 @@
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
 							'description' => '',
 						],
 					],
@@ -2908,13 +2803,6 @@
 							'description' => '',
 						],
 					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
-							'description' => '',
-						],
-					],
 					'event_lookup' => [
 						'appgini' => "INT(10) UNSIGNED NULL",
 						'info' => [
@@ -2987,13 +2875,6 @@
 							'description' => '',
 						],
 					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
-							'description' => '',
-						],
-					],
 					'action_str' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
@@ -3035,13 +2916,6 @@
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
 							'description' => '',
 						],
 					],
@@ -3129,24 +3003,17 @@
 							'description' => '',
 						],
 					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated by',
-							'description' => '',
-						],
-					],
-					'last_updated_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated at',
-							'description' => '',
-						],
-					],
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
 							'description' => '',
 						],
 					],
@@ -3156,13 +3023,6 @@
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
 							'description' => '',
 						],
 					],
@@ -3264,24 +3124,17 @@
 							'description' => 'Maximum file size allowed: 100 KB.<br>Allowed file types: txt, doc, docx, docm, odt, pdf, rtf',
 						],
 					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated by',
-							'description' => '',
-						],
-					],
-					'last_updated_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated at',
-							'description' => '',
-						],
-					],
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
 							'description' => '',
 						],
 					],
@@ -3291,13 +3144,6 @@
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
 							'description' => '',
 						],
 					],
@@ -3329,24 +3175,17 @@
 							'description' => '',
 						],
 					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated by',
-							'description' => '',
-						],
-					],
-					'last_updated_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated at',
-							'description' => '',
-						],
-					],
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
 							'description' => '',
 						],
 					],
@@ -3356,13 +3195,6 @@
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
 							'description' => '',
 						],
 					],
@@ -3415,24 +3247,17 @@
 							'description' => '',
 						],
 					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated by',
-							'description' => '',
-						],
-					],
-					'last_updated_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated at',
-							'description' => '',
-						],
-					],
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
 							'description' => '',
 						],
 					],
@@ -3442,13 +3267,6 @@
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
 							'description' => '',
 						],
 					],
@@ -3480,13 +3298,6 @@
 							'description' => '',
 						],
 					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated by',
-							'description' => '',
-						],
-					],
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
@@ -3494,10 +3305,10 @@
 							'description' => '',
 						],
 					],
-					'last_updated_at' => [
+					'last_updated_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Last updated at',
+							'caption' => 'Last Updated By',
 							'description' => '',
 						],
 					],
@@ -3507,13 +3318,6 @@
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
 							'description' => '',
 						],
 					],
@@ -3566,24 +3370,17 @@
 							'description' => '',
 						],
 					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated by',
-							'description' => '',
-						],
-					],
-					'last_updated_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated at',
-							'description' => '',
-						],
-					],
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
 							'description' => '',
 						],
 					],
@@ -3593,13 +3390,6 @@
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
 							'description' => '',
 						],
 					],
@@ -3659,24 +3449,17 @@
 							'description' => '',
 						],
 					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated by',
-							'description' => '',
-						],
-					],
-					'last_updated_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated at',
-							'description' => '',
-						],
-					],
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
 							'description' => '',
 						],
 					],

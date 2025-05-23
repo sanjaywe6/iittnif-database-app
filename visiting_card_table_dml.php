@@ -16,7 +16,6 @@ function visiting_card_table_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'username' => parseCode('<%%creatorUsername%%>', true),
 		'name' => Request::val('name', ''),
 		'recommended_by' => Request::val('recommended_by', ''),
 		'designation' => Request::val('designation', ''),
@@ -192,8 +191,7 @@ function visiting_card_table_update(&$selected_id, &$error_message = '') {
 				return existing_value('visiting_card_table', 'back_img', $selected_id);
 			},
 		]),
-		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
-		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
+		'last_updated_by' => parseCode('<%%editorUsername%%>  <%%editingDateTime%%>', false),
 	];
 
 	// get existing values
@@ -333,9 +331,9 @@ function visiting_card_table_form($selectedId = '', $allowUpdate = true, $allowI
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_recommended_by->SelectedText = (isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_recommended_by->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 		$combo_given_by->SelectedData = $filterer_given_by;
-		$combo_suggested_way_forward->SelectedText = (isset($filterField[1]) && $filterField[1] == '11' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_suggested_way_forward->SelectedText = (isset($filterField[1]) && $filterField[1] == '10' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
 	$combo_recommended_by->Render();
 	$combo_given_by->HTML = '<span id="given_by-container' . $rnd1 . '"></span><input type="hidden" name="given_by" id="given_by' . $rnd1 . '" value="' . html_attr($combo_given_by->SelectedData) . '">';
@@ -564,7 +562,6 @@ function visiting_card_table_form($selectedId = '', $allowUpdate = true, $allowI
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(visiting_card_id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(name)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(recommended_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(designation)%%>', '', $templateCode);
@@ -587,16 +584,13 @@ function visiting_card_table_form($selectedId = '', $allowUpdate = true, $allowI
 		$templateCode = str_replace('<%%REMOVEFILE(back_img)%%>', '', $templateCode);
 	}
 	$templateCode = str_replace('<%%UPLOADFILE(visiting_card_str)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(last_updated_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(visiting_card_id)%%>', safe_html($urow['visiting_card_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(visiting_card_id)%%>', urlencode($urow['visiting_card_id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(name)%%>', safe_html($urow['name']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(name)%%>', html_attr($row['name']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(name)%%>', urlencode($urow['name']), $templateCode);
@@ -634,17 +628,13 @@ function visiting_card_table_form($selectedId = '', $allowUpdate = true, $allowI
 		$templateCode = str_replace('<%%URLVALUE(back_img)%%>', urlencode($urow['back_img']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(visiting_card_str)%%>', safe_html($urow['visiting_card_str'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(visiting_card_str)%%>', urlencode($urow['visiting_card_str']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(visiting_card_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(visiting_card_id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(name)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(name)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(recommended_by)%%>', '', $templateCode);
@@ -667,12 +657,10 @@ function visiting_card_table_form($selectedId = '', $allowUpdate = true, $allowI
 		$templateCode = str_replace('<%%VALUE(back_img)%%>', 'blank.gif', $templateCode);
 		$templateCode = str_replace('<%%VALUE(visiting_card_str)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(visiting_card_str)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', '<%%editingDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode('<%%editingDateTime%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>  <%%creationDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>  <%%creationDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>  <%%editingDateTime%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>  <%%editingDateTime%%>'), $templateCode);
 	}
 
 	// process translations

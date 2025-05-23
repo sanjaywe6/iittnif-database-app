@@ -58,25 +58,58 @@
 		setupTable('action_actor', []);
 		setupIndexes('action_actor', ['actor',]);
 
-		setupTable('visiting_card_table', []);
+		setupTable('visiting_card_table', [
+				"ALTER TABLE `visiting_card_table` DROP `last_updated_by`",
+				"ALTER TABLE `visiting_card_table` DROP `last_updated_at`",
+				"ALTER TABLE `visiting_card_table` ADD `last_updated_by` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('visiting_card_table', ['given_by',]);
 
-		setupTable('mou_details_table', []);
+		setupTable('mou_details_table', [
+				"ALTER TABLE `mou_details_table` DROP `last_updated_by`",
+				"ALTER TABLE `mou_details_table` DROP `last_updated_at`",
+				"ALTER TABLE `mou_details_table` ADD `last_updated_by` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('mou_details_table', ['assigned_mou_to',]);
 
-		setupTable('mou_company_area_details_table', []);
+		setupTable('mou_company_area_details_table', [
+				"ALTER TABLE `mou_company_area_details_table` DROP `last_updated_by`",
+				"ALTER TABLE `mou_company_area_details_table` DROP `last_updated_at`",
+				"ALTER TABLE `mou_company_area_details_table` DROP `username`",
+				"ALTER TABLE `mou_company_area_details_table` ADD `last_updated_by` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('mou_company_area_details_table', ['name_of_the_company','assigned_mou_to',]);
 
-		setupTable('goal_setting_table', []);
+		setupTable('goal_setting_table', [
+				"ALTER TABLE `goal_setting_table` DROP `username`",
+				"ALTER TABLE `goal_setting_table` DROP `last_updated_by`",
+				"ALTER TABLE `goal_setting_table` DROP `last_updated_at`",
+				"ALTER TABLE `goal_setting_table` ADD `last_updated_by` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('goal_setting_table', ['supervisor_name','assigned_to',]);
 
-		setupTable('goal_progress_table', []);
+		setupTable('goal_progress_table', [
+				"ALTER TABLE `goal_progress_table` DROP `last_updated_by`",
+				"ALTER TABLE `goal_progress_table` DROP `last_updated_at`",
+				"ALTER TABLE `goal_progress_table` DROP `username`",
+				"ALTER TABLE `goal_progress_table` ADD `last_updated_by` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('goal_progress_table', ['goal_lookup','remarks_by',]);
 
-		setupTable('task_setting_table', []);
+		setupTable('task_setting_table', [
+				"ALTER TABLE `task_setting_table` DROP `username`",
+				"ALTER TABLE `task_setting_table` DROP `last_updated_by`",
+				"ALTER TABLE `task_setting_table` DROP `last_updated_at`",
+				"ALTER TABLE `task_setting_table` ADD `last_updated_by` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('task_setting_table', ['supervisor_name','assigned_to',]);
 
-		setupTable('subtask_setting_table', []);
+		setupTable('subtask_setting_table', [
+				"ALTER TABLE `subtask_setting_table` DROP `username`",
+				"ALTER TABLE `subtask_setting_table` DROP `last_updated_by`",
+				"ALTER TABLE `subtask_setting_table` DROP `last_updated_at`",
+				"ALTER TABLE `subtask_setting_table` ADD `last_updated_by` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('subtask_setting_table', ['task_lookup','supervisor_name','assigned_to',]);
 
 		setupTable('internship_fellowship_details_app', []);

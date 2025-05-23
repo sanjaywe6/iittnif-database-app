@@ -19,7 +19,6 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`agenda_table`.`agenda_id`" => "agenda_id",
-		"`agenda_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') /* Meeting */" => "meeting_lookup",
 		"`agenda_table`.`agenda_description`" => "agenda_description",
 		"`agenda_table`.`agenda_str`" => "agenda_str",
@@ -29,18 +28,16 @@
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
 		1 => '`agenda_table`.`agenda_id`',
-		2 => 2,
-		3 => '`meetings_table1`.`meeting_str`',
+		2 => '`meetings_table1`.`meeting_str`',
+		3 => 3,
 		4 => 4,
 		5 => 5,
 		6 => 6,
-		7 => 7,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`agenda_table`.`agenda_id`" => "agenda_id",
-		"`agenda_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') /* Meeting */" => "meeting_lookup",
 		"`agenda_table`.`agenda_description`" => "agenda_description",
 		"`agenda_table`.`agenda_str`" => "agenda_str",
@@ -50,7 +47,6 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`agenda_table`.`agenda_id`" => "ID",
-		"`agenda_table`.`username`" => "Username",
 		"IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') /* Meeting */" => "Meeting",
 		"`agenda_table`.`agenda_description`" => "Agenda description",
 		"`agenda_table`.`agenda_str`" => "Agenda str",
@@ -61,7 +57,6 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`agenda_table`.`agenda_id`" => "agenda_id",
-		"`agenda_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`meetings_table1`.`meeting_str`), CONCAT_WS('',   `meetings_table1`.`meeting_str`), '') /* Meeting */" => "meeting_lookup",
 		"`agenda_table`.`agenda_description`" => "agenda_description",
 		"`agenda_table`.`agenda_str`" => "agenda_str",
@@ -103,7 +98,7 @@
 	$x->ColWidth = [150, 150, 150, 150, 150, ];
 	$x->ColCaption = ['ID', 'Meeting', 'Agenda description', 'Created By', 'Last Updated By', ];
 	$x->ColFieldName = ['agenda_id', 'meeting_lookup', 'agenda_description', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 3, 4, 6, 7, ];
+	$x->ColNumber  = [1, 2, 3, 5, 6, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/agenda_table_templateTV.html';

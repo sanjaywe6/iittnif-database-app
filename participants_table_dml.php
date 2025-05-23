@@ -26,7 +26,6 @@ function participants_table_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'username' => parseCode('<%%creatorUsername%%>', true),
 		'name' => Request::val('name', ''),
 		'designation' => Request::val('designation', ''),
 		'participant_type' => Request::val('participant_type', ''),
@@ -269,8 +268,8 @@ function participants_table_form($selectedId = '', $allowUpdate = true, $allowIn
 		$filterValue = Request::val('FilterValue');
 		$combo_event_lookup->SelectedData = $filterer_event_lookup;
 		$combo_meeting_lookup->SelectedData = $filterer_meeting_lookup;
-		$combo_participant_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '7' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_accepted_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '8' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_participant_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '6' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_accepted_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '7' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
 	$combo_event_lookup->HTML = '<span id="event_lookup-container' . $rnd1 . '"></span><input type="hidden" name="event_lookup" id="event_lookup' . $rnd1 . '" value="' . html_attr($combo_event_lookup->SelectedData) . '">';
 	$combo_event_lookup->MatchText = '<span id="event_lookup-container-readonly' . $rnd1 . '"></span><input type="hidden" name="event_lookup" id="event_lookup' . $rnd1 . '" value="' . html_attr($combo_event_lookup->SelectedData) . '">';
@@ -584,7 +583,6 @@ function participants_table_form($selectedId = '', $allowUpdate = true, $allowIn
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(participants_id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(event_lookup)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(meeting_lookup)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(name)%%>', '', $templateCode);
@@ -599,8 +597,6 @@ function participants_table_form($selectedId = '', $allowUpdate = true, $allowIn
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(participants_id)%%>', safe_html($urow['participants_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(participants_id)%%>', urlencode($urow['participants_id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(event_lookup)%%>', safe_html($urow['event_lookup']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(event_lookup)%%>', urlencode($urow['event_lookup']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(meeting_lookup)%%>', safe_html($urow['meeting_lookup']), $templateCode);
@@ -626,8 +622,6 @@ function participants_table_form($selectedId = '', $allowUpdate = true, $allowIn
 	} else {
 		$templateCode = str_replace('<%%VALUE(participants_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(participants_id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(event_lookup)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(event_lookup)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(meeting_lookup)%%>', '', $templateCode);
@@ -686,9 +680,9 @@ function participants_table_form($selectedId = '', $allowUpdate = true, $allowIn
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
-	if(isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>')
+	if(isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>')
 		$templateCode.="\n<input type=hidden name=event_lookup value=\"" . html_attr($filterValue[1]) . "\">\n";
-	if(isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>')
+	if(isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>')
 		$templateCode.="\n<input type=hidden name=meeting_lookup value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery

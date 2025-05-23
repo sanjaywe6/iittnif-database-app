@@ -19,7 +19,6 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`decision_table`.`decision_id`" => "decision_id",
-		"`decision_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`agenda_table1`.`agenda_str`), CONCAT_WS('',   `agenda_table1`.`agenda_str`), '') /* Agenda of Meeting */" => "agenda_lookup",
 		"`decision_table`.`decision_description`" => "decision_description",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Decision actor */" => "decision_actor",
@@ -34,23 +33,21 @@
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
 		1 => '`decision_table`.`decision_id`',
-		2 => 2,
-		3 => '`agenda_table1`.`agenda_str`',
+		2 => '`agenda_table1`.`agenda_str`',
+		3 => 3,
 		4 => 4,
-		5 => 5,
-		6 => '`decision_table`.`action_taken_with_date`',
-		7 => 7,
-		8 => '`decision_table`.`decision_status_update_date`',
+		5 => '`decision_table`.`action_taken_with_date`',
+		6 => 6,
+		7 => '`decision_table`.`decision_status_update_date`',
+		8 => 8,
 		9 => 9,
 		10 => 10,
 		11 => 11,
-		12 => 12,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`decision_table`.`decision_id`" => "decision_id",
-		"`decision_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`agenda_table1`.`agenda_str`), CONCAT_WS('',   `agenda_table1`.`agenda_str`), '') /* Agenda of Meeting */" => "agenda_lookup",
 		"`decision_table`.`decision_description`" => "decision_description",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Decision actor */" => "decision_actor",
@@ -65,7 +62,6 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`decision_table`.`decision_id`" => "ID",
-		"`decision_table`.`username`" => "Username",
 		"IF(    CHAR_LENGTH(`agenda_table1`.`agenda_str`), CONCAT_WS('',   `agenda_table1`.`agenda_str`), '') /* Agenda of Meeting */" => "Agenda of Meeting",
 		"`decision_table`.`decision_description`" => "Decision description",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Decision actor */" => "Decision actor",
@@ -81,7 +77,6 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`decision_table`.`decision_id`" => "decision_id",
-		"`decision_table`.`username`" => "username",
 		"IF(    CHAR_LENGTH(`agenda_table1`.`agenda_str`), CONCAT_WS('',   `agenda_table1`.`agenda_str`), '') /* Agenda of Meeting */" => "agenda_lookup",
 		"`decision_table`.`decision_description`" => "decision_description",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Decision actor */" => "decision_actor",
@@ -130,7 +125,7 @@
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
 	$x->ColCaption = ['ID', 'Agenda of Meeting', 'Decision description', 'Decision actor', 'Action taken with date', 'Decision status', 'Decision status update date', 'Decision status remarks by superior', 'Created By', 'Last Updated By', ];
 	$x->ColFieldName = ['decision_id', 'agenda_lookup', 'decision_description', 'decision_actor', 'action_taken_with_date', 'decision_status', 'decision_status_update_date', 'decision_status_remarks_by_superior', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 11, 12, ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/decision_table_templateTV.html';

@@ -19,7 +19,6 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`action_actor`.`actor_ID`" => "actor_ID",
-		"`action_actor`.`username`" => "username",
 		"`action_actor`.`action_str`" => "action_str",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Actor */" => "actor",
 		"`action_actor`.`action_status`" => "action_status",
@@ -34,13 +33,11 @@
 		4 => 4,
 		5 => 5,
 		6 => 6,
-		7 => 7,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`action_actor`.`actor_ID`" => "actor_ID",
-		"`action_actor`.`username`" => "username",
 		"`action_actor`.`action_str`" => "action_str",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Actor */" => "actor",
 		"`action_actor`.`action_status`" => "action_status",
@@ -50,7 +47,6 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`action_actor`.`actor_ID`" => "ID",
-		"`action_actor`.`username`" => "Username",
 		"`action_actor`.`action_str`" => "Action str",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Actor */" => "Actor",
 		"`action_actor`.`action_status`" => "Action status",
@@ -61,7 +57,6 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`action_actor`.`actor_ID`" => "actor_ID",
-		"`action_actor`.`username`" => "username",
 		"`action_actor`.`action_str`" => "action_str",
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Actor */" => "actor",
 		"`action_actor`.`action_status`" => "action_status",
@@ -105,7 +100,7 @@
 	$x->ColWidth = [150, 150, 150, 150, 150, ];
 	$x->ColCaption = ['ID', 'Actor', 'Action status', 'Created By', 'Last Updated By', ];
 	$x->ColFieldName = ['actor_ID', 'actor', 'action_status', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 4, 5, 6, 7, ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/action_actor_templateTV.html';

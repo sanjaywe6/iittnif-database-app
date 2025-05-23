@@ -21,7 +21,6 @@ function outcomes_expected_table_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'username' => parseCode('<%%creatorUsername%%>', true),
 		'target_audience' => Request::val('target_audience', ''),
 		'expected_outcomes' => br2nl(Request::val('expected_outcomes', '')),
 		'created_by' => parseCode('<%%creatorUsername%%>  <%%creationDateTime%%>', true),
@@ -439,7 +438,6 @@ function outcomes_expected_table_form($selectedId = '', $allowUpdate = true, $al
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(outcomes_expected_id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(event_lookup)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(target_audience)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(expected_outcomes)%%>', '', $templateCode);
@@ -451,8 +449,6 @@ function outcomes_expected_table_form($selectedId = '', $allowUpdate = true, $al
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(outcomes_expected_id)%%>', safe_html($urow['outcomes_expected_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(outcomes_expected_id)%%>', urlencode($urow['outcomes_expected_id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(event_lookup)%%>', safe_html($urow['event_lookup']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(event_lookup)%%>', urlencode($urow['event_lookup']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(target_audience)%%>', safe_html($urow['target_audience']), $templateCode);
@@ -469,8 +465,6 @@ function outcomes_expected_table_form($selectedId = '', $allowUpdate = true, $al
 	} else {
 		$templateCode = str_replace('<%%VALUE(outcomes_expected_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(outcomes_expected_id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(event_lookup)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(event_lookup)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(target_audience)%%>', '', $templateCode);
@@ -523,7 +517,7 @@ function outcomes_expected_table_form($selectedId = '', $allowUpdate = true, $al
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
-	if(isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>')
+	if(isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>')
 		$templateCode.="\n<input type=hidden name=event_lookup value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery

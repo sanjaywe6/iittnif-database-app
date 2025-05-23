@@ -16,7 +16,6 @@ function gym_table_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'username' => parseCode('<%%creatorUsername%%>', true),
 		'in' => Request::val('in', ''),
 		'out' => Request::val('out', ''),
 		'date' => parseCode('<%%creationDate%%>', true, true),
@@ -342,7 +341,6 @@ function gym_table_form($selectedId = '', $allowUpdate = true, $allowInsert = tr
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(in)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(out)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date)%%>', '', $templateCode);
@@ -354,8 +352,6 @@ function gym_table_form($selectedId = '', $allowUpdate = true, $allowInsert = tr
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(in)%%>', safe_html($urow['in']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(in)%%>', html_attr($row['in']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(in)%%>', urlencode($urow['in']), $templateCode);
@@ -373,8 +369,6 @@ function gym_table_form($selectedId = '', $allowUpdate = true, $allowInsert = tr
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(in)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(in)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(out)%%>', '', $templateCode);

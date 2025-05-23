@@ -19,7 +19,6 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`gym_table`.`id`" => "id",
-		"`gym_table`.`username`" => "username",
 		"`gym_table`.`in`" => "in",
 		"`gym_table`.`out`" => "out",
 		"if(`gym_table`.`date`,date_format(`gym_table`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -30,19 +29,17 @@
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
 		1 => '`gym_table`.`id`',
-		2 => 2,
-		3 => '`gym_table`.`in`',
-		4 => '`gym_table`.`out`',
-		5 => '`gym_table`.`date`',
+		2 => '`gym_table`.`in`',
+		3 => '`gym_table`.`out`',
+		4 => '`gym_table`.`date`',
+		5 => 5,
 		6 => 6,
 		7 => 7,
-		8 => 8,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`gym_table`.`id`" => "id",
-		"`gym_table`.`username`" => "username",
 		"`gym_table`.`in`" => "in",
 		"`gym_table`.`out`" => "out",
 		"if(`gym_table`.`date`,date_format(`gym_table`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -53,7 +50,6 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`gym_table`.`id`" => "ID",
-		"`gym_table`.`username`" => "Username",
 		"`gym_table`.`in`" => "In Time",
 		"`gym_table`.`out`" => "Out Time",
 		"`gym_table`.`date`" => "Date",
@@ -65,7 +61,6 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`gym_table`.`id`" => "id",
-		"`gym_table`.`username`" => "username",
 		"`gym_table`.`in`" => "in",
 		"`gym_table`.`out`" => "out",
 		"if(`gym_table`.`date`,date_format(`gym_table`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -110,7 +105,7 @@
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, ];
 	$x->ColCaption = ['ID', 'In Time', 'Out Time', 'Date', 'Remarks (Optional)', 'Created By', 'Last Updated By', ];
 	$x->ColFieldName = ['id', 'in', 'out', 'date', 'remarks', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/gym_table_templateTV.html';

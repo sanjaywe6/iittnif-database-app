@@ -191,6 +191,9 @@
 		setupTable('r_and_d_monthly_progress_app', []);
 		setupIndexes('r_and_d_monthly_progress_app', ['r_and_d_lookup',]);
 
+		setupTable('r_and_d_quarterly_progress_app', []);
+		setupIndexes('r_and_d_quarterly_progress_app', ['r_and_d_lookup',]);
+
 		setupTable('panel_decision_table_tdp', []);
 
 		setupTable('selected_proposals_final_tdp', []);

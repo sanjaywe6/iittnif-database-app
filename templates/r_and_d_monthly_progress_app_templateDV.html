@@ -22,9 +22,12 @@
 				<!-- Field: R and D Progress Details -->
 				<div class="form-group r_and_d_monthly_progress_app-r_and_d_lookup">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="r_and_d_lookup" data-parent_link="view_parent_modal">R and D Progress Details</label>
+					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">R and D Progress Details</label>
 					<div class="col-lg-9">
-						<div class="lookup-flex"><%%COMBO(r_and_d_lookup)%%><%%PLINK(r_and_d_lookup)%%><%%ADDNEW(r_and_d_progress)%%></div>
+						<div class="form-control-static">
+							<span id="r_and_d_lookup-readonly"><%%COMBOTEXT(r_and_d_lookup)%%></span>
+							<%%PLINK(r_and_d_lookup)%%>
+						</div>
 					</div>
 				</div>
 
@@ -126,7 +129,7 @@
 			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
 				AppGini.once({
 					condition: function() {
-						return $j('.form-group.r_and_d_monthly_progress_app-r_and_d_lookup')
+						return $j('.form-group.r_and_d_monthly_progress_app-month_year')
 									.find('.nicEdit-main, .select2-container, input[type=radio]')
 									.length > 0
 								// or read-only DV
@@ -135,7 +138,7 @@
 					action: function() {
 						$j('#r_and_d_monthly_progress_app_dv_container-loading').addClass('hidden');
 						$j('#r_and_d_monthly_progress_app_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('r_and_d_monthly_progress_app', 'r_and_d_lookup');
+						AppGini.focusFormElement('r_and_d_monthly_progress_app', 'month_year');
 					},
 					timeout:  5000,
 					doActionOnTimeout:  true

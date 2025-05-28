@@ -1,0 +1,17 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the r_and_d_quarterly_progress_app_init() hook (in hooks/r_and_d_quarterly_progress_app.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="r_and_d_quarterly_progress_app-id-<%%VALUE(id)%%>" class="r_and_d_quarterly_progress_app-id text-right text-bold"><%%VALUE(id)%%></td>
+		<td id="r_and_d_quarterly_progress_app-r_and_d_lookup-<%%VALUE(id)%%>" class="r_and_d_quarterly_progress_app-r_and_d_lookup text-bold"><%%VALUE(r_and_d_lookup)%%></td>
+		<td id="r_and_d_quarterly_progress_app-date-<%%VALUE(id)%%>" class="r_and_d_quarterly_progress_app-date text-bold"><%%VALUE(date)%%></td>
+		<td id="r_and_d_quarterly_progress_app-attendees-<%%VALUE(id)%%>" class="r_and_d_quarterly_progress_app-attendees text-bold"><%%VALUE(attendees)%%></td>
+		<td id="r_and_d_quarterly_progress_app-minutes-<%%VALUE(id)%%>" class="r_and_d_quarterly_progress_app-minutes text-bold"><%%VALUE(minutes)%%></td>
+		<td id="r_and_d_quarterly_progress_app-Tech_Mgr_Remarks-<%%VALUE(id)%%>" class="r_and_d_quarterly_progress_app-Tech_Mgr_Remarks text-bold"><%%VALUE(Tech_Mgr_Remarks)%%></td>
+		<td id="r_and_d_quarterly_progress_app-ceo_remarks-<%%VALUE(id)%%>" class="r_and_d_quarterly_progress_app-ceo_remarks text-bold"><%%VALUE(ceo_remarks)%%></td>
+		<td id="r_and_d_quarterly_progress_app-pd_remarks-<%%VALUE(id)%%>" class="r_and_d_quarterly_progress_app-pd_remarks text-bold"><%%VALUE(pd_remarks)%%></td>
+		<td id="r_and_d_quarterly_progress_app-created_by-<%%VALUE(id)%%>" class="r_and_d_quarterly_progress_app-created_by text-bold"><%%VALUE(created_by)%%></td>
+		<td id="r_and_d_quarterly_progress_app-last_updated_by-<%%VALUE(id)%%>" class="r_and_d_quarterly_progress_app-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>

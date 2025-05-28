@@ -622,6 +622,13 @@
 					'group' => $tg[6],
 					'homepageShowCount' => 0
 				],
+				'r_and_d_quarterly_progress_app' => [
+					'Caption' => 'Quarterly Progress App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[6],
+					'homepageShowCount' => 0
+				],
 				'panel_decision_table_tdp' => [
 					'Caption' => 'Panel Decision App',
 					'Description' => '',
@@ -794,6 +801,7 @@
 			'travel_local_commute_table' => ['Local Commute - App', '', 'table.gif', 'Transport Apps'],
 			'r_and_d_progress' => ['R and D Progress - App', '', 'table.gif', 'Technology Development Apps'],
 			'r_and_d_monthly_progress_app' => ['Monthly Progress App', '', 'table.gif', 'Technology Development Apps'],
+			'r_and_d_quarterly_progress_app' => ['Quarterly Progress App', '', 'table.gif', 'Technology Development Apps'],
 			'panel_decision_table_tdp' => ['Panel Decision App', '', 'table.gif', 'Technology Development Apps'],
 			'selected_proposals_final_tdp' => ['Selected proposals final - App', '', 'table.gif', 'Technology Development Apps'],
 			'stage_wise_budget_table_tdp' => ['Stage wise budget - App', '', 'table.gif', 'Technology Development Apps'],
@@ -8709,6 +8717,78 @@
 						],
 					],
 				],
+				'r_and_d_quarterly_progress_app' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'r_and_d_lookup' => [
+						'appgini' => "INT(10) UNSIGNED NULL",
+						'info' => [
+							'caption' => 'R and D Progress Details',
+							'description' => '',
+						],
+					],
+					'date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Date',
+							'description' => '',
+						],
+					],
+					'attendees' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Attendees',
+							'description' => '',
+						],
+					],
+					'minutes' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Minutes',
+							'description' => '',
+						],
+					],
+					'Tech_Mgr_Remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Tech-Mgr Remarks',
+							'description' => '',
+						],
+					],
+					'ceo_remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Ceo remarks',
+							'description' => '',
+						],
+					],
+					'pd_remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'PD\'s Remarks',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+				],
 				'panel_decision_table_tdp' => [
 					'panel_decision_id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
@@ -11344,6 +11424,9 @@
 			'r_and_d_monthly_progress_app' => [
 				'r_and_d_progress' => ['r_and_d_lookup'],
 			],
+			'r_and_d_quarterly_progress_app' => [
+				'r_and_d_progress' => ['r_and_d_lookup'],
+			],
 			'selected_proposals_final_tdp' => [
 				'panel_decision_table_tdp' => ['project_id'],
 			],
@@ -11486,6 +11569,7 @@
 			'travel_local_commute_table' => [],
 			'r_and_d_progress' => [],
 			'r_and_d_monthly_progress_app' => [],
+			'r_and_d_quarterly_progress_app' => [],
 			'panel_decision_table_tdp' => [],
 			'selected_proposals_final_tdp' => [],
 			'stage_wise_budget_table_tdp' => [],
@@ -11820,6 +11904,9 @@
 			'r_and_d_progress' => [
 			],
 			'r_and_d_monthly_progress_app' => [
+				'r_and_d_lookup' => 'SELECT `r_and_d_progress`.`id`, IF(CHAR_LENGTH(`r_and_d_progress`.`labs`) || CHAR_LENGTH(`r_and_d_progress`.`today_progress`), CONCAT_WS(\'\', `r_and_d_progress`.`labs`, \'::\', `r_and_d_progress`.`today_progress`), \'\') FROM `r_and_d_progress` ORDER BY 2',
+			],
+			'r_and_d_quarterly_progress_app' => [
 				'r_and_d_lookup' => 'SELECT `r_and_d_progress`.`id`, IF(CHAR_LENGTH(`r_and_d_progress`.`labs`) || CHAR_LENGTH(`r_and_d_progress`.`today_progress`), CONCAT_WS(\'\', `r_and_d_progress`.`labs`, \'::\', `r_and_d_progress`.`today_progress`), \'\') FROM `r_and_d_progress` ORDER BY 2',
 			],
 			'panel_decision_table_tdp' => [

@@ -1092,6 +1092,12 @@ function r_and_d_monthly_progress_app_validateData(insertMode) {
 
 	return !errors;
 }
+function r_and_d_quarterly_progress_app_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
 function panel_decision_table_tdp_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;

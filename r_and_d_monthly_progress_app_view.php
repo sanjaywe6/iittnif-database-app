@@ -114,7 +114,7 @@
 	$x->TableTitle = 'Monthly Progress App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`r_and_d_monthly_progress_app`.`id`';
-	$x->DefaultSortField = '2';
+	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];

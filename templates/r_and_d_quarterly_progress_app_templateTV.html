@@ -1,0 +1,17 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the r_and_d_quarterly_progress_app_init() hook (in hooks/r_and_d_quarterly_progress_app.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="r_and_d_quarterly_progress_app-id-<%%VALUE(id)%%>" class="r_and_d_quarterly_progress_app-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></td>
+		<td id="r_and_d_quarterly_progress_app-r_and_d_lookup-<%%VALUE(id)%%>" class="r_and_d_quarterly_progress_app-r_and_d_lookup"><%%SELECT%%><%%VALUE(r_and_d_lookup)%%><%%ENDSELECT%%></td>
+		<td id="r_and_d_quarterly_progress_app-date-<%%VALUE(id)%%>" class="r_and_d_quarterly_progress_app-date"><%%SELECT%%><%%VALUE(date)%%><%%ENDSELECT%%></td>
+		<td id="r_and_d_quarterly_progress_app-attendees-<%%VALUE(id)%%>" class="r_and_d_quarterly_progress_app-attendees"><%%SELECT%%><%%VALUE(attendees)%%><%%ENDSELECT%%></td>
+		<td id="r_and_d_quarterly_progress_app-minutes-<%%VALUE(id)%%>" class="r_and_d_quarterly_progress_app-minutes"><%%SELECT%%><%%VALUE(minutes)%%><%%ENDSELECT%%></td>
+		<td id="r_and_d_quarterly_progress_app-Tech_Mgr_Remarks-<%%VALUE(id)%%>" class="r_and_d_quarterly_progress_app-Tech_Mgr_Remarks"><%%SELECT%%><%%VALUE(Tech_Mgr_Remarks)%%><%%ENDSELECT%%></td>
+		<td id="r_and_d_quarterly_progress_app-ceo_remarks-<%%VALUE(id)%%>" class="r_and_d_quarterly_progress_app-ceo_remarks"><%%SELECT%%><%%VALUE(ceo_remarks)%%><%%ENDSELECT%%></td>
+		<td id="r_and_d_quarterly_progress_app-pd_remarks-<%%VALUE(id)%%>" class="r_and_d_quarterly_progress_app-pd_remarks"><%%SELECT%%><%%VALUE(pd_remarks)%%><%%ENDSELECT%%></td>
+		<td id="r_and_d_quarterly_progress_app-created_by-<%%VALUE(id)%%>" class="r_and_d_quarterly_progress_app-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
+		<td id="r_and_d_quarterly_progress_app-last_updated_by-<%%VALUE(id)%%>" class="r_and_d_quarterly_progress_app-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>

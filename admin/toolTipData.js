@@ -1272,40 +1272,40 @@ travel_local_commute_table_delete2Tip=["",spacer+"This option allows each member
 travel_local_commute_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Local Commute - App' table."];
 
 // r_and_d_progress table
-r_and_d_progress_addTip=["",spacer+"This option allows all members of the group to add records to the 'R and D Progress - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
+r_and_d_progress_addTip=["",spacer+"This option allows all members of the group to add records to the 'In-House R & D - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
 
-r_and_d_progress_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'R and D Progress - App' table."];
-r_and_d_progress_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'R and D Progress - App' table."];
-r_and_d_progress_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'R and D Progress - App' table."];
-r_and_d_progress_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'R and D Progress - App' table."];
+r_and_d_progress_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'In-House R & D - App' table."];
+r_and_d_progress_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'In-House R & D - App' table."];
+r_and_d_progress_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'In-House R & D - App' table."];
+r_and_d_progress_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'In-House R & D - App' table."];
 
-r_and_d_progress_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'R and D Progress - App' table."];
-r_and_d_progress_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'R and D Progress - App' table."];
-r_and_d_progress_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'R and D Progress - App' table."];
-r_and_d_progress_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'R and D Progress - App' table, regardless of their owner."];
+r_and_d_progress_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'In-House R & D - App' table."];
+r_and_d_progress_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'In-House R & D - App' table."];
+r_and_d_progress_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'In-House R & D - App' table."];
+r_and_d_progress_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'In-House R & D - App' table, regardless of their owner."];
 
-r_and_d_progress_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'R and D Progress - App' table."];
-r_and_d_progress_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'R and D Progress - App' table."];
-r_and_d_progress_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'R and D Progress - App' table."];
-r_and_d_progress_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'R and D Progress - App' table."];
+r_and_d_progress_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'In-House R & D - App' table."];
+r_and_d_progress_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'In-House R & D - App' table."];
+r_and_d_progress_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'In-House R & D - App' table."];
+r_and_d_progress_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'In-House R & D - App' table."];
 
 // panel_decision_table_tdp table
-panel_decision_table_tdp_addTip=["",spacer+"This option allows all members of the group to add records to the 'Panel Decision App' table. A member who adds a record to the table becomes the 'owner' of that record."];
+panel_decision_table_tdp_addTip=["",spacer+"This option allows all members of the group to add records to the 'All TDP (PI Based) App' table. A member who adds a record to the table becomes the 'owner' of that record."];
 
-panel_decision_table_tdp_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Panel Decision App' table."];
-panel_decision_table_tdp_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Panel Decision App' table."];
-panel_decision_table_tdp_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Panel Decision App' table."];
-panel_decision_table_tdp_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Panel Decision App' table."];
+panel_decision_table_tdp_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'All TDP (PI Based) App' table."];
+panel_decision_table_tdp_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'All TDP (PI Based) App' table."];
+panel_decision_table_tdp_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'All TDP (PI Based) App' table."];
+panel_decision_table_tdp_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'All TDP (PI Based) App' table."];
 
-panel_decision_table_tdp_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Panel Decision App' table."];
-panel_decision_table_tdp_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Panel Decision App' table."];
-panel_decision_table_tdp_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Panel Decision App' table."];
-panel_decision_table_tdp_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Panel Decision App' table, regardless of their owner."];
+panel_decision_table_tdp_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'All TDP (PI Based) App' table."];
+panel_decision_table_tdp_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'All TDP (PI Based) App' table."];
+panel_decision_table_tdp_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'All TDP (PI Based) App' table."];
+panel_decision_table_tdp_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'All TDP (PI Based) App' table, regardless of their owner."];
 
-panel_decision_table_tdp_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Panel Decision App' table."];
-panel_decision_table_tdp_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Panel Decision App' table."];
-panel_decision_table_tdp_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Panel Decision App' table."];
-panel_decision_table_tdp_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Panel Decision App' table."];
+panel_decision_table_tdp_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'All TDP (PI Based) App' table."];
+panel_decision_table_tdp_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'All TDP (PI Based) App' table."];
+panel_decision_table_tdp_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'All TDP (PI Based) App' table."];
+panel_decision_table_tdp_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'All TDP (PI Based) App' table."];
 
 // selected_proposals_final_tdp table
 selected_proposals_final_tdp_addTip=["",spacer+"This option allows all members of the group to add records to the 'Selected proposals final - App' table. A member who adds a record to the table becomes the 'owner' of that record."];

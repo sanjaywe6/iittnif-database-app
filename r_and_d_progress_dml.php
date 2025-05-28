@@ -16,7 +16,6 @@ function r_and_d_progress_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'username' => parseCode('<%%creatorUsername%%>', true),
 		'date' => parseCode('<%%creationDate%%>', true, true),
 		'labs' => Request::val('labs', ''),
 		'today_progress' => br2nl(Request::val('today_progress', '')),
@@ -101,12 +100,12 @@ function r_and_d_progress_update(&$selected_id, &$error_message = '') {
 	];
 
 	if($data['today_progress'] === '') {
-		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Today\'s Progress Done': {$Translation['field not null']}<br><br>";
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Current Week Progress': {$Translation['field not null']}<br><br>";
 		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
 		exit;
 	}
 	if($data['tomorrow_plan'] === '') {
-		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Tomorrow\'s Plan': {$Translation['field not null']}<br><br>";
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Next Week Plan': {$Translation['field not null']}<br><br>";
 		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
 		exit;
 	}
@@ -219,7 +218,7 @@ function r_and_d_progress_form($selectedId = '', $allowUpdate = true, $allowInse
 		$combo_labs->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($labs_data))));
 		$combo_labs->ListData = $combo_labs->ListItem;
 	} else {
-		$combo_labs->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("CV Lab;;GNSS Lab;;GIS Lab;;LiDAR Lab"))));
+		$combo_labs->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("CV Lab;;GNSS Lab;;GIS Lab;;LiDAR Lab;;Quantum Lab;;AI/ML Lab"))));
 		$combo_labs->ListData = $combo_labs->ListItem;
 	}
 	$combo_labs->SelectName = 'labs';
@@ -236,7 +235,7 @@ function r_and_d_progress_form($selectedId = '', $allowUpdate = true, $allowInse
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_labs->SelectedText = (isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_labs->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
 	$combo_labs->Render();
 
@@ -378,7 +377,6 @@ function r_and_d_progress_form($selectedId = '', $allowUpdate = true, $allowInse
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(labs)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(today_progress)%%>', '', $templateCode);
@@ -394,8 +392,6 @@ function r_and_d_progress_form($selectedId = '', $allowUpdate = true, $allowInse
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date)%%>', app_datetime($row['date']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date)%%>', urlencode(app_datetime($urow['date'])), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(labs)%%>', safe_html($urow['labs']), $templateCode);
@@ -420,8 +416,6 @@ function r_and_d_progress_form($selectedId = '', $allowUpdate = true, $allowInse
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date)%%>', '<%%creationDate%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date)%%>', urlencode('<%%creationDate%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(labs)%%>', '', $templateCode);

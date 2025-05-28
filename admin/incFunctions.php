@@ -609,14 +609,14 @@
 					'homepageShowCount' => 1
 				],
 				'r_and_d_progress' => [
-					'Caption' => 'R and D Progress - App',
+					'Caption' => 'In-House R & D - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[6],
 					'homepageShowCount' => 1
 				],
 				'panel_decision_table_tdp' => [
-					'Caption' => 'Panel Decision App',
+					'Caption' => 'All TDP (PI Based) App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[6],
@@ -785,8 +785,8 @@
 			'travel_table' => ['Travel - App', '', 'table.gif', 'Transport Apps'],
 			'travel_stay_table' => ['Stay Details - App', '', 'table.gif', 'Transport Apps'],
 			'travel_local_commute_table' => ['Local Commute - App', '', 'table.gif', 'Transport Apps'],
-			'r_and_d_progress' => ['R and D Progress - App', '', 'table.gif', 'Technology Development Apps'],
-			'panel_decision_table_tdp' => ['Panel Decision App', '', 'table.gif', 'Technology Development Apps'],
+			'r_and_d_progress' => ['In-House R & D - App', '', 'table.gif', 'Technology Development Apps'],
+			'panel_decision_table_tdp' => ['All TDP (PI Based) App', '', 'table.gif', 'Technology Development Apps'],
 			'selected_proposals_final_tdp' => ['Selected proposals final - App', '', 'table.gif', 'Technology Development Apps'],
 			'stage_wise_budget_table_tdp' => ['Stage wise budget - App', '', 'table.gif', 'Technology Development Apps'],
 			'first_level_shortlisted_proposals_tdp' => ['First level shortlisted proposals - App', '', 'table.gif', 'Technology Development Apps'],
@@ -8551,13 +8551,6 @@
 							'description' => '',
 						],
 					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
-							'description' => '',
-						],
-					],
 					'date' => [
 						'appgini' => "DATE NULL",
 						'info' => [
@@ -8575,14 +8568,14 @@
 					'today_progress' => [
 						'appgini' => "TEXT NOT NULL",
 						'info' => [
-							'caption' => 'Today\'s Progress Done',
+							'caption' => 'Current Week Progress',
 							'description' => '',
 						],
 					],
 					'tomorrow_plan' => [
 						'appgini' => "TEXT NOT NULL",
 						'info' => [
-							'caption' => 'Tomorrow\'s Plan',
+							'caption' => 'Next Week Plan',
 							'description' => '',
 						],
 					],

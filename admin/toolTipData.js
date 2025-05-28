@@ -1289,42 +1289,6 @@ r_and_d_progress_delete1Tip=["",spacer+"This option allows each member of the gr
 r_and_d_progress_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'R and D Progress - App' table."];
 r_and_d_progress_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'R and D Progress - App' table."];
 
-// r_and_d_monthly_progress_app table
-r_and_d_monthly_progress_app_addTip=["",spacer+"This option allows all members of the group to add records to the 'Monthly Progress App' table. A member who adds a record to the table becomes the 'owner' of that record."];
-
-r_and_d_monthly_progress_app_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Monthly Progress App' table."];
-r_and_d_monthly_progress_app_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Monthly Progress App' table."];
-r_and_d_monthly_progress_app_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Monthly Progress App' table."];
-r_and_d_monthly_progress_app_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Monthly Progress App' table."];
-
-r_and_d_monthly_progress_app_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Monthly Progress App' table."];
-r_and_d_monthly_progress_app_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Monthly Progress App' table."];
-r_and_d_monthly_progress_app_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Monthly Progress App' table."];
-r_and_d_monthly_progress_app_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Monthly Progress App' table, regardless of their owner."];
-
-r_and_d_monthly_progress_app_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Monthly Progress App' table."];
-r_and_d_monthly_progress_app_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Monthly Progress App' table."];
-r_and_d_monthly_progress_app_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Monthly Progress App' table."];
-r_and_d_monthly_progress_app_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Monthly Progress App' table."];
-
-// r_and_d_quarterly_progress_app table
-r_and_d_quarterly_progress_app_addTip=["",spacer+"This option allows all members of the group to add records to the 'Quarterly Progress App' table. A member who adds a record to the table becomes the 'owner' of that record."];
-
-r_and_d_quarterly_progress_app_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Quarterly Progress App' table."];
-r_and_d_quarterly_progress_app_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Quarterly Progress App' table."];
-r_and_d_quarterly_progress_app_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Quarterly Progress App' table."];
-r_and_d_quarterly_progress_app_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Quarterly Progress App' table."];
-
-r_and_d_quarterly_progress_app_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Quarterly Progress App' table."];
-r_and_d_quarterly_progress_app_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Quarterly Progress App' table."];
-r_and_d_quarterly_progress_app_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Quarterly Progress App' table."];
-r_and_d_quarterly_progress_app_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Quarterly Progress App' table, regardless of their owner."];
-
-r_and_d_quarterly_progress_app_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Quarterly Progress App' table."];
-r_and_d_quarterly_progress_app_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Quarterly Progress App' table."];
-r_and_d_quarterly_progress_app_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Quarterly Progress App' table."];
-r_and_d_quarterly_progress_app_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Quarterly Progress App' table."];
-
 // panel_decision_table_tdp table
 panel_decision_table_tdp_addTip=["",spacer+"This option allows all members of the group to add records to the 'Panel Decision App' table. A member who adds a record to the table becomes the 'owner' of that record."];
 
@@ -1540,6 +1504,42 @@ contact_call_log_table_delete0Tip=["",spacer+"This option prohibits all members 
 contact_call_log_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Contact Call Log - App' table."];
 contact_call_log_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Contact Call Log - App' table."];
 contact_call_log_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Contact Call Log - App' table."];
+
+// r_and_d_monthly_progress_app table
+r_and_d_monthly_progress_app_addTip=["",spacer+"This option allows all members of the group to add records to the 'Monthly Progress App' table. A member who adds a record to the table becomes the 'owner' of that record."];
+
+r_and_d_monthly_progress_app_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Monthly Progress App' table."];
+r_and_d_monthly_progress_app_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Monthly Progress App' table."];
+r_and_d_monthly_progress_app_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Monthly Progress App' table."];
+r_and_d_monthly_progress_app_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Monthly Progress App' table."];
+
+r_and_d_monthly_progress_app_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Monthly Progress App' table."];
+r_and_d_monthly_progress_app_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Monthly Progress App' table."];
+r_and_d_monthly_progress_app_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Monthly Progress App' table."];
+r_and_d_monthly_progress_app_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Monthly Progress App' table, regardless of their owner."];
+
+r_and_d_monthly_progress_app_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Monthly Progress App' table."];
+r_and_d_monthly_progress_app_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Monthly Progress App' table."];
+r_and_d_monthly_progress_app_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Monthly Progress App' table."];
+r_and_d_monthly_progress_app_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Monthly Progress App' table."];
+
+// r_and_d_quarterly_progress_app table
+r_and_d_quarterly_progress_app_addTip=["",spacer+"This option allows all members of the group to add records to the 'Quarterly Progress App' table. A member who adds a record to the table becomes the 'owner' of that record."];
+
+r_and_d_quarterly_progress_app_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Quarterly Progress App' table."];
+r_and_d_quarterly_progress_app_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Quarterly Progress App' table."];
+r_and_d_quarterly_progress_app_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Quarterly Progress App' table."];
+r_and_d_quarterly_progress_app_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Quarterly Progress App' table."];
+
+r_and_d_quarterly_progress_app_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Quarterly Progress App' table."];
+r_and_d_quarterly_progress_app_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Quarterly Progress App' table."];
+r_and_d_quarterly_progress_app_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Quarterly Progress App' table."];
+r_and_d_quarterly_progress_app_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Quarterly Progress App' table, regardless of their owner."];
+
+r_and_d_quarterly_progress_app_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Quarterly Progress App' table."];
+r_and_d_quarterly_progress_app_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Quarterly Progress App' table."];
+r_and_d_quarterly_progress_app_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Quarterly Progress App' table."];
+r_and_d_quarterly_progress_app_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Quarterly Progress App' table."];
 
 /*
 	Style syntax:

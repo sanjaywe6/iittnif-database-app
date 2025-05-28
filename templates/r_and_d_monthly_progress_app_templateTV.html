@@ -1,0 +1,17 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the r_and_d_monthly_progress_app_init() hook (in hooks/r_and_d_monthly_progress_app.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="r_and_d_monthly_progress_app-id-<%%VALUE(id)%%>" class="r_and_d_monthly_progress_app-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></td>
+		<td id="r_and_d_monthly_progress_app-r_and_d_lookup-<%%VALUE(id)%%>" class="r_and_d_monthly_progress_app-r_and_d_lookup"><%%SELECT%%><%%VALUE(r_and_d_lookup)%%><%%ENDSELECT%%></td>
+		<td id="r_and_d_monthly_progress_app-month_year-<%%VALUE(id)%%>" class="r_and_d_monthly_progress_app-month_year"><%%SELECT%%><%%VALUE(month_year)%%><%%ENDSELECT%%></td>
+		<td id="r_and_d_monthly_progress_app-Progress_Achieved-<%%VALUE(id)%%>" class="r_and_d_monthly_progress_app-Progress_Achieved"><%%SELECT%%><%%VALUE(Progress_Achieved)%%><%%ENDSELECT%%></td>
+		<td id="r_and_d_monthly_progress_app-Plan_for_Next_Month-<%%VALUE(id)%%>" class="r_and_d_monthly_progress_app-Plan_for_Next_Month"><%%SELECT%%><%%VALUE(Plan_for_Next_Month)%%><%%ENDSELECT%%></td>
+		<td id="r_and_d_monthly_progress_app-problem_suggestion-<%%VALUE(id)%%>" class="r_and_d_monthly_progress_app-problem_suggestion"><%%SELECT%%><%%VALUE(problem_suggestion)%%><%%ENDSELECT%%></td>
+		<td id="r_and_d_monthly_progress_app-ceo_remarks-<%%VALUE(id)%%>" class="r_and_d_monthly_progress_app-ceo_remarks"><%%SELECT%%><%%VALUE(ceo_remarks)%%><%%ENDSELECT%%></td>
+		<td id="r_and_d_monthly_progress_app-pd_remarks-<%%VALUE(id)%%>" class="r_and_d_monthly_progress_app-pd_remarks"><%%SELECT%%><%%VALUE(pd_remarks)%%><%%ENDSELECT%%></td>
+		<td id="r_and_d_monthly_progress_app-created_by-<%%VALUE(id)%%>" class="r_and_d_monthly_progress_app-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
+		<td id="r_and_d_monthly_progress_app-last_updated_by-<%%VALUE(id)%%>" class="r_and_d_monthly_progress_app-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>

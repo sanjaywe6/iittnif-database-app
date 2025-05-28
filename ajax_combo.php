@@ -790,6 +790,19 @@
 		],
 		'r_and_d_progress' => [
 		],
+		'r_and_d_monthly_progress_app' => [
+			'r_and_d_lookup' => [
+				'parent_table' => 'r_and_d_progress',
+				'parent_pk_field' => 'id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`r_and_d_progress`.`labs`) || CHAR_LENGTH(`r_and_d_progress`.`today_progress`), CONCAT_WS(\'\', `r_and_d_progress`.`labs`, \'::\', `r_and_d_progress`.`today_progress`), \'\')',
+				'parent_from' => '`r_and_d_progress` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
+		],
 		'panel_decision_table_tdp' => [
 		],
 		'selected_proposals_final_tdp' => [

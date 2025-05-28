@@ -16,6 +16,7 @@ function r_and_d_progress_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'username' => parseCode('<%%creatorUsername%%>', true),
 		'date' => parseCode('<%%creationDate%%>', true, true),
 		'labs' => Request::val('labs', ''),
 		'today_progress' => br2nl(Request::val('today_progress', '')),
@@ -71,6 +72,26 @@ function r_and_d_progress_delete($selected_id, $AllowDeleteOfParents = false, $s
 			);
 	}
 
+	// child table: r_and_d_monthly_progress_app
+	$res = sql("SELECT `id` FROM `r_and_d_progress` WHERE `id`='{$selected_id}'", $eo);
+	$id = db_fetch_row($res);
+	$rires = sql("SELECT COUNT(1) FROM `r_and_d_monthly_progress_app` WHERE `r_and_d_lookup`='" . makeSafe($id[0]) . "'", $eo);
+	$rirow = db_fetch_row($rires);
+	$childrenATag = '<a class="alert-link" href="r_and_d_monthly_progress_app_view.php?filterer_r_and_d_lookup=' . urlencode($id[0]) . '">%s</a>';
+	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation["couldn't delete"];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'r_and_d_monthly_progress_app'), $RetMsg);
+		return $RetMsg;
+	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation['confirm delete'];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'r_and_d_monthly_progress_app'), $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `r_and_d_progress_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `r_and_d_progress_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		return $RetMsg;
+	}
+
 	sql("DELETE FROM `r_and_d_progress` WHERE `id`='{$selected_id}'", $eo);
 
 	// hook: r_and_d_progress_after_delete
@@ -100,12 +121,12 @@ function r_and_d_progress_update(&$selected_id, &$error_message = '') {
 	];
 
 	if($data['today_progress'] === '') {
-		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Current Week Progress': {$Translation['field not null']}<br><br>";
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Today\'s Progress Done': {$Translation['field not null']}<br><br>";
 		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
 		exit;
 	}
 	if($data['tomorrow_plan'] === '') {
-		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Next Week Plan': {$Translation['field not null']}<br><br>";
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Tomorrow\'s Plan': {$Translation['field not null']}<br><br>";
 		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
 		exit;
 	}
@@ -218,7 +239,7 @@ function r_and_d_progress_form($selectedId = '', $allowUpdate = true, $allowInse
 		$combo_labs->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($labs_data))));
 		$combo_labs->ListData = $combo_labs->ListItem;
 	} else {
-		$combo_labs->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("CV Lab;;GNSS Lab;;GIS Lab;;LiDAR Lab;;Quantum Lab;;AI/ML Lab"))));
+		$combo_labs->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("CV Lab;;GNSS Lab;;GIS Lab;;LiDAR Lab"))));
 		$combo_labs->ListData = $combo_labs->ListItem;
 	}
 	$combo_labs->SelectName = 'labs';
@@ -235,7 +256,7 @@ function r_and_d_progress_form($selectedId = '', $allowUpdate = true, $allowInse
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_labs->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_labs->SelectedText = (isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
 	$combo_labs->Render();
 
@@ -377,6 +398,7 @@ function r_and_d_progress_form($selectedId = '', $allowUpdate = true, $allowInse
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(labs)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(today_progress)%%>', '', $templateCode);
@@ -392,6 +414,8 @@ function r_and_d_progress_form($selectedId = '', $allowUpdate = true, $allowInse
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date)%%>', app_datetime($row['date']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date)%%>', urlencode(app_datetime($urow['date'])), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(labs)%%>', safe_html($urow['labs']), $templateCode);
@@ -416,6 +440,8 @@ function r_and_d_progress_form($selectedId = '', $allowUpdate = true, $allowInse
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date)%%>', '<%%creationDate%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date)%%>', urlencode('<%%creationDate%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(labs)%%>', '', $templateCode);

@@ -1,17 +1,14 @@
-<!-- To change the layout of the detail view form, we recommend using JS code in hooks/r_and_d_progress-dv.js rather than editing this file -->
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/r_and_d_monthly_progress_app-dv.js rather than editing this file -->
 
 <div id="detail-view"></div>
 <div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
 
-<div id="r_and_d_progress_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+<div id="r_and_d_monthly_progress_app_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
 
-<div class="panel-body hidden" id="r_and_d_progress_dv_container">
+<div class="panel-body hidden" id="r_and_d_monthly_progress_app_dv_container">
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
-			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="r_and_d_monthly_progress_app_view.php?filterer_r_and_d_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="r_and_d_monthly_progress_app_link"><img src="table.gif"> Monthly Progress App</a>
-			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="r_and_d_monthly_progress_app_view.php?filterer_r_and_d_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_r_and_d_monthly_progress_app_link"><img src="table.gif"> Monthly Progress App</a>
-			<input type="hidden" id="r_and_d_monthly_progress_app_hclink" value="r_and_d_monthly_progress_app_view.php?filterer_r_and_d_lookup=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -19,49 +16,67 @@
 
 	<div class="row">
 		<!-- form inputs -->
-		<div class="col-md-8 col-lg-10" id="r_and_d_progress_dv_form">
+		<div class="col-md-8 col-lg-10" id="r_and_d_monthly_progress_app_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: Labs -->
-				<div class="form-group r_and_d_progress-labs">
+				<!-- Field: R and D Progress Details -->
+				<div class="form-group r_and_d_monthly_progress_app-r_and_d_lookup">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3">Labs</label>
+					<label class="control-label col-lg-3" for="r_and_d_lookup" data-parent_link="view_parent_modal">R and D Progress Details</label>
 					<div class="col-lg-9">
-						<%%COMBO(labs)%%>
+						<div class="lookup-flex"><%%COMBO(r_and_d_lookup)%%><%%PLINK(r_and_d_lookup)%%><%%ADDNEW(r_and_d_progress)%%></div>
 					</div>
 				</div>
 
-				<!-- Field: Today's Progress Done -->
-				<div class="form-group r_and_d_progress-today_progress">
+				<!-- Field: Month-Year -->
+				<div class="form-group r_and_d_monthly_progress_app-month_year">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="today_progress">Today's Progress Done<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<label class="control-label col-lg-3" for="month_year">Month-Year</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="today_progress" id="today_progress" rows=" 5"><%%VALUE(today_progress)%%></textarea>
+						<%%COMBO(month_year)%%>
 					</div>
 				</div>
 
-				<!-- Field: Tomorrow's Plan -->
-				<div class="form-group r_and_d_progress-tomorrow_plan">
+				<!-- Field: Progress Achieved -->
+				<div class="form-group r_and_d_monthly_progress_app-Progress_Achieved">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="tomorrow_plan">Tomorrow's Plan<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<label class="control-label col-lg-3" for="Progress_Achieved">Progress Achieved</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="tomorrow_plan" id="tomorrow_plan" rows=" 5"><%%VALUE(tomorrow_plan)%%></textarea>
+						<textarea class="form-control" name="Progress_Achieved" id="Progress_Achieved" rows=" 5"><%%VALUE(Progress_Achieved)%%></textarea>
 					</div>
 				</div>
 
-				<!-- Field: CEO Remarks -->
-				<div class="form-group r_and_d_progress-ceo_remarks">
+				<!-- Field: Plan for Next Month -->
+				<div class="form-group r_and_d_monthly_progress_app-Plan_for_Next_Month">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="ceo_remarks">CEO Remarks</label>
+					<label class="control-label col-lg-3" for="Plan_for_Next_Month">Plan for Next Month</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="Plan_for_Next_Month" id="Plan_for_Next_Month" rows=" 5"><%%VALUE(Plan_for_Next_Month)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Problems/Suggestion (If Any) -->
+				<div class="form-group r_and_d_monthly_progress_app-problem_suggestion">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="problem_suggestion">Problems/Suggestion (If Any)</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="problem_suggestion" id="problem_suggestion" rows=" 5"><%%VALUE(problem_suggestion)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Ceo remarks -->
+				<div class="form-group r_and_d_monthly_progress_app-ceo_remarks">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="ceo_remarks">Ceo remarks</label>
 					<div class="col-lg-9">
 						<textarea class="form-control" name="ceo_remarks" id="ceo_remarks" rows=" 5"><%%VALUE(ceo_remarks)%%></textarea>
 					</div>
 				</div>
 
-				<!-- Field: PD Remarks -->
-				<div class="form-group r_and_d_progress-pd_remarks">
+				<!-- Field: PD's Remarks -->
+				<div class="form-group r_and_d_monthly_progress_app-pd_remarks">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="pd_remarks">PD Remarks</label>
+					<label class="control-label col-lg-3" for="pd_remarks">PD's Remarks</label>
 					<div class="col-lg-9">
 						<textarea class="form-control" name="pd_remarks" id="pd_remarks" rows=" 5"><%%VALUE(pd_remarks)%%></textarea>
 					</div>
@@ -72,7 +87,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2" id="r_and_d_progress_dv_action_buttons">
+		<div class="col-md-4 col-lg-2" id="r_and_d_monthly_progress_app_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>
@@ -89,16 +104,6 @@
 		</div>
 	</div>
 
-
-	<!-- child records -->
-	<hr>
-	<div class="row">
-		<div class="col-lg-10 col-lg-offset-1">
-			<div id="r_and_d_progress-children" class="children-tabs">
-				<div class="text-center"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
-			</div>
-		</div>
-	</div>
 
 </div><!-- /div class="panel-body" -->
 	<script>
@@ -118,44 +123,30 @@
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-			$j('#r_and_d_progress_dv_container-loading').addClass('hidden');
-			$j('#r_and_d_progress_dv_container').removeClass('hidden');
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('r_and_d_progress', 'labs');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
+				AppGini.once({
+					condition: function() {
+						return $j('.form-group.r_and_d_monthly_progress_app-r_and_d_lookup')
+									.find('.nicEdit-main, .select2-container, input[type=radio]')
+									.length > 0
+								// or read-only DV
+								|| (!$j('#update').length && !$j('#insert').length);
+					},
+					action: function() {
+						$j('#r_and_d_monthly_progress_app_dv_container-loading').addClass('hidden');
+						$j('#r_and_d_monthly_progress_app_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('r_and_d_monthly_progress_app', 'r_and_d_lookup');
+					},
+					timeout:  5000,
+					doActionOnTimeout:  true
+				});
+			} else {
+				$j('#r_and_d_monthly_progress_app_dv_container-loading').addClass('hidden');
+				$j('#r_and_d_monthly_progress_app_dv_container').removeClass('hidden');
+			}
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 
-			if(embedded_mode) {
-				/* hide links to children tables in embedded mode */
-				$j('.detail_view a[id$=_link]').remove();
-
-				/* append embedded mode to all links */
-				var append_embedded = function() {
-					$j('a[href]:not([href^="#"]):not([href^="javascript"]):not([href$="Embedded=1"]):not([href*="link.php?t="]):not([href^="mailto:"]):not([href$=".jpg"]):not([href$=".png"]):not([href$=".gif"])').each(
-						function() {
-							$j(this).attr('href', $j(this).attr('href') + '&Embedded=1');
-						}
-					);
-				}
-				setTimeout(append_embedded, 500);
-				setTimeout(append_embedded, 1500);
-				setTimeout(append_embedded, 2500);
-				setTimeout(append_embedded, 3500);
-			}
-
-			/* when no record is selected ('add new' mode) */
-			if(add_new_mode) {
-				/* hide links to children tables */
-				$j('.detail_view a[id$=_link]').remove();
-			} else {
-				post(
-					'parent-children.php', {
-						ParentTable: 'r_and_d_progress',
-						SelectedID: '<%%VALUE(id)%%>',
-						Operation: 'show-children'
-					},
-					'r_and_d_progress-children'
-				);
-			}
 
 			if(true /* !embedded_mode */) {
 				$j('.add_new_parent').click(function() {
@@ -173,7 +164,7 @@
 							localStorage.removeItem(pt + '_last_added_id');
 							AppGini.lookupText({
 								id: new_id,
-								table: 'r_and_d_progress',
+								table: 'r_and_d_monthly_progress_app',
 								field: field_id,
 								callback: function(data) {
 									$j('#' + field_id + '-container').select2('data', data, true);
@@ -233,21 +224,21 @@
 				}
 			});
 
-			r_and_d_progressUniqueFields.forEach(fieldName => enforce_uniqueness('r_and_d_progress', fieldName));
+			r_and_d_monthly_progress_appUniqueFields.forEach(fieldName => enforce_uniqueness('r_and_d_monthly_progress_app', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
 				$j('body').append('<div id="admin-tools-appendix"></div>');
 				$j('#admin-tools-appendix').load(
-					'ajax_admin_tools.php?table=r_and_d_progress&id=<%%URLVALUE(id)%%>',
+					'ajax_admin_tools.php?table=r_and_d_monthly_progress_app&id=<%%URLVALUE(id)%%>',
 					function(resp) {
 						if(!resp.length) return;
-						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=r_and_d_progress&id=<%%URLVALUE(id)%%>');
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=r_and_d_monthly_progress_app&id=<%%URLVALUE(id)%%>');
 					}
 				);
 			}
 		});
 
-		var r_and_d_progressUniqueFields = [
+		var r_and_d_monthly_progress_appUniqueFields = [
 		];
 	</script>

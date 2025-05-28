@@ -171,7 +171,7 @@
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'panel_decision_table_tdp_view.php';
-	$x->TableTitle = 'All TDP (PI Based) App';
+	$x->TableTitle = 'Panel Decision App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`panel_decision_table_tdp`.`panel_decision_id`';
 	$x->DefaultSortField = '1';

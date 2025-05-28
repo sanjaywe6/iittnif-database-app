@@ -609,14 +609,21 @@
 					'homepageShowCount' => 1
 				],
 				'r_and_d_progress' => [
-					'Caption' => 'In-House R & D - App',
+					'Caption' => 'R and D Progress - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[6],
 					'homepageShowCount' => 1
 				],
+				'r_and_d_monthly_progress_app' => [
+					'Caption' => 'Monthly Progress App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[6],
+					'homepageShowCount' => 0
+				],
 				'panel_decision_table_tdp' => [
-					'Caption' => 'All TDP (PI Based) App',
+					'Caption' => 'Panel Decision App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[6],
@@ -785,8 +792,9 @@
 			'travel_table' => ['Travel - App', '', 'table.gif', 'Transport Apps'],
 			'travel_stay_table' => ['Stay Details - App', '', 'table.gif', 'Transport Apps'],
 			'travel_local_commute_table' => ['Local Commute - App', '', 'table.gif', 'Transport Apps'],
-			'r_and_d_progress' => ['In-House R & D - App', '', 'table.gif', 'Technology Development Apps'],
-			'panel_decision_table_tdp' => ['All TDP (PI Based) App', '', 'table.gif', 'Technology Development Apps'],
+			'r_and_d_progress' => ['R and D Progress - App', '', 'table.gif', 'Technology Development Apps'],
+			'r_and_d_monthly_progress_app' => ['Monthly Progress App', '', 'table.gif', 'Technology Development Apps'],
+			'panel_decision_table_tdp' => ['Panel Decision App', '', 'table.gif', 'Technology Development Apps'],
 			'selected_proposals_final_tdp' => ['Selected proposals final - App', '', 'table.gif', 'Technology Development Apps'],
 			'stage_wise_budget_table_tdp' => ['Stage wise budget - App', '', 'table.gif', 'Technology Development Apps'],
 			'first_level_shortlisted_proposals_tdp' => ['First level shortlisted proposals - App', '', 'table.gif', 'Technology Development Apps'],
@@ -8551,6 +8559,13 @@
 							'description' => '',
 						],
 					],
+					'username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Username',
+							'description' => '',
+						],
+					],
 					'date' => [
 						'appgini' => "DATE NULL",
 						'info' => [
@@ -8568,14 +8583,14 @@
 					'today_progress' => [
 						'appgini' => "TEXT NOT NULL",
 						'info' => [
-							'caption' => 'Current Week Progress',
+							'caption' => 'Today\'s Progress Done',
 							'description' => '',
 						],
 					],
 					'tomorrow_plan' => [
 						'appgini' => "TEXT NOT NULL",
 						'info' => [
-							'caption' => 'Next Week Plan',
+							'caption' => 'Tomorrow\'s Plan',
 							'description' => '',
 						],
 					],
@@ -8618,6 +8633,78 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
+				'r_and_d_monthly_progress_app' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'r_and_d_lookup' => [
+						'appgini' => "INT(10) UNSIGNED NULL",
+						'info' => [
+							'caption' => 'R and D Progress Details',
+							'description' => '',
+						],
+					],
+					'month_year' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'January-2025'",
+						'info' => [
+							'caption' => 'Month-Year',
+							'description' => '',
+						],
+					],
+					'Progress_Achieved' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Progress Achieved',
+							'description' => '',
+						],
+					],
+					'Plan_for_Next_Month' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Plan for Next Month',
+							'description' => '',
+						],
+					],
+					'problem_suggestion' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Problems/Suggestion (If Any)',
+							'description' => '',
+						],
+					],
+					'ceo_remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Ceo remarks',
+							'description' => '',
+						],
+					],
+					'pd_remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'PD\'s Remarks',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
 							'description' => '',
 						],
 					],
@@ -11254,6 +11341,9 @@
 			'honorarium_claim_table' => [
 				'user_table' => ['coordinated_by_tih_user'],
 			],
+			'r_and_d_monthly_progress_app' => [
+				'r_and_d_progress' => ['r_and_d_lookup'],
+			],
 			'selected_proposals_final_tdp' => [
 				'panel_decision_table_tdp' => ['project_id'],
 			],
@@ -11395,6 +11485,7 @@
 			'travel_stay_table' => [],
 			'travel_local_commute_table' => [],
 			'r_and_d_progress' => [],
+			'r_and_d_monthly_progress_app' => [],
 			'panel_decision_table_tdp' => [],
 			'selected_proposals_final_tdp' => [],
 			'stage_wise_budget_table_tdp' => [],
@@ -11727,6 +11818,9 @@
 			'travel_local_commute_table' => [
 			],
 			'r_and_d_progress' => [
+			],
+			'r_and_d_monthly_progress_app' => [
+				'r_and_d_lookup' => 'SELECT `r_and_d_progress`.`id`, IF(CHAR_LENGTH(`r_and_d_progress`.`labs`) || CHAR_LENGTH(`r_and_d_progress`.`today_progress`), CONCAT_WS(\'\', `r_and_d_progress`.`labs`, \'::\', `r_and_d_progress`.`today_progress`), \'\') FROM `r_and_d_progress` ORDER BY 2',
 			],
 			'panel_decision_table_tdp' => [
 			],

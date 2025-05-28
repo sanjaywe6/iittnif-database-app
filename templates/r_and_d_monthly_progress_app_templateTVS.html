@@ -1,0 +1,17 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the r_and_d_monthly_progress_app_init() hook (in hooks/r_and_d_monthly_progress_app.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="r_and_d_monthly_progress_app-id-<%%VALUE(id)%%>" class="r_and_d_monthly_progress_app-id text-right text-bold"><%%VALUE(id)%%></td>
+		<td id="r_and_d_monthly_progress_app-r_and_d_lookup-<%%VALUE(id)%%>" class="r_and_d_monthly_progress_app-r_and_d_lookup text-bold"><%%VALUE(r_and_d_lookup)%%></td>
+		<td id="r_and_d_monthly_progress_app-month_year-<%%VALUE(id)%%>" class="r_and_d_monthly_progress_app-month_year text-bold"><%%VALUE(month_year)%%></td>
+		<td id="r_and_d_monthly_progress_app-Progress_Achieved-<%%VALUE(id)%%>" class="r_and_d_monthly_progress_app-Progress_Achieved text-bold"><%%VALUE(Progress_Achieved)%%></td>
+		<td id="r_and_d_monthly_progress_app-Plan_for_Next_Month-<%%VALUE(id)%%>" class="r_and_d_monthly_progress_app-Plan_for_Next_Month text-bold"><%%VALUE(Plan_for_Next_Month)%%></td>
+		<td id="r_and_d_monthly_progress_app-problem_suggestion-<%%VALUE(id)%%>" class="r_and_d_monthly_progress_app-problem_suggestion text-bold"><%%VALUE(problem_suggestion)%%></td>
+		<td id="r_and_d_monthly_progress_app-ceo_remarks-<%%VALUE(id)%%>" class="r_and_d_monthly_progress_app-ceo_remarks text-bold"><%%VALUE(ceo_remarks)%%></td>
+		<td id="r_and_d_monthly_progress_app-pd_remarks-<%%VALUE(id)%%>" class="r_and_d_monthly_progress_app-pd_remarks text-bold"><%%VALUE(pd_remarks)%%></td>
+		<td id="r_and_d_monthly_progress_app-created_by-<%%VALUE(id)%%>" class="r_and_d_monthly_progress_app-created_by text-bold"><%%VALUE(created_by)%%></td>
+		<td id="r_and_d_monthly_progress_app-last_updated_by-<%%VALUE(id)%%>" class="r_and_d_monthly_progress_app-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>

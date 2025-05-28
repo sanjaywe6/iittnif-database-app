@@ -1071,8 +1071,8 @@ function r_and_d_progress_validateData(insertMode) {
 	// check all required fields have values
 	const reqFields = [
 		// [field-type, field-name, field-caption], ...
-		['text', 'today_progress', 'Current Week Progress'],
-		['text', 'tomorrow_plan', 'Next Week Plan'],
+		['text', 'today_progress', 'Today\'s Progress Done'],
+		['text', 'tomorrow_plan', 'Tomorrow\'s Plan'],
 	];
 
 	reqFields.map(function(rf) {
@@ -1083,6 +1083,12 @@ function r_and_d_progress_validateData(insertMode) {
 	});
 
 	if(errors) return false;
+
+	return !errors;
+}
+function r_and_d_monthly_progress_app_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
 
 	return !errors;
 }

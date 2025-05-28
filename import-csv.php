@@ -429,6 +429,11 @@
 
 			return $data;
 		},
+		'r_and_d_monthly_progress_app' => function($data, $options = []) {
+			if(isset($data['r_and_d_lookup'])) $data['r_and_d_lookup'] = pkGivenLookupText($data['r_and_d_lookup'], 'r_and_d_monthly_progress_app', 'r_and_d_lookup');
+
+			return $data;
+		},
 		'panel_decision_table_tdp' => function($data, $options = []) {
 			if(isset($data['date_of_presentation'])) $data['date_of_presentation'] = guessMySQLDateTime($data['date_of_presentation']);
 
@@ -571,6 +576,7 @@
 		'travel_stay_table' => function($data, $options = []) { return true; },
 		'travel_local_commute_table' => function($data, $options = []) { return true; },
 		'r_and_d_progress' => function($data, $options = []) { return true; },
+		'r_and_d_monthly_progress_app' => function($data, $options = []) { return true; },
 		'panel_decision_table_tdp' => function($data, $options = []) { return true; },
 		'selected_proposals_final_tdp' => function($data, $options = []) { return true; },
 		'stage_wise_budget_table_tdp' => function($data, $options = []) { return true; },

@@ -1,0 +1,78 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: R and D Progress Details -->
+		<div class="form-group r_and_d_monthly_progress_app-r_and_d_lookup" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">R and D Progress Details</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="r_and_d_lookup<%%RND1%%>"><%%COMBOTEXT(r_and_d_lookup)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Month-Year -->
+		<div class="form-group r_and_d_monthly_progress_app-month_year" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Month-Year</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(month_year)%%></div>
+			</div>
+		</div>
+		<!-- Field: Progress Achieved -->
+		<div class="form-group r_and_d_monthly_progress_app-Progress_Achieved" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Progress Achieved</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Progress_Achieved)%%></div>
+			</div>
+		</div>
+		<!-- Field: Plan for Next Month -->
+		<div class="form-group r_and_d_monthly_progress_app-Plan_for_Next_Month" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Plan for Next Month</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Plan_for_Next_Month)%%></div>
+			</div>
+		</div>
+		<!-- Field: Problems/Suggestion (If Any) -->
+		<div class="form-group r_and_d_monthly_progress_app-problem_suggestion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Problems/Suggestion (If Any)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(problem_suggestion)%%></div>
+			</div>
+		</div>
+		<!-- Field: Ceo remarks -->
+		<div class="form-group r_and_d_monthly_progress_app-ceo_remarks" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Ceo remarks</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(ceo_remarks)%%></div>
+			</div>
+		</div>
+		<!-- Field: PD's Remarks -->
+		<div class="form-group r_and_d_monthly_progress_app-pd_remarks" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">PD's Remarks</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(pd_remarks)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

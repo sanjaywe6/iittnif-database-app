@@ -1071,8 +1071,8 @@ function r_and_d_progress_validateData(insertMode) {
 	// check all required fields have values
 	const reqFields = [
 		// [field-type, field-name, field-caption], ...
-		['text', 'today_progress', 'Today\'s Progress Done'],
-		['text', 'tomorrow_plan', 'Tomorrow\'s Plan'],
+		['text', 'today_progress', 'Current Week Progress'],
+		['text', 'tomorrow_plan', 'Next Week Plan'],
 	];
 
 	reqFields.map(function(rf) {

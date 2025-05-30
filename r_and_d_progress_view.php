@@ -68,8 +68,8 @@
 		"`r_and_d_progress`.`username`" => "Username",
 		"`r_and_d_progress`.`date`" => "Date",
 		"`r_and_d_progress`.`labs`" => "Labs",
-		"`r_and_d_progress`.`today_progress`" => "Today\'s Progress Done",
-		"`r_and_d_progress`.`tomorrow_plan`" => "Tomorrow\'s Plan",
+		"`r_and_d_progress`.`today_progress`" => "Current Week Progress",
+		"`r_and_d_progress`.`tomorrow_plan`" => "Next Week Plan",
 		"`r_and_d_progress`.`ceo_remarks`" => "CEO Remarks",
 		"`r_and_d_progress`.`pd_remarks`" => "PD Remarks",
 		"`r_and_d_progress`.`created_by`" => "Created by",
@@ -121,14 +121,14 @@
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'r_and_d_progress_view.php';
-	$x->TableTitle = 'R and D Progress - App';
+	$x->TableTitle = 'Inhouse R & D App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`r_and_d_progress`.`id`';
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'Date', 'Labs', 'Today\'s Progress Done', 'Tomorrow\'s Plan', 'CEO Remarks', 'PD Remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColCaption = ['ID', 'Username', 'Date', 'Labs', 'Current Week Progress', 'Next Week Plan', 'CEO Remarks', 'PD Remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
 	$x->ColFieldName = ['id', 'username', 'date', 'labs', 'today_progress', 'tomorrow_plan', 'ceo_remarks', 'pd_remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
 	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
 

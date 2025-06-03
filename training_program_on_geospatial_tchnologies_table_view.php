@@ -48,10 +48,9 @@
 		"`training_program_on_geospatial_tchnologies_table`.`how_did_you_know`" => "how_did_you_know",
 		"`training_program_on_geospatial_tchnologies_table`.`attended_training_school`" => "attended_training_school",
 		"if(`training_program_on_geospatial_tchnologies_table`.`attended_training_date`,date_format(`training_program_on_geospatial_tchnologies_table`.`attended_training_date`,'%d/%m/%Y'),'')" => "attended_training_date",
-		"`training_program_on_geospatial_tchnologies_table`.`created_by`" => "created_by",
-		"`training_program_on_geospatial_tchnologies_table`.`created_at`" => "created_at",
 		"`training_program_on_geospatial_tchnologies_table`.`last_updated_by`" => "last_updated_by",
 		"`training_program_on_geospatial_tchnologies_table`.`last_updated_at`" => "last_updated_at",
+		"`training_program_on_geospatial_tchnologies_table`.`created_by`" => "created_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -88,7 +87,6 @@
 		31 => 31,
 		32 => 32,
 		33 => 33,
-		34 => 34,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -123,10 +121,9 @@
 		"`training_program_on_geospatial_tchnologies_table`.`how_did_you_know`" => "how_did_you_know",
 		"`training_program_on_geospatial_tchnologies_table`.`attended_training_school`" => "attended_training_school",
 		"if(`training_program_on_geospatial_tchnologies_table`.`attended_training_date`,date_format(`training_program_on_geospatial_tchnologies_table`.`attended_training_date`,'%d/%m/%Y'),'')" => "attended_training_date",
-		"`training_program_on_geospatial_tchnologies_table`.`created_by`" => "created_by",
-		"`training_program_on_geospatial_tchnologies_table`.`created_at`" => "created_at",
 		"`training_program_on_geospatial_tchnologies_table`.`last_updated_by`" => "last_updated_by",
 		"`training_program_on_geospatial_tchnologies_table`.`last_updated_at`" => "last_updated_at",
+		"`training_program_on_geospatial_tchnologies_table`.`created_by`" => "created_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -160,10 +157,9 @@
 		"`training_program_on_geospatial_tchnologies_table`.`how_did_you_know`" => "How did you know about the Training/Workshop?",
 		"`training_program_on_geospatial_tchnologies_table`.`attended_training_school`" => "Training/Workshop attended at school/Institute name.",
 		"`training_program_on_geospatial_tchnologies_table`.`attended_training_date`" => "Attended training date",
-		"`training_program_on_geospatial_tchnologies_table`.`created_by`" => "Created by",
-		"`training_program_on_geospatial_tchnologies_table`.`created_at`" => "Created at",
 		"`training_program_on_geospatial_tchnologies_table`.`last_updated_by`" => "Last updated by",
 		"`training_program_on_geospatial_tchnologies_table`.`last_updated_at`" => "Last updated at",
+		"`training_program_on_geospatial_tchnologies_table`.`created_by`" => "Created By",
 	];
 
 	// Fields that can be quick searched
@@ -198,10 +194,9 @@
 		"`training_program_on_geospatial_tchnologies_table`.`how_did_you_know`" => "how_did_you_know",
 		"`training_program_on_geospatial_tchnologies_table`.`attended_training_school`" => "attended_training_school",
 		"if(`training_program_on_geospatial_tchnologies_table`.`attended_training_date`,date_format(`training_program_on_geospatial_tchnologies_table`.`attended_training_date`,'%d/%m/%Y'),'')" => "attended_training_date",
-		"`training_program_on_geospatial_tchnologies_table`.`created_by`" => "created_by",
-		"`training_program_on_geospatial_tchnologies_table`.`created_at`" => "created_at",
 		"`training_program_on_geospatial_tchnologies_table`.`last_updated_by`" => "last_updated_by",
 		"`training_program_on_geospatial_tchnologies_table`.`last_updated_at`" => "last_updated_at",
+		"`training_program_on_geospatial_tchnologies_table`.`created_by`" => "created_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -237,10 +232,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Certificate No.', 'Datetime', 'Salutation', 'Name', 'Email id', 'Secondary email id', 'Mobile number', 'Whatsapp number', 'Gender', 'Social media link', 'Educational Qualification', 'Profession', 'School/Institute Name', 'Parent\'s Name', 'Parent\'s Contact No.', 'Parents email id', 'Residential address', 'Designation', 'Parents school name', 'Teaching subject', 'Address line 2', 'City', 'State/Region/Province', 'Zip code', 'Country', 'How did you know about the Training/Workshop?', 'Training/Workshop attended at school/Institute name.', 'Attended training date', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'certificate_number', 'datetime', 'salutation', 'name', 'email_id', 'secondary_email_id', 'mobile_number', 'whatsapp_number', 'gender', 'social_media_link', 'education_qualification', 'profession', 'school_name', 'parents_name', 'parents_contact_number', 'parents_email_id', 'residential_address', 'parents_designation', 'parents_school_name', 'teaching_subject', 'address_line_2', 'city', 'state_region_province', 'zip_code', 'country', 'how_did_you_know', 'attended_training_school', 'attended_training_date', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Certificate No.', 'Datetime', 'Salutation', 'Name', 'Email id', 'Secondary email id', 'Mobile number', 'Whatsapp number', 'Gender', 'Social media link', 'Educational Qualification', 'Profession', 'School/Institute Name', 'Parent\'s Name', 'Parent\'s Contact No.', 'Parents email id', 'Residential address', 'Designation', 'Parents school name', 'Teaching subject', 'Address line 2', 'City', 'State/Region/Province', 'Zip code', 'Country', 'How did you know about the Training/Workshop?', 'Training/Workshop attended at school/Institute name.', 'Attended training date', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['id', 'certificate_number', 'datetime', 'salutation', 'name', 'email_id', 'secondary_email_id', 'mobile_number', 'whatsapp_number', 'gender', 'social_media_link', 'education_qualification', 'profession', 'school_name', 'parents_name', 'parents_contact_number', 'parents_email_id', 'residential_address', 'parents_designation', 'parents_school_name', 'teaching_subject', 'address_line_2', 'city', 'state_region_province', 'zip_code', 'country', 'how_did_you_know', 'attended_training_school', 'attended_training_date', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/training_program_on_geospatial_tchnologies_table_templateTV.html';

@@ -29,10 +29,9 @@
 		"if(`hrd_sdp_events_table`.`end_date`,date_format(`hrd_sdp_events_table`.`end_date`,'%d/%m/%Y'),'')" => "end_date",
 		"`hrd_sdp_events_table`.`number_of_participants`" => "number_of_participants",
 		"`hrd_sdp_events_table`.`more_details`" => "more_details",
-		"`hrd_sdp_events_table`.`created_by`" => "created_by",
-		"`hrd_sdp_events_table`.`created_at`" => "created_at",
 		"`hrd_sdp_events_table`.`last_updated_by`" => "last_updated_by",
 		"`hrd_sdp_events_table`.`last_updated_at`" => "last_updated_at",
+		"`hrd_sdp_events_table`.`created_by`" => "created_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -50,7 +49,6 @@
 		12 => 12,
 		13 => 13,
 		14 => 14,
-		15 => 15,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -66,10 +64,9 @@
 		"if(`hrd_sdp_events_table`.`end_date`,date_format(`hrd_sdp_events_table`.`end_date`,'%d/%m/%Y'),'')" => "end_date",
 		"`hrd_sdp_events_table`.`number_of_participants`" => "number_of_participants",
 		"`hrd_sdp_events_table`.`more_details`" => "more_details",
-		"`hrd_sdp_events_table`.`created_by`" => "created_by",
-		"`hrd_sdp_events_table`.`created_at`" => "created_at",
 		"`hrd_sdp_events_table`.`last_updated_by`" => "last_updated_by",
 		"`hrd_sdp_events_table`.`last_updated_at`" => "last_updated_at",
+		"`hrd_sdp_events_table`.`created_by`" => "created_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -84,10 +81,9 @@
 		"`hrd_sdp_events_table`.`end_date`" => "End date",
 		"`hrd_sdp_events_table`.`number_of_participants`" => "Number of participants",
 		"`hrd_sdp_events_table`.`more_details`" => "More details",
-		"`hrd_sdp_events_table`.`created_by`" => "Created by",
-		"`hrd_sdp_events_table`.`created_at`" => "Created at",
 		"`hrd_sdp_events_table`.`last_updated_by`" => "Last updated by",
 		"`hrd_sdp_events_table`.`last_updated_at`" => "Last updated at",
+		"`hrd_sdp_events_table`.`created_by`" => "Created By",
 	];
 
 	// Fields that can be quick searched
@@ -103,10 +99,9 @@
 		"if(`hrd_sdp_events_table`.`end_date`,date_format(`hrd_sdp_events_table`.`end_date`,'%d/%m/%Y'),'')" => "end_date",
 		"`hrd_sdp_events_table`.`number_of_participants`" => "number_of_participants",
 		"`hrd_sdp_events_table`.`more_details`" => "more_details",
-		"`hrd_sdp_events_table`.`created_by`" => "created_by",
-		"`hrd_sdp_events_table`.`created_at`" => "created_at",
 		"`hrd_sdp_events_table`.`last_updated_by`" => "last_updated_by",
 		"`hrd_sdp_events_table`.`last_updated_at`" => "last_updated_at",
+		"`hrd_sdp_events_table`.`created_by`" => "created_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -142,10 +137,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Year', 'Program name', 'Topic/Area of Workshop', 'Host name', 'Location', 'Start date', 'End date', 'Number of participants', 'More details', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'year', 'program_name', 'area_of_workshop', 'host_name', 'location', 'start_date', 'end_date', 'number_of_participants', 'more_details', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Year', 'Program name', 'Topic/Area of Workshop', 'Host name', 'Location', 'Start date', 'End date', 'Number of participants', 'More details', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['id', 'year', 'program_name', 'area_of_workshop', 'host_name', 'location', 'start_date', 'end_date', 'number_of_participants', 'more_details', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/hrd_sdp_events_table_templateTV.html';

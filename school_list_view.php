@@ -26,10 +26,9 @@
 		"`school_list`.`pincode`" => "pincode",
 		"`school_list`.`school_type`" => "school_type",
 		"`school_list`.`school_phone_number`" => "school_phone_number",
-		"`school_list`.`created_by`" => "created_by",
-		"`school_list`.`created_at`" => "created_at",
 		"`school_list`.`last_updated_by`" => "last_updated_by",
 		"`school_list`.`last_updated_at`" => "last_updated_at",
+		"`school_list`.`created_by`" => "created_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -44,7 +43,6 @@
 		9 => 9,
 		10 => 10,
 		11 => 11,
-		12 => 12,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -57,10 +55,9 @@
 		"`school_list`.`pincode`" => "pincode",
 		"`school_list`.`school_type`" => "school_type",
 		"`school_list`.`school_phone_number`" => "school_phone_number",
-		"`school_list`.`created_by`" => "created_by",
-		"`school_list`.`created_at`" => "created_at",
 		"`school_list`.`last_updated_by`" => "last_updated_by",
 		"`school_list`.`last_updated_at`" => "last_updated_at",
+		"`school_list`.`created_by`" => "created_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -72,10 +69,9 @@
 		"`school_list`.`pincode`" => "Pincode",
 		"`school_list`.`school_type`" => "School type",
 		"`school_list`.`school_phone_number`" => "School phone number",
-		"`school_list`.`created_by`" => "Created by",
-		"`school_list`.`created_at`" => "Created at",
 		"`school_list`.`last_updated_by`" => "Last updated by",
 		"`school_list`.`last_updated_at`" => "Last updated at",
+		"`school_list`.`created_by`" => "Created By",
 	];
 
 	// Fields that can be quick searched
@@ -88,10 +84,9 @@
 		"`school_list`.`pincode`" => "pincode",
 		"`school_list`.`school_type`" => "school_type",
 		"`school_list`.`school_phone_number`" => "school_phone_number",
-		"`school_list`.`created_by`" => "created_by",
-		"`school_list`.`created_at`" => "created_at",
 		"`school_list`.`last_updated_by`" => "last_updated_by",
 		"`school_list`.`last_updated_at`" => "last_updated_at",
+		"`school_list`.`created_by`" => "created_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -127,10 +122,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'District name', 'School code', 'School name', 'Pincode', 'School type', 'School phone number', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'district_name', 'school_code', 'school_name', 'pincode', 'school_type', 'school_phone_number', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'District name', 'School code', 'School name', 'Pincode', 'School type', 'School phone number', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['id', 'district_name', 'school_code', 'school_name', 'pincode', 'school_type', 'school_phone_number', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/school_list_templateTV.html';

@@ -79,20 +79,48 @@
 		setupTable('subtask_setting_table', []);
 		setupIndexes('subtask_setting_table', ['task_lookup','supervisor_name','assigned_to',]);
 
-		setupTable('internship_fellowship_details_app', []);
+		setupTable('internship_fellowship_details_app', [
+				"ALTER TABLE `internship_fellowship_details_app` DROP `created_by`",
+				"ALTER TABLE `internship_fellowship_details_app` DROP `created_at`",
+				"ALTER TABLE `internship_fellowship_details_app` ADD `created_by` VARCHAR(255) NULL ",
+			]);
 
-		setupTable('star_pnt', []);
+		setupTable('star_pnt', [
+				"ALTER TABLE `star_pnt` DROP `created_by`",
+				"ALTER TABLE `star_pnt` DROP `created_at`",
+				"ALTER TABLE `star_pnt` ADD `created_by` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('star_pnt', ['iittnif_id',]);
 
-		setupTable('hrd_sdp_events_table', []);
+		setupTable('hrd_sdp_events_table', [
+				"ALTER TABLE `hrd_sdp_events_table` DROP `created_by`",
+				"ALTER TABLE `hrd_sdp_events_table` DROP `created_at`",
+				"ALTER TABLE `hrd_sdp_events_table` ADD `created_by` VARCHAR(255) NULL ",
+			]);
 
-		setupTable('training_program_on_geospatial_tchnologies_table', []);
+		setupTable('training_program_on_geospatial_tchnologies_table', [
+				"ALTER TABLE `training_program_on_geospatial_tchnologies_table` DROP `created_by`",
+				"ALTER TABLE `training_program_on_geospatial_tchnologies_table` DROP `created_at`",
+				"ALTER TABLE `training_program_on_geospatial_tchnologies_table` ADD `created_by` VARCHAR(255) NULL ",
+			]);
 
-		setupTable('space_day_school_details_app', []);
+		setupTable('space_day_school_details_app', [
+				"ALTER TABLE `space_day_school_details_app` DROP `created_by`",
+				"ALTER TABLE `space_day_school_details_app` DROP `created_at`",
+				"ALTER TABLE `space_day_school_details_app` ADD `created_by` VARCHAR(255) NULL ",
+			]);
 
-		setupTable('space_day_college_student_table', []);
+		setupTable('space_day_college_student_table', [
+				"ALTER TABLE `space_day_college_student_table` DROP `created_by`",
+				"ALTER TABLE `space_day_college_student_table` DROP `created_at`",
+				"ALTER TABLE `space_day_college_student_table` ADD `created_by` VARCHAR(255) NULL ",
+			]);
 
-		setupTable('school_list', []);
+		setupTable('school_list', [
+				"ALTER TABLE `school_list` DROP `created_by`",
+				"ALTER TABLE `school_list` DROP `created_at`",
+				"ALTER TABLE `school_list` ADD `created_by` VARCHAR(255) NULL ",
+			]);
 
 		setupTable('sdp_participants_college_details_table', []);
 

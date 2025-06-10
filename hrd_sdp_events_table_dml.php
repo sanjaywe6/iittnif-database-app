@@ -102,8 +102,7 @@ function hrd_sdp_events_table_update(&$selected_id, &$error_message = '') {
 		'end_date' => Request::dateComponents('end_date', ''),
 		'number_of_participants' => Request::val('number_of_participants', ''),
 		'more_details' => Request::val('more_details', ''),
-		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
-		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
+		'last_updated_by' => parseCode('<%%editorUsername%%>  <%%editingDateTime%%>', false),
 	];
 
 	// get existing values
@@ -386,9 +385,8 @@ function hrd_sdp_events_table_form($selectedId = '', $allowUpdate = true, $allow
 	$templateCode = str_replace('<%%UPLOADFILE(end_date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(number_of_participants)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(more_details)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(last_updated_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
@@ -420,12 +418,10 @@ function hrd_sdp_events_table_form($selectedId = '', $allowUpdate = true, $allow
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(more_details)%%>', safe_html($urow['more_details']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(more_details)%%>', html_attr($row['more_details']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(more_details)%%>', urlencode($urow['more_details']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
@@ -449,12 +445,10 @@ function hrd_sdp_events_table_form($selectedId = '', $allowUpdate = true, $allow
 		$templateCode = str_replace('<%%URLVALUE(number_of_participants)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(more_details)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(more_details)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', '<%%editingDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode('<%%editingDateTime%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>  <%%creationDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>  <%%creationDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>  <%%editingDateTime%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>  <%%editingDateTime%%>'), $templateCode);
 	}
 
 	// process translations

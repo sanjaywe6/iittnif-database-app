@@ -102,8 +102,7 @@ function space_day_college_student_table_update(&$selected_id, &$error_message =
 		'contact_number' => Request::val('contact_number', ''),
 		'interest' => Request::val('interest', ''),
 		'college_name' => Request::val('college_name', ''),
-		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
-		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
+		'last_updated_by' => parseCode('<%%editorUsername%%>  <%%editingDateTime%%>', false),
 	];
 
 	// get existing values
@@ -372,9 +371,8 @@ function space_day_college_student_table_form($selectedId = '', $allowUpdate = t
 	$templateCode = str_replace('<%%UPLOADFILE(contact_number)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(interest)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(college_name)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(last_updated_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
@@ -409,12 +407,10 @@ function space_day_college_student_table_form($selectedId = '', $allowUpdate = t
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(college_name)%%>', safe_html($urow['college_name']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(college_name)%%>', html_attr($row['college_name']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(college_name)%%>', urlencode($urow['college_name']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
@@ -438,12 +434,10 @@ function space_day_college_student_table_form($selectedId = '', $allowUpdate = t
 		$templateCode = str_replace('<%%URLVALUE(interest)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(college_name)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(college_name)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', '<%%editingDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode('<%%editingDateTime%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>  <%%creationDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>  <%%creationDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>  <%%editingDateTime%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>  <%%editingDateTime%%>'), $templateCode);
 	}
 
 	// process translations

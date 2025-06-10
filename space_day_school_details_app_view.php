@@ -26,9 +26,8 @@
 		"`space_day_school_details_app`.`gender`" => "gender",
 		"`space_day_school_details_app`.`class_subject`" => "class_subject",
 		"`space_day_school_details_app`.`contact_number`" => "contact_number",
-		"`space_day_school_details_app`.`last_updated_by`" => "last_updated_by",
-		"`space_day_school_details_app`.`last_updated_at`" => "last_updated_at",
 		"`space_day_school_details_app`.`created_by`" => "created_by",
+		"`space_day_school_details_app`.`last_updated_by`" => "last_updated_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -42,7 +41,6 @@
 		8 => 8,
 		9 => 9,
 		10 => 10,
-		11 => 11,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -55,9 +53,8 @@
 		"`space_day_school_details_app`.`gender`" => "gender",
 		"`space_day_school_details_app`.`class_subject`" => "class_subject",
 		"`space_day_school_details_app`.`contact_number`" => "contact_number",
-		"`space_day_school_details_app`.`last_updated_by`" => "last_updated_by",
-		"`space_day_school_details_app`.`last_updated_at`" => "last_updated_at",
 		"`space_day_school_details_app`.`created_by`" => "created_by",
+		"`space_day_school_details_app`.`last_updated_by`" => "last_updated_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -69,9 +66,8 @@
 		"`space_day_school_details_app`.`gender`" => "Gender",
 		"`space_day_school_details_app`.`class_subject`" => "Class(If student) / Subject Handled (If Teacher)",
 		"`space_day_school_details_app`.`contact_number`" => "Contact number",
-		"`space_day_school_details_app`.`last_updated_by`" => "Last updated by",
-		"`space_day_school_details_app`.`last_updated_at`" => "Last updated at",
 		"`space_day_school_details_app`.`created_by`" => "Created By",
+		"`space_day_school_details_app`.`last_updated_by`" => "Last Updated By",
 	];
 
 	// Fields that can be quick searched
@@ -84,9 +80,8 @@
 		"`space_day_school_details_app`.`gender`" => "gender",
 		"`space_day_school_details_app`.`class_subject`" => "class_subject",
 		"`space_day_school_details_app`.`contact_number`" => "contact_number",
-		"`space_day_school_details_app`.`last_updated_by`" => "last_updated_by",
-		"`space_day_school_details_app`.`last_updated_at`" => "last_updated_at",
 		"`space_day_school_details_app`.`created_by`" => "created_by",
+		"`space_day_school_details_app`.`last_updated_by`" => "last_updated_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -122,10 +117,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'School name', 'Profile type', 'Name of Student/Teacher', 'Gender', 'Class(If student) / Subject Handled (If Teacher)', 'Contact number', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['id', 'school_name', 'profile_type', 'name_of_student_teacher', 'gender', 'class_subject', 'contact_number', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'School name', 'Profile type', 'Name of Student/Teacher', 'Gender', 'Class(If student) / Subject Handled (If Teacher)', 'Contact number', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['id', 'school_name', 'profile_type', 'name_of_student_teacher', 'gender', 'class_subject', 'contact_number', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/space_day_school_details_app_templateTV.html';

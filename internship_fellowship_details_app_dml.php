@@ -140,8 +140,7 @@ function internship_fellowship_details_app_update(&$selected_id, &$error_message
 		'cotegory' => Request::val('cotegory', ''),
 		'report_link' => Request::val('report_link', ''),
 		'outcomes' => br2nl(Request::val('outcomes', '')),
-		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
-		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
+		'last_updated_by' => parseCode('<%%editorUsername%%>  <%%editingDateTime%%>', false),
 	];
 
 	// get existing values
@@ -448,9 +447,8 @@ function internship_fellowship_details_app_form($selectedId = '', $allowUpdate =
 	$templateCode = str_replace('<%%UPLOADFILE(cotegory)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(report_link)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(outcomes)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(last_updated_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
@@ -510,12 +508,10 @@ function internship_fellowship_details_app_form($selectedId = '', $allowUpdate =
 		$templateCode = str_replace('<%%URLVALUE(report_link)%%>', urlencode($urow['report_link']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(outcomes)%%>', safe_html($urow['outcomes'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(outcomes)%%>', urlencode($urow['outcomes']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
@@ -557,12 +553,10 @@ function internship_fellowship_details_app_form($selectedId = '', $allowUpdate =
 		$templateCode = str_replace('<%%URLVALUE(report_link)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(outcomes)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(outcomes)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', '<%%editingDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode('<%%editingDateTime%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>  <%%creationDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>  <%%creationDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>  <%%editingDateTime%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>  <%%editingDateTime%%>'), $templateCode);
 	}
 
 	// process translations

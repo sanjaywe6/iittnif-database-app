@@ -26,9 +26,8 @@
 		"`star_pnt`.`workspace`" => "workspace",
 		"`star_pnt`.`year_and_department`" => "year_and_department",
 		"`star_pnt`.`project_title`" => "project_title",
-		"`star_pnt`.`last_updated_by`" => "last_updated_by",
-		"`star_pnt`.`last_updated_at`" => "last_updated_at",
 		"`star_pnt`.`created_by`" => "created_by",
+		"`star_pnt`.`last_updated_by`" => "last_updated_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -42,7 +41,6 @@
 		8 => 8,
 		9 => 9,
 		10 => 10,
-		11 => 11,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -55,9 +53,8 @@
 		"`star_pnt`.`workspace`" => "workspace",
 		"`star_pnt`.`year_and_department`" => "year_and_department",
 		"`star_pnt`.`project_title`" => "project_title",
-		"`star_pnt`.`last_updated_by`" => "last_updated_by",
-		"`star_pnt`.`last_updated_at`" => "last_updated_at",
 		"`star_pnt`.`created_by`" => "created_by",
+		"`star_pnt`.`last_updated_by`" => "last_updated_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -69,9 +66,8 @@
 		"`star_pnt`.`workspace`" => "Workspace",
 		"`star_pnt`.`year_and_department`" => "Year and department",
 		"`star_pnt`.`project_title`" => "Project title",
-		"`star_pnt`.`last_updated_by`" => "Last updated by",
-		"`star_pnt`.`last_updated_at`" => "Last updated at",
 		"`star_pnt`.`created_by`" => "Created By",
+		"`star_pnt`.`last_updated_by`" => "Last Updated By",
 	];
 
 	// Fields that can be quick searched
@@ -84,9 +80,8 @@
 		"`star_pnt`.`workspace`" => "workspace",
 		"`star_pnt`.`year_and_department`" => "year_and_department",
 		"`star_pnt`.`project_title`" => "project_title",
-		"`star_pnt`.`last_updated_by`" => "last_updated_by",
-		"`star_pnt`.`last_updated_at`" => "last_updated_at",
 		"`star_pnt`.`created_by`" => "created_by",
+		"`star_pnt`.`last_updated_by`" => "last_updated_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -122,10 +117,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'IITTNiF id', 'Name of the Candidate', 'Institute', 'Workspace', 'Year and department', 'Project title', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['id', 'iittnif_id', 'name_of_the_candidate', 'institute', 'workspace', 'year_and_department', 'project_title', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'IITTNiF id', 'Name of the Candidate', 'Institute', 'Workspace', 'Year and department', 'Project title', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['id', 'iittnif_id', 'name_of_the_candidate', 'institute', 'workspace', 'year_and_department', 'project_title', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/star_pnt_templateTV.html';

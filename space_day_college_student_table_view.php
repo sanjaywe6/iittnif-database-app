@@ -29,9 +29,8 @@
 		"`space_day_college_student_table`.`contact_number`" => "contact_number",
 		"`space_day_college_student_table`.`interest`" => "interest",
 		"`space_day_college_student_table`.`college_name`" => "college_name",
-		"`space_day_college_student_table`.`last_updated_by`" => "last_updated_by",
-		"`space_day_college_student_table`.`last_updated_at`" => "last_updated_at",
 		"`space_day_college_student_table`.`created_by`" => "created_by",
+		"`space_day_college_student_table`.`last_updated_by`" => "last_updated_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -48,7 +47,6 @@
 		11 => 11,
 		12 => 12,
 		13 => 13,
-		14 => 14,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -64,9 +62,8 @@
 		"`space_day_college_student_table`.`contact_number`" => "contact_number",
 		"`space_day_college_student_table`.`interest`" => "interest",
 		"`space_day_college_student_table`.`college_name`" => "college_name",
-		"`space_day_college_student_table`.`last_updated_by`" => "last_updated_by",
-		"`space_day_college_student_table`.`last_updated_at`" => "last_updated_at",
 		"`space_day_college_student_table`.`created_by`" => "created_by",
+		"`space_day_college_student_table`.`last_updated_by`" => "last_updated_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -81,9 +78,8 @@
 		"`space_day_college_student_table`.`contact_number`" => "Contact number",
 		"`space_day_college_student_table`.`interest`" => "Interest",
 		"`space_day_college_student_table`.`college_name`" => "College name",
-		"`space_day_college_student_table`.`last_updated_by`" => "Last updated by",
-		"`space_day_college_student_table`.`last_updated_at`" => "Last updated at",
 		"`space_day_college_student_table`.`created_by`" => "Created By",
+		"`space_day_college_student_table`.`last_updated_by`" => "Last Updated By",
 	];
 
 	// Fields that can be quick searched
@@ -99,9 +95,8 @@
 		"`space_day_college_student_table`.`contact_number`" => "contact_number",
 		"`space_day_college_student_table`.`interest`" => "interest",
 		"`space_day_college_student_table`.`college_name`" => "college_name",
-		"`space_day_college_student_table`.`last_updated_by`" => "last_updated_by",
-		"`space_day_college_student_table`.`last_updated_at`" => "last_updated_at",
 		"`space_day_college_student_table`.`created_by`" => "created_by",
+		"`space_day_college_student_table`.`last_updated_by`" => "last_updated_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -137,10 +132,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Name of the student', 'Registration number', 'Degree & Department', 'Gender', 'Home address', 'Email id', 'Contact number', 'Interest', 'College name', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['id', 'name_of_student', 'registration_number', 'degree_department', 'gender', 'home_address', 'email_id', 'contact_number', 'interest', 'college_name', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Name of the student', 'Registration number', 'Degree & Department', 'Gender', 'Home address', 'Email id', 'Contact number', 'Interest', 'College name', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['id', 'name_of_student', 'registration_number', 'degree_department', 'gender', 'home_address', 'email_id', 'contact_number', 'interest', 'college_name', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/space_day_college_student_table_templateTV.html';

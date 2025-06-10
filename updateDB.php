@@ -79,53 +79,22 @@
 		setupTable('subtask_setting_table', []);
 		setupIndexes('subtask_setting_table', ['task_lookup','supervisor_name','assigned_to',]);
 
-		setupTable('internship_fellowship_details_app', [
-				"ALTER TABLE `internship_fellowship_details_app` DROP `last_updated_by`",
-				"ALTER TABLE `internship_fellowship_details_app` DROP `last_updated_at`",
-				"ALTER TABLE `internship_fellowship_details_app` ADD `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('internship_fellowship_details_app', []);
 
-		setupTable('star_pnt', [
-				"ALTER TABLE `star_pnt` DROP `last_updated_by`",
-				"ALTER TABLE `star_pnt` DROP `last_updated_at`",
-				"ALTER TABLE `star_pnt` ADD `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('star_pnt', []);
 		setupIndexes('star_pnt', ['iittnif_id',]);
 
-		setupTable('hrd_sdp_events_table', [
-				"ALTER TABLE `hrd_sdp_events_table` DROP `last_updated_by`",
-				"ALTER TABLE `hrd_sdp_events_table` DROP `last_updated_at`",
-				"ALTER TABLE `hrd_sdp_events_table` ADD `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('hrd_sdp_events_table', []);
 
-		setupTable('training_program_on_geospatial_tchnologies_table', [
-				"ALTER TABLE `training_program_on_geospatial_tchnologies_table` DROP `last_updated_by`",
-				"ALTER TABLE `training_program_on_geospatial_tchnologies_table` DROP `last_updated_at`",
-				"ALTER TABLE `training_program_on_geospatial_tchnologies_table` ADD `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('training_program_on_geospatial_tchnologies_table', []);
 
-		setupTable('space_day_school_details_app', [
-				"ALTER TABLE `space_day_school_details_app` DROP `last_updated_by`",
-				"ALTER TABLE `space_day_school_details_app` DROP `last_updated_at`",
-				"ALTER TABLE `space_day_school_details_app` ADD `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('space_day_school_details_app', []);
 
-		setupTable('space_day_college_student_table', [
-				"ALTER TABLE `space_day_college_student_table` DROP `last_updated_by`",
-				"ALTER TABLE `space_day_college_student_table` DROP `last_updated_at`",
-				"ALTER TABLE `space_day_college_student_table` ADD `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('space_day_college_student_table', []);
 
-		setupTable('school_list', [
-				"ALTER TABLE `school_list` DROP `last_updated_by`",
-				"ALTER TABLE `school_list` DROP `last_updated_at`",
-				"ALTER TABLE `school_list` ADD `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('school_list', []);
 
-		setupTable('sdp_participants_college_details_table', [
-				"ALTER TABLE `sdp_participants_college_details_table` DROP `last_updated_by`",
-				"ALTER TABLE `sdp_participants_college_details_table` DROP `last_updated_at`",
-			]);
+		setupTable('sdp_participants_college_details_table', []);
 
 		setupTable('asset_table', []);
 

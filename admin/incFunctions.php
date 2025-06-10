@@ -357,7 +357,7 @@
 					'homepageShowCount' => 1
 				],
 				'asset_table' => [
-					'Caption' => 'Master Inventory - App',
+					'Caption' => 'Master Inventory (Admin Department) - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[9],
@@ -371,7 +371,7 @@
 					'homepageShowCount' => 1
 				],
 				'sub_asset_table' => [
-					'Caption' => 'Sub Inventory - App',
+					'Caption' => 'Sub Inventory (Technical Department) - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[9],
@@ -763,9 +763,9 @@
 			'space_day_college_student_table' => ['Space day college student - App', 'HRD', 'table.gif', 'HRD Apps'],
 			'school_list' => ['School List - App', 'HRD', 'table.gif', 'HRD Apps'],
 			'sdp_participants_college_details_table' => ['SDP participants college details - App', 'SDP', 'table.gif', 'SDP Apps'],
-			'asset_table' => ['Master Inventory - App', '', 'table.gif', 'Asset Management Apps'],
+			'asset_table' => ['Master Inventory (Admin Department) - App', '', 'table.gif', 'Asset Management Apps'],
 			'asset_allotment_table' => ['Master Inventory Allotment - App', '', 'table.gif', 'Asset Management Apps'],
-			'sub_asset_table' => ['Sub Inventory - App', '', 'table.gif', 'Asset Management Apps'],
+			'sub_asset_table' => ['Sub Inventory (Technical Department) - App', '', 'table.gif', 'Asset Management Apps'],
 			'sub_asset_allotment_table' => ['Sub Inventory Allotment - App', '', 'table.gif', 'Asset Management Apps'],
 			'it_inventory_app' => ['IT inventory - App', '', 'table.gif', 'Asset Management Apps'],
 			'it_inventory_billing_details' => ['IT inventory billing details - App', '', 'table.gif', 'Asset Management Apps'],

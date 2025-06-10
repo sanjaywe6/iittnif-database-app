@@ -186,7 +186,7 @@
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'sub_asset_table_view.php';
-	$x->TableTitle = 'Sub Inventory - App';
+	$x->TableTitle = 'Sub Inventory (Technical Department) - App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`sub_asset_table`.`id`';
 	$x->DefaultSortField = '1';

@@ -31,10 +31,9 @@
 		"`it_inventory_allotment_table`.`approval_remarks`" => "approval_remarks",
 		"`it_inventory_allotment_table`.`return_status`" => "return_status",
 		"if(`it_inventory_allotment_table`.`returned_date`,date_format(`it_inventory_allotment_table`.`returned_date`,'%d/%m/%Y'),'')" => "returned_date",
-		"`it_inventory_allotment_table`.`created_by`" => "created_by",
-		"`it_inventory_allotment_table`.`created_at`" => "created_at",
 		"`it_inventory_allotment_table`.`last_updated_by`" => "last_updated_by",
 		"`it_inventory_allotment_table`.`last_updated_at`" => "last_updated_at",
+		"`it_inventory_allotment_table`.`created_by`" => "created_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -54,7 +53,6 @@
 		14 => 14,
 		15 => 15,
 		16 => 16,
-		17 => 17,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -72,10 +70,9 @@
 		"`it_inventory_allotment_table`.`approval_remarks`" => "approval_remarks",
 		"`it_inventory_allotment_table`.`return_status`" => "return_status",
 		"if(`it_inventory_allotment_table`.`returned_date`,date_format(`it_inventory_allotment_table`.`returned_date`,'%d/%m/%Y'),'')" => "returned_date",
-		"`it_inventory_allotment_table`.`created_by`" => "created_by",
-		"`it_inventory_allotment_table`.`created_at`" => "created_at",
 		"`it_inventory_allotment_table`.`last_updated_by`" => "last_updated_by",
 		"`it_inventory_allotment_table`.`last_updated_at`" => "last_updated_at",
+		"`it_inventory_allotment_table`.`created_by`" => "created_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -92,10 +89,9 @@
 		"`it_inventory_allotment_table`.`approval_remarks`" => "Approval remarks",
 		"`it_inventory_allotment_table`.`return_status`" => "Return status",
 		"`it_inventory_allotment_table`.`returned_date`" => "Returned date",
-		"`it_inventory_allotment_table`.`created_by`" => "Created by",
-		"`it_inventory_allotment_table`.`created_at`" => "Created at",
 		"`it_inventory_allotment_table`.`last_updated_by`" => "Last updated by",
 		"`it_inventory_allotment_table`.`last_updated_at`" => "Last updated at",
+		"`it_inventory_allotment_table`.`created_by`" => "Created By",
 	];
 
 	// Fields that can be quick searched
@@ -113,10 +109,9 @@
 		"`it_inventory_allotment_table`.`approval_remarks`" => "approval_remarks",
 		"`it_inventory_allotment_table`.`return_status`" => "return_status",
 		"if(`it_inventory_allotment_table`.`returned_date`,date_format(`it_inventory_allotment_table`.`returned_date`,'%d/%m/%Y'),'')" => "returned_date",
-		"`it_inventory_allotment_table`.`created_by`" => "created_by",
-		"`it_inventory_allotment_table`.`created_at`" => "created_at",
 		"`it_inventory_allotment_table`.`last_updated_by`" => "last_updated_by",
 		"`it_inventory_allotment_table`.`last_updated_at`" => "last_updated_at",
+		"`it_inventory_allotment_table`.`created_by`" => "created_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -152,10 +147,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Select employee', 'Department', 'Date', 'Inventory Details', 'Purpose', 'Alloted by', 'Allotment Status', 'Approval status', 'Approval remarks', 'Return status', 'Returned date', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'select_employee', 'department', 'date', 'inventory_details', 'purpose', 'alloted_by', 'allotment_status', 'approval_status', 'approval_remarks', 'return_status', 'returned_date', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Select employee', 'Department', 'Date', 'Inventory Details', 'Purpose', 'Alloted by', 'Allotment Status', 'Approval status', 'Approval remarks', 'Return status', 'Returned date', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['id', 'select_employee', 'department', 'date', 'inventory_details', 'purpose', 'alloted_by', 'allotment_status', 'approval_status', 'approval_remarks', 'return_status', 'returned_date', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/it_inventory_allotment_table_templateTV.html';

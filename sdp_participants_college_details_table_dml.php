@@ -26,8 +26,7 @@ function sdp_participants_college_details_table_insert(&$error_message = '') {
 		'start_date' => Request::dateComponents('start_date', '1'),
 		'end_date' => Request::dateComponents('end_date', '1'),
 		'state' => Request::val('state', ''),
-		'created_by' => parseCode('<%%creatorUsername%%>', true),
-		'created_at' => parseCode('<%%creationDateTime%%>', true),
+		'created_by' => parseCode('<%%creatorUsername%%>  <%%creationDateTime%%>', true),
 	];
 
 	// record owner is current user
@@ -386,7 +385,6 @@ function sdp_participants_college_details_table_form($selectedId = '', $allowUpd
 	$templateCode = str_replace('<%%UPLOADFILE(end_date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(state)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
@@ -421,8 +419,6 @@ function sdp_participants_college_details_table_form($selectedId = '', $allowUpd
 		$templateCode = str_replace('<%%URLVALUE(state)%%>', urlencode($urow['state']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode($urow['created_at']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
@@ -446,10 +442,8 @@ function sdp_participants_college_details_table_form($selectedId = '', $allowUpd
 		$templateCode = str_replace('<%%URLVALUE(end_date)%%>', urlencode('1'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(state)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(state)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode('<%%creationDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>  <%%creationDateTime%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>  <%%creationDateTime%%>'), $templateCode);
 	}
 
 	// process translations

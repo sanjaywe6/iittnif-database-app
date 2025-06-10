@@ -28,10 +28,9 @@
 		"`computer_allotment_table`.`purpose`" => "purpose",
 		"`computer_allotment_table`.`email_d`" => "email_d",
 		"`computer_allotment_table`.`mobile_number`" => "mobile_number",
-		"`computer_allotment_table`.`created_by`" => "created_by",
-		"`computer_allotment_table`.`created_at`" => "created_at",
 		"`computer_allotment_table`.`last_updated_by`" => "last_updated_by",
 		"`computer_allotment_table`.`last_updated_at`" => "last_updated_at",
+		"`computer_allotment_table`.`created_by`" => "created_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -48,7 +47,6 @@
 		11 => 11,
 		12 => 12,
 		13 => 13,
-		14 => 14,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -63,10 +61,9 @@
 		"`computer_allotment_table`.`purpose`" => "purpose",
 		"`computer_allotment_table`.`email_d`" => "email_d",
 		"`computer_allotment_table`.`mobile_number`" => "mobile_number",
-		"`computer_allotment_table`.`created_by`" => "created_by",
-		"`computer_allotment_table`.`created_at`" => "created_at",
 		"`computer_allotment_table`.`last_updated_by`" => "last_updated_by",
 		"`computer_allotment_table`.`last_updated_at`" => "last_updated_at",
+		"`computer_allotment_table`.`created_by`" => "created_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -80,10 +77,9 @@
 		"`computer_allotment_table`.`purpose`" => "Purpose",
 		"`computer_allotment_table`.`email_d`" => "Email ID",
 		"`computer_allotment_table`.`mobile_number`" => "Mobile number",
-		"`computer_allotment_table`.`created_by`" => "Created by",
-		"`computer_allotment_table`.`created_at`" => "Created at",
 		"`computer_allotment_table`.`last_updated_by`" => "Last updated by",
 		"`computer_allotment_table`.`last_updated_at`" => "Last updated at",
+		"`computer_allotment_table`.`created_by`" => "Created By",
 	];
 
 	// Fields that can be quick searched
@@ -98,10 +94,9 @@
 		"`computer_allotment_table`.`purpose`" => "purpose",
 		"`computer_allotment_table`.`email_d`" => "email_d",
 		"`computer_allotment_table`.`mobile_number`" => "mobile_number",
-		"`computer_allotment_table`.`created_by`" => "created_by",
-		"`computer_allotment_table`.`created_at`" => "created_at",
 		"`computer_allotment_table`.`last_updated_by`" => "last_updated_by",
 		"`computer_allotment_table`.`last_updated_at`" => "last_updated_at",
+		"`computer_allotment_table`.`created_by`" => "created_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -137,10 +132,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Pc ID', 'Name of user', 'Role', 'From date', 'To date', 'Purpose', 'Email ID', 'Mobile number', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'pc_id', 'name_of_user', 'role', 'from_date', 'to_date', 'purpose', 'email_d', 'mobile_number', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Pc ID', 'Name of user', 'Role', 'From date', 'To date', 'Purpose', 'Email ID', 'Mobile number', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['id', 'pc_id', 'name_of_user', 'role', 'from_date', 'to_date', 'purpose', 'email_d', 'mobile_number', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/computer_allotment_table_templateTV.html';

@@ -94,33 +94,73 @@
 
 		setupTable('school_list', []);
 
-		setupTable('sdp_participants_college_details_table', []);
+		setupTable('sdp_participants_college_details_table', [
+				"ALTER TABLE `sdp_participants_college_details_table` DROP `created_by`",
+				"ALTER TABLE `sdp_participants_college_details_table` DROP `created_at`",
+				"ALTER TABLE `sdp_participants_college_details_table` ADD `created_by` VARCHAR(255) NULL ",
+			]);
 
-		setupTable('asset_table', []);
+		setupTable('asset_table', [
+				"ALTER TABLE `asset_table` DROP `created_by`",
+				"ALTER TABLE `asset_table` DROP `created_at`",
+				"ALTER TABLE `asset_table` ADD `created_by` VARCHAR(255) NULL ",
+			]);
 
-		setupTable('asset_allotment_table', []);
+		setupTable('asset_allotment_table', [
+				"ALTER TABLE `asset_allotment_table` DROP `created_by`",
+				"ALTER TABLE `asset_allotment_table` DROP `created_at`",
+				"ALTER TABLE `asset_allotment_table` ADD `created_by` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('asset_allotment_table', ['asset_lookup','select_employee','alloted_by',]);
 
-		setupTable('sub_asset_table', []);
+		setupTable('sub_asset_table', [
+				"ALTER TABLE `sub_asset_table` DROP `created_by`",
+				"ALTER TABLE `sub_asset_table` DROP `created_at`",
+				"ALTER TABLE `sub_asset_table` ADD `created_by` VARCHAR(255) NULL ",
+			]);
 
-		setupTable('sub_asset_allotment_table', []);
+		setupTable('sub_asset_allotment_table', [
+				"ALTER TABLE `sub_asset_allotment_table` DROP `created_by`",
+				"ALTER TABLE `sub_asset_allotment_table` DROP `created_at`",
+				"ALTER TABLE `sub_asset_allotment_table` ADD `created_by` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('sub_asset_allotment_table', ['sub_asset_lookup','select_employee','alloted_by',]);
 
-		setupTable('it_inventory_app', []);
+		setupTable('it_inventory_app', [
+				"ALTER TABLE `it_inventory_app` DROP `created_by`",
+				"ALTER TABLE `it_inventory_app` DROP `created_at`",
+				"ALTER TABLE `it_inventory_app` ADD `created_by` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('it_inventory_app', ['sactioned_by',]);
 
-		setupTable('it_inventory_billing_details', []);
+		setupTable('it_inventory_billing_details', [
+				"ALTER TABLE `it_inventory_billing_details` DROP `created_by`",
+				"ALTER TABLE `it_inventory_billing_details` DROP `created_at`",
+				"ALTER TABLE `it_inventory_billing_details` ADD `created_by` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('it_inventory_billing_details', ['it_inventory_lookup',]);
 
-		setupTable('it_inventory_allotment_table', []);
+		setupTable('it_inventory_allotment_table', [
+				"ALTER TABLE `it_inventory_allotment_table` DROP `created_by`",
+				"ALTER TABLE `it_inventory_allotment_table` DROP `created_at`",
+				"ALTER TABLE `it_inventory_allotment_table` ADD `created_by` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('it_inventory_allotment_table', ['select_employee','alloted_by',]);
 
-		setupTable('computer_details_table', []);
+		setupTable('computer_details_table', [
+				"ALTER TABLE `computer_details_table` DROP `created_by`",
+				"ALTER TABLE `computer_details_table` DROP `created_at`",
+				"ALTER TABLE `computer_details_table` ADD `created_by` VARCHAR(255) NULL ",
+			]);
 
 		setupTable('computer_user_details', []);
 		setupIndexes('computer_user_details', ['pc_id',]);
 
-		setupTable('computer_allotment_table', []);
+		setupTable('computer_allotment_table', [
+				"ALTER TABLE `computer_allotment_table` DROP `created_by`",
+				"ALTER TABLE `computer_allotment_table` DROP `created_at`",
+				"ALTER TABLE `computer_allotment_table` ADD `created_by` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('computer_allotment_table', ['pc_id',]);
 
 		setupTable('employees_personal_data_table', []);

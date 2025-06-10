@@ -46,8 +46,7 @@ function it_inventory_app_insert(&$error_message = '') {
 		'date_of_useful_life_of_assets_ends' => Request::dateComponents('date_of_useful_life_of_assets_ends', ''),
 		'remarks' => Request::val('remarks', ''),
 		'sactioned_by' => Request::lookup('sactioned_by', ''),
-		'created_by' => parseCode('<%%creatorUsername%%>', true),
-		'created_at' => parseCode('<%%creationDateTime%%>', true),
+		'created_by' => parseCode('<%%creatorUsername%%>  <%%creationDateTime%%>', true),
 	];
 
 	// record owner is current user
@@ -556,10 +555,9 @@ function it_inventory_app_form($selectedId = '', $allowUpdate = true, $allowInse
 	$templateCode = str_replace('<%%UPLOADFILE(remarks)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(sactioned_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(it_inventory_str)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_at)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
@@ -609,14 +607,12 @@ function it_inventory_app_form($selectedId = '', $allowUpdate = true, $allowInse
 		$templateCode = str_replace('<%%URLVALUE(sactioned_by)%%>', urlencode($urow['sactioned_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(it_inventory_str)%%>', safe_html($urow['it_inventory_str']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(it_inventory_str)%%>', urlencode($urow['it_inventory_str']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode($urow['created_at']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(it_inventory_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(it_inventory_id)%%>', urlencode(''), $templateCode);
@@ -651,14 +647,12 @@ function it_inventory_app_form($selectedId = '', $allowUpdate = true, $allowInse
 		$templateCode = str_replace('<%%URLVALUE(sactioned_by)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(it_inventory_str)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(it_inventory_str)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode('<%%creationDateTime%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', '<%%editingDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode('<%%editingDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>  <%%creationDateTime%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>  <%%creationDateTime%%>'), $templateCode);
 	}
 
 	// process translations

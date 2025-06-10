@@ -28,10 +28,9 @@
 		"`computer_details_table`.`maintained_by`" => "maintained_by",
 		"`computer_details_table`.`assigned_to_user`" => "assigned_to_user",
 		"`computer_details_table`.`remote_access`" => "remote_access",
-		"`computer_details_table`.`created_by`" => "created_by",
-		"`computer_details_table`.`created_at`" => "created_at",
 		"`computer_details_table`.`last_updated_by`" => "last_updated_by",
 		"`computer_details_table`.`last_updated_at`" => "last_updated_at",
+		"`computer_details_table`.`created_by`" => "created_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -48,7 +47,6 @@
 		11 => 11,
 		12 => 12,
 		13 => 13,
-		14 => 14,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -63,10 +61,9 @@
 		"`computer_details_table`.`maintained_by`" => "maintained_by",
 		"`computer_details_table`.`assigned_to_user`" => "assigned_to_user",
 		"`computer_details_table`.`remote_access`" => "remote_access",
-		"`computer_details_table`.`created_by`" => "created_by",
-		"`computer_details_table`.`created_at`" => "created_at",
 		"`computer_details_table`.`last_updated_by`" => "last_updated_by",
 		"`computer_details_table`.`last_updated_at`" => "last_updated_at",
+		"`computer_details_table`.`created_by`" => "created_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -80,10 +77,9 @@
 		"`computer_details_table`.`maintained_by`" => "Maintained by",
 		"`computer_details_table`.`assigned_to_user`" => "Assigned to user",
 		"`computer_details_table`.`remote_access`" => "Remote access",
-		"`computer_details_table`.`created_by`" => "Created by",
-		"`computer_details_table`.`created_at`" => "Created at",
 		"`computer_details_table`.`last_updated_by`" => "Last updated by",
 		"`computer_details_table`.`last_updated_at`" => "Last updated at",
+		"`computer_details_table`.`created_by`" => "Created By",
 	];
 
 	// Fields that can be quick searched
@@ -98,10 +94,9 @@
 		"`computer_details_table`.`maintained_by`" => "maintained_by",
 		"`computer_details_table`.`assigned_to_user`" => "assigned_to_user",
 		"`computer_details_table`.`remote_access`" => "remote_access",
-		"`computer_details_table`.`created_by`" => "created_by",
-		"`computer_details_table`.`created_at`" => "created_at",
 		"`computer_details_table`.`last_updated_by`" => "last_updated_by",
 		"`computer_details_table`.`last_updated_at`" => "last_updated_at",
+		"`computer_details_table`.`created_by`" => "created_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -137,10 +132,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'PC number', 'PC hostname', 'PC MAC address', 'Room number', 'Desk number', 'Maintained by', 'Assigned to user', 'Remote access', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'pc_number', 'pc_hostname', 'pc_mac_address', 'room_number', 'desk_number', 'maintained_by', 'assigned_to_user', 'remote_access', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'PC number', 'PC hostname', 'PC MAC address', 'Room number', 'Desk number', 'Maintained by', 'Assigned to user', 'Remote access', 'Last updated by', 'Last updated at', 'Created By', ];
+	$x->ColFieldName = ['id', 'pc_number', 'pc_hostname', 'pc_mac_address', 'room_number', 'desk_number', 'maintained_by', 'assigned_to_user', 'remote_access', 'last_updated_by', 'last_updated_at', 'created_by', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/computer_details_table_templateTV.html';

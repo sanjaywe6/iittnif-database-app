@@ -29,8 +29,7 @@ function computer_allotment_table_insert(&$error_message = '') {
 		'purpose' => Request::val('purpose', ''),
 		'email_d' => Request::val('email_d', ''),
 		'mobile_number' => Request::val('mobile_number', ''),
-		'created_by' => parseCode('<%%creatorUsername%%>', true),
-		'created_at' => parseCode('<%%creationDateTime%%>', true),
+		'created_by' => parseCode('<%%creatorUsername%%>  <%%creationDateTime%%>', true),
 	];
 
 
@@ -469,10 +468,9 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 	$templateCode = str_replace('<%%UPLOADFILE(purpose)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(email_d)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(mobile_number)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_at)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
@@ -501,14 +499,12 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(mobile_number)%%>', safe_html($urow['mobile_number']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(mobile_number)%%>', html_attr($row['mobile_number']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(mobile_number)%%>', urlencode($urow['mobile_number']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode($urow['created_at']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
@@ -530,14 +526,12 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 		$templateCode = str_replace('<%%URLVALUE(email_d)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(mobile_number)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(mobile_number)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode('<%%creationDateTime%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', '<%%editingDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode('<%%editingDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>  <%%creationDateTime%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>  <%%creationDateTime%%>'), $templateCode);
 	}
 
 	// process translations

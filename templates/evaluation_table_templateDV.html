@@ -61,7 +61,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="reason_for_not_recommending">Reason for not recommending</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="reason_for_not_recommending" id="reason_for_not_recommending" rows=" 5"><%%VALUE(reason_for_not_recommending)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="reason_for_not_recommending" id="reason_for_not_recommending" rows=" 5"><%%VALUE(reason_for_not_recommending)%%></textarea>
 					</div>
 				</div>
 
@@ -70,7 +70,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2" id="evaluation_table_dv_action_buttons">
+		<div class="col-md-4 col-lg-2 dv-action-buttons" id="evaluation_table_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>

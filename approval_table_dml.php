@@ -103,7 +103,7 @@ function approval_table_delete($selected_id, $AllowDeleteOfParents = false, $ski
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -259,9 +259,9 @@ function approval_table_update(&$selected_id, &$error_message = '') {
 	}
 
 	if(!update(
-		'approval_table', 
-		backtick_keys_once($set), 
-		['`id`' => $selected_id], 
+		'approval_table',
+		backtick_keys_once($set),
+		['`id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -570,14 +570,14 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -712,7 +712,7 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', html_attr($row['approval_status']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode($urow['approval_status']), $templateCode);
 		if($fieldsAreEditable) {
-			$templateCode = str_replace('<%%HTMLAREA(remarks_for_approval)%%>', '<textarea name="remarks_for_approval" id="remarks_for_approval" rows="5">' . safe_html(htmlspecialchars_decode($row['remarks_for_approval'])) . '</textarea>', $templateCode);
+			$templateCode = str_replace('<%%HTMLAREA(remarks_for_approval)%%>', '<textarea maxlength="65500" name="remarks_for_approval" id="remarks_for_approval" rows="5">' . safe_html(htmlspecialchars_decode($row['remarks_for_approval'])) . '</textarea>', $templateCode);
 		} else {
 			$templateCode = str_replace('<%%HTMLAREA(remarks_for_approval)%%>', '<div id="remarks_for_approval" class="form-control-static">' . $row['remarks_for_approval'] . '</div>', $templateCode);
 		}
@@ -756,7 +756,7 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		$templateCode = str_replace('<%%URLVALUE(others_if_any)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(approval_status)%%>', 'Under Consideration', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode('Under Consideration'), $templateCode);
-		$templateCode = str_replace('<%%HTMLAREA(remarks_for_approval)%%>', '<textarea name="remarks_for_approval" id="remarks_for_approval" rows="5">None</textarea>', $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(remarks_for_approval)%%>', '<textarea maxlength="65500" name="remarks_for_approval" id="remarks_for_approval" rows="5">None</textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(image)%%>', 'blank.gif', $templateCode);
 		$templateCode = str_replace('<%%VALUE(other_file)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(other_file)%%>', urlencode(''), $templateCode);

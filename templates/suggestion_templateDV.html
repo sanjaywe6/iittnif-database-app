@@ -33,7 +33,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="suggestion">Suggestion<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="suggestion" id="suggestion" rows=" 5"><%%VALUE(suggestion)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="suggestion" id="suggestion" rows=" 5"><%%VALUE(suggestion)%%></textarea>
 					</div>
 				</div>
 
@@ -64,7 +64,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="department_remarks">Remarks of Department/Office Head</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="department_remarks" id="department_remarks" rows=" 5"><%%VALUE(department_remarks)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="department_remarks" id="department_remarks" rows=" 5"><%%VALUE(department_remarks)%%></textarea>
 					</div>
 				</div>
 
@@ -73,7 +73,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="ceo_pd_remarks">Remarks of CEO/PD</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="ceo_pd_remarks" id="ceo_pd_remarks" rows=" 5"><%%VALUE(ceo_pd_remarks)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="ceo_pd_remarks" id="ceo_pd_remarks" rows=" 5"><%%VALUE(ceo_pd_remarks)%%></textarea>
 					</div>
 				</div>
 
@@ -82,7 +82,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2" id="suggestion_dv_action_buttons">
+		<div class="col-md-4 col-lg-2 dv-action-buttons" id="suggestion_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>

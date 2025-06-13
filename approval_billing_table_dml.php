@@ -117,7 +117,7 @@ function approval_billing_table_delete($selected_id, $AllowDeleteOfParents = fal
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -262,9 +262,9 @@ function approval_billing_table_update(&$selected_id, &$error_message = '') {
 	}
 
 	if(!update(
-		'approval_billing_table', 
-		backtick_keys_once($set), 
-		['`id`' => $selected_id], 
+		'approval_billing_table',
+		backtick_keys_once($set),
+		['`id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -596,14 +596,14 @@ function approval_billing_table_form($selectedId = '', $allowUpdate = true, $all
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -640,9 +640,9 @@ function approval_billing_table_form($selectedId = '', $allowUpdate = true, $all
 	$templateCode = str_replace('<%%COMBOTEXT(approval_lookup)%%>', $combo_approval_lookup->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(approval_lookup)%%>', urlencode($combo_approval_lookup->MatchText), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(date_of_purchase)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_date_of_purchase->GetHTML(true) . '</div>' : 
+		'<%%COMBO(date_of_purchase)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_date_of_purchase->GetHTML(true) . '</div>' :
 			$combo_date_of_purchase->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(date_of_purchase)%%>', $combo_date_of_purchase->GetHTML(true), $templateCode);

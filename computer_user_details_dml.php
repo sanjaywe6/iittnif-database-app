@@ -74,7 +74,7 @@ function computer_user_details_delete($selected_id, $AllowDeleteOfParents = fals
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -126,9 +126,9 @@ function computer_user_details_update(&$selected_id, &$error_message = '') {
 	}
 
 	if(!update(
-		'computer_user_details', 
-		backtick_keys_once($set), 
-		['`id`' => $selected_id], 
+		'computer_user_details',
+		backtick_keys_once($set),
+		['`id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -374,14 +374,14 @@ function computer_user_details_form($selectedId = '', $allowUpdate = true, $allo
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -403,8 +403,8 @@ function computer_user_details_form($selectedId = '', $allowUpdate = true, $allo
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
 		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\t\$j('#entry_time').addClass('always_shown').timepicker({ defaultTime: false, showSeconds: true, showMeridian: false, showInputs: false, disableFocus: true, minuteStep: 5 });";
-		$jsEditable .= "\t\$j('#exit_time').addClass('always_shown').timepicker({ defaultTime: false, showSeconds: true, showMeridian: false, showInputs: false, disableFocus: true, minuteStep: 5 });";
+		$jsEditable .= "\t\$j('#entry_time').addClass('always_shown').timepicker({ defaultTime: false, showSeconds: true, showMeridian: false, showInputs: false, disableFocus: true, minuteStep: AppGini.config.timeFieldMinutesStep || 5 });";
+		$jsEditable .= "\t\$j('#exit_time').addClass('always_shown').timepicker({ defaultTime: false, showSeconds: true, showMeridian: false, showInputs: false, disableFocus: true, minuteStep: AppGini.config.timeFieldMinutesStep || 5 });";
 		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
@@ -413,9 +413,9 @@ function computer_user_details_form($selectedId = '', $allowUpdate = true, $allo
 	$templateCode = str_replace('<%%COMBOTEXT(pc_id)%%>', $combo_pc_id->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(pc_id)%%>', urlencode($combo_pc_id->MatchText), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_date->GetHTML(true) . '</div>' :
 			$combo_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(date)%%>', $combo_date->GetHTML(true), $templateCode);

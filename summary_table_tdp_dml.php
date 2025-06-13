@@ -85,7 +85,7 @@ function summary_table_tdp_delete($selected_id, $AllowDeleteOfParents = false, $
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -180,9 +180,9 @@ function summary_table_tdp_update(&$selected_id, &$error_message = '') {
 	}
 
 	if(!update(
-		'summary_table_tdp', 
-		backtick_keys_once($set), 
-		['`id`' => $selected_id], 
+		'summary_table_tdp',
+		backtick_keys_once($set),
+		['`id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -414,14 +414,14 @@ function summary_table_tdp_form($selectedId = '', $allowUpdate = true, $allowIns
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -479,65 +479,65 @@ function summary_table_tdp_form($selectedId = '', $allowUpdate = true, $allowIns
 
 	// process combos
 	$templateCode = str_replace(
-		'<%%COMBO(sactioned_date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_sactioned_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(sactioned_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_sactioned_date->GetHTML(true) . '</div>' :
 			$combo_sactioned_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(sactioned_date)%%>', $combo_sactioned_date->GetHTML(true), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(first_milestone_amount_and_date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_first_milestone_amount_and_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(first_milestone_amount_and_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_first_milestone_amount_and_date->GetHTML(true) . '</div>' :
 			$combo_first_milestone_amount_and_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(first_milestone_amount_and_date)%%>', $combo_first_milestone_amount_and_date->GetHTML(true), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(stage_I_completion)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_stage_I_completion->GetHTML(true) . '</div>' : 
+		'<%%COMBO(stage_I_completion)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_stage_I_completion->GetHTML(true) . '</div>' :
 			$combo_stage_I_completion->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(stage_I_completion)%%>', $combo_stage_I_completion->GetHTML(true), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(second_milestone_amount_and_date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_second_milestone_amount_and_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(second_milestone_amount_and_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_second_milestone_amount_and_date->GetHTML(true) . '</div>' :
 			$combo_second_milestone_amount_and_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(second_milestone_amount_and_date)%%>', $combo_second_milestone_amount_and_date->GetHTML(true), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(stage_2_completion)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_stage_2_completion->GetHTML(true) . '</div>' : 
+		'<%%COMBO(stage_2_completion)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_stage_2_completion->GetHTML(true) . '</div>' :
 			$combo_stage_2_completion->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(stage_2_completion)%%>', $combo_stage_2_completion->GetHTML(true), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(third_milestone_amount_and_date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_third_milestone_amount_and_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(third_milestone_amount_and_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_third_milestone_amount_and_date->GetHTML(true) . '</div>' :
 			$combo_third_milestone_amount_and_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(third_milestone_amount_and_date)%%>', $combo_third_milestone_amount_and_date->GetHTML(true), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(stage_3_completion)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_stage_3_completion->GetHTML(true) . '</div>' : 
+		'<%%COMBO(stage_3_completion)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_stage_3_completion->GetHTML(true) . '</div>' :
 			$combo_stage_3_completion->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(stage_3_completion)%%>', $combo_stage_3_completion->GetHTML(true), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(fourth_milestone_amount_and_date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_fourth_milestone_amount_and_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(fourth_milestone_amount_and_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_fourth_milestone_amount_and_date->GetHTML(true) . '</div>' :
 			$combo_fourth_milestone_amount_and_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(fourth_milestone_amount_and_date)%%>', $combo_fourth_milestone_amount_and_date->GetHTML(true), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(stage_4_completion)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_stage_4_completion->GetHTML(true) . '</div>' : 
+		'<%%COMBO(stage_4_completion)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_stage_4_completion->GetHTML(true) . '</div>' :
 			$combo_stage_4_completion->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(stage_4_completion)%%>', $combo_stage_4_completion->GetHTML(true), $templateCode);

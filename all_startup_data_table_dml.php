@@ -85,7 +85,7 @@ function all_startup_data_table_delete($selected_id, $AllowDeleteOfParents = fal
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -223,9 +223,9 @@ function all_startup_data_table_update(&$selected_id, &$error_message = '') {
 	}
 
 	if(!update(
-		'all_startup_data_table', 
-		backtick_keys_once($set), 
-		['`id`' => $selected_id], 
+		'all_startup_data_table',
+		backtick_keys_once($set),
+		['`id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -421,14 +421,14 @@ function all_startup_data_table_form($selectedId = '', $allowUpdate = true, $all
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -467,9 +467,9 @@ function all_startup_data_table_form($selectedId = '', $allowUpdate = true, $all
 	$templateCode = str_replace('<%%COMBO(mode_of_incubation)%%>', $combo_mode_of_incubation->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(mode_of_incubation)%%>', $combo_mode_of_incubation->SelectedData, $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(date_of_incubation)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_date_of_incubation->GetHTML(true) . '</div>' : 
+		'<%%COMBO(date_of_incubation)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_date_of_incubation->GetHTML(true) . '</div>' :
 			$combo_date_of_incubation->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(date_of_incubation)%%>', $combo_date_of_incubation->GetHTML(true), $templateCode);

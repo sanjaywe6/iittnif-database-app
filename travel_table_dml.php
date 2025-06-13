@@ -75,7 +75,7 @@ function travel_table_delete($selected_id, $AllowDeleteOfParents = false, $skipC
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -139,9 +139,9 @@ function travel_table_update(&$selected_id, &$error_message = '') {
 	}
 
 	if(!update(
-		'travel_table', 
-		backtick_keys_once($set), 
-		['`id`' => $selected_id], 
+		'travel_table',
+		backtick_keys_once($set),
+		['`id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -364,14 +364,14 @@ function travel_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -415,16 +415,16 @@ function travel_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 	$templateCode = str_replace('<%%COMBO(travel_type)%%>', $combo_travel_type->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(travel_type)%%>', $combo_travel_type->SelectedData, $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(date_from)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_date_from->GetHTML(true) . '</div>' : 
+		'<%%COMBO(date_from)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_date_from->GetHTML(true) . '</div>' :
 			$combo_date_from->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(date_from)%%>', $combo_date_from->GetHTML(true), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(date_to)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_date_to->GetHTML(true) . '</div>' : 
+		'<%%COMBO(date_to)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_date_to->GetHTML(true) . '</div>' :
 			$combo_date_to->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(date_to)%%>', $combo_date_to->GetHTML(true), $templateCode);

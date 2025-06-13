@@ -96,7 +96,7 @@ function it_inventory_billing_details_delete($selected_id, $AllowDeleteOfParents
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -175,9 +175,9 @@ function it_inventory_billing_details_update(&$selected_id, &$error_message = ''
 	}
 
 	if(!update(
-		'it_inventory_billing_details', 
-		backtick_keys_once($set), 
-		['`it_inventory_biling_details_id`' => $selected_id], 
+		'it_inventory_billing_details',
+		backtick_keys_once($set),
+		['`it_inventory_biling_details_id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -432,14 +432,14 @@ function it_inventory_billing_details_form($selectedId = '', $allowUpdate = true
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -479,16 +479,16 @@ function it_inventory_billing_details_form($selectedId = '', $allowUpdate = true
 	$templateCode = str_replace('<%%COMBOTEXT(it_inventory_lookup)%%>', $combo_it_inventory_lookup->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(it_inventory_lookup)%%>', urlencode($combo_it_inventory_lookup->MatchText), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(po_date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_po_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(po_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_po_date->GetHTML(true) . '</div>' :
 			$combo_po_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(po_date)%%>', $combo_po_date->GetHTML(true), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(bill_date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_bill_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(bill_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_bill_date->GetHTML(true) . '</div>' :
 			$combo_bill_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(bill_date)%%>', $combo_bill_date->GetHTML(true), $templateCode);

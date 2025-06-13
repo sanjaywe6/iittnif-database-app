@@ -76,7 +76,7 @@ function r_and_d_quarterly_progress_app_delete($selected_id, $AllowDeleteOfParen
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -132,9 +132,9 @@ function r_and_d_quarterly_progress_app_update(&$selected_id, &$error_message = 
 	}
 
 	if(!update(
-		'r_and_d_quarterly_progress_app', 
-		backtick_keys_once($set), 
-		['`id`' => $selected_id], 
+		'r_and_d_quarterly_progress_app',
+		backtick_keys_once($set),
+		['`id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -380,14 +380,14 @@ function r_and_d_quarterly_progress_app_form($selectedId = '', $allowUpdate = tr
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -422,9 +422,9 @@ function r_and_d_quarterly_progress_app_form($selectedId = '', $allowUpdate = tr
 	$templateCode = str_replace('<%%COMBOTEXT(r_and_d_lookup)%%>', $combo_r_and_d_lookup->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(r_and_d_lookup)%%>', urlencode($combo_r_and_d_lookup->MatchText), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_date->GetHTML(true) . '</div>' :
 			$combo_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(date)%%>', $combo_date->GetHTML(true), $templateCode);

@@ -70,7 +70,7 @@ function hrd_sdp_events_table_delete($selected_id, $AllowDeleteOfParents = false
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -129,9 +129,9 @@ function hrd_sdp_events_table_update(&$selected_id, &$error_message = '') {
 	}
 
 	if(!update(
-		'hrd_sdp_events_table', 
-		backtick_keys_once($set), 
-		['`id`' => $selected_id], 
+		'hrd_sdp_events_table',
+		backtick_keys_once($set),
+		['`id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -300,14 +300,14 @@ function hrd_sdp_events_table_form($selectedId = '', $allowUpdate = true, $allow
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -343,16 +343,16 @@ function hrd_sdp_events_table_form($selectedId = '', $allowUpdate = true, $allow
 
 	// process combos
 	$templateCode = str_replace(
-		'<%%COMBO(start_date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_start_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(start_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_start_date->GetHTML(true) . '</div>' :
 			$combo_start_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(start_date)%%>', $combo_start_date->GetHTML(true), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(end_date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_end_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(end_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_end_date->GetHTML(true) . '</div>' :
 			$combo_end_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(end_date)%%>', $combo_end_date->GetHTML(true), $templateCode);

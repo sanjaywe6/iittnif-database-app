@@ -45,7 +45,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="datetime_from">Date and time from</label>
 					<div class="col-lg-9">
-						<div class="input-group date datetimepicker"><input type="text" class="form-control" name="datetime_from" id="datetime_from" value="<%%VALUE(datetime_from)%%>"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>
+						<div class="input-group date datetimepicker"><input maxlength="22" type="text" class="form-control" name="datetime_from" id="datetime_from" value="<%%VALUE(datetime_from)%%>"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>
 					</div>
 				</div>
 
@@ -54,7 +54,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="datetime_to">Date and time to</label>
 					<div class="col-lg-9">
-						<div class="input-group date datetimepicker"><input type="text" class="form-control" name="datetime_to" id="datetime_to" value="<%%VALUE(datetime_to)%%>"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>
+						<div class="input-group date datetimepicker"><input maxlength="22" type="text" class="form-control" name="datetime_to" id="datetime_to" value="<%%VALUE(datetime_to)%%>"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>
 					</div>
 				</div>
 
@@ -72,7 +72,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="remarks">Remarks (Optional)</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="remarks" id="remarks" rows=" 5"><%%VALUE(remarks)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="remarks" id="remarks" rows=" 5"><%%VALUE(remarks)%%></textarea>
 					</div>
 				</div>
 
@@ -81,7 +81,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2" id="cycle_usage_table_dv_action_buttons">
+		<div class="col-md-4 col-lg-2 dv-action-buttons" id="cycle_usage_table_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>

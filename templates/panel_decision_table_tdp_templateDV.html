@@ -113,7 +113,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="experts_comments">Experts comments (Consolidated)</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="experts_comments" id="experts_comments" rows=" 5"><%%VALUE(experts_comments)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="experts_comments" id="experts_comments" rows=" 5"><%%VALUE(experts_comments)%%></textarea>
 					</div>
 				</div>
 
@@ -149,7 +149,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="where_budget_need">Where budget need / can be revised</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="where_budget_need" id="where_budget_need" rows=" 5"><%%VALUE(where_budget_need)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="where_budget_need" id="where_budget_need" rows=" 5"><%%VALUE(where_budget_need)%%></textarea>
 					</div>
 				</div>
 
@@ -176,7 +176,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="call_done">Call done</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="call_done" id="call_done" rows=" 5"><%%VALUE(call_done)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="call_done" id="call_done" rows=" 5"><%%VALUE(call_done)%%></textarea>
 					</div>
 				</div>
 
@@ -185,7 +185,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2" id="panel_decision_table_tdp_dv_action_buttons">
+		<div class="col-md-4 col-lg-2 dv-action-buttons" id="panel_decision_table_tdp_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>

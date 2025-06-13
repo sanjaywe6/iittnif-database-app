@@ -141,7 +141,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="period">Period (in Years)</label>
 					<div class="col-lg-9">
-						<input maxlength="2" type="text" class="form-control" name="period" id="period" value="<%%VALUE(period)%%>">
+						<input maxlength="11" type="text" class="form-control" name="period" id="period" value="<%%VALUE(period)%%>">
 					</div>
 				</div>
 
@@ -168,7 +168,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="comments">Comments</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="comments" id="comments" rows=" 5"><%%VALUE(comments)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="comments" id="comments" rows=" 5"><%%VALUE(comments)%%></textarea>
 					</div>
 				</div>
 
@@ -177,7 +177,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="remarks_1">Remarks 1</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="remarks_1" id="remarks_1" rows=" 5"><%%VALUE(remarks_1)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="remarks_1" id="remarks_1" rows=" 5"><%%VALUE(remarks_1)%%></textarea>
 					</div>
 				</div>
 
@@ -186,7 +186,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="remarks_2">Remarks 2</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="remarks_2" id="remarks_2" rows=" 5"><%%VALUE(remarks_2)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="remarks_2" id="remarks_2" rows=" 5"><%%VALUE(remarks_2)%%></textarea>
 					</div>
 				</div>
 
@@ -195,7 +195,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2" id="shortlisted_startups_for_fund_table_dv_action_buttons">
+		<div class="col-md-4 col-lg-2 dv-action-buttons" id="shortlisted_startups_for_fund_table_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>

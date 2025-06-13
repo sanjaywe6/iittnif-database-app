@@ -36,7 +36,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="entry_time">Entry time</label>
 					<div class="col-lg-9">
-						<input type="text" class="form-control" name="entry_time" id="entry_time" value="<%%VALUE(entry_time)%%>">
+						<input maxlength="11" type="text" class="form-control" name="entry_time" id="entry_time" value="<%%VALUE(entry_time)%%>">
 					</div>
 				</div>
 
@@ -45,7 +45,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="exit_time">Exit time</label>
 					<div class="col-lg-9">
-						<input type="text" class="form-control" name="exit_time" id="exit_time" value="<%%VALUE(exit_time)%%>">
+						<input maxlength="11" type="text" class="form-control" name="exit_time" id="exit_time" value="<%%VALUE(exit_time)%%>">
 					</div>
 				</div>
 
@@ -54,7 +54,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2" id="computer_user_details_dv_action_buttons">
+		<div class="col-md-4 col-lg-2 dv-action-buttons" id="computer_user_details_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>

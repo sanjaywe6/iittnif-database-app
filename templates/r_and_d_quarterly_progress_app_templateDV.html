@@ -45,7 +45,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="attendees">Attendees</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="attendees" id="attendees" rows=" 5"><%%VALUE(attendees)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="attendees" id="attendees" rows=" 5"><%%VALUE(attendees)%%></textarea>
 					</div>
 				</div>
 
@@ -54,7 +54,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="minutes">Minutes</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="minutes" id="minutes" rows=" 5"><%%VALUE(minutes)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="minutes" id="minutes" rows=" 5"><%%VALUE(minutes)%%></textarea>
 					</div>
 				</div>
 
@@ -63,7 +63,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="Tech_Mgr_Remarks">Tech-Mgr Remarks</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="Tech_Mgr_Remarks" id="Tech_Mgr_Remarks" rows=" 5"><%%VALUE(Tech_Mgr_Remarks)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="Tech_Mgr_Remarks" id="Tech_Mgr_Remarks" rows=" 5"><%%VALUE(Tech_Mgr_Remarks)%%></textarea>
 					</div>
 				</div>
 
@@ -72,7 +72,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="ceo_remarks">Ceo remarks</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="ceo_remarks" id="ceo_remarks" rows=" 5"><%%VALUE(ceo_remarks)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="ceo_remarks" id="ceo_remarks" rows=" 5"><%%VALUE(ceo_remarks)%%></textarea>
 					</div>
 				</div>
 
@@ -81,7 +81,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="pd_remarks">PD's Remarks</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="pd_remarks" id="pd_remarks" rows=" 5"><%%VALUE(pd_remarks)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="pd_remarks" id="pd_remarks" rows=" 5"><%%VALUE(pd_remarks)%%></textarea>
 					</div>
 				</div>
 
@@ -90,7 +90,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2" id="r_and_d_quarterly_progress_app_dv_action_buttons">
+		<div class="col-md-4 col-lg-2 dv-action-buttons" id="r_and_d_quarterly_progress_app_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>

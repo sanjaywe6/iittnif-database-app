@@ -106,7 +106,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="particulars_of_supplier_name_address">Partculars of Supplier Vendor Name & Address</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="particulars_of_supplier_name_address" id="particulars_of_supplier_name_address" rows=" 5"><%%VALUE(particulars_of_supplier_name_address)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="particulars_of_supplier_name_address" id="particulars_of_supplier_name_address" rows=" 5"><%%VALUE(particulars_of_supplier_name_address)%%></textarea>
 					</div>
 				</div>
 
@@ -115,7 +115,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="ItemDescription">Item Description</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="ItemDescription" id="ItemDescription" rows=" 5"><%%VALUE(ItemDescription)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="ItemDescription" id="ItemDescription" rows=" 5"><%%VALUE(ItemDescription)%%></textarea>
 					</div>
 				</div>
 
@@ -209,7 +209,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="remarks">Remarks</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="remarks" id="remarks" rows=" 5"><%%VALUE(remarks)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="remarks" id="remarks" rows=" 5"><%%VALUE(remarks)%%></textarea>
 					</div>
 				</div>
 
@@ -218,7 +218,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2" id="asset_table_dv_action_buttons">
+		<div class="col-md-4 col-lg-2 dv-action-buttons" id="asset_table_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>

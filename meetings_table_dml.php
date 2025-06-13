@@ -86,7 +86,7 @@ function meetings_table_delete($selected_id, $AllowDeleteOfParents = false, $ski
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -182,9 +182,9 @@ function meetings_table_update(&$selected_id, &$error_message = '') {
 	}
 
 	if(!update(
-		'meetings_table', 
-		backtick_keys_once($set), 
-		['`meetings_id`' => $selected_id], 
+		'meetings_table',
+		backtick_keys_once($set),
+		['`meetings_id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -525,14 +525,14 @@ function meetings_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -570,16 +570,16 @@ function meetings_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 	$templateCode = str_replace('<%%COMBOTEXT(event_lookup)%%>', $combo_event_lookup->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(event_lookup)%%>', urlencode($combo_event_lookup->MatchText), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(meeting_from_date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_meeting_from_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(meeting_from_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_meeting_from_date->GetHTML(true) . '</div>' :
 			$combo_meeting_from_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(meeting_from_date)%%>', $combo_meeting_from_date->GetHTML(true), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(meeting_to_date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_meeting_to_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(meeting_to_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_meeting_to_date->GetHTML(true) . '</div>' :
 			$combo_meeting_to_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(meeting_to_date)%%>', $combo_meeting_to_date->GetHTML(true), $templateCode);
@@ -635,7 +635,7 @@ function meetings_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		$templateCode = str_replace('<%%VALUE(meeting_to_date)%%>', app_datetime($row['meeting_to_date']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(meeting_to_date)%%>', urlencode(app_datetime($urow['meeting_to_date'])), $templateCode);
 		if($fieldsAreEditable) {
-			$templateCode = str_replace('<%%HTMLAREA(minutes_of_meeting)%%>', '<textarea name="minutes_of_meeting" id="minutes_of_meeting" rows="5">' . safe_html(htmlspecialchars_decode($row['minutes_of_meeting'])) . '</textarea>', $templateCode);
+			$templateCode = str_replace('<%%HTMLAREA(minutes_of_meeting)%%>', '<textarea  name="minutes_of_meeting" id="minutes_of_meeting" rows="5">' . safe_html(htmlspecialchars_decode($row['minutes_of_meeting'])) . '</textarea>', $templateCode);
 		} else {
 			$templateCode = str_replace('<%%HTMLAREA(minutes_of_meeting)%%>', '<div id="minutes_of_meeting" class="form-control-static">' . $row['minutes_of_meeting'] . '</div>', $templateCode);
 		}
@@ -664,7 +664,7 @@ function meetings_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		$templateCode = str_replace('<%%URLVALUE(meeting_from_date)%%>', urlencode('1'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(meeting_to_date)%%>', '1', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(meeting_to_date)%%>', urlencode('1'), $templateCode);
-		$templateCode = str_replace('<%%HTMLAREA(minutes_of_meeting)%%>', '<textarea name="minutes_of_meeting" id="minutes_of_meeting" rows="5">None</textarea>', $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(minutes_of_meeting)%%>', '<textarea  name="minutes_of_meeting" id="minutes_of_meeting" rows="5">None</textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(meeting_str)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(meeting_str)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>  <%%creationDateTime%%>', $templateCode);

@@ -89,7 +89,7 @@ function training_program_on_geospatial_tchnologies_table_delete($selected_id, $
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -167,9 +167,9 @@ function training_program_on_geospatial_tchnologies_table_update(&$selected_id, 
 	}
 
 	if(!update(
-		'training_program_on_geospatial_tchnologies_table', 
-		backtick_keys_once($set), 
-		['`id`' => $selected_id], 
+		'training_program_on_geospatial_tchnologies_table',
+		backtick_keys_once($set),
+		['`id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -356,14 +356,14 @@ function training_program_on_geospatial_tchnologies_table_form($selectedId = '',
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -418,18 +418,18 @@ function training_program_on_geospatial_tchnologies_table_form($selectedId = '',
 
 	// process combos
 	$templateCode = str_replace(
-		'<%%COMBO(datetime)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_datetime->GetHTML(true) . '</div>' : 
+		'<%%COMBO(datetime)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_datetime->GetHTML(true) . '</div>' :
 			$combo_datetime->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(datetime)%%>', $combo_datetime->GetHTML(true), $templateCode);
 	$templateCode = str_replace('<%%COMBO(gender)%%>', $combo_gender->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(gender)%%>', $combo_gender->SelectedData, $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(attended_training_date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_attended_training_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(attended_training_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_attended_training_date->GetHTML(true) . '</div>' :
 			$combo_attended_training_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(attended_training_date)%%>', $combo_attended_training_date->GetHTML(true), $templateCode);

@@ -35,7 +35,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="today_progress">Current Week Progress<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="today_progress" id="today_progress" rows=" 5"><%%VALUE(today_progress)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="today_progress" id="today_progress" rows=" 5"><%%VALUE(today_progress)%%></textarea>
 					</div>
 				</div>
 
@@ -44,7 +44,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="tomorrow_plan">Next Week Plan<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="tomorrow_plan" id="tomorrow_plan" rows=" 5"><%%VALUE(tomorrow_plan)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="tomorrow_plan" id="tomorrow_plan" rows=" 5"><%%VALUE(tomorrow_plan)%%></textarea>
 					</div>
 				</div>
 
@@ -53,7 +53,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="ceo_remarks">CEO Remarks</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="ceo_remarks" id="ceo_remarks" rows=" 5"><%%VALUE(ceo_remarks)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="ceo_remarks" id="ceo_remarks" rows=" 5"><%%VALUE(ceo_remarks)%%></textarea>
 					</div>
 				</div>
 
@@ -62,7 +62,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="pd_remarks">PD Remarks</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="pd_remarks" id="pd_remarks" rows=" 5"><%%VALUE(pd_remarks)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="pd_remarks" id="pd_remarks" rows=" 5"><%%VALUE(pd_remarks)%%></textarea>
 					</div>
 				</div>
 
@@ -71,7 +71,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2" id="r_and_d_progress_dv_action_buttons">
+		<div class="col-md-4 col-lg-2 dv-action-buttons" id="r_and_d_progress_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>

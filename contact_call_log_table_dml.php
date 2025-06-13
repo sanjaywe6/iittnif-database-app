@@ -65,7 +65,7 @@ function contact_call_log_table_delete($selected_id, $AllowDeleteOfParents = fal
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -120,9 +120,9 @@ function contact_call_log_table_update(&$selected_id, &$error_message = '') {
 	}
 
 	if(!update(
-		'contact_call_log_table', 
-		backtick_keys_once($set), 
-		['`id`' => $selected_id], 
+		'contact_call_log_table',
+		backtick_keys_once($set),
+		['`id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -273,14 +273,14 @@ function contact_call_log_table_form($selectedId = '', $allowUpdate = true, $all
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -346,14 +346,14 @@ function contact_call_log_table_form($selectedId = '', $allowUpdate = true, $all
 		$templateCode = str_replace('<%%VALUE(reply)%%>', safe_html($urow['reply'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(reply)%%>', urlencode($urow['reply']), $templateCode);
 		if($fieldsAreEditable) {
-			$templateCode = str_replace('<%%HTMLAREA(remarks_ceo)%%>', '<textarea name="remarks_ceo" id="remarks_ceo" rows="5">' . safe_html(htmlspecialchars_decode($row['remarks_ceo'])) . '</textarea>', $templateCode);
+			$templateCode = str_replace('<%%HTMLAREA(remarks_ceo)%%>', '<textarea maxlength="65500" name="remarks_ceo" id="remarks_ceo" rows="5">' . safe_html(htmlspecialchars_decode($row['remarks_ceo'])) . '</textarea>', $templateCode);
 		} else {
 			$templateCode = str_replace('<%%HTMLAREA(remarks_ceo)%%>', '<div id="remarks_ceo" class="form-control-static">' . $row['remarks_ceo'] . '</div>', $templateCode);
 		}
 		$templateCode = str_replace('<%%VALUE(remarks_ceo)%%>', nl2br($row['remarks_ceo']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(remarks_ceo)%%>', urlencode($urow['remarks_ceo']), $templateCode);
 		if($fieldsAreEditable) {
-			$templateCode = str_replace('<%%HTMLAREA(remarks_pd)%%>', '<textarea name="remarks_pd" id="remarks_pd" rows="5">' . safe_html(htmlspecialchars_decode($row['remarks_pd'])) . '</textarea>', $templateCode);
+			$templateCode = str_replace('<%%HTMLAREA(remarks_pd)%%>', '<textarea maxlength="65500" name="remarks_pd" id="remarks_pd" rows="5">' . safe_html(htmlspecialchars_decode($row['remarks_pd'])) . '</textarea>', $templateCode);
 		} else {
 			$templateCode = str_replace('<%%HTMLAREA(remarks_pd)%%>', '<div id="remarks_pd" class="form-control-static">' . $row['remarks_pd'] . '</div>', $templateCode);
 		}
@@ -372,8 +372,8 @@ function contact_call_log_table_form($selectedId = '', $allowUpdate = true, $all
 		$templateCode = str_replace('<%%URLVALUE(query)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(reply)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(reply)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%HTMLAREA(remarks_ceo)%%>', '<textarea name="remarks_ceo" id="remarks_ceo" rows="5"></textarea>', $templateCode);
-		$templateCode = str_replace('<%%HTMLAREA(remarks_pd)%%>', '<textarea name="remarks_pd" id="remarks_pd" rows="5"></textarea>', $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(remarks_ceo)%%>', '<textarea maxlength="65500" name="remarks_ceo" id="remarks_ceo" rows="5"></textarea>', $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(remarks_pd)%%>', '<textarea maxlength="65500" name="remarks_pd" id="remarks_pd" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>::<%%creationDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>::<%%creationDateTime%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>::<%%editingDateTime%%>', $templateCode);

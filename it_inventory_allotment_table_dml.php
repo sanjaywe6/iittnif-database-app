@@ -72,7 +72,7 @@ function it_inventory_allotment_table_delete($selected_id, $AllowDeleteOfParents
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -134,9 +134,9 @@ function it_inventory_allotment_table_update(&$selected_id, &$error_message = ''
 	}
 
 	if(!update(
-		'it_inventory_allotment_table', 
-		backtick_keys_once($set), 
-		['`id`' => $selected_id], 
+		'it_inventory_allotment_table',
+		backtick_keys_once($set),
+		['`id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -531,14 +531,14 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -581,9 +581,9 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 	$templateCode = str_replace('<%%COMBOTEXT(select_employee)%%>', $combo_select_employee->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(select_employee)%%>', urlencode($combo_select_employee->MatchText), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_date->GetHTML(true) . '</div>' :
 			$combo_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(date)%%>', $combo_date->GetHTML(true), $templateCode);
@@ -597,9 +597,9 @@ function it_inventory_allotment_table_form($selectedId = '', $allowUpdate = true
 	$templateCode = str_replace('<%%COMBO(return_status)%%>', $combo_return_status->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(return_status)%%>', $combo_return_status->SelectedData, $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(returned_date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_returned_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(returned_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_returned_date->GetHTML(true) . '</div>' :
 			$combo_returned_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(returned_date)%%>', $combo_returned_date->GetHTML(true), $templateCode);

@@ -74,7 +74,7 @@ function budget_table_tdp_delete($selected_id, $AllowDeleteOfParents = false, $s
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -138,9 +138,9 @@ function budget_table_tdp_update(&$selected_id, &$error_message = '') {
 	}
 
 	if(!update(
-		'budget_table_tdp', 
-		backtick_keys_once($set), 
-		['`id`' => $selected_id], 
+		'budget_table_tdp',
+		backtick_keys_once($set),
+		['`id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -386,14 +386,14 @@ function budget_table_tdp_form($selectedId = '', $allowUpdate = true, $allowInse
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -436,9 +436,9 @@ function budget_table_tdp_form($selectedId = '', $allowUpdate = true, $allowInse
 	$templateCode = str_replace('<%%COMBOTEXT(project_id)%%>', $combo_project_id->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(project_id)%%>', urlencode($combo_project_id->MatchText), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(date_of_presentation)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_date_of_presentation->GetHTML(true) . '</div>' : 
+		'<%%COMBO(date_of_presentation)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_date_of_presentation->GetHTML(true) . '</div>' :
 			$combo_date_of_presentation->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(date_of_presentation)%%>', $combo_date_of_presentation->GetHTML(true), $templateCode);

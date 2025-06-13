@@ -69,7 +69,7 @@ function email_id_allocation_table_delete($selected_id, $AllowDeleteOfParents = 
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -127,9 +127,9 @@ function email_id_allocation_table_update(&$selected_id, &$error_message = '') {
 	}
 
 	if(!update(
-		'email_id_allocation_table', 
-		backtick_keys_once($set), 
-		['`email_id_allocation_id`' => $selected_id], 
+		'email_id_allocation_table',
+		backtick_keys_once($set),
+		['`email_id_allocation_id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -393,14 +393,14 @@ function email_id_allocation_table_form($selectedId = '', $allowUpdate = true, $
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -434,9 +434,9 @@ function email_id_allocation_table_form($selectedId = '', $allowUpdate = true, $
 
 	// process combos
 	$templateCode = str_replace(
-		'<%%COMBO(date_of_allocation)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_date_of_allocation->GetHTML(true) . '</div>' : 
+		'<%%COMBO(date_of_allocation)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_date_of_allocation->GetHTML(true) . '</div>' :
 			$combo_date_of_allocation->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(date_of_allocation)%%>', $combo_date_of_allocation->GetHTML(true), $templateCode);

@@ -74,7 +74,7 @@ function navavishkar_stay_table_delete($selected_id, $AllowDeleteOfParents = fal
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -157,9 +157,9 @@ function navavishkar_stay_table_update(&$selected_id, &$error_message = '') {
 	}
 
 	if(!update(
-		'navavishkar_stay_table', 
-		backtick_keys_once($set), 
-		['`id`' => $selected_id], 
+		'navavishkar_stay_table',
+		backtick_keys_once($set),
+		['`id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -346,14 +346,14 @@ function navavishkar_stay_table_form($selectedId = '', $allowUpdate = true, $all
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -392,16 +392,16 @@ function navavishkar_stay_table_form($selectedId = '', $allowUpdate = true, $all
 
 	// process combos
 	$templateCode = str_replace(
-		'<%%COMBO(check_in_date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_check_in_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(check_in_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_check_in_date->GetHTML(true) . '</div>' :
 			$combo_check_in_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(check_in_date)%%>', $combo_check_in_date->GetHTML(true), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(checkout_date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_checkout_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(checkout_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_checkout_date->GetHTML(true) . '</div>' :
 			$combo_checkout_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(checkout_date)%%>', $combo_checkout_date->GetHTML(true), $templateCode);

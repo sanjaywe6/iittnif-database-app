@@ -76,7 +76,7 @@ function subtask_setting_table_delete($selected_id, $AllowDeleteOfParents = fals
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -132,9 +132,9 @@ function subtask_setting_table_update(&$selected_id, &$error_message = '') {
 	}
 
 	if(!update(
-		'subtask_setting_table', 
-		backtick_keys_once($set), 
-		['`subtask_id`' => $selected_id], 
+		'subtask_setting_table',
+		backtick_keys_once($set),
+		['`subtask_id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -588,14 +588,14 @@ function subtask_setting_table_form($selectedId = '', $allowUpdate = true, $allo
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -636,9 +636,9 @@ function subtask_setting_table_form($selectedId = '', $allowUpdate = true, $allo
 	$templateCode = str_replace('<%%COMBO(subtask_duration)%%>', $combo_subtask_duration->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(subtask_duration)%%>', $combo_subtask_duration->SelectedData, $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(subtask_set_date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_subtask_set_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(subtask_set_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_subtask_set_date->GetHTML(true) . '</div>' :
 			$combo_subtask_set_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(subtask_set_date)%%>', $combo_subtask_set_date->GetHTML(true), $templateCode);

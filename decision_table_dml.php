@@ -76,7 +76,7 @@ function decision_table_delete($selected_id, $AllowDeleteOfParents = false, $ski
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -132,9 +132,9 @@ function decision_table_update(&$selected_id, &$error_message = '') {
 	}
 
 	if(!update(
-		'decision_table', 
-		backtick_keys_once($set), 
-		['`decision_id`' => $selected_id], 
+		'decision_table',
+		backtick_keys_once($set),
+		['`decision_id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -493,14 +493,14 @@ function decision_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -540,18 +540,18 @@ function decision_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 	$templateCode = str_replace('<%%COMBOTEXT(decision_actor)%%>', $combo_decision_actor->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(decision_actor)%%>', urlencode($combo_decision_actor->MatchText), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(action_taken_with_date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_action_taken_with_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(action_taken_with_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_action_taken_with_date->GetHTML(true) . '</div>' :
 			$combo_action_taken_with_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(action_taken_with_date)%%>', $combo_action_taken_with_date->GetHTML(true), $templateCode);
 	$templateCode = str_replace('<%%COMBO(decision_status)%%>', $combo_decision_status->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(decision_status)%%>', $combo_decision_status->SelectedData, $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(decision_status_update_date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_decision_status_update_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(decision_status_update_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_decision_status_update_date->GetHTML(true) . '</div>' :
 			$combo_decision_status_update_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(decision_status_update_date)%%>', $combo_decision_status_update_date->GetHTML(true), $templateCode);

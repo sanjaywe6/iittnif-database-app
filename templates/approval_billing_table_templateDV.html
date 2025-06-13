@@ -55,7 +55,7 @@
 					<label class="control-label col-lg-3" for="items_list">Items List <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#items_list-description"></i></label>
 					<div class="col-lg-9">
 						<span class="help-block bspacer-xs collapse" id="items_list-description"><div class="alert alert-info bspacer-xs">Example: Pens-6,Paper-2 reams etc</div></span>
-						<textarea class="form-control" name="items_list" id="items_list" rows=" 5"><%%VALUE(items_list)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="items_list" id="items_list" rows=" 5"><%%VALUE(items_list)%%></textarea>
 					</div>
 				</div>
 
@@ -139,7 +139,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2" id="approval_billing_table_dv_action_buttons">
+		<div class="col-md-4 col-lg-2 dv-action-buttons" id="approval_billing_table_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>

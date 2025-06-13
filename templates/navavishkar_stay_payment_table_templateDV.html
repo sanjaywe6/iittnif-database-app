@@ -85,7 +85,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="remarks">Remarks</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="remarks" id="remarks" rows=" 5"><%%VALUE(remarks)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="remarks" id="remarks" rows=" 5"><%%VALUE(remarks)%%></textarea>
 					</div>
 				</div>
 
@@ -94,7 +94,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2" id="navavishkar_stay_payment_table_dv_action_buttons">
+		<div class="col-md-4 col-lg-2 dv-action-buttons" id="navavishkar_stay_payment_table_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>

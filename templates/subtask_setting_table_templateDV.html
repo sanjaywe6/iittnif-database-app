@@ -45,7 +45,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="subtask_description">Subtask description</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="subtask_description" id="subtask_description" rows=" 5"><%%VALUE(subtask_description)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="subtask_description" id="subtask_description" rows=" 5"><%%VALUE(subtask_description)%%></textarea>
 					</div>
 				</div>
 
@@ -90,7 +90,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2" id="subtask_setting_table_dv_action_buttons">
+		<div class="col-md-4 col-lg-2 dv-action-buttons" id="subtask_setting_table_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>

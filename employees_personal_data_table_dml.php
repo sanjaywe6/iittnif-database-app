@@ -105,7 +105,7 @@ function employees_personal_data_table_delete($selected_id, $AllowDeleteOfParent
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -245,9 +245,9 @@ function employees_personal_data_table_update(&$selected_id, &$error_message = '
 	}
 
 	if(!update(
-		'employees_personal_data_table', 
-		backtick_keys_once($set), 
-		['`id`' => $selected_id], 
+		'employees_personal_data_table',
+		backtick_keys_once($set),
+		['`id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -461,14 +461,14 @@ function employees_personal_data_table_form($selectedId = '', $allowUpdate = tru
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -511,23 +511,23 @@ function employees_personal_data_table_form($selectedId = '', $allowUpdate = tru
 	$templateCode = str_replace('<%%COMBO(employee_type)%%>', $combo_employee_type->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(employee_type)%%>', $combo_employee_type->SelectedData, $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(date_of_birth)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_date_of_birth->GetHTML(true) . '</div>' : 
+		'<%%COMBO(date_of_birth)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_date_of_birth->GetHTML(true) . '</div>' :
 			$combo_date_of_birth->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(date_of_birth)%%>', $combo_date_of_birth->GetHTML(true), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(date_of_joining)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_date_of_joining->GetHTML(true) . '</div>' : 
+		'<%%COMBO(date_of_joining)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_date_of_joining->GetHTML(true) . '</div>' :
 			$combo_date_of_joining->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(date_of_joining)%%>', $combo_date_of_joining->GetHTML(true), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(date_of_exit)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_date_of_exit->GetHTML(true) . '</div>' : 
+		'<%%COMBO(date_of_exit)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_date_of_exit->GetHTML(true) . '</div>' :
 			$combo_date_of_exit->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(date_of_exit)%%>', $combo_date_of_exit->GetHTML(true), $templateCode);

@@ -69,7 +69,7 @@ function attendence_details_table_delete($selected_id, $AllowDeleteOfParents = f
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -128,9 +128,9 @@ function attendence_details_table_update(&$selected_id, &$error_message = '') {
 	}
 
 	if(!update(
-		'attendence_details_table', 
-		backtick_keys_once($set), 
-		['`id`' => $selected_id], 
+		'attendence_details_table',
+		backtick_keys_once($set),
+		['`id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -290,14 +290,14 @@ function attendence_details_table_form($selectedId = '', $allowUpdate = true, $a
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -326,16 +326,16 @@ function attendence_details_table_form($selectedId = '', $allowUpdate = true, $a
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
 		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\t\$j('#in_time').addClass('always_shown').timepicker({ defaultTime: false, showSeconds: true, showMeridian: false, showInputs: false, disableFocus: true, minuteStep: 5 });";
-		$jsEditable .= "\t\$j('#out_time').addClass('always_shown').timepicker({ defaultTime: false, showSeconds: true, showMeridian: false, showInputs: false, disableFocus: true, minuteStep: 5 });";
+		$jsEditable .= "\t\$j('#in_time').addClass('always_shown').timepicker({ defaultTime: false, showSeconds: true, showMeridian: false, showInputs: false, disableFocus: true, minuteStep: AppGini.config.timeFieldMinutesStep || 5 });";
+		$jsEditable .= "\t\$j('#out_time').addClass('always_shown').timepicker({ defaultTime: false, showSeconds: true, showMeridian: false, showInputs: false, disableFocus: true, minuteStep: AppGini.config.timeFieldMinutesStep || 5 });";
 		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
 	// process combos
 	$templateCode = str_replace(
-		'<%%COMBO(date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_date->GetHTML(true) . '</div>' :
 			$combo_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(date)%%>', $combo_date->GetHTML(true), $templateCode);

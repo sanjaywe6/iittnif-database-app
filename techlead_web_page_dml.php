@@ -101,7 +101,7 @@ function techlead_web_page_delete($selected_id, $AllowDeleteOfParents = false, $
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -246,9 +246,9 @@ function techlead_web_page_update(&$selected_id, &$error_message = '') {
 	}
 
 	if(!update(
-		'techlead_web_page', 
-		backtick_keys_once($set), 
-		['`id`' => $selected_id], 
+		'techlead_web_page',
+		backtick_keys_once($set),
+		['`id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -480,14 +480,14 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -530,9 +530,9 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 	$templateCode = str_replace('<%%COMBO(website_update_status)%%>', $combo_website_update_status->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(website_update_status)%%>', $combo_website_update_status->SelectedData, $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(website_update_date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_website_update_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(website_update_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_website_update_date->GetHTML(true) . '</div>' :
 			$combo_website_update_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(website_update_date)%%>', $combo_website_update_date->GetHTML(true), $templateCode);
@@ -598,14 +598,14 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(content_title)%%>', html_attr($row['content_title']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(content_title)%%>', urlencode($urow['content_title']), $templateCode);
 		if($fieldsAreEditable) {
-			$templateCode = str_replace('<%%HTMLAREA(content)%%>', '<textarea name="content" id="content" rows="5">' . safe_html(htmlspecialchars_decode($row['content'])) . '</textarea>', $templateCode);
+			$templateCode = str_replace('<%%HTMLAREA(content)%%>', '<textarea maxlength="65500" name="content" id="content" rows="5">' . safe_html(htmlspecialchars_decode($row['content'])) . '</textarea>', $templateCode);
 		} else {
 			$templateCode = str_replace('<%%HTMLAREA(content)%%>', '<div id="content" class="form-control-static">' . $row['content'] . '</div>', $templateCode);
 		}
 		$templateCode = str_replace('<%%VALUE(content)%%>', nl2br($row['content']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(content)%%>', urlencode($urow['content']), $templateCode);
 		if($fieldsAreEditable) {
-			$templateCode = str_replace('<%%HTMLAREA(content_learn_more)%%>', '<textarea name="content_learn_more" id="content_learn_more" rows="5">' . safe_html(htmlspecialchars_decode($row['content_learn_more'])) . '</textarea>', $templateCode);
+			$templateCode = str_replace('<%%HTMLAREA(content_learn_more)%%>', '<textarea maxlength="65500" name="content_learn_more" id="content_learn_more" rows="5">' . safe_html(htmlspecialchars_decode($row['content_learn_more'])) . '</textarea>', $templateCode);
 		} else {
 			$templateCode = str_replace('<%%HTMLAREA(content_learn_more)%%>', '<div id="content_learn_more" class="form-control-static">' . $row['content_learn_more'] . '</div>', $templateCode);
 		}
@@ -623,7 +623,7 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', html_attr($row['approval_status']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode($urow['approval_status']), $templateCode);
 		if($fieldsAreEditable) {
-			$templateCode = str_replace('<%%HTMLAREA(approval_remarks)%%>', '<textarea name="approval_remarks" id="approval_remarks" rows="5">' . safe_html(htmlspecialchars_decode($row['approval_remarks'])) . '</textarea>', $templateCode);
+			$templateCode = str_replace('<%%HTMLAREA(approval_remarks)%%>', '<textarea maxlength="65500" name="approval_remarks" id="approval_remarks" rows="5">' . safe_html(htmlspecialchars_decode($row['approval_remarks'])) . '</textarea>', $templateCode);
 		} else {
 			$templateCode = str_replace('<%%HTMLAREA(approval_remarks)%%>', '<div id="approval_remarks" class="form-control-static">' . $row['approval_remarks'] . '</div>', $templateCode);
 		}
@@ -633,7 +633,7 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(website_update_status)%%>', html_attr($row['website_update_status']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(website_update_status)%%>', urlencode($urow['website_update_status']), $templateCode);
 		if($fieldsAreEditable) {
-			$templateCode = str_replace('<%%HTMLAREA(website_update_remarks)%%>', '<textarea name="website_update_remarks" id="website_update_remarks" rows="5">' . safe_html(htmlspecialchars_decode($row['website_update_remarks'])) . '</textarea>', $templateCode);
+			$templateCode = str_replace('<%%HTMLAREA(website_update_remarks)%%>', '<textarea maxlength="65500" name="website_update_remarks" id="website_update_remarks" rows="5">' . safe_html(htmlspecialchars_decode($row['website_update_remarks'])) . '</textarea>', $templateCode);
 		} else {
 			$templateCode = str_replace('<%%HTMLAREA(website_update_remarks)%%>', '<div id="website_update_remarks" class="form-control-static">' . $row['website_update_remarks'] . '</div>', $templateCode);
 		}
@@ -656,16 +656,16 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		$templateCode = str_replace('<%%URLVALUE(author)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(content_title)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(content_title)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%HTMLAREA(content)%%>', '<textarea name="content" id="content" rows="5"></textarea>', $templateCode);
-		$templateCode = str_replace('<%%HTMLAREA(content_learn_more)%%>', '<textarea name="content_learn_more" id="content_learn_more" rows="5"></textarea>', $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(content)%%>', '<textarea maxlength="65500" name="content" id="content" rows="5"></textarea>', $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(content_learn_more)%%>', '<textarea maxlength="65500" name="content_learn_more" id="content_learn_more" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(img1)%%>', 'blank.gif', $templateCode);
 		$templateCode = str_replace('<%%VALUE(img2)%%>', 'blank.gif', $templateCode);
 		$templateCode = str_replace('<%%VALUE(approval_status)%%>', 'Under Consideration', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode('Under Consideration'), $templateCode);
-		$templateCode = str_replace('<%%HTMLAREA(approval_remarks)%%>', '<textarea name="approval_remarks" id="approval_remarks" rows="5"></textarea>', $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(approval_remarks)%%>', '<textarea maxlength="65500" name="approval_remarks" id="approval_remarks" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(website_update_status)%%>', 'Pending', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(website_update_status)%%>', urlencode('Pending'), $templateCode);
-		$templateCode = str_replace('<%%HTMLAREA(website_update_remarks)%%>', '<textarea name="website_update_remarks" id="website_update_remarks" rows="5">None</textarea>', $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(website_update_remarks)%%>', '<textarea maxlength="65500" name="website_update_remarks" id="website_update_remarks" rows="5">None</textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(website_update_date)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(website_update_date)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>::<%%creationDateTime%%>', $templateCode);

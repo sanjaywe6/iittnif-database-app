@@ -24,7 +24,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="in">In Time</label>
 					<div class="col-lg-9">
-						<input type="text" class="form-control" name="in" id="in" value="<%%VALUE(in)%%>">
+						<input maxlength="11" type="text" class="form-control" name="in" id="in" value="<%%VALUE(in)%%>">
 					</div>
 				</div>
 
@@ -33,7 +33,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="out">Out Time</label>
 					<div class="col-lg-9">
-						<input type="text" class="form-control" name="out" id="out" value="<%%VALUE(out)%%>">
+						<input maxlength="11" type="text" class="form-control" name="out" id="out" value="<%%VALUE(out)%%>">
 					</div>
 				</div>
 
@@ -42,7 +42,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="remarks">Remarks (Optional)</label>
 					<div class="col-lg-9">
-						<textarea class="form-control" name="remarks" id="remarks" rows=" 5"><%%VALUE(remarks)%%></textarea>
+						<textarea maxlength="65500" class="form-control" name="remarks" id="remarks" rows=" 5"><%%VALUE(remarks)%%></textarea>
 					</div>
 				</div>
 
@@ -51,7 +51,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2" id="gym_table_dv_action_buttons">
+		<div class="col-md-4 col-lg-2 dv-action-buttons" id="gym_table_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>

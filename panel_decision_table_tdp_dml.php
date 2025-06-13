@@ -78,7 +78,7 @@ function panel_decision_table_tdp_delete($selected_id, $AllowDeleteOfParents = f
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -286,9 +286,9 @@ function panel_decision_table_tdp_update(&$selected_id, &$error_message = '') {
 	}
 
 	if(!update(
-		'panel_decision_table_tdp', 
-		backtick_keys_once($set), 
-		['`panel_decision_id`' => $selected_id], 
+		'panel_decision_table_tdp',
+		backtick_keys_once($set),
+		['`panel_decision_id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -466,14 +466,14 @@ function panel_decision_table_tdp_form($selectedId = '', $allowUpdate = true, $a
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -515,9 +515,9 @@ function panel_decision_table_tdp_form($selectedId = '', $allowUpdate = true, $a
 
 	// process combos
 	$templateCode = str_replace(
-		'<%%COMBO(date_of_presentation)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_date_of_presentation->GetHTML(true) . '</div>' : 
+		'<%%COMBO(date_of_presentation)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_date_of_presentation->GetHTML(true) . '</div>' :
 			$combo_date_of_presentation->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(date_of_presentation)%%>', $combo_date_of_presentation->GetHTML(true), $templateCode);
@@ -577,7 +577,7 @@ function panel_decision_table_tdp_form($selectedId = '', $allowUpdate = true, $a
 		$templateCode = str_replace('<%%VALUE(date_of_presentation)%%>', app_datetime($row['date_of_presentation']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date_of_presentation)%%>', urlencode(app_datetime($urow['date_of_presentation'])), $templateCode);
 		if($fieldsAreEditable) {
-			$templateCode = str_replace('<%%HTMLAREA(project_title)%%>', '<textarea name="project_title" id="project_title" rows="5">' . safe_html(htmlspecialchars_decode($row['project_title'])) . '</textarea>', $templateCode);
+			$templateCode = str_replace('<%%HTMLAREA(project_title)%%>', '<textarea maxlength="65500" name="project_title" id="project_title" rows="5">' . safe_html(htmlspecialchars_decode($row['project_title'])) . '</textarea>', $templateCode);
 		} else {
 			$templateCode = str_replace('<%%HTMLAREA(project_title)%%>', '<div id="project_title" class="form-control-static">' . $row['project_title'] . '</div>', $templateCode);
 		}
@@ -636,7 +636,7 @@ function panel_decision_table_tdp_form($selectedId = '', $allowUpdate = true, $a
 		$templateCode = str_replace('<%%URLVALUE(project_id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date_of_presentation)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date_of_presentation)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%HTMLAREA(project_title)%%>', '<textarea name="project_title" id="project_title" rows="5"></textarea>', $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(project_title)%%>', '<textarea maxlength="65500" name="project_title" id="project_title" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(name_of_pi)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(name_of_pi)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(mobile_number)%%>', '', $templateCode);

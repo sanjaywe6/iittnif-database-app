@@ -89,7 +89,7 @@ function honorarium_claim_table_delete($selected_id, $AllowDeleteOfParents = fal
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -168,9 +168,9 @@ function honorarium_claim_table_update(&$selected_id, &$error_message = '') {
 	}
 
 	if(!update(
-		'honorarium_claim_table', 
-		backtick_keys_once($set), 
-		['`id`' => $selected_id], 
+		'honorarium_claim_table',
+		backtick_keys_once($set),
+		['`id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -479,14 +479,14 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -546,37 +546,37 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 
 	// process combos
 	$templateCode = str_replace(
-		'<%%COMBO(date_1)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_date_1->GetHTML(true) . '</div>' : 
+		'<%%COMBO(date_1)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_date_1->GetHTML(true) . '</div>' :
 			$combo_date_1->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(date_1)%%>', $combo_date_1->GetHTML(true), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(date_2)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_date_2->GetHTML(true) . '</div>' : 
+		'<%%COMBO(date_2)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_date_2->GetHTML(true) . '</div>' :
 			$combo_date_2->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(date_2)%%>', $combo_date_2->GetHTML(true), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(date_3)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_date_3->GetHTML(true) . '</div>' : 
+		'<%%COMBO(date_3)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_date_3->GetHTML(true) . '</div>' :
 			$combo_date_3->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(date_3)%%>', $combo_date_3->GetHTML(true), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(date_4)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_date_4->GetHTML(true) . '</div>' : 
+		'<%%COMBO(date_4)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_date_4->GetHTML(true) . '</div>' :
 			$combo_date_4->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(date_4)%%>', $combo_date_4->GetHTML(true), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(date_5)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_date_5->GetHTML(true) . '</div>' : 
+		'<%%COMBO(date_5)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_date_5->GetHTML(true) . '</div>' :
 			$combo_date_5->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(date_5)%%>', $combo_date_5->GetHTML(true), $templateCode);
@@ -584,9 +584,9 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 	$templateCode = str_replace('<%%COMBOTEXT(coordinated_by_tih_user)%%>', $combo_coordinated_by_tih_user->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(coordinated_by_tih_user)%%>', urlencode($combo_coordinated_by_tih_user->MatchText), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(payment_date)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_payment_date->GetHTML(true) . '</div>' : 
+		'<%%COMBO(payment_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_payment_date->GetHTML(true) . '</div>' :
 			$combo_payment_date->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(payment_date)%%>', $combo_payment_date->GetHTML(true), $templateCode);

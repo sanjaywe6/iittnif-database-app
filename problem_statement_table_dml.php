@@ -64,7 +64,7 @@ function problem_statement_table_delete($selected_id, $AllowDeleteOfParents = fa
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -118,9 +118,9 @@ function problem_statement_table_update(&$selected_id, &$error_message = '') {
 	}
 
 	if(!update(
-		'problem_statement_table', 
-		backtick_keys_once($set), 
-		['`problem_statement_id`' => $selected_id], 
+		'problem_statement_table',
+		backtick_keys_once($set),
+		['`problem_statement_id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -357,14 +357,14 @@ function problem_statement_table_form($selectedId = '', $allowUpdate = true, $al
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .

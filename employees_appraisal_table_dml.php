@@ -125,7 +125,7 @@ function employees_appraisal_table_delete($selected_id, $AllowDeleteOfParents = 
 			return $Translation['Couldn\'t delete this record'] . (
 				!empty($args['error_message']) ?
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
-					: '' 
+					: ''
 			);
 	}
 
@@ -238,9 +238,9 @@ function employees_appraisal_table_update(&$selected_id, &$error_message = '') {
 	}
 
 	if(!update(
-		'employees_appraisal_table', 
-		backtick_keys_once($set), 
-		['`id`' => $selected_id], 
+		'employees_appraisal_table',
+		backtick_keys_once($set),
+		['`id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -635,14 +635,14 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 			$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '', $templateCode);
 		elseif($separateDV)
 			$templateCode = str_replace(
-				'<%%DESELECT_BUTTON%%>', 
+				'<%%DESELECT_BUTTON%%>',
 				'<button
-					type="submit" 
-					class="btn btn-default" 
-					id="deselect" 
-					name="deselect_x" 
-					value="1" 
-					onclick="' . $backAction . '" 
+					type="submit"
+					class="btn btn-default"
+					id="deselect"
+					name="deselect_x"
+					value="1"
+					onclick="' . $backAction . '"
 					title="' . html_attr($Translation['Back']) . '">
 						<i class="glyphicon glyphicon-chevron-left"></i> ' .
 						$Translation['Back'] .
@@ -687,16 +687,16 @@ function employees_appraisal_table_form($selectedId = '', $allowUpdate = true, $
 	$templateCode = str_replace('<%%COMBOTEXT(employee_designation_lookup)%%>', $combo_employee_designation_lookup->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(employee_designation_lookup)%%>', urlencode($combo_employee_designation_lookup->MatchText), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(current_review_period_from)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_current_review_period_from->GetHTML(true) . '</div>' : 
+		'<%%COMBO(current_review_period_from)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_current_review_period_from->GetHTML(true) . '</div>' :
 			$combo_current_review_period_from->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(current_review_period_from)%%>', $combo_current_review_period_from->GetHTML(true), $templateCode);
 	$templateCode = str_replace(
-		'<%%COMBO(current_review_period_to)%%>', 
-		(!$fieldsAreEditable ? 
-			'<div class="form-control-static">' . $combo_current_review_period_to->GetHTML(true) . '</div>' : 
+		'<%%COMBO(current_review_period_to)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_current_review_period_to->GetHTML(true) . '</div>' :
 			$combo_current_review_period_to->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(current_review_period_to)%%>', $combo_current_review_period_to->GetHTML(true), $templateCode);

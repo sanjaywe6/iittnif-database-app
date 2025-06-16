@@ -19,7 +19,7 @@ function computer_user_details_insert(&$error_message = '') {
 		'pc_id' => Request::lookup('pc_id', ''),
 		'entry_time' => Request::val('entry_time', ''),
 		'exit_time' => Request::val('exit_time', ''),
-		'date' => parseCode('<%%creationDate%%>', true, true),
+		'date' => Request::dateComponents('date', '1'),
 		'created_by' => parseCode('<%%creatorUsername%%>  <%%creationDateTime%%>', true),
 	];
 
@@ -90,6 +90,7 @@ function computer_user_details_update(&$selected_id, &$error_message = '') {
 		'pc_id' => Request::lookup('pc_id', ''),
 		'entry_time' => Request::val('entry_time', ''),
 		'exit_time' => Request::val('exit_time', ''),
+		'date' => Request::dateComponents('date', ''),
 		'last_updated_by' => parseCode('<%%editorUsername%%>  <%%editingDateTime%%>', false),
 	];
 
@@ -191,7 +192,7 @@ function computer_user_details_form($selectedId = '', $allowUpdate = true, $allo
 	$combo_date->DateFormat = "dmy";
 	$combo_date->MinYear = defined('computer_user_details.date.MinYear') ? constant('computer_user_details.date.MinYear') : 1900;
 	$combo_date->MaxYear = defined('computer_user_details.date.MaxYear') ? constant('computer_user_details.date.MaxYear') : 2100;
-	$combo_date->DefaultDate = parseMySQLDate('<%%creationDate%%>', '<%%creationDate%%>');
+	$combo_date->DefaultDate = parseMySQLDate('1', '1');
 	$combo_date->MonthNames = $Translation['month names'];
 	$combo_date->NamePrefix = 'date';
 
@@ -390,6 +391,8 @@ function computer_user_details_form($selectedId = '', $allowUpdate = true, $allo
 		$jsReadOnly .= "\t\$j('#pc_id_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\t\$j('#entry_time').replaceWith('<div class=\"form-control-static\" id=\"entry_time\">' + (\$j('#entry_time').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#exit_time').replaceWith('<div class=\"form-control-static\" id=\"exit_time\">' + (\$j('#exit_time').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#dateDay, #dateMonth, #dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -466,8 +469,8 @@ function computer_user_details_form($selectedId = '', $allowUpdate = true, $allo
 		$templateCode = str_replace('<%%URLVALUE(entry_time)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(exit_time)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(exit_time)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(date)%%>', '<%%creationDate%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(date)%%>', urlencode('<%%creationDate%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(date)%%>', '1', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(date)%%>', urlencode('1'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>  <%%creationDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>  <%%creationDateTime%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>  <%%editingDateTime%%>', $templateCode);

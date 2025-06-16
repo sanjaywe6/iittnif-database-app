@@ -1033,7 +1033,7 @@
 				'pc_id' => '',
 				'entry_time' => '',
 				'exit_time' => '',
-				'date' => '',
+				'date' => '1',
 				'created_by' => '',
 				'last_updated_by' => '',
 			],

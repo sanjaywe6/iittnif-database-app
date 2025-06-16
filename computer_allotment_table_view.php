@@ -20,18 +20,16 @@
 	$x->QueryFieldsTV = [
 		"`computer_allotment_table`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`computer_details_table1`.`pc_number`) || CHAR_LENGTH(`computer_details_table1`.`pc_hostname`), CONCAT_WS('',   `computer_details_table1`.`pc_number`, '::', `computer_details_table1`.`pc_hostname`), '') /* PC ID */" => "pc_id",
-		"`computer_allotment_table`.`room_number`" => "room_number",
 		"`computer_allotment_table`.`name_of_user`" => "name_of_user",
 		"`computer_allotment_table`.`role`" => "role",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, '  ', `employees_personal_data_table1`.`name`), '') /* Employee Details (Optional) */" => "emp_details",
-		"`computer_allotment_table`.`designation`" => "designation",
-		"if(`computer_allotment_table`.`from_date`,date_format(`computer_allotment_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
-		"if(`computer_allotment_table`.`to_date`,date_format(`computer_allotment_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
+		"if(`computer_allotment_table`.`from_date`,date_format(`computer_allotment_table`.`from_date`,'%d/%m/%Y %H:%i'),'')" => "from_date",
+		"if(`computer_allotment_table`.`to_date`,date_format(`computer_allotment_table`.`to_date`,'%d/%m/%Y %H:%i'),'')" => "to_date",
 		"`computer_allotment_table`.`purpose`" => "purpose",
 		"`computer_allotment_table`.`email_d`" => "email_d",
 		"`computer_allotment_table`.`mobile_number`" => "mobile_number",
 		"`computer_allotment_table`.`created_by`" => "created_by",
 		"`computer_allotment_table`.`last_updated_by`" => "last_updated_by",
+		"`computer_allotment_table`.`emp_details`" => "emp_details",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -39,44 +37,37 @@
 		2 => 2,
 		3 => 3,
 		4 => 4,
-		5 => 5,
-		6 => 6,
+		5 => '`computer_allotment_table`.`from_date`',
+		6 => '`computer_allotment_table`.`to_date`',
 		7 => 7,
-		8 => '`computer_allotment_table`.`from_date`',
-		9 => '`computer_allotment_table`.`to_date`',
+		8 => 8,
+		9 => 9,
 		10 => 10,
 		11 => 11,
 		12 => 12,
-		13 => 13,
-		14 => 14,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`computer_allotment_table`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`computer_details_table1`.`pc_number`) || CHAR_LENGTH(`computer_details_table1`.`pc_hostname`), CONCAT_WS('',   `computer_details_table1`.`pc_number`, '::', `computer_details_table1`.`pc_hostname`), '') /* PC ID */" => "pc_id",
-		"`computer_allotment_table`.`room_number`" => "room_number",
 		"`computer_allotment_table`.`name_of_user`" => "name_of_user",
 		"`computer_allotment_table`.`role`" => "role",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, '  ', `employees_personal_data_table1`.`name`), '') /* Employee Details (Optional) */" => "emp_details",
-		"`computer_allotment_table`.`designation`" => "designation",
-		"if(`computer_allotment_table`.`from_date`,date_format(`computer_allotment_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
-		"if(`computer_allotment_table`.`to_date`,date_format(`computer_allotment_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
+		"if(`computer_allotment_table`.`from_date`,date_format(`computer_allotment_table`.`from_date`,'%d/%m/%Y %H:%i'),'')" => "from_date",
+		"if(`computer_allotment_table`.`to_date`,date_format(`computer_allotment_table`.`to_date`,'%d/%m/%Y %H:%i'),'')" => "to_date",
 		"`computer_allotment_table`.`purpose`" => "purpose",
 		"`computer_allotment_table`.`email_d`" => "email_d",
 		"`computer_allotment_table`.`mobile_number`" => "mobile_number",
 		"`computer_allotment_table`.`created_by`" => "created_by",
 		"`computer_allotment_table`.`last_updated_by`" => "last_updated_by",
+		"`computer_allotment_table`.`emp_details`" => "emp_details",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`computer_allotment_table`.`id`" => "ID",
 		"IF(    CHAR_LENGTH(`computer_details_table1`.`pc_number`) || CHAR_LENGTH(`computer_details_table1`.`pc_hostname`), CONCAT_WS('',   `computer_details_table1`.`pc_number`, '::', `computer_details_table1`.`pc_hostname`), '') /* PC ID */" => "PC ID",
-		"`computer_allotment_table`.`room_number`" => "Room Number",
 		"`computer_allotment_table`.`name_of_user`" => "Name of user",
 		"`computer_allotment_table`.`role`" => "Role",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, '  ', `employees_personal_data_table1`.`name`), '') /* Employee Details (Optional) */" => "Employee Details (Optional)",
-		"`computer_allotment_table`.`designation`" => "Designation",
 		"`computer_allotment_table`.`from_date`" => "From date",
 		"`computer_allotment_table`.`to_date`" => "To date",
 		"`computer_allotment_table`.`purpose`" => "Purpose",
@@ -84,30 +75,29 @@
 		"`computer_allotment_table`.`mobile_number`" => "Mobile number",
 		"`computer_allotment_table`.`created_by`" => "Created By",
 		"`computer_allotment_table`.`last_updated_by`" => "Last Updated By",
+		"`computer_allotment_table`.`emp_details`" => "Emp details",
 	];
 
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`computer_allotment_table`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`computer_details_table1`.`pc_number`) || CHAR_LENGTH(`computer_details_table1`.`pc_hostname`), CONCAT_WS('',   `computer_details_table1`.`pc_number`, '::', `computer_details_table1`.`pc_hostname`), '') /* PC ID */" => "pc_id",
-		"`computer_allotment_table`.`room_number`" => "room_number",
 		"`computer_allotment_table`.`name_of_user`" => "name_of_user",
 		"`computer_allotment_table`.`role`" => "role",
-		"IF(    CHAR_LENGTH(`employees_personal_data_table1`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table1`.`name`), CONCAT_WS('',   `employees_personal_data_table1`.`emp_id`, '  ', `employees_personal_data_table1`.`name`), '') /* Employee Details (Optional) */" => "emp_details",
-		"`computer_allotment_table`.`designation`" => "designation",
-		"if(`computer_allotment_table`.`from_date`,date_format(`computer_allotment_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
-		"if(`computer_allotment_table`.`to_date`,date_format(`computer_allotment_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
+		"if(`computer_allotment_table`.`from_date`,date_format(`computer_allotment_table`.`from_date`,'%d/%m/%Y %H:%i'),'')" => "from_date",
+		"if(`computer_allotment_table`.`to_date`,date_format(`computer_allotment_table`.`to_date`,'%d/%m/%Y %H:%i'),'')" => "to_date",
 		"`computer_allotment_table`.`purpose`" => "purpose",
 		"`computer_allotment_table`.`email_d`" => "email_d",
 		"`computer_allotment_table`.`mobile_number`" => "mobile_number",
 		"`computer_allotment_table`.`created_by`" => "created_by",
 		"`computer_allotment_table`.`last_updated_by`" => "last_updated_by",
+		"`computer_allotment_table`.`emp_details`" => "emp_details",
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['pc_id' => 'PC ID', 'emp_details' => 'Employee Details (Optional)', ];
+	$x->filterers = ['pc_id' => 'PC ID', ];
 
-	$x->QueryFrom = "`computer_allotment_table` LEFT JOIN `computer_details_table` as computer_details_table1 ON `computer_details_table1`.`id`=`computer_allotment_table`.`pc_id` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`id`=`computer_allotment_table`.`emp_details` ";
+	$x->QueryFrom = "`computer_allotment_table` LEFT JOIN `computer_details_table` as computer_details_table1 ON `computer_details_table1`.`id`=`computer_allotment_table`.`pc_id` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -137,10 +127,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'PC ID', 'Room Number', 'Name of user', 'Role', 'Employee Details (Optional)', 'Designation', 'From date', 'To date', 'Purpose', 'Email ID', 'Mobile number', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['id', 'pc_id', 'room_number', 'name_of_user', 'role', 'emp_details', 'designation', 'from_date', 'to_date', 'purpose', 'email_d', 'mobile_number', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'PC ID', 'Name of user', 'Role', 'From date', 'To date', 'Purpose', 'Email ID', 'Mobile number', 'Created By', 'Last Updated By', 'Emp details', ];
+	$x->ColFieldName = ['id', 'pc_id', 'name_of_user', 'role', 'from_date', 'to_date', 'purpose', 'email_d', 'mobile_number', 'created_by', 'last_updated_by', 'emp_details', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/computer_allotment_table_templateTV.html';

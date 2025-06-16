@@ -5391,13 +5391,6 @@
 							'description' => '',
 						],
 					],
-					'room_number' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Room Number',
-							'description' => '',
-						],
-					],
 					'name_of_user' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
@@ -5412,29 +5405,15 @@
 							'description' => '',
 						],
 					],
-					'emp_details' => [
-						'appgini' => "INT(10) UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Employee Details (Optional)',
-							'description' => '',
-						],
-					],
-					'designation' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Designation',
-							'description' => '',
-						],
-					],
 					'from_date' => [
-						'appgini' => "DATE NULL",
+						'appgini' => "DATETIME NULL",
 						'info' => [
 							'caption' => 'From date',
 							'description' => '',
 						],
 					],
 					'to_date' => [
-						'appgini' => "DATE NULL",
+						'appgini' => "DATETIME NULL",
 						'info' => [
 							'caption' => 'To date',
 							'description' => '',
@@ -5472,6 +5451,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'emp_details' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Emp details',
 							'description' => '',
 						],
 					],
@@ -9706,14 +9692,14 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'First Image',
-							'description' => 'Maximum file size allowed: 1000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
+							'description' => 'Maximum file size allowed: 100000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
 						],
 					],
 					'img2' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Second Image',
-							'description' => 'Maximum file size allowed: 1000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
+							'description' => 'Maximum file size allowed: 100000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
 						],
 					],
 					'created_by' => [
@@ -11188,7 +11174,6 @@
 			],
 			'computer_allotment_table' => [
 				'computer_details_table' => ['pc_id'],
-				'employees_personal_data_table' => ['emp_details'],
 			],
 			'employees_designation_table' => [
 				'employees_personal_data_table' => ['employee_lookup'],
@@ -11638,7 +11623,6 @@
 			],
 			'computer_allotment_table' => [
 				'pc_id' => 'SELECT `computer_details_table`.`id`, IF(CHAR_LENGTH(`computer_details_table`.`pc_number`) || CHAR_LENGTH(`computer_details_table`.`pc_hostname`), CONCAT_WS(\'\', `computer_details_table`.`pc_number`, \'::\', `computer_details_table`.`pc_hostname`), \'\') FROM `computer_details_table` ORDER BY 2',
-				'emp_details' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \'  \', `employees_personal_data_table`.`name`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
 			],
 			'employees_personal_data_table' => [
 			],

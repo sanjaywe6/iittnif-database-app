@@ -17,17 +17,15 @@ function computer_allotment_table_insert(&$error_message = '') {
 
 	$data = [
 		'pc_id' => Request::lookup('pc_id', ''),
-		'room_number' => Request::val('room_number', ''),
 		'name_of_user' => Request::val('name_of_user', ''),
 		'role' => Request::val('role', ''),
-		'emp_details' => Request::lookup('emp_details', ''),
-		'designation' => Request::val('designation', ''),
-		'from_date' => Request::dateComponents('from_date', ''),
-		'to_date' => Request::dateComponents('to_date', ''),
+		'from_date' => Request::datetime('from_date', ''),
+		'to_date' => Request::datetime('to_date', ''),
 		'purpose' => Request::val('purpose', ''),
 		'email_d' => Request::val('email_d', ''),
 		'mobile_number' => Request::val('mobile_number', ''),
 		'created_by' => parseCode('<%%creatorUsername%%>  <%%creationDateTime%%>', true),
+		'emp_details' => Request::val('emp_details', ''),
 	];
 
 	// record owner is current user
@@ -95,17 +93,15 @@ function computer_allotment_table_update(&$selected_id, &$error_message = '') {
 
 	$data = [
 		'pc_id' => Request::lookup('pc_id', ''),
-		'room_number' => Request::val('room_number', ''),
 		'name_of_user' => Request::val('name_of_user', ''),
 		'role' => Request::val('role', ''),
-		'emp_details' => Request::lookup('emp_details', ''),
-		'designation' => Request::val('designation', ''),
-		'from_date' => Request::dateComponents('from_date', ''),
-		'to_date' => Request::dateComponents('to_date', ''),
+		'from_date' => Request::datetime('from_date', ''),
+		'to_date' => Request::datetime('to_date', ''),
 		'purpose' => Request::val('purpose', ''),
 		'email_d' => Request::val('email_d', ''),
 		'mobile_number' => Request::val('mobile_number', ''),
 		'last_updated_by' => parseCode('<%%editorUsername%%>  <%%editingDateTime%%>', false),
+		'emp_details' => Request::val('emp_details', ''),
 	];
 
 	// get existing values
@@ -194,7 +190,6 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 	$fieldsAreEditable = !$dvprint && (($allowInsert && !$hasSelectedId) || ($allowUpdate && $hasSelectedId) || $showSaveAsCopy);
 
 	$filterer_pc_id = Request::val('filterer_pc_id');
-	$filterer_emp_details = Request::val('filterer_emp_details');
 
 	// populate filterers, starting from children to grand-parents
 
@@ -217,24 +212,6 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 		$combo_role->ListData = $combo_role->ListItem;
 	}
 	$combo_role->SelectName = 'role';
-	// combobox: emp_details
-	$combo_emp_details = new DataCombo;
-	// combobox: from_date
-	$combo_from_date = new DateCombo;
-	$combo_from_date->DateFormat = "dmy";
-	$combo_from_date->MinYear = defined('computer_allotment_table.from_date.MinYear') ? constant('computer_allotment_table.from_date.MinYear') : 1900;
-	$combo_from_date->MaxYear = defined('computer_allotment_table.from_date.MaxYear') ? constant('computer_allotment_table.from_date.MaxYear') : 2100;
-	$combo_from_date->DefaultDate = parseMySQLDate('', '');
-	$combo_from_date->MonthNames = $Translation['month names'];
-	$combo_from_date->NamePrefix = 'from_date';
-	// combobox: to_date
-	$combo_to_date = new DateCombo;
-	$combo_to_date->DateFormat = "dmy";
-	$combo_to_date->MinYear = defined('computer_allotment_table.to_date.MinYear') ? constant('computer_allotment_table.to_date.MinYear') : 1900;
-	$combo_to_date->MaxYear = defined('computer_allotment_table.to_date.MaxYear') ? constant('computer_allotment_table.to_date.MaxYear') : 2100;
-	$combo_to_date->DefaultDate = parseMySQLDate('', '');
-	$combo_to_date->MonthNames = $Translation['month names'];
-	$combo_to_date->NamePrefix = 'to_date';
 
 	if($hasSelectedId) {
 		if(!($row = getRecord('computer_allotment_table', $selectedId))) {
@@ -242,9 +219,6 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 		}
 		$combo_pc_id->SelectedData = $row['pc_id'];
 		$combo_role->SelectedData = $row['role'];
-		$combo_emp_details->SelectedData = $row['emp_details'];
-		$combo_from_date->DefaultDate = $row['from_date'];
-		$combo_to_date->DefaultDate = $row['to_date'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
 	} else {
@@ -252,14 +226,11 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
 		$combo_pc_id->SelectedData = $filterer_pc_id;
-		$combo_role->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_emp_details->SelectedData = $filterer_emp_details;
+		$combo_role->SelectedText = (isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
 	$combo_pc_id->HTML = '<span id="pc_id-container' . $rnd1 . '"></span><input type="hidden" name="pc_id" id="pc_id' . $rnd1 . '" value="' . html_attr($combo_pc_id->SelectedData) . '">';
 	$combo_pc_id->MatchText = '<span id="pc_id-container-readonly' . $rnd1 . '"></span><input type="hidden" name="pc_id" id="pc_id' . $rnd1 . '" value="' . html_attr($combo_pc_id->SelectedData) . '">';
 	$combo_role->Render();
-	$combo_emp_details->HTML = '<span id="emp_details-container' . $rnd1 . '"></span><input type="hidden" name="emp_details" id="emp_details' . $rnd1 . '" value="' . html_attr($combo_emp_details->SelectedData) . '">';
-	$combo_emp_details->MatchText = '<span id="emp_details-container-readonly' . $rnd1 . '"></span><input type="hidden" name="emp_details" id="emp_details' . $rnd1 . '" value="' . html_attr($combo_emp_details->SelectedData) . '">';
 
 	ob_start();
 	?>
@@ -267,12 +238,10 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 	<script>
 		// initial lookup values
 		AppGini.current_pc_id__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['pc_id'] : htmlspecialchars($filterer_pc_id, ENT_QUOTES)); ?>"};
-		AppGini.current_emp_details__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['emp_details'] : htmlspecialchars($filterer_emp_details, ENT_QUOTES)); ?>"};
 
 		$j(function() {
 			setTimeout(function() {
 				if(typeof(pc_id_reload__RAND__) == 'function') pc_id_reload__RAND__();
-				if(typeof(emp_details_reload__RAND__) == 'function') emp_details_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
 		function pc_id_reload__RAND__() {
@@ -347,83 +316,6 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=computer_details_table_view_parent]').hide(); } else { $j('.btn[id=computer_details_table_view_parent]').show(); }
 
 					if(typeof(pc_id_update_autofills__RAND__) == 'function') pc_id_update_autofills__RAND__();
-				}
-			});
-		<?php } ?>
-
-		}
-		function emp_details_reload__RAND__() {
-		<?php if($fieldsAreEditable) { ?>
-
-			$j("#emp_details-container__RAND__").select2({
-				/* initial default value */
-				initSelection: function(e, c) {
-					$j.ajax({
-						url: 'ajax_combo.php',
-						dataType: 'json',
-						data: { id: AppGini.current_emp_details__RAND__.value, t: 'computer_allotment_table', f: 'emp_details' },
-						success: function(resp) {
-							c({
-								id: resp.results[0].id,
-								text: resp.results[0].text
-							});
-							$j('[name="emp_details"]').val(resp.results[0].id);
-							$j('[id=emp_details-container-readonly__RAND__]').html('<span class="match-text" id="emp_details-match-text">' + resp.results[0].text + '</span>');
-							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=employees_personal_data_table_view_parent]').hide(); } else { $j('.btn[id=employees_personal_data_table_view_parent]').show(); }
-
-
-							if(typeof(emp_details_update_autofills__RAND__) == 'function') emp_details_update_autofills__RAND__();
-						}
-					});
-				},
-				width: '100%',
-				formatNoMatches: function(term) { return '<?php echo addslashes($Translation['No matches found!']); ?>'; },
-				minimumResultsForSearch: 5,
-				loadMorePadding: 200,
-				ajax: {
-					url: 'ajax_combo.php',
-					dataType: 'json',
-					cache: true,
-					data: function(term, page) { return { s: term, p: page, t: 'computer_allotment_table', f: 'emp_details' }; },
-					results: function(resp, page) { return resp; }
-				},
-				escapeMarkup: function(str) { return str; }
-			}).on('change', function(e) {
-				AppGini.current_emp_details__RAND__.value = e.added.id;
-				AppGini.current_emp_details__RAND__.text = e.added.text;
-				$j('[name="emp_details"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=employees_personal_data_table_view_parent]').hide(); } else { $j('.btn[id=employees_personal_data_table_view_parent]').show(); }
-
-
-				if(typeof(emp_details_update_autofills__RAND__) == 'function') emp_details_update_autofills__RAND__();
-			});
-
-			if(!$j("#emp_details-container__RAND__").length) {
-				$j.ajax({
-					url: 'ajax_combo.php',
-					dataType: 'json',
-					data: { id: AppGini.current_emp_details__RAND__.value, t: 'computer_allotment_table', f: 'emp_details' },
-					success: function(resp) {
-						$j('[name="emp_details"]').val(resp.results[0].id);
-						$j('[id=emp_details-container-readonly__RAND__]').html('<span class="match-text" id="emp_details-match-text">' + resp.results[0].text + '</span>');
-						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=employees_personal_data_table_view_parent]').hide(); } else { $j('.btn[id=employees_personal_data_table_view_parent]').show(); }
-
-						if(typeof(emp_details_update_autofills__RAND__) == 'function') emp_details_update_autofills__RAND__();
-					}
-				});
-			}
-
-		<?php } else { ?>
-
-			$j.ajax({
-				url: 'ajax_combo.php',
-				dataType: 'json',
-				data: { id: AppGini.current_emp_details__RAND__.value, t: 'computer_allotment_table', f: 'emp_details' },
-				success: function(resp) {
-					$j('[id=emp_details-container__RAND__], [id=emp_details-container-readonly__RAND__]').html('<span class="match-text" id="emp_details-match-text">' + resp.results[0].text + '</span>');
-					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=employees_personal_data_table_view_parent]').hide(); } else { $j('.btn[id=employees_personal_data_table_view_parent]').show(); }
-
-					if(typeof(emp_details_update_autofills__RAND__) == 'function') emp_details_update_autofills__RAND__();
 				}
 			});
 		<?php } ?>
@@ -516,25 +408,24 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 		$jsReadOnly = '';
 		$jsReadOnly .= "\t\$j('#pc_id').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#pc_id_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\t\$j('#room_number').replaceWith('<div class=\"form-control-static\" id=\"room_number\">' + (\$j('#room_number').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#name_of_user').replaceWith('<div class=\"form-control-static\" id=\"name_of_user\">' + (\$j('#name_of_user').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#role').replaceWith('<div class=\"form-control-static\" id=\"role\">' + (\$j('#role').val() || '') + '</div>'); \$j('#role-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\t\$j('#emp_details').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\t\$j('#emp_details_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\t\$j('#designation').replaceWith('<div class=\"form-control-static\" id=\"designation\">' + (\$j('#designation').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#from_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\t\$j('#from_dateDay, #from_dateMonth, #from_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\t\$j('#to_date').prop('readonly', true);\n";
-		$jsReadOnly .= "\t\$j('#to_dateDay, #to_dateMonth, #to_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#from_date').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"from_date\">' + (\$j('#from_date').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#to_date').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"to_date\">' + (\$j('#to_date').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#purpose').replaceWith('<div class=\"form-control-static\" id=\"purpose\">' + (\$j('#purpose').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#email_d').replaceWith('<div class=\"form-control-static\" id=\"email_d\">' + (\$j('#email_d').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#mobile_number').replaceWith('<div class=\"form-control-static\" id=\"mobile_number\">' + (\$j('#mobile_number').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#emp_details').replaceWith('<div class=\"form-control-static\" id=\"emp_details\">' + (\$j('#emp_details').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
 		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
+		$locale = isset($Translation['datetimepicker locale']) ? ", locale: '{$Translation['datetimepicker locale']}'" : '';
+		$jsEditable .= "\t\$j('#from_date').addClass('always_shown').parents('.input-group').datetimepicker({ toolbarPlacement: 'top', sideBySide: true, showClear: true, showTodayButton: true, showClose: true, icons: { close: 'glyphicon glyphicon-ok' }, format: AppGini.datetimeFormat('dt') {$locale} });";
+		$locale = isset($Translation['datetimepicker locale']) ? ", locale: '{$Translation['datetimepicker locale']}'" : '';
+		$jsEditable .= "\t\$j('#to_date').addClass('always_shown').parents('.input-group').datetimepicker({ toolbarPlacement: 'top', sideBySide: true, showClear: true, showTodayButton: true, showClose: true, icons: { close: 'glyphicon glyphicon-ok' }, format: AppGini.datetimeFormat('dt') {$locale} });";
 		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
@@ -544,26 +435,9 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 	$templateCode = str_replace('<%%URLCOMBOTEXT(pc_id)%%>', urlencode($combo_pc_id->MatchText), $templateCode);
 	$templateCode = str_replace('<%%COMBO(role)%%>', $combo_role->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(role)%%>', $combo_role->SelectedData, $templateCode);
-	$templateCode = str_replace('<%%COMBO(emp_details)%%>', $combo_emp_details->HTML, $templateCode);
-	$templateCode = str_replace('<%%COMBOTEXT(emp_details)%%>', $combo_emp_details->MatchText, $templateCode);
-	$templateCode = str_replace('<%%URLCOMBOTEXT(emp_details)%%>', urlencode($combo_emp_details->MatchText), $templateCode);
-	$templateCode = str_replace(
-		'<%%COMBO(from_date)%%>',
-		(!$fieldsAreEditable ?
-			'<div class="form-control-static">' . $combo_from_date->GetHTML(true) . '</div>' :
-			$combo_from_date->GetHTML()
-		), $templateCode);
-	$templateCode = str_replace('<%%COMBOTEXT(from_date)%%>', $combo_from_date->GetHTML(true), $templateCode);
-	$templateCode = str_replace(
-		'<%%COMBO(to_date)%%>',
-		(!$fieldsAreEditable ?
-			'<div class="form-control-static">' . $combo_to_date->GetHTML(true) . '</div>' :
-			$combo_to_date->GetHTML()
-		), $templateCode);
-	$templateCode = str_replace('<%%COMBOTEXT(to_date)%%>', $combo_to_date->GetHTML(true), $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
-	$lookup_fields = ['pc_id' => ['computer_details_table', 'PC ID'], 'emp_details' => ['employees_personal_data_table', 'Employee Details (Optional)'], ];
+	$lookup_fields = ['pc_id' => ['computer_details_table', 'PC ID'], ];
 	foreach($lookup_fields as $luf => $ptfc) {
 		$pt_perm = getTablePermissions($ptfc[0]);
 
@@ -581,11 +455,8 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(pc_id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(room_number)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(name_of_user)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(role)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(emp_details)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(designation)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(from_date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(to_date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(purpose)%%>', '', $templateCode);
@@ -593,6 +464,7 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 	$templateCode = str_replace('<%%UPLOADFILE(mobile_number)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(emp_details)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
@@ -601,25 +473,16 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(pc_id)%%>', safe_html($urow['pc_id']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(pc_id)%%>', html_attr($row['pc_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(pc_id)%%>', urlencode($urow['pc_id']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(room_number)%%>', safe_html($urow['room_number']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(room_number)%%>', html_attr($row['room_number']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(room_number)%%>', urlencode($urow['room_number']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(name_of_user)%%>', safe_html($urow['name_of_user']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(name_of_user)%%>', html_attr($row['name_of_user']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(name_of_user)%%>', urlencode($urow['name_of_user']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(role)%%>', safe_html($urow['role']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(role)%%>', html_attr($row['role']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(role)%%>', urlencode($urow['role']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(emp_details)%%>', safe_html($urow['emp_details']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(emp_details)%%>', html_attr($row['emp_details']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(emp_details)%%>', urlencode($urow['emp_details']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(designation)%%>', safe_html($urow['designation']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(designation)%%>', html_attr($row['designation']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(designation)%%>', urlencode($urow['designation']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(from_date)%%>', app_datetime($row['from_date']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(from_date)%%>', urlencode(app_datetime($urow['from_date'])), $templateCode);
-		$templateCode = str_replace('<%%VALUE(to_date)%%>', app_datetime($row['to_date']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(to_date)%%>', urlencode(app_datetime($urow['to_date'])), $templateCode);
+		$templateCode = str_replace('<%%VALUE(from_date)%%>', app_datetime($row['from_date'], 'dt'), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(from_date)%%>', urlencode(app_datetime($urow['from_date'], 'dt')), $templateCode);
+		$templateCode = str_replace('<%%VALUE(to_date)%%>', app_datetime($row['to_date'], 'dt'), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(to_date)%%>', urlencode(app_datetime($urow['to_date'], 'dt')), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(purpose)%%>', safe_html($urow['purpose']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(purpose)%%>', html_attr($row['purpose']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(purpose)%%>', urlencode($urow['purpose']), $templateCode);
@@ -633,21 +496,18 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(emp_details)%%>', safe_html($urow['emp_details']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(emp_details)%%>', html_attr($row['emp_details']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(emp_details)%%>', urlencode($urow['emp_details']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(pc_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(pc_id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(room_number)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(room_number)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(name_of_user)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(name_of_user)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(role)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(role)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(emp_details)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(emp_details)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(designation)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(designation)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(from_date)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(from_date)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(to_date)%%>', '', $templateCode);
@@ -662,6 +522,8 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>  <%%creationDateTime%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>  <%%editingDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>  <%%editingDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(emp_details)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(emp_details)%%>', urlencode(''), $templateCode);
 	}
 
 	// process translations

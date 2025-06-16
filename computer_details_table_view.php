@@ -122,10 +122,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 100, 100, ];
-	$x->ColCaption = ['ID', 'PC number', 'PC hostname', 'PC MAC Address', 'PC Static IP', 'Room number', 'Maintained by', 'Assigned to user', 'Remote access', 'Created By', 'Last Updated By', 'Computer usage', 'PC Allotment Table', ];
-	$x->ColFieldName = ['id', 'pc_number', 'pc_hostname', 'pc_mac_address', 'pc_static_ip', 'room_number', 'maintained_by', 'assigned_to_user', 'remote_access', 'created_by', 'last_updated_by', '%computer_user_details.pc_id%', '%computer_allotment_table.pc_id%', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, -1, -1, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'PC number', 'PC hostname', 'PC MAC Address', 'PC Static IP', 'Room number', 'Maintained by', 'Assigned to user', 'Remote access', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['id', 'pc_number', 'pc_hostname', 'pc_mac_address', 'pc_static_ip', 'room_number', 'maintained_by', 'assigned_to_user', 'remote_access', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/computer_details_table_templateTV.html';

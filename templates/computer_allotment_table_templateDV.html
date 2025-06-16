@@ -28,15 +28,6 @@
 					</div>
 				</div>
 
-				<!-- Field: Room Number -->
-				<div class="form-group computer_allotment_table-room_number">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="room_number">Room Number</label>
-					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="room_number" id="room_number" value="<%%VALUE(room_number)%%>">
-					</div>
-				</div>
-
 				<!-- Field: Name of user -->
 				<div class="form-group computer_allotment_table-name_of_user">
 					<hr class="hidden-md hidden-lg">
@@ -55,39 +46,21 @@
 					</div>
 				</div>
 
-				<!-- Field: Employee Details (Optional) -->
-				<div class="form-group computer_allotment_table-emp_details">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="emp_details" data-parent_link="view_parent_modal">Employee Details (Optional)</label>
-					<div class="col-lg-9">
-						<div class="lookup-flex"><%%COMBO(emp_details)%%><%%PLINK(emp_details)%%><%%ADDNEW(employees_personal_data_table)%%></div>
-					</div>
-				</div>
-
-				<!-- Field: Designation -->
-				<div class="form-group computer_allotment_table-designation">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="designation">Designation</label>
-					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="designation" id="designation" value="<%%VALUE(designation)%%>">
-					</div>
-				</div>
-
 				<!-- Field: From date -->
 				<div class="form-group computer_allotment_table-from_date">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="from_date-dd">From date</label>
+					<label class="control-label col-lg-3" for="from_date">From date</label>
 					<div class="col-lg-9">
-						<%%COMBO(from_date)%%>
+						<div class="input-group date datetimepicker"><input maxlength="22" type="text" class="form-control" name="from_date" id="from_date" value="<%%VALUE(from_date)%%>"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>
 					</div>
 				</div>
 
 				<!-- Field: To date -->
 				<div class="form-group computer_allotment_table-to_date">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="to_date-dd">To date</label>
+					<label class="control-label col-lg-3" for="to_date">To date</label>
 					<div class="col-lg-9">
-						<%%COMBO(to_date)%%>
+						<div class="input-group date datetimepicker"><input maxlength="22" type="text" class="form-control" name="to_date" id="to_date" value="<%%VALUE(to_date)%%>"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>
 					</div>
 				</div>
 
@@ -115,6 +88,15 @@
 					<label class="control-label col-lg-3" for="mobile_number">Mobile number</label>
 					<div class="col-lg-9">
 						<input maxlength="255" type="text" class="form-control" name="mobile_number" id="mobile_number" value="<%%VALUE(mobile_number)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Emp details -->
+				<div class="form-group computer_allotment_table-emp_details">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="emp_details">Emp details</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="emp_details" id="emp_details" value="<%%VALUE(emp_details)%%>">
 					</div>
 				</div>
 

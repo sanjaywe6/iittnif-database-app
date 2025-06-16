@@ -120,7 +120,13 @@
 		setupTable('computer_user_details', []);
 		setupIndexes('computer_user_details', ['pc_id',]);
 
-		setupTable('computer_allotment_table', []);
+		setupTable('computer_allotment_table', [
+				"ALTER TABLE `computer_allotment_table` ADD `room_number` VARCHAR(255) NULL ",
+				"ALTER TABLE computer_allotment_table ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `computer_allotment_table` CHANGE `field1` `designation` VARCHAR(255) NULL ",
+				" ALTER TABLE `computer_allotment_table` CHANGE `from_date` `from_date` DATE NULL ",
+				" ALTER TABLE `computer_allotment_table` CHANGE `to_date` `to_date` DATE NULL ",
+			]);
 		setupIndexes('computer_allotment_table', ['pc_id','emp_details',]);
 
 		setupTable('employees_personal_data_table', []);

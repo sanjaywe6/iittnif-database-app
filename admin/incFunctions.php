@@ -5391,6 +5391,13 @@
 							'description' => '',
 						],
 					],
+					'room_number' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Room Number',
+							'description' => '',
+						],
+					],
 					'name_of_user' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
@@ -5412,15 +5419,22 @@
 							'description' => '',
 						],
 					],
+					'designation' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Designation',
+							'description' => '',
+						],
+					],
 					'from_date' => [
-						'appgini' => "DATETIME NULL",
+						'appgini' => "DATE NULL",
 						'info' => [
 							'caption' => 'From date',
 							'description' => '',
 						],
 					],
 					'to_date' => [
-						'appgini' => "DATETIME NULL",
+						'appgini' => "DATE NULL",
 						'info' => [
 							'caption' => 'To date',
 							'description' => '',

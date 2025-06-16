@@ -17,11 +17,13 @@ function computer_allotment_table_insert(&$error_message = '') {
 
 	$data = [
 		'pc_id' => Request::lookup('pc_id', ''),
+		'room_number' => Request::val('room_number', ''),
 		'name_of_user' => Request::val('name_of_user', ''),
 		'role' => Request::val('role', ''),
 		'emp_details' => Request::lookup('emp_details', ''),
-		'from_date' => Request::datetime('from_date', ''),
-		'to_date' => Request::datetime('to_date', ''),
+		'designation' => Request::val('designation', ''),
+		'from_date' => Request::dateComponents('from_date', ''),
+		'to_date' => Request::dateComponents('to_date', ''),
 		'purpose' => Request::val('purpose', ''),
 		'email_d' => Request::val('email_d', ''),
 		'mobile_number' => Request::val('mobile_number', ''),
@@ -93,11 +95,13 @@ function computer_allotment_table_update(&$selected_id, &$error_message = '') {
 
 	$data = [
 		'pc_id' => Request::lookup('pc_id', ''),
+		'room_number' => Request::val('room_number', ''),
 		'name_of_user' => Request::val('name_of_user', ''),
 		'role' => Request::val('role', ''),
 		'emp_details' => Request::lookup('emp_details', ''),
-		'from_date' => Request::datetime('from_date', ''),
-		'to_date' => Request::datetime('to_date', ''),
+		'designation' => Request::val('designation', ''),
+		'from_date' => Request::dateComponents('from_date', ''),
+		'to_date' => Request::dateComponents('to_date', ''),
 		'purpose' => Request::val('purpose', ''),
 		'email_d' => Request::val('email_d', ''),
 		'mobile_number' => Request::val('mobile_number', ''),
@@ -215,6 +219,22 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 	$combo_role->SelectName = 'role';
 	// combobox: emp_details
 	$combo_emp_details = new DataCombo;
+	// combobox: from_date
+	$combo_from_date = new DateCombo;
+	$combo_from_date->DateFormat = "dmy";
+	$combo_from_date->MinYear = defined('computer_allotment_table.from_date.MinYear') ? constant('computer_allotment_table.from_date.MinYear') : 1900;
+	$combo_from_date->MaxYear = defined('computer_allotment_table.from_date.MaxYear') ? constant('computer_allotment_table.from_date.MaxYear') : 2100;
+	$combo_from_date->DefaultDate = parseMySQLDate('', '');
+	$combo_from_date->MonthNames = $Translation['month names'];
+	$combo_from_date->NamePrefix = 'from_date';
+	// combobox: to_date
+	$combo_to_date = new DateCombo;
+	$combo_to_date->DateFormat = "dmy";
+	$combo_to_date->MinYear = defined('computer_allotment_table.to_date.MinYear') ? constant('computer_allotment_table.to_date.MinYear') : 1900;
+	$combo_to_date->MaxYear = defined('computer_allotment_table.to_date.MaxYear') ? constant('computer_allotment_table.to_date.MaxYear') : 2100;
+	$combo_to_date->DefaultDate = parseMySQLDate('', '');
+	$combo_to_date->MonthNames = $Translation['month names'];
+	$combo_to_date->NamePrefix = 'to_date';
 
 	if($hasSelectedId) {
 		if(!($row = getRecord('computer_allotment_table', $selectedId))) {
@@ -223,6 +243,8 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 		$combo_pc_id->SelectedData = $row['pc_id'];
 		$combo_role->SelectedData = $row['role'];
 		$combo_emp_details->SelectedData = $row['emp_details'];
+		$combo_from_date->DefaultDate = $row['from_date'];
+		$combo_to_date->DefaultDate = $row['to_date'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
 	} else {
@@ -230,7 +252,7 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
 		$combo_pc_id->SelectedData = $filterer_pc_id;
-		$combo_role->SelectedText = (isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_role->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 		$combo_emp_details->SelectedData = $filterer_emp_details;
 	}
 	$combo_pc_id->HTML = '<span id="pc_id-container' . $rnd1 . '"></span><input type="hidden" name="pc_id" id="pc_id' . $rnd1 . '" value="' . html_attr($combo_pc_id->SelectedData) . '">';
@@ -494,12 +516,16 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 		$jsReadOnly = '';
 		$jsReadOnly .= "\t\$j('#pc_id').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#pc_id_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\t\$j('#room_number').replaceWith('<div class=\"form-control-static\" id=\"room_number\">' + (\$j('#room_number').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#name_of_user').replaceWith('<div class=\"form-control-static\" id=\"name_of_user\">' + (\$j('#name_of_user').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#role').replaceWith('<div class=\"form-control-static\" id=\"role\">' + (\$j('#role').val() || '') + '</div>'); \$j('#role-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#emp_details').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#emp_details_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\t\$j('#from_date').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"from_date\">' + (\$j('#from_date').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#to_date').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"to_date\">' + (\$j('#to_date').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#designation').replaceWith('<div class=\"form-control-static\" id=\"designation\">' + (\$j('#designation').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#from_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#from_dateDay, #from_dateMonth, #from_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#to_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#to_dateDay, #to_dateMonth, #to_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#purpose').replaceWith('<div class=\"form-control-static\" id=\"purpose\">' + (\$j('#purpose').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#email_d').replaceWith('<div class=\"form-control-static\" id=\"email_d\">' + (\$j('#email_d').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#mobile_number').replaceWith('<div class=\"form-control-static\" id=\"mobile_number\">' + (\$j('#mobile_number').val() || '') + '</div>');\n";
@@ -509,10 +535,6 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
 		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
-		$locale = isset($Translation['datetimepicker locale']) ? ", locale: '{$Translation['datetimepicker locale']}'" : '';
-		$jsEditable .= "\t\$j('#from_date').addClass('always_shown').parents('.input-group').datetimepicker({ toolbarPlacement: 'top', sideBySide: true, showClear: true, showTodayButton: true, showClose: true, icons: { close: 'glyphicon glyphicon-ok' }, format: AppGini.datetimeFormat('dt') {$locale} });";
-		$locale = isset($Translation['datetimepicker locale']) ? ", locale: '{$Translation['datetimepicker locale']}'" : '';
-		$jsEditable .= "\t\$j('#to_date').addClass('always_shown').parents('.input-group').datetimepicker({ toolbarPlacement: 'top', sideBySide: true, showClear: true, showTodayButton: true, showClose: true, icons: { close: 'glyphicon glyphicon-ok' }, format: AppGini.datetimeFormat('dt') {$locale} });";
 		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
@@ -525,6 +547,20 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 	$templateCode = str_replace('<%%COMBO(emp_details)%%>', $combo_emp_details->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(emp_details)%%>', $combo_emp_details->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(emp_details)%%>', urlencode($combo_emp_details->MatchText), $templateCode);
+	$templateCode = str_replace(
+		'<%%COMBO(from_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_from_date->GetHTML(true) . '</div>' :
+			$combo_from_date->GetHTML()
+		), $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(from_date)%%>', $combo_from_date->GetHTML(true), $templateCode);
+	$templateCode = str_replace(
+		'<%%COMBO(to_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_to_date->GetHTML(true) . '</div>' :
+			$combo_to_date->GetHTML()
+		), $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(to_date)%%>', $combo_to_date->GetHTML(true), $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
 	$lookup_fields = ['pc_id' => ['computer_details_table', 'PC ID'], 'emp_details' => ['employees_personal_data_table', 'Employee Details (Optional)'], ];
@@ -545,9 +581,11 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(pc_id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(room_number)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(name_of_user)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(role)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(emp_details)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(designation)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(from_date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(to_date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(purpose)%%>', '', $templateCode);
@@ -563,6 +601,9 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(pc_id)%%>', safe_html($urow['pc_id']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(pc_id)%%>', html_attr($row['pc_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(pc_id)%%>', urlencode($urow['pc_id']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(room_number)%%>', safe_html($urow['room_number']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(room_number)%%>', html_attr($row['room_number']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(room_number)%%>', urlencode($urow['room_number']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(name_of_user)%%>', safe_html($urow['name_of_user']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(name_of_user)%%>', html_attr($row['name_of_user']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(name_of_user)%%>', urlencode($urow['name_of_user']), $templateCode);
@@ -572,10 +613,13 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(emp_details)%%>', safe_html($urow['emp_details']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(emp_details)%%>', html_attr($row['emp_details']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(emp_details)%%>', urlencode($urow['emp_details']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(from_date)%%>', app_datetime($row['from_date'], 'dt'), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(from_date)%%>', urlencode(app_datetime($urow['from_date'], 'dt')), $templateCode);
-		$templateCode = str_replace('<%%VALUE(to_date)%%>', app_datetime($row['to_date'], 'dt'), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(to_date)%%>', urlencode(app_datetime($urow['to_date'], 'dt')), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(designation)%%>', safe_html($urow['designation']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(designation)%%>', html_attr($row['designation']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(designation)%%>', urlencode($urow['designation']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(from_date)%%>', app_datetime($row['from_date']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(from_date)%%>', urlencode(app_datetime($urow['from_date'])), $templateCode);
+		$templateCode = str_replace('<%%VALUE(to_date)%%>', app_datetime($row['to_date']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(to_date)%%>', urlencode(app_datetime($urow['to_date'])), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(purpose)%%>', safe_html($urow['purpose']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(purpose)%%>', html_attr($row['purpose']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(purpose)%%>', urlencode($urow['purpose']), $templateCode);
@@ -594,12 +638,16 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(pc_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(pc_id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(room_number)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(room_number)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(name_of_user)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(name_of_user)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(role)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(role)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(emp_details)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(emp_details)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(designation)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(designation)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(from_date)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(from_date)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(to_date)%%>', '', $templateCode);

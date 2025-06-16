@@ -21,6 +21,13 @@
 				<div class="form-control-static"><span id="pc_id<%%RND1%%>"><%%COMBOTEXT(pc_id)%%></span></div>
 			</div>
 		</div>
+		<!-- Field: Room Number -->
+		<div class="form-group computer_allotment_table-room_number" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Room Number</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(room_number)%%></div>
+			</div>
+		</div>
 		<!-- Field: Name of user -->
 		<div class="form-group computer_allotment_table-name_of_user" style="border-bottom: dotted 1px #DDD;">
 			<label class="col-xs-3 control-label">Name of user</label>
@@ -42,18 +49,25 @@
 				<div class="form-control-static"><span id="emp_details<%%RND1%%>"><%%COMBOTEXT(emp_details)%%></span></div>
 			</div>
 		</div>
+		<!-- Field: Designation -->
+		<div class="form-group computer_allotment_table-designation" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Designation</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(designation)%%></div>
+			</div>
+		</div>
 		<!-- Field: From date -->
 		<div class="form-group computer_allotment_table-from_date" style="border-bottom: dotted 1px #DDD;">
 			<label class="col-xs-3 control-label">From date</label>
 			<div class="col-xs-9">
-				<div class="form-control-static"><%%VALUE(from_date)%%></div>
+				<div class="form-control-static"><%%COMBOTEXT(from_date)%%></div>
 			</div>
 		</div>
 		<!-- Field: To date -->
 		<div class="form-group computer_allotment_table-to_date" style="border-bottom: dotted 1px #DDD;">
 			<label class="col-xs-3 control-label">To date</label>
 			<div class="col-xs-9">
-				<div class="form-control-static"><%%VALUE(to_date)%%></div>
+				<div class="form-control-static"><%%COMBOTEXT(to_date)%%></div>
 			</div>
 		</div>
 		<!-- Field: Purpose -->

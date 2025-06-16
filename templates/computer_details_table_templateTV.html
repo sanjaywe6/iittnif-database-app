@@ -1,4 +1,4 @@
-		<td colspan="12" class="row">
+		<td colspan="11" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="computer_details_table-id-caption field-caption-tv">ID</dt>
@@ -10,14 +10,14 @@
 					<dt class="computer_details_table-pc_hostname-caption field-caption-tv">PC hostname</dt>
 					<dd id="computer_details_table-pc_hostname-<%%VALUE(id)%%>" class="computer_details_table-pc_hostname"><%%SELECT%%><%%VALUE(pc_hostname)%%><%%ENDSELECT%%></dd>
 
-					<dt class="computer_details_table-pc_mac_address-caption field-caption-tv">PC MAC address</dt>
+					<dt class="computer_details_table-pc_mac_address-caption field-caption-tv">PC MAC Address</dt>
 					<dd id="computer_details_table-pc_mac_address-<%%VALUE(id)%%>" class="computer_details_table-pc_mac_address"><%%SELECT%%><%%VALUE(pc_mac_address)%%><%%ENDSELECT%%></dd>
+
+					<dt class="computer_details_table-pc_static_ip-caption field-caption-tv">PC Static IP</dt>
+					<dd id="computer_details_table-pc_static_ip-<%%VALUE(id)%%>" class="computer_details_table-pc_static_ip"><%%SELECT%%><%%VALUE(pc_static_ip)%%><%%ENDSELECT%%></dd>
 
 					<dt class="computer_details_table-room_number-caption field-caption-tv">Room number</dt>
 					<dd id="computer_details_table-room_number-<%%VALUE(id)%%>" class="computer_details_table-room_number"><%%SELECT%%><%%VALUE(room_number)%%><%%ENDSELECT%%></dd>
-
-					<dt class="computer_details_table-desk_number-caption field-caption-tv">Desk number</dt>
-					<dd id="computer_details_table-desk_number-<%%VALUE(id)%%>" class="computer_details_table-desk_number"><%%SELECT%%><%%VALUE(desk_number)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>
@@ -32,15 +32,16 @@
 					<dt class="computer_details_table-remote_access-caption field-caption-tv">Remote access</dt>
 					<dd id="computer_details_table-remote_access-<%%VALUE(id)%%>" class="computer_details_table-remote_access"><%%SELECT%%><%%VALUE(remote_access)%%><%%ENDSELECT%%></dd>
 
-					<dt class="computer_details_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
-					<dd id="computer_details_table-last_updated_by-<%%VALUE(id)%%>" class="computer_details_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
-
-					<dt class="computer_details_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
-					<dd id="computer_details_table-last_updated_at-<%%VALUE(id)%%>" class="computer_details_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></dd>
-
 					<dt class="computer_details_table-created_by-caption field-caption-tv">Created By</dt>
 					<dd id="computer_details_table-created_by-<%%VALUE(id)%%>" class="computer_details_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
 
+					<dt class="computer_details_table-last_updated_by-caption field-caption-tv">Last Updated By</dt>
+					<dd id="computer_details_table-last_updated_by-<%%VALUE(id)%%>" class="computer_details_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
+
+				<dt class="child-computer_user_details-pc_id-caption field-caption-tv" title="Computer usage">Computer usage</dt>
+				<dd class="child-computer_user_details-pc_id child-records-info" data-id="<%%VALUE(id)%%>" data-table="computer_user_details" data-lookup-field="pc_id">
+					<a href="computer_user_details_view.php?filterer_pc_id=<%%VALUE(id)%%>&Embedded=1" target="_blank" title="<%%TRANSLATION(view)%%> (Computer usage)" class="modal-link children-count" style="visibility: hidden;"><span class="count-children">0</span> <i class="glyphicon glyphicon-new-window"></i></a>
+				</dd>
 				</dl>
 			</div>
 		</td>

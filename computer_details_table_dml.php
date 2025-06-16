@@ -16,12 +16,11 @@ function computer_details_table_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'username' => parseCode('<%%creatorUsername%%>', true),
 		'pc_number' => Request::val('pc_number', ''),
 		'pc_hostname' => Request::val('pc_hostname', ''),
 		'pc_mac_address' => Request::val('pc_mac_address', ''),
+		'pc_static_ip' => Request::val('pc_static_ip', ''),
 		'room_number' => Request::val('room_number', ''),
-		'desk_number' => Request::val('desk_number', ''),
 		'maintained_by' => Request::val('maintained_by', ''),
 		'assigned_to_user' => Request::val('assigned_to_user', ''),
 		'remote_access' => Request::val('remote_access', ''),
@@ -135,13 +134,12 @@ function computer_details_table_update(&$selected_id, &$error_message = '') {
 		'pc_number' => Request::val('pc_number', ''),
 		'pc_hostname' => Request::val('pc_hostname', ''),
 		'pc_mac_address' => Request::val('pc_mac_address', ''),
+		'pc_static_ip' => Request::val('pc_static_ip', ''),
 		'room_number' => Request::val('room_number', ''),
-		'desk_number' => Request::val('desk_number', ''),
 		'maintained_by' => Request::val('maintained_by', ''),
 		'assigned_to_user' => Request::val('assigned_to_user', ''),
 		'remote_access' => Request::val('remote_access', ''),
-		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
-		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
+		'last_updated_by' => parseCode('<%%editorUsername%%>  <%%editingDateTime%%>', false),
 	];
 
 	// get existing values
@@ -293,9 +291,9 @@ function computer_details_table_form($selectedId = '', $allowUpdate = true, $all
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_maintained_by->SelectedText = (isset($filterField[1]) && $filterField[1] == '8' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_assigned_to_user->SelectedText = (isset($filterField[1]) && $filterField[1] == '9' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_remote_access->SelectedText = (isset($filterField[1]) && $filterField[1] == '10' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_maintained_by->SelectedText = (isset($filterField[1]) && $filterField[1] == '7' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_assigned_to_user->SelectedText = (isset($filterField[1]) && $filterField[1] == '8' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_remote_access->SelectedText = (isset($filterField[1]) && $filterField[1] == '9' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
 	$combo_maintained_by->Render();
 	$combo_assigned_to_user->Render();
@@ -399,8 +397,8 @@ function computer_details_table_form($selectedId = '', $allowUpdate = true, $all
 		$jsReadOnly .= "\t\$j('#pc_number').replaceWith('<div class=\"form-control-static\" id=\"pc_number\">' + (\$j('#pc_number').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#pc_hostname').replaceWith('<div class=\"form-control-static\" id=\"pc_hostname\">' + (\$j('#pc_hostname').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#pc_mac_address').replaceWith('<div class=\"form-control-static\" id=\"pc_mac_address\">' + (\$j('#pc_mac_address').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#pc_static_ip').replaceWith('<div class=\"form-control-static\" id=\"pc_static_ip\">' + (\$j('#pc_static_ip').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#room_number').replaceWith('<div class=\"form-control-static\" id=\"room_number\">' + (\$j('#room_number').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#desk_number').replaceWith('<div class=\"form-control-static\" id=\"desk_number\">' + (\$j('#desk_number').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#maintained_by').replaceWith('<div class=\"form-control-static\" id=\"maintained_by\">' + (\$j('#maintained_by').val() || '') + '</div>'); \$j('#maintained_by-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#assigned_to_user').replaceWith('<div class=\"form-control-static\" id=\"assigned_to_user\">' + (\$j('#assigned_to_user').val() || '') + '</div>'); \$j('#assigned_to_user-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#remote_access').replaceWith('<div class=\"form-control-static\" id=\"remote_access\">' + (\$j('#remote_access').val() || '') + '</div>'); \$j('#remote_access-multi-selection-help').hide();\n";
@@ -439,25 +437,21 @@ function computer_details_table_form($selectedId = '', $allowUpdate = true, $all
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(pc_number)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(pc_hostname)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(pc_mac_address)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(pc_static_ip)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(room_number)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(desk_number)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(maintained_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(assigned_to_user)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(remote_access)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(last_updated_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(pc_number)%%>', safe_html($urow['pc_number']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(pc_number)%%>', html_attr($row['pc_number']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(pc_number)%%>', urlencode($urow['pc_number']), $templateCode);
@@ -467,12 +461,12 @@ function computer_details_table_form($selectedId = '', $allowUpdate = true, $all
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(pc_mac_address)%%>', safe_html($urow['pc_mac_address']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(pc_mac_address)%%>', html_attr($row['pc_mac_address']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(pc_mac_address)%%>', urlencode($urow['pc_mac_address']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(pc_static_ip)%%>', safe_html($urow['pc_static_ip']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(pc_static_ip)%%>', html_attr($row['pc_static_ip']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(pc_static_ip)%%>', urlencode($urow['pc_static_ip']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(room_number)%%>', safe_html($urow['room_number']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(room_number)%%>', html_attr($row['room_number']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(room_number)%%>', urlencode($urow['room_number']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(desk_number)%%>', safe_html($urow['desk_number']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(desk_number)%%>', html_attr($row['desk_number']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(desk_number)%%>', urlencode($urow['desk_number']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(maintained_by)%%>', safe_html($urow['maintained_by']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(maintained_by)%%>', html_attr($row['maintained_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(maintained_by)%%>', urlencode($urow['maintained_by']), $templateCode);
@@ -482,39 +476,33 @@ function computer_details_table_form($selectedId = '', $allowUpdate = true, $all
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(remote_access)%%>', safe_html($urow['remote_access']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(remote_access)%%>', html_attr($row['remote_access']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(remote_access)%%>', urlencode($urow['remote_access']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(pc_number)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(pc_number)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(pc_hostname)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(pc_hostname)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(pc_mac_address)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(pc_mac_address)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(pc_static_ip)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(pc_static_ip)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(room_number)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(room_number)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(desk_number)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(desk_number)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(maintained_by)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(maintained_by)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(assigned_to_user)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(assigned_to_user)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(remote_access)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(remote_access)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', '<%%editingDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode('<%%editingDateTime%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>  <%%creationDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>  <%%creationDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>  <%%editingDateTime%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>  <%%editingDateTime%%>'), $templateCode);
 	}
 
 	// process translations

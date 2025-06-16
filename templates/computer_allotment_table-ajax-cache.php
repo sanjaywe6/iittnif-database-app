@@ -8,7 +8,8 @@
 
 		/* data for selected record, or defaults if none is selected */
 		var data = {
-			pc_id: <?php echo json_encode(['id' => $rdata['pc_id'], 'value' => $rdata['pc_id'], 'text' => $jdata['pc_id']]); ?>
+			pc_id: <?php echo json_encode(['id' => $rdata['pc_id'], 'value' => $rdata['pc_id'], 'text' => $jdata['pc_id']]); ?>,
+			emp_details: <?php echo json_encode(['id' => $rdata['emp_details'], 'value' => $rdata['emp_details'], 'text' => $jdata['emp_details']]); ?>
 		};
 
 		/* initialize or continue using AppGini.cache for the current table */
@@ -21,6 +22,14 @@
 			if(u != 'ajax_combo.php') return false;
 			if(d.t == tn && d.f == 'pc_id' && d.id == data.pc_id.id)
 				return { results: [ data.pc_id ], more: false, elapsed: 0.01 };
+			return false;
+		});
+
+		/* saved value for emp_details */
+		cache.addCheck(function(u, d) {
+			if(u != 'ajax_combo.php') return false;
+			if(d.t == tn && d.f == 'emp_details' && d.id == data.emp_details.id)
+				return { results: [ data.emp_details ], more: false, elapsed: 0.01 };
 			return false;
 		});
 

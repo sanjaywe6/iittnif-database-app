@@ -121,7 +121,7 @@
 		setupIndexes('computer_user_details', ['pc_id',]);
 
 		setupTable('computer_allotment_table', []);
-		setupIndexes('computer_allotment_table', ['pc_id',]);
+		setupIndexes('computer_allotment_table', ['pc_id','emp_details',]);
 
 		setupTable('employees_personal_data_table', []);
 

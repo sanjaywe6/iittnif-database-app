@@ -19,18 +19,16 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`computer_details_table`.`id`" => "id",
-		"`computer_details_table`.`username`" => "username",
 		"`computer_details_table`.`pc_number`" => "pc_number",
 		"`computer_details_table`.`pc_hostname`" => "pc_hostname",
 		"`computer_details_table`.`pc_mac_address`" => "pc_mac_address",
+		"`computer_details_table`.`pc_static_ip`" => "pc_static_ip",
 		"`computer_details_table`.`room_number`" => "room_number",
-		"`computer_details_table`.`desk_number`" => "desk_number",
 		"`computer_details_table`.`maintained_by`" => "maintained_by",
 		"`computer_details_table`.`assigned_to_user`" => "assigned_to_user",
 		"`computer_details_table`.`remote_access`" => "remote_access",
-		"`computer_details_table`.`last_updated_by`" => "last_updated_by",
-		"`computer_details_table`.`last_updated_at`" => "last_updated_at",
 		"`computer_details_table`.`created_by`" => "created_by",
+		"`computer_details_table`.`last_updated_by`" => "last_updated_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -45,58 +43,50 @@
 		9 => 9,
 		10 => 10,
 		11 => 11,
-		12 => 12,
-		13 => 13,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`computer_details_table`.`id`" => "id",
-		"`computer_details_table`.`username`" => "username",
 		"`computer_details_table`.`pc_number`" => "pc_number",
 		"`computer_details_table`.`pc_hostname`" => "pc_hostname",
 		"`computer_details_table`.`pc_mac_address`" => "pc_mac_address",
+		"`computer_details_table`.`pc_static_ip`" => "pc_static_ip",
 		"`computer_details_table`.`room_number`" => "room_number",
-		"`computer_details_table`.`desk_number`" => "desk_number",
 		"`computer_details_table`.`maintained_by`" => "maintained_by",
 		"`computer_details_table`.`assigned_to_user`" => "assigned_to_user",
 		"`computer_details_table`.`remote_access`" => "remote_access",
-		"`computer_details_table`.`last_updated_by`" => "last_updated_by",
-		"`computer_details_table`.`last_updated_at`" => "last_updated_at",
 		"`computer_details_table`.`created_by`" => "created_by",
+		"`computer_details_table`.`last_updated_by`" => "last_updated_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`computer_details_table`.`id`" => "ID",
-		"`computer_details_table`.`username`" => "Username",
 		"`computer_details_table`.`pc_number`" => "PC number",
 		"`computer_details_table`.`pc_hostname`" => "PC hostname",
-		"`computer_details_table`.`pc_mac_address`" => "PC MAC address",
+		"`computer_details_table`.`pc_mac_address`" => "PC MAC Address",
+		"`computer_details_table`.`pc_static_ip`" => "PC Static IP",
 		"`computer_details_table`.`room_number`" => "Room number",
-		"`computer_details_table`.`desk_number`" => "Desk number",
 		"`computer_details_table`.`maintained_by`" => "Maintained by",
 		"`computer_details_table`.`assigned_to_user`" => "Assigned to user",
 		"`computer_details_table`.`remote_access`" => "Remote access",
-		"`computer_details_table`.`last_updated_by`" => "Last updated by",
-		"`computer_details_table`.`last_updated_at`" => "Last updated at",
 		"`computer_details_table`.`created_by`" => "Created By",
+		"`computer_details_table`.`last_updated_by`" => "Last Updated By",
 	];
 
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`computer_details_table`.`id`" => "id",
-		"`computer_details_table`.`username`" => "username",
 		"`computer_details_table`.`pc_number`" => "pc_number",
 		"`computer_details_table`.`pc_hostname`" => "pc_hostname",
 		"`computer_details_table`.`pc_mac_address`" => "pc_mac_address",
+		"`computer_details_table`.`pc_static_ip`" => "pc_static_ip",
 		"`computer_details_table`.`room_number`" => "room_number",
-		"`computer_details_table`.`desk_number`" => "desk_number",
 		"`computer_details_table`.`maintained_by`" => "maintained_by",
 		"`computer_details_table`.`assigned_to_user`" => "assigned_to_user",
 		"`computer_details_table`.`remote_access`" => "remote_access",
-		"`computer_details_table`.`last_updated_by`" => "last_updated_by",
-		"`computer_details_table`.`last_updated_at`" => "last_updated_at",
 		"`computer_details_table`.`created_by`" => "created_by",
+		"`computer_details_table`.`last_updated_by`" => "last_updated_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -132,10 +122,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'PC number', 'PC hostname', 'PC MAC address', 'Room number', 'Desk number', 'Maintained by', 'Assigned to user', 'Remote access', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['id', 'pc_number', 'pc_hostname', 'pc_mac_address', 'room_number', 'desk_number', 'maintained_by', 'assigned_to_user', 'remote_access', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 100, ];
+	$x->ColCaption = ['ID', 'PC number', 'PC hostname', 'PC MAC Address', 'PC Static IP', 'Room number', 'Maintained by', 'Assigned to user', 'Remote access', 'Created By', 'Last Updated By', 'Computer usage', ];
+	$x->ColFieldName = ['id', 'pc_number', 'pc_hostname', 'pc_mac_address', 'pc_static_ip', 'room_number', 'maintained_by', 'assigned_to_user', 'remote_access', 'created_by', 'last_updated_by', '%computer_user_details.pc_id%', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, -1, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/computer_details_table_templateTV.html';

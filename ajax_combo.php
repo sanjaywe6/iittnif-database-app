@@ -570,6 +570,17 @@
 				'list_type' => 0,
 				'not_null' => false,
 			],
+			'emp_details' => [
+				'parent_table' => 'employees_personal_data_table',
+				'parent_pk_field' => 'id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \'  \', `employees_personal_data_table`.`name`), \'\')',
+				'parent_from' => '`employees_personal_data_table` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
 		],
 		'employees_personal_data_table' => [
 		],

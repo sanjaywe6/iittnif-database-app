@@ -265,6 +265,7 @@
 		},
 		'computer_allotment_table' => function($data, $options = []) {
 			if(isset($data['pc_id'])) $data['pc_id'] = pkGivenLookupText($data['pc_id'], 'computer_allotment_table', 'pc_id');
+			if(isset($data['emp_details'])) $data['emp_details'] = pkGivenLookupText($data['emp_details'], 'computer_allotment_table', 'emp_details');
 			if(isset($data['from_date'])) $data['from_date'] = guessMySQLDateTime($data['from_date']);
 			if(isset($data['to_date'])) $data['to_date'] = guessMySQLDateTime($data['to_date']);
 

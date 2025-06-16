@@ -5254,13 +5254,6 @@
 							'description' => '',
 						],
 					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
-							'description' => '',
-						],
-					],
 					'pc_number' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
@@ -5278,7 +5271,14 @@
 					'pc_mac_address' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'PC MAC address',
+							'caption' => 'PC MAC Address',
+							'description' => '',
+						],
+					],
+					'pc_static_ip' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'PC Static IP',
 							'description' => '',
 						],
 					],
@@ -5286,13 +5286,6 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Room number',
-							'description' => '',
-						],
-					],
-					'desk_number' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Desk number',
 							'description' => '',
 						],
 					],
@@ -5317,24 +5310,17 @@
 							'description' => '',
 						],
 					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated by',
-							'description' => '',
-						],
-					],
-					'last_updated_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated at',
-							'description' => '',
-						],
-					],
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
 							'description' => '',
 						],
 					],
@@ -5401,14 +5387,7 @@
 					'pc_id' => [
 						'appgini' => "INT(10) UNSIGNED NULL",
 						'info' => [
-							'caption' => 'Pc ID',
-							'description' => '',
-						],
-					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
+							'caption' => 'PC ID',
 							'description' => '',
 						],
 					],
@@ -5423,6 +5402,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Role',
+							'description' => '',
+						],
+					],
+					'emp_details' => [
+						'appgini' => "INT(10) UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Employee Details (Optional)',
 							'description' => '',
 						],
 					],
@@ -5461,24 +5447,17 @@
 							'description' => '',
 						],
 					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated by',
-							'description' => '',
-						],
-					],
-					'last_updated_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated at',
-							'description' => '',
-						],
-					],
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
 							'description' => '',
 						],
 					],
@@ -11195,6 +11174,7 @@
 			],
 			'computer_allotment_table' => [
 				'computer_details_table' => ['pc_id'],
+				'employees_personal_data_table' => ['emp_details'],
 			],
 			'employees_designation_table' => [
 				'employees_personal_data_table' => ['employee_lookup'],
@@ -11644,6 +11624,7 @@
 			],
 			'computer_allotment_table' => [
 				'pc_id' => 'SELECT `computer_details_table`.`id`, IF(CHAR_LENGTH(`computer_details_table`.`pc_number`) || CHAR_LENGTH(`computer_details_table`.`pc_hostname`), CONCAT_WS(\'\', `computer_details_table`.`pc_number`, \'::\', `computer_details_table`.`pc_hostname`), \'\') FROM `computer_details_table` ORDER BY 2',
+				'emp_details' => 'SELECT `employees_personal_data_table`.`id`, IF(CHAR_LENGTH(`employees_personal_data_table`.`emp_id`) || CHAR_LENGTH(`employees_personal_data_table`.`name`), CONCAT_WS(\'\', `employees_personal_data_table`.`emp_id`, \'  \', `employees_personal_data_table`.`name`), \'\') FROM `employees_personal_data_table` ORDER BY 2',
 			],
 			'employees_personal_data_table' => [
 			],

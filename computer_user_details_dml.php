@@ -15,24 +15,14 @@ function computer_user_details_insert(&$error_message = '') {
 		return false;
 	}
 
-	// automatic pc_id if passed as filterer
-	if(Request::val('filterer_pc_id')) {
-		$_REQUEST['pc_id'] = Request::val('filterer_pc_id');
-	}
-
 	$data = [
-		'username' => parseCode('<%%creatorUsername%%>', true),
+		'pc_id' => Request::lookup('pc_id', ''),
 		'entry_time' => Request::val('entry_time', ''),
 		'exit_time' => Request::val('exit_time', ''),
 		'date' => parseCode('<%%creationDate%%>', true, true),
 		'created_by' => parseCode('<%%creatorUsername%%>  <%%creationDateTime%%>', true),
 	];
 
-
-	// automatic pc_id if passed as filterer
-	if(Request::val('filterer_pc_id')) {
-		$data['pc_id'] = Request::val('filterer_pc_id');
-	}
 	// record owner is current user
 	$recordOwner = getLoggedMemberID();
 
@@ -97,6 +87,7 @@ function computer_user_details_update(&$selected_id, &$error_message = '') {
 	if(!check_record_permission('computer_user_details', $selected_id, 'edit')) return false;
 
 	$data = [
+		'pc_id' => Request::lookup('pc_id', ''),
 		'entry_time' => Request::val('entry_time', ''),
 		'exit_time' => Request::val('exit_time', ''),
 		'last_updated_by' => parseCode('<%%editorUsername%%>  <%%editingDateTime%%>', false),
@@ -395,6 +386,8 @@ function computer_user_details_form($selectedId = '', $allowUpdate = true, $allo
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
+		$jsReadOnly .= "\t\$j('#pc_id').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#pc_id_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\t\$j('#entry_time').replaceWith('<div class=\"form-control-static\" id=\"entry_time\">' + (\$j('#entry_time').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#exit_time').replaceWith('<div class=\"form-control-static\" id=\"exit_time\">' + (\$j('#exit_time').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
@@ -421,7 +414,7 @@ function computer_user_details_form($selectedId = '', $allowUpdate = true, $allo
 	$templateCode = str_replace('<%%COMBOTEXT(date)%%>', $combo_date->GetHTML(true), $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
-	$lookup_fields = ['pc_id' => ['computer_details_table', 'Pc ID'], ];
+	$lookup_fields = ['pc_id' => ['computer_details_table', 'PC ID'], ];
 	foreach($lookup_fields as $luf => $ptfc) {
 		$pt_perm = getTablePermissions($ptfc[0]);
 
@@ -439,7 +432,6 @@ function computer_user_details_form($selectedId = '', $allowUpdate = true, $allo
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(pc_id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(entry_time)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(exit_time)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date)%%>', '', $templateCode);
@@ -450,10 +442,9 @@ function computer_user_details_form($selectedId = '', $allowUpdate = true, $allo
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(pc_id)%%>', safe_html($urow['pc_id']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(pc_id)%%>', safe_html($urow['pc_id']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(pc_id)%%>', html_attr($row['pc_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(pc_id)%%>', urlencode($urow['pc_id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(entry_time)%%>', safe_html($urow['entry_time']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(entry_time)%%>', html_attr($row['entry_time']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(entry_time)%%>', urlencode($urow['entry_time']), $templateCode);
@@ -471,8 +462,6 @@ function computer_user_details_form($selectedId = '', $allowUpdate = true, $allo
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(pc_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(pc_id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(entry_time)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(entry_time)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(exit_time)%%>', '', $templateCode);
@@ -523,8 +512,6 @@ function computer_user_details_form($selectedId = '', $allowUpdate = true, $allo
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
-	if(isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>')
-		$templateCode.="\n<input type=hidden name=pc_id value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery
 	$templateCode = preg_replace('/blank.gif" data-lightbox=".*?"/', 'blank.gif"', $templateCode);

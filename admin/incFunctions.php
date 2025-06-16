@@ -5350,14 +5350,7 @@
 					'pc_id' => [
 						'appgini' => "INT(10) UNSIGNED NULL",
 						'info' => [
-							'caption' => 'Pc ID',
-							'description' => '',
-						],
-					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
+							'caption' => 'PC ID',
 							'description' => '',
 						],
 					],

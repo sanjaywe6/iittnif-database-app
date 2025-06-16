@@ -19,8 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`computer_user_details`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`computer_details_table1`.`pc_number`) || CHAR_LENGTH(`computer_details_table1`.`pc_hostname`), CONCAT_WS('',   `computer_details_table1`.`pc_number`, '::', `computer_details_table1`.`pc_hostname`), '') /* Pc ID */" => "pc_id",
-		"`computer_user_details`.`username`" => "username",
+		"IF(    CHAR_LENGTH(`computer_details_table1`.`pc_number`) || CHAR_LENGTH(`computer_details_table1`.`pc_hostname`), CONCAT_WS('',   `computer_details_table1`.`pc_number`, '::', `computer_details_table1`.`pc_hostname`), '') /* PC ID */" => "pc_id",
 		"`computer_user_details`.`entry_time`" => "entry_time",
 		"`computer_user_details`.`exit_time`" => "exit_time",
 		"if(`computer_user_details`.`date`,date_format(`computer_user_details`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -31,19 +30,17 @@
 	$x->SortFields = [
 		1 => '`computer_user_details`.`id`',
 		2 => 2,
-		3 => 3,
-		4 => '`computer_user_details`.`entry_time`',
-		5 => '`computer_user_details`.`exit_time`',
-		6 => '`computer_user_details`.`date`',
+		3 => '`computer_user_details`.`entry_time`',
+		4 => '`computer_user_details`.`exit_time`',
+		5 => '`computer_user_details`.`date`',
+		6 => 6,
 		7 => 7,
-		8 => 8,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`computer_user_details`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`computer_details_table1`.`pc_number`) || CHAR_LENGTH(`computer_details_table1`.`pc_hostname`), CONCAT_WS('',   `computer_details_table1`.`pc_number`, '::', `computer_details_table1`.`pc_hostname`), '') /* Pc ID */" => "pc_id",
-		"`computer_user_details`.`username`" => "username",
+		"IF(    CHAR_LENGTH(`computer_details_table1`.`pc_number`) || CHAR_LENGTH(`computer_details_table1`.`pc_hostname`), CONCAT_WS('',   `computer_details_table1`.`pc_number`, '::', `computer_details_table1`.`pc_hostname`), '') /* PC ID */" => "pc_id",
 		"`computer_user_details`.`entry_time`" => "entry_time",
 		"`computer_user_details`.`exit_time`" => "exit_time",
 		"if(`computer_user_details`.`date`,date_format(`computer_user_details`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -53,8 +50,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`computer_user_details`.`id`" => "ID",
-		"IF(    CHAR_LENGTH(`computer_details_table1`.`pc_number`) || CHAR_LENGTH(`computer_details_table1`.`pc_hostname`), CONCAT_WS('',   `computer_details_table1`.`pc_number`, '::', `computer_details_table1`.`pc_hostname`), '') /* Pc ID */" => "Pc ID",
-		"`computer_user_details`.`username`" => "Username",
+		"IF(    CHAR_LENGTH(`computer_details_table1`.`pc_number`) || CHAR_LENGTH(`computer_details_table1`.`pc_hostname`), CONCAT_WS('',   `computer_details_table1`.`pc_number`, '::', `computer_details_table1`.`pc_hostname`), '') /* PC ID */" => "PC ID",
 		"`computer_user_details`.`entry_time`" => "Entry time",
 		"`computer_user_details`.`exit_time`" => "Exit time",
 		"`computer_user_details`.`date`" => "Date",
@@ -65,8 +61,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`computer_user_details`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`computer_details_table1`.`pc_number`) || CHAR_LENGTH(`computer_details_table1`.`pc_hostname`), CONCAT_WS('',   `computer_details_table1`.`pc_number`, '::', `computer_details_table1`.`pc_hostname`), '') /* Pc ID */" => "pc_id",
-		"`computer_user_details`.`username`" => "username",
+		"IF(    CHAR_LENGTH(`computer_details_table1`.`pc_number`) || CHAR_LENGTH(`computer_details_table1`.`pc_hostname`), CONCAT_WS('',   `computer_details_table1`.`pc_number`, '::', `computer_details_table1`.`pc_hostname`), '') /* PC ID */" => "pc_id",
 		"`computer_user_details`.`entry_time`" => "entry_time",
 		"`computer_user_details`.`exit_time`" => "exit_time",
 		"if(`computer_user_details`.`date`,date_format(`computer_user_details`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -75,7 +70,7 @@
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['pc_id' => 'Pc ID', ];
+	$x->filterers = ['pc_id' => 'PC ID', ];
 
 	$x->QueryFrom = "`computer_user_details` LEFT JOIN `computer_details_table` as computer_details_table1 ON `computer_details_table1`.`id`=`computer_user_details`.`pc_id` ";
 	$x->QueryWhere = '';
@@ -108,9 +103,9 @@
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Pc ID', 'Entry time', 'Exit time', 'Date', 'Created By', 'Last Updated By', ];
+	$x->ColCaption = ['ID', 'PC ID', 'Entry time', 'Exit time', 'Date', 'Created By', 'Last Updated By', ];
 	$x->ColFieldName = ['id', 'pc_id', 'entry_time', 'exit_time', 'date', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 4, 5, 6, 7, 8, ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/computer_user_details_templateTV.html';

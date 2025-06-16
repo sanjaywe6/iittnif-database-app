@@ -19,15 +19,12 @@
 		<div class="col-md-8 col-lg-10" id="computer_user_details_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: Pc ID -->
+				<!-- Field: PC ID -->
 				<div class="form-group computer_user_details-pc_id">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Pc ID</label>
+					<label class="control-label col-lg-3" for="pc_id" data-parent_link="view_parent_modal">PC ID</label>
 					<div class="col-lg-9">
-						<div class="form-control-static">
-							<span id="pc_id-readonly"><%%COMBOTEXT(pc_id)%%></span>
-							<%%PLINK(pc_id)%%>
-						</div>
+						<div class="lookup-flex"><%%COMBO(pc_id)%%><%%PLINK(pc_id)%%><%%ADDNEW(computer_details_table)%%></div>
 					</div>
 				</div>
 
@@ -90,9 +87,27 @@
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-			$j('#computer_user_details_dv_container-loading').addClass('hidden');
-			$j('#computer_user_details_dv_container').removeClass('hidden');
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('computer_user_details', 'entry_time');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
+				AppGini.once({
+					condition: function() {
+						return $j('.form-group.computer_user_details-pc_id')
+									.find('.nicEdit-main, .select2-container, input[type=radio]')
+									.length > 0
+								// or read-only DV
+								|| (!$j('#update').length && !$j('#insert').length);
+					},
+					action: function() {
+						$j('#computer_user_details_dv_container-loading').addClass('hidden');
+						$j('#computer_user_details_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('computer_user_details', 'pc_id');
+					},
+					timeout:  5000,
+					doActionOnTimeout:  true
+				});
+			} else {
+				$j('#computer_user_details_dv_container-loading').addClass('hidden');
+				$j('#computer_user_details_dv_container').removeClass('hidden');
+			}
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 

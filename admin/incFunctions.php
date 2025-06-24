@@ -4349,6 +4349,13 @@
 							'description' => '',
 						],
 					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
 				],
 				'asset_table' => [
 					'id' => [

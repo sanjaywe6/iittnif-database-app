@@ -22,7 +22,7 @@
 		"`newsletter_table`.`section`" => "section",
 		"`newsletter_table`.`name_of_event`" => "name_of_event",
 		"`newsletter_table`.`dates_of_events`" => "dates_of_events",
-		"`newsletter_table`.`writeup_about_event`" => "writeup_about_event",
+		"if(CHAR_LENGTH(`newsletter_table`.`writeup_about_event`)>500, concat(left(`newsletter_table`.`writeup_about_event`,500),' ...'), `newsletter_table`.`writeup_about_event`)" => "writeup_about_event",
 		"`newsletter_table`.`img1`" => "img1",
 		"`newsletter_table`.`img2`" => "img2",
 		"`newsletter_table`.`created_by`" => "created_by",
@@ -70,7 +70,7 @@
 		"`newsletter_table`.`section`" => "section",
 		"`newsletter_table`.`name_of_event`" => "name_of_event",
 		"`newsletter_table`.`dates_of_events`" => "dates_of_events",
-		"`newsletter_table`.`writeup_about_event`" => "writeup_about_event",
+		"`newsletter_table`.`writeup_about_event`" => "Writeup About The Events (Max 200 Words)",
 		"`newsletter_table`.`created_by`" => "created_by",
 		"`newsletter_table`.`last_updated_by`" => "last_updated_by",
 	];

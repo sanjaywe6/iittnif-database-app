@@ -26,6 +26,8 @@ function newsletter_table_insert(&$error_message = '') {
 			'noRename' => false,
 			'dir' => '',
 			'success' => function($name, $selected_id) {
+				Thumbnail::create($name, getThumbnailSpecs('newsletter_table', 'img1', 'tv'));
+				Thumbnail::create($name, getThumbnailSpecs('newsletter_table', 'img1', 'dv'));
 			},
 			'failure' => function($selected_id, $fileRemoved) {
 				if(!strlen(Request::val('SelectedID'))) return '';
@@ -40,6 +42,8 @@ function newsletter_table_insert(&$error_message = '') {
 			'noRename' => false,
 			'dir' => '',
 			'success' => function($name, $selected_id) {
+				Thumbnail::create($name, getThumbnailSpecs('newsletter_table', 'img2', 'tv'));
+				Thumbnail::create($name, getThumbnailSpecs('newsletter_table', 'img2', 'dv'));
 			},
 			'failure' => function($selected_id, $fileRemoved) {
 				if(!strlen(Request::val('SelectedID'))) return '';
@@ -150,6 +154,8 @@ function newsletter_table_update(&$selected_id, &$error_message = '') {
 			'dir' => '',
 			'id' => $selected_id,
 			'success' => function($name, $selected_id) {
+				Thumbnail::create($name, getThumbnailSpecs('newsletter_table', 'img1', 'tv'));
+				Thumbnail::create($name, getThumbnailSpecs('newsletter_table', 'img1', 'dv'));
 			},
 			'removeOnSuccess' => true,
 			'removeOnRequest' => true,
@@ -179,6 +185,8 @@ function newsletter_table_update(&$selected_id, &$error_message = '') {
 			'dir' => '',
 			'id' => $selected_id,
 			'success' => function($name, $selected_id) {
+				Thumbnail::create($name, getThumbnailSpecs('newsletter_table', 'img2', 'tv'));
+				Thumbnail::create($name, getThumbnailSpecs('newsletter_table', 'img2', 'dv'));
 			},
 			'removeOnSuccess' => true,
 			'removeOnRequest' => true,

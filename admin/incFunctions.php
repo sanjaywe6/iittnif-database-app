@@ -890,6 +890,14 @@
 			return ['width'=>50, 'height'=>50, 'identifier'=>'_tv'];
 		elseif($tableName=='payment_track_details_table' && $fieldName=='upload_scanned_file_2' && $view=='dv')
 			return ['width'=>250, 'height'=>250, 'identifier'=>'_dv'];
+		elseif($tableName=='newsletter_table' && $fieldName=='img1' && $view=='tv')
+			return ['width'=>50, 'height'=>50, 'identifier'=>'_tv'];
+		elseif($tableName=='newsletter_table' && $fieldName=='img1' && $view=='dv')
+			return ['width'=>250, 'height'=>250, 'identifier'=>'_dv'];
+		elseif($tableName=='newsletter_table' && $fieldName=='img2' && $view=='tv')
+			return ['width'=>50, 'height'=>50, 'identifier'=>'_tv'];
+		elseif($tableName=='newsletter_table' && $fieldName=='img2' && $view=='dv')
+			return ['width'=>250, 'height'=>250, 'identifier'=>'_dv'];
 		return FALSE;
 	}
 	########################################################################

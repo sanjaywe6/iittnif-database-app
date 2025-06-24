@@ -1,7 +1,7 @@
 // service-worker.js
 
 // The cache version/name (update this to invalidate old caches)
-const CACHE_NAME = 'appgini-cache-v20250624153933'; // vYYYYMMDDHHMMSS
+const CACHE_NAME = 'appgini-cache-v20250624155008'; // vYYYYMMDDHHMMSS
 
 // List of URLs/pages to cache for offline use
 const urlsToCache = [

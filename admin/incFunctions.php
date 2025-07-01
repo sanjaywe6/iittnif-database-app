@@ -11347,7 +11347,10 @@
 			'employees_appraisal_table' => [],
 			'beyond_workingHours_table' => [
 				'number_of_hours' => 'SELECT 
-					    TIMESTAMPDIFF(SECOND, `beyond_workingHours_table`.`start_datetime`, `beyond_workingHours_table`.`end_datetime`)/3600 AS DifferenceInSeconds
+					    TIMESTAMPDIFF(
+					SECOND, `beyond_workingHours_table`.`start_datetime`, 
+					`beyond_workingHours_table`.`end_datetime`)/3600 
+					AS DifferenceInSeconds
 					FROM `beyond_workingHours_table` WHERE id = %ID%;',
 			],
 			'leave_table' => [],

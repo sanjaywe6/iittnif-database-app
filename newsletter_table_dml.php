@@ -313,7 +313,7 @@ function newsletter_table_form($selectedId = '', $allowUpdate = true, $allowInse
 		$combo_section->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($section_data))));
 		$combo_section->ListData = $combo_section->ListItem;
 	} else {
-		$combo_section->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Foundational Research;;Translational R & D;;TDP;;HRD;;SDP;;Startups;;Collaborations;;Events within TIH;;Events Outside TIH;;Announcements;;Hirings;;PD's Note;;CEO's Note;;Advisors Note;;HGB Members Note;;BOD Members Note;;Operation Dronagiri"))));
+		$combo_section->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Foundational Research;;Translational R & D;;TDP;;HRD;;SDP;;Startups;;Collaborations;;Events within TIH;;Events Outside TIH;;Announcements;;Hirings;;PD's Note;;CEO's Note;;Advisors Note;;HGB Members Note;;BOD Members Note;;Operation Dronagiri;;Others"))));
 		$combo_section->ListData = $combo_section->ListItem;
 	}
 	$combo_section->SelectName = 'section';

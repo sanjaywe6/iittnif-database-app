@@ -453,7 +453,7 @@ function suggestion_validateData(insertMode) {
 	// check all required fields have values
 	const reqFields = [
 		// [field-type, field-name, field-caption], ...
-		['text', 'suggestion', 'Suggestion'],
+		['text', 'suggestion', 'Suggestion / Complaint'],
 	];
 
 	reqFields.map(function(rf) {

@@ -30,22 +30,22 @@ user_table_delete2Tip=["",spacer+"This option allows each member of the group to
 user_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'User Table' table."];
 
 // suggestion table
-suggestion_addTip=["",spacer+"This option allows all members of the group to add records to the 'Suggestion - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
+suggestion_addTip=["",spacer+"This option allows all members of the group to add records to the 'Suggestion/Complaint - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
 
-suggestion_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Suggestion - App' table."];
-suggestion_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Suggestion - App' table."];
-suggestion_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Suggestion - App' table."];
-suggestion_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Suggestion - App' table."];
+suggestion_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Suggestion/Complaint - App' table."];
+suggestion_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Suggestion/Complaint - App' table."];
+suggestion_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Suggestion/Complaint - App' table."];
+suggestion_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Suggestion/Complaint - App' table."];
 
-suggestion_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Suggestion - App' table."];
-suggestion_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Suggestion - App' table."];
-suggestion_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Suggestion - App' table."];
-suggestion_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Suggestion - App' table, regardless of their owner."];
+suggestion_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Suggestion/Complaint - App' table."];
+suggestion_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Suggestion/Complaint - App' table."];
+suggestion_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Suggestion/Complaint - App' table."];
+suggestion_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Suggestion/Complaint - App' table, regardless of their owner."];
 
-suggestion_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Suggestion - App' table."];
-suggestion_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Suggestion - App' table."];
-suggestion_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Suggestion - App' table."];
-suggestion_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Suggestion - App' table."];
+suggestion_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Suggestion/Complaint - App' table."];
+suggestion_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Suggestion/Complaint - App' table."];
+suggestion_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Suggestion/Complaint - App' table."];
+suggestion_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Suggestion/Complaint - App' table."];
 
 // approval_table table
 approval_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Approval - App' table. A member who adds a record to the table becomes the 'owner' of that record."];

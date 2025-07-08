@@ -126,7 +126,7 @@
 					'homepageShowCount' => 1
 				],
 				'suggestion' => [
-					'Caption' => 'Suggestion - App',
+					'Caption' => 'Suggestion/Complaint - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[13],
@@ -730,7 +730,7 @@
 		$arrTables = [
 			/* 'table_name' => ['table caption', 'homepage description', 'icon', 'table group name'] */   
 			'user_table' => ['User Table', '', 'table.gif', 'Suggestions &amp; Others App'],
-			'suggestion' => ['Suggestion - App', '', 'table.gif', 'Suggestions &amp; Others App'],
+			'suggestion' => ['Suggestion/Complaint - App', '', 'table.gif', 'Suggestions &amp; Others App'],
 			'approval_table' => ['Approval - App', '', 'table.gif', 'Approvals &amp; Sanctions'],
 			'techlead_web_page' => ['Tech Manager Web Page  - App', '', 'table.gif', 'Approvals &amp; Sanctions'],
 			'car_table' => ['Car - App', '<a href="https://lookerstudio.google.com/reporting/58f87367-3f09-42c0-a288-cf75f313cbed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Car App Report</b></button></a>', 'table.gif', 'Facilities Apps'],
@@ -1647,13 +1647,6 @@
 							'description' => '',
 						],
 					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
-							'description' => '',
-						],
-					],
 					'department' => [
 						'appgini' => "VARCHAR(255) NULL DEFAULT 'Event'",
 						'info' => [
@@ -1664,7 +1657,7 @@
 					'suggestion' => [
 						'appgini' => "TEXT NOT NULL",
 						'info' => [
-							'caption' => 'Suggestion',
+							'caption' => 'Suggestion / Complaint',
 							'description' => '',
 						],
 					],
@@ -1686,6 +1679,13 @@
 						'appgini' => "TEXT NULL",
 						'info' => [
 							'caption' => 'Remarks of CEO/PD',
+							'description' => '',
+						],
+					],
+					'status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Pending'",
+						'info' => [
+							'caption' => 'Status',
 							'description' => '',
 						],
 					],

@@ -28,10 +28,10 @@
 					</div>
 				</div>
 
-				<!-- Field: Suggestion -->
+				<!-- Field: Suggestion / Complaint -->
 				<div class="form-group suggestion-suggestion">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="suggestion">Suggestion<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<label class="control-label col-lg-3" for="suggestion">Suggestion / Complaint<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
 						<textarea maxlength="65500" class="form-control" name="suggestion" id="suggestion" rows=" 5"><%%VALUE(suggestion)%%></textarea>
 					</div>
@@ -74,6 +74,15 @@
 					<label class="control-label col-lg-3" for="ceo_pd_remarks">Remarks of CEO/PD</label>
 					<div class="col-lg-9">
 						<textarea maxlength="65500" class="form-control" name="ceo_pd_remarks" id="ceo_pd_remarks" rows=" 5"><%%VALUE(ceo_pd_remarks)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Status -->
+				<div class="form-group suggestion-status">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="status">Status</label>
+					<div class="col-lg-9">
+						<%%COMBO(status)%%>
 					</div>
 				</div>
 

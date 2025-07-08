@@ -1,4 +1,4 @@
-		<td colspan="8" class="row">
+		<td colspan="9" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="suggestion-suggestion_id-caption field-caption-tv">ID</dt>
@@ -7,21 +7,24 @@
 					<dt class="suggestion-department-caption field-caption-tv">Suggestion Related to Department</dt>
 					<dd id="suggestion-department-<%%VALUE(suggestion_id)%%>" class="suggestion-department"><%%SELECT%%><%%VALUE(department)%%><%%ENDSELECT%%></dd>
 
-					<dt class="suggestion-suggestion-caption field-caption-tv">Suggestion</dt>
+					<dt class="suggestion-suggestion-caption field-caption-tv">Suggestion / Complaint</dt>
 					<dd id="suggestion-suggestion-<%%VALUE(suggestion_id)%%>" class="suggestion-suggestion"><%%SELECT%%><%%VALUE(suggestion)%%><%%ENDSELECT%%></dd>
 
 					<dt class="suggestion-attachment-caption field-caption-tv">Attachment</dt>
 					<dd id="suggestion-attachment-<%%VALUE(suggestion_id)%%>" class="suggestion-attachment"><a href="link.php?t=suggestion&f=attachment&i=<%%VALUE(suggestion_id)%%>" target="_blank" title="<%%VALUE(attachment)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-picture text-info"></i></a></dd>
 
+					<dt class="suggestion-department_remarks-caption field-caption-tv">Remarks of Department/Office Head</dt>
+					<dd id="suggestion-department_remarks-<%%VALUE(suggestion_id)%%>" class="suggestion-department_remarks"><%%SELECT%%><%%VALUE(department_remarks)%%><%%ENDSELECT%%></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="suggestion-department_remarks-caption field-caption-tv">Remarks of Department/Office Head</dt>
-					<dd id="suggestion-department_remarks-<%%VALUE(suggestion_id)%%>" class="suggestion-department_remarks"><%%SELECT%%><%%VALUE(department_remarks)%%><%%ENDSELECT%%></dd>
-
 					<dt class="suggestion-ceo_pd_remarks-caption field-caption-tv">Remarks of CEO/PD</dt>
 					<dd id="suggestion-ceo_pd_remarks-<%%VALUE(suggestion_id)%%>" class="suggestion-ceo_pd_remarks"><%%SELECT%%><%%VALUE(ceo_pd_remarks)%%><%%ENDSELECT%%></dd>
+
+					<dt class="suggestion-status-caption field-caption-tv">Status</dt>
+					<dd id="suggestion-status-<%%VALUE(suggestion_id)%%>" class="suggestion-status"><%%SELECT%%><%%VALUE(status)%%><%%ENDSELECT%%></dd>
 
 					<dt class="suggestion-created_by-caption field-caption-tv">Created By</dt>
 					<dd id="suggestion-created_by-<%%VALUE(suggestion_id)%%>" class="suggestion-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>

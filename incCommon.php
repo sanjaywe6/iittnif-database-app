@@ -106,7 +106,7 @@
 	function get_sql_fields($table_name) {
 		$sql_fields = [
 			'user_table' => "`user_table`.`user_id` as 'user_id', `user_table`.`memberID` as 'memberID', `user_table`.`name` as 'name'",
-			'suggestion' => "`suggestion`.`suggestion_id` as 'suggestion_id', `suggestion`.`username` as 'username', `suggestion`.`department` as 'department', `suggestion`.`suggestion` as 'suggestion', `suggestion`.`attachment` as 'attachment', `suggestion`.`department_remarks` as 'department_remarks', `suggestion`.`ceo_pd_remarks` as 'ceo_pd_remarks', `suggestion`.`created_by` as 'created_by', `suggestion`.`last_updated_by` as 'last_updated_by'",
+			'suggestion' => "`suggestion`.`suggestion_id` as 'suggestion_id', `suggestion`.`department` as 'department', `suggestion`.`suggestion` as 'suggestion', `suggestion`.`attachment` as 'attachment', `suggestion`.`department_remarks` as 'department_remarks', `suggestion`.`ceo_pd_remarks` as 'ceo_pd_remarks', `suggestion`.`status` as 'status', `suggestion`.`created_by` as 'created_by', `suggestion`.`last_updated_by` as 'last_updated_by'",
 			'approval_table' => "`approval_table`.`id` as 'id', `approval_table`.`approval_from` as 'approval_from', `approval_table`.`type` as 'type', `approval_table`.`description` as 'description', `approval_table`.`quantity` as 'quantity', `approval_table`.`full_est_value` as 'full_est_value', `approval_table`.`name_of_vendor` as 'name_of_vendor', `approval_table`.`purpose` as 'purpose', `approval_table`.`requested_department` as 'requested_department', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'person_responsbility', `approval_table`.`mode_of_purchase` as 'mode_of_purchase', `approval_table`.`others_if_any` as 'others_if_any', `approval_table`.`approval_status` as 'approval_status', `approval_table`.`remarks_for_approval` as 'remarks_for_approval', `approval_table`.`image` as 'image', `approval_table`.`other_file` as 'other_file', `approval_table`.`created_by` as 'created_by', `approval_table`.`last_updated_by` as 'last_updated_by'",
 			'techlead_web_page' => "`techlead_web_page`.`id` as 'id', `techlead_web_page`.`techlead` as 'techlead', `techlead_web_page`.`category` as 'category', `techlead_web_page`.`author` as 'author', `techlead_web_page`.`content_title` as 'content_title', `techlead_web_page`.`content` as 'content', `techlead_web_page`.`content_learn_more` as 'content_learn_more', `techlead_web_page`.`img1` as 'img1', `techlead_web_page`.`img2` as 'img2', `techlead_web_page`.`approval_status` as 'approval_status', `techlead_web_page`.`approval_remarks` as 'approval_remarks', `techlead_web_page`.`website_update_status` as 'website_update_status', `techlead_web_page`.`website_update_remarks` as 'website_update_remarks', if(`techlead_web_page`.`website_update_date`,date_format(`techlead_web_page`.`website_update_date`,'%d/%m/%Y'),'') as 'website_update_date', `techlead_web_page`.`created_by` as 'created_by', `techlead_web_page`.`last_updated_by` as 'last_updated_by'",
 			'car_table' => "`car_table`.`id` as 'id', `car_table`.`car_number` as 'car_number', `car_table`.`registration_number` as 'registration_number', `car_table`.`car_model` as 'car_model', `car_table`.`car_vin` as 'car_vin', `car_table`.`fuel_type` as 'fuel_type', `car_table`.`seating_capacity` as 'seating_capacity', `car_table`.`car_color` as 'car_color', `car_table`.`rental_company_name` as 'rental_company_name', `car_table`.`contact_person` as 'contact_person', `car_table`.`contact_number_of_person` as 'contact_number_of_person', `car_table`.`rental_rate` as 'rental_rate', if(`car_table`.`rental_start_date`,date_format(`car_table`.`rental_start_date`,'%d/%m/%Y'),'') as 'rental_start_date', if(`car_table`.`rental_end_date`,date_format(`car_table`.`rental_end_date`,'%d/%m/%Y'),'') as 'rental_end_date', `car_table`.`purpose` as 'purpose', `car_table`.`created_by` as 'created_by', `car_table`.`last_updated_by` as 'last_updated_by'",
@@ -430,12 +430,12 @@
 			],
 			'suggestion' => [
 				'suggestion_id' => '',
-				'username' => '',
 				'department' => 'Event',
 				'suggestion' => '',
 				'attachment' => '',
 				'department_remarks' => '',
 				'ceo_pd_remarks' => '',
+				'status' => 'Pending',
 				'created_by' => '',
 				'last_updated_by' => '',
 			],

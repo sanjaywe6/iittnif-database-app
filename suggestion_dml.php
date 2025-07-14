@@ -32,8 +32,8 @@ function suggestion_insert(&$error_message = '') {
 				return existing_value('suggestion', 'attachment', Request::val('SelectedID'));
 			},
 		]),
-		'department_remarks' => br2nl(Request::val('department_remarks', '')),
-		'ceo_pd_remarks' => br2nl(Request::val('ceo_pd_remarks', '')),
+		'department_remarks' => Request::val('department_remarks', ''),
+		'ceo_pd_remarks' => Request::val('ceo_pd_remarks', ''),
 		'status' => Request::val('status', 'Pending'),
 		'created_by' => parseCode('<%%creatorUsername%%>  <%%creationDateTime%%>', true),
 	];
@@ -134,8 +134,8 @@ function suggestion_update(&$selected_id, &$error_message = '') {
 				return existing_value('suggestion', 'attachment', $selected_id);
 			},
 		]),
-		'department_remarks' => br2nl(Request::val('department_remarks', '')),
-		'ceo_pd_remarks' => br2nl(Request::val('ceo_pd_remarks', '')),
+		'department_remarks' => Request::val('department_remarks', ''),
+		'ceo_pd_remarks' => Request::val('ceo_pd_remarks', ''),
 		'status' => Request::val('status', ''),
 		'last_updated_by' => parseCode('<%%editorUsername%%>  <%%editingDateTime%%>', false),
 	];
@@ -261,7 +261,7 @@ function suggestion_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 		$combo_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($status_data))));
 		$combo_status->ListData = $combo_status->ListItem;
 	} else {
-		$combo_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Resolved;;Pending"))));
+		$combo_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Resolved;;Pending;;Declined"))));
 		$combo_status->ListData = $combo_status->ListItem;
 	}
 	$combo_status->SelectName = 'status';
@@ -366,8 +366,6 @@ function suggestion_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 		$jsReadOnly .= "\t\$j('#department').replaceWith('<div class=\"form-control-static\" id=\"department\">' + (\$j('#department').val() || '') + '</div>'); \$j('#department-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#suggestion').replaceWith('<div class=\"form-control-static\" id=\"suggestion\">' + (\$j('#suggestion').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#attachment').parent().replaceWith(`<div class=\"form-control-static\" id=\"attachment\">\${\$j('#attachment').val() || ''}\${\$j('#attachment').val() ? '<a target=\"_blank\" class=\"hspacer-lg\" href=\"' + \$j('#attachment').val() + '\" target=\"_blank\"><i class=\"glyphicon glyphicon-globe\"></i></a>' : ''}</div>`);\n";
-		$jsReadOnly .= "\t\$j('#department_remarks').replaceWith('<div class=\"form-control-static\" id=\"department_remarks\">' + (\$j('#department_remarks').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#ceo_pd_remarks').replaceWith('<div class=\"form-control-static\" id=\"ceo_pd_remarks\">' + (\$j('#ceo_pd_remarks').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#status').replaceWith('<div class=\"form-control-static\" id=\"status\">' + (\$j('#status').val() || '') + '</div>'); \$j('#status-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
@@ -428,9 +426,19 @@ function suggestion_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(attachment)%%>', safe_html($urow['attachment']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(attachment)%%>', html_attr($row['attachment']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(attachment)%%>', urlencode($urow['attachment']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(department_remarks)%%>', safe_html($urow['department_remarks'], $fieldsAreEditable), $templateCode);
+		if($fieldsAreEditable) {
+			$templateCode = str_replace('<%%HTMLAREA(department_remarks)%%>', '<textarea maxlength="65500" name="department_remarks" id="department_remarks" rows="5">' . safe_html(htmlspecialchars_decode($row['department_remarks'])) . '</textarea>', $templateCode);
+		} else {
+			$templateCode = str_replace('<%%HTMLAREA(department_remarks)%%>', '<div id="department_remarks" class="form-control-static">' . $row['department_remarks'] . '</div>', $templateCode);
+		}
+		$templateCode = str_replace('<%%VALUE(department_remarks)%%>', nl2br($row['department_remarks']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(department_remarks)%%>', urlencode($urow['department_remarks']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(ceo_pd_remarks)%%>', safe_html($urow['ceo_pd_remarks'], $fieldsAreEditable), $templateCode);
+		if($fieldsAreEditable) {
+			$templateCode = str_replace('<%%HTMLAREA(ceo_pd_remarks)%%>', '<textarea maxlength="65500" name="ceo_pd_remarks" id="ceo_pd_remarks" rows="5">' . safe_html(htmlspecialchars_decode($row['ceo_pd_remarks'])) . '</textarea>', $templateCode);
+		} else {
+			$templateCode = str_replace('<%%HTMLAREA(ceo_pd_remarks)%%>', '<div id="ceo_pd_remarks" class="form-control-static">' . $row['ceo_pd_remarks'] . '</div>', $templateCode);
+		}
+		$templateCode = str_replace('<%%VALUE(ceo_pd_remarks)%%>', nl2br($row['ceo_pd_remarks']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(ceo_pd_remarks)%%>', urlencode($urow['ceo_pd_remarks']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(status)%%>', safe_html($urow['status']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(status)%%>', html_attr($row['status']), $templateCode);
@@ -448,10 +456,8 @@ function suggestion_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 		$templateCode = str_replace('<%%URLVALUE(suggestion)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(attachment)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(attachment)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(department_remarks)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(department_remarks)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(ceo_pd_remarks)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(ceo_pd_remarks)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(department_remarks)%%>', '<textarea maxlength="65500" name="department_remarks" id="department_remarks" rows="5"></textarea>', $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(ceo_pd_remarks)%%>', '<textarea maxlength="65500" name="ceo_pd_remarks" id="ceo_pd_remarks" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(status)%%>', 'Pending', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(status)%%>', urlencode('Pending'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>  <%%creationDateTime%%>', $templateCode);

@@ -11,9 +11,7 @@
 		// set up tables
 		setupTable('user_table', []);
 
-		setupTable('suggestion', [
-				" ALTER TABLE `suggestion` CHANGE `status` `status` VARCHAR(255) NULL DEFAULT 'Pending' ",
-			]);
+		setupTable('suggestion', []);
 
 		setupTable('approval_table', []);
 		setupIndexes('approval_table', ['person_responsbility',]);

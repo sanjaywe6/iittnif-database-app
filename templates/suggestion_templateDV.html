@@ -63,8 +63,8 @@
 				<div class="form-group suggestion-department_remarks">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="department_remarks">Remarks of Department/Office Head</label>
-					<div class="col-lg-9">
-						<textarea maxlength="65500" class="form-control" name="department_remarks" id="department_remarks" rows=" 5"><%%VALUE(department_remarks)%%></textarea>
+					<div class="col-lg-9 has-nicedit">
+						<%%HTMLAREA(department_remarks)%%>
 					</div>
 				</div>
 
@@ -72,8 +72,8 @@
 				<div class="form-group suggestion-ceo_pd_remarks">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="ceo_pd_remarks">Remarks of CEO/PD</label>
-					<div class="col-lg-9">
-						<textarea maxlength="65500" class="form-control" name="ceo_pd_remarks" id="ceo_pd_remarks" rows=" 5"><%%VALUE(ceo_pd_remarks)%%></textarea>
+					<div class="col-lg-9 has-nicedit">
+						<%%HTMLAREA(ceo_pd_remarks)%%>
 					</div>
 				</div>
 
@@ -123,6 +123,13 @@
 				setTimeout(AppGini.closeParentModal, 2000);
 			}
 
+			AppGini.once({
+				condition: function() { return bkLib != undefined; },
+				action: function() {
+					if($j('textarea#department_remarks').length) new nicEditor({ fullPanel : true }).panelInstance('department_remarks');
+					if($j('textarea#ceo_pd_remarks').length) new nicEditor({ fullPanel : true }).panelInstance('ceo_pd_remarks');
+				}
+			});
 
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
@@ -148,6 +155,9 @@
 				$j('#suggestion_dv_container-loading').addClass('hidden');
 				$j('#suggestion_dv_container').removeClass('hidden');
 			}
+
+			// try to detect rich text changes by adding 'input' handler after nicedit is loaded ...
+			AppGini.detectContentEditableChanges();
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 

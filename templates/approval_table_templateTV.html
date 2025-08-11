@@ -1,4 +1,4 @@
-		<td colspan="18" class="row">
+		<td colspan="20" class="row">
 			<div id="approval_table-id-<%%VALUE(id)%%>" class="approval_table-id col-sm-12 h5 text-bold"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></div>
 			<div class="col-sm-12">
 				<dl class="dl-horizontal">
@@ -34,6 +34,12 @@
 
 					<dt class="approval_table-others_if_any-caption field-caption-tv">Others if Any</dt>
 					<dd id="approval_table-others_if_any-<%%VALUE(id)%%>" class="approval_table-others_if_any"><%%SELECT%%><%%VALUE(others_if_any)%%><%%ENDSELECT%%></dd>
+
+					<dt class="approval_table-recurring_budget-caption field-caption-tv">Recurring Budget (For Accounts Department)</dt>
+					<dd id="approval_table-recurring_budget-<%%VALUE(id)%%>" class="approval_table-recurring_budget"><%%SELECT%%><%%VALUE(recurring_budget)%%><%%ENDSELECT%%></dd>
+
+					<dt class="approval_table-non_recurring_budget-caption field-caption-tv">Non Recurring Budget (For Account Department)</dt>
+					<dd id="approval_table-non_recurring_budget-<%%VALUE(id)%%>" class="approval_table-non_recurring_budget"><%%SELECT%%><%%VALUE(non_recurring_budget)%%><%%ENDSELECT%%></dd>
 
 					<dt class="approval_table-approval_status-caption field-caption-tv">Approval Status</dt>
 					<dd id="approval_table-approval_status-<%%VALUE(id)%%>" class="approval_table-approval_status"><%%SELECT%%><%%VALUE(approval_status)%%><%%ENDSELECT%%></dd>

@@ -30,6 +30,8 @@
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Person Responsbility */" => "person_responsbility",
 		"`approval_table`.`mode_of_purchase`" => "mode_of_purchase",
 		"`approval_table`.`others_if_any`" => "others_if_any",
+		"`approval_table`.`recurring_budget`" => "recurring_budget",
+		"`approval_table`.`non_recurring_budget`" => "non_recurring_budget",
 		"`approval_table`.`approval_status`" => "approval_status",
 		"`approval_table`.`remarks_for_approval`" => "remarks_for_approval",
 		"`approval_table`.`image`" => "image",
@@ -57,6 +59,8 @@
 		16 => 16,
 		17 => 17,
 		18 => 18,
+		19 => 19,
+		20 => 20,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -73,6 +77,8 @@
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Person Responsbility */" => "person_responsbility",
 		"`approval_table`.`mode_of_purchase`" => "mode_of_purchase",
 		"`approval_table`.`others_if_any`" => "others_if_any",
+		"`approval_table`.`recurring_budget`" => "recurring_budget",
+		"`approval_table`.`non_recurring_budget`" => "non_recurring_budget",
 		"`approval_table`.`approval_status`" => "approval_status",
 		"`approval_table`.`remarks_for_approval`" => "remarks_for_approval",
 		"`approval_table`.`image`" => "image",
@@ -94,6 +100,8 @@
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Person Responsbility */" => "Person Responsbility",
 		"`approval_table`.`mode_of_purchase`" => "Mode of Purchase",
 		"`approval_table`.`others_if_any`" => "Others if Any",
+		"`approval_table`.`recurring_budget`" => "Recurring Budget (For Accounts Department)",
+		"`approval_table`.`non_recurring_budget`" => "Non Recurring Budget (For Account Department)",
 		"`approval_table`.`approval_status`" => "Approval Status",
 		"`approval_table`.`remarks_for_approval`" => "Remarks for Approval",
 		"`approval_table`.`other_file`" => "Upload Other File if Any (Optional)",
@@ -115,6 +123,8 @@
 		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Person Responsbility */" => "person_responsbility",
 		"`approval_table`.`mode_of_purchase`" => "mode_of_purchase",
 		"`approval_table`.`others_if_any`" => "others_if_any",
+		"`approval_table`.`recurring_budget`" => "recurring_budget",
+		"`approval_table`.`non_recurring_budget`" => "non_recurring_budget",
 		"`approval_table`.`approval_status`" => "approval_status",
 		"`approval_table`.`remarks_for_approval`" => "remarks_for_approval",
 		"`approval_table`.`other_file`" => "other_file",
@@ -155,10 +165,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Approval From', 'Approval Type', 'Description', 'Quantity', 'Full Estimated Value', 'Name of Vendor', 'Purpose', 'Requested Department/Appointment', 'Person Responsbility', 'Mode of Purchase', 'Others if Any', 'Approval Status', 'Remarks for Approval', 'Upload Image if Any (Optional)', 'Upload Other File if Any (Optional)', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['id', 'approval_from', 'type', 'description', 'quantity', 'full_est_value', 'name_of_vendor', 'purpose', 'requested_department', 'person_responsbility', 'mode_of_purchase', 'others_if_any', 'approval_status', 'remarks_for_approval', 'image', 'other_file', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Approval From', 'Approval Type', 'Description', 'Quantity', 'Full Estimated Value', 'Name of Vendor', 'Purpose', 'Requested Department/Appointment', 'Person Responsbility', 'Mode of Purchase', 'Others if Any', 'Recurring Budget (For Accounts Department)', 'Non Recurring Budget (For Account Department)', 'Approval Status', 'Remarks for Approval', 'Upload Image if Any (Optional)', 'Upload Other File if Any (Optional)', 'Created By', 'Last Updated By', ];
+	$x->ColFieldName = ['id', 'approval_from', 'type', 'description', 'quantity', 'full_est_value', 'name_of_vendor', 'purpose', 'requested_department', 'person_responsbility', 'mode_of_purchase', 'others_if_any', 'recurring_budget', 'non_recurring_budget', 'approval_status', 'remarks_for_approval', 'image', 'other_file', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/approval_table_templateTV.html';

@@ -1789,6 +1789,20 @@
 							'description' => '',
 						],
 					],
+					'recurring_budget' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Recurring Budget (For Accounts Department)',
+							'description' => '',
+						],
+					],
+					'non_recurring_budget' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Non Recurring Budget (For Account Department)',
+							'description' => '',
+						],
+					],
 					'approval_status' => [
 						'appgini' => "VARCHAR(255) NULL DEFAULT 'Under Consideration'",
 						'info' => [

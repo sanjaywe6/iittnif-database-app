@@ -27,6 +27,8 @@ function approval_table_insert(&$error_message = '') {
 		'person_responsbility' => Request::lookup('person_responsbility', ''),
 		'mode_of_purchase' => Request::val('mode_of_purchase', ''),
 		'others_if_any' => br2nl(Request::val('others_if_any', '')),
+		'recurring_budget' => Request::val('recurring_budget', ''),
+		'non_recurring_budget' => Request::val('non_recurring_budget', ''),
 		'approval_status' => Request::val('approval_status', 'Under Consideration'),
 		'remarks_for_approval' => Request::val('remarks_for_approval', 'None'),
 		'image' => Request::fileUpload('image', [
@@ -177,6 +179,8 @@ function approval_table_update(&$selected_id, &$error_message = '') {
 		'person_responsbility' => Request::lookup('person_responsbility', ''),
 		'mode_of_purchase' => Request::val('mode_of_purchase', ''),
 		'others_if_any' => br2nl(Request::val('others_if_any', '')),
+		'recurring_budget' => Request::val('recurring_budget', ''),
+		'non_recurring_budget' => Request::val('non_recurring_budget', ''),
 		'approval_status' => Request::val('approval_status', ''),
 		'remarks_for_approval' => Request::val('remarks_for_approval', ''),
 		'image' => Request::fileUpload('image', [
@@ -373,6 +377,36 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		$combo_mode_of_purchase->ListData = $combo_mode_of_purchase->ListItem;
 	}
 	$combo_mode_of_purchase->SelectName = 'mode_of_purchase';
+	// combobox: recurring_budget
+	$combo_recurring_budget = new Combo;
+	$combo_recurring_budget->ListType = 0;
+	$combo_recurring_budget->MultipleSeparator = ', ';
+	$combo_recurring_budget->ListBoxHeight = 10;
+	$combo_recurring_budget->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/approval_table.recurring_budget.csv')) {
+		$recurring_budget_data = addslashes(implode('', @file(__DIR__ . '/hooks/approval_table.recurring_budget.csv')));
+		$combo_recurring_budget->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($recurring_budget_data))));
+		$combo_recurring_budget->ListData = $combo_recurring_budget->ListItem;
+	} else {
+		$combo_recurring_budget->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Available;;Not Available"))));
+		$combo_recurring_budget->ListData = $combo_recurring_budget->ListItem;
+	}
+	$combo_recurring_budget->SelectName = 'recurring_budget';
+	// combobox: non_recurring_budget
+	$combo_non_recurring_budget = new Combo;
+	$combo_non_recurring_budget->ListType = 0;
+	$combo_non_recurring_budget->MultipleSeparator = ', ';
+	$combo_non_recurring_budget->ListBoxHeight = 10;
+	$combo_non_recurring_budget->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/approval_table.non_recurring_budget.csv')) {
+		$non_recurring_budget_data = addslashes(implode('', @file(__DIR__ . '/hooks/approval_table.non_recurring_budget.csv')));
+		$combo_non_recurring_budget->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($non_recurring_budget_data))));
+		$combo_non_recurring_budget->ListData = $combo_non_recurring_budget->ListItem;
+	} else {
+		$combo_non_recurring_budget->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Available;;Not Available"))));
+		$combo_non_recurring_budget->ListData = $combo_non_recurring_budget->ListItem;
+	}
+	$combo_non_recurring_budget->SelectName = 'non_recurring_budget';
 	// combobox: approval_status
 	$combo_approval_status = new Combo;
 	$combo_approval_status->ListType = 0;
@@ -397,6 +431,8 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		$combo_type->SelectedData = $row['type'];
 		$combo_person_responsbility->SelectedData = $row['person_responsbility'];
 		$combo_mode_of_purchase->SelectedData = $row['mode_of_purchase'];
+		$combo_recurring_budget->SelectedData = $row['recurring_budget'];
+		$combo_non_recurring_budget->SelectedData = $row['non_recurring_budget'];
 		$combo_approval_status->SelectedData = $row['approval_status'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
@@ -408,13 +444,17 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		$combo_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 		$combo_person_responsbility->SelectedData = $filterer_person_responsbility;
 		$combo_mode_of_purchase->SelectedText = (isset($filterField[1]) && $filterField[1] == '11' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '13' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
+		$combo_recurring_budget->SelectedText = (isset($filterField[1]) && $filterField[1] == '13' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_non_recurring_budget->SelectedText = (isset($filterField[1]) && $filterField[1] == '14' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '15' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 	}
 	$combo_approval_from->Render();
 	$combo_type->Render();
 	$combo_person_responsbility->HTML = '<span id="person_responsbility-container' . $rnd1 . '"></span><input type="hidden" name="person_responsbility" id="person_responsbility' . $rnd1 . '" value="' . html_attr($combo_person_responsbility->SelectedData) . '">';
 	$combo_person_responsbility->MatchText = '<span id="person_responsbility-container-readonly' . $rnd1 . '"></span><input type="hidden" name="person_responsbility" id="person_responsbility' . $rnd1 . '" value="' . html_attr($combo_person_responsbility->SelectedData) . '">';
 	$combo_mode_of_purchase->Render();
+	$combo_recurring_budget->Render();
+	$combo_non_recurring_budget->Render();
 	$combo_approval_status->Render();
 
 	ob_start();
@@ -603,6 +643,8 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		$jsReadOnly .= "\t\$j('#person_responsbility_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\t\$j('#mode_of_purchase').replaceWith('<div class=\"form-control-static\" id=\"mode_of_purchase\">' + (\$j('#mode_of_purchase').val() || '') + '</div>'); \$j('#mode_of_purchase-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#others_if_any').replaceWith('<div class=\"form-control-static\" id=\"others_if_any\">' + (\$j('#others_if_any').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#recurring_budget').replaceWith('<div class=\"form-control-static\" id=\"recurring_budget\">' + (\$j('#recurring_budget').val() || '') + '</div>'); \$j('#recurring_budget-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#non_recurring_budget').replaceWith('<div class=\"form-control-static\" id=\"non_recurring_budget\">' + (\$j('#non_recurring_budget').val() || '') + '</div>'); \$j('#non_recurring_budget-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#approval_status').replaceWith('<div class=\"form-control-static\" id=\"approval_status\">' + (\$j('#approval_status').val() || '') + '</div>'); \$j('#approval_status-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#image').replaceWith('<div class=\"form-control-static\" id=\"image\">' + (\$j('#image').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#other_file').parent().replaceWith(`<div class=\"form-control-static\" id=\"other_file\">\${\$j('#other_file').val() || ''}\${\$j('#other_file').val() ? '<a target=\"_blank\" class=\"hspacer-lg\" href=\"' + \$j('#other_file').val() + '\" target=\"_blank\"><i class=\"glyphicon glyphicon-globe\"></i></a>' : ''}</div>`);\n";
@@ -625,6 +667,10 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 	$templateCode = str_replace('<%%URLCOMBOTEXT(person_responsbility)%%>', urlencode($combo_person_responsbility->MatchText), $templateCode);
 	$templateCode = str_replace('<%%COMBO(mode_of_purchase)%%>', $combo_mode_of_purchase->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(mode_of_purchase)%%>', $combo_mode_of_purchase->SelectedData, $templateCode);
+	$templateCode = str_replace('<%%COMBO(recurring_budget)%%>', $combo_recurring_budget->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(recurring_budget)%%>', $combo_recurring_budget->SelectedData, $templateCode);
+	$templateCode = str_replace('<%%COMBO(non_recurring_budget)%%>', $combo_non_recurring_budget->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(non_recurring_budget)%%>', $combo_non_recurring_budget->SelectedData, $templateCode);
 	$templateCode = str_replace('<%%COMBO(approval_status)%%>', $combo_approval_status->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(approval_status)%%>', $combo_approval_status->SelectedData, $templateCode);
 
@@ -657,6 +703,8 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 	$templateCode = str_replace('<%%UPLOADFILE(person_responsbility)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(mode_of_purchase)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(others_if_any)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(recurring_budget)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(non_recurring_budget)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(approval_status)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(remarks_for_approval)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(image)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="image" id="image" data-filetypes="jpg|jpeg|gif|png|webp" data-maxsize="1024000" style="max-width: calc(100% - 1.5rem);" accept="capture=camera,image/*">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
@@ -708,6 +756,12 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		$templateCode = str_replace('<%%URLVALUE(mode_of_purchase)%%>', urlencode($urow['mode_of_purchase']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(others_if_any)%%>', safe_html($urow['others_if_any'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(others_if_any)%%>', urlencode($urow['others_if_any']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(recurring_budget)%%>', safe_html($urow['recurring_budget']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(recurring_budget)%%>', html_attr($row['recurring_budget']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(recurring_budget)%%>', urlencode($urow['recurring_budget']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(non_recurring_budget)%%>', safe_html($urow['non_recurring_budget']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(non_recurring_budget)%%>', html_attr($row['non_recurring_budget']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(non_recurring_budget)%%>', urlencode($urow['non_recurring_budget']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', safe_html($urow['approval_status']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', html_attr($row['approval_status']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode($urow['approval_status']), $templateCode);
@@ -754,6 +808,10 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		$templateCode = str_replace('<%%URLVALUE(mode_of_purchase)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(others_if_any)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(others_if_any)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(recurring_budget)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(recurring_budget)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(non_recurring_budget)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(non_recurring_budget)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(approval_status)%%>', 'Under Consideration', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode('Under Consideration'), $templateCode);
 		$templateCode = str_replace('<%%HTMLAREA(remarks_for_approval)%%>', '<textarea maxlength="65500" name="remarks_for_approval" id="remarks_for_approval" rows="5">None</textarea>', $templateCode);

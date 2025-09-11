@@ -123,7 +123,7 @@
 	$x->TemplateDV = 'templates/car_usage_table_templateDV.html';
 	$x->TemplateDVP = 'templates/car_usage_table_templateDVP.html';
 
-	$x->ShowTableHeader = 0;
+	$x->ShowTableHeader = 1;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
 	$x->HasCalculatedFields = false;

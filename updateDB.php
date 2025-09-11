@@ -13,12 +13,7 @@
 
 		setupTable('suggestion', []);
 
-		setupTable('approval_table', [
-				"ALTER TABLE approval_table ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `approval_table` CHANGE `field1` `recurring_budget` VARCHAR(255) NULL ",
-				"ALTER TABLE `approval_table` ADD `recurring_budget_1` VARCHAR(255) NULL ",
-				"ALTER TABLE `approval_table` CHANGE `recurring_budget_1` `non_recurring_budget` VARCHAR(255) NULL ",
-			]);
+		setupTable('approval_table', []);
 		setupIndexes('approval_table', ['person_responsbility',]);
 
 		setupTable('techlead_web_page', []);

@@ -137,13 +137,9 @@
 
 		setupTable('half_day_leave_table', []);
 
-		setupTable('work_from_home_table', [
-				" ALTER TABLE `work_from_home_table` CHANGE `work_from_home_purpose` `work_from_home_purpose` TEXT NOT NULL ",
-			]);
+		setupTable('work_from_home_table', []);
 
-		setupTable('work_from_home_tasks_app', [
-				" ALTER TABLE `work_from_home_tasks_app` CHANGE `activity_undertaken` `activity_undertaken` TEXT NULL ",
-			]);
+		setupTable('work_from_home_tasks_app', []);
 		setupIndexes('work_from_home_tasks_app', ['work_from_home_details',]);
 
 		setupTable('navavishkar_stay_table', []);

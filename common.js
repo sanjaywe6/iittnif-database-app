@@ -901,7 +901,7 @@ function work_from_home_table_validateData(insertMode) {
 	// check all required fields have values
 	const reqFields = [
 		// [field-type, field-name, field-caption], ...
-		['html', 'work_from_home_purpose', 'Purpose work from home'],
+		['html', 'work_from_home_purpose', 'Purpose of Work From Home'],
 		['date', 'from_date', 'From date'],
 		['date', 'to_date', 'To date'],
 	];

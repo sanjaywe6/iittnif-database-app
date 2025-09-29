@@ -66,12 +66,12 @@
 		"`work_from_home_tasks_app`.`day`" => "Day",
 		"`work_from_home_tasks_app`.`hour_from`" => "Hour From",
 		"`work_from_home_tasks_app`.`hour_to`" => "Hour To",
-		"`work_from_home_tasks_app`.`activity_undertaken`" => "Activity undertaken",
-		"`work_from_home_tasks_app`.`approval_status`" => "Approval status",
-		"`work_from_home_tasks_app`.`created_by`" => "Created by",
-		"`work_from_home_tasks_app`.`created_at`" => "Created at",
-		"`work_from_home_tasks_app`.`last_updated_by`" => "Last updated by",
-		"`work_from_home_tasks_app`.`last_updated_at`" => "Last updated at",
+		"`work_from_home_tasks_app`.`activity_undertaken`" => "Activity Undertaken",
+		"`work_from_home_tasks_app`.`approval_status`" => "Approval Status",
+		"`work_from_home_tasks_app`.`created_by`" => "Created By",
+		"`work_from_home_tasks_app`.`created_at`" => "Created At",
+		"`work_from_home_tasks_app`.`last_updated_by`" => "Last Updated By",
+		"`work_from_home_tasks_app`.`last_updated_at`" => "Last Updated At",
 	];
 
 	// Fields that can be quick searched
@@ -121,7 +121,7 @@
 	$x->PrimaryKey = '`work_from_home_tasks_app`.`id`';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Work From Home Details', 'Day', 'Hour From', 'Hour To', 'Activity undertaken', 'Approval status', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColCaption = ['ID', 'Work From Home Details', 'Day', 'Hour From', 'Hour To', 'Activity Undertaken', 'Approval Status', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', ];
 	$x->ColFieldName = ['id', 'work_from_home_details', 'day', 'hour_from', 'hour_to', 'activity_undertaken', 'approval_status', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
 	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
 

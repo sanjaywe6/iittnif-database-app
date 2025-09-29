@@ -19,7 +19,6 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`work_from_home_table`.`id`" => "id",
-		"`work_from_home_table`.`username`" => "username",
 		"`work_from_home_table`.`work_from_home_purpose`" => "work_from_home_purpose",
 		"if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
 		"if(`work_from_home_table`.`to_date`,date_format(`work_from_home_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
@@ -33,20 +32,18 @@
 	$x->SortFields = [
 		1 => '`work_from_home_table`.`id`',
 		2 => 2,
-		3 => 3,
-		4 => '`work_from_home_table`.`from_date`',
-		5 => '`work_from_home_table`.`to_date`',
+		3 => '`work_from_home_table`.`from_date`',
+		4 => '`work_from_home_table`.`to_date`',
+		5 => 5,
 		6 => 6,
 		7 => 7,
 		8 => 8,
 		9 => 9,
-		10 => 10,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`work_from_home_table`.`id`" => "id",
-		"`work_from_home_table`.`username`" => "username",
 		"`work_from_home_table`.`work_from_home_purpose`" => "work_from_home_purpose",
 		"if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
 		"if(`work_from_home_table`.`to_date`,date_format(`work_from_home_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
@@ -59,21 +56,19 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`work_from_home_table`.`id`" => "ID",
-		"`work_from_home_table`.`username`" => "Username",
-		"`work_from_home_table`.`work_from_home_purpose`" => "Purpose work from home",
+		"`work_from_home_table`.`work_from_home_purpose`" => "Purpose of Work From Home",
 		"`work_from_home_table`.`from_date`" => "From date",
 		"`work_from_home_table`.`to_date`" => "To date",
-		"`work_from_home_table`.`approval_status`" => "Approval status",
-		"`work_from_home_table`.`created_by`" => "Created by",
-		"`work_from_home_table`.`created_at`" => "Created at",
-		"`work_from_home_table`.`last_updated_by`" => "Last updated by",
-		"`work_from_home_table`.`last_updated_at`" => "Last updated at",
+		"`work_from_home_table`.`approval_status`" => "Approval Status",
+		"`work_from_home_table`.`created_by`" => "Created By",
+		"`work_from_home_table`.`created_at`" => "Created At",
+		"`work_from_home_table`.`last_updated_by`" => "Last Updated By",
+		"`work_from_home_table`.`last_updated_at`" => "Last Updated At",
 	];
 
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`work_from_home_table`.`id`" => "id",
-		"`work_from_home_table`.`username`" => "username",
 		"`work_from_home_table`.`work_from_home_purpose`" => "work_from_home_purpose",
 		"if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
 		"if(`work_from_home_table`.`to_date`,date_format(`work_from_home_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
@@ -111,16 +106,16 @@
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'work_from_home_table_view.php';
-	$x->TableTitle = 'Work from home - App';
+	$x->TableTitle = 'Work From Home - App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`work_from_home_table`.`id`';
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Purpose work from home', 'From date', 'To date', 'Approval status', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColCaption = ['ID', 'Purpose of Work From Home', 'From date', 'To date', 'Approval Status', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', ];
 	$x->ColFieldName = ['id', 'work_from_home_purpose', 'from_date', 'to_date', 'approval_status', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/work_from_home_table_templateTV.html';

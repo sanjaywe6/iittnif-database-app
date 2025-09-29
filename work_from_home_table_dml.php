@@ -16,7 +16,6 @@ function work_from_home_table_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'username' => parseCode('<%%creatorUsername%%>', true),
 		'work_from_home_purpose' => Request::val('work_from_home_purpose', ''),
 		'from_date' => Request::dateComponents('from_date', '1'),
 		'to_date' => Request::dateComponents('to_date', '1'),
@@ -118,7 +117,7 @@ function work_from_home_table_update(&$selected_id, &$error_message = '') {
 	];
 
 	if($data['work_from_home_purpose'] === '') {
-		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Purpose work from home': {$Translation['field not null']}<br><br>";
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Purpose of Work From Home': {$Translation['field not null']}<br><br>";
 		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
 		exit;
 	}
@@ -267,7 +266,7 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '6' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 	}
 	$combo_approval_status->Render();
 
@@ -416,7 +415,6 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(work_from_home_purpose)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(from_date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(to_date)%%>', '', $templateCode);
@@ -430,8 +428,6 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if($fieldsAreEditable) {
 			$templateCode = str_replace('<%%HTMLAREA(work_from_home_purpose)%%>', '<textarea maxlength="65500" name="work_from_home_purpose" id="work_from_home_purpose" rows="5">' . safe_html(htmlspecialchars_decode($row['work_from_home_purpose'])) . '</textarea>', $templateCode);
 		} else {
@@ -457,8 +453,6 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%HTMLAREA(work_from_home_purpose)%%>', '<textarea maxlength="65500" name="work_from_home_purpose" id="work_from_home_purpose" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(from_date)%%>', '1', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(from_date)%%>', urlencode('1'), $templateCode);

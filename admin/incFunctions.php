@@ -469,7 +469,7 @@
 					'homepageShowCount' => 1
 				],
 				'work_from_home_table' => [
-					'Caption' => 'Work from home - App',
+					'Caption' => 'Work From Home - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[8],
@@ -786,7 +786,7 @@
 			'beyond_workingHours_table' => ['Beyond Working Hours Approval - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'leave_table' => ['Leave - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'half_day_leave_table' => ['Half Day Leave - App', '', 'table.gif', 'Employee Data Management Apps'],
-			'work_from_home_table' => ['Work from home - App', '', 'table.gif', 'Employee Data Management Apps'],
+			'work_from_home_table' => ['Work From Home - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'work_from_home_tasks_app' => ['Tasks', '', 'table.gif', 'Approvals &amp; Sanctions'],
 			'navavishkar_stay_table' => ['Navavishkar Stay - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'navavishkar_stay_payment_table' => ['Navavishkar Stay Payment - App', '', 'table.gif', 'Employee Data Management Apps'],
@@ -6108,28 +6108,28 @@
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Created by',
+							'caption' => 'Created By',
 							'description' => '',
 						],
 					],
 					'created_at' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Created at',
+							'caption' => 'Created At',
 							'description' => '',
 						],
 					],
 					'last_updated_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Last updated by',
+							'caption' => 'Last Updated By',
 							'description' => '',
 						],
 					],
 					'last_updated_at' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Last updated at',
+							'caption' => 'Last Updated At',
 							'description' => '',
 						],
 					],
@@ -6142,17 +6142,10 @@
 							'description' => '',
 						],
 					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
-							'description' => '',
-						],
-					],
 					'work_from_home_purpose' => [
 						'appgini' => "TEXT NOT NULL",
 						'info' => [
-							'caption' => 'Purpose work from home',
+							'caption' => 'Purpose of Work From Home',
 							'description' => '',
 						],
 					],
@@ -6173,35 +6166,35 @@
 					'approval_status' => [
 						'appgini' => "VARCHAR(255) NULL DEFAULT 'Under Consideration'",
 						'info' => [
-							'caption' => 'Approval status',
+							'caption' => 'Approval Status',
 							'description' => '',
 						],
 					],
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Created by',
+							'caption' => 'Created By',
 							'description' => '',
 						],
 					],
 					'created_at' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Created at',
+							'caption' => 'Created At',
 							'description' => '',
 						],
 					],
 					'last_updated_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Last updated by',
+							'caption' => 'Last Updated By',
 							'description' => '',
 						],
 					],
 					'last_updated_at' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Last updated at',
+							'caption' => 'Last Updated At',
 							'description' => '',
 						],
 					],
@@ -6245,42 +6238,42 @@
 					'activity_undertaken' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
-							'caption' => 'Activity undertaken',
+							'caption' => 'Activity Undertaken',
 							'description' => '',
 						],
 					],
 					'approval_status' => [
 						'appgini' => "VARCHAR(255) NULL DEFAULT 'Under Consideration'",
 						'info' => [
-							'caption' => 'Approval status',
+							'caption' => 'Approval Status',
 							'description' => '',
 						],
 					],
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Created by',
+							'caption' => 'Created By',
 							'description' => '',
 						],
 					],
 					'created_at' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Created at',
+							'caption' => 'Created At',
 							'description' => '',
 						],
 					],
 					'last_updated_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Last updated by',
+							'caption' => 'Last Updated By',
 							'description' => '',
 						],
 					],
 					'last_updated_at' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Last updated at',
+							'caption' => 'Last Updated At',
 							'description' => '',
 						],
 					],

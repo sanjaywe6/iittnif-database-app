@@ -68,10 +68,10 @@
 		"`half_day_leave_table`.`date`" => "Date",
 		"`half_day_leave_table`.`approval_status`" => "Approval status",
 		"`half_day_leave_table`.`approval_remarks`" => "Approval remarks",
-		"`half_day_leave_table`.`created_by`" => "Created by",
-		"`half_day_leave_table`.`created_at`" => "Created at",
-		"`half_day_leave_table`.`last_updated_by`" => "Last updated by",
-		"`half_day_leave_table`.`last_updated_at`" => "Last updated at",
+		"`half_day_leave_table`.`created_by`" => "Created By",
+		"`half_day_leave_table`.`created_at`" => "Created At",
+		"`half_day_leave_table`.`last_updated_by`" => "Last Updated By",
+		"`half_day_leave_table`.`last_updated_at`" => "Last Updated At",
 	];
 
 	// Fields that can be quick searched
@@ -123,7 +123,7 @@
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Leave type', 'Purpose of leave', 'Date', 'Approval status', 'Approval remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
+	$x->ColCaption = ['ID', 'Leave type', 'Purpose of leave', 'Date', 'Approval status', 'Approval remarks', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', ];
 	$x->ColFieldName = ['id', 'leave_type', 'purpose_of_leave', 'date', 'approval_status', 'approval_remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
 	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
 

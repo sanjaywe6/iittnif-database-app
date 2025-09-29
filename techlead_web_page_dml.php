@@ -57,7 +57,6 @@ function techlead_web_page_insert(&$error_message = '') {
 		'website_update_status' => Request::val('website_update_status', 'Pending'),
 		'website_update_remarks' => Request::val('website_update_remarks', 'None'),
 		'website_update_date' => Request::dateComponents('website_update_date', ''),
-		'created_by' => parseCode('<%%creatorUsername%%>::<%%creationDateTime%%>', true),
 	];
 
 	// record owner is current user
@@ -219,7 +218,6 @@ function techlead_web_page_update(&$selected_id, &$error_message = '') {
 		'website_update_status' => Request::val('website_update_status', ''),
 		'website_update_remarks' => Request::val('website_update_remarks', ''),
 		'website_update_date' => Request::dateComponents('website_update_date', ''),
-		'last_updated_by' => parseCode('<%%editorUsername%%>::<%%editingDateTime%%>', false),
 	];
 
 	// get existing values
@@ -578,8 +576,6 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 	$templateCode = str_replace('<%%UPLOADFILE(website_update_status)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(website_update_remarks)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(website_update_date)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
@@ -641,10 +637,6 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		$templateCode = str_replace('<%%URLVALUE(website_update_remarks)%%>', urlencode($urow['website_update_remarks']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(website_update_date)%%>', app_datetime($row['website_update_date']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(website_update_date)%%>', urlencode(app_datetime($urow['website_update_date'])), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
@@ -668,10 +660,6 @@ function techlead_web_page_form($selectedId = '', $allowUpdate = true, $allowIns
 		$templateCode = str_replace('<%%HTMLAREA(website_update_remarks)%%>', '<textarea maxlength="65500" name="website_update_remarks" id="website_update_remarks" rows="5">None</textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(website_update_date)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(website_update_date)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>::<%%creationDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>::<%%creationDateTime%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>::<%%editingDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>::<%%editingDateTime%%>'), $templateCode);
 	}
 
 	// process translations

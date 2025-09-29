@@ -13,16 +13,7 @@
 
 		setupTable('suggestion', []);
 
-		setupTable('approval_table', [
-				"ALTER TABLE `approval_table` DROP `created_by`",
-				"ALTER TABLE `approval_table` DROP `last_updated_by`",
-				"ALTER TABLE `approval_table` ADD `created_by` VARCHAR(255) NULL ",
-				"ALTER TABLE `approval_table` ADD `created_at` VARCHAR(255) NULL ",
-				"ALTER TABLE `approval_table` ADD `last_updated_by` VARCHAR(255) NULL ",
-				"ALTER TABLE `approval_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-				"ALTER TABLE `approval_table` ADD `created_by_username` VARCHAR(255) NULL ",
-				"ALTER TABLE `approval_table` ADD `last_updated_by_username` VARCHAR(255) NULL ",
-			]);
+		setupTable('approval_table', []);
 		setupIndexes('approval_table', ['person_responsbility',]);
 
 		setupTable('techlead_web_page', []);

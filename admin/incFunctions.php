@@ -249,7 +249,7 @@
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[2],
-					'homepageShowCount' => 1
+					'homepageShowCount' => 0
 				],
 				'visiting_card_table' => [
 					'Caption' => 'Visiting card - App',
@@ -2006,20 +2006,6 @@
 						'appgini' => "DATE NULL",
 						'info' => [
 							'caption' => 'Website Updated Date by IT Team',
-							'description' => '',
-						],
-					],
-					'created_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created By',
-							'description' => '',
-						],
-					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last updated By',
 							'description' => '',
 						],
 					],

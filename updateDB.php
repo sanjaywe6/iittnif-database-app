@@ -11,7 +11,16 @@
 		// set up tables
 		setupTable('user_table', []);
 
-		setupTable('suggestion', []);
+		setupTable('suggestion', [
+				"ALTER TABLE `suggestion` DROP `created_by`",
+				"ALTER TABLE `suggestion` DROP `last_updated_by`",
+				"ALTER TABLE `suggestion` ADD `created_by` VARCHAR(255) NULL ",
+				"ALTER TABLE `suggestion` ADD `created_at` VARCHAR(255) NULL ",
+				"ALTER TABLE `suggestion` ADD `last_updated_by` VARCHAR(255) NULL ",
+				"ALTER TABLE `suggestion` ADD `last_updated_at` VARCHAR(255) NULL ",
+				"ALTER TABLE `suggestion` ADD `created_by_username` VARCHAR(255) NULL ",
+				"ALTER TABLE `suggestion` ADD `last_updated_by_username` VARCHAR(255) NULL ",
+			]);
 
 		setupTable('approval_table', []);
 		setupIndexes('approval_table', ['person_responsbility',]);
@@ -135,9 +144,7 @@
 
 		setupTable('leave_table', []);
 
-		setupTable('half_day_leave_table', [
-				"ALTER TABLE `half_day_leave_table` DROP `employee_details`",
-			]);
+		setupTable('half_day_leave_table', []);
 
 		setupTable('work_from_home_table', []);
 

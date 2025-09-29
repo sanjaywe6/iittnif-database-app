@@ -135,7 +135,9 @@
 
 		setupTable('leave_table', []);
 
-		setupTable('half_day_leave_table', []);
+		setupTable('half_day_leave_table', [
+				"ALTER TABLE `half_day_leave_table` DROP `employee_details`",
+			]);
 
 		setupTable('work_from_home_table', []);
 

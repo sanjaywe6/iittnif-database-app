@@ -16,14 +16,13 @@ function half_day_leave_table_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'username' => parseCode('<%%creatorUsername%%>', true),
 		'leave_type' => Request::val('leave_type', 'Morning - Afternoon Shift (1st Half)'),
 		'purpose_of_leave' => br2nl(Request::val('purpose_of_leave', '')),
 		'date' => Request::dateComponents('date', '1'),
 		'approval_status' => Request::val('approval_status', 'Under Consideration'),
-		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
-		'created_by' => parseCode('<%%creatorUsername%%>', true),
+		'approval_remarks' => Request::val('approval_remarks', ''),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
+		'created_by_username' => parseCode('<%%creatorUsername%%>', true),
 	];
 
 	// record owner is current user
@@ -94,18 +93,18 @@ function half_day_leave_table_update(&$selected_id, &$error_message = '') {
 		'purpose_of_leave' => br2nl(Request::val('purpose_of_leave', '')),
 		'date' => Request::dateComponents('date', ''),
 		'approval_status' => Request::val('approval_status', ''),
-		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
-		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
+		'approval_remarks' => Request::val('approval_remarks', ''),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
+		'last_updated_by_username' => parseCode('<%%editorUsername%%>', false),
 	];
 
 	if($data['leave_type'] === '') {
-		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Leave type': {$Translation['field not null']}<br><br>";
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Leave Type': {$Translation['field not null']}<br><br>";
 		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
 		exit;
 	}
 	if($data['purpose_of_leave'] === '') {
-		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Purpose of leave': {$Translation['field not null']}<br><br>";
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Purpose of Leave': {$Translation['field not null']}<br><br>";
 		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
 		exit;
 	}
@@ -257,8 +256,8 @@ function half_day_leave_table_form($selectedId = '', $allowUpdate = true, $allow
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_leave_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Morning - Afternoon Shift (1st Half)'));
-		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '6' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
+		$combo_leave_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Morning - Afternoon Shift (1st Half)'));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 	}
 	$combo_leave_type->Render();
 	$combo_approval_status->Render();
@@ -363,7 +362,6 @@ function half_day_leave_table_form($selectedId = '', $allowUpdate = true, $allow
 		$jsReadOnly .= "\t\$j('#date').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#dateDay, #dateMonth, #dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#approval_status').replaceWith('<div class=\"form-control-static\" id=\"approval_status\">' + (\$j('#approval_status').val() || '') + '</div>'); \$j('#approval_status-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\t\$j('#approval_remarks').replaceWith('<div class=\"form-control-static\" id=\"approval_remarks\">' + (\$j('#approval_remarks').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -404,7 +402,6 @@ function half_day_leave_table_form($selectedId = '', $allowUpdate = true, $allow
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(leave_type)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(purpose_of_leave)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date)%%>', '', $templateCode);
@@ -414,13 +411,13 @@ function half_day_leave_table_form($selectedId = '', $allowUpdate = true, $allow
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_at)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(created_by_username)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by_username)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(leave_type)%%>', safe_html($urow['leave_type']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(leave_type)%%>', html_attr($row['leave_type']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(leave_type)%%>', urlencode($urow['leave_type']), $templateCode);
@@ -431,7 +428,12 @@ function half_day_leave_table_form($selectedId = '', $allowUpdate = true, $allow
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', safe_html($urow['approval_status']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', html_attr($row['approval_status']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode($urow['approval_status']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', safe_html($urow['approval_remarks'], $fieldsAreEditable), $templateCode);
+		if($fieldsAreEditable) {
+			$templateCode = str_replace('<%%HTMLAREA(approval_remarks)%%>', '<textarea maxlength="65500" name="approval_remarks" id="approval_remarks" rows="5">' . safe_html(htmlspecialchars_decode($row['approval_remarks'])) . '</textarea>', $templateCode);
+		} else {
+			$templateCode = str_replace('<%%HTMLAREA(approval_remarks)%%>', '<div id="approval_remarks" class="form-control-static">' . $row['approval_remarks'] . '</div>', $templateCode);
+		}
+		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', nl2br($row['approval_remarks']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_remarks)%%>', urlencode($urow['approval_remarks']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
@@ -441,11 +443,13 @@ function half_day_leave_table_form($selectedId = '', $allowUpdate = true, $allow
 		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', safe_html($urow['created_by_username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode($urow['created_by_username']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by_username)%%>', safe_html($urow['last_updated_by_username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by_username)%%>', urlencode($urow['last_updated_by_username']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(leave_type)%%>', 'Morning - Afternoon Shift (1st Half)', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(leave_type)%%>', urlencode('Morning - Afternoon Shift (1st Half)'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(purpose_of_leave)%%>', '', $templateCode);
@@ -454,16 +458,19 @@ function half_day_leave_table_form($selectedId = '', $allowUpdate = true, $allow
 		$templateCode = str_replace('<%%URLVALUE(date)%%>', urlencode('1'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(approval_status)%%>', 'Under Consideration', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode('Under Consideration'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(approval_remarks)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(approval_remarks)%%>', '<textarea maxlength="65500" name="approval_remarks" id="approval_remarks" rows="5"></textarea>', $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode('<%%creationDateTime%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', '<%%editingDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode('<%%editingDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by_username)%%>', '<%%editorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by_username)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 	}
 
 	// process translations

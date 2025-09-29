@@ -19,19 +19,19 @@
 		<div class="col-md-8 col-lg-10" id="half_day_leave_table_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: Leave type -->
+				<!-- Field: Leave Type -->
 				<div class="form-group half_day_leave_table-leave_type">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="leave_type">Leave type<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<label class="control-label col-lg-3" for="leave_type">Leave Type<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
 						<%%COMBO(leave_type)%%>
 					</div>
 				</div>
 
-				<!-- Field: Purpose of leave -->
+				<!-- Field: Purpose of Leave -->
 				<div class="form-group half_day_leave_table-purpose_of_leave">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="purpose_of_leave">Purpose of leave<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<label class="control-label col-lg-3" for="purpose_of_leave">Purpose of Leave<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
 						<textarea maxlength="65500" class="form-control" name="purpose_of_leave" id="purpose_of_leave" rows=" 5"><%%VALUE(purpose_of_leave)%%></textarea>
 					</div>
@@ -46,21 +46,48 @@
 					</div>
 				</div>
 
-				<!-- Field: Approval status -->
+				<!-- Field: Approval Status -->
 				<div class="form-group half_day_leave_table-approval_status">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="approval_status">Approval status</label>
+					<label class="control-label col-lg-3" for="approval_status">Approval Status</label>
 					<div class="col-lg-9">
 						<%%COMBO(approval_status)%%>
 					</div>
 				</div>
 
-				<!-- Field: Approval remarks -->
+				<!-- Field: Approval Remarks -->
 				<div class="form-group half_day_leave_table-approval_remarks">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="approval_remarks">Approval remarks</label>
+					<label class="control-label col-lg-3" for="approval_remarks">Approval Remarks</label>
+					<div class="col-lg-9 has-nicedit">
+						<%%HTMLAREA(approval_remarks)%%>
+					</div>
+				</div>
+
+				<!-- Field: Created By -->
+				<div class="form-group half_day_leave_table-created_by">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Created By</label>
 					<div class="col-lg-9">
-						<textarea maxlength="65500" class="form-control" name="approval_remarks" id="approval_remarks" rows=" 5"><%%VALUE(approval_remarks)%%></textarea>
+						<div class="form-control-static" id="created_by"><%%VALUE(created_by)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Last Updated By -->
+				<div class="form-group half_day_leave_table-last_updated_by">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Last Updated By</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="last_updated_by"><%%VALUE(last_updated_by)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Last Updated At -->
+				<div class="form-group half_day_leave_table-last_updated_at">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Last Updated At</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="last_updated_at"><%%VALUE(last_updated_at)%%></div>
 					</div>
 				</div>
 
@@ -101,6 +128,12 @@
 				setTimeout(AppGini.closeParentModal, 2000);
 			}
 
+			AppGini.once({
+				condition: function() { return bkLib != undefined; },
+				action: function() {
+					if($j('textarea#approval_remarks').length) new nicEditor({ fullPanel : true }).panelInstance('approval_remarks');
+				}
+			});
 
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
@@ -126,6 +159,9 @@
 				$j('#half_day_leave_table_dv_container-loading').addClass('hidden');
 				$j('#half_day_leave_table_dv_container').removeClass('hidden');
 			}
+
+			// try to detect rich text changes by adding 'input' handler after nicedit is loaded ...
+			AppGini.detectContentEditableChanges();
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 

@@ -14,16 +14,16 @@
 
 <div class="panel-body">
 	<fieldset class="form-horizontal">
-		<!-- Field: Leave type -->
+		<!-- Field: Leave Type -->
 		<div class="form-group half_day_leave_table-leave_type" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Leave type</label>
+			<label class="col-xs-3 control-label">Leave Type</label>
 			<div class="col-xs-9">
 				<div class="form-control-static"><%%COMBOTEXT(leave_type)%%></div>
 			</div>
 		</div>
-		<!-- Field: Purpose of leave -->
+		<!-- Field: Purpose of Leave -->
 		<div class="form-group half_day_leave_table-purpose_of_leave" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Purpose of leave</label>
+			<label class="col-xs-3 control-label">Purpose of Leave</label>
 			<div class="col-xs-9">
 				<div class="form-control-static"><%%VALUE(purpose_of_leave)%%></div>
 			</div>
@@ -35,18 +35,39 @@
 				<div class="form-control-static"><%%COMBOTEXT(date)%%></div>
 			</div>
 		</div>
-		<!-- Field: Approval status -->
+		<!-- Field: Approval Status -->
 		<div class="form-group half_day_leave_table-approval_status" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Approval status</label>
+			<label class="col-xs-3 control-label">Approval Status</label>
 			<div class="col-xs-9">
 				<div class="form-control-static"><%%COMBOTEXT(approval_status)%%></div>
 			</div>
 		</div>
-		<!-- Field: Approval remarks -->
+		<!-- Field: Approval Remarks -->
 		<div class="form-group half_day_leave_table-approval_remarks" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Approval remarks</label>
+			<label class="col-xs-3 control-label">Approval Remarks</label>
 			<div class="col-xs-9">
 				<div class="form-control-static"><%%VALUE(approval_remarks)%%></div>
+			</div>
+		</div>
+		<!-- Field: Created By -->
+		<div class="form-group half_day_leave_table-created_by" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Created By</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(created_by)%%></div>
+			</div>
+		</div>
+		<!-- Field: Last Updated By -->
+		<div class="form-group half_day_leave_table-last_updated_by" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Last Updated By</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(last_updated_by)%%></div>
+			</div>
+		</div>
+		<!-- Field: Last Updated At -->
+		<div class="form-group half_day_leave_table-last_updated_at" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Last Updated At</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(last_updated_at)%%></div>
 			</div>
 		</div>
 	</fieldset>

@@ -479,7 +479,7 @@
 					'Caption' => 'Tasks',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[0],
+					'group' => $tg[8],
 					'homepageShowCount' => 1
 				],
 				'navavishkar_stay_table' => [
@@ -787,7 +787,7 @@
 			'leave_table' => ['Leave - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'half_day_leave_table' => ['Half Day Leave - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'work_from_home_table' => ['Work From Home - App', '', 'table.gif', 'Employee Data Management Apps'],
-			'work_from_home_tasks_app' => ['Tasks', '', 'table.gif', 'Approvals &amp; Sanctions'],
+			'work_from_home_tasks_app' => ['Tasks', '', 'table.gif', 'Employee Data Management Apps'],
 			'navavishkar_stay_table' => ['Navavishkar Stay - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'navavishkar_stay_payment_table' => ['Navavishkar Stay Payment - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'email_id_allocation_table' => ['Email id allocation - App', '', 'table.gif', 'Employee Data Management Apps'],
@@ -6063,24 +6063,17 @@
 							'description' => '',
 						],
 					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
-							'description' => '',
-						],
-					],
 					'leave_type' => [
 						'appgini' => "VARCHAR(255) NOT NULL DEFAULT 'Morning - Afternoon Shift (1st Half)'",
 						'info' => [
-							'caption' => 'Leave type',
+							'caption' => 'Leave Type',
 							'description' => '',
 						],
 					],
 					'purpose_of_leave' => [
 						'appgini' => "TEXT NOT NULL",
 						'info' => [
-							'caption' => 'Purpose of leave',
+							'caption' => 'Purpose of Leave',
 							'description' => '',
 						],
 					],
@@ -6094,14 +6087,14 @@
 					'approval_status' => [
 						'appgini' => "VARCHAR(255) NULL DEFAULT 'Under Consideration'",
 						'info' => [
-							'caption' => 'Approval status',
+							'caption' => 'Approval Status',
 							'description' => '',
 						],
 					],
 					'approval_remarks' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
-							'caption' => 'Approval remarks',
+							'caption' => 'Approval Remarks',
 							'description' => '',
 						],
 					],
@@ -6130,6 +6123,20 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated by Username',
 							'description' => '',
 						],
 					],
@@ -11451,7 +11458,34 @@
 					FROM `beyond_workingHours_table` WHERE id = %ID%;',
 			],
 			'leave_table' => [],
-			'half_day_leave_table' => [],
+			'half_day_leave_table' => [
+				'created_by' => 'SELECT CONCAT(
+  
+					membership_users.memberID, \' : \',
+  
+					membership_users.custom1
+
+					)
+
+					FROM membership_users
+					
+INNER JOIN %TABLENAME%
+  
+					ON membership_users.memberID = %TABLENAME%.created_by_username;',
+				'last_updated_by' => 'SELECT CONCAT(
+  
+					membership_users.memberID, \' : \',
+  
+					membership_users.custom1
+
+					)
+
+					FROM membership_users
+					
+INNER JOIN %TABLENAME%
+  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by_username;',
+			],
 			'work_from_home_table' => [],
 			'work_from_home_tasks_app' => [],
 			'navavishkar_stay_table' => [],

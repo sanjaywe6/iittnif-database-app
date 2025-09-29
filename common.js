@@ -878,8 +878,8 @@ function half_day_leave_table_validateData(insertMode) {
 	// check all required fields have values
 	const reqFields = [
 		// [field-type, field-name, field-caption], ...
-		['list', 'leave_type', 'Leave type'],
-		['text', 'purpose_of_leave', 'Purpose of leave'],
+		['list', 'leave_type', 'Leave Type'],
+		['text', 'purpose_of_leave', 'Purpose of Leave'],
 		['date', 'date', 'Date'],
 	];
 

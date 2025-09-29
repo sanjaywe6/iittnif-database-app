@@ -112,13 +112,15 @@
 	$x->AllowPrintingDV = 1;
 	$x->AllowCSV = 1;
 	$x->AllowAdminShowSQL = showSQL();
-	$x->RecordsPerPage = 10;
+	$x->RecordsPerPage = 20;
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'work_from_home_tasks_app_view.php';
 	$x->TableTitle = 'Tasks';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`work_from_home_tasks_app`.`id`';
+	$x->DefaultSortField = '1';
+	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
 	$x->ColCaption = ['ID', 'Work From Home Details', 'Day', 'Hour From', 'Hour To', 'Activity Undertaken', 'Approval Status', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', ];

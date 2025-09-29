@@ -1,4 +1,4 @@
-		<td colspan="20" class="row">
+		<td colspan="22" class="row">
 			<div id="approval_table-id-<%%VALUE(id)%%>" class="approval_table-id col-sm-12 h5 text-bold"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></div>
 			<div class="col-sm-12">
 				<dl class="dl-horizontal">
@@ -56,8 +56,14 @@
 					<dt class="approval_table-created_by-caption field-caption-tv">Created By</dt>
 					<dd id="approval_table-created_by-<%%VALUE(id)%%>" class="approval_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
 
+					<dt class="approval_table-created_at-caption field-caption-tv">Created At</dt>
+					<dd id="approval_table-created_at-<%%VALUE(id)%%>" class="approval_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
 					<dt class="approval_table-last_updated_by-caption field-caption-tv">Last Updated By</dt>
 					<dd id="approval_table-last_updated_by-<%%VALUE(id)%%>" class="approval_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="approval_table-last_updated_at-caption field-caption-tv">Last Updated At</dt>
+					<dd id="approval_table-last_updated_at-<%%VALUE(id)%%>" class="approval_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>

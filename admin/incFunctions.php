@@ -11467,22 +11467,24 @@
 					
 					FROM membership_users
 					
-					INNER JOIN %TABLENAME%
-					  
-					ON membership_users.memberID = %TABLENAME%.created_by_username;',
-				'last_updated_by' => 'SELECT CONCAT(
-					  
-					membership_users.memberID, \' : \',
-					  
-					membership_users.custom1
+					INNER JOIN %TABLENAME%  
+					ON membership_users.memberID = %TABLENAME%.created_by_username
 					
+					WHERE %TABLENAME%.id = %ID%;',
+				'last_updated_by' => 'SELECT CONCAT(
+  
+					membership_users.memberID, \' : \',
+  
+					membership_users.custom1
+
 					)
 					
-					FROM membership_users
+FROM membership_users
 					
-					INNER JOIN %TABLENAME%
-					  
-					ON membership_users.memberID = %TABLENAME%.last_updated_by_username;',
+INNER JOIN %TABLENAME%  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by_username
+
+					WHERE %TABLENAME%.id = %ID%;',
 			],
 			'techlead_web_page' => [],
 			'car_table' => [],

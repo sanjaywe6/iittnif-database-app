@@ -185,10 +185,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Approval From', 'Approval Type', 'Description', 'Quantity', 'Full Estimated Value', 'Name of Vendor', 'Purpose', 'Requested Department/Appointment', 'Person Responsbility', 'Mode of Purchase', 'Others if Any', 'Recurring Budget (For Accounts Department)', 'Non Recurring Budget (For Account Department)', 'Approval Status', 'Remarks for Approval', 'Upload Image if Any (Optional)', 'Upload Other File if Any (Optional)', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', 'Created by Username', 'Last Updated by Username', ];
-	$x->ColFieldName = ['id', 'approval_from', 'type', 'description', 'quantity', 'full_est_value', 'name_of_vendor', 'purpose', 'requested_department', 'person_responsbility', 'mode_of_purchase', 'others_if_any', 'recurring_budget', 'non_recurring_budget', 'approval_status', 'remarks_for_approval', 'image', 'other_file', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', 'last_updated_by_username', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Approval From', 'Approval Type', 'Description', 'Quantity', 'Full Estimated Value', 'Name of Vendor', 'Purpose', 'Requested Department/Appointment', 'Person Responsbility', 'Mode of Purchase', 'Others if Any', 'Recurring Budget (For Accounts Department)', 'Non Recurring Budget (For Account Department)', 'Approval Status', 'Remarks for Approval', 'Upload Image if Any (Optional)', 'Upload Other File if Any (Optional)', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', ];
+	$x->ColFieldName = ['id', 'approval_from', 'type', 'description', 'quantity', 'full_est_value', 'name_of_vendor', 'purpose', 'requested_department', 'person_responsbility', 'mode_of_purchase', 'others_if_any', 'recurring_budget', 'non_recurring_budget', 'approval_status', 'remarks_for_approval', 'image', 'other_file', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/approval_table_templateTV.html';

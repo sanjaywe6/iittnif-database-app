@@ -11482,7 +11482,7 @@
 					
 					INNER JOIN %TABLENAME%
 					  
-					ON membership_users.memberID = SELECT last_updated_by_username FROM %TABLENAME% WHERE %TABLENAME%.id = %ID%',
+					ON membership_users.memberID = %TABLENAME%.last_updated_by_username;',
 			],
 			'techlead_web_page' => [],
 			'car_table' => [],

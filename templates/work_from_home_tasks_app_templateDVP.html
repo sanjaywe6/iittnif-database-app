@@ -1,0 +1,71 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Work From Home Details -->
+		<div class="form-group work_from_home_tasks_app-work_from_home_details" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Work From Home Details</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="work_from_home_details-readonly<%%RND1%%>"><%%COMBOTEXT(work_from_home_details)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Day -->
+		<div class="form-group work_from_home_tasks_app-day" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Day</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(day)%%></div>
+			</div>
+		</div>
+		<!-- Field: Hour From -->
+		<div class="form-group work_from_home_tasks_app-hour_from" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Hour From</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(hour_from)%%></div>
+			</div>
+		</div>
+		<!-- Field: Hour To -->
+		<div class="form-group work_from_home_tasks_app-hour_to" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Hour To</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(hour_to)%%></div>
+			</div>
+		</div>
+		<!-- Field: Activity undertaken -->
+		<div class="form-group work_from_home_tasks_app-activity_undertaken" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Activity undertaken</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(activity_undertaken)%%></div>
+			</div>
+		</div>
+		<!-- Field: Approval status -->
+		<div class="form-group work_from_home_tasks_app-approval_status" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Approval status</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(approval_status)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

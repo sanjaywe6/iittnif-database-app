@@ -156,6 +156,7 @@
 			'leave_table' => "`leave_table`.`id` as 'id', `leave_table`.`username` as 'username', `leave_table`.`leave_type` as 'leave_type', `leave_table`.`purpose_of_leave` as 'purpose_of_leave', if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y'),'') as 'from_date', if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y'),'') as 'to_date', `leave_table`.`approval_status` as 'approval_status', `leave_table`.`approval_remarks` as 'approval_remarks', `leave_table`.`created_by` as 'created_by', `leave_table`.`created_at` as 'created_at', `leave_table`.`last_updated_by` as 'last_updated_by', `leave_table`.`last_updated_at` as 'last_updated_at'",
 			'half_day_leave_table' => "`half_day_leave_table`.`id` as 'id', `half_day_leave_table`.`username` as 'username', `half_day_leave_table`.`leave_type` as 'leave_type', `half_day_leave_table`.`purpose_of_leave` as 'purpose_of_leave', if(`half_day_leave_table`.`date`,date_format(`half_day_leave_table`.`date`,'%d/%m/%Y'),'') as 'date', `half_day_leave_table`.`approval_status` as 'approval_status', `half_day_leave_table`.`approval_remarks` as 'approval_remarks', `half_day_leave_table`.`created_by` as 'created_by', `half_day_leave_table`.`created_at` as 'created_at', `half_day_leave_table`.`last_updated_by` as 'last_updated_by', `half_day_leave_table`.`last_updated_at` as 'last_updated_at'",
 			'work_from_home_table' => "`work_from_home_table`.`id` as 'id', `work_from_home_table`.`username` as 'username', `work_from_home_table`.`work_from_home_purpose` as 'work_from_home_purpose', if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,'%d/%m/%Y'),'') as 'from_date', if(`work_from_home_table`.`to_date`,date_format(`work_from_home_table`.`to_date`,'%d/%m/%Y'),'') as 'to_date', `work_from_home_table`.`approval_status` as 'approval_status', `work_from_home_table`.`created_by` as 'created_by', `work_from_home_table`.`created_at` as 'created_at', `work_from_home_table`.`last_updated_by` as 'last_updated_by', `work_from_home_table`.`last_updated_at` as 'last_updated_at'",
+			'work_from_home_tasks_app' => "`work_from_home_tasks_app`.`id` as 'id', IF(    CHAR_LENGTH(if(`work_from_home_table1`.`from_date`,date_format(`work_from_home_table1`.`from_date`,'%d/%m/%Y'),'')) || CHAR_LENGTH(`work_from_home_table1`.`work_from_home_purpose`), CONCAT_WS('',   if(`work_from_home_table1`.`from_date`,date_format(`work_from_home_table1`.`from_date`,'%d/%m/%Y'),''), '~', `work_from_home_table1`.`work_from_home_purpose`), '') as 'work_from_home_details', if(`work_from_home_tasks_app`.`day`,date_format(`work_from_home_tasks_app`.`day`,'%d/%m/%Y'),'') as 'day', `work_from_home_tasks_app`.`hour_from` as 'hour_from', `work_from_home_tasks_app`.`hour_to` as 'hour_to', `work_from_home_tasks_app`.`activity_undertaken` as 'activity_undertaken', `work_from_home_tasks_app`.`approval_status` as 'approval_status', `work_from_home_tasks_app`.`created_by` as 'created_by', `work_from_home_tasks_app`.`created_at` as 'created_at', `work_from_home_tasks_app`.`last_updated_by` as 'last_updated_by', `work_from_home_tasks_app`.`last_updated_at` as 'last_updated_at'",
 			'navavishkar_stay_table' => "`navavishkar_stay_table`.`id` as 'id', `navavishkar_stay_table`.`username` as 'username', `navavishkar_stay_table`.`full_name` as 'full_name', `navavishkar_stay_table`.`emp_id` as 'emp_id', `navavishkar_stay_table`.`department` as 'department', `navavishkar_stay_table`.`designation` as 'designation', `navavishkar_stay_table`.`contact_email` as 'contact_email', `navavishkar_stay_table`.`contact_number` as 'contact_number', `navavishkar_stay_table`.`room_number` as 'room_number', if(`navavishkar_stay_table`.`check_in_date`,date_format(`navavishkar_stay_table`.`check_in_date`,'%d/%m/%Y'),'') as 'check_in_date', if(`navavishkar_stay_table`.`checkout_date`,date_format(`navavishkar_stay_table`.`checkout_date`,'%d/%m/%Y'),'') as 'checkout_date', `navavishkar_stay_table`.`reason_for_stay` as 'reason_for_stay', `navavishkar_stay_table`.`approval_status` as 'approval_status', `navavishkar_stay_table`.`approval_remarks` as 'approval_remarks', `navavishkar_stay_table`.`created_by` as 'created_by', `navavishkar_stay_table`.`created_at` as 'created_at', `navavishkar_stay_table`.`last_updated_by` as 'last_updated_by', `navavishkar_stay_table`.`last_updated_at` as 'last_updated_at'",
 			'navavishkar_stay_payment_table' => "`navavishkar_stay_payment_table`.`id` as 'id', `navavishkar_stay_payment_table`.`username` as 'username', IF(    CHAR_LENGTH(`navavishkar_stay_table1`.`full_name`) || CHAR_LENGTH(`navavishkar_stay_table1`.`emp_id`), CONCAT_WS('',   `navavishkar_stay_table1`.`full_name`, '::', `navavishkar_stay_table1`.`emp_id`), '') as 'navavishakr_stay_details', `navavishkar_stay_payment_table`.`payment_status` as 'payment_status', `navavishkar_stay_payment_table`.`amount` as 'amount', `navavishkar_stay_payment_table`.`additional_facilities_provided` as 'additional_facilities_provided', `navavishkar_stay_payment_table`.`payment_img` as 'payment_img', `navavishkar_stay_payment_table`.`remarks` as 'remarks', `navavishkar_stay_payment_table`.`created_by` as 'created_by', `navavishkar_stay_payment_table`.`created_at` as 'created_at', `navavishkar_stay_payment_table`.`last_updated_by` as 'last_updated_by', `navavishkar_stay_payment_table`.`last_updated_at` as 'last_updated_at'",
 			'email_id_allocation_table' => "`email_id_allocation_table`.`email_id_allocation_id` as 'email_id_allocation_id', `email_id_allocation_table`.`username` as 'username', `email_id_allocation_table`.`name_of_person` as 'name_of_person', `email_id_allocation_table`.`allocated_email_id` as 'allocated_email_id', `email_id_allocation_table`.`alternative_email_id` as 'alternative_email_id', if(`email_id_allocation_table`.`date_of_allocation`,date_format(`email_id_allocation_table`.`date_of_allocation`,'%d/%m/%Y'),'') as 'date_of_allocation', `email_id_allocation_table`.`status` as 'status', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'reporting_manager', `email_id_allocation_table`.`remarks` as 'remarks', `email_id_allocation_table`.`created_by` as 'created_by', `email_id_allocation_table`.`created_at` as 'created_at', `email_id_allocation_table`.`last_updated_by` as 'last_updated_by', `email_id_allocation_table`.`last_updated_at` as 'last_updated_at'",
@@ -252,6 +253,7 @@
 			'leave_table' => "`leave_table` ",
 			'half_day_leave_table' => "`half_day_leave_table` ",
 			'work_from_home_table' => "`work_from_home_table` ",
+			'work_from_home_tasks_app' => "`work_from_home_tasks_app` LEFT JOIN `work_from_home_table` as work_from_home_table1 ON `work_from_home_table1`.`id`=`work_from_home_tasks_app`.`work_from_home_details` ",
 			'navavishkar_stay_table' => "`navavishkar_stay_table` ",
 			'navavishkar_stay_payment_table' => "`navavishkar_stay_payment_table` LEFT JOIN `navavishkar_stay_table` as navavishkar_stay_table1 ON `navavishkar_stay_table1`.`id`=`navavishkar_stay_payment_table`.`navavishakr_stay_details` ",
 			'email_id_allocation_table' => "`email_id_allocation_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`email_id_allocation_table`.`reporting_manager` ",
@@ -340,6 +342,7 @@
 			'leave_table' => 'id',
 			'half_day_leave_table' => 'id',
 			'work_from_home_table' => 'id',
+			'work_from_home_tasks_app' => 'id',
 			'navavishkar_stay_table' => 'id',
 			'navavishkar_stay_payment_table' => 'id',
 			'email_id_allocation_table' => 'email_id_allocation_id',
@@ -1159,6 +1162,19 @@
 				'work_from_home_purpose' => '',
 				'from_date' => '1',
 				'to_date' => '1',
+				'approval_status' => 'Under Consideration',
+				'created_by' => '',
+				'created_at' => '',
+				'last_updated_by' => '',
+				'last_updated_at' => '',
+			],
+			'work_from_home_tasks_app' => [
+				'id' => '',
+				'work_from_home_details' => '',
+				'day' => '',
+				'hour_from' => '',
+				'hour_to' => '',
+				'activity_undertaken' => '',
 				'approval_status' => 'Under Consideration',
 				'created_by' => '',
 				'created_at' => '',
@@ -3960,6 +3976,32 @@ EOT;
 			],
 			'work_from_home_table' => [
 			],
+			'work_from_home_tasks_app' => [
+				'work_from_home_details' => [
+					'parent-table' => 'work_from_home_table',
+					'parent-primary-key' => 'id',
+					'child-primary-key' => 'id',
+					'child-primary-key-index' => 0,
+					'tab-label' => 'Tasks <span class="hidden child-label-work_from_home_tasks_app child-field-caption">(Work From Home Details)</span>',
+					'auto-close' => false,
+					'table-icon' => 'table.gif',
+					'display-refresh' => true,
+					'display-add-new' => true,
+					'forced-where' => '',
+					'display-fields' => [0 => 'ID', 1 => 'Work From Home Details', 2 => 'Day', 3 => 'Hour From', 4 => 'Hour To', 5 => 'Activity undertaken', 6 => 'Approval status', 7 => 'Created by', 8 => 'Created at', 9 => 'Last updated by', 10 => 'Last updated at'],
+					'display-field-names' => [0 => 'id', 1 => 'work_from_home_details', 2 => 'day', 3 => 'hour_from', 4 => 'hour_to', 5 => 'activity_undertaken', 6 => 'approval_status', 7 => 'created_by', 8 => 'created_at', 9 => 'last_updated_by', 10 => 'last_updated_at'],
+					'sortable-fields' => [0 => '`work_from_home_tasks_app`.`id`', 1 => 2, 2 => '`work_from_home_tasks_app`.`day`', 3 => '`work_from_home_tasks_app`.`hour_from`', 4 => '`work_from_home_tasks_app`.`hour_to`', 5 => 6, 6 => 7, 7 => 8, 8 => 9, 9 => 10, 10 => 11],
+					'records-per-page' => 10,
+					'default-sort-by' => false,
+					'default-sort-direction' => 'asc',
+					'open-detail-view-on-click' => true,
+					'display-page-selector' => true,
+					'show-page-progress' => true,
+					'template' => 'children-work_from_home_tasks_app',
+					'template-printable' => 'children-work_from_home_tasks_app-printable',
+					'query' => "SELECT `work_from_home_tasks_app`.`id` as 'id', IF(    CHAR_LENGTH(if(`work_from_home_table1`.`from_date`,date_format(`work_from_home_table1`.`from_date`,'%d/%m/%Y'),'')) || CHAR_LENGTH(`work_from_home_table1`.`work_from_home_purpose`), CONCAT_WS('',   if(`work_from_home_table1`.`from_date`,date_format(`work_from_home_table1`.`from_date`,'%d/%m/%Y'),''), '~', `work_from_home_table1`.`work_from_home_purpose`), '') as 'work_from_home_details', if(`work_from_home_tasks_app`.`day`,date_format(`work_from_home_tasks_app`.`day`,'%d/%m/%Y'),'') as 'day', `work_from_home_tasks_app`.`hour_from` as 'hour_from', `work_from_home_tasks_app`.`hour_to` as 'hour_to', `work_from_home_tasks_app`.`activity_undertaken` as 'activity_undertaken', `work_from_home_tasks_app`.`approval_status` as 'approval_status', `work_from_home_tasks_app`.`created_by` as 'created_by', `work_from_home_tasks_app`.`created_at` as 'created_at', `work_from_home_tasks_app`.`last_updated_by` as 'last_updated_by', `work_from_home_tasks_app`.`last_updated_at` as 'last_updated_at' FROM `work_from_home_tasks_app` LEFT JOIN `work_from_home_table` as work_from_home_table1 ON `work_from_home_table1`.`id`=`work_from_home_tasks_app`.`work_from_home_details` "
+				],
+			],
 			'navavishkar_stay_table' => [
 			],
 			'navavishkar_stay_payment_table' => [
@@ -4553,7 +4595,7 @@ EOT;
 	#########################################################
 
 	function isDetailViewEnabled($tn) {
-		$tables = ['user_table', 'suggestion', 'approval_table', 'techlead_web_page', 'car_table', 'car_usage_table', 'cycle_table', 'cycle_usage_table', 'gym_table', 'coffee_table', 'cafeteria_table', 'event_table', 'outcomes_expected_table', 'event_decision_table', 'meetings_table', 'agenda_table', 'decision_table', 'participants_table', 'action_actor', 'visiting_card_table', 'mou_details_table', 'mou_company_area_details_table', 'goal_setting_table', 'goal_progress_table', 'task_setting_table', 'subtask_setting_table', 'internship_fellowship_details_app', 'star_pnt', 'hrd_sdp_events_table', 'training_program_on_geospatial_tchnologies_table', 'space_day_school_details_app', 'space_day_college_student_table', 'school_list', 'sdp_participants_college_details_table', 'asset_table', 'asset_allotment_table', 'sub_asset_table', 'sub_asset_allotment_table', 'it_inventory_app', 'it_inventory_billing_details', 'it_inventory_allotment_table', 'computer_details_table', 'computer_user_details', 'computer_allotment_table', 'employees_personal_data_table', 'employees_designation_table', 'employees_appraisal_table', 'beyond_workingHours_table', 'leave_table', 'half_day_leave_table', 'work_from_home_table', 'navavishkar_stay_table', 'navavishkar_stay_payment_table', 'email_id_allocation_table', 'attendence_details_table', 'all_startup_data_table', 'shortlisted_startups_for_fund_table', 'shortlisted_startups_dd_and_agreement_table', 'vikas_startup_applications_table', 'programs_table', 'evaluation_table', 'problem_statement_table', 'evaluators_table', 'approval_billing_table', 'honorarium_claim_table', 'all_bank_account_statement_table', 'payment_track_details_table', 'travel_table', 'travel_stay_table', 'travel_local_commute_table', 'r_and_d_progress', 'panel_decision_table_tdp', 'selected_proposals_final_tdp', 'stage_wise_budget_table_tdp', 'first_level_shortlisted_proposals_tdp', 'budget_table_tdp', 'panel_comments_tdp', 'selected_tdp', 'address_tdp', 'summary_table_tdp', 'project_details_tdp', 'newsletter_table', 'contact_call_log_table', 'r_and_d_monthly_progress_app', 'r_and_d_quarterly_progress_app', ];
+		$tables = ['user_table', 'suggestion', 'approval_table', 'techlead_web_page', 'car_table', 'car_usage_table', 'cycle_table', 'cycle_usage_table', 'gym_table', 'coffee_table', 'cafeteria_table', 'event_table', 'outcomes_expected_table', 'event_decision_table', 'meetings_table', 'agenda_table', 'decision_table', 'participants_table', 'action_actor', 'visiting_card_table', 'mou_details_table', 'mou_company_area_details_table', 'goal_setting_table', 'goal_progress_table', 'task_setting_table', 'subtask_setting_table', 'internship_fellowship_details_app', 'star_pnt', 'hrd_sdp_events_table', 'training_program_on_geospatial_tchnologies_table', 'space_day_school_details_app', 'space_day_college_student_table', 'school_list', 'sdp_participants_college_details_table', 'asset_table', 'asset_allotment_table', 'sub_asset_table', 'sub_asset_allotment_table', 'it_inventory_app', 'it_inventory_billing_details', 'it_inventory_allotment_table', 'computer_details_table', 'computer_user_details', 'computer_allotment_table', 'employees_personal_data_table', 'employees_designation_table', 'employees_appraisal_table', 'beyond_workingHours_table', 'leave_table', 'half_day_leave_table', 'work_from_home_table', 'work_from_home_tasks_app', 'navavishkar_stay_table', 'navavishkar_stay_payment_table', 'email_id_allocation_table', 'attendence_details_table', 'all_startup_data_table', 'shortlisted_startups_for_fund_table', 'shortlisted_startups_dd_and_agreement_table', 'vikas_startup_applications_table', 'programs_table', 'evaluation_table', 'problem_statement_table', 'evaluators_table', 'approval_billing_table', 'honorarium_claim_table', 'all_bank_account_statement_table', 'payment_track_details_table', 'travel_table', 'travel_stay_table', 'travel_local_commute_table', 'r_and_d_progress', 'panel_decision_table_tdp', 'selected_proposals_final_tdp', 'stage_wise_budget_table_tdp', 'first_level_shortlisted_proposals_tdp', 'budget_table_tdp', 'panel_comments_tdp', 'selected_tdp', 'address_tdp', 'summary_table_tdp', 'project_details_tdp', 'newsletter_table', 'contact_call_log_table', 'r_and_d_monthly_progress_app', 'r_and_d_quarterly_progress_app', ];
 		return in_array($tn, $tables);
 	}
 

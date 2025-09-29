@@ -1,17 +1,14 @@
-<!-- To change the layout of the detail view form, we recommend using JS code in hooks/work_from_home_table-dv.js rather than editing this file -->
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/work_from_home_tasks_app-dv.js rather than editing this file -->
 
 <div id="detail-view"></div>
 <div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
 
-<div id="work_from_home_table_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+<div id="work_from_home_tasks_app_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
 
-<div class="panel-body hidden" id="work_from_home_table_dv_container">
+<div class="panel-body hidden" id="work_from_home_tasks_app_dv_container">
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
-			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="work_from_home_tasks_app_view.php?filterer_work_from_home_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="work_from_home_tasks_app_link"><img src="table.gif"> Tasks</a>
-			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="work_from_home_tasks_app_view.php?filterer_work_from_home_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_work_from_home_tasks_app_link"><img src="table.gif"> Tasks</a>
-			<input type="hidden" id="work_from_home_tasks_app_hclink" value="work_from_home_tasks_app_view.php?filterer_work_from_home_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -19,38 +16,59 @@
 
 	<div class="row">
 		<!-- form inputs -->
-		<div class="col-md-8 col-lg-10" id="work_from_home_table_dv_form">
+		<div class="col-md-8 col-lg-10" id="work_from_home_tasks_app_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: Purpose work from home -->
-				<div class="form-group work_from_home_table-work_from_home_purpose">
+				<!-- Field: Work From Home Details -->
+				<div class="form-group work_from_home_tasks_app-work_from_home_details">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="work_from_home_purpose">Purpose work from home<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Work From Home Details</label>
+					<div class="col-lg-9">
+						<div class="form-control-static">
+							<span id="work_from_home_details-readonly"><%%COMBOTEXT(work_from_home_details)%%></span>
+							<%%PLINK(work_from_home_details)%%>
+						</div>
+					</div>
+				</div>
+
+				<!-- Field: Day -->
+				<div class="form-group work_from_home_tasks_app-day">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="day-dd">Day</label>
+					<div class="col-lg-9">
+						<%%COMBO(day)%%>
+					</div>
+				</div>
+
+				<!-- Field: Hour From -->
+				<div class="form-group work_from_home_tasks_app-hour_from">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="hour_from">Hour From</label>
+					<div class="col-lg-9">
+						<input maxlength="11" type="text" class="form-control" name="hour_from" id="hour_from" value="<%%VALUE(hour_from)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Hour To -->
+				<div class="form-group work_from_home_tasks_app-hour_to">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="hour_to">Hour To</label>
+					<div class="col-lg-9">
+						<input maxlength="11" type="text" class="form-control" name="hour_to" id="hour_to" value="<%%VALUE(hour_to)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Activity undertaken -->
+				<div class="form-group work_from_home_tasks_app-activity_undertaken">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="activity_undertaken">Activity undertaken</label>
 					<div class="col-lg-9 has-nicedit">
-						<%%HTMLAREA(work_from_home_purpose)%%>
-					</div>
-				</div>
-
-				<!-- Field: From date -->
-				<div class="form-group work_from_home_table-from_date">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="from_date-dd">From date<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
-					<div class="col-lg-9">
-						<%%COMBO(from_date)%%>
-					</div>
-				</div>
-
-				<!-- Field: To date -->
-				<div class="form-group work_from_home_table-to_date">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="to_date-dd">To date<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
-					<div class="col-lg-9">
-						<%%COMBO(to_date)%%>
+						<%%HTMLAREA(activity_undertaken)%%>
 					</div>
 				</div>
 
 				<!-- Field: Approval status -->
-				<div class="form-group work_from_home_table-approval_status">
+				<div class="form-group work_from_home_tasks_app-approval_status">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="approval_status">Approval status</label>
 					<div class="col-lg-9">
@@ -63,7 +81,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2 dv-action-buttons" id="work_from_home_table_dv_action_buttons">
+		<div class="col-md-4 col-lg-2 dv-action-buttons" id="work_from_home_tasks_app_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>
@@ -80,16 +98,6 @@
 		</div>
 	</div>
 
-
-	<!-- child records -->
-	<hr>
-	<div class="row">
-		<div class="col-lg-10 col-lg-offset-1">
-			<div id="work_from_home_table-children" class="children-tabs">
-				<div class="text-center"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
-			</div>
-		</div>
-	</div>
 
 </div><!-- /div class="panel-body" -->
 	<script>
@@ -108,72 +116,22 @@
 			AppGini.once({
 				condition: function() { return bkLib != undefined; },
 				action: function() {
-					if($j('textarea#work_from_home_purpose').length) new nicEditor({ fullPanel : true }).panelInstance('work_from_home_purpose');
+					if($j('textarea#activity_undertaken').length) new nicEditor({ fullPanel : true }).panelInstance('activity_undertaken');
 				}
 			});
 
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
-				AppGini.once({
-					condition: function() {
-						return $j('.form-group.work_from_home_table-work_from_home_purpose')
-									.find('.nicEdit-main, .select2-container, input[type=radio]')
-									.length > 0
-								// or read-only DV
-								|| (!$j('#update').length && !$j('#insert').length);
-					},
-					action: function() {
-						$j('#work_from_home_table_dv_container-loading').addClass('hidden');
-						$j('#work_from_home_table_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('work_from_home_table', 'work_from_home_purpose');
-					},
-					timeout:  5000,
-					doActionOnTimeout:  true
-				});
-			} else {
-				$j('#work_from_home_table_dv_container-loading').addClass('hidden');
-				$j('#work_from_home_table_dv_container').removeClass('hidden');
-			}
+			$j('#work_from_home_tasks_app_dv_container-loading').addClass('hidden');
+			$j('#work_from_home_tasks_app_dv_container').removeClass('hidden');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('work_from_home_tasks_app', 'day');
 
 			// try to detect rich text changes by adding 'input' handler after nicedit is loaded ...
 			AppGini.detectContentEditableChanges();
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 
-			if(embedded_mode) {
-				/* hide links to children tables in embedded mode */
-				$j('.detail_view a[id$=_link]').remove();
-
-				/* append embedded mode to all links */
-				var append_embedded = function() {
-					$j('a[href]:not([href^="#"]):not([href^="javascript"]):not([href$="Embedded=1"]):not([href*="link.php?t="]):not([href^="mailto:"]):not([href$=".jpg"]):not([href$=".png"]):not([href$=".gif"])').each(
-						function() {
-							$j(this).attr('href', $j(this).attr('href') + '&Embedded=1');
-						}
-					);
-				}
-				setTimeout(append_embedded, 500);
-				setTimeout(append_embedded, 1500);
-				setTimeout(append_embedded, 2500);
-				setTimeout(append_embedded, 3500);
-			}
-
-			/* when no record is selected ('add new' mode) */
-			if(add_new_mode) {
-				/* hide links to children tables */
-				$j('.detail_view a[id$=_link]').remove();
-			} else {
-				post(
-					'parent-children.php', {
-						ParentTable: 'work_from_home_table',
-						SelectedID: '<%%VALUE(id)%%>',
-						Operation: 'show-children'
-					},
-					'work_from_home_table-children'
-				);
-			}
 
 			if(true /* !embedded_mode */) {
 				$j('.add_new_parent').click(function() {
@@ -191,7 +149,7 @@
 							localStorage.removeItem(pt + '_last_added_id');
 							AppGini.lookupText({
 								id: new_id,
-								table: 'work_from_home_table',
+								table: 'work_from_home_tasks_app',
 								field: field_id,
 								callback: function(data) {
 									$j('#' + field_id + '-container').select2('data', data, true);
@@ -251,21 +209,21 @@
 				}
 			});
 
-			work_from_home_tableUniqueFields.forEach(fieldName => enforce_uniqueness('work_from_home_table', fieldName));
+			work_from_home_tasks_appUniqueFields.forEach(fieldName => enforce_uniqueness('work_from_home_tasks_app', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
 				$j('body').append('<div id="admin-tools-appendix"></div>');
 				$j('#admin-tools-appendix').load(
-					'ajax_admin_tools.php?table=work_from_home_table&id=<%%URLVALUE(id)%%>',
+					'ajax_admin_tools.php?table=work_from_home_tasks_app&id=<%%URLVALUE(id)%%>',
 					function(resp) {
 						if(!resp.length) return;
-						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=work_from_home_table&id=<%%URLVALUE(id)%%>');
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=work_from_home_tasks_app&id=<%%URLVALUE(id)%%>');
 					}
 				);
 			}
 		});
 
-		var work_from_home_tableUniqueFields = [
+		var work_from_home_tasks_appUniqueFields = [
 		];
 	</script>

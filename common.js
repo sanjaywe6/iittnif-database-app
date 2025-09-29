@@ -901,7 +901,7 @@ function work_from_home_table_validateData(insertMode) {
 	// check all required fields have values
 	const reqFields = [
 		// [field-type, field-name, field-caption], ...
-		['text', 'work_from_home_purpose', 'Purpose work from home'],
+		['html', 'work_from_home_purpose', 'Purpose work from home'],
 		['date', 'from_date', 'From date'],
 		['date', 'to_date', 'To date'],
 	];
@@ -914,6 +914,12 @@ function work_from_home_table_validateData(insertMode) {
 	});
 
 	if(errors) return false;
+
+	return !errors;
+}
+function work_from_home_tasks_app_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
 
 	return !errors;
 }

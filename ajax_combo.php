@@ -640,6 +640,19 @@
 		],
 		'work_from_home_table' => [
 		],
+		'work_from_home_tasks_app' => [
+			'work_from_home_details' => [
+				'parent_table' => 'work_from_home_table',
+				'parent_pk_field' => 'id',
+				'parent_caption' => 'IF(CHAR_LENGTH(if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,\'%d/%m/%Y\'),\'\')) || CHAR_LENGTH(`work_from_home_table`.`work_from_home_purpose`), CONCAT_WS(\'\', if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,\'%d/%m/%Y\'),\'\'), \'~\', `work_from_home_table`.`work_from_home_purpose`), \'\')',
+				'parent_from' => '`work_from_home_table` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
+		],
 		'navavishkar_stay_table' => [
 		],
 		'navavishkar_stay_payment_table' => [

@@ -316,6 +316,12 @@
 
 			return $data;
 		},
+		'work_from_home_tasks_app' => function($data, $options = []) {
+			if(isset($data['work_from_home_details'])) $data['work_from_home_details'] = pkGivenLookupText($data['work_from_home_details'], 'work_from_home_tasks_app', 'work_from_home_details');
+			if(isset($data['day'])) $data['day'] = guessMySQLDateTime($data['day']);
+
+			return $data;
+		},
 		'navavishkar_stay_table' => function($data, $options = []) {
 			if(isset($data['check_in_date'])) $data['check_in_date'] = guessMySQLDateTime($data['check_in_date']);
 			if(isset($data['checkout_date'])) $data['checkout_date'] = guessMySQLDateTime($data['checkout_date']);
@@ -562,6 +568,7 @@
 		'leave_table' => function($data, $options = []) { return true; },
 		'half_day_leave_table' => function($data, $options = []) { return true; },
 		'work_from_home_table' => function($data, $options = []) { return true; },
+		'work_from_home_tasks_app' => function($data, $options = []) { return true; },
 		'navavishkar_stay_table' => function($data, $options = []) { return true; },
 		'navavishkar_stay_payment_table' => function($data, $options = []) { return true; },
 		'email_id_allocation_table' => function($data, $options = []) { return true; },

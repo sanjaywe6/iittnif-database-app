@@ -475,6 +475,13 @@
 					'group' => $tg[8],
 					'homepageShowCount' => 1
 				],
+				'work_from_home_tasks_app' => [
+					'Caption' => 'Tasks',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[0],
+					'homepageShowCount' => 1
+				],
 				'navavishkar_stay_table' => [
 					'Caption' => 'Navavishkar Stay - App',
 					'Description' => '',
@@ -780,6 +787,7 @@
 			'leave_table' => ['Leave - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'half_day_leave_table' => ['Half Day Leave - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'work_from_home_table' => ['Work from home - App', '', 'table.gif', 'Employee Data Management Apps'],
+			'work_from_home_tasks_app' => ['Tasks', '', 'table.gif', 'Approvals &amp; Sanctions'],
 			'navavishkar_stay_table' => ['Navavishkar Stay - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'navavishkar_stay_payment_table' => ['Navavishkar Stay Payment - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'email_id_allocation_table' => ['Email id allocation - App', '', 'table.gif', 'Employee Data Management Apps'],
@@ -6142,7 +6150,7 @@
 						],
 					],
 					'work_from_home_purpose' => [
-						'appgini' => "VARCHAR(40) NOT NULL",
+						'appgini' => "TEXT NOT NULL",
 						'info' => [
 							'caption' => 'Purpose work from home',
 							'description' => '',
@@ -6159,6 +6167,85 @@
 						'appgini' => "DATE NOT NULL",
 						'info' => [
 							'caption' => 'To date',
+							'description' => '',
+						],
+					],
+					'approval_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Under Consideration'",
+						'info' => [
+							'caption' => 'Approval status',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
+				'work_from_home_tasks_app' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'work_from_home_details' => [
+						'appgini' => "INT(10) UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Work From Home Details',
+							'description' => '',
+						],
+					],
+					'day' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Day',
+							'description' => '',
+						],
+					],
+					'hour_from' => [
+						'appgini' => "TIME NULL",
+						'info' => [
+							'caption' => 'Hour From',
+							'description' => '',
+						],
+					],
+					'hour_to' => [
+						'appgini' => "TIME NULL",
+						'info' => [
+							'caption' => 'Hour To',
+							'description' => '',
+						],
+					],
+					'activity_undertaken' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Activity undertaken',
 							'description' => '',
 						],
 					],
@@ -11212,6 +11299,9 @@
 				'employees_designation_table' => ['employee_designation_lookup'],
 				'user_table' => ['reviewing_officer'],
 			],
+			'work_from_home_tasks_app' => [
+				'work_from_home_table' => ['work_from_home_details'],
+			],
 			'navavishkar_stay_payment_table' => [
 				'navavishkar_stay_table' => ['navavishakr_stay_details'],
 			],
@@ -11370,6 +11460,7 @@
 			'leave_table' => [],
 			'half_day_leave_table' => [],
 			'work_from_home_table' => [],
+			'work_from_home_tasks_app' => [],
 			'navavishkar_stay_table' => [],
 			'navavishkar_stay_payment_table' => [],
 			'email_id_allocation_table' => [],
@@ -11674,6 +11765,9 @@
 			'half_day_leave_table' => [
 			],
 			'work_from_home_table' => [
+			],
+			'work_from_home_tasks_app' => [
+				'work_from_home_details' => 'SELECT `work_from_home_table`.`id`, IF(CHAR_LENGTH(if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,\'%d/%m/%Y\'),\'\')) || CHAR_LENGTH(`work_from_home_table`.`work_from_home_purpose`), CONCAT_WS(\'\', if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,\'%d/%m/%Y\'),\'\'), \'~\', `work_from_home_table`.`work_from_home_purpose`), \'\') FROM `work_from_home_table` ORDER BY 2',
 			],
 			'navavishkar_stay_table' => [
 			],

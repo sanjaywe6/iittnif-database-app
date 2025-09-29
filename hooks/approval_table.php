@@ -3,6 +3,17 @@
 
 	function approval_table_init(&$options, $memberInfo, &$args) {
 
+		// WindowMessages::add($memberInfo["custom"][0]);
+		// WindowMessages::add($args);
+
+		// foreach ($memberInfo['custom'] as $key => $value) {
+		// 	WindowMessages::add($key . " : " . $value);
+		// }
+
+		// foreach ($args as $key => $value) {
+		// 	WindowMessages::add($key . " : " . $value);
+		// }
+
 		return TRUE;
 	}
 

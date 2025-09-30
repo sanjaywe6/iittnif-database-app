@@ -21,7 +21,7 @@ function event_table_insert(&$error_message = '') {
 		'venue' => Request::val('venue', ''),
 		'event_from_date' => Request::dateComponents('event_from_date', ''),
 		'event_to_date' => Request::dateComponents('event_to_date', ''),
-		'created_by' => parseCode('<%%creatorUsername%%>  <%%creationDateTime%%>', true),
+		'created_by' => parseCode('<%%creatorUsername%%>', true),
 	];
 
 	// record owner is current user
@@ -153,7 +153,7 @@ function event_table_update(&$selected_id, &$error_message = '') {
 		'venue' => Request::val('venue', ''),
 		'event_from_date' => Request::dateComponents('event_from_date', ''),
 		'event_to_date' => Request::dateComponents('event_to_date', ''),
-		'last_updated_by' => parseCode('<%%editorUsername%%>  <%%editingDateTime%%>', false),
+		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 	];
 
 	// get existing values
@@ -469,10 +469,10 @@ function event_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 		$templateCode = str_replace('<%%URLVALUE(event_to_date)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(event_str)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(event_str)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>  <%%creationDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>  <%%creationDateTime%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>  <%%editingDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>  <%%editingDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 	}
 
 	// process translations

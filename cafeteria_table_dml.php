@@ -20,7 +20,7 @@ function cafeteria_table_insert(&$error_message = '') {
 		'time' => Request::val('time', ''),
 		'date' => parseCode('<%%creationDate%%>', true, true),
 		'remarks' => br2nl(Request::val('remarks', '')),
-		'created_by' => parseCode('<%%creatorUsername%%>  <%%creationDateTime%%>', true),
+		'created_by' => parseCode('<%%creatorUsername%%>', true),
 	];
 
 	// record owner is current user
@@ -90,7 +90,7 @@ function cafeteria_table_update(&$selected_id, &$error_message = '') {
 		'type' => Request::val('type', ''),
 		'time' => Request::val('time', ''),
 		'remarks' => br2nl(Request::val('remarks', '')),
-		'last_updated_by' => parseCode('<%%editorUsername%%>  <%%editingDateTime%%>', false),
+		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 	];
 
 	// get existing values
@@ -396,10 +396,10 @@ function cafeteria_table_form($selectedId = '', $allowUpdate = true, $allowInser
 		$templateCode = str_replace('<%%URLVALUE(date)%%>', urlencode('<%%creationDate%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(remarks)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(remarks)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>  <%%creationDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>  <%%creationDateTime%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>  <%%editingDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>  <%%editingDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 	}
 
 	// process translations

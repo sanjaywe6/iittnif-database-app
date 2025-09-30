@@ -47,7 +47,7 @@ function it_inventory_billing_details_insert(&$error_message = '') {
 				return existing_value('it_inventory_billing_details', 'image', Request::val('SelectedID'));
 			},
 		]),
-		'created_by' => parseCode('<%%creatorUsername%%>  <%%creationDateTime%%>', true),
+		'created_by' => parseCode('<%%creatorUsername%%>', true),
 	];
 
 
@@ -604,8 +604,8 @@ function it_inventory_billing_details_form($selectedId = '', $allowUpdate = true
 		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', '<%%editingDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode('<%%editingDateTime%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>  <%%creationDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>  <%%creationDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 	}
 
 	// process translations

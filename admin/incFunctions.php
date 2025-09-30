@@ -1700,7 +1700,7 @@
 					'created_by_username' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Created By',
+							'caption' => 'Created by Username',
 							'description' => '',
 						],
 					],
@@ -1714,7 +1714,7 @@
 					'last_updated_by_username' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Last Updated By',
+							'caption' => 'Last Updated By Username',
 							'description' => '',
 						],
 					],
@@ -1728,14 +1728,14 @@
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Created by Username',
+							'caption' => 'Created by',
 							'description' => '',
 						],
 					],
 					'last_updated_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Last Updated by Username',
+							'caption' => 'Last Updated by',
 							'description' => '',
 						],
 					],
@@ -1870,7 +1870,7 @@
 					'created_by_username' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Created By',
+							'caption' => 'Created by Username',
 							'description' => '',
 						],
 					],
@@ -1884,7 +1884,7 @@
 					'last_updated_by_username' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Last Updated By',
+							'caption' => 'Last Updated by Username',
 							'description' => '',
 						],
 					],
@@ -1898,14 +1898,14 @@
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Created by Username',
+							'caption' => 'Created by',
 							'description' => '',
 						],
 					],
 					'last_updated_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Last Updated by Username',
+							'caption' => 'Last Updated',
 							'description' => '',
 						],
 					],
@@ -2012,7 +2012,7 @@
 					'created_by_username' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Created By',
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -2026,7 +2026,7 @@
 					'last_updated_by_username' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Last Updated By',
+							'caption' => 'Last Updated by Username',
 							'description' => '',
 						],
 					],
@@ -2040,7 +2040,14 @@
 					'last_updated_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Last Updated by Username',
+							'caption' => 'Last Updated by',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
 							'description' => '',
 						],
 					],

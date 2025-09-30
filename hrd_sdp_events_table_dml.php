@@ -26,7 +26,7 @@ function hrd_sdp_events_table_insert(&$error_message = '') {
 		'end_date' => Request::dateComponents('end_date', '1'),
 		'number_of_participants' => Request::val('number_of_participants', ''),
 		'more_details' => Request::val('more_details', ''),
-		'created_by' => parseCode('<%%creatorUsername%%>  <%%creationDateTime%%>', true),
+		'created_by' => parseCode('<%%creatorUsername%%>', true),
 	];
 
 	// record owner is current user
@@ -102,7 +102,7 @@ function hrd_sdp_events_table_update(&$selected_id, &$error_message = '') {
 		'end_date' => Request::dateComponents('end_date', ''),
 		'number_of_participants' => Request::val('number_of_participants', ''),
 		'more_details' => Request::val('more_details', ''),
-		'last_updated_by' => parseCode('<%%editorUsername%%>  <%%editingDateTime%%>', false),
+		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 	];
 
 	// get existing values
@@ -445,10 +445,10 @@ function hrd_sdp_events_table_form($selectedId = '', $allowUpdate = true, $allow
 		$templateCode = str_replace('<%%URLVALUE(number_of_participants)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(more_details)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(more_details)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>  <%%creationDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>  <%%creationDateTime%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>  <%%editingDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>  <%%editingDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 	}
 
 	// process translations

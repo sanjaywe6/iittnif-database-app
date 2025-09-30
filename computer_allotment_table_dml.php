@@ -24,7 +24,7 @@ function computer_allotment_table_insert(&$error_message = '') {
 		'purpose' => Request::val('purpose', ''),
 		'email_d' => Request::val('email_d', ''),
 		'mobile_number' => Request::val('mobile_number', ''),
-		'created_by' => parseCode('<%%creatorUsername%%>  <%%creationDateTime%%>', true),
+		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'emp_details' => Request::val('emp_details', ''),
 	];
 
@@ -100,7 +100,7 @@ function computer_allotment_table_update(&$selected_id, &$error_message = '') {
 		'purpose' => Request::val('purpose', ''),
 		'email_d' => Request::val('email_d', ''),
 		'mobile_number' => Request::val('mobile_number', ''),
-		'last_updated_by' => parseCode('<%%editorUsername%%>  <%%editingDateTime%%>', false),
+		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 		'emp_details' => Request::val('emp_details', ''),
 	];
 
@@ -518,10 +518,10 @@ function computer_allotment_table_form($selectedId = '', $allowUpdate = true, $a
 		$templateCode = str_replace('<%%URLVALUE(email_d)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(mobile_number)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(mobile_number)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>  <%%creationDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>  <%%creationDateTime%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>  <%%editingDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>  <%%editingDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(emp_details)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(emp_details)%%>', urlencode(''), $templateCode);
 	}

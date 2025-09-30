@@ -26,7 +26,7 @@ function space_day_college_student_table_insert(&$error_message = '') {
 		'contact_number' => Request::val('contact_number', ''),
 		'interest' => Request::val('interest', ''),
 		'college_name' => Request::val('college_name', ''),
-		'created_by' => parseCode('<%%creatorUsername%%>  <%%creationDateTime%%>', true),
+		'created_by' => parseCode('<%%creatorUsername%%>', true),
 	];
 
 	// record owner is current user
@@ -102,7 +102,7 @@ function space_day_college_student_table_update(&$selected_id, &$error_message =
 		'contact_number' => Request::val('contact_number', ''),
 		'interest' => Request::val('interest', ''),
 		'college_name' => Request::val('college_name', ''),
-		'last_updated_by' => parseCode('<%%editorUsername%%>  <%%editingDateTime%%>', false),
+		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 	];
 
 	// get existing values
@@ -434,10 +434,10 @@ function space_day_college_student_table_form($selectedId = '', $allowUpdate = t
 		$templateCode = str_replace('<%%URLVALUE(interest)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(college_name)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(college_name)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>  <%%creationDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>  <%%creationDateTime%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>  <%%editingDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>  <%%editingDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 	}
 
 	// process translations

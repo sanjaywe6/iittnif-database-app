@@ -37,6 +37,7 @@
 		"`techlead_web_page`.`last_updated_by_username`" => "last_updated_by_username",
 		"`techlead_web_page`.`last_updated_at`" => "last_updated_at",
 		"`techlead_web_page`.`last_updated_by`" => "last_updated_by",
+		"`techlead_web_page`.`created_by`" => "created_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -59,6 +60,7 @@
 		17 => 17,
 		18 => 18,
 		19 => 19,
+		20 => 20,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -82,6 +84,7 @@
 		"`techlead_web_page`.`last_updated_by_username`" => "last_updated_by_username",
 		"`techlead_web_page`.`last_updated_at`" => "last_updated_at",
 		"`techlead_web_page`.`last_updated_by`" => "last_updated_by",
+		"`techlead_web_page`.`created_by`" => "created_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -97,11 +100,12 @@
 		"`techlead_web_page`.`website_update_status`" => "Website Update Status by IT Team",
 		"`techlead_web_page`.`website_update_remarks`" => "Website Update Remarks by IT Team",
 		"`techlead_web_page`.`website_update_date`" => "Website Updated Date by IT Team",
-		"`techlead_web_page`.`created_by_username`" => "Created By",
+		"`techlead_web_page`.`created_by_username`" => "Created By Username",
 		"`techlead_web_page`.`created_at`" => "Created At",
-		"`techlead_web_page`.`last_updated_by_username`" => "Last Updated By",
+		"`techlead_web_page`.`last_updated_by_username`" => "Last Updated by Username",
 		"`techlead_web_page`.`last_updated_at`" => "Last Updated At",
-		"`techlead_web_page`.`last_updated_by`" => "Last Updated by Username",
+		"`techlead_web_page`.`last_updated_by`" => "Last Updated by",
+		"`techlead_web_page`.`created_by`" => "Created by",
 	];
 
 	// Fields that can be quick searched
@@ -123,6 +127,7 @@
 		"`techlead_web_page`.`last_updated_by_username`" => "last_updated_by_username",
 		"`techlead_web_page`.`last_updated_at`" => "last_updated_at",
 		"`techlead_web_page`.`last_updated_by`" => "last_updated_by",
+		"`techlead_web_page`.`created_by`" => "created_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -159,7 +164,7 @@
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Tech Lead', 'Category', 'Author/Team/Manager', 'Web Page Sub-section Title', 'Web Page Sub-section Material', 'Web Page Sub-section Learn More Content', 'Upload Image First (Required)', 'Upload Image Second (Optional)', 'Approval Status by CEO', 'Approval Remarks by CEO', 'Website Update Status by IT Team', 'Website Update Remarks by IT Team', 'Website Updated Date by IT Team', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', ];
+	$x->ColCaption = ['ID', 'Tech Lead', 'Category', 'Author/Team/Manager', 'Web Page Sub-section Title', 'Web Page Sub-section Material', 'Web Page Sub-section Learn More Content', 'Upload Image First (Required)', 'Upload Image Second (Optional)', 'Approval Status by CEO', 'Approval Remarks by CEO', 'Website Update Status by IT Team', 'Website Update Remarks by IT Team', 'Website Updated Date by IT Team', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
 	$x->ColFieldName = ['id', 'techlead', 'category', 'author', 'content_title', 'content', 'content_learn_more', 'img1', 'img2', 'approval_status', 'approval_remarks', 'website_update_status', 'website_update_remarks', 'website_update_date', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
 	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ];
 

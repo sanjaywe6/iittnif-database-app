@@ -24,7 +24,7 @@ function computer_details_table_insert(&$error_message = '') {
 		'maintained_by' => Request::val('maintained_by', ''),
 		'assigned_to_user' => Request::val('assigned_to_user', ''),
 		'remote_access' => Request::val('remote_access', ''),
-		'created_by' => parseCode('<%%creatorUsername%%>  <%%creationDateTime%%>', true),
+		'created_by' => parseCode('<%%creatorUsername%%>', true),
 	];
 
 	// record owner is current user
@@ -139,7 +139,7 @@ function computer_details_table_update(&$selected_id, &$error_message = '') {
 		'maintained_by' => Request::val('maintained_by', ''),
 		'assigned_to_user' => Request::val('assigned_to_user', ''),
 		'remote_access' => Request::val('remote_access', ''),
-		'last_updated_by' => parseCode('<%%editorUsername%%>  <%%editingDateTime%%>', false),
+		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 	];
 
 	// get existing values
@@ -499,10 +499,10 @@ function computer_details_table_form($selectedId = '', $allowUpdate = true, $all
 		$templateCode = str_replace('<%%URLVALUE(assigned_to_user)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(remote_access)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(remote_access)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>  <%%creationDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>  <%%creationDateTime%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>  <%%editingDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>  <%%editingDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 	}
 
 	// process translations

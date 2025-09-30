@@ -52,7 +52,7 @@ function newsletter_table_insert(&$error_message = '') {
 				return existing_value('newsletter_table', 'img2', Request::val('SelectedID'));
 			},
 		]),
-		'created_by' => parseCode('<%%creatorUsername%%>::<%%creationDateTime%%>', true),
+		'created_by' => parseCode('<%%creatorUsername%%>', true),
 	];
 
 	// record owner is current user
@@ -209,7 +209,7 @@ function newsletter_table_update(&$selected_id, &$error_message = '') {
 				return existing_value('newsletter_table', 'img2', $selected_id);
 			},
 		]),
-		'last_updated_by' => parseCode('<%%editorUsername%%>::<%%editingDateTime%%>', false),
+		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 	];
 
 	// get existing values
@@ -524,10 +524,10 @@ function newsletter_table_form($selectedId = '', $allowUpdate = true, $allowInse
 		$templateCode = str_replace('<%%URLVALUE(writeup_about_event)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(img1)%%>', 'blank.gif', $templateCode);
 		$templateCode = str_replace('<%%VALUE(img2)%%>', 'blank.gif', $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>::<%%creationDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>::<%%creationDateTime%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>::<%%editingDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>::<%%editingDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 	}
 
 	// process translations

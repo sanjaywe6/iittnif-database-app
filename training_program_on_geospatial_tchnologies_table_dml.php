@@ -45,7 +45,7 @@ function training_program_on_geospatial_tchnologies_table_insert(&$error_message
 		'how_did_you_know' => Request::val('how_did_you_know', ''),
 		'attended_training_school' => Request::val('attended_training_school', ''),
 		'attended_training_date' => Request::dateComponents('attended_training_date', '1'),
-		'created_by' => parseCode('<%%creatorUsername%%>  <%%creationDateTime%%>', true),
+		'created_by' => parseCode('<%%creatorUsername%%>', true),
 	];
 
 	// record owner is current user
@@ -140,7 +140,7 @@ function training_program_on_geospatial_tchnologies_table_update(&$selected_id, 
 		'how_did_you_know' => Request::val('how_did_you_know', ''),
 		'attended_training_school' => Request::val('attended_training_school', ''),
 		'attended_training_date' => Request::dateComponents('attended_training_date', ''),
-		'last_updated_by' => parseCode('<%%editorUsername%%>  <%%editingDateTime%%>', false),
+		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 	];
 
 	// get existing values
@@ -637,10 +637,10 @@ function training_program_on_geospatial_tchnologies_table_form($selectedId = '',
 		$templateCode = str_replace('<%%URLVALUE(attended_training_school)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(attended_training_date)%%>', '1', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(attended_training_date)%%>', urlencode('1'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>  <%%creationDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>  <%%creationDateTime%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>  <%%editingDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>  <%%editingDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 	}
 
 	// process translations

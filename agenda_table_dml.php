@@ -22,7 +22,7 @@ function agenda_table_insert(&$error_message = '') {
 
 	$data = [
 		'agenda_description' => br2nl(Request::val('agenda_description', '')),
-		'created_by' => parseCode('<%%creatorUsername%%>  <%%creationDateTime%%>', true),
+		'created_by' => parseCode('<%%creatorUsername%%>', true),
 	];
 
 
@@ -115,7 +115,7 @@ function agenda_table_update(&$selected_id, &$error_message = '') {
 
 	$data = [
 		'agenda_description' => br2nl(Request::val('agenda_description', '')),
-		'last_updated_by' => parseCode('<%%editorUsername%%>  <%%editingDateTime%%>', false),
+		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 	];
 
 	// get existing values
@@ -464,10 +464,10 @@ function agenda_table_form($selectedId = '', $allowUpdate = true, $allowInsert =
 		$templateCode = str_replace('<%%URLVALUE(agenda_description)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(agenda_str)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(agenda_str)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>  <%%creationDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>  <%%creationDateTime%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>  <%%editingDateTime%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>  <%%editingDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 	}
 
 	// process translations

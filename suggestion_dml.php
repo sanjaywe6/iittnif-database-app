@@ -36,7 +36,7 @@ function suggestion_insert(&$error_message = '') {
 		'ceo_pd_remarks' => Request::val('ceo_pd_remarks', ''),
 		'status' => Request::val('status', 'Pending'),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
-		'created_by_username' => parseCode('<%%creatorUsername%%>', true),
+		'created_by' => parseCode('<%%creatorUsername%%>', true),
 	];
 
 	// record owner is current user
@@ -139,7 +139,7 @@ function suggestion_update(&$selected_id, &$error_message = '') {
 		'ceo_pd_remarks' => Request::val('ceo_pd_remarks', ''),
 		'status' => Request::val('status', ''),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
-		'last_updated_by_username' => parseCode('<%%editorUsername%%>', false),
+		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 	];
 
 	if($data['suggestion'] === '') {
@@ -413,12 +413,12 @@ function suggestion_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 	$templateCode = str_replace('<%%UPLOADFILE(department_remarks)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(ceo_pd_remarks)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(status)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(last_updated_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by_username)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by_username)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_updated_at)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
@@ -449,18 +449,18 @@ function suggestion_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(status)%%>', safe_html($urow['status']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(status)%%>', html_attr($row['status']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(status)%%>', urlencode($urow['status']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode($urow['created_at']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', safe_html($urow['created_by_username']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode($urow['created_by_username']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode($urow['created_at']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_by_username)%%>', safe_html($urow['last_updated_by_username']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_by_username)%%>', urlencode($urow['last_updated_by_username']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(suggestion_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(suggestion_id)%%>', urlencode(''), $templateCode);
@@ -474,18 +474,18 @@ function suggestion_form($selectedId = '', $allowUpdate = true, $allowInsert = t
 		$templateCode = str_replace('<%%HTMLAREA(ceo_pd_remarks)%%>', '<textarea maxlength="65500" name="ceo_pd_remarks" id="ceo_pd_remarks" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(status)%%>', 'Pending', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(status)%%>', urlencode('Pending'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode('<%%creationDateTime%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by_username)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by_username)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', '<%%editingDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode('<%%editingDateTime%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(last_updated_by_username)%%>', '<%%editorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(last_updated_by_username)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 	}
 
 	// process translations

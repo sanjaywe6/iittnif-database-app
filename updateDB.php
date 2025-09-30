@@ -11,12 +11,40 @@
 		// set up tables
 		setupTable('user_table', []);
 
-		setupTable('suggestion', []);
+		setupTable('suggestion', [
+				"ALTER TABLE `suggestion` CHANGE `created_by` `created_by_` VARCHAR(255) NULL ",
+				"ALTER TABLE `suggestion` CHANGE `last_updated_by` `last_updated_by_` VARCHAR(255) NULL ",
+				"ALTER TABLE `suggestion` CHANGE `created_by_username` `created_by` VARCHAR(255) NULL ",
+				"ALTER TABLE `suggestion` CHANGE `last_updated_by_username` `last_updated_by` VARCHAR(255) NULL ",
+				"ALTER TABLE `suggestion` CHANGE `created_by_` `created_by_username` VARCHAR(255) NULL ",
+				"ALTER TABLE `suggestion` CHANGE `last_updated_by_` `last_updated_by_username` VARCHAR(255) NULL ",
+			]);
 
-		setupTable('approval_table', []);
+		setupTable('approval_table', [
+				"ALTER TABLE `approval_table` DROP `created_by`",
+				"ALTER TABLE `approval_table` DROP `created_at`",
+				"ALTER TABLE `approval_table` DROP `last_updated_by`",
+				"ALTER TABLE `approval_table` DROP `last_updated_at`",
+				"ALTER TABLE `approval_table` DROP `created_by_username`",
+				"ALTER TABLE `approval_table` DROP `last_updated_by_username`",
+				"ALTER TABLE `approval_table` ADD `created_by_username` VARCHAR(255) NULL ",
+				"ALTER TABLE `approval_table` ADD `created_at` VARCHAR(255) NULL ",
+				"ALTER TABLE `approval_table` ADD `last_updated_by_username` VARCHAR(255) NULL ",
+				"ALTER TABLE `approval_table` ADD `last_updated_at` VARCHAR(255) NULL ",
+				"ALTER TABLE `approval_table` ADD `created_by` VARCHAR(255) NULL ",
+				"ALTER TABLE `approval_table` ADD `last_updated_by` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('approval_table', ['person_responsbility',]);
 
-		setupTable('techlead_web_page', []);
+		setupTable('techlead_web_page', [
+				"ALTER TABLE `techlead_web_page` ADD `created_by_username` VARCHAR(255) NULL ",
+				"ALTER TABLE `techlead_web_page` DROP `created_by_username`",
+				"ALTER TABLE `techlead_web_page` ADD `created_by_username` VARCHAR(255) NULL ",
+				"ALTER TABLE `techlead_web_page` ADD `created_at` VARCHAR(255) NULL ",
+				"ALTER TABLE `techlead_web_page` ADD `last_updated_by_username` VARCHAR(255) NULL ",
+				"ALTER TABLE `techlead_web_page` ADD `last_updated_at` VARCHAR(255) NULL ",
+				"ALTER TABLE `techlead_web_page` ADD `last_updated_by` VARCHAR(255) NULL ",
+			]);
 
 		setupTable('car_table', []);
 

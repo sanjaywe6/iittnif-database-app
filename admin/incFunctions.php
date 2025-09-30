@@ -1697,7 +1697,7 @@
 							'description' => '',
 						],
 					],
-					'created_by' => [
+					'created_by_username' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Created By',
@@ -1711,7 +1711,7 @@
 							'description' => '',
 						],
 					],
-					'last_updated_by' => [
+					'last_updated_by_username' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated By',
@@ -1725,14 +1725,14 @@
 							'description' => '',
 						],
 					],
-					'created_by_username' => [
+					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Created by Username',
 							'description' => '',
 						],
 					],
-					'last_updated_by_username' => [
+					'last_updated_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated by Username',
@@ -1867,7 +1867,7 @@
 							'description' => 'Maximum file size allowed: 1000 KB.<br>Allowed file types: txt, doc, docx, docm, odt, pdf, rtf',
 						],
 					],
-					'created_by' => [
+					'created_by_username' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Created By',
@@ -1881,7 +1881,7 @@
 							'description' => '',
 						],
 					],
-					'last_updated_by' => [
+					'last_updated_by_username' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated By',
@@ -1895,14 +1895,14 @@
 							'description' => '',
 						],
 					],
-					'created_by_username' => [
+					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Created by Username',
 							'description' => '',
 						],
 					],
-					'last_updated_by_username' => [
+					'last_updated_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated by Username',
@@ -2006,6 +2006,41 @@
 						'appgini' => "DATE NULL",
 						'info' => [
 							'caption' => 'Website Updated Date by IT Team',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created At',
+							'description' => '',
+						],
+					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated by Username',
 							'description' => '',
 						],
 					],
@@ -11429,7 +11464,7 @@
 		return [
 			'user_table' => [],
 			'suggestion' => [
-				'created_by' => 'SELECT CONCAT(
+				'created_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
 					  
@@ -11441,8 +11476,8 @@
 					
 					INNER JOIN %TABLENAME%
 					  
-					ON membership_users.memberID = %TABLENAME%.created_by_username;',
-				'last_updated_by' => 'SELECT CONCAT(
+					ON membership_users.memberID = %TABLENAME%.created_by;',
+				'last_updated_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
 					  
@@ -11454,10 +11489,10 @@
 					
 					INNER JOIN %TABLENAME%
 					  
-					ON membership_users.memberID = %TABLENAME%.last_updated_by_username;',
+					ON membership_users.memberID = %TABLENAME%.last_updated_by;',
 			],
 			'approval_table' => [
-				'created_by' => 'SELECT CONCAT(
+				'created_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
 					  
@@ -11467,26 +11502,51 @@
 					
 					FROM membership_users
 					
-					INNER JOIN %TABLENAME%  
-					ON membership_users.memberID = %TABLENAME%.created_by_username
-					
-					WHERE %TABLENAME%.id = %ID%;',
-				'last_updated_by' => 'SELECT CONCAT(
-  
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by;',
+				'last_updated_by_username' => 'SELECT CONCAT(
+					  
 					membership_users.memberID, \' : \',
-  
+					  
 					membership_users.custom1
-
+					
 					)
 					
-FROM membership_users
+					FROM membership_users
 					
-INNER JOIN %TABLENAME%  
-					ON membership_users.memberID = %TABLENAME%.last_updated_by_username
-
-					WHERE %TABLENAME%.id = %ID%;',
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by;',
 			],
-			'techlead_web_page' => [],
+			'techlead_web_page' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by;',
+				'last_updated_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by;',
+			],
 			'car_table' => [],
 			'car_usage_table' => [],
 			'cycle_table' => [],

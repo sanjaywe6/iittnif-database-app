@@ -2202,7 +2202,7 @@
 					],
 				],
 				'car_usage_table' => [
-					'car_usage_id' => [
+					'id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',

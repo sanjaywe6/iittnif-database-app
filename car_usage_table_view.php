@@ -18,7 +18,7 @@
 
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
-		"`car_usage_table`.`car_usage_id`" => "car_usage_id",
+		"`car_usage_table`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`car_table1`.`car_number`) || CHAR_LENGTH(`car_table1`.`car_model`), CONCAT_WS('',   `car_table1`.`car_number`, '::', `car_table1`.`car_model`), '') /* Select Car */" => "car_lookup",
 		"`car_usage_table`.`used_by`" => "used_by",
 		"if(`car_usage_table`.`datetime_from`,date_format(`car_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'')" => "datetime_from",
@@ -34,7 +34,7 @@
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
-		1 => '`car_usage_table`.`car_usage_id`',
+		1 => '`car_usage_table`.`id`',
 		2 => 2,
 		3 => 3,
 		4 => '`car_usage_table`.`datetime_from`',
@@ -51,7 +51,7 @@
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
-		"`car_usage_table`.`car_usage_id`" => "car_usage_id",
+		"`car_usage_table`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`car_table1`.`car_number`) || CHAR_LENGTH(`car_table1`.`car_model`), CONCAT_WS('',   `car_table1`.`car_number`, '::', `car_table1`.`car_model`), '') /* Select Car */" => "car_lookup",
 		"`car_usage_table`.`used_by`" => "used_by",
 		"if(`car_usage_table`.`datetime_from`,date_format(`car_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'')" => "datetime_from",
@@ -67,7 +67,7 @@
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
-		"`car_usage_table`.`car_usage_id`" => "ID",
+		"`car_usage_table`.`id`" => "ID",
 		"IF(    CHAR_LENGTH(`car_table1`.`car_number`) || CHAR_LENGTH(`car_table1`.`car_model`), CONCAT_WS('',   `car_table1`.`car_number`, '::', `car_table1`.`car_model`), '') /* Select Car */" => "Select Car",
 		"`car_usage_table`.`used_by`" => "Used by",
 		"`car_usage_table`.`datetime_from`" => "Date and time from",
@@ -84,7 +84,7 @@
 
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
-		"`car_usage_table`.`car_usage_id`" => "car_usage_id",
+		"`car_usage_table`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`car_table1`.`car_number`) || CHAR_LENGTH(`car_table1`.`car_model`), CONCAT_WS('',   `car_table1`.`car_number`, '::', `car_table1`.`car_model`), '') /* Select Car */" => "car_lookup",
 		"`car_usage_table`.`used_by`" => "used_by",
 		"if(`car_usage_table`.`datetime_from`,date_format(`car_usage_table`.`datetime_from`,'%d/%m/%Y %H:%i'),'')" => "datetime_from",
@@ -128,14 +128,14 @@
 	$x->ScriptFileName = 'car_usage_table_view.php';
 	$x->TableTitle = 'Car usage table';
 	$x->TableIcon = 'table.gif';
-	$x->PrimaryKey = '`car_usage_table`.`car_usage_id`';
+	$x->PrimaryKey = '`car_usage_table`.`id`';
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Select Car', 'Used by', 'Date and time from', 'Date and time to', 'Total distance run (In KM)', 'Purpose', 'Created By', 'Last Updated By', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
-	$x->ColFieldName = ['car_usage_id', 'car_lookup', 'used_by', 'datetime_from', 'datetime_to', 'total_distance_run', 'purpose', 'created_by', 'last_updated_by', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Select Car', 'Used by', 'Date and time from', 'Date and time to', 'Total distance run (In KM)', 'Purpose', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
+	$x->ColFieldName = ['id', 'car_lookup', 'used_by', 'datetime_from', 'datetime_to', 'total_distance_run', 'purpose', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/car_usage_table_templateTV.html';

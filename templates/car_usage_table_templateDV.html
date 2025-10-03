@@ -224,10 +224,10 @@
 			if(!add_new_mode) {
 				$j('body').append('<div id="admin-tools-appendix"></div>');
 				$j('#admin-tools-appendix').load(
-					'ajax_admin_tools.php?table=car_usage_table&id=<%%URLVALUE(car_usage_id)%%>',
+					'ajax_admin_tools.php?table=car_usage_table&id=<%%URLVALUE(id)%%>',
 					function(resp) {
 						if(!resp.length) return;
-						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=car_usage_table&id=<%%URLVALUE(car_usage_id)%%>');
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=car_usage_table&id=<%%URLVALUE(id)%%>');
 					}
 				);
 			}

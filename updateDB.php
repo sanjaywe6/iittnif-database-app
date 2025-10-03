@@ -20,7 +20,9 @@
 
 		setupTable('car_table', []);
 
-		setupTable('car_usage_table', []);
+		setupTable('car_usage_table', [
+				"ALTER TABLE `car_usage_table` CHANGE `car_usage_id` `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT ",
+			]);
 		setupIndexes('car_usage_table', ['car_lookup',]);
 
 		setupTable('cycle_table', []);

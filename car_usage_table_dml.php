@@ -80,7 +80,7 @@ function car_usage_table_delete($selected_id, $AllowDeleteOfParents = false, $sk
 			);
 	}
 
-	sql("DELETE FROM `car_usage_table` WHERE `car_usage_id`='{$selected_id}'", $eo);
+	sql("DELETE FROM `car_usage_table` WHERE `id`='{$selected_id}'", $eo);
 
 	// hook: car_usage_table_after_delete
 	if(function_exists('car_usage_table_after_delete')) {
@@ -134,7 +134,7 @@ function car_usage_table_update(&$selected_id, &$error_message = '') {
 	if(!update(
 		'car_usage_table',
 		backtick_keys_once($set),
-		['`car_usage_id`' => $selected_id],
+		['`id`' => $selected_id],
 		$error_message
 	)) {
 		echo $error_message;
@@ -149,7 +149,7 @@ function car_usage_table_update(&$selected_id, &$error_message = '') {
 	if(function_exists('car_usage_table_after_update')) {
 		if($row = getRecord('car_usage_table', $data['selectedID'])) $data = array_map('makeSafe', $row);
 
-		$data['selectedID'] = $data['car_usage_id'];
+		$data['selectedID'] = $data['id'];
 		$args = ['old_data' => $old_data];
 		if(!car_usage_table_after_update($data, getMemberInfo(), $args)) return;
 	}
@@ -432,7 +432,7 @@ function car_usage_table_form($selectedId = '', $allowUpdate = true, $allowInser
 	}
 
 	// process images
-	$templateCode = str_replace('<%%UPLOADFILE(car_usage_id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(car_lookup)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(used_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(datetime_from)%%>', '', $templateCode);
@@ -448,8 +448,8 @@ function car_usage_table_form($selectedId = '', $allowUpdate = true, $allowInser
 
 	// process values
 	if($hasSelectedId) {
-		$templateCode = str_replace('<%%VALUE(car_usage_id)%%>', safe_html($urow['car_usage_id']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(car_usage_id)%%>', urlencode($urow['car_usage_id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(car_lookup)%%>', safe_html($urow['car_lookup']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(car_lookup)%%>', urlencode($urow['car_lookup']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(used_by)%%>', safe_html($urow['used_by']), $templateCode);
@@ -477,8 +477,8 @@ function car_usage_table_form($selectedId = '', $allowUpdate = true, $allowInser
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
 	} else {
-		$templateCode = str_replace('<%%VALUE(car_usage_id)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(car_usage_id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(car_lookup)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(car_lookup)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(used_by)%%>', '', $templateCode);

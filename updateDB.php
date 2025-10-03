@@ -18,19 +18,9 @@
 
 		setupTable('techlead_web_page', []);
 
-		setupTable('car_table', [
-				"ALTER TABLE `car_table` ADD `created_by_username` VARCHAR(255) NULL ",
-				"ALTER TABLE `car_table` ADD `created_at` VARCHAR(255) NULL ",
-				"ALTER TABLE `car_table` ADD `last_updated_by_username` VARCHAR(255) NULL ",
-				"ALTER TABLE `car_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('car_table', []);
 
-		setupTable('car_usage_table', [
-				"ALTER TABLE `car_usage_table` ADD `created_by_username` VARCHAR(255) NULL ",
-				"ALTER TABLE `car_usage_table` ADD `created_at` VARCHAR(255) NULL ",
-				"ALTER TABLE `car_usage_table` ADD `last_updated_by_username` VARCHAR(255) NULL ",
-				"ALTER TABLE `car_usage_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('car_usage_table', []);
 		setupIndexes('car_usage_table', ['car_lookup',]);
 
 		setupTable('cycle_table', []);

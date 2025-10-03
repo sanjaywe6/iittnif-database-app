@@ -18,222 +18,109 @@
 
 		setupTable('techlead_web_page', []);
 
-		setupTable('car_table', [
-				" ALTER TABLE `car_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `car_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('car_table', []);
 
-		setupTable('car_usage_table', [
-				" ALTER TABLE `car_usage_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `car_usage_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('car_usage_table', []);
 		setupIndexes('car_usage_table', ['car_lookup',]);
 
-		setupTable('cycle_table', [
-				" ALTER TABLE `cycle_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `cycle_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('cycle_table', []);
 		setupIndexes('cycle_table', ['responsible_contact_person',]);
 
-		setupTable('cycle_usage_table', [
-				" ALTER TABLE `cycle_usage_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `cycle_usage_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('cycle_usage_table', []);
 		setupIndexes('cycle_usage_table', ['cycle_lookup',]);
 
-		setupTable('gym_table', [
-				" ALTER TABLE `gym_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `gym_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('gym_table', []);
 
-		setupTable('coffee_table', [
-				" ALTER TABLE `coffee_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `coffee_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('coffee_table', []);
 
-		setupTable('cafeteria_table', [
-				" ALTER TABLE `cafeteria_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `cafeteria_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('cafeteria_table', []);
 
-		setupTable('event_table', [
-				" ALTER TABLE `event_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `event_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('event_table', []);
 
-		setupTable('outcomes_expected_table', [
-				" ALTER TABLE `outcomes_expected_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `outcomes_expected_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('outcomes_expected_table', []);
 		setupIndexes('outcomes_expected_table', ['event_lookup',]);
 
-		setupTable('event_decision_table', [
-				" ALTER TABLE `event_decision_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `event_decision_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('event_decision_table', []);
 		setupIndexes('event_decision_table', ['outcomes_expected_lookup','decision_actor',]);
 
-		setupTable('meetings_table', [
-				" ALTER TABLE `meetings_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `meetings_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('meetings_table', []);
 		setupIndexes('meetings_table', ['visiting_card_lookup','event_lookup',]);
 
-		setupTable('agenda_table', [
-				" ALTER TABLE `agenda_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `agenda_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('agenda_table', []);
 		setupIndexes('agenda_table', ['meeting_lookup',]);
 
-		setupTable('decision_table', [
-				" ALTER TABLE `decision_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `decision_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('decision_table', []);
 		setupIndexes('decision_table', ['agenda_lookup','decision_actor',]);
 
-		setupTable('participants_table', [
-				" ALTER TABLE `participants_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `participants_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('participants_table', []);
 		setupIndexes('participants_table', ['event_lookup','meeting_lookup',]);
 
-		setupTable('action_actor', [
-				" ALTER TABLE `action_actor` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `action_actor` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('action_actor', []);
 		setupIndexes('action_actor', ['actor',]);
 
-		setupTable('visiting_card_table', [
-				" ALTER TABLE `visiting_card_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `visiting_card_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('visiting_card_table', []);
 		setupIndexes('visiting_card_table', ['given_by',]);
 
-		setupTable('mou_details_table', [
-				" ALTER TABLE `mou_details_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `mou_details_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('mou_details_table', []);
 		setupIndexes('mou_details_table', ['assigned_mou_to',]);
 
-		setupTable('mou_company_area_details_table', [
-				" ALTER TABLE `mou_company_area_details_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `mou_company_area_details_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('mou_company_area_details_table', []);
 		setupIndexes('mou_company_area_details_table', ['name_of_the_company','assigned_mou_to',]);
 
-		setupTable('goal_setting_table', [
-				" ALTER TABLE `goal_setting_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `goal_setting_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('goal_setting_table', []);
 		setupIndexes('goal_setting_table', ['supervisor_name','assigned_to',]);
 
-		setupTable('goal_progress_table', [
-				" ALTER TABLE `goal_progress_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `goal_progress_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('goal_progress_table', []);
 		setupIndexes('goal_progress_table', ['goal_lookup','remarks_by',]);
 
-		setupTable('task_setting_table', [
-				" ALTER TABLE `task_setting_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `task_setting_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('task_setting_table', []);
 		setupIndexes('task_setting_table', ['supervisor_name','assigned_to',]);
 
-		setupTable('subtask_setting_table', [
-				" ALTER TABLE `subtask_setting_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `subtask_setting_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('subtask_setting_table', []);
 		setupIndexes('subtask_setting_table', ['task_lookup','supervisor_name','assigned_to',]);
 
-		setupTable('internship_fellowship_details_app', [
-				" ALTER TABLE `internship_fellowship_details_app` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `internship_fellowship_details_app` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('internship_fellowship_details_app', []);
 
-		setupTable('star_pnt', [
-				" ALTER TABLE `star_pnt` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `star_pnt` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('star_pnt', []);
 		setupIndexes('star_pnt', ['iittnif_id',]);
 
-		setupTable('hrd_sdp_events_table', [
-				" ALTER TABLE `hrd_sdp_events_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `hrd_sdp_events_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('hrd_sdp_events_table', []);
 
-		setupTable('training_program_on_geospatial_tchnologies_table', [
-				" ALTER TABLE `training_program_on_geospatial_tchnologies_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `training_program_on_geospatial_tchnologies_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('training_program_on_geospatial_tchnologies_table', []);
 
-		setupTable('space_day_school_details_app', [
-				" ALTER TABLE `space_day_school_details_app` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `space_day_school_details_app` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('space_day_school_details_app', []);
 
-		setupTable('space_day_college_student_table', [
-				" ALTER TABLE `space_day_college_student_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `space_day_college_student_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('space_day_college_student_table', []);
 
-		setupTable('school_list', [
-				" ALTER TABLE `school_list` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `school_list` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('school_list', []);
 
-		setupTable('sdp_participants_college_details_table', [
-				" ALTER TABLE `sdp_participants_college_details_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `sdp_participants_college_details_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('sdp_participants_college_details_table', []);
 
-		setupTable('asset_table', [
-				" ALTER TABLE `asset_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('asset_table', []);
 
-		setupTable('asset_allotment_table', [
-				" ALTER TABLE `asset_allotment_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('asset_allotment_table', []);
 		setupIndexes('asset_allotment_table', ['asset_lookup','select_employee','alloted_by',]);
 
-		setupTable('sub_asset_table', [
-				" ALTER TABLE `sub_asset_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('sub_asset_table', []);
 
-		setupTable('sub_asset_allotment_table', [
-				" ALTER TABLE `sub_asset_allotment_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('sub_asset_allotment_table', []);
 		setupIndexes('sub_asset_allotment_table', ['sub_asset_lookup','select_employee','alloted_by',]);
 
-		setupTable('it_inventory_app', [
-				" ALTER TABLE `it_inventory_app` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('it_inventory_app', []);
 		setupIndexes('it_inventory_app', ['sactioned_by',]);
 
-		setupTable('it_inventory_billing_details', [
-				" ALTER TABLE `it_inventory_billing_details` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('it_inventory_billing_details', []);
 		setupIndexes('it_inventory_billing_details', ['it_inventory_lookup',]);
 
-		setupTable('it_inventory_allotment_table', [
-				" ALTER TABLE `it_inventory_allotment_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('it_inventory_allotment_table', []);
 		setupIndexes('it_inventory_allotment_table', ['select_employee','alloted_by',]);
 
-		setupTable('computer_details_table', [
-				" ALTER TABLE `computer_details_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `computer_details_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('computer_details_table', []);
 
-		setupTable('computer_user_details', [
-				" ALTER TABLE `computer_user_details` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `computer_user_details` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('computer_user_details', []);
 		setupIndexes('computer_user_details', ['pc_id',]);
 
-		setupTable('computer_allotment_table', [
-				" ALTER TABLE `computer_allotment_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `computer_allotment_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('computer_allotment_table', []);
 		setupIndexes('computer_allotment_table', ['pc_id',]);
 
 		setupTable('employees_personal_data_table', []);
@@ -332,26 +219,14 @@
 		setupTable('project_details_tdp', []);
 		setupIndexes('project_details_tdp', ['project_number',]);
 
-		setupTable('newsletter_table', [
-				" ALTER TABLE `newsletter_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `newsletter_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('newsletter_table', []);
 
-		setupTable('contact_call_log_table', [
-				" ALTER TABLE `contact_call_log_table` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `contact_call_log_table` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('contact_call_log_table', []);
 
-		setupTable('r_and_d_monthly_progress_app', [
-				" ALTER TABLE `r_and_d_monthly_progress_app` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `r_and_d_monthly_progress_app` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('r_and_d_monthly_progress_app', []);
 		setupIndexes('r_and_d_monthly_progress_app', ['r_and_d_lookup',]);
 
-		setupTable('r_and_d_quarterly_progress_app', [
-				" ALTER TABLE `r_and_d_quarterly_progress_app` CHANGE `created_by` `created_by` VARCHAR(255) NULL ",
-				" ALTER TABLE `r_and_d_quarterly_progress_app` CHANGE `last_updated_by` `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('r_and_d_quarterly_progress_app', []);
 		setupIndexes('r_and_d_quarterly_progress_app', ['r_and_d_lookup',]);
 
 

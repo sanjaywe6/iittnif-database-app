@@ -35,6 +35,10 @@
 		"`car_table`.`purpose`" => "purpose",
 		"`car_table`.`created_by`" => "created_by",
 		"`car_table`.`last_updated_by`" => "last_updated_by",
+		"`car_table`.`created_by_username`" => "created_by_username",
+		"`car_table`.`created_at`" => "created_at",
+		"`car_table`.`last_updated_by_username`" => "last_updated_by_username",
+		"`car_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -55,6 +59,10 @@
 		15 => 15,
 		16 => 16,
 		17 => 17,
+		18 => 18,
+		19 => 19,
+		20 => 20,
+		21 => 21,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -76,6 +84,10 @@
 		"`car_table`.`purpose`" => "purpose",
 		"`car_table`.`created_by`" => "created_by",
 		"`car_table`.`last_updated_by`" => "last_updated_by",
+		"`car_table`.`created_by_username`" => "created_by_username",
+		"`car_table`.`created_at`" => "created_at",
+		"`car_table`.`last_updated_by_username`" => "last_updated_by_username",
+		"`car_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -96,6 +108,10 @@
 		"`car_table`.`purpose`" => "Purpose",
 		"`car_table`.`created_by`" => "Created By",
 		"`car_table`.`last_updated_by`" => "Last Updated By",
+		"`car_table`.`created_by_username`" => "Created By Username",
+		"`car_table`.`created_at`" => "Created At",
+		"`car_table`.`last_updated_by_username`" => "Last Updated by Username",
+		"`car_table`.`last_updated_at`" => "Last Updated At",
 	];
 
 	// Fields that can be quick searched
@@ -117,6 +133,10 @@
 		"`car_table`.`purpose`" => "purpose",
 		"`car_table`.`created_by`" => "created_by",
 		"`car_table`.`last_updated_by`" => "last_updated_by",
+		"`car_table`.`created_by_username`" => "created_by_username",
+		"`car_table`.`created_at`" => "created_at",
+		"`car_table`.`last_updated_by_username`" => "last_updated_by_username",
+		"`car_table`.`last_updated_at`" => "last_updated_at",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -152,10 +172,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Car number', 'Registration number', 'Car model', 'Car Vehicle Identification Number', 'Fuel type', 'Seating capacity', 'Car color', 'Rental company name', 'Contact person', 'Contact number of person', 'Rental rate (In INR)', 'Rental start date', 'Rental end date', 'Purpose', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['id', 'car_number', 'registration_number', 'car_model', 'car_vin', 'fuel_type', 'seating_capacity', 'car_color', 'rental_company_name', 'contact_person', 'contact_number_of_person', 'rental_rate', 'rental_start_date', 'rental_end_date', 'purpose', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Car number', 'Registration number', 'Car model', 'Car Vehicle Identification Number', 'Fuel type', 'Seating capacity', 'Car color', 'Rental company name', 'Contact person', 'Contact number of person', 'Rental rate (In INR)', 'Rental start date', 'Rental end date', 'Purpose', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
+	$x->ColFieldName = ['id', 'car_number', 'registration_number', 'car_model', 'car_vin', 'fuel_type', 'seating_capacity', 'car_color', 'rental_company_name', 'contact_person', 'contact_number_of_person', 'rental_rate', 'rental_start_date', 'rental_end_date', 'purpose', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/car_table_templateTV.html';
@@ -166,7 +186,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

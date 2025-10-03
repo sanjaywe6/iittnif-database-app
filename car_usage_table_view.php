@@ -27,6 +27,10 @@
 		"`car_usage_table`.`purpose`" => "purpose",
 		"`car_usage_table`.`created_by`" => "created_by",
 		"`car_usage_table`.`last_updated_by`" => "last_updated_by",
+		"`car_usage_table`.`created_by_username`" => "created_by_username",
+		"`car_usage_table`.`created_at`" => "created_at",
+		"`car_usage_table`.`last_updated_by_username`" => "last_updated_by_username",
+		"`car_usage_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -39,6 +43,10 @@
 		7 => 7,
 		8 => 8,
 		9 => 9,
+		10 => 10,
+		11 => 11,
+		12 => 12,
+		13 => 13,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -52,6 +60,10 @@
 		"`car_usage_table`.`purpose`" => "purpose",
 		"`car_usage_table`.`created_by`" => "created_by",
 		"`car_usage_table`.`last_updated_by`" => "last_updated_by",
+		"`car_usage_table`.`created_by_username`" => "created_by_username",
+		"`car_usage_table`.`created_at`" => "created_at",
+		"`car_usage_table`.`last_updated_by_username`" => "last_updated_by_username",
+		"`car_usage_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -64,6 +76,10 @@
 		"`car_usage_table`.`purpose`" => "Purpose",
 		"`car_usage_table`.`created_by`" => "Created By",
 		"`car_usage_table`.`last_updated_by`" => "Last Updated By",
+		"`car_usage_table`.`created_by_username`" => "Created By Username",
+		"`car_usage_table`.`created_at`" => "Created At",
+		"`car_usage_table`.`last_updated_by_username`" => "Last Updated by Username",
+		"`car_usage_table`.`last_updated_at`" => "Last Updated At",
 	];
 
 	// Fields that can be quick searched
@@ -77,6 +93,10 @@
 		"`car_usage_table`.`purpose`" => "purpose",
 		"`car_usage_table`.`created_by`" => "created_by",
 		"`car_usage_table`.`last_updated_by`" => "last_updated_by",
+		"`car_usage_table`.`created_by_username`" => "created_by_username",
+		"`car_usage_table`.`created_at`" => "created_at",
+		"`car_usage_table`.`last_updated_by_username`" => "last_updated_by_username",
+		"`car_usage_table`.`last_updated_at`" => "last_updated_at",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -112,10 +132,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Select Car', 'Used by', 'Date and time from', 'Date and time to', 'Total distance run (In KM)', 'Purpose', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['car_usage_id', 'car_lookup', 'used_by', 'datetime_from', 'datetime_to', 'total_distance_run', 'purpose', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Select Car', 'Used by', 'Date and time from', 'Date and time to', 'Total distance run (In KM)', 'Purpose', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
+	$x->ColFieldName = ['car_usage_id', 'car_lookup', 'used_by', 'datetime_from', 'datetime_to', 'total_distance_run', 'purpose', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/car_usage_table_templateTV.html';
@@ -126,7 +146,7 @@
 	$x->ShowTableHeader = 1;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

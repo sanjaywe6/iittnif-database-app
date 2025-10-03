@@ -1905,7 +1905,7 @@
 					'last_updated_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Last Updated',
+							'caption' => 'Last Updated By',
 							'description' => '',
 						],
 					],
@@ -11483,7 +11483,8 @@
 					
 					INNER JOIN %TABLENAME%
 					  
-					ON membership_users.memberID = %TABLENAME%.created_by;',
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.id = %ID%;',
 				'last_updated_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -11496,7 +11497,8 @@
 					
 					INNER JOIN %TABLENAME%
 					  
-					ON membership_users.memberID = %TABLENAME%.last_updated_by;',
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.id = %ID%;',
 			],
 			'approval_table' => [
 				'created_by_username' => 'SELECT CONCAT(
@@ -11511,7 +11513,8 @@
 					
 					INNER JOIN %TABLENAME%
 					  
-					ON membership_users.memberID = %TABLENAME%.created_by;',
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.id = %ID%;',
 				'last_updated_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -11524,7 +11527,8 @@
 					
 					INNER JOIN %TABLENAME%
 					  
-					ON membership_users.memberID = %TABLENAME%.last_updated_by;',
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.id = %ID%;',
 			],
 			'techlead_web_page' => [
 				'created_by_username' => 'SELECT CONCAT(
@@ -11539,7 +11543,8 @@
 					
 					INNER JOIN %TABLENAME%
 					  
-					ON membership_users.memberID = %TABLENAME%.created_by;',
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.id = %ID%;',
 				'last_updated_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -11552,7 +11557,8 @@
 					
 					INNER JOIN %TABLENAME%
 					  
-					ON membership_users.memberID = %TABLENAME%.last_updated_by;',
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.id = %ID%;',
 			],
 			'car_table' => [],
 			'car_usage_table' => [],

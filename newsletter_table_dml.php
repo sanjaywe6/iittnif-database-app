@@ -21,7 +21,7 @@ function newsletter_table_insert(&$error_message = '') {
 		'dates_of_events' => Request::val('dates_of_events', ''),
 		'writeup_about_event' => br2nl(Request::val('writeup_about_event', '')),
 		'img1' => Request::fileUpload('img1', [
-			'maxSize' => 102400000,
+			'maxSize' => 1024000000,
 			'types' => 'jpg|jpeg|gif|png|webp',
 			'noRename' => false,
 			'dir' => '',
@@ -37,7 +37,7 @@ function newsletter_table_insert(&$error_message = '') {
 			},
 		]),
 		'img2' => Request::fileUpload('img2', [
-			'maxSize' => 102400000,
+			'maxSize' => 1024000000,
 			'types' => 'jpg|jpeg|gif|png|webp',
 			'noRename' => false,
 			'dir' => '',
@@ -148,7 +148,7 @@ function newsletter_table_update(&$selected_id, &$error_message = '') {
 		'dates_of_events' => Request::val('dates_of_events', ''),
 		'writeup_about_event' => br2nl(Request::val('writeup_about_event', '')),
 		'img1' => Request::fileUpload('img1', [
-			'maxSize' => 102400000,
+			'maxSize' => 1024000000,
 			'types' => 'jpg|jpeg|gif|png|webp',
 			'noRename' => false,
 			'dir' => '',
@@ -179,7 +179,7 @@ function newsletter_table_update(&$selected_id, &$error_message = '') {
 			},
 		]),
 		'img2' => Request::fileUpload('img2', [
-			'maxSize' => 102400000,
+			'maxSize' => 1024000000,
 			'types' => 'jpg|jpeg|gif|png|webp',
 			'noRename' => false,
 			'dir' => '',
@@ -469,13 +469,13 @@ function newsletter_table_form($selectedId = '', $allowUpdate = true, $allowInse
 	$templateCode = str_replace('<%%UPLOADFILE(name_of_event)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(dates_of_events)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(writeup_about_event)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(img1)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="img1" id="img1" data-filetypes="jpg|jpeg|gif|png|webp" data-maxsize="102400000" style="max-width: calc(100% - 1.5rem);" accept="capture=camera,image/*">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(img1)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="img1" id="img1" data-filetypes="jpg|jpeg|gif|png|webp" data-maxsize="1024000000" style="max-width: calc(100% - 1.5rem);" accept="capture=camera,image/*">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
 	if($allowUpdate && $row['img1'] != '') {
 		$templateCode = str_replace('<%%REMOVEFILE(img1)%%>', '<input type="checkbox" name="img1_remove" id="img1_remove" value="1"> <label for="img1_remove" style="color: red; font-weight: bold;">'.$Translation['remove image'].'</label>', $templateCode);
 	} else {
 		$templateCode = str_replace('<%%REMOVEFILE(img1)%%>', '', $templateCode);
 	}
-	$templateCode = str_replace('<%%UPLOADFILE(img2)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="img2" id="img2" data-filetypes="jpg|jpeg|gif|png|webp" data-maxsize="102400000" style="max-width: calc(100% - 1.5rem);" accept="capture=camera,image/*">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(img2)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="img2" id="img2" data-filetypes="jpg|jpeg|gif|png|webp" data-maxsize="1024000000" style="max-width: calc(100% - 1.5rem);" accept="capture=camera,image/*">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
 	if($allowUpdate && $row['img2'] != '') {
 		$templateCode = str_replace('<%%REMOVEFILE(img2)%%>', '<input type="checkbox" name="img2_remove" id="img2_remove" value="1"> <label for="img2_remove" style="color: red; font-weight: bold;">'.$Translation['remove image'].'</label>', $templateCode);
 	} else {

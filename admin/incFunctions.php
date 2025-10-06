@@ -10018,14 +10018,14 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'First Image',
-							'description' => 'Maximum file size allowed: 100000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
+							'description' => 'Maximum file size allowed: 1000000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
 						],
 					],
 					'img2' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Second Image',
-							'description' => 'Maximum file size allowed: 100000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
+							'description' => 'Maximum file size allowed: 1000000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
 						],
 					],
 					'created_by' => [

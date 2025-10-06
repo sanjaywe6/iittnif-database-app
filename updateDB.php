@@ -20,15 +20,18 @@
 
 		setupTable('car_table', []);
 
-		setupTable('car_usage_table', [
-				"ALTER TABLE `car_usage_table` CHANGE `car_usage_id` `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT ",
-			]);
+		setupTable('car_usage_table', []);
 		setupIndexes('car_usage_table', ['car_lookup',]);
 
 		setupTable('cycle_table', []);
 		setupIndexes('cycle_table', ['responsible_contact_person',]);
 
-		setupTable('cycle_usage_table', []);
+		setupTable('cycle_usage_table', [
+				"ALTER TABLE `cycle_usage_table` ADD `created_by_username` VARCHAR(255) NULL ",
+				"ALTER TABLE `cycle_usage_table` ADD `created_at` VARCHAR(255) NULL ",
+				"ALTER TABLE `cycle_usage_table` ADD `last_updated_by_username` VARCHAR(255) NULL ",
+				"ALTER TABLE `cycle_usage_table` ADD `last_updated_at` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('cycle_usage_table', ['cycle_lookup',]);
 
 		setupTable('gym_table', []);

@@ -27,6 +27,10 @@
 		"`cycle_table`.`purpose`" => "purpose",
 		"`cycle_table`.`created_by`" => "created_by",
 		"`cycle_table`.`last_updated_by`" => "last_updated_by",
+		"`cycle_table`.`created_by_username`" => "created_by_username",
+		"`cycle_table`.`created_at`" => "created_at",
+		"`cycle_table`.`last_updated_by_username`" => "last_updated_by_username",
+		"`cycle_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -39,6 +43,10 @@
 		7 => 7,
 		8 => 8,
 		9 => 9,
+		10 => 10,
+		11 => 11,
+		12 => 12,
+		13 => 13,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -52,6 +60,10 @@
 		"`cycle_table`.`purpose`" => "purpose",
 		"`cycle_table`.`created_by`" => "created_by",
 		"`cycle_table`.`last_updated_by`" => "last_updated_by",
+		"`cycle_table`.`created_by_username`" => "created_by_username",
+		"`cycle_table`.`created_at`" => "created_at",
+		"`cycle_table`.`last_updated_by_username`" => "last_updated_by_username",
+		"`cycle_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -64,6 +76,10 @@
 		"`cycle_table`.`purpose`" => "Purpose",
 		"`cycle_table`.`created_by`" => "Created By",
 		"`cycle_table`.`last_updated_by`" => "Last Updated By",
+		"`cycle_table`.`created_by_username`" => "Created By Username",
+		"`cycle_table`.`created_at`" => "Created At",
+		"`cycle_table`.`last_updated_by_username`" => "Last Updated by Username",
+		"`cycle_table`.`last_updated_at`" => "Last Updated At",
 	];
 
 	// Fields that can be quick searched
@@ -77,6 +93,10 @@
 		"`cycle_table`.`purpose`" => "purpose",
 		"`cycle_table`.`created_by`" => "created_by",
 		"`cycle_table`.`last_updated_by`" => "last_updated_by",
+		"`cycle_table`.`created_by_username`" => "created_by_username",
+		"`cycle_table`.`created_at`" => "created_at",
+		"`cycle_table`.`last_updated_by_username`" => "last_updated_by_username",
+		"`cycle_table`.`last_updated_at`" => "last_updated_at",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -112,10 +132,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Registration number', 'Cycle model', 'Cycle color', 'Responsible Contact Person', 'Contact number of person', 'Purpose', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['id', 'registration_number', 'cycle_model', 'cycle_color', 'responsible_contact_person', 'contact_number_of_person', 'purpose', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Registration number', 'Cycle model', 'Cycle color', 'Responsible Contact Person', 'Contact number of person', 'Purpose', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
+	$x->ColFieldName = ['id', 'registration_number', 'cycle_model', 'cycle_color', 'responsible_contact_person', 'contact_number_of_person', 'purpose', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/cycle_table_templateTV.html';
@@ -126,7 +146,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

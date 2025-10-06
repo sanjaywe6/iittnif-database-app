@@ -1,4 +1,4 @@
-		<td colspan="9" class="row">
+		<td colspan="11" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="cycle_table-id-caption field-caption-tv">ID</dt>
@@ -16,21 +16,27 @@
 					<dt class="cycle_table-responsible_contact_person-caption field-caption-tv">Responsible Contact Person</dt>
 					<dd id="cycle_table-responsible_contact_person-<%%VALUE(id)%%>" class="cycle_table-responsible_contact_person"><%%SELECT%%><%%VALUE(responsible_contact_person)%%><%%ENDSELECT%%></dd>
 
+					<dt class="cycle_table-contact_number_of_person-caption field-caption-tv">Contact number of person</dt>
+					<dd id="cycle_table-contact_number_of_person-<%%VALUE(id)%%>" class="cycle_table-contact_number_of_person"><%%SELECT%%><%%VALUE(contact_number_of_person)%%><%%ENDSELECT%%></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="cycle_table-contact_number_of_person-caption field-caption-tv">Contact number of person</dt>
-					<dd id="cycle_table-contact_number_of_person-<%%VALUE(id)%%>" class="cycle_table-contact_number_of_person"><%%SELECT%%><%%VALUE(contact_number_of_person)%%><%%ENDSELECT%%></dd>
-
 					<dt class="cycle_table-purpose-caption field-caption-tv">Purpose</dt>
 					<dd id="cycle_table-purpose-<%%VALUE(id)%%>" class="cycle_table-purpose"><%%SELECT%%><%%VALUE(purpose)%%><%%ENDSELECT%%></dd>
 
-					<dt class="cycle_table-created_by-caption field-caption-tv">Created By</dt>
-					<dd id="cycle_table-created_by-<%%VALUE(id)%%>" class="cycle_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
+					<dt class="cycle_table-created_by_username-caption field-caption-tv">Created By Username</dt>
+					<dd id="cycle_table-created_by_username-<%%VALUE(id)%%>" class="cycle_table-created_by_username"><%%SELECT%%><%%VALUE(created_by_username)%%><%%ENDSELECT%%></dd>
 
-					<dt class="cycle_table-last_updated_by-caption field-caption-tv">Last Updated By</dt>
-					<dd id="cycle_table-last_updated_by-<%%VALUE(id)%%>" class="cycle_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
+					<dt class="cycle_table-created_at-caption field-caption-tv">Created At</dt>
+					<dd id="cycle_table-created_at-<%%VALUE(id)%%>" class="cycle_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="cycle_table-last_updated_by_username-caption field-caption-tv">Last Updated by Username</dt>
+					<dd id="cycle_table-last_updated_by_username-<%%VALUE(id)%%>" class="cycle_table-last_updated_by_username"><%%SELECT%%><%%VALUE(last_updated_by_username)%%><%%ENDSELECT%%></dd>
+
+					<dt class="cycle_table-last_updated_at-caption field-caption-tv">Last Updated At</dt>
+					<dd id="cycle_table-last_updated_at-<%%VALUE(id)%%>" class="cycle_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>

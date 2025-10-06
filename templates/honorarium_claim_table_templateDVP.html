@@ -14,9 +14,9 @@
 
 <div class="panel-body">
 	<fieldset class="form-horizontal">
-		<!-- Field: Name of Advisor/Consultant -->
+		<!-- Field: Name of Advisor/Expert/Consultant -->
 		<div class="form-group honorarium_claim_table-name_of_advisor" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Name of Advisor/Consultant</label>
+			<label class="col-xs-3 control-label">Name of Advisor/Expert/Consultant</label>
 			<div class="col-xs-9">
 				<div class="form-control-static"><%%VALUE(name_of_advisor)%%></div>
 			</div>
@@ -208,6 +208,20 @@
 			<label class="col-xs-3 control-label">Remarks for Approval (For Office Use of TIH)</label>
 			<div class="col-xs-9">
 				<div class="form-control-static"><%%VALUE(remarks_for_approval)%%></div>
+			</div>
+		</div>
+		<!-- Field: Created by Username -->
+		<div class="form-group honorarium_claim_table-created_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Created by Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(created_by_username)%%></div>
+			</div>
+		</div>
+		<!-- Field: Last Updated By Username -->
+		<div class="form-group honorarium_claim_table-last_updated_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Last Updated By Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(last_updated_by_username)%%></div>
 			</div>
 		</div>
 		<!-- Field: Approved At -->

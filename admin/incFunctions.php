@@ -7806,7 +7806,7 @@
 					'name_of_advisor' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Name of Advisor/Consultant',
+							'caption' => 'Name of Advisor/Expert/Consultant',
 							'description' => '',
 						],
 					],
@@ -7999,6 +7999,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by Username',
+							'description' => '',
+						],
+					],
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
@@ -8010,6 +8017,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Created At',
+							'description' => '',
+						],
+					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By Username',
 							'description' => '',
 						],
 					],
@@ -11900,7 +11914,36 @@
 			'problem_statement_table' => [],
 			'evaluators_table' => [],
 			'approval_billing_table' => [],
-			'honorarium_claim_table' => [],
+			'honorarium_claim_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.id = %ID%;',
+				'last_updated_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.id = %ID%;',
+			],
 			'all_bank_account_statement_table' => [],
 			'payment_track_details_table' => [],
 			'travel_table' => [],
@@ -12231,7 +12274,7 @@
 				'paid_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'honorarium_claim_table' => [
-				'coordinated_by_tih_user' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+				'coordinated_by_tih_user' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`name`) || CHAR_LENGTH(`user_table`.`memberID`), CONCAT_WS(\'\', `user_table`.`name`, \'::\', `user_table`.`memberID`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'all_bank_account_statement_table' => [
 			],

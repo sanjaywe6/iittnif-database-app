@@ -41,14 +41,16 @@
 		"`honorarium_claim_table`.`total_no_of_hours`" => "total_no_of_hours",
 		"`honorarium_claim_table`.`case_reference_email_subject`" => "case_reference_email_subject",
 		"`honorarium_claim_table`.`activities`" => "activities",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Coordinated by TIH User (For Office Use of TIH) */" => "coordinated_by_tih_user",
+		"IF(    CHAR_LENGTH(`user_table1`.`name`) || CHAR_LENGTH(`user_table1`.`memberID`), CONCAT_WS('',   `user_table1`.`name`, '::', `user_table1`.`memberID`), '') /* Coordinated by TIH User (For Office Use of TIH) */" => "coordinated_by_tih_user",
 		"if(`honorarium_claim_table`.`payment_date`,date_format(`honorarium_claim_table`.`payment_date`,'%d/%m/%Y'),'')" => "payment_date",
 		"`honorarium_claim_table`.`amount_paid`" => "amount_paid",
 		"`honorarium_claim_table`.`transaction_details`" => "transaction_details",
 		"`honorarium_claim_table`.`approval_status`" => "approval_status",
 		"`honorarium_claim_table`.`remarks_for_approval`" => "remarks_for_approval",
+		"`honorarium_claim_table`.`created_by_username`" => "created_by_username",
 		"`honorarium_claim_table`.`created_by`" => "created_by",
 		"`honorarium_claim_table`.`created_at`" => "created_at",
+		"`honorarium_claim_table`.`last_updated_by_username`" => "last_updated_by_username",
 		"`honorarium_claim_table`.`last_updated_by`" => "last_updated_by",
 		"`honorarium_claim_table`.`last_updated_at`" => "last_updated_at",
 	];
@@ -87,6 +89,8 @@
 		31 => 31,
 		32 => 32,
 		33 => 33,
+		34 => 34,
+		35 => 35,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -114,21 +118,23 @@
 		"`honorarium_claim_table`.`total_no_of_hours`" => "total_no_of_hours",
 		"`honorarium_claim_table`.`case_reference_email_subject`" => "case_reference_email_subject",
 		"`honorarium_claim_table`.`activities`" => "activities",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Coordinated by TIH User (For Office Use of TIH) */" => "coordinated_by_tih_user",
+		"IF(    CHAR_LENGTH(`user_table1`.`name`) || CHAR_LENGTH(`user_table1`.`memberID`), CONCAT_WS('',   `user_table1`.`name`, '::', `user_table1`.`memberID`), '') /* Coordinated by TIH User (For Office Use of TIH) */" => "coordinated_by_tih_user",
 		"if(`honorarium_claim_table`.`payment_date`,date_format(`honorarium_claim_table`.`payment_date`,'%d/%m/%Y'),'')" => "payment_date",
 		"`honorarium_claim_table`.`amount_paid`" => "amount_paid",
 		"`honorarium_claim_table`.`transaction_details`" => "transaction_details",
 		"`honorarium_claim_table`.`approval_status`" => "approval_status",
 		"`honorarium_claim_table`.`remarks_for_approval`" => "remarks_for_approval",
+		"`honorarium_claim_table`.`created_by_username`" => "created_by_username",
 		"`honorarium_claim_table`.`created_by`" => "created_by",
 		"`honorarium_claim_table`.`created_at`" => "created_at",
+		"`honorarium_claim_table`.`last_updated_by_username`" => "last_updated_by_username",
 		"`honorarium_claim_table`.`last_updated_by`" => "last_updated_by",
 		"`honorarium_claim_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`honorarium_claim_table`.`id`" => "ID",
-		"`honorarium_claim_table`.`name_of_advisor`" => "Name of Advisor/Consultant",
+		"`honorarium_claim_table`.`name_of_advisor`" => "Name of Advisor/Expert/Consultant",
 		"`honorarium_claim_table`.`email_advisor`" => "Eamil ID of Advisor/Consultant",
 		"`honorarium_claim_table`.`department_of_tih`" => "Department of TIH",
 		"`honorarium_claim_table`.`bank_account_no`" => "Bank Account No.",
@@ -150,14 +156,16 @@
 		"`honorarium_claim_table`.`total_no_of_hours`" => "Total no of hours",
 		"`honorarium_claim_table`.`case_reference_email_subject`" => "Case Reference Email Subject (If Any)",
 		"`honorarium_claim_table`.`activities`" => "Activities/Deliverables",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Coordinated by TIH User (For Office Use of TIH) */" => "Coordinated by TIH User (For Office Use of TIH)",
+		"IF(    CHAR_LENGTH(`user_table1`.`name`) || CHAR_LENGTH(`user_table1`.`memberID`), CONCAT_WS('',   `user_table1`.`name`, '::', `user_table1`.`memberID`), '') /* Coordinated by TIH User (For Office Use of TIH) */" => "Coordinated by TIH User (For Office Use of TIH)",
 		"`honorarium_claim_table`.`payment_date`" => "Payment date (For Office Use of TIH)",
 		"`honorarium_claim_table`.`amount_paid`" => "Amount paid (For Office Use of TIH)",
 		"`honorarium_claim_table`.`transaction_details`" => "Transaction details (For Office Use of TIH)",
 		"`honorarium_claim_table`.`approval_status`" => "Approval Status (For Office Use of TIH)",
 		"`honorarium_claim_table`.`remarks_for_approval`" => "Remarks for Approval (For Office Use of TIH)",
+		"`honorarium_claim_table`.`created_by_username`" => "Created by Username",
 		"`honorarium_claim_table`.`created_by`" => "Created By",
 		"`honorarium_claim_table`.`created_at`" => "Created At",
+		"`honorarium_claim_table`.`last_updated_by_username`" => "Last Updated By Username",
 		"`honorarium_claim_table`.`last_updated_by`" => "Last Updated By",
 		"`honorarium_claim_table`.`last_updated_at`" => "Approved At",
 	];
@@ -187,14 +195,16 @@
 		"`honorarium_claim_table`.`total_no_of_hours`" => "total_no_of_hours",
 		"`honorarium_claim_table`.`case_reference_email_subject`" => "case_reference_email_subject",
 		"`honorarium_claim_table`.`activities`" => "activities",
-		"IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') /* Coordinated by TIH User (For Office Use of TIH) */" => "coordinated_by_tih_user",
+		"IF(    CHAR_LENGTH(`user_table1`.`name`) || CHAR_LENGTH(`user_table1`.`memberID`), CONCAT_WS('',   `user_table1`.`name`, '::', `user_table1`.`memberID`), '') /* Coordinated by TIH User (For Office Use of TIH) */" => "coordinated_by_tih_user",
 		"if(`honorarium_claim_table`.`payment_date`,date_format(`honorarium_claim_table`.`payment_date`,'%d/%m/%Y'),'')" => "payment_date",
 		"`honorarium_claim_table`.`amount_paid`" => "amount_paid",
 		"`honorarium_claim_table`.`transaction_details`" => "transaction_details",
 		"`honorarium_claim_table`.`approval_status`" => "approval_status",
 		"`honorarium_claim_table`.`remarks_for_approval`" => "remarks_for_approval",
+		"`honorarium_claim_table`.`created_by_username`" => "created_by_username",
 		"`honorarium_claim_table`.`created_by`" => "created_by",
 		"`honorarium_claim_table`.`created_at`" => "created_at",
+		"`honorarium_claim_table`.`last_updated_by_username`" => "last_updated_by_username",
 		"`honorarium_claim_table`.`last_updated_by`" => "last_updated_by",
 		"`honorarium_claim_table`.`last_updated_at`" => "last_updated_at",
 	];
@@ -233,9 +243,9 @@
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Name of Advisor/Consultant', 'Eamil ID of Advisor/Consultant', 'Department of TIH', 'Bank Account No.', 'IFSC Code', 'Bank Name', 'PAN', 'Place of work (Visit) / Online', 'Day 1 Date', 'No. Hours', 'Day 2 Date', 'No. Hours', 'Day 3 Date', 'No. Hours', 'Day 4 Date', 'No. Hours', 'Day 5 Date', 'No. Hours', 'Total No. of Days', 'Total no of hours', 'Case Reference Email Subject (If Any)', 'Activities/Deliverables', 'Coordinated by TIH User (For Office Use of TIH)', 'Payment date (For Office Use of TIH)', 'Amount paid (For Office Use of TIH)', 'Transaction details (For Office Use of TIH)', 'Approval Status (For Office Use of TIH)', 'Remarks for Approval (For Office Use of TIH)', 'Created By', 'Created At', 'Last Updated By', 'Approved At', ];
-	$x->ColFieldName = ['id', 'name_of_advisor', 'email_advisor', 'department_of_tih', 'bank_account_no', 'ifsc_code', 'bank_name', 'pan', 'place_of_work', 'date_1', 'hours_1', 'date_2', 'hours_2', 'date_3', 'hours_3', 'date_4', 'hours_4', 'date_5', 'hours_5', 'total_no_of_days', 'total_no_of_hours', 'case_reference_email_subject', 'activities', 'coordinated_by_tih_user', 'payment_date', 'amount_paid', 'transaction_details', 'approval_status', 'remarks_for_approval', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, ];
+	$x->ColCaption = ['ID', 'Name of Advisor/Expert/Consultant', 'Eamil ID of Advisor/Consultant', 'Department of TIH', 'Bank Account No.', 'IFSC Code', 'Bank Name', 'PAN', 'Place of work (Visit) / Online', 'Day 1 Date', 'No. Hours', 'Day 2 Date', 'No. Hours', 'Day 3 Date', 'No. Hours', 'Day 4 Date', 'No. Hours', 'Day 5 Date', 'No. Hours', 'Total No. of Days', 'Total no of hours', 'Case Reference Email Subject (If Any)', 'Activities/Deliverables', 'Coordinated by TIH User (For Office Use of TIH)', 'Payment date (For Office Use of TIH)', 'Amount paid (For Office Use of TIH)', 'Transaction details (For Office Use of TIH)', 'Approval Status (For Office Use of TIH)', 'Remarks for Approval (For Office Use of TIH)', 'Created by Username', 'Created At', 'Last Updated By Username', 'Approved At', ];
+	$x->ColFieldName = ['id', 'name_of_advisor', 'email_advisor', 'department_of_tih', 'bank_account_no', 'ifsc_code', 'bank_name', 'pan', 'place_of_work', 'date_1', 'hours_1', 'date_2', 'hours_2', 'date_3', 'hours_3', 'date_4', 'hours_4', 'date_5', 'hours_5', 'total_no_of_days', 'total_no_of_hours', 'case_reference_email_subject', 'activities', 'coordinated_by_tih_user', 'payment_date', 'amount_paid', 'transaction_details', 'approval_status', 'remarks_for_approval', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 32, 33, 35, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/honorarium_claim_table_templateTV.html';
@@ -246,7 +256,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

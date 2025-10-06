@@ -26,12 +26,7 @@
 		setupTable('cycle_table', []);
 		setupIndexes('cycle_table', ['responsible_contact_person',]);
 
-		setupTable('cycle_usage_table', [
-				"ALTER TABLE `cycle_usage_table` ADD `created_by_username` VARCHAR(255) NULL ",
-				"ALTER TABLE `cycle_usage_table` ADD `created_at` VARCHAR(255) NULL ",
-				"ALTER TABLE `cycle_usage_table` ADD `last_updated_by_username` VARCHAR(255) NULL ",
-				"ALTER TABLE `cycle_usage_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('cycle_usage_table', []);
 		setupIndexes('cycle_usage_table', ['cycle_lookup',]);
 
 		setupTable('gym_table', []);
@@ -181,7 +176,10 @@
 		setupTable('approval_billing_table', []);
 		setupIndexes('approval_billing_table', ['approval_lookup','paid_by',]);
 
-		setupTable('honorarium_claim_table', []);
+		setupTable('honorarium_claim_table', [
+				"ALTER TABLE `honorarium_claim_table` ADD `created_by_username` VARCHAR(255) NULL ",
+				"ALTER TABLE `honorarium_claim_table` ADD `last_updated_by_username` VARCHAR(255) NULL ",
+			]);
 		setupIndexes('honorarium_claim_table', ['coordinated_by_tih_user',]);
 
 		setupTable('all_bank_account_statement_table', []);

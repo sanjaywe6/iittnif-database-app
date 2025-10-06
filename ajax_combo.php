@@ -782,7 +782,7 @@
 			'coordinated_by_tih_user' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`name`) || CHAR_LENGTH(`user_table`.`memberID`), CONCAT_WS(\'\', `user_table`.`name`, \'::\', `user_table`.`memberID`), \'\')',
 				'parent_from' => '`user_table` ',
 				'filterers' => [],
 				'custom_query' => '',

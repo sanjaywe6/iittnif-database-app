@@ -176,10 +176,7 @@
 		setupTable('approval_billing_table', []);
 		setupIndexes('approval_billing_table', ['approval_lookup','paid_by',]);
 
-		setupTable('honorarium_claim_table', [
-				"ALTER TABLE `honorarium_claim_table` ADD `created_by_username` VARCHAR(255) NULL ",
-				"ALTER TABLE `honorarium_claim_table` ADD `last_updated_by_username` VARCHAR(255) NULL ",
-			]);
+		setupTable('honorarium_claim_table', []);
 		setupIndexes('honorarium_claim_table', ['coordinated_by_tih_user',]);
 
 		setupTable('all_bank_account_statement_table', []);

@@ -505,6 +505,18 @@ function techlead_web_page_validateData(insertMode) {
 
 	return !errors;
 }
+function navavishkar_stay_facilities_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
+function navavishkar_stay_facilities_allotment_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
 function car_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;

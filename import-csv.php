@@ -22,6 +22,22 @@
 
 			return $data;
 		},
+		'navavishkar_stay_facilities_table' => function($data, $options = []) {
+			if(isset($data['item_purchased_date'])) $data['item_purchased_date'] = guessMySQLDateTime($data['item_purchased_date']);
+			if(isset($data['BillDate'])) $data['BillDate'] = guessMySQLDateTime($data['BillDate']);
+			if(isset($data['custodian'])) $data['custodian'] = pkGivenLookupText($data['custodian'], 'navavishkar_stay_facilities_table', 'custodian');
+
+			return $data;
+		},
+		'navavishkar_stay_facilities_allotment_table' => function($data, $options = []) {
+			if(isset($data['item_lookup'])) $data['item_lookup'] = pkGivenLookupText($data['item_lookup'], 'navavishkar_stay_facilities_allotment_table', 'item_lookup');
+			if(isset($data['select_employee'])) $data['select_employee'] = pkGivenLookupText($data['select_employee'], 'navavishkar_stay_facilities_allotment_table', 'select_employee');
+			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
+			if(isset($data['alloted_by'])) $data['alloted_by'] = pkGivenLookupText($data['alloted_by'], 'navavishkar_stay_facilities_allotment_table', 'alloted_by');
+			if(isset($data['returned_date'])) $data['returned_date'] = guessMySQLDateTime($data['returned_date']);
+
+			return $data;
+		},
 		'car_table' => function($data, $options = []) {
 			if(isset($data['rental_start_date'])) $data['rental_start_date'] = guessMySQLDateTime($data['rental_start_date']);
 			if(isset($data['rental_end_date'])) $data['rental_end_date'] = guessMySQLDateTime($data['rental_end_date']);
@@ -521,6 +537,8 @@
 		'suggestion' => function($data, $options = []) { return true; },
 		'approval_table' => function($data, $options = []) { return true; },
 		'techlead_web_page' => function($data, $options = []) { return true; },
+		'navavishkar_stay_facilities_table' => function($data, $options = []) { return true; },
+		'navavishkar_stay_facilities_allotment_table' => function($data, $options = []) { return true; },
 		'car_table' => function($data, $options = []) { return true; },
 		'car_usage_table' => function($data, $options = []) { return true; },
 		'cycle_table' => function($data, $options = []) { return true; },

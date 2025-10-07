@@ -18,6 +18,15 @@
 
 		setupTable('techlead_web_page', []);
 
+		setupTable('navavishkar_stay_facilities_table', [
+				"ALTER TABLE `navavishkar_stay_facilities_table` DROP `last_updated_by`",
+				"ALTER TABLE `navavishkar_stay_facilities_table` ADD `created_by` VARCHAR(255) NULL ",
+			]);
+		setupIndexes('navavishkar_stay_facilities_table', ['custodian',]);
+
+		setupTable('navavishkar_stay_facilities_allotment_table', []);
+		setupIndexes('navavishkar_stay_facilities_allotment_table', ['item_lookup','select_employee','alloted_by',]);
+
 		setupTable('car_table', []);
 
 		setupTable('car_usage_table', []);

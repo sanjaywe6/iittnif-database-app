@@ -146,6 +146,20 @@
 					'group' => $tg[0],
 					'homepageShowCount' => 1
 				],
+				'navavishkar_stay_facilities_table' => [
+					'Caption' => 'Navavishkar Stay Facilities - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[1],
+					'homepageShowCount' => 1
+				],
+				'navavishkar_stay_facilities_allotment_table' => [
+					'Caption' => 'Navavishkar Stay Facilities - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[1],
+					'homepageShowCount' => 1
+				],
 				'car_table' => [
 					'Caption' => 'Car - App',
 					'Description' => '<a href="https://lookerstudio.google.com/reporting/58f87367-3f09-42c0-a288-cf75f313cbed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Car App Report</b></button></a>',
@@ -740,6 +754,8 @@
 			'suggestion' => ['Suggestion/Complaint - App', '', 'table.gif', 'Suggestions &amp; Others App'],
 			'approval_table' => ['Approval - App', '', 'table.gif', 'Approvals &amp; Sanctions'],
 			'techlead_web_page' => ['Tech Manager Web Page  - App', '', 'table.gif', 'Approvals &amp; Sanctions'],
+			'navavishkar_stay_facilities_table' => ['Navavishkar Stay Facilities - App', '', 'table.gif', 'Facilities Apps'],
+			'navavishkar_stay_facilities_allotment_table' => ['Navavishkar Stay Facilities - App', '', 'table.gif', 'Facilities Apps'],
 			'car_table' => ['Car - App', '<a href="https://lookerstudio.google.com/reporting/58f87367-3f09-42c0-a288-cf75f313cbed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Car App Report</b></button></a>', 'table.gif', 'Facilities Apps'],
 			'car_usage_table' => ['Car usage table', '', 'table.gif', 'Facilities Apps'],
 			'cycle_table' => ['Cycle - App', '<a href="https://lookerstudio.google.com/reporting/c941076f-d85a-4899-b163-1337a9b083ed"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Cycle Usage App Report</b></button></a>', 'table.gif', 'Facilities Apps'],
@@ -2048,6 +2064,262 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+				],
+				'navavishkar_stay_facilities_table' => [
+					'id' => [
+						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'item_purchased_date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Item/Service Purchased Date',
+							'description' => '',
+						],
+					],
+					'type_of_item' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'type_of_item',
+							'description' => '',
+						],
+					],
+					'SubCategory' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Sub Category',
+							'description' => '',
+						],
+					],
+					'Item_serial_no' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Item Serial No',
+							'description' => '',
+						],
+					],
+					'particulars_of_supplier_name_address' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Partculars of Supplier Vendor Name & Address',
+							'description' => '',
+						],
+					],
+					'ItemDescription' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Item Description',
+							'description' => '',
+						],
+					],
+					'BillNo' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Bill No.',
+							'description' => '',
+						],
+					],
+					'BillDate' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Bill Date',
+							'description' => '',
+						],
+					],
+					'QUANTITY' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Quantity',
+							'description' => '',
+						],
+					],
+					'CostoftheAssetinINR' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Cost of the Item (in INR)',
+							'description' => '',
+						],
+					],
+					'TotalInvoiceValueinINR' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Total Invoice Value (in INR)',
+							'description' => '',
+						],
+					],
+					'CustodyDepartment' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Custody Department',
+							'description' => '',
+						],
+					],
+					'custodian' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Custodian',
+							'description' => '',
+						],
+					],
+					'remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Remarks (Usage Requirements)',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by Username',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created At',
+							'description' => '',
+						],
+					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By Username',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+				],
+				'navavishkar_stay_facilities_allotment_table' => [
+					'id' => [
+						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'item_lookup' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Asset Details',
+							'description' => '',
+						],
+					],
+					'select_employee' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Select employee',
+							'description' => '',
+						],
+					],
+					'department' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Department',
+							'description' => '',
+						],
+					],
+					'date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Date',
+							'description' => '',
+						],
+					],
+					'purpose' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Purpose',
+							'description' => '',
+						],
+					],
+					'alloted_by' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Alloted by',
+							'description' => '',
+						],
+					],
+					'status' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Status',
+							'description' => '',
+						],
+					],
+					'returned_date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Returned Date',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by Username',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created At',
+							'description' => '',
+						],
+					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
 							'description' => '',
 						],
 					],
@@ -11416,6 +11688,13 @@
 			'approval_table' => [
 				'user_table' => ['person_responsbility'],
 			],
+			'navavishkar_stay_facilities_table' => [
+				'user_table' => ['custodian'],
+			],
+			'navavishkar_stay_facilities_allotment_table' => [
+				'navavishkar_stay_facilities_table' => ['item_lookup'],
+				'user_table' => ['alloted_by', 'select_employee'],
+			],
 			'car_usage_table' => [
 				'car_table' => ['car_lookup'],
 			],
@@ -11657,6 +11936,66 @@
 					WHERE %TABLENAME%.id = %ID%;',
 			],
 			'techlead_web_page' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.id = %ID%;',
+				'last_updated_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.id = %ID%;',
+			],
+			'navavishkar_stay_facilities_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.id = %ID%;',
+				'last_updated_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.id = %ID%;',
+			],
+			'navavishkar_stay_facilities_allotment_table' => [
 				'created_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -12095,6 +12434,14 @@
 				'person_responsbility' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'techlead_web_page' => [
+			],
+			'navavishkar_stay_facilities_table' => [
+				'custodian' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`name`) || CHAR_LENGTH(`user_table`.`memberID`), CONCAT_WS(\'\', `user_table`.`name`, \' ~ \', `user_table`.`memberID`), \'\') FROM `user_table` ORDER BY 2',
+			],
+			'navavishkar_stay_facilities_allotment_table' => [
+				'item_lookup' => 'SELECT `navavishkar_stay_facilities_table`.`id`, IF(CHAR_LENGTH(`navavishkar_stay_facilities_table`.`type_of_item`) || CHAR_LENGTH(`navavishkar_stay_facilities_table`.`ItemDescription`), CONCAT_WS(\'\', `navavishkar_stay_facilities_table`.`type_of_item`, \' ~ \', `navavishkar_stay_facilities_table`.`ItemDescription`), \'\') FROM `navavishkar_stay_facilities_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`navavishkar_stay_facilities_table`.`custodian` ORDER BY 2',
+				'select_employee' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`name`) || CHAR_LENGTH(`user_table`.`memberID`), CONCAT_WS(\'\', `user_table`.`name`, \' ~ \', `user_table`.`memberID`), \'\') FROM `user_table` ORDER BY 2',
+				'alloted_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`name`) || CHAR_LENGTH(`user_table`.`memberID`), CONCAT_WS(\'\', `user_table`.`name`, \' ~ \', `user_table`.`memberID`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'car_table' => [
 			],

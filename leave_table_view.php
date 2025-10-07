@@ -26,12 +26,12 @@
 		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
 		"`leave_table`.`approval_status`" => "approval_status",
 		"`leave_table`.`approval_remarks`" => "approval_remarks",
+		"`leave_table`.`created_by_username`" => "created_by_username",
 		"`leave_table`.`created_by`" => "created_by",
 		"`leave_table`.`created_at`" => "created_at",
+		"`leave_table`.`last_updated_by_username`" => "last_updated_by_username",
 		"`leave_table`.`last_updated_by`" => "last_updated_by",
 		"`leave_table`.`last_updated_at`" => "last_updated_at",
-		"`leave_table`.`created_by_username`" => "created_by_username",
-		"`leave_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -61,12 +61,12 @@
 		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
 		"`leave_table`.`approval_status`" => "approval_status",
 		"`leave_table`.`approval_remarks`" => "approval_remarks",
+		"`leave_table`.`created_by_username`" => "created_by_username",
 		"`leave_table`.`created_by`" => "created_by",
 		"`leave_table`.`created_at`" => "created_at",
+		"`leave_table`.`last_updated_by_username`" => "last_updated_by_username",
 		"`leave_table`.`last_updated_by`" => "last_updated_by",
 		"`leave_table`.`last_updated_at`" => "last_updated_at",
-		"`leave_table`.`created_by_username`" => "created_by_username",
-		"`leave_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -78,12 +78,12 @@
 		"`leave_table`.`to_date`" => "To Date & Time",
 		"`leave_table`.`approval_status`" => "Approval status",
 		"`leave_table`.`approval_remarks`" => "Approval remarks",
+		"`leave_table`.`created_by_username`" => "Created by Username",
 		"`leave_table`.`created_by`" => "Created by",
 		"`leave_table`.`created_at`" => "Created at",
+		"`leave_table`.`last_updated_by_username`" => "Last Updated By Username",
 		"`leave_table`.`last_updated_by`" => "Last updated by",
 		"`leave_table`.`last_updated_at`" => "Last updated at",
-		"`leave_table`.`created_by_username`" => "Created by Username",
-		"`leave_table`.`last_updated_by_username`" => "Last Updated By Username",
 	];
 
 	// Fields that can be quick searched
@@ -96,12 +96,12 @@
 		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
 		"`leave_table`.`approval_status`" => "approval_status",
 		"`leave_table`.`approval_remarks`" => "approval_remarks",
+		"`leave_table`.`created_by_username`" => "created_by_username",
 		"`leave_table`.`created_by`" => "created_by",
 		"`leave_table`.`created_at`" => "created_at",
+		"`leave_table`.`last_updated_by_username`" => "last_updated_by_username",
 		"`leave_table`.`last_updated_by`" => "last_updated_by",
 		"`leave_table`.`last_updated_at`" => "last_updated_at",
-		"`leave_table`.`created_by_username`" => "created_by_username",
-		"`leave_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -138,9 +138,9 @@
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Leave type', 'Purpose of leave', 'From Date', 'To Date & Time', 'Approval status', 'Approval remarks', 'Last updated by', 'Last updated at', 'Created by Username', 'Last Updated By Username', ];
-	$x->ColFieldName = ['id', 'leave_type', 'purpose_of_leave', 'from_date', 'to_date', 'approval_status', 'approval_remarks', 'last_updated_by', 'last_updated_at', 'created_by_username', 'last_updated_by_username', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 11, 12, 13, 14, ];
+	$x->ColCaption = ['ID', 'Leave type', 'Purpose of leave', 'From Date', 'To Date & Time', 'Approval status', 'Approval remarks', 'Created by Username', 'Created at', 'Last Updated By Username', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'leave_type', 'purpose_of_leave', 'from_date', 'to_date', 'approval_status', 'approval_remarks', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/leave_table_templateTV.html';

@@ -6494,6 +6494,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by Username',
+							'description' => '',
+						],
+					],
 					'created_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
@@ -6508,6 +6515,13 @@
 							'description' => '',
 						],
 					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By Username',
+							'description' => '',
+						],
+					],
 					'last_updated_by' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
@@ -6519,20 +6533,6 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last updated at',
-							'description' => '',
-						],
-					],
-					'created_by_username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created by Username',
-							'description' => '',
-						],
-					],
-					'last_updated_by_username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last Updated By Username',
 							'description' => '',
 						],
 					],

@@ -18,10 +18,7 @@
 
 		setupTable('techlead_web_page', []);
 
-		setupTable('navavishkar_stay_facilities_table', [
-				"ALTER TABLE `navavishkar_stay_facilities_table` DROP `last_updated_by`",
-				"ALTER TABLE `navavishkar_stay_facilities_table` ADD `created_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('navavishkar_stay_facilities_table', []);
 		setupIndexes('navavishkar_stay_facilities_table', ['custodian',]);
 
 		setupTable('navavishkar_stay_facilities_allotment_table', []);
@@ -142,7 +139,10 @@
 
 		setupTable('beyond_workingHours_table', []);
 
-		setupTable('leave_table', []);
+		setupTable('leave_table', [
+				"ALTER TABLE `leave_table` ADD `created_by_username` VARCHAR(255) NULL ",
+				"ALTER TABLE `leave_table` ADD `last_updated_by_username` VARCHAR(255) NULL ",
+			]);
 
 		setupTable('half_day_leave_table', []);
 

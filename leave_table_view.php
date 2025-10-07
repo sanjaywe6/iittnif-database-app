@@ -30,6 +30,8 @@
 		"`leave_table`.`created_at`" => "created_at",
 		"`leave_table`.`last_updated_by`" => "last_updated_by",
 		"`leave_table`.`last_updated_at`" => "last_updated_at",
+		"`leave_table`.`created_by_username`" => "created_by_username",
+		"`leave_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -45,6 +47,8 @@
 		10 => 10,
 		11 => 11,
 		12 => 12,
+		13 => 13,
+		14 => 14,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -61,6 +65,8 @@
 		"`leave_table`.`created_at`" => "created_at",
 		"`leave_table`.`last_updated_by`" => "last_updated_by",
 		"`leave_table`.`last_updated_at`" => "last_updated_at",
+		"`leave_table`.`created_by_username`" => "created_by_username",
+		"`leave_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -76,6 +82,8 @@
 		"`leave_table`.`created_at`" => "Created at",
 		"`leave_table`.`last_updated_by`" => "Last updated by",
 		"`leave_table`.`last_updated_at`" => "Last updated at",
+		"`leave_table`.`created_by_username`" => "Created by Username",
+		"`leave_table`.`last_updated_by_username`" => "Last Updated By Username",
 	];
 
 	// Fields that can be quick searched
@@ -92,6 +100,8 @@
 		"`leave_table`.`created_at`" => "created_at",
 		"`leave_table`.`last_updated_by`" => "last_updated_by",
 		"`leave_table`.`last_updated_at`" => "last_updated_at",
+		"`leave_table`.`created_by_username`" => "created_by_username",
+		"`leave_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -127,10 +137,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Leave type', 'Purpose of leave', 'From Date', 'To Date & Time', 'Approval status', 'Approval remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'leave_type', 'purpose_of_leave', 'from_date', 'to_date', 'approval_status', 'approval_remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Leave type', 'Purpose of leave', 'From Date', 'To Date & Time', 'Approval status', 'Approval remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Created by Username', 'Last Updated By Username', ];
+	$x->ColFieldName = ['id', 'leave_type', 'purpose_of_leave', 'from_date', 'to_date', 'approval_status', 'approval_remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', 'last_updated_by_username', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/leave_table_templateTV.html';
@@ -141,7 +151,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

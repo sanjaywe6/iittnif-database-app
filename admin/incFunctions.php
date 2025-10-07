@@ -6522,6 +6522,20 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By Username',
+							'description' => '',
+						],
+					],
 				],
 				'half_day_leave_table' => [
 					'id' => [
@@ -12209,7 +12223,36 @@
 					AS DifferenceInSeconds
 					FROM `beyond_workingHours_table` WHERE id = %ID%;',
 			],
-			'leave_table' => [],
+			'leave_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.id = %ID%;',
+				'last_updated_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.id = %ID%;',
+			],
 			'half_day_leave_table' => [
 				'created_by' => 'SELECT CONCAT(
 					  

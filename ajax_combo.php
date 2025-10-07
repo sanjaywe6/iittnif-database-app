@@ -680,7 +680,7 @@
 				'not_null' => false,
 			],
 		],
-		'beyond_workingHours_table' => [
+		'beyond_working_hours_table' => [
 		],
 		'leave_table' => [
 		],

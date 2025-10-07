@@ -309,7 +309,7 @@
 
 			return $data;
 		},
-		'beyond_workingHours_table' => function($data, $options = []) {
+		'beyond_working_hours_table' => function($data, $options = []) {
 			if(isset($data['start_datetime'])) $data['start_datetime'] = guessMySQLDateTime($data['start_datetime']);
 			if(isset($data['end_datetime'])) $data['end_datetime'] = guessMySQLDateTime($data['end_datetime']);
 
@@ -582,7 +582,7 @@
 		'employees_personal_data_table' => function($data, $options = []) { return true; },
 		'employees_designation_table' => function($data, $options = []) { return true; },
 		'employees_appraisal_table' => function($data, $options = []) { return true; },
-		'beyond_workingHours_table' => function($data, $options = []) { return true; },
+		'beyond_working_hours_table' => function($data, $options = []) { return true; },
 		'leave_table' => function($data, $options = []) { return true; },
 		'half_day_leave_table' => function($data, $options = []) { return true; },
 		'work_from_home_table' => function($data, $options = []) { return true; },

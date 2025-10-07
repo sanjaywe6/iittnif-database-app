@@ -461,7 +461,7 @@
 					'group' => $tg[8],
 					'homepageShowCount' => 1
 				],
-				'beyond_workingHours_table' => [
+				'beyond_working_hours_table' => [
 					'Caption' => 'Beyond Working Hours Approval - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
@@ -799,7 +799,7 @@
 			'employees_personal_data_table' => ['Employee Personal Data - App', '<a href="https://lookerstudio.google.com/reporting/e46f3806-e78c-4f09-8417-049568d4783d"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Employee Details App Report</b></button></a>', 'table.gif', 'Employee Data Management Apps'],
 			'employees_designation_table' => ['Employees designation & Reporting - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'employees_appraisal_table' => ['Employees Appraisal  - App', '', 'table.gif', 'Employee Data Management Apps'],
-			'beyond_workingHours_table' => ['Beyond Working Hours Approval - App', '', 'table.gif', 'Employee Data Management Apps'],
+			'beyond_working_hours_table' => ['Beyond Working Hours Approval - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'leave_table' => ['Leave - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'half_day_leave_table' => ['Half Day Leave - App', '', 'table.gif', 'Employee Data Management Apps'],
 			'work_from_home_table' => ['Work From Home - App', '', 'table.gif', 'Employee Data Management Apps'],
@@ -6351,7 +6351,7 @@
 						],
 					],
 				],
-				'beyond_workingHours_table' => [
+				'beyond_working_hours_table' => [
 					'id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
@@ -6359,10 +6359,10 @@
 							'description' => '',
 						],
 					],
-					'reson_for_overtime' => [
+					'reason_for_overtime' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
-							'caption' => 'Reson for Overtime',
+							'caption' => 'Reason for Overtime',
 							'description' => '',
 						],
 					],
@@ -6456,13 +6456,6 @@
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
 							'description' => '',
 						],
 					],
@@ -12229,13 +12222,13 @@
 					WHERE `employees_designation_table`.`id` = %ID%;',
 			],
 			'employees_appraisal_table' => [],
-			'beyond_workingHours_table' => [
+			'beyond_working_hours_table' => [
 				'number_of_hours' => 'SELECT 
 					    TIMESTAMPDIFF(
-					SECOND, `beyond_workingHours_table`.`start_datetime`, 
-					`beyond_workingHours_table`.`end_datetime`)/3600 
+					SECOND, %TABLENAME%.`start_datetime`, 
+					%TABLENAME%.`end_datetime`)/3600 
 					AS DifferenceInSeconds
-					FROM `beyond_workingHours_table` WHERE id = %ID%;',
+					FROM %TABLENAME% WHERE id = %ID%;',
 				'created_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -12659,7 +12652,7 @@
 				'employee_designation_lookup' => 'SELECT `employees_designation_table`.`id`, IF(CHAR_LENGTH(`employees_designation_table`.`employees_designation_str`) || CHAR_LENGTH(`employees_designation_table`.`reporting_officer`), CONCAT_WS(\'\', `employees_designation_table`.`employees_designation_str`, \'::\', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS(\'\',   `user_table1`.`memberID`, \'::\', `user_table1`.`name`), \'\')), \'\') FROM `employees_designation_table` LEFT JOIN `employees_personal_data_table` as employees_personal_data_table1 ON `employees_personal_data_table1`.`id`=`employees_designation_table`.`employee_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`employees_designation_table`.`reporting_officer` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`employees_designation_table`.`reviewing_officer` ORDER BY 2',
 				'reviewing_officer' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
-			'beyond_workingHours_table' => [
+			'beyond_working_hours_table' => [
 			],
 			'leave_table' => [
 			],

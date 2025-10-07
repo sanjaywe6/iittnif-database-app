@@ -854,7 +854,7 @@ function employees_appraisal_table_validateData(insertMode) {
 
 	return !errors;
 }
-function beyond_workingHours_table_validateData(insertMode) {
+function beyond_working_hours_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
 

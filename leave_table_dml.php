@@ -18,7 +18,7 @@ function leave_table_insert(&$error_message = '') {
 	$data = [
 		'username' => parseCode('<%%creatorUsername%%>', true),
 		'leave_type' => Request::val('leave_type', 'Casual Leave'),
-		'purpose_of_leave' => br2nl(Request::val('purpose_of_leave', '')),
+		'purpose_of_leave' => Request::val('purpose_of_leave', ''),
 		'from_date' => Request::dateComponents('from_date', ''),
 		'to_date' => Request::dateComponents('to_date', ''),
 		'approval_status' => Request::val('approval_status', 'Under Consideration'),
@@ -92,7 +92,7 @@ function leave_table_update(&$selected_id, &$error_message = '') {
 
 	$data = [
 		'leave_type' => Request::val('leave_type', ''),
-		'purpose_of_leave' => br2nl(Request::val('purpose_of_leave', '')),
+		'purpose_of_leave' => Request::val('purpose_of_leave', ''),
 		'from_date' => Request::dateComponents('from_date', ''),
 		'to_date' => Request::dateComponents('to_date', ''),
 		'approval_status' => Request::val('approval_status', ''),
@@ -101,11 +101,6 @@ function leave_table_update(&$selected_id, &$error_message = '') {
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 	];
 
-	if($data['purpose_of_leave'] === '') {
-		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Purpose of leave': {$Translation['field not null']}<br><br>";
-		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
-		exit;
-	}
 	if($data['from_date'] === '') {
 		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'From Date': {$Translation['field not null']}<br><br>";
 		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
@@ -369,7 +364,6 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
 		$jsReadOnly .= "\t\$j('#leave_type').replaceWith('<div class=\"form-control-static\" id=\"leave_type\">' + (\$j('#leave_type').val() || '') + '</div>'); \$j('#leave_type-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\t\$j('#purpose_of_leave').replaceWith('<div class=\"form-control-static\" id=\"purpose_of_leave\">' + (\$j('#purpose_of_leave').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#from_date').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#from_dateDay, #from_dateMonth, #from_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#to_date').prop('readonly', true);\n";
@@ -446,7 +440,12 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(leave_type)%%>', safe_html($urow['leave_type']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(leave_type)%%>', html_attr($row['leave_type']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(leave_type)%%>', urlencode($urow['leave_type']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(purpose_of_leave)%%>', safe_html($urow['purpose_of_leave'], $fieldsAreEditable), $templateCode);
+		if($fieldsAreEditable) {
+			$templateCode = str_replace('<%%HTMLAREA(purpose_of_leave)%%>', '<textarea maxlength="65500" name="purpose_of_leave" id="purpose_of_leave" rows="5">' . safe_html(htmlspecialchars_decode($row['purpose_of_leave'])) . '</textarea>', $templateCode);
+		} else {
+			$templateCode = str_replace('<%%HTMLAREA(purpose_of_leave)%%>', '<div id="purpose_of_leave" class="form-control-static">' . $row['purpose_of_leave'] . '</div>', $templateCode);
+		}
+		$templateCode = str_replace('<%%VALUE(purpose_of_leave)%%>', nl2br($row['purpose_of_leave']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(purpose_of_leave)%%>', urlencode($urow['purpose_of_leave']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(from_date)%%>', app_datetime($row['from_date']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(from_date)%%>', urlencode(app_datetime($urow['from_date'])), $templateCode);
@@ -476,8 +475,7 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(leave_type)%%>', 'Casual Leave', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(leave_type)%%>', urlencode('Casual Leave'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(purpose_of_leave)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(purpose_of_leave)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(purpose_of_leave)%%>', '<textarea maxlength="65500" name="purpose_of_leave" id="purpose_of_leave" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(from_date)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(from_date)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(to_date)%%>', '', $templateCode);

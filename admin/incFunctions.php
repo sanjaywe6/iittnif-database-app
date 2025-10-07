@@ -6359,52 +6359,59 @@
 							'description' => '',
 						],
 					],
-					'username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Username',
-							'description' => '',
-						],
-					],
 					'reson_for_overtime' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
-							'caption' => 'Reson for overtime',
+							'caption' => 'Reson for Overtime',
 							'description' => '',
 						],
 					],
 					'start_datetime' => [
-						'appgini' => "DATETIME NULL",
+						'appgini' => "DATETIME NOT NULL",
 						'info' => [
 							'caption' => 'Start Date & Time',
 							'description' => '',
 						],
 					],
 					'end_datetime' => [
-						'appgini' => "DATETIME NULL",
+						'appgini' => "DATETIME NOT NULL",
 						'info' => [
 							'caption' => 'End Date & Time',
+							'description' => '',
+						],
+					],
+					'details_of_work_done' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Details of Work Planned/Done',
 							'description' => '',
 						],
 					],
 					'number_of_hours' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Number of hours',
+							'caption' => 'Number of Hours',
 							'description' => '',
 						],
 					],
 					'approval_status' => [
 						'appgini' => "VARCHAR(255) NULL DEFAULT 'Under Consideration'",
 						'info' => [
-							'caption' => 'Approval status',
+							'caption' => 'Approval Status',
 							'description' => '',
 						],
 					],
 					'approval_remarks' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
-							'caption' => 'Approval remarks',
+							'caption' => 'Approval Remarks',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by Username',
 							'description' => '',
 						],
 					],
@@ -6419,6 +6426,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Created at',
+							'description' => '',
+						],
+					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By Username',
 							'description' => '',
 						],
 					],
@@ -6460,7 +6474,7 @@
 						],
 					],
 					'purpose_of_leave' => [
-						'appgini' => "TEXT NOT NULL",
+						'appgini' => "TEXT NULL",
 						'info' => [
 							'caption' => 'Purpose of leave',
 							'description' => '',
@@ -12222,6 +12236,34 @@
 					`beyond_workingHours_table`.`end_datetime`)/3600 
 					AS DifferenceInSeconds
 					FROM `beyond_workingHours_table` WHERE id = %ID%;',
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.id = %ID%;',
+				'last_updated_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.id = %ID%;',
 			],
 			'leave_table' => [
 				'created_by_username' => 'SELECT CONCAT(

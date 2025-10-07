@@ -14,9 +14,9 @@
 
 <div class="panel-body">
 	<fieldset class="form-horizontal">
-		<!-- Field: Reson for overtime -->
+		<!-- Field: Reson for Overtime -->
 		<div class="form-group beyond_workingHours_table-reson_for_overtime" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Reson for overtime</label>
+			<label class="col-xs-3 control-label">Reson for Overtime</label>
 			<div class="col-xs-9">
 				<div class="form-control-static"><%%VALUE(reson_for_overtime)%%></div>
 			</div>
@@ -35,18 +35,39 @@
 				<div class="form-control-static"><%%VALUE(end_datetime)%%></div>
 			</div>
 		</div>
-		<!-- Field: Approval status -->
+		<!-- Field: Details of Work Planned/Done -->
+		<div class="form-group beyond_workingHours_table-details_of_work_done" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Details of Work Planned/Done</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(details_of_work_done)%%></div>
+			</div>
+		</div>
+		<!-- Field: Approval Status -->
 		<div class="form-group beyond_workingHours_table-approval_status" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Approval status</label>
+			<label class="col-xs-3 control-label">Approval Status</label>
 			<div class="col-xs-9">
 				<div class="form-control-static"><%%COMBOTEXT(approval_status)%%></div>
 			</div>
 		</div>
-		<!-- Field: Approval remarks -->
+		<!-- Field: Approval Remarks -->
 		<div class="form-group beyond_workingHours_table-approval_remarks" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Approval remarks</label>
+			<label class="col-xs-3 control-label">Approval Remarks</label>
 			<div class="col-xs-9">
 				<div class="form-control-static"><%%VALUE(approval_remarks)%%></div>
+			</div>
+		</div>
+		<!-- Field: Created by Username -->
+		<div class="form-group beyond_workingHours_table-created_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Created by Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(created_by_username)%%></div>
+			</div>
+		</div>
+		<!-- Field: Last Updated By Username -->
+		<div class="form-group beyond_workingHours_table-last_updated_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Last Updated By Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(last_updated_by_username)%%></div>
 			</div>
 		</div>
 	</fieldset>

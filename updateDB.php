@@ -137,9 +137,17 @@
 		setupTable('employees_appraisal_table', []);
 		setupIndexes('employees_appraisal_table', ['employee_designation_lookup','reviewing_officer',]);
 
-		setupTable('beyond_workingHours_table', []);
+		setupTable('beyond_workingHours_table', [
+				" ALTER TABLE `beyond_workingHours_table` CHANGE `details_of_work_done` `details_of_work_done` TEXT NULL ",
+				"ALTER TABLE `beyond_workingHours_table` ADD `created_by_username` VARCHAR(255) NULL ",
+				"ALTER TABLE `beyond_workingHours_table` ADD `last_updated_by_username` VARCHAR(255) NULL ",
+				" ALTER TABLE `beyond_workingHours_table` CHANGE `start_datetime` `start_datetime` DATETIME NOT NULL ",
+				" ALTER TABLE `beyond_workingHours_table` CHANGE `end_datetime` `end_datetime` DATETIME NOT NULL ",
+			]);
 
-		setupTable('leave_table', []);
+		setupTable('leave_table', [
+				" ALTER TABLE `leave_table` CHANGE `purpose_of_leave` `purpose_of_leave` TEXT NULL ",
+			]);
 
 		setupTable('half_day_leave_table', []);
 

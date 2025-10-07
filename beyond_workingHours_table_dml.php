@@ -16,12 +16,12 @@ function beyond_workingHours_table_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'username' => parseCode('<%%creatorUsername%%>', true),
-		'reson_for_overtime' => br2nl(Request::val('reson_for_overtime', '')),
+		'reson_for_overtime' => Request::val('reson_for_overtime', ''),
 		'start_datetime' => Request::datetime('start_datetime', ''),
 		'end_datetime' => Request::datetime('end_datetime', ''),
+		'details_of_work_done' => Request::val('details_of_work_done', ''),
 		'approval_status' => Request::val('approval_status', 'Under Consideration'),
-		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
+		'approval_remarks' => Request::val('approval_remarks', ''),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
@@ -90,15 +90,26 @@ function beyond_workingHours_table_update(&$selected_id, &$error_message = '') {
 	if(!check_record_permission('beyond_workingHours_table', $selected_id, 'edit')) return false;
 
 	$data = [
-		'reson_for_overtime' => br2nl(Request::val('reson_for_overtime', '')),
+		'reson_for_overtime' => Request::val('reson_for_overtime', ''),
 		'start_datetime' => Request::datetime('start_datetime', ''),
 		'end_datetime' => Request::datetime('end_datetime', ''),
+		'details_of_work_done' => Request::val('details_of_work_done', ''),
 		'approval_status' => Request::val('approval_status', ''),
-		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
+		'approval_remarks' => Request::val('approval_remarks', ''),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 	];
 
+	if($data['start_datetime'] === '') {
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Start Date & Time': {$Translation['field not null']}<br><br>";
+		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
+		exit;
+	}
+	if($data['end_datetime'] === '') {
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'End Date & Time': {$Translation['field not null']}<br><br>";
+		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
+		exit;
+	}
 	// get existing values
 	$old_data = getRecord('beyond_workingHours_table', $selected_id);
 	if(is_array($old_data)) {
@@ -315,11 +326,9 @@ function beyond_workingHours_table_form($selectedId = '', $allowUpdate = true, $
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\t\$j('#reson_for_overtime').replaceWith('<div class=\"form-control-static\" id=\"reson_for_overtime\">' + (\$j('#reson_for_overtime').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#start_datetime').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"start_datetime\">' + (\$j('#start_datetime').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#end_datetime').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"end_datetime\">' + (\$j('#end_datetime').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#approval_status').replaceWith('<div class=\"form-control-static\" id=\"approval_status\">' + (\$j('#approval_status').val() || '') + '</div>'); \$j('#approval_status-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\t\$j('#approval_remarks').replaceWith('<div class=\"form-control-static\" id=\"approval_remarks\">' + (\$j('#approval_remarks').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -355,15 +364,17 @@ function beyond_workingHours_table_form($selectedId = '', $allowUpdate = true, $
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(reson_for_overtime)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(start_datetime)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(end_datetime)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(details_of_work_done)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(number_of_hours)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(approval_status)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(approval_remarks)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(created_by_username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by_username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_at)%%>', '', $templateCode);
 
@@ -371,25 +382,44 @@ function beyond_workingHours_table_form($selectedId = '', $allowUpdate = true, $
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', safe_html($urow['username']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode($urow['username']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(reson_for_overtime)%%>', safe_html($urow['reson_for_overtime'], $fieldsAreEditable), $templateCode);
+		if($fieldsAreEditable) {
+			$templateCode = str_replace('<%%HTMLAREA(reson_for_overtime)%%>', '<textarea maxlength="65500" name="reson_for_overtime" id="reson_for_overtime" rows="5">' . safe_html(htmlspecialchars_decode($row['reson_for_overtime'])) . '</textarea>', $templateCode);
+		} else {
+			$templateCode = str_replace('<%%HTMLAREA(reson_for_overtime)%%>', '<div id="reson_for_overtime" class="form-control-static">' . $row['reson_for_overtime'] . '</div>', $templateCode);
+		}
+		$templateCode = str_replace('<%%VALUE(reson_for_overtime)%%>', nl2br($row['reson_for_overtime']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(reson_for_overtime)%%>', urlencode($urow['reson_for_overtime']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(start_datetime)%%>', app_datetime($row['start_datetime'], 'dt'), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(start_datetime)%%>', urlencode(app_datetime($urow['start_datetime'], 'dt')), $templateCode);
 		$templateCode = str_replace('<%%VALUE(end_datetime)%%>', app_datetime($row['end_datetime'], 'dt'), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(end_datetime)%%>', urlencode(app_datetime($urow['end_datetime'], 'dt')), $templateCode);
+		if($fieldsAreEditable) {
+			$templateCode = str_replace('<%%HTMLAREA(details_of_work_done)%%>', '<textarea maxlength="65500" name="details_of_work_done" id="details_of_work_done" rows="5">' . safe_html(htmlspecialchars_decode($row['details_of_work_done'])) . '</textarea>', $templateCode);
+		} else {
+			$templateCode = str_replace('<%%HTMLAREA(details_of_work_done)%%>', '<div id="details_of_work_done" class="form-control-static">' . $row['details_of_work_done'] . '</div>', $templateCode);
+		}
+		$templateCode = str_replace('<%%VALUE(details_of_work_done)%%>', nl2br($row['details_of_work_done']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(details_of_work_done)%%>', urlencode($urow['details_of_work_done']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(number_of_hours)%%>', safe_html($urow['number_of_hours']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(number_of_hours)%%>', urlencode($urow['number_of_hours']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', safe_html($urow['approval_status']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', html_attr($row['approval_status']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode($urow['approval_status']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', safe_html($urow['approval_remarks'], $fieldsAreEditable), $templateCode);
+		if($fieldsAreEditable) {
+			$templateCode = str_replace('<%%HTMLAREA(approval_remarks)%%>', '<textarea maxlength="65500" name="approval_remarks" id="approval_remarks" rows="5">' . safe_html(htmlspecialchars_decode($row['approval_remarks'])) . '</textarea>', $templateCode);
+		} else {
+			$templateCode = str_replace('<%%HTMLAREA(approval_remarks)%%>', '<div id="approval_remarks" class="form-control-static">' . $row['approval_remarks'] . '</div>', $templateCode);
+		}
+		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', nl2br($row['approval_remarks']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_remarks)%%>', urlencode($urow['approval_remarks']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', safe_html($urow['created_by_username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode($urow['created_by_username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode($urow['created_at']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by_username)%%>', safe_html($urow['last_updated_by_username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by_username)%%>', urlencode($urow['last_updated_by_username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
@@ -397,24 +427,25 @@ function beyond_workingHours_table_form($selectedId = '', $allowUpdate = true, $
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(username)%%>', '<%%creatorUsername%%>', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(username)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(reson_for_overtime)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(reson_for_overtime)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(reson_for_overtime)%%>', '<textarea maxlength="65500" name="reson_for_overtime" id="reson_for_overtime" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(start_datetime)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(start_datetime)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(end_datetime)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(end_datetime)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(details_of_work_done)%%>', '<textarea maxlength="65500" name="details_of_work_done" id="details_of_work_done" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(number_of_hours)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(number_of_hours)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(approval_status)%%>', 'Under Consideration', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode('Under Consideration'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(approval_remarks)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(approval_remarks)%%>', '<textarea maxlength="65500" name="approval_remarks" id="approval_remarks" rows="5"></textarea>', $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode('<%%creationDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by_username)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by_username)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', '<%%editingDateTime%%>', $templateCode);

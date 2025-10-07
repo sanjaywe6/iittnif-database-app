@@ -19,15 +19,17 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`beyond_workingHours_table`.`id`" => "id",
-		"`beyond_workingHours_table`.`username`" => "username",
 		"`beyond_workingHours_table`.`reson_for_overtime`" => "reson_for_overtime",
 		"if(`beyond_workingHours_table`.`start_datetime`,date_format(`beyond_workingHours_table`.`start_datetime`,'%d/%m/%Y %H:%i'),'')" => "start_datetime",
 		"if(`beyond_workingHours_table`.`end_datetime`,date_format(`beyond_workingHours_table`.`end_datetime`,'%d/%m/%Y %H:%i'),'')" => "end_datetime",
+		"`beyond_workingHours_table`.`details_of_work_done`" => "details_of_work_done",
 		"`beyond_workingHours_table`.`number_of_hours`" => "number_of_hours",
 		"`beyond_workingHours_table`.`approval_status`" => "approval_status",
 		"`beyond_workingHours_table`.`approval_remarks`" => "approval_remarks",
+		"`beyond_workingHours_table`.`created_by_username`" => "created_by_username",
 		"`beyond_workingHours_table`.`created_by`" => "created_by",
 		"`beyond_workingHours_table`.`created_at`" => "created_at",
+		"`beyond_workingHours_table`.`last_updated_by_username`" => "last_updated_by_username",
 		"`beyond_workingHours_table`.`last_updated_by`" => "last_updated_by",
 		"`beyond_workingHours_table`.`last_updated_at`" => "last_updated_at",
 	];
@@ -35,9 +37,9 @@
 	$x->SortFields = [
 		1 => '`beyond_workingHours_table`.`id`',
 		2 => 2,
-		3 => 3,
-		4 => '`beyond_workingHours_table`.`start_datetime`',
-		5 => '`beyond_workingHours_table`.`end_datetime`',
+		3 => '`beyond_workingHours_table`.`start_datetime`',
+		4 => '`beyond_workingHours_table`.`end_datetime`',
+		5 => 5,
 		6 => 6,
 		7 => 7,
 		8 => 8,
@@ -45,35 +47,41 @@
 		10 => 10,
 		11 => 11,
 		12 => 12,
+		13 => 13,
+		14 => 14,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`beyond_workingHours_table`.`id`" => "id",
-		"`beyond_workingHours_table`.`username`" => "username",
 		"`beyond_workingHours_table`.`reson_for_overtime`" => "reson_for_overtime",
 		"if(`beyond_workingHours_table`.`start_datetime`,date_format(`beyond_workingHours_table`.`start_datetime`,'%d/%m/%Y %H:%i'),'')" => "start_datetime",
 		"if(`beyond_workingHours_table`.`end_datetime`,date_format(`beyond_workingHours_table`.`end_datetime`,'%d/%m/%Y %H:%i'),'')" => "end_datetime",
+		"`beyond_workingHours_table`.`details_of_work_done`" => "details_of_work_done",
 		"`beyond_workingHours_table`.`number_of_hours`" => "number_of_hours",
 		"`beyond_workingHours_table`.`approval_status`" => "approval_status",
 		"`beyond_workingHours_table`.`approval_remarks`" => "approval_remarks",
+		"`beyond_workingHours_table`.`created_by_username`" => "created_by_username",
 		"`beyond_workingHours_table`.`created_by`" => "created_by",
 		"`beyond_workingHours_table`.`created_at`" => "created_at",
+		"`beyond_workingHours_table`.`last_updated_by_username`" => "last_updated_by_username",
 		"`beyond_workingHours_table`.`last_updated_by`" => "last_updated_by",
 		"`beyond_workingHours_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`beyond_workingHours_table`.`id`" => "ID",
-		"`beyond_workingHours_table`.`username`" => "Username",
-		"`beyond_workingHours_table`.`reson_for_overtime`" => "Reson for overtime",
+		"`beyond_workingHours_table`.`reson_for_overtime`" => "Reson for Overtime",
 		"`beyond_workingHours_table`.`start_datetime`" => "Start Date & Time",
 		"`beyond_workingHours_table`.`end_datetime`" => "End Date & Time",
-		"`beyond_workingHours_table`.`number_of_hours`" => "Number of hours",
-		"`beyond_workingHours_table`.`approval_status`" => "Approval status",
-		"`beyond_workingHours_table`.`approval_remarks`" => "Approval remarks",
+		"`beyond_workingHours_table`.`details_of_work_done`" => "Details of Work Planned/Done",
+		"`beyond_workingHours_table`.`number_of_hours`" => "Number of Hours",
+		"`beyond_workingHours_table`.`approval_status`" => "Approval Status",
+		"`beyond_workingHours_table`.`approval_remarks`" => "Approval Remarks",
+		"`beyond_workingHours_table`.`created_by_username`" => "Created by Username",
 		"`beyond_workingHours_table`.`created_by`" => "Created by",
 		"`beyond_workingHours_table`.`created_at`" => "Created at",
+		"`beyond_workingHours_table`.`last_updated_by_username`" => "Last Updated By Username",
 		"`beyond_workingHours_table`.`last_updated_by`" => "Last updated by",
 		"`beyond_workingHours_table`.`last_updated_at`" => "Last updated at",
 	];
@@ -81,15 +89,17 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`beyond_workingHours_table`.`id`" => "id",
-		"`beyond_workingHours_table`.`username`" => "username",
 		"`beyond_workingHours_table`.`reson_for_overtime`" => "reson_for_overtime",
 		"if(`beyond_workingHours_table`.`start_datetime`,date_format(`beyond_workingHours_table`.`start_datetime`,'%d/%m/%Y %H:%i'),'')" => "start_datetime",
 		"if(`beyond_workingHours_table`.`end_datetime`,date_format(`beyond_workingHours_table`.`end_datetime`,'%d/%m/%Y %H:%i'),'')" => "end_datetime",
+		"`beyond_workingHours_table`.`details_of_work_done`" => "details_of_work_done",
 		"`beyond_workingHours_table`.`number_of_hours`" => "number_of_hours",
 		"`beyond_workingHours_table`.`approval_status`" => "approval_status",
 		"`beyond_workingHours_table`.`approval_remarks`" => "approval_remarks",
+		"`beyond_workingHours_table`.`created_by_username`" => "created_by_username",
 		"`beyond_workingHours_table`.`created_by`" => "created_by",
 		"`beyond_workingHours_table`.`created_at`" => "created_at",
+		"`beyond_workingHours_table`.`last_updated_by_username`" => "last_updated_by_username",
 		"`beyond_workingHours_table`.`last_updated_by`" => "last_updated_by",
 		"`beyond_workingHours_table`.`last_updated_at`" => "last_updated_at",
 	];
@@ -117,7 +127,7 @@
 	$x->AllowPrintingDV = 1;
 	$x->AllowCSV = 1;
 	$x->AllowAdminShowSQL = showSQL();
-	$x->RecordsPerPage = 100;
+	$x->RecordsPerPage = 10;
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'beyond_workingHours_table_view.php';
@@ -127,10 +137,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Reson for overtime', 'Start Date & Time', 'End Date & Time', 'Number of hours', 'Approval status', 'Approval remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'reson_for_overtime', 'start_datetime', 'end_datetime', 'number_of_hours', 'approval_status', 'approval_remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Reson for Overtime', 'Start Date & Time', 'End Date & Time', 'Details of Work Planned/Done', 'Number of Hours', 'Approval Status', 'Approval Remarks', 'Created by Username', 'Created at', 'Last Updated By Username', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'reson_for_overtime', 'start_datetime', 'end_datetime', 'details_of_work_done', 'number_of_hours', 'approval_status', 'approval_remarks', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/beyond_workingHours_table_templateTV.html';

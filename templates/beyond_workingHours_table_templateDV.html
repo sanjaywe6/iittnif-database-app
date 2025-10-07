@@ -19,48 +19,75 @@
 		<div class="col-md-8 col-lg-10" id="beyond_workingHours_table_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: Reson for overtime -->
+				<!-- Field: Reson for Overtime -->
 				<div class="form-group beyond_workingHours_table-reson_for_overtime">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="reson_for_overtime">Reson for overtime</label>
-					<div class="col-lg-9">
-						<textarea maxlength="65500" class="form-control" name="reson_for_overtime" id="reson_for_overtime" rows=" 5"><%%VALUE(reson_for_overtime)%%></textarea>
+					<label class="control-label col-lg-3" for="reson_for_overtime">Reson for Overtime</label>
+					<div class="col-lg-9 has-nicedit">
+						<%%HTMLAREA(reson_for_overtime)%%>
 					</div>
 				</div>
 
 				<!-- Field: Start Date & Time -->
 				<div class="form-group beyond_workingHours_table-start_datetime">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="start_datetime">Start Date & Time</label>
+					<label class="control-label col-lg-3" for="start_datetime">Start Date & Time<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
-						<div class="input-group date datetimepicker"><input maxlength="22" type="text" class="form-control" name="start_datetime" id="start_datetime" value="<%%VALUE(start_datetime)%%>"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>
+						<div class="input-group date datetimepicker"><input maxlength="22" type="text" class="form-control" name="start_datetime" id="start_datetime" value="<%%VALUE(start_datetime)%%>" required><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>
 					</div>
 				</div>
 
 				<!-- Field: End Date & Time -->
 				<div class="form-group beyond_workingHours_table-end_datetime">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="end_datetime">End Date & Time</label>
+					<label class="control-label col-lg-3" for="end_datetime">End Date & Time<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
-						<div class="input-group date datetimepicker"><input maxlength="22" type="text" class="form-control" name="end_datetime" id="end_datetime" value="<%%VALUE(end_datetime)%%>"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>
+						<div class="input-group date datetimepicker"><input maxlength="22" type="text" class="form-control" name="end_datetime" id="end_datetime" value="<%%VALUE(end_datetime)%%>" required><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>
 					</div>
 				</div>
 
-				<!-- Field: Approval status -->
+				<!-- Field: Details of Work Planned/Done -->
+				<div class="form-group beyond_workingHours_table-details_of_work_done">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="details_of_work_done">Details of Work Planned/Done</label>
+					<div class="col-lg-9 has-nicedit">
+						<%%HTMLAREA(details_of_work_done)%%>
+					</div>
+				</div>
+
+				<!-- Field: Approval Status -->
 				<div class="form-group beyond_workingHours_table-approval_status">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="approval_status">Approval status</label>
+					<label class="control-label col-lg-3" for="approval_status">Approval Status</label>
 					<div class="col-lg-9">
 						<%%COMBO(approval_status)%%>
 					</div>
 				</div>
 
-				<!-- Field: Approval remarks -->
+				<!-- Field: Approval Remarks -->
 				<div class="form-group beyond_workingHours_table-approval_remarks">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="approval_remarks">Approval remarks</label>
+					<label class="control-label col-lg-3" for="approval_remarks">Approval Remarks</label>
+					<div class="col-lg-9 has-nicedit">
+						<%%HTMLAREA(approval_remarks)%%>
+					</div>
+				</div>
+
+				<!-- Field: Created by Username -->
+				<div class="form-group beyond_workingHours_table-created_by_username">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Created by Username</label>
 					<div class="col-lg-9">
-						<textarea maxlength="65500" class="form-control" name="approval_remarks" id="approval_remarks" rows=" 5"><%%VALUE(approval_remarks)%%></textarea>
+						<div class="form-control-static" id="created_by_username"><%%VALUE(created_by_username)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Last Updated By Username -->
+				<div class="form-group beyond_workingHours_table-last_updated_by_username">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Last Updated By Username</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="last_updated_by_username"><%%VALUE(last_updated_by_username)%%></div>
 					</div>
 				</div>
 
@@ -101,13 +128,42 @@
 				setTimeout(AppGini.closeParentModal, 2000);
 			}
 
+			AppGini.once({
+				condition: function() { return bkLib != undefined; },
+				action: function() {
+					if($j('textarea#reson_for_overtime').length) new nicEditor({ fullPanel : true }).panelInstance('reson_for_overtime');
+					if($j('textarea#details_of_work_done').length) new nicEditor({ fullPanel : true }).panelInstance('details_of_work_done');
+					if($j('textarea#approval_remarks').length) new nicEditor({ fullPanel : true }).panelInstance('approval_remarks');
+				}
+			});
 
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-			$j('#beyond_workingHours_table_dv_container-loading').addClass('hidden');
-			$j('#beyond_workingHours_table_dv_container').removeClass('hidden');
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('beyond_workingHours_table', 'reson_for_overtime');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
+				AppGini.once({
+					condition: function() {
+						return $j('.form-group.beyond_workingHours_table-reson_for_overtime')
+									.find('.nicEdit-main, .select2-container, input[type=radio]')
+									.length > 0
+								// or read-only DV
+								|| (!$j('#update').length && !$j('#insert').length);
+					},
+					action: function() {
+						$j('#beyond_workingHours_table_dv_container-loading').addClass('hidden');
+						$j('#beyond_workingHours_table_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('beyond_workingHours_table', 'reson_for_overtime');
+					},
+					timeout:  5000,
+					doActionOnTimeout:  true
+				});
+			} else {
+				$j('#beyond_workingHours_table_dv_container-loading').addClass('hidden');
+				$j('#beyond_workingHours_table_dv_container').removeClass('hidden');
+			}
+
+			// try to detect rich text changes by adding 'input' handler after nicedit is loaded ...
+			AppGini.detectContentEditableChanges();
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 

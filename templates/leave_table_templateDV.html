@@ -31,9 +31,9 @@
 				<!-- Field: Purpose of leave -->
 				<div class="form-group leave_table-purpose_of_leave">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="purpose_of_leave">Purpose of leave<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
-					<div class="col-lg-9">
-						<textarea maxlength="65500" class="form-control" name="purpose_of_leave" id="purpose_of_leave" rows=" 5"><%%VALUE(purpose_of_leave)%%></textarea>
+					<label class="control-label col-lg-3" for="purpose_of_leave">Purpose of leave</label>
+					<div class="col-lg-9 has-nicedit">
+						<%%HTMLAREA(purpose_of_leave)%%>
 					</div>
 				</div>
 
@@ -128,6 +128,12 @@
 				setTimeout(AppGini.closeParentModal, 2000);
 			}
 
+			AppGini.once({
+				condition: function() { return bkLib != undefined; },
+				action: function() {
+					if($j('textarea#purpose_of_leave').length) new nicEditor({ fullPanel : true }).panelInstance('purpose_of_leave');
+				}
+			});
 
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
@@ -153,6 +159,9 @@
 				$j('#leave_table_dv_container-loading').addClass('hidden');
 				$j('#leave_table_dv_container').removeClass('hidden');
 			}
+
+			// try to detect rich text changes by adding 'input' handler after nicedit is loaded ...
+			AppGini.detectContentEditableChanges();
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 

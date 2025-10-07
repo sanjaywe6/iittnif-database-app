@@ -137,10 +137,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Reason for Overtime', 'Start Date & Time', 'End Date & Time', 'Details of Work Planned/Done', 'Number of Hours', 'Approval Status', 'Approval Remarks', 'Created by Username', 'Created at', 'Last Updated By Username', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'reason_for_overtime', 'start_datetime', 'end_datetime', 'details_of_work_done', 'number_of_hours', 'approval_status', 'approval_remarks', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Reason for Overtime', 'Start Date & Time', 'End Date & Time', 'Details of Work Planned/Done', 'Number of Hours', 'Approval Status', 'Approval Remarks', 'Created by Username', 'Created by', 'Created at', 'Last Updated By Username', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'reason_for_overtime', 'start_datetime', 'end_datetime', 'details_of_work_done', 'number_of_hours', 'approval_status', 'approval_remarks', 'created_by_username', 'created_by', 'created_at', 'last_updated_by_username', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/beyond_working_hours_table_templateTV.html';

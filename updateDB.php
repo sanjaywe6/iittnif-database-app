@@ -137,17 +137,9 @@
 		setupTable('employees_appraisal_table', []);
 		setupIndexes('employees_appraisal_table', ['employee_designation_lookup','reviewing_officer',]);
 
-		setupTable('beyond_working_hours_table', [
-				"ALTER TABLE `beyond_workingHours_table` RENAME `beyond_working_hours_table`",
-				"UPDATE `membership_userrecords` SET `tableName`='beyond_working_hours_table' WHERE `tableName`='beyond_workingHours_table'",
-				"UPDATE `membership_userpermissions` SET `tableName`='beyond_working_hours_table' WHERE `tableName`='beyond_workingHours_table'",
-				"UPDATE `membership_grouppermissions` SET `tableName`='beyond_working_hours_table' WHERE `tableName`='beyond_workingHours_table'",
-				"ALTER TABLE `beyond_working_hours_table` CHANGE `reson_for_overtime` `reason_for_overtime` TEXT NULL ",
-			]);
+		setupTable('beyond_working_hours_table', []);
 
-		setupTable('leave_table', [
-				"ALTER TABLE `leave_table` DROP `username`",
-			]);
+		setupTable('leave_table', []);
 
 		setupTable('half_day_leave_table', []);
 

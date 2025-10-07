@@ -139,10 +139,7 @@
 
 		setupTable('beyond_workingHours_table', []);
 
-		setupTable('leave_table', [
-				"ALTER TABLE `leave_table` ADD `created_by_username` VARCHAR(255) NULL ",
-				"ALTER TABLE `leave_table` ADD `last_updated_by_username` VARCHAR(255) NULL ",
-			]);
+		setupTable('leave_table', []);
 
 		setupTable('half_day_leave_table', []);
 

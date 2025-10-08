@@ -30,6 +30,7 @@
 		"`meetings_table`.`meeting_str`" => "meeting_str",
 		"`meetings_table`.`created_by`" => "created_by",
 		"`meetings_table`.`last_updated_by`" => "last_updated_by",
+		"`meetings_table`.`created_by_username`" => "created_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -45,6 +46,7 @@
 		10 => 10,
 		11 => 11,
 		12 => 12,
+		13 => 13,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -61,6 +63,7 @@
 		"`meetings_table`.`meeting_str`" => "meeting_str",
 		"`meetings_table`.`created_by`" => "created_by",
 		"`meetings_table`.`last_updated_by`" => "last_updated_by",
+		"`meetings_table`.`created_by_username`" => "created_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -76,6 +79,7 @@
 		"`meetings_table`.`meeting_str`" => "Meeting str",
 		"`meetings_table`.`created_by`" => "Created By",
 		"`meetings_table`.`last_updated_by`" => "Last Updated By",
+		"`meetings_table`.`created_by_username`" => "Created By Username",
 	];
 
 	// Fields that can be quick searched
@@ -92,6 +96,7 @@
 		"`meetings_table`.`meeting_str`" => "meeting_str",
 		"`meetings_table`.`created_by`" => "created_by",
 		"`meetings_table`.`last_updated_by`" => "last_updated_by",
+		"`meetings_table`.`created_by_username`" => "created_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -127,10 +132,10 @@
 	$x->DefaultSortField = '`meetings_table`.`meeting_from_date`';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Meeting title', 'Participants', 'Venue', 'Meeting from date', 'Meeting to date', 'Minutes of Meeting', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['meetings_id', 'meeting_title', 'participants', 'venue', 'meeting_from_date', 'meeting_to_date', 'minutes_of_meeting', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 4, 5, 6, 7, 8, 9, 11, 12, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Meeting title', 'Participants', 'Venue', 'Meeting from date', 'Meeting to date', 'Minutes of Meeting', 'Created By', 'Last Updated By', 'Created By Username', ];
+	$x->ColFieldName = ['meetings_id', 'meeting_title', 'participants', 'venue', 'meeting_from_date', 'meeting_to_date', 'minutes_of_meeting', 'created_by', 'last_updated_by', 'created_by_username', ];
+	$x->ColNumber  = [1, 4, 5, 6, 7, 8, 9, 11, 12, 13, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/meetings_table_templateTV.html';
@@ -141,7 +146,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

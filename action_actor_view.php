@@ -24,6 +24,7 @@
 		"`action_actor`.`action_status`" => "action_status",
 		"`action_actor`.`created_by`" => "created_by",
 		"`action_actor`.`last_updated_by`" => "last_updated_by",
+		"`action_actor`.`created_by_username`" => "created_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -33,6 +34,7 @@
 		4 => 4,
 		5 => 5,
 		6 => 6,
+		7 => 7,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -43,6 +45,7 @@
 		"`action_actor`.`action_status`" => "action_status",
 		"`action_actor`.`created_by`" => "created_by",
 		"`action_actor`.`last_updated_by`" => "last_updated_by",
+		"`action_actor`.`created_by_username`" => "created_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -52,6 +55,7 @@
 		"`action_actor`.`action_status`" => "Action status",
 		"`action_actor`.`created_by`" => "Created By",
 		"`action_actor`.`last_updated_by`" => "Last Updated By",
+		"`action_actor`.`created_by_username`" => "Created By Username",
 	];
 
 	// Fields that can be quick searched
@@ -62,6 +66,7 @@
 		"`action_actor`.`action_status`" => "action_status",
 		"`action_actor`.`created_by`" => "created_by",
 		"`action_actor`.`last_updated_by`" => "last_updated_by",
+		"`action_actor`.`created_by_username`" => "created_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -97,10 +102,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Actor', 'Action status', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['actor_ID', 'actor', 'action_status', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Actor', 'Action status', 'Created By', 'Last Updated By', 'Created By Username', ];
+	$x->ColFieldName = ['actor_ID', 'actor', 'action_status', 'created_by', 'last_updated_by', 'created_by_username', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/action_actor_templateTV.html';
@@ -111,7 +116,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

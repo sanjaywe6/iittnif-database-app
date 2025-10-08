@@ -112,6 +112,13 @@
 				<div class="form-control-static"><a id="upload_mou-link" href="link.php?t=mou_details_table&f=upload_mou&i=<%%VALUE(id)%%>" target="_blank"><i class="glyphicon glyphicon-lg glyphicon-file" title="<%%VALUE(upload_mou)%%>"></i></a><script>$j(function() { var e_upload_mou = '<%%VALUE(upload_mou)%%>'; if(e_upload_mou == '' || e_upload_mou == '&nbsp;' || e_upload_mou == 'blank.gif') $j('#upload_mou-link').hide(); });</script></div>
 			</div>
 		</div>
+		<!-- Field: Created By Username -->
+		<div class="form-group mou_details_table-created_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Created By Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(created_by_username)%%></div>
+			</div>
+		</div>
 	</fieldset>
 </div>
 <script>

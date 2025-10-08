@@ -31,6 +31,7 @@
 		"`hrd_sdp_events_table`.`more_details`" => "more_details",
 		"`hrd_sdp_events_table`.`created_by`" => "created_by",
 		"`hrd_sdp_events_table`.`last_updated_by`" => "last_updated_by",
+		"`hrd_sdp_events_table`.`created_by_username`" => "created_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -47,6 +48,7 @@
 		11 => 11,
 		12 => 12,
 		13 => 13,
+		14 => 14,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -64,6 +66,7 @@
 		"`hrd_sdp_events_table`.`more_details`" => "more_details",
 		"`hrd_sdp_events_table`.`created_by`" => "created_by",
 		"`hrd_sdp_events_table`.`last_updated_by`" => "last_updated_by",
+		"`hrd_sdp_events_table`.`created_by_username`" => "created_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -80,6 +83,7 @@
 		"`hrd_sdp_events_table`.`more_details`" => "More details",
 		"`hrd_sdp_events_table`.`created_by`" => "Created By",
 		"`hrd_sdp_events_table`.`last_updated_by`" => "Last Updated By",
+		"`hrd_sdp_events_table`.`created_by_username`" => "Created By Username",
 	];
 
 	// Fields that can be quick searched
@@ -97,6 +101,7 @@
 		"`hrd_sdp_events_table`.`more_details`" => "more_details",
 		"`hrd_sdp_events_table`.`created_by`" => "created_by",
 		"`hrd_sdp_events_table`.`last_updated_by`" => "last_updated_by",
+		"`hrd_sdp_events_table`.`created_by_username`" => "created_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -132,10 +137,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Year', 'Program name', 'Topic/Area of Workshop', 'Host name', 'Location', 'Start date', 'End date', 'Number of participants', 'More details', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['id', 'year', 'program_name', 'area_of_workshop', 'host_name', 'location', 'start_date', 'end_date', 'number_of_participants', 'more_details', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Year', 'Program name', 'Topic/Area of Workshop', 'Host name', 'Location', 'Start date', 'End date', 'Number of participants', 'More details', 'Created By', 'Last Updated By', 'Created By Username', ];
+	$x->ColFieldName = ['id', 'year', 'program_name', 'area_of_workshop', 'host_name', 'location', 'start_date', 'end_date', 'number_of_participants', 'more_details', 'created_by', 'last_updated_by', 'created_by_username', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/hrd_sdp_events_table_templateTV.html';
@@ -146,7 +151,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

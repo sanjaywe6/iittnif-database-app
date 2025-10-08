@@ -36,6 +36,7 @@
 		"`all_bank_account_statement_table`.`created_at`" => "created_at",
 		"`all_bank_account_statement_table`.`last_updated_by`" => "last_updated_by",
 		"`all_bank_account_statement_table`.`last_updated_at`" => "last_updated_at",
+		"`all_bank_account_statement_table`.`created_by_username`" => "created_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -57,6 +58,7 @@
 		16 => 16,
 		17 => 17,
 		18 => 18,
+		19 => 19,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -79,6 +81,7 @@
 		"`all_bank_account_statement_table`.`created_at`" => "created_at",
 		"`all_bank_account_statement_table`.`last_updated_by`" => "last_updated_by",
 		"`all_bank_account_statement_table`.`last_updated_at`" => "last_updated_at",
+		"`all_bank_account_statement_table`.`created_by_username`" => "created_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -100,6 +103,7 @@
 		"`all_bank_account_statement_table`.`created_at`" => "Created at",
 		"`all_bank_account_statement_table`.`last_updated_by`" => "Last updated by",
 		"`all_bank_account_statement_table`.`last_updated_at`" => "Last updated at",
+		"`all_bank_account_statement_table`.`created_by_username`" => "Created By Username",
 	];
 
 	// Fields that can be quick searched
@@ -122,6 +126,7 @@
 		"`all_bank_account_statement_table`.`created_at`" => "created_at",
 		"`all_bank_account_statement_table`.`last_updated_by`" => "last_updated_by",
 		"`all_bank_account_statement_table`.`last_updated_at`" => "last_updated_at",
+		"`all_bank_account_statement_table`.`created_by_username`" => "created_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -157,10 +162,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Select statement type', 'Txn date', 'Value date', 'Description', 'Ref No. / Cheque No.', 'Branch code', 'Debit', 'Credit', 'Balance 1', 'Balance 2', 'Remarks 1', 'Remarks 2', 'Category', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['all_bank_account_statement_id', 'statement_type', 'txn_date', 'value_date', 'description', 'ref_no_or_cheque_no', 'branch_code', 'debit', 'credit', 'balance_1', 'balance_2', 'remarks_1', 'remarks_2', 'category', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Select statement type', 'Txn date', 'Value date', 'Description', 'Ref No. / Cheque No.', 'Branch code', 'Debit', 'Credit', 'Balance 1', 'Balance 2', 'Remarks 1', 'Remarks 2', 'Category', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Created By Username', ];
+	$x->ColFieldName = ['all_bank_account_statement_id', 'statement_type', 'txn_date', 'value_date', 'description', 'ref_no_or_cheque_no', 'branch_code', 'debit', 'credit', 'balance_1', 'balance_2', 'remarks_1', 'remarks_2', 'category', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/all_bank_account_statement_table_templateTV.html';
@@ -171,7 +176,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

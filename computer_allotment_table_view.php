@@ -30,6 +30,7 @@
 		"`computer_allotment_table`.`created_by`" => "created_by",
 		"`computer_allotment_table`.`last_updated_by`" => "last_updated_by",
 		"`computer_allotment_table`.`emp_details`" => "emp_details",
+		"`computer_allotment_table`.`created_by_username`" => "created_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -45,6 +46,7 @@
 		10 => 10,
 		11 => 11,
 		12 => 12,
+		13 => 13,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -61,6 +63,7 @@
 		"`computer_allotment_table`.`created_by`" => "created_by",
 		"`computer_allotment_table`.`last_updated_by`" => "last_updated_by",
 		"`computer_allotment_table`.`emp_details`" => "emp_details",
+		"`computer_allotment_table`.`created_by_username`" => "created_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -76,6 +79,7 @@
 		"`computer_allotment_table`.`created_by`" => "Created By",
 		"`computer_allotment_table`.`last_updated_by`" => "Last Updated By",
 		"`computer_allotment_table`.`emp_details`" => "Emp details",
+		"`computer_allotment_table`.`created_by_username`" => "Created By Username",
 	];
 
 	// Fields that can be quick searched
@@ -92,6 +96,7 @@
 		"`computer_allotment_table`.`created_by`" => "created_by",
 		"`computer_allotment_table`.`last_updated_by`" => "last_updated_by",
 		"`computer_allotment_table`.`emp_details`" => "emp_details",
+		"`computer_allotment_table`.`created_by_username`" => "created_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -127,10 +132,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'PC ID', 'Name of user', 'Role', 'From date', 'To date', 'Purpose', 'Email ID', 'Mobile number', 'Created By', 'Last Updated By', 'Emp details', ];
-	$x->ColFieldName = ['id', 'pc_id', 'name_of_user', 'role', 'from_date', 'to_date', 'purpose', 'email_d', 'mobile_number', 'created_by', 'last_updated_by', 'emp_details', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'PC ID', 'Name of user', 'Role', 'From date', 'To date', 'Purpose', 'Email ID', 'Mobile number', 'Created By', 'Last Updated By', 'Emp details', 'Created By Username', ];
+	$x->ColFieldName = ['id', 'pc_id', 'name_of_user', 'role', 'from_date', 'to_date', 'purpose', 'email_d', 'mobile_number', 'created_by', 'last_updated_by', 'emp_details', 'created_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/computer_allotment_table_templateTV.html';
@@ -141,7 +146,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

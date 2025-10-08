@@ -31,6 +31,7 @@
 		"`employees_designation_table`.`last_updated_by`" => "last_updated_by",
 		"`employees_designation_table`.`last_updated_at`" => "last_updated_at",
 		"`employees_designation_table`.`employees_designation_str`" => "employees_designation_str",
+		"`employees_designation_table`.`created_by_username`" => "created_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -47,6 +48,7 @@
 		11 => 11,
 		12 => 12,
 		13 => 13,
+		14 => 14,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -64,6 +66,7 @@
 		"`employees_designation_table`.`last_updated_by`" => "last_updated_by",
 		"`employees_designation_table`.`last_updated_at`" => "last_updated_at",
 		"`employees_designation_table`.`employees_designation_str`" => "employees_designation_str",
+		"`employees_designation_table`.`created_by_username`" => "created_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -80,6 +83,7 @@
 		"`employees_designation_table`.`last_updated_by`" => "Last updated by",
 		"`employees_designation_table`.`last_updated_at`" => "Last updated at",
 		"`employees_designation_table`.`employees_designation_str`" => "Employees designation str",
+		"`employees_designation_table`.`created_by_username`" => "Created By Username",
 	];
 
 	// Fields that can be quick searched
@@ -97,6 +101,7 @@
 		"`employees_designation_table`.`last_updated_by`" => "last_updated_by",
 		"`employees_designation_table`.`last_updated_at`" => "last_updated_at",
 		"`employees_designation_table`.`employees_designation_str`" => "employees_designation_str",
+		"`employees_designation_table`.`created_by_username`" => "created_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -132,10 +137,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Employee Details', 'Designation', 'Date of appointment to designation', 'Active status', 'Reporting Officer', 'Reviewing Officer', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'employee_lookup', 'designation', 'date_of_appointment_to_designation', 'active_status', 'reporting_officer', 'reviewing_officer', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Employee Details', 'Designation', 'Date of appointment to designation', 'Active status', 'Reporting Officer', 'Reviewing Officer', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Created By Username', ];
+	$x->ColFieldName = ['id', 'employee_lookup', 'designation', 'date_of_appointment_to_designation', 'active_status', 'reporting_officer', 'reviewing_officer', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/employees_designation_table_templateTV.html';

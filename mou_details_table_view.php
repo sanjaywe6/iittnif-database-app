@@ -35,6 +35,7 @@
 		"`mou_details_table`.`upload_mou`" => "upload_mou",
 		"`mou_details_table`.`created_by`" => "created_by",
 		"`mou_details_table`.`last_updated_by`" => "last_updated_by",
+		"`mou_details_table`.`created_by_username`" => "created_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -55,6 +56,7 @@
 		15 => 15,
 		16 => 16,
 		17 => 17,
+		18 => 18,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -76,6 +78,7 @@
 		"`mou_details_table`.`upload_mou`" => "upload_mou",
 		"`mou_details_table`.`created_by`" => "created_by",
 		"`mou_details_table`.`last_updated_by`" => "last_updated_by",
+		"`mou_details_table`.`created_by_username`" => "created_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -96,6 +99,7 @@
 		"`mou_details_table`.`upload_mou`" => "Upload MoU (PDF or DOC format)",
 		"`mou_details_table`.`created_by`" => "Created By",
 		"`mou_details_table`.`last_updated_by`" => "Last Updated By",
+		"`mou_details_table`.`created_by_username`" => "Created By Username",
 	];
 
 	// Fields that can be quick searched
@@ -117,6 +121,7 @@
 		"`mou_details_table`.`upload_mou`" => "upload_mou",
 		"`mou_details_table`.`created_by`" => "created_by",
 		"`mou_details_table`.`last_updated_by`" => "last_updated_by",
+		"`mou_details_table`.`created_by_username`" => "created_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -152,10 +157,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Type', 'Company name', 'Objectives/ Scope of the MOU', 'Agreement period (In Years)', 'Date of agreement', 'Date of expiry', 'Status', 'Point of contact (Name)', 'Contact number', 'Contact email id', 'Website link', 'Country', 'Assigned MoU to', 'Upload MoU (PDF or DOC format)', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['id', 'type', 'company_name', 'objective_of_mou', 'agreement_period', 'date_of_agreement', 'date_of_expiry', 'status', 'point_of_contact', 'contact_number', 'contact_email_id', 'website_link', 'country', 'assigned_mou_to', 'upload_mou', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Type', 'Company name', 'Objectives/ Scope of the MOU', 'Agreement period (In Years)', 'Date of agreement', 'Date of expiry', 'Status', 'Point of contact (Name)', 'Contact number', 'Contact email id', 'Website link', 'Country', 'Assigned MoU to', 'Upload MoU (PDF or DOC format)', 'Created By', 'Last Updated By', 'Created By Username', ];
+	$x->ColFieldName = ['id', 'type', 'company_name', 'objective_of_mou', 'agreement_period', 'date_of_agreement', 'date_of_expiry', 'status', 'point_of_contact', 'contact_number', 'contact_email_id', 'website_link', 'country', 'assigned_mou_to', 'upload_mou', 'created_by', 'last_updated_by', 'created_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/mou_details_table_templateTV.html';
@@ -166,7 +171,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

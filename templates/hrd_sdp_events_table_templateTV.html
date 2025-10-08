@@ -1,4 +1,4 @@
-		<td colspan="12" class="row">
+		<td colspan="13" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="hrd_sdp_events_table-id-caption field-caption-tv">ID</dt>
@@ -19,13 +19,13 @@
 					<dt class="hrd_sdp_events_table-location-caption field-caption-tv">Location</dt>
 					<dd id="hrd_sdp_events_table-location-<%%VALUE(id)%%>" class="hrd_sdp_events_table-location"><%%SELECT%%><%%VALUE(location)%%><%%ENDSELECT%%></dd>
 
+					<dt class="hrd_sdp_events_table-start_date-caption field-caption-tv">Start date</dt>
+					<dd id="hrd_sdp_events_table-start_date-<%%VALUE(id)%%>" class="hrd_sdp_events_table-start_date"><%%SELECT%%><%%VALUE(start_date)%%><%%ENDSELECT%%></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="hrd_sdp_events_table-start_date-caption field-caption-tv">Start date</dt>
-					<dd id="hrd_sdp_events_table-start_date-<%%VALUE(id)%%>" class="hrd_sdp_events_table-start_date"><%%SELECT%%><%%VALUE(start_date)%%><%%ENDSELECT%%></dd>
-
 					<dt class="hrd_sdp_events_table-end_date-caption field-caption-tv">End date</dt>
 					<dd id="hrd_sdp_events_table-end_date-<%%VALUE(id)%%>" class="hrd_sdp_events_table-end_date"><%%SELECT%%><%%VALUE(end_date)%%><%%ENDSELECT%%></dd>
 
@@ -40,6 +40,9 @@
 
 					<dt class="hrd_sdp_events_table-last_updated_by-caption field-caption-tv">Last Updated By</dt>
 					<dd id="hrd_sdp_events_table-last_updated_by-<%%VALUE(id)%%>" class="hrd_sdp_events_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="hrd_sdp_events_table-created_by_username-caption field-caption-tv">Created By Username</dt>
+					<dd id="hrd_sdp_events_table-created_by_username-<%%VALUE(id)%%>" class="hrd_sdp_events_table-created_by_username"><%%SELECT%%><%%VALUE(created_by_username)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>

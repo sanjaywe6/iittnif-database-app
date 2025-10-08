@@ -29,6 +29,7 @@
 		"`subtask_setting_table`.`subtask_setting_str`" => "subtask_setting_str",
 		"`subtask_setting_table`.`created_by`" => "created_by",
 		"`subtask_setting_table`.`last_updated_by`" => "last_updated_by",
+		"`subtask_setting_table`.`created_by_username`" => "created_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -43,6 +44,7 @@
 		9 => 9,
 		10 => 10,
 		11 => 11,
+		12 => 12,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -58,6 +60,7 @@
 		"`subtask_setting_table`.`subtask_setting_str`" => "subtask_setting_str",
 		"`subtask_setting_table`.`created_by`" => "created_by",
 		"`subtask_setting_table`.`last_updated_by`" => "last_updated_by",
+		"`subtask_setting_table`.`created_by_username`" => "created_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -72,6 +75,7 @@
 		"`subtask_setting_table`.`subtask_setting_str`" => "Subtask setting str",
 		"`subtask_setting_table`.`created_by`" => "Created By",
 		"`subtask_setting_table`.`last_updated_by`" => "Last Updated By",
+		"`subtask_setting_table`.`created_by_username`" => "Created By Username",
 	];
 
 	// Fields that can be quick searched
@@ -87,6 +91,7 @@
 		"`subtask_setting_table`.`subtask_setting_str`" => "subtask_setting_str",
 		"`subtask_setting_table`.`created_by`" => "created_by",
 		"`subtask_setting_table`.`last_updated_by`" => "last_updated_by",
+		"`subtask_setting_table`.`created_by_username`" => "created_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -122,10 +127,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Task', 'Subtask status', 'Subtask description', 'Subtask duration', 'Subtask set date', 'Supervisor name', 'Assigned to', 'Subtask setting str', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['subtask_id', 'task_lookup', 'subtask_status', 'subtask_description', 'subtask_duration', 'subtask_set_date', 'supervisor_name', 'assigned_to', 'subtask_setting_str', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Task', 'Subtask status', 'Subtask description', 'Subtask duration', 'Subtask set date', 'Supervisor name', 'Assigned to', 'Subtask setting str', 'Created By', 'Last Updated By', 'Created By Username', ];
+	$x->ColFieldName = ['subtask_id', 'task_lookup', 'subtask_status', 'subtask_description', 'subtask_duration', 'subtask_set_date', 'supervisor_name', 'assigned_to', 'subtask_setting_str', 'created_by', 'last_updated_by', 'created_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/subtask_setting_table_templateTV.html';
@@ -136,7 +141,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

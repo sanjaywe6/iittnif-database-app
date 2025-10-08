@@ -29,6 +29,7 @@
 		"`decision_table`.`decision_str`" => "decision_str",
 		"`decision_table`.`created_by`" => "created_by",
 		"`decision_table`.`last_updated_by`" => "last_updated_by",
+		"`decision_table`.`created_by_username`" => "created_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -43,6 +44,7 @@
 		9 => 9,
 		10 => 10,
 		11 => 11,
+		12 => 12,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -58,6 +60,7 @@
 		"`decision_table`.`decision_str`" => "decision_str",
 		"`decision_table`.`created_by`" => "created_by",
 		"`decision_table`.`last_updated_by`" => "last_updated_by",
+		"`decision_table`.`created_by_username`" => "created_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -72,6 +75,7 @@
 		"`decision_table`.`decision_str`" => "Decision str",
 		"`decision_table`.`created_by`" => "Created By",
 		"`decision_table`.`last_updated_by`" => "Last Updated By",
+		"`decision_table`.`created_by_username`" => "Created By Username",
 	];
 
 	// Fields that can be quick searched
@@ -87,6 +91,7 @@
 		"`decision_table`.`decision_str`" => "decision_str",
 		"`decision_table`.`created_by`" => "created_by",
 		"`decision_table`.`last_updated_by`" => "last_updated_by",
+		"`decision_table`.`created_by_username`" => "created_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -122,10 +127,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Agenda of Meeting', 'Decision description', 'Decision actor', 'Action taken with date', 'Decision status', 'Decision status update date', 'Decision status remarks by superior', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['decision_id', 'agenda_lookup', 'decision_description', 'decision_actor', 'action_taken_with_date', 'decision_status', 'decision_status_update_date', 'decision_status_remarks_by_superior', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Agenda of Meeting', 'Decision description', 'Decision actor', 'Action taken with date', 'Decision status', 'Decision status update date', 'Decision status remarks by superior', 'Created By', 'Last Updated By', 'Created By Username', ];
+	$x->ColFieldName = ['decision_id', 'agenda_lookup', 'decision_description', 'decision_actor', 'action_taken_with_date', 'decision_status', 'decision_status_update_date', 'decision_status_remarks_by_superior', 'created_by', 'last_updated_by', 'created_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/decision_table_templateTV.html';
@@ -136,7 +141,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

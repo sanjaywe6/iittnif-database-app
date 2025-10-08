@@ -28,6 +28,7 @@
 		"`goal_setting_table`.`goal_setting_str`" => "goal_setting_str",
 		"`goal_setting_table`.`created_by`" => "created_by",
 		"`goal_setting_table`.`last_updated_by`" => "last_updated_by",
+		"`goal_setting_table`.`created_by_username`" => "created_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -41,6 +42,7 @@
 		8 => 8,
 		9 => 9,
 		10 => 10,
+		11 => 11,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -55,6 +57,7 @@
 		"`goal_setting_table`.`goal_setting_str`" => "goal_setting_str",
 		"`goal_setting_table`.`created_by`" => "created_by",
 		"`goal_setting_table`.`last_updated_by`" => "last_updated_by",
+		"`goal_setting_table`.`created_by_username`" => "created_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -68,6 +71,7 @@
 		"`goal_setting_table`.`goal_setting_str`" => "Goal setting str",
 		"`goal_setting_table`.`created_by`" => "Created By",
 		"`goal_setting_table`.`last_updated_by`" => "Last Updated By",
+		"`goal_setting_table`.`created_by_username`" => "Created By Username",
 	];
 
 	// Fields that can be quick searched
@@ -82,6 +86,7 @@
 		"`goal_setting_table`.`goal_setting_str`" => "goal_setting_str",
 		"`goal_setting_table`.`created_by`" => "created_by",
 		"`goal_setting_table`.`last_updated_by`" => "last_updated_by",
+		"`goal_setting_table`.`created_by_username`" => "created_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -117,10 +122,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Goal status', 'Goal description', 'Goal duration', 'Goal set date', 'Supervisor name', 'Assigned to', 'Goal setting str', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['goal_id', 'goal_status', 'goal_description', 'goal_duration', 'goal_set_date', 'supervisor_name', 'assigned_to', 'goal_setting_str', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Goal status', 'Goal description', 'Goal duration', 'Goal set date', 'Supervisor name', 'Assigned to', 'Goal setting str', 'Created By', 'Last Updated By', 'Created By Username', ];
+	$x->ColFieldName = ['goal_id', 'goal_status', 'goal_description', 'goal_duration', 'goal_set_date', 'supervisor_name', 'assigned_to', 'goal_setting_str', 'created_by', 'last_updated_by', 'created_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/goal_setting_table_templateTV.html';
@@ -131,7 +136,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

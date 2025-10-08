@@ -25,6 +25,7 @@
 		"`mou_company_area_details_table`.`remarks`" => "remarks",
 		"`mou_company_area_details_table`.`created_by`" => "created_by",
 		"`mou_company_area_details_table`.`last_updated_by`" => "last_updated_by",
+		"`mou_company_area_details_table`.`created_by_username`" => "created_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -35,6 +36,7 @@
 		5 => 5,
 		6 => 6,
 		7 => 7,
+		8 => 8,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -46,6 +48,7 @@
 		"`mou_company_area_details_table`.`remarks`" => "remarks",
 		"`mou_company_area_details_table`.`created_by`" => "created_by",
 		"`mou_company_area_details_table`.`last_updated_by`" => "last_updated_by",
+		"`mou_company_area_details_table`.`created_by_username`" => "created_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -56,6 +59,7 @@
 		"`mou_company_area_details_table`.`remarks`" => "Remarks",
 		"`mou_company_area_details_table`.`created_by`" => "Created By",
 		"`mou_company_area_details_table`.`last_updated_by`" => "Last Updated By",
+		"`mou_company_area_details_table`.`created_by_username`" => "Created By Username",
 	];
 
 	// Fields that can be quick searched
@@ -67,6 +71,7 @@
 		"`mou_company_area_details_table`.`remarks`" => "remarks",
 		"`mou_company_area_details_table`.`created_by`" => "created_by",
 		"`mou_company_area_details_table`.`last_updated_by`" => "last_updated_by",
+		"`mou_company_area_details_table`.`created_by_username`" => "created_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -102,10 +107,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Name of the company', 'Area / Scope', 'Assigned MoU to', 'Remarks', 'Created By', 'Last Updated By', ];
-	$x->ColFieldName = ['id', 'name_of_the_company', 'area', 'assigned_mou_to', 'remarks', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Name of the company', 'Area / Scope', 'Assigned MoU to', 'Remarks', 'Created By', 'Last Updated By', 'Created By Username', ];
+	$x->ColFieldName = ['id', 'name_of_the_company', 'area', 'assigned_mou_to', 'remarks', 'created_by', 'last_updated_by', 'created_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/mou_company_area_details_table_templateTV.html';
@@ -116,7 +121,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

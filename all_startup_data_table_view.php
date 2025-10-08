@@ -34,6 +34,7 @@
 		"`all_startup_data_table`.`created_at`" => "created_at",
 		"`all_startup_data_table`.`last_updated_by`" => "last_updated_by",
 		"`all_startup_data_table`.`last_updated_at`" => "last_updated_at",
+		"`all_startup_data_table`.`created_by_username`" => "created_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -53,6 +54,7 @@
 		14 => 14,
 		15 => 15,
 		16 => 16,
+		17 => 17,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -73,6 +75,7 @@
 		"`all_startup_data_table`.`created_at`" => "created_at",
 		"`all_startup_data_table`.`last_updated_by`" => "last_updated_by",
 		"`all_startup_data_table`.`last_updated_at`" => "last_updated_at",
+		"`all_startup_data_table`.`created_by_username`" => "created_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -92,6 +95,7 @@
 		"`all_startup_data_table`.`created_at`" => "Created at",
 		"`all_startup_data_table`.`last_updated_by`" => "Last updated by",
 		"`all_startup_data_table`.`last_updated_at`" => "Last updated at",
+		"`all_startup_data_table`.`created_by_username`" => "Created By Username",
 	];
 
 	// Fields that can be quick searched
@@ -112,6 +116,7 @@
 		"`all_startup_data_table`.`created_at`" => "created_at",
 		"`all_startup_data_table`.`last_updated_by`" => "last_updated_by",
 		"`all_startup_data_table`.`last_updated_at`" => "last_updated_at",
+		"`all_startup_data_table`.`created_by_username`" => "created_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -147,10 +152,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 100, 100, 100, ];
-	$x->ColCaption = ['ID', 'Company id', 'Name of the company', 'Business sector', 'Name of the person', 'Mobile number', 'Email id', 'Mode of incubation', 'Date of incubation', 'Shortlisted for fund', 'Website link', 'Company logo', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Evaluation table', 'Shortlisted startups for fund - App', 'Shortlisted startups DD and Agreement - App', ];
-	$x->ColFieldName = ['id', 'company_id', 'name_of_the_company', 'business_sector', 'name_of_the_person', 'mobile_number', 'email_id', 'mode_of_incubation', 'date_of_incubation', 'shortlisted_for_fund', 'website_link', 'company_logo', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', '%evaluation_table.select_startup%', '%shortlisted_startups_for_fund_table.startup%', '%shortlisted_startups_dd_and_agreement_table.startup%', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, -1, -1, -1, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 100, 100, 100, ];
+	$x->ColCaption = ['ID', 'Company id', 'Name of the company', 'Business sector', 'Name of the person', 'Mobile number', 'Email id', 'Mode of incubation', 'Date of incubation', 'Shortlisted for fund', 'Website link', 'Company logo', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Created By Username', 'Evaluation table', 'Shortlisted startups for fund - App', 'Shortlisted startups DD and Agreement - App', ];
+	$x->ColFieldName = ['id', 'company_id', 'name_of_the_company', 'business_sector', 'name_of_the_person', 'mobile_number', 'email_id', 'mode_of_incubation', 'date_of_incubation', 'shortlisted_for_fund', 'website_link', 'company_logo', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', '%evaluation_table.select_startup%', '%shortlisted_startups_for_fund_table.startup%', '%shortlisted_startups_dd_and_agreement_table.startup%', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, -1, -1, -1, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/all_startup_data_table_templateTV.html';
@@ -161,7 +166,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

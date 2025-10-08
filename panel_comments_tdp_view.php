@@ -34,6 +34,7 @@
 		"`panel_comments_tdp`.`created_at`" => "created_at",
 		"`panel_comments_tdp`.`last_updated_by`" => "last_updated_by",
 		"`panel_comments_tdp`.`last_updated_at`" => "last_updated_at",
+		"`panel_comments_tdp`.`created_by_username`" => "created_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -53,6 +54,7 @@
 		14 => 14,
 		15 => 15,
 		16 => 16,
+		17 => 17,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -73,6 +75,7 @@
 		"`panel_comments_tdp`.`created_at`" => "created_at",
 		"`panel_comments_tdp`.`last_updated_by`" => "last_updated_by",
 		"`panel_comments_tdp`.`last_updated_at`" => "last_updated_at",
+		"`panel_comments_tdp`.`created_by_username`" => "created_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -92,6 +95,7 @@
 		"`panel_comments_tdp`.`created_at`" => "Created at",
 		"`panel_comments_tdp`.`last_updated_by`" => "Last updated by",
 		"`panel_comments_tdp`.`last_updated_at`" => "Last updated at",
+		"`panel_comments_tdp`.`created_by_username`" => "Created By Username",
 	];
 
 	// Fields that can be quick searched
@@ -112,6 +116,7 @@
 		"`panel_comments_tdp`.`created_at`" => "created_at",
 		"`panel_comments_tdp`.`last_updated_by`" => "last_updated_by",
 		"`panel_comments_tdp`.`last_updated_at`" => "last_updated_at",
+		"`panel_comments_tdp`.`created_by_username`" => "created_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -147,10 +152,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Project ID::Title', 'Project title', 'Name of PI', 'Institute', 'Final budget in Rs.', 'Comments from YVN sir', 'Comments from Ramakrishna sir', 'Comments from Bharat Lohani sir', 'Remarks 1', 'Remarks 2', 'Finale decision', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'project_id', 'project_title', 'name_of_pi', 'institute', 'final_budget', 'comments_from_yvn_sir', 'comments_from_ramakrishna_sir', 'comments_from_bharat_lohani_sir', 'remarks_1', 'remarks_2', 'finale_decision', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Project ID::Title', 'Project title', 'Name of PI', 'Institute', 'Final budget in Rs.', 'Comments from YVN sir', 'Comments from Ramakrishna sir', 'Comments from Bharat Lohani sir', 'Remarks 1', 'Remarks 2', 'Finale decision', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Created By Username', ];
+	$x->ColFieldName = ['id', 'project_id', 'project_title', 'name_of_pi', 'institute', 'final_budget', 'comments_from_yvn_sir', 'comments_from_ramakrishna_sir', 'comments_from_bharat_lohani_sir', 'remarks_1', 'remarks_2', 'finale_decision', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/panel_comments_tdp_templateTV.html';
@@ -161,7 +166,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

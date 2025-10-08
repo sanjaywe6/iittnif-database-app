@@ -1,4 +1,4 @@
-		<td colspan="14" class="row">
+		<td colspan="15" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="visiting_card_table-visiting_card_id-caption field-caption-tv">ID</dt>
@@ -22,13 +22,13 @@
 					<dt class="visiting_card_table-email-caption field-caption-tv">Email</dt>
 					<dd id="visiting_card_table-email-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-email text-bold"><a href="mailto:<%%VALUE(email)%%>" title="<%%VALUE(email)%%>" class="btn btn-default"><i class="glyphicon glyphicon-envelope text-info"></i></a></dd>
 
+					<dt class="visiting_card_table-company_website_addr-caption field-caption-tv">Company website address</dt>
+					<dd id="visiting_card_table-company_website_addr-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-company_website_addr text-bold"><%%VALUE(company_website_addr)%%></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="visiting_card_table-company_website_addr-caption field-caption-tv">Company website address</dt>
-					<dd id="visiting_card_table-company_website_addr-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-company_website_addr text-bold"><%%VALUE(company_website_addr)%%></dd>
-
 					<dt class="visiting_card_table-given_by-caption field-caption-tv">Given by</dt>
 					<dd id="visiting_card_table-given_by-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-given_by text-bold"><%%VALUE(given_by)%%></dd>
 
@@ -46,6 +46,9 @@
 
 					<dt class="visiting_card_table-last_updated_by-caption field-caption-tv">Last Updated By</dt>
 					<dd id="visiting_card_table-last_updated_by-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></dd>
+
+					<dt class="visiting_card_table-created_by_username-caption field-caption-tv">Created By Username</dt>
+					<dd id="visiting_card_table-created_by_username-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-created_by_username text-bold"><%%VALUE(created_by_username)%%></dd>
 
 				</dl>
 			</div>

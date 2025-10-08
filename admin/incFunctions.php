@@ -2802,6 +2802,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'coffee_table' => [
 					'id' => [
@@ -2853,6 +2860,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'cafeteria_table' => [
 					'id' => [
@@ -2901,6 +2915,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -2969,6 +2990,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'outcomes_expected_table' => [
 					'outcomes_expected_id' => [
@@ -3017,6 +3045,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -3096,6 +3131,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -3185,6 +3227,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'agenda_table' => [
 					'agenda_id' => [
@@ -3226,6 +3275,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -3308,6 +3364,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'participants_table' => [
 					'participants_id' => [
@@ -3380,6 +3443,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'action_actor' => [
 					'actor_ID' => [
@@ -3421,6 +3491,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -3528,6 +3605,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -3652,6 +3736,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'mou_company_area_details_table' => [
 					'id' => [
@@ -3700,6 +3791,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -3775,6 +3873,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'goal_progress_table' => [
 					'id' => [
@@ -3823,6 +3928,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -3895,6 +4007,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -3974,6 +4093,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -4133,6 +4259,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'star_pnt' => [
 					'id' => [
@@ -4202,6 +4335,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -4295,6 +4435,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -4524,6 +4671,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'space_day_school_details_app' => [
 					'id' => [
@@ -4593,6 +4747,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -4689,6 +4850,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'school_list' => [
 					'id' => [
@@ -4758,6 +4926,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -4851,6 +5026,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -5024,6 +5206,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'asset_allotment_table' => [
 					'id' => [
@@ -5114,6 +5303,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -5287,6 +5483,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'sub_asset_allotment_table' => [
 					'id' => [
@@ -5377,6 +5580,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -5522,6 +5732,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'it_inventory_billing_details' => [
 					'it_inventory_biling_details_id' => [
@@ -5633,6 +5850,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -5750,6 +5974,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'computer_details_table' => [
 					'id' => [
@@ -5829,6 +6060,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'computer_user_details' => [
 					'id' => [
@@ -5877,6 +6115,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -5963,6 +6208,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Emp details',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -6108,6 +6360,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'employees_designation_table' => [
 					'id' => [
@@ -6198,6 +6457,13 @@
 						'appgini' => "TEXT NULL",
 						'info' => [
 							'caption' => 'Employees designation str',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -6347,6 +6613,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -6587,27 +6860,6 @@
 							'description' => '',
 						],
 					],
-					'created_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created By',
-							'description' => '',
-						],
-					],
-					'created_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created At',
-							'description' => '',
-						],
-					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last Updated By',
-							'description' => '',
-						],
-					],
 					'last_updated_at' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
@@ -6618,14 +6870,7 @@
 					'created_by_username' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Created by Username',
-							'description' => '',
-						],
-					],
-					'last_updated_by_username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last Updated by Username',
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -6691,6 +6936,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -6770,6 +7022,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -6901,6 +7160,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'navavishkar_stay_payment_table' => [
 					'id' => [
@@ -6984,6 +7250,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -7080,6 +7353,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'attendence_details_table' => [
 					'id' => [
@@ -7170,6 +7450,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -7284,6 +7571,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -7457,6 +7751,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'shortlisted_startups_dd_and_agreement_table' => [
 					'id' => [
@@ -7547,6 +7848,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -7734,6 +8042,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'programs_table' => [
 					'programs_id' => [
@@ -7782,6 +8097,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -7857,6 +8179,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'problem_statement_table' => [
 					'problem_statement_id' => [
@@ -7912,6 +8241,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -7991,6 +8327,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -8084,6 +8427,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -8462,6 +8812,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'payment_track_details_table' => [
 					'payment_track_details_id' => [
@@ -8573,6 +8930,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -8711,6 +9075,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'travel_stay_table' => [
 					'id' => [
@@ -8846,6 +9217,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'travel_local_commute_table' => [
 					'id' => [
@@ -8967,6 +9345,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'r_and_d_progress' => [
 					'id' => [
@@ -9050,6 +9435,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -9209,6 +9601,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'selected_proposals_final_tdp' => [
 					'selected_proposals_id' => [
@@ -9365,6 +9764,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'stage_wise_budget_table_tdp' => [
 					'id' => [
@@ -9500,6 +9906,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'first_level_shortlisted_proposals_tdp' => [
 					'id' => [
@@ -9576,6 +9989,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -9707,6 +10127,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'panel_comments_tdp' => [
 					'id' => [
@@ -9821,6 +10248,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'selected_tdp' => [
 					'id' => [
@@ -9900,6 +10334,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'address_tdp' => [
 					'id' => [
@@ -9976,6 +10417,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last updated at',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -10184,6 +10632,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'project_details_tdp' => [
 					'id' => [
@@ -10270,6 +10725,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'newsletter_table' => [
 					'id' => [
@@ -10335,6 +10797,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'contact_call_log_table' => [
 					'id' => [
@@ -10390,6 +10859,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last updated By',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -10465,6 +10941,13 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
 				],
 				'r_and_d_quarterly_progress_app' => [
 					'id' => [
@@ -10534,6 +11017,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
 							'description' => '',
 						],
 					],
@@ -11910,7 +12400,7 @@
 					INNER JOIN %TABLENAME%
 					  
 					ON membership_users.memberID = %TABLENAME%.created_by
-					WHERE %TABLENAME%.id = %ID%;',
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 				'last_updated_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -11924,7 +12414,7 @@
 					INNER JOIN %TABLENAME%
 					  
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
-					WHERE %TABLENAME%.id = %ID%;',
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
 			'approval_table' => [
 				'created_by_username' => 'SELECT CONCAT(
@@ -11940,7 +12430,7 @@
 					INNER JOIN %TABLENAME%
 					  
 					ON membership_users.memberID = %TABLENAME%.created_by
-					WHERE %TABLENAME%.id = %ID%;',
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 				'last_updated_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -11954,7 +12444,7 @@
 					INNER JOIN %TABLENAME%
 					  
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
-					WHERE %TABLENAME%.id = %ID%;',
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
 			'techlead_web_page' => [
 				'created_by_username' => 'SELECT CONCAT(
@@ -11970,7 +12460,7 @@
 					INNER JOIN %TABLENAME%
 					  
 					ON membership_users.memberID = %TABLENAME%.created_by
-					WHERE %TABLENAME%.id = %ID%;',
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 				'last_updated_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -11984,7 +12474,7 @@
 					INNER JOIN %TABLENAME%
 					  
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
-					WHERE %TABLENAME%.id = %ID%;',
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
 			'navavishkar_stay_facilities_table' => [
 				'created_by_username' => 'SELECT CONCAT(
@@ -12000,7 +12490,7 @@
 					INNER JOIN %TABLENAME%
 					  
 					ON membership_users.memberID = %TABLENAME%.created_by
-					WHERE %TABLENAME%.id = %ID%;',
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 				'last_updated_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -12014,7 +12504,7 @@
 					INNER JOIN %TABLENAME%
 					  
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
-					WHERE %TABLENAME%.id = %ID%;',
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
 			'navavishkar_stay_facilities_allotment_table' => [
 				'created_by_username' => 'SELECT CONCAT(
@@ -12030,7 +12520,7 @@
 					INNER JOIN %TABLENAME%
 					  
 					ON membership_users.memberID = %TABLENAME%.created_by
-					WHERE %TABLENAME%.id = %ID%;',
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 				'last_updated_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -12044,7 +12534,7 @@
 					INNER JOIN %TABLENAME%
 					  
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
-					WHERE %TABLENAME%.id = %ID%;',
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
 			'car_table' => [
 				'created_by_username' => 'SELECT CONCAT(
@@ -12060,7 +12550,7 @@
 					INNER JOIN %TABLENAME%
 					  
 					ON membership_users.memberID = %TABLENAME%.created_by
-					WHERE %TABLENAME%.id = %ID%;',
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 				'last_updated_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -12074,7 +12564,7 @@
 					INNER JOIN %TABLENAME%
 					  
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
-					WHERE %TABLENAME%.id = %ID%;',
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
 			'car_usage_table' => [
 				'created_by_username' => 'SELECT CONCAT(
@@ -12090,7 +12580,7 @@
 					INNER JOIN %TABLENAME%
 					  
 					ON membership_users.memberID = %TABLENAME%.created_by
-					WHERE %TABLENAME%.id = %ID%;',
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 				'last_updated_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -12104,7 +12594,7 @@
 					INNER JOIN %TABLENAME%
 					  
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
-					WHERE %TABLENAME%.id = %ID%;',
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
 			'cycle_table' => [
 				'created_by_username' => 'SELECT CONCAT(
@@ -12120,7 +12610,7 @@
 					INNER JOIN %TABLENAME%
 					  
 					ON membership_users.memberID = %TABLENAME%.created_by
-					WHERE %TABLENAME%.id = %ID%;',
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 				'last_updated_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -12134,7 +12624,7 @@
 					INNER JOIN %TABLENAME%
 					  
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
-					WHERE %TABLENAME%.id = %ID%;',
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
 			'cycle_usage_table' => [
 				'created_by_username' => 'SELECT CONCAT(
@@ -12150,7 +12640,7 @@
 					INNER JOIN %TABLENAME%
 					  
 					ON membership_users.memberID = %TABLENAME%.created_by
-					WHERE %TABLENAME%.id = %ID%;',
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 				'last_updated_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -12164,44 +12654,584 @@
 					INNER JOIN %TABLENAME%
 					  
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
-					WHERE %TABLENAME%.id = %ID%;',
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
-			'gym_table' => [],
-			'coffee_table' => [],
-			'cafeteria_table' => [],
-			'event_table' => [],
-			'outcomes_expected_table' => [],
-			'event_decision_table' => [],
-			'meetings_table' => [],
-			'agenda_table' => [],
-			'decision_table' => [],
-			'participants_table' => [],
-			'action_actor' => [],
-			'visiting_card_table' => [],
-			'mou_details_table' => [],
-			'mou_company_area_details_table' => [],
-			'goal_setting_table' => [],
-			'goal_progress_table' => [],
-			'task_setting_table' => [],
-			'subtask_setting_table' => [],
-			'internship_fellowship_details_app' => [],
-			'star_pnt' => [],
-			'hrd_sdp_events_table' => [],
-			'training_program_on_geospatial_tchnologies_table' => [],
-			'space_day_school_details_app' => [],
-			'space_day_college_student_table' => [],
-			'school_list' => [],
-			'sdp_participants_college_details_table' => [],
-			'asset_table' => [],
-			'asset_allotment_table' => [],
-			'sub_asset_table' => [],
-			'sub_asset_allotment_table' => [],
-			'it_inventory_app' => [],
-			'it_inventory_billing_details' => [],
-			'it_inventory_allotment_table' => [],
-			'computer_details_table' => [],
-			'computer_user_details' => [],
-			'computer_allotment_table' => [],
+			'gym_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'coffee_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'cafeteria_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'event_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'outcomes_expected_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'event_decision_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'meetings_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'agenda_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'decision_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'participants_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'action_actor' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'visiting_card_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'mou_details_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'mou_company_area_details_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'goal_setting_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'goal_progress_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'task_setting_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'subtask_setting_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'internship_fellowship_details_app' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'star_pnt' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'hrd_sdp_events_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'training_program_on_geospatial_tchnologies_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'space_day_school_details_app' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'space_day_college_student_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'school_list' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'sdp_participants_college_details_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'asset_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'asset_allotment_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'sub_asset_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'sub_asset_allotment_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'it_inventory_app' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'it_inventory_billing_details' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'it_inventory_allotment_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'computer_details_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'computer_user_details' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'computer_allotment_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
 			'employees_personal_data_table' => [
 				'employee_str' => 'SELECT CONCAT(
 					`employees_personal_data_table`.`name`,
@@ -12209,6 +13239,20 @@
 					\':\',`employees_personal_data_table`.`department`,
 					\':\',`employees_personal_data_table`.`active_status`
 					) FROM %TABLENAME% WHERE `employees_personal_data_table`.`id` = %ID%',
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
 			'employees_designation_table' => [
 				'employees_designation_str' => 'SELECT CONCAT(
@@ -12220,8 +13264,37 @@
 					JOIN employees_designation_table 
 					ON `employees_personal_data_table`.`id` = `employees_designation_table`.`employee_lookup`
 					WHERE `employees_designation_table`.`id` = %ID%;',
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
-			'employees_appraisal_table' => [],
+			'employees_appraisal_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
 			'beyond_working_hours_table' => [
 				'number_of_hours' => 'SELECT 
 					    TIMESTAMPDIFF(
@@ -12289,7 +13362,7 @@
 					WHERE %TABLENAME%.id = %ID%;',
 			],
 			'half_day_leave_table' => [
-				'created_by' => 'SELECT CONCAT(
+				'created_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
 					  
@@ -12301,36 +13374,249 @@
 					
 					INNER JOIN %TABLENAME%
 					  
-					ON membership_users.memberID = %TABLENAME%.created_by_username;',
-				'last_updated_by' => 'SELECT CONCAT(
-					  
-					membership_users.memberID, \' : \',
-					  
-					membership_users.custom1
-					
-					)
-					
-					FROM membership_users
-					
-					INNER JOIN %TABLENAME%
-					  
-					ON membership_users.memberID = %TABLENAME%.last_updated_by_username;',
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
-			'work_from_home_table' => [],
-			'work_from_home_tasks_app' => [],
-			'navavishkar_stay_table' => [],
-			'navavishkar_stay_payment_table' => [],
-			'email_id_allocation_table' => [],
-			'attendence_details_table' => [],
-			'all_startup_data_table' => [],
-			'shortlisted_startups_for_fund_table' => [],
-			'shortlisted_startups_dd_and_agreement_table' => [],
-			'vikas_startup_applications_table' => [],
-			'programs_table' => [],
-			'evaluation_table' => [],
-			'problem_statement_table' => [],
-			'evaluators_table' => [],
-			'approval_billing_table' => [],
+			'work_from_home_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'work_from_home_tasks_app' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'navavishkar_stay_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'navavishkar_stay_payment_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'email_id_allocation_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'attendence_details_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'all_startup_data_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'shortlisted_startups_for_fund_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'shortlisted_startups_dd_and_agreement_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'vikas_startup_applications_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'programs_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'evaluation_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'problem_statement_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'evaluators_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'approval_billing_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
 			'honorarium_claim_table' => [
 				'created_by_username' => 'SELECT CONCAT(
 					  
@@ -12361,26 +13647,326 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.id = %ID%;',
 			],
-			'all_bank_account_statement_table' => [],
-			'payment_track_details_table' => [],
-			'travel_table' => [],
-			'travel_stay_table' => [],
-			'travel_local_commute_table' => [],
-			'r_and_d_progress' => [],
-			'panel_decision_table_tdp' => [],
-			'selected_proposals_final_tdp' => [],
-			'stage_wise_budget_table_tdp' => [],
-			'first_level_shortlisted_proposals_tdp' => [],
-			'budget_table_tdp' => [],
-			'panel_comments_tdp' => [],
-			'selected_tdp' => [],
-			'address_tdp' => [],
-			'summary_table_tdp' => [],
-			'project_details_tdp' => [],
-			'newsletter_table' => [],
-			'contact_call_log_table' => [],
-			'r_and_d_monthly_progress_app' => [],
-			'r_and_d_quarterly_progress_app' => [],
+			'all_bank_account_statement_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'payment_track_details_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'travel_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'travel_stay_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'travel_local_commute_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'r_and_d_progress' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'panel_decision_table_tdp' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'selected_proposals_final_tdp' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'stage_wise_budget_table_tdp' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'first_level_shortlisted_proposals_tdp' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'budget_table_tdp' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'panel_comments_tdp' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'selected_tdp' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'address_tdp' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'summary_table_tdp' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'project_details_tdp' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'newsletter_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'contact_call_log_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'r_and_d_monthly_progress_app' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'r_and_d_quarterly_progress_app' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
 		];
 	}
 	#########################################################

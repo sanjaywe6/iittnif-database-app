@@ -29,6 +29,7 @@
 		"`address_tdp`.`created_at`" => "created_at",
 		"`address_tdp`.`last_updated_by`" => "last_updated_by",
 		"`address_tdp`.`last_updated_at`" => "last_updated_at",
+		"`address_tdp`.`created_by_username`" => "created_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -43,6 +44,7 @@
 		9 => 9,
 		10 => 10,
 		11 => 11,
+		12 => 12,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -58,6 +60,7 @@
 		"`address_tdp`.`created_at`" => "created_at",
 		"`address_tdp`.`last_updated_by`" => "last_updated_by",
 		"`address_tdp`.`last_updated_at`" => "last_updated_at",
+		"`address_tdp`.`created_by_username`" => "created_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -72,6 +75,7 @@
 		"`address_tdp`.`created_at`" => "Created at",
 		"`address_tdp`.`last_updated_by`" => "Last updated by",
 		"`address_tdp`.`last_updated_at`" => "Last updated at",
+		"`address_tdp`.`created_by_username`" => "Created By Username",
 	];
 
 	// Fields that can be quick searched
@@ -87,6 +91,7 @@
 		"`address_tdp`.`created_at`" => "created_at",
 		"`address_tdp`.`last_updated_by`" => "last_updated_by",
 		"`address_tdp`.`last_updated_at`" => "last_updated_at",
+		"`address_tdp`.`created_by_username`" => "created_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -122,10 +127,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Project ID::Title', 'Project title', 'Short name', 'Pincode', 'Lattitude', 'Longitude', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'project_id', 'project_title', 'short_name', 'pincode', 'lattitude', 'longitude', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Project ID::Title', 'Project title', 'Short name', 'Pincode', 'Lattitude', 'Longitude', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Created By Username', ];
+	$x->ColFieldName = ['id', 'project_id', 'project_title', 'short_name', 'pincode', 'lattitude', 'longitude', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/address_tdp_templateTV.html';
@@ -136,7 +141,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

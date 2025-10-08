@@ -40,6 +40,7 @@
 		"`selected_proposals_final_tdp`.`created_at`" => "created_at",
 		"`selected_proposals_final_tdp`.`last_updated_by`" => "last_updated_by",
 		"`selected_proposals_final_tdp`.`last_updated_at`" => "last_updated_at",
+		"`selected_proposals_final_tdp`.`created_by_username`" => "created_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -65,6 +66,7 @@
 		20 => 20,
 		21 => 21,
 		22 => 22,
+		23 => 23,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -91,6 +93,7 @@
 		"`selected_proposals_final_tdp`.`created_at`" => "created_at",
 		"`selected_proposals_final_tdp`.`last_updated_by`" => "last_updated_by",
 		"`selected_proposals_final_tdp`.`last_updated_at`" => "last_updated_at",
+		"`selected_proposals_final_tdp`.`created_by_username`" => "created_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -116,6 +119,7 @@
 		"`selected_proposals_final_tdp`.`created_at`" => "Created at",
 		"`selected_proposals_final_tdp`.`last_updated_by`" => "Last updated by",
 		"`selected_proposals_final_tdp`.`last_updated_at`" => "Last updated at",
+		"`selected_proposals_final_tdp`.`created_by_username`" => "Created By Username",
 	];
 
 	// Fields that can be quick searched
@@ -142,6 +146,7 @@
 		"`selected_proposals_final_tdp`.`created_at`" => "created_at",
 		"`selected_proposals_final_tdp`.`last_updated_by`" => "last_updated_by",
 		"`selected_proposals_final_tdp`.`last_updated_at`" => "last_updated_at",
+		"`selected_proposals_final_tdp`.`created_by_username`" => "created_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -177,10 +182,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Project ID::Title', 'Breakthrough / Novel', 'Project title', 'Short name', 'Duration in months', 'Name of PI', 'Mobile number', 'Institute', 'Stage 1 in Rs.', 'Stage 2 in Rs.', 'Stage 3 in Rs.', 'Stage 4 in Rs.', 'Total budget specified in Rs.', 'One slide PPT link', 'Proposal link', 'Existing TRL', 'Expected TRL', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['selected_proposals_id', 'project_id', 'breakthrough', 'project_title', 'short_name', 'duration_in_months', 'name_of_pi', 'mobile_number', 'institute', 'stage_1', 'stage_2', 'stage_3', 'stage_4', 'total_budget_specified', 'one_slide_ppt_link', 'proposal_link', 'existing_trl', 'expected_trl', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Project ID::Title', 'Breakthrough / Novel', 'Project title', 'Short name', 'Duration in months', 'Name of PI', 'Mobile number', 'Institute', 'Stage 1 in Rs.', 'Stage 2 in Rs.', 'Stage 3 in Rs.', 'Stage 4 in Rs.', 'Total budget specified in Rs.', 'One slide PPT link', 'Proposal link', 'Existing TRL', 'Expected TRL', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Created By Username', ];
+	$x->ColFieldName = ['selected_proposals_id', 'project_id', 'breakthrough', 'project_title', 'short_name', 'duration_in_months', 'name_of_pi', 'mobile_number', 'institute', 'stage_1', 'stage_2', 'stage_3', 'stage_4', 'total_budget_specified', 'one_slide_ppt_link', 'proposal_link', 'existing_trl', 'expected_trl', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/selected_proposals_final_tdp_templateTV.html';
@@ -191,7 +196,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

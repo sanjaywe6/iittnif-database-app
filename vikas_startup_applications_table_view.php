@@ -44,6 +44,7 @@
 		"`vikas_startup_applications_table`.`created_at`" => "created_at",
 		"`vikas_startup_applications_table`.`last_updated_by`" => "last_updated_by",
 		"`vikas_startup_applications_table`.`last_updated_at`" => "last_updated_at",
+		"`vikas_startup_applications_table`.`created_by_username`" => "created_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -73,6 +74,7 @@
 		24 => 24,
 		25 => 25,
 		26 => 26,
+		27 => 27,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -103,6 +105,7 @@
 		"`vikas_startup_applications_table`.`created_at`" => "created_at",
 		"`vikas_startup_applications_table`.`last_updated_by`" => "last_updated_by",
 		"`vikas_startup_applications_table`.`last_updated_at`" => "last_updated_at",
+		"`vikas_startup_applications_table`.`created_by_username`" => "created_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -132,6 +135,7 @@
 		"`vikas_startup_applications_table`.`created_at`" => "Created at",
 		"`vikas_startup_applications_table`.`last_updated_by`" => "Last updated by",
 		"`vikas_startup_applications_table`.`last_updated_at`" => "Last updated at",
+		"`vikas_startup_applications_table`.`created_by_username`" => "Created By Username",
 	];
 
 	// Fields that can be quick searched
@@ -162,6 +166,7 @@
 		"`vikas_startup_applications_table`.`created_at`" => "created_at",
 		"`vikas_startup_applications_table`.`last_updated_by`" => "last_updated_by",
 		"`vikas_startup_applications_table`.`last_updated_at`" => "last_updated_at",
+		"`vikas_startup_applications_table`.`created_by_username`" => "created_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -197,10 +202,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Startup name', 'Email', 'Incorporation date', 'Website URL (in any)', 'Physical address', 'Primary contact name', 'Primary Contact Email', 'Mobile number', 'Name(s) of Founders(s)', 'Founder(s) Mobile Number(s)', 'Founders(s) Email Address(es)', 'Business Sector/Industry', 'Number of employees', 'Brief Description of Product/Service', 'Preferred Mode of Participation: (Please select one)', 'Type of Workspace Desired', 'Key areas of support', 'Declaration form link', 'Is your start up DPIIT registered', 'Incubation status', 'Datetime', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'startup_name', 'email', 'incorporation_date', 'website_url', 'physical_address', 'primary_contact_name', 'email_1', 'mobile_number', 'name_of_founders', 'number_of_founders', 'email_of_founders', 'business_sector', 'number_of_employees', 'brief_description_of_service', 'mode_of_incubation', 'type_of_workspace_desired', 'key_areas_of_support', 'declaration_form_link', 'is_your_start_up_dpiit_registered', 'incubation_status', 'datetime', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Startup name', 'Email', 'Incorporation date', 'Website URL (in any)', 'Physical address', 'Primary contact name', 'Primary Contact Email', 'Mobile number', 'Name(s) of Founders(s)', 'Founder(s) Mobile Number(s)', 'Founders(s) Email Address(es)', 'Business Sector/Industry', 'Number of employees', 'Brief Description of Product/Service', 'Preferred Mode of Participation: (Please select one)', 'Type of Workspace Desired', 'Key areas of support', 'Declaration form link', 'Is your start up DPIIT registered', 'Incubation status', 'Datetime', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Created By Username', ];
+	$x->ColFieldName = ['id', 'startup_name', 'email', 'incorporation_date', 'website_url', 'physical_address', 'primary_contact_name', 'email_1', 'mobile_number', 'name_of_founders', 'number_of_founders', 'email_of_founders', 'business_sector', 'number_of_employees', 'brief_description_of_service', 'mode_of_incubation', 'type_of_workspace_desired', 'key_areas_of_support', 'declaration_form_link', 'is_your_start_up_dpiit_registered', 'incubation_status', 'datetime', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/vikas_startup_applications_table_templateTV.html';
@@ -211,7 +216,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

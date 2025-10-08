@@ -34,6 +34,7 @@
 		"`it_inventory_billing_details`.`last_updated_by`" => "last_updated_by",
 		"`it_inventory_billing_details`.`last_updated_at`" => "last_updated_at",
 		"`it_inventory_billing_details`.`created_by`" => "created_by",
+		"`it_inventory_billing_details`.`created_by_username`" => "created_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -53,6 +54,7 @@
 		14 => 14,
 		15 => 15,
 		16 => 16,
+		17 => 17,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -73,6 +75,7 @@
 		"`it_inventory_billing_details`.`last_updated_by`" => "last_updated_by",
 		"`it_inventory_billing_details`.`last_updated_at`" => "last_updated_at",
 		"`it_inventory_billing_details`.`created_by`" => "created_by",
+		"`it_inventory_billing_details`.`created_by_username`" => "created_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -91,6 +94,7 @@
 		"`it_inventory_billing_details`.`last_updated_by`" => "Last updated by",
 		"`it_inventory_billing_details`.`last_updated_at`" => "Last updated at",
 		"`it_inventory_billing_details`.`created_by`" => "Created By",
+		"`it_inventory_billing_details`.`created_by_username`" => "Created By Username",
 	];
 
 	// Fields that can be quick searched
@@ -110,6 +114,7 @@
 		"`it_inventory_billing_details`.`last_updated_by`" => "last_updated_by",
 		"`it_inventory_billing_details`.`last_updated_at`" => "last_updated_at",
 		"`it_inventory_billing_details`.`created_by`" => "created_by",
+		"`it_inventory_billing_details`.`created_by_username`" => "created_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -145,10 +150,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'IT inventory ', 'PO Number', 'PO Date', 'Particulars of supplier', 'Item description', 'Bill no', 'Bill date', 'Quantity', 'Total invoice value', 'Cost of the asset', 'Image', 'Last updated by', 'Last updated at', 'Created By', ];
-	$x->ColFieldName = ['it_inventory_biling_details_id', 'it_inventory_lookup', 'po_no', 'po_date', 'particulars_of_supplier', 'item_description', 'bill_no', 'bill_date', 'quantity', 'total_invoice_value', 'cost_of_the_asset', 'image', 'last_updated_by', 'last_updated_at', 'created_by', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'IT inventory ', 'PO Number', 'PO Date', 'Particulars of supplier', 'Item description', 'Bill no', 'Bill date', 'Quantity', 'Total invoice value', 'Cost of the asset', 'Image', 'Last updated by', 'Last updated at', 'Created By', 'Created By Username', ];
+	$x->ColFieldName = ['it_inventory_biling_details_id', 'it_inventory_lookup', 'po_no', 'po_date', 'particulars_of_supplier', 'item_description', 'bill_no', 'bill_date', 'quantity', 'total_invoice_value', 'cost_of_the_asset', 'image', 'last_updated_by', 'last_updated_at', 'created_by', 'created_by_username', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/it_inventory_billing_details_templateTV.html';
@@ -159,7 +164,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

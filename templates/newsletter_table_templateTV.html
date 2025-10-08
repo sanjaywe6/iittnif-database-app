@@ -1,4 +1,4 @@
-		<td colspan="9" class="row">
+		<td colspan="10" class="row">
 			<div id="newsletter_table-id-<%%VALUE(id)%%>" class="newsletter_table-id col-sm-12 h5 text-bold"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
@@ -14,13 +14,13 @@
 					<dt class="newsletter_table-writeup_about_event-caption field-caption-tv">Writeup About The Events (Max 200 Words)</dt>
 					<dd id="newsletter_table-writeup_about_event-<%%VALUE(id)%%>" class="newsletter_table-writeup_about_event"><%%SELECT%%><%%VALUE(writeup_about_event)%%><%%ENDSELECT%%></dd>
 
+					<dt class="newsletter_table-img1-caption field-caption-tv">First Image</dt>
+					<dd id="newsletter_table-img1-<%%VALUE(id)%%>" class="newsletter_table-img1"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(img1)%%>" data-lightbox="newsletter_table-img1"><img src="thumbnail.php?i=<%%VALUE(img1)%%>&t=newsletter_table&f=img1&v=tv" class="img-thumbnail"></a></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="newsletter_table-img1-caption field-caption-tv">First Image</dt>
-					<dd id="newsletter_table-img1-<%%VALUE(id)%%>" class="newsletter_table-img1"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(img1)%%>" data-lightbox="newsletter_table-img1"><img src="thumbnail.php?i=<%%VALUE(img1)%%>&t=newsletter_table&f=img1&v=tv" class="img-thumbnail"></a></dd>
-
 					<dt class="newsletter_table-img2-caption field-caption-tv">Second Image</dt>
 					<dd id="newsletter_table-img2-<%%VALUE(id)%%>" class="newsletter_table-img2"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(img2)%%>" data-lightbox="newsletter_table-img2"><img src="thumbnail.php?i=<%%VALUE(img2)%%>&t=newsletter_table&f=img2&v=tv" class="img-thumbnail"></a></dd>
 
@@ -29,6 +29,9 @@
 
 					<dt class="newsletter_table-last_updated_by-caption field-caption-tv">Last updated By</dt>
 					<dd id="newsletter_table-last_updated_by-<%%VALUE(id)%%>" class="newsletter_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="newsletter_table-created_by_username-caption field-caption-tv">Created By Username</dt>
+					<dd id="newsletter_table-created_by_username-<%%VALUE(id)%%>" class="newsletter_table-created_by_username"><%%SELECT%%><%%VALUE(created_by_username)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>

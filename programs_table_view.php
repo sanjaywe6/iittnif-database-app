@@ -25,6 +25,7 @@
 		"`programs_table`.`created_at`" => "created_at",
 		"`programs_table`.`last_updated_by`" => "last_updated_by",
 		"`programs_table`.`last_updated_at`" => "last_updated_at",
+		"`programs_table`.`created_by_username`" => "created_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -35,6 +36,7 @@
 		5 => 5,
 		6 => 6,
 		7 => 7,
+		8 => 8,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -46,6 +48,7 @@
 		"`programs_table`.`created_at`" => "created_at",
 		"`programs_table`.`last_updated_by`" => "last_updated_by",
 		"`programs_table`.`last_updated_at`" => "last_updated_at",
+		"`programs_table`.`created_by_username`" => "created_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -56,6 +59,7 @@
 		"`programs_table`.`created_at`" => "Created at",
 		"`programs_table`.`last_updated_by`" => "Last updated by",
 		"`programs_table`.`last_updated_at`" => "Last updated at",
+		"`programs_table`.`created_by_username`" => "Created By Username",
 	];
 
 	// Fields that can be quick searched
@@ -67,6 +71,7 @@
 		"`programs_table`.`created_at`" => "created_at",
 		"`programs_table`.`last_updated_by`" => "last_updated_by",
 		"`programs_table`.`last_updated_at`" => "last_updated_at",
+		"`programs_table`.`created_by_username`" => "created_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -102,10 +107,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Title of the program', 'Target startup', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['programs_id', 'title_of_the_program', 'target_startup', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Title of the program', 'Target startup', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Created By Username', ];
+	$x->ColFieldName = ['programs_id', 'title_of_the_program', 'target_startup', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/programs_table_templateTV.html';
@@ -116,7 +121,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

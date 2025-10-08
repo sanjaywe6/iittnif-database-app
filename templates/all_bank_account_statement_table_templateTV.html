@@ -1,4 +1,4 @@
-		<td colspan="18" class="row">
+		<td colspan="19" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="all_bank_account_statement_table-all_bank_account_statement_id-caption field-caption-tv">ID</dt>
@@ -28,13 +28,13 @@
 					<dt class="all_bank_account_statement_table-credit-caption field-caption-tv">Credit</dt>
 					<dd id="all_bank_account_statement_table-credit-<%%VALUE(all_bank_account_statement_id)%%>" class="all_bank_account_statement_table-credit"><%%SELECT%%><%%VALUE(credit)%%><%%ENDSELECT%%></dd>
 
+					<dt class="all_bank_account_statement_table-balance_1-caption field-caption-tv">Balance 1</dt>
+					<dd id="all_bank_account_statement_table-balance_1-<%%VALUE(all_bank_account_statement_id)%%>" class="all_bank_account_statement_table-balance_1"><%%SELECT%%><%%VALUE(balance_1)%%><%%ENDSELECT%%></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="all_bank_account_statement_table-balance_1-caption field-caption-tv">Balance 1</dt>
-					<dd id="all_bank_account_statement_table-balance_1-<%%VALUE(all_bank_account_statement_id)%%>" class="all_bank_account_statement_table-balance_1"><%%SELECT%%><%%VALUE(balance_1)%%><%%ENDSELECT%%></dd>
-
 					<dt class="all_bank_account_statement_table-balance_2-caption field-caption-tv">Balance 2</dt>
 					<dd id="all_bank_account_statement_table-balance_2-<%%VALUE(all_bank_account_statement_id)%%>" class="all_bank_account_statement_table-balance_2"><%%SELECT%%><%%VALUE(balance_2)%%><%%ENDSELECT%%></dd>
 
@@ -58,6 +58,9 @@
 
 					<dt class="all_bank_account_statement_table-last_updated_at-caption field-caption-tv">Last updated at</dt>
 					<dd id="all_bank_account_statement_table-last_updated_at-<%%VALUE(all_bank_account_statement_id)%%>" class="all_bank_account_statement_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="all_bank_account_statement_table-created_by_username-caption field-caption-tv">Created By Username</dt>
+					<dd id="all_bank_account_statement_table-created_by_username-<%%VALUE(all_bank_account_statement_id)%%>" class="all_bank_account_statement_table-created_by_username"><%%SELECT%%><%%VALUE(created_by_username)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>

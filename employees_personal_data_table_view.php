@@ -38,6 +38,7 @@
 		"`employees_personal_data_table`.`last_updated_by`" => "last_updated_by",
 		"`employees_personal_data_table`.`last_updated_at`" => "last_updated_at",
 		"`employees_personal_data_table`.`employee_str`" => "employee_str",
+		"`employees_personal_data_table`.`created_by_username`" => "created_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -61,6 +62,7 @@
 		18 => 18,
 		19 => 19,
 		20 => 20,
+		21 => 21,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -85,6 +87,7 @@
 		"`employees_personal_data_table`.`last_updated_by`" => "last_updated_by",
 		"`employees_personal_data_table`.`last_updated_at`" => "last_updated_at",
 		"`employees_personal_data_table`.`employee_str`" => "employee_str",
+		"`employees_personal_data_table`.`created_by_username`" => "created_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -106,6 +109,7 @@
 		"`employees_personal_data_table`.`last_updated_by`" => "Last updated by",
 		"`employees_personal_data_table`.`last_updated_at`" => "Last updated at",
 		"`employees_personal_data_table`.`employee_str`" => "Employee str",
+		"`employees_personal_data_table`.`created_by_username`" => "Created By Username",
 	];
 
 	// Fields that can be quick searched
@@ -128,6 +132,7 @@
 		"`employees_personal_data_table`.`last_updated_by`" => "last_updated_by",
 		"`employees_personal_data_table`.`last_updated_at`" => "last_updated_at",
 		"`employees_personal_data_table`.`employee_str`" => "employee_str",
+		"`employees_personal_data_table`.`created_by_username`" => "created_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -163,10 +168,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Name', 'Employee type', 'Emp id', 'Date of birth', 'Blood group', 'Email', 'Phone number', 'Department', 'Date of joining', 'Date of exit', 'Active status', 'Profile photo', 'Signature', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'name', 'employee_type', 'emp_id', 'date_of_birth', 'blood_group', 'email', 'phone_number', 'department', 'date_of_joining', 'date_of_exit', 'active_status', 'profile_photo', 'signature', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Name', 'Employee type', 'Emp id', 'Date of birth', 'Blood group', 'Email', 'Phone number', 'Department', 'Date of joining', 'Date of exit', 'Active status', 'Profile photo', 'Signature', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Created By Username', ];
+	$x->ColFieldName = ['id', 'name', 'employee_type', 'emp_id', 'date_of_birth', 'blood_group', 'email', 'phone_number', 'department', 'date_of_joining', 'date_of_exit', 'active_status', 'profile_photo', 'signature', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/employees_personal_data_table_templateTV.html';

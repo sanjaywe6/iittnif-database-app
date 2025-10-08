@@ -36,6 +36,7 @@
 		"`budget_table_tdp`.`created_at`" => "created_at",
 		"`budget_table_tdp`.`last_updated_by`" => "last_updated_by",
 		"`budget_table_tdp`.`last_updated_at`" => "last_updated_at",
+		"`budget_table_tdp`.`created_by_username`" => "created_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -57,6 +58,7 @@
 		16 => 16,
 		17 => 17,
 		18 => 18,
+		19 => 19,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -79,6 +81,7 @@
 		"`budget_table_tdp`.`created_at`" => "created_at",
 		"`budget_table_tdp`.`last_updated_by`" => "last_updated_by",
 		"`budget_table_tdp`.`last_updated_at`" => "last_updated_at",
+		"`budget_table_tdp`.`created_by_username`" => "created_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -100,6 +103,7 @@
 		"`budget_table_tdp`.`created_at`" => "Created at",
 		"`budget_table_tdp`.`last_updated_by`" => "Last updated by",
 		"`budget_table_tdp`.`last_updated_at`" => "Last updated at",
+		"`budget_table_tdp`.`created_by_username`" => "Created By Username",
 	];
 
 	// Fields that can be quick searched
@@ -122,6 +126,7 @@
 		"`budget_table_tdp`.`created_at`" => "created_at",
 		"`budget_table_tdp`.`last_updated_by`" => "last_updated_by",
 		"`budget_table_tdp`.`last_updated_at`" => "last_updated_at",
+		"`budget_table_tdp`.`created_by_username`" => "created_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -157,10 +162,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Project ID::Title', 'Title of the project', 'Name of PI', 'Institute', 'Date of presentation', 'Manpower', 'Travel', 'Infrastructure / Equipment', 'Consumables', 'Contigency', 'Overhead', 'Any other', 'Total budget in Rs.', 'Created by', 'Created at', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'project_id', 'title_of_the_project', 'name_of_pi', 'institute', 'date_of_presentation', 'manpower', 'travel', 'infrastructure', 'consumables', 'contigency', 'overhead', 'any_other', 'total_budget', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Project ID::Title', 'Title of the project', 'Name of PI', 'Institute', 'Date of presentation', 'Manpower', 'Travel', 'Infrastructure / Equipment', 'Consumables', 'Contigency', 'Overhead', 'Any other', 'Total budget in Rs.', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Created By Username', ];
+	$x->ColFieldName = ['id', 'project_id', 'title_of_the_project', 'name_of_pi', 'institute', 'date_of_presentation', 'manpower', 'travel', 'infrastructure', 'consumables', 'contigency', 'overhead', 'any_other', 'total_budget', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/budget_table_tdp_templateTV.html';
@@ -171,7 +176,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

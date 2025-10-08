@@ -31,6 +31,7 @@
 		"`approval_billing_table`.`created_at`" => "created_at",
 		"`approval_billing_table`.`last_updated_by`" => "last_updated_by",
 		"`approval_billing_table`.`last_updated_at`" => "last_updated_at",
+		"`approval_billing_table`.`created_by_username`" => "created_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -47,6 +48,7 @@
 		11 => 11,
 		12 => 12,
 		13 => 13,
+		14 => 14,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -64,6 +66,7 @@
 		"`approval_billing_table`.`created_at`" => "created_at",
 		"`approval_billing_table`.`last_updated_by`" => "last_updated_by",
 		"`approval_billing_table`.`last_updated_at`" => "last_updated_at",
+		"`approval_billing_table`.`created_by_username`" => "created_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -80,6 +83,7 @@
 		"`approval_billing_table`.`created_at`" => "Created At",
 		"`approval_billing_table`.`last_updated_by`" => "Last Updated By",
 		"`approval_billing_table`.`last_updated_at`" => "Last Updated At",
+		"`approval_billing_table`.`created_by_username`" => "Created By Username",
 	];
 
 	// Fields that can be quick searched
@@ -97,6 +101,7 @@
 		"`approval_billing_table`.`created_at`" => "created_at",
 		"`approval_billing_table`.`last_updated_by`" => "last_updated_by",
 		"`approval_billing_table`.`last_updated_at`" => "last_updated_at",
+		"`approval_billing_table`.`created_by_username`" => "created_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -132,10 +137,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Approval Details', 'Date of Purchase', 'Total Amount of Bill', 'Items List', 'Paid by', 'Attach bill 1', 'Attach bill 2', 'Attach bill 3', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', ];
-	$x->ColFieldName = ['id', 'approval_lookup', 'date_of_purchase', 'total_amount_of_bill', 'items_list', 'paid_by', 'attach_bill_1', 'attach_bill_2', 'attach_bill_3', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Approval Details', 'Date of Purchase', 'Total Amount of Bill', 'Items List', 'Paid by', 'Attach bill 1', 'Attach bill 2', 'Attach bill 3', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', 'Created By Username', ];
+	$x->ColFieldName = ['id', 'approval_lookup', 'date_of_purchase', 'total_amount_of_bill', 'items_list', 'paid_by', 'attach_bill_1', 'attach_bill_2', 'attach_bill_3', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/approval_billing_table_templateTV.html';
@@ -146,7 +151,7 @@
 	$x->ShowTableHeader = 1;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

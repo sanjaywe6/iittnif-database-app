@@ -95,6 +95,13 @@
 			<a href="#" onclick="$j('#imageImg<%%RND1%%>').attr('src', ($j('#imageImg<%%RND1%%>').attr('src').search(/thumbnail\.php/) != -1 && imageSrc1<%%RND1%%> != '<%%BASE_UPLOAD_PATH%%>' ? imageSrc1<%%RND1%%> : imageSrc2<%%RND1%%>)); return false;"><img id="imageImg<%%RND1%%>" src="thumbnail.php?t=it_inventory_billing_details&f=image&i=<%%VALUE(image)%%>&v=dv" class="img-thumbnail"></a></div>
 			</div>
 		</div>
+		<!-- Field: Created By Username -->
+		<div class="form-group it_inventory_billing_details-created_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Created By Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(created_by_username)%%></div>
+			</div>
+		</div>
 	</fieldset>
 </div>
 <script>

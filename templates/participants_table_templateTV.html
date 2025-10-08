@@ -1,4 +1,4 @@
-		<td colspan="10" class="row">
+		<td colspan="11" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="participants_table-participants_id-caption field-caption-tv">ID</dt>
@@ -16,13 +16,13 @@
 					<dt class="participants_table-designation-caption field-caption-tv">Designation</dt>
 					<dd id="participants_table-designation-<%%VALUE(participants_id)%%>" class="participants_table-designation"><%%SELECT%%><%%VALUE(designation)%%><%%ENDSELECT%%></dd>
 
+					<dt class="participants_table-participant_type-caption field-caption-tv">Participant type</dt>
+					<dd id="participants_table-participant_type-<%%VALUE(participants_id)%%>" class="participants_table-participant_type"><%%SELECT%%><%%VALUE(participant_type)%%><%%ENDSELECT%%></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="participants_table-participant_type-caption field-caption-tv">Participant type</dt>
-					<dd id="participants_table-participant_type-<%%VALUE(participants_id)%%>" class="participants_table-participant_type"><%%SELECT%%><%%VALUE(participant_type)%%><%%ENDSELECT%%></dd>
-
 					<dt class="participants_table-accepted_status-caption field-caption-tv">Accepted status</dt>
 					<dd id="participants_table-accepted_status-<%%VALUE(participants_id)%%>" class="participants_table-accepted_status"><%%SELECT%%><%%VALUE(accepted_status)%%><%%ENDSELECT%%></dd>
 
@@ -34,6 +34,9 @@
 
 					<dt class="participants_table-last_updated_by-caption field-caption-tv">Last Updated By</dt>
 					<dd id="participants_table-last_updated_by-<%%VALUE(participants_id)%%>" class="participants_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
+
+					<dt class="participants_table-created_by_username-caption field-caption-tv">Created By Username</dt>
+					<dd id="participants_table-created_by_username-<%%VALUE(participants_id)%%>" class="participants_table-created_by_username"><%%SELECT%%><%%VALUE(created_by_username)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>

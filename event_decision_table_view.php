@@ -32,6 +32,7 @@
 		"`event_decision_table`.`created_by_username`" => "created_by_username",
 		"`event_decision_table`.`created_at`" => "created_at",
 		"`event_decision_table`.`last_updated_by_username`" => "last_updated_by_username",
+		"`event_decision_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -49,6 +50,7 @@
 		12 => 12,
 		13 => 13,
 		14 => 14,
+		15 => 15,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -67,6 +69,7 @@
 		"`event_decision_table`.`created_by_username`" => "created_by_username",
 		"`event_decision_table`.`created_at`" => "created_at",
 		"`event_decision_table`.`last_updated_by_username`" => "last_updated_by_username",
+		"`event_decision_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -84,6 +87,7 @@
 		"`event_decision_table`.`created_by_username`" => "Created By Username",
 		"`event_decision_table`.`created_at`" => "Created At",
 		"`event_decision_table`.`last_updated_by_username`" => "Last Updated by Username",
+		"`event_decision_table`.`last_updated_at`" => "Last Updated At",
 	];
 
 	// Fields that can be quick searched
@@ -102,6 +106,7 @@
 		"`event_decision_table`.`created_by_username`" => "created_by_username",
 		"`event_decision_table`.`created_at`" => "created_at",
 		"`event_decision_table`.`last_updated_by_username`" => "last_updated_by_username",
+		"`event_decision_table`.`last_updated_at`" => "last_updated_at",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -137,10 +142,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Expected Outcomes of Meeting', 'Decision description', 'Decision actor', 'Action taken with date', 'Decision status', 'Decision status update date', 'Decision status remarks by superior', 'Created By', 'Last Updated By', 'Created By Username', 'Created At', 'Last Updated by Username', ];
-	$x->ColFieldName = ['decision_id', 'outcomes_expected_lookup', 'decision_description', 'decision_actor', 'action_taken_with_date', 'decision_status', 'decision_status_update_date', 'decision_status_remarks_by_superior', 'created_by', 'last_updated_by', 'created_by_username', 'created_at', 'last_updated_by_username', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Expected Outcomes of Meeting', 'Decision description', 'Decision actor', 'Action taken with date', 'Decision status', 'Decision status update date', 'Decision status remarks by superior', 'Created By', 'Last Updated By', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
+	$x->ColFieldName = ['decision_id', 'outcomes_expected_lookup', 'decision_description', 'decision_actor', 'action_taken_with_date', 'decision_status', 'decision_status_update_date', 'decision_status_remarks_by_superior', 'created_by', 'last_updated_by', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/event_decision_table_templateTV.html';

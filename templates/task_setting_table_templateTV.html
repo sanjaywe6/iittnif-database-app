@@ -1,4 +1,4 @@
-		<td colspan="12" class="row">
+		<td colspan="13" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="task_setting_table-task_id-caption field-caption-tv">ID</dt>
@@ -19,13 +19,13 @@
 					<dt class="task_setting_table-supervisor_name-caption field-caption-tv">Supervisor name</dt>
 					<dd id="task_setting_table-supervisor_name-<%%VALUE(task_id)%%>" class="task_setting_table-supervisor_name"><%%SELECT%%><%%VALUE(supervisor_name)%%><%%ENDSELECT%%></dd>
 
+					<dt class="task_setting_table-assigned_to-caption field-caption-tv">Assigned to</dt>
+					<dd id="task_setting_table-assigned_to-<%%VALUE(task_id)%%>" class="task_setting_table-assigned_to"><%%SELECT%%><%%VALUE(assigned_to)%%><%%ENDSELECT%%></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="task_setting_table-assigned_to-caption field-caption-tv">Assigned to</dt>
-					<dd id="task_setting_table-assigned_to-<%%VALUE(task_id)%%>" class="task_setting_table-assigned_to"><%%SELECT%%><%%VALUE(assigned_to)%%><%%ENDSELECT%%></dd>
-
 					<dt class="task_setting_table-created_by-caption field-caption-tv">Created By</dt>
 					<dd id="task_setting_table-created_by-<%%VALUE(task_id)%%>" class="task_setting_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
 
@@ -40,6 +40,9 @@
 
 					<dt class="task_setting_table-last_updated_by_username-caption field-caption-tv">Last Updated by Username</dt>
 					<dd id="task_setting_table-last_updated_by_username-<%%VALUE(task_id)%%>" class="task_setting_table-last_updated_by_username"><%%SELECT%%><%%VALUE(last_updated_by_username)%%><%%ENDSELECT%%></dd>
+
+					<dt class="task_setting_table-last_updated_at-caption field-caption-tv">Last Updated At</dt>
+					<dd id="task_setting_table-last_updated_at-<%%VALUE(task_id)%%>" class="task_setting_table-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>

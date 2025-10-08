@@ -98,6 +98,7 @@ function school_list_update(&$selected_id, &$error_message = '') {
 		'school_type' => Request::val('school_type', ''),
 		'school_phone_number' => Request::val('school_phone_number', ''),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
+		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 	];
 
 	// get existing values
@@ -345,6 +346,7 @@ function school_list_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	$templateCode = str_replace('<%%UPLOADFILE(created_by_username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by_username)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_updated_at)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
@@ -380,6 +382,8 @@ function school_list_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode($urow['created_at']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_by_username)%%>', safe_html($urow['last_updated_by_username']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_by_username)%%>', urlencode($urow['last_updated_by_username']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
@@ -407,6 +411,8 @@ function school_list_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode('<%%creationDateTime%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(last_updated_by_username)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(last_updated_by_username)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', '<%%editingDateTime%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode('<%%editingDateTime%%>'), $templateCode);
 	}
 
 	// process translations

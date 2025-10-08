@@ -29,6 +29,7 @@
 		"`contact_call_log_table`.`created_by_username`" => "created_by_username",
 		"`contact_call_log_table`.`created_at`" => "created_at",
 		"`contact_call_log_table`.`last_updated_by_username`" => "last_updated_by_username",
+		"`contact_call_log_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -43,6 +44,7 @@
 		9 => 9,
 		10 => 10,
 		11 => 11,
+		12 => 12,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -58,6 +60,7 @@
 		"`contact_call_log_table`.`created_by_username`" => "created_by_username",
 		"`contact_call_log_table`.`created_at`" => "created_at",
 		"`contact_call_log_table`.`last_updated_by_username`" => "last_updated_by_username",
+		"`contact_call_log_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -72,6 +75,7 @@
 		"`contact_call_log_table`.`created_by_username`" => "Created By Username",
 		"`contact_call_log_table`.`created_at`" => "Created At",
 		"`contact_call_log_table`.`last_updated_by_username`" => "Last Updated by Username",
+		"`contact_call_log_table`.`last_updated_at`" => "Last Updated At",
 	];
 
 	// Fields that can be quick searched
@@ -87,6 +91,7 @@
 		"`contact_call_log_table`.`created_by_username`" => "created_by_username",
 		"`contact_call_log_table`.`created_at`" => "created_at",
 		"`contact_call_log_table`.`last_updated_by_username`" => "last_updated_by_username",
+		"`contact_call_log_table`.`last_updated_at`" => "last_updated_at",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -120,10 +125,10 @@
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`contact_call_log_table`.`id`';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Contact Number', 'Query', 'Reply for query', 'CEO Remarks', 'PD Remarks', 'Created By', 'Last updated By', 'Created By Username', 'Created At', 'Last Updated by Username', ];
-	$x->ColFieldName = ['id', 'number', 'query', 'reply', 'remarks_ceo', 'remarks_pd', 'created_by', 'last_updated_by', 'created_by_username', 'created_at', 'last_updated_by_username', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Contact Number', 'Query', 'Reply for query', 'CEO Remarks', 'PD Remarks', 'Created By', 'Last updated By', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
+	$x->ColFieldName = ['id', 'number', 'query', 'reply', 'remarks_ceo', 'remarks_pd', 'created_by', 'last_updated_by', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/contact_call_log_table_templateTV.html';

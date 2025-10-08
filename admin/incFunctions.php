@@ -2823,6 +2823,13 @@
 							'description' => '',
 						],
 					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
 				],
 				'coffee_table' => [
 					'id' => [
@@ -2895,6 +2902,13 @@
 							'description' => '',
 						],
 					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
 				],
 				'cafeteria_table' => [
 					'id' => [
@@ -2964,6 +2978,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
 							'description' => '',
 						],
 					],
@@ -3053,6 +3074,13 @@
 							'description' => '',
 						],
 					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
 				],
 				'outcomes_expected_table' => [
 					'outcomes_expected_id' => [
@@ -3122,6 +3150,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
 							'description' => '',
 						],
 					],
@@ -3222,6 +3257,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
 							'description' => '',
 						],
 					],
@@ -3332,6 +3374,13 @@
 							'description' => '',
 						],
 					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
 				],
 				'agenda_table' => [
 					'agenda_id' => [
@@ -3394,6 +3443,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
 							'description' => '',
 						],
 					],
@@ -3497,6 +3553,13 @@
 							'description' => '',
 						],
 					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
 				],
 				'participants_table' => [
 					'participants_id' => [
@@ -3590,6 +3653,13 @@
 							'description' => '',
 						],
 					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
 				],
 				'action_actor' => [
 					'actor_ID' => [
@@ -3652,6 +3722,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
 							'description' => '',
 						],
 					],
@@ -3780,6 +3857,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
 							'description' => '',
 						],
 					],
@@ -3925,6 +4009,13 @@
 							'description' => '',
 						],
 					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
 				],
 				'mou_company_area_details_table' => [
 					'id' => [
@@ -3994,6 +4085,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
 							'description' => '',
 						],
 					],
@@ -4090,6 +4188,13 @@
 							'description' => '',
 						],
 					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
 				],
 				'goal_progress_table' => [
 					'id' => [
@@ -4159,6 +4264,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
 							'description' => '',
 						],
 					],
@@ -4252,6 +4364,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
 							'description' => '',
 						],
 					],
@@ -4352,6 +4471,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
 							'description' => '',
 						],
 					],
@@ -4532,6 +4658,13 @@
 							'description' => '',
 						],
 					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
 				],
 				'star_pnt' => [
 					'id' => [
@@ -4622,6 +4755,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
 							'description' => '',
 						],
 					],
@@ -4986,6 +5126,13 @@
 							'description' => '',
 						],
 					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
 				],
 				'space_day_school_details_app' => [
 					'id' => [
@@ -5076,6 +5223,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
 							'description' => '',
 						],
 					],
@@ -5193,6 +5347,13 @@
 							'description' => '',
 						],
 					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
 				],
 				'school_list' => [
 					'id' => [
@@ -5283,6 +5444,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
 							'description' => '',
 						],
 					],
@@ -5397,6 +5565,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
 							'description' => '',
 						],
 					],
@@ -6543,6 +6718,13 @@
 							'description' => '',
 						],
 					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
 				],
 				'computer_user_details' => [
 					'id' => [
@@ -6612,6 +6794,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
 							'description' => '',
 						],
 					],
@@ -6719,6 +6908,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
 							'description' => '',
 						],
 					],
@@ -9747,6 +9943,13 @@
 							'description' => '',
 						],
 					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
 				],
 				'travel_stay_table' => [
 					'id' => [
@@ -10028,6 +10231,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
 							'description' => '',
 						],
 					],
@@ -11574,6 +11784,13 @@
 							'description' => '',
 						],
 					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
 				],
 				'contact_call_log_table' => [
 					'id' => [
@@ -11650,6 +11867,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
 							'description' => '',
 						],
 					],
@@ -11746,6 +11970,13 @@
 							'description' => '',
 						],
 					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
 				],
 				'r_and_d_quarterly_progress_app' => [
 					'id' => [
@@ -11836,6 +12067,13 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
 							'description' => '',
 						],
 					],

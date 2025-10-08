@@ -28,6 +28,7 @@
 		"`computer_user_details`.`created_by_username`" => "created_by_username",
 		"`computer_user_details`.`created_at`" => "created_at",
 		"`computer_user_details`.`last_updated_by_username`" => "last_updated_by_username",
+		"`computer_user_details`.`last_updated_at`" => "last_updated_at",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -41,6 +42,7 @@
 		8 => 8,
 		9 => 9,
 		10 => 10,
+		11 => 11,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -55,6 +57,7 @@
 		"`computer_user_details`.`created_by_username`" => "created_by_username",
 		"`computer_user_details`.`created_at`" => "created_at",
 		"`computer_user_details`.`last_updated_by_username`" => "last_updated_by_username",
+		"`computer_user_details`.`last_updated_at`" => "last_updated_at",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -68,6 +71,7 @@
 		"`computer_user_details`.`created_by_username`" => "Created By Username",
 		"`computer_user_details`.`created_at`" => "Created At",
 		"`computer_user_details`.`last_updated_by_username`" => "Last Updated by Username",
+		"`computer_user_details`.`last_updated_at`" => "Last Updated At",
 	];
 
 	// Fields that can be quick searched
@@ -82,6 +86,7 @@
 		"`computer_user_details`.`created_by_username`" => "created_by_username",
 		"`computer_user_details`.`created_at`" => "created_at",
 		"`computer_user_details`.`last_updated_by_username`" => "last_updated_by_username",
+		"`computer_user_details`.`last_updated_at`" => "last_updated_at",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -117,10 +122,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'PC ID', 'Entry time', 'Exit time', 'Date', 'Created By', 'Last Updated By', 'Created By Username', 'Created At', 'Last Updated by Username', ];
-	$x->ColFieldName = ['id', 'pc_id', 'entry_time', 'exit_time', 'date', 'created_by', 'last_updated_by', 'created_by_username', 'created_at', 'last_updated_by_username', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'PC ID', 'Entry time', 'Exit time', 'Date', 'Created By', 'Last Updated By', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
+	$x->ColFieldName = ['id', 'pc_id', 'entry_time', 'exit_time', 'date', 'created_by', 'last_updated_by', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/computer_user_details_templateTV.html';

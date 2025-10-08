@@ -28,6 +28,7 @@
 		"`outcomes_expected_table`.`created_by_username`" => "created_by_username",
 		"`outcomes_expected_table`.`created_at`" => "created_at",
 		"`outcomes_expected_table`.`last_updated_by_username`" => "last_updated_by_username",
+		"`outcomes_expected_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -41,6 +42,7 @@
 		8 => 8,
 		9 => 9,
 		10 => 10,
+		11 => 11,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -55,6 +57,7 @@
 		"`outcomes_expected_table`.`created_by_username`" => "created_by_username",
 		"`outcomes_expected_table`.`created_at`" => "created_at",
 		"`outcomes_expected_table`.`last_updated_by_username`" => "last_updated_by_username",
+		"`outcomes_expected_table`.`last_updated_at`" => "last_updated_at",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -68,6 +71,7 @@
 		"`outcomes_expected_table`.`created_by_username`" => "Created By Username",
 		"`outcomes_expected_table`.`created_at`" => "Created At",
 		"`outcomes_expected_table`.`last_updated_by_username`" => "Last Updated by Username",
+		"`outcomes_expected_table`.`last_updated_at`" => "Last Updated At",
 	];
 
 	// Fields that can be quick searched
@@ -82,6 +86,7 @@
 		"`outcomes_expected_table`.`created_by_username`" => "created_by_username",
 		"`outcomes_expected_table`.`created_at`" => "created_at",
 		"`outcomes_expected_table`.`last_updated_by_username`" => "last_updated_by_username",
+		"`outcomes_expected_table`.`last_updated_at`" => "last_updated_at",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -117,10 +122,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Event', 'Target audience', 'Expected outcomes', 'Created By', 'Last Updated By', 'Created By Username', 'Created At', 'Last Updated by Username', ];
-	$x->ColFieldName = ['outcomes_expected_id', 'event_lookup', 'target_audience', 'expected_outcomes', 'created_by', 'last_updated_by', 'created_by_username', 'created_at', 'last_updated_by_username', ];
-	$x->ColNumber  = [1, 2, 3, 4, 6, 7, 8, 9, 10, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Event', 'Target audience', 'Expected outcomes', 'Created By', 'Last Updated By', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
+	$x->ColFieldName = ['outcomes_expected_id', 'event_lookup', 'target_audience', 'expected_outcomes', 'created_by', 'last_updated_by', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 6, 7, 8, 9, 10, 11, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/outcomes_expected_table_templateTV.html';

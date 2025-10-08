@@ -28,6 +28,7 @@
 		"`work_from_home_table`.`last_updated_by`" => "last_updated_by",
 		"`work_from_home_table`.`last_updated_at`" => "last_updated_at",
 		"`work_from_home_table`.`created_by_username`" => "created_by_username",
+		"`work_from_home_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -41,6 +42,7 @@
 		8 => 8,
 		9 => 9,
 		10 => 10,
+		11 => 11,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -55,6 +57,7 @@
 		"`work_from_home_table`.`last_updated_by`" => "last_updated_by",
 		"`work_from_home_table`.`last_updated_at`" => "last_updated_at",
 		"`work_from_home_table`.`created_by_username`" => "created_by_username",
+		"`work_from_home_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -68,6 +71,7 @@
 		"`work_from_home_table`.`last_updated_by`" => "Last Updated By",
 		"`work_from_home_table`.`last_updated_at`" => "Last Updated At",
 		"`work_from_home_table`.`created_by_username`" => "Created By Username",
+		"`work_from_home_table`.`last_updated_by_username`" => "Last Updated by Username",
 	];
 
 	// Fields that can be quick searched
@@ -82,6 +86,7 @@
 		"`work_from_home_table`.`last_updated_by`" => "last_updated_by",
 		"`work_from_home_table`.`last_updated_at`" => "last_updated_at",
 		"`work_from_home_table`.`created_by_username`" => "created_by_username",
+		"`work_from_home_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -117,10 +122,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Purpose of Work From Home', 'From date', 'To date', 'Approval Status', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', 'Created By Username', ];
-	$x->ColFieldName = ['id', 'work_from_home_purpose', 'from_date', 'to_date', 'approval_status', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Purpose of Work From Home', 'From date', 'To date', 'Approval Status', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', 'Created By Username', 'Last Updated by Username', ];
+	$x->ColFieldName = ['id', 'work_from_home_purpose', 'from_date', 'to_date', 'approval_status', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', 'last_updated_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/work_from_home_table_templateTV.html';

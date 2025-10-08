@@ -37,6 +37,7 @@
 		"`navavishkar_stay_table`.`last_updated_by`" => "last_updated_by",
 		"`navavishkar_stay_table`.`last_updated_at`" => "last_updated_at",
 		"`navavishkar_stay_table`.`created_by_username`" => "created_by_username",
+		"`navavishkar_stay_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -59,6 +60,7 @@
 		17 => 17,
 		18 => 18,
 		19 => 19,
+		20 => 20,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -82,6 +84,7 @@
 		"`navavishkar_stay_table`.`last_updated_by`" => "last_updated_by",
 		"`navavishkar_stay_table`.`last_updated_at`" => "last_updated_at",
 		"`navavishkar_stay_table`.`created_by_username`" => "created_by_username",
+		"`navavishkar_stay_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -104,6 +107,7 @@
 		"`navavishkar_stay_table`.`last_updated_by`" => "Last updated by",
 		"`navavishkar_stay_table`.`last_updated_at`" => "Last updated at",
 		"`navavishkar_stay_table`.`created_by_username`" => "Created By Username",
+		"`navavishkar_stay_table`.`last_updated_by_username`" => "Last Updated by Username",
 	];
 
 	// Fields that can be quick searched
@@ -127,6 +131,7 @@
 		"`navavishkar_stay_table`.`last_updated_by`" => "last_updated_by",
 		"`navavishkar_stay_table`.`last_updated_at`" => "last_updated_at",
 		"`navavishkar_stay_table`.`created_by_username`" => "created_by_username",
+		"`navavishkar_stay_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -162,10 +167,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Full Name', 'Employee ID', 'Department', 'Designation', 'Contact Email', 'Contact Number', 'Room number', 'Check in date', 'Checkout date', 'Reason for stay', 'Approval status', 'Approval remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Created By Username', ];
-	$x->ColFieldName = ['id', 'full_name', 'emp_id', 'department', 'designation', 'contact_email', 'contact_number', 'room_number', 'check_in_date', 'checkout_date', 'reason_for_stay', 'approval_status', 'approval_remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Full Name', 'Employee ID', 'Department', 'Designation', 'Contact Email', 'Contact Number', 'Room number', 'Check in date', 'Checkout date', 'Reason for stay', 'Approval status', 'Approval remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Created By Username', 'Last Updated by Username', ];
+	$x->ColFieldName = ['id', 'full_name', 'emp_id', 'department', 'designation', 'contact_email', 'contact_number', 'room_number', 'check_in_date', 'checkout_date', 'reason_for_stay', 'approval_status', 'approval_remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', 'last_updated_by_username', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/navavishkar_stay_table_templateTV.html';

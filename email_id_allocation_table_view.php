@@ -32,6 +32,7 @@
 		"`email_id_allocation_table`.`last_updated_by`" => "last_updated_by",
 		"`email_id_allocation_table`.`last_updated_at`" => "last_updated_at",
 		"`email_id_allocation_table`.`created_by_username`" => "created_by_username",
+		"`email_id_allocation_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -49,6 +50,7 @@
 		12 => 12,
 		13 => 13,
 		14 => 14,
+		15 => 15,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -67,6 +69,7 @@
 		"`email_id_allocation_table`.`last_updated_by`" => "last_updated_by",
 		"`email_id_allocation_table`.`last_updated_at`" => "last_updated_at",
 		"`email_id_allocation_table`.`created_by_username`" => "created_by_username",
+		"`email_id_allocation_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -84,6 +87,7 @@
 		"`email_id_allocation_table`.`last_updated_by`" => "Last updated by",
 		"`email_id_allocation_table`.`last_updated_at`" => "Last updated at",
 		"`email_id_allocation_table`.`created_by_username`" => "Created By Username",
+		"`email_id_allocation_table`.`last_updated_by_username`" => "Last Updated by Username",
 	];
 
 	// Fields that can be quick searched
@@ -102,6 +106,7 @@
 		"`email_id_allocation_table`.`last_updated_by`" => "last_updated_by",
 		"`email_id_allocation_table`.`last_updated_at`" => "last_updated_at",
 		"`email_id_allocation_table`.`created_by_username`" => "created_by_username",
+		"`email_id_allocation_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -137,10 +142,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Name of person', 'Allocated email id', 'Alternative email id', 'Date of allocation', 'Status', 'Reporting manager', 'Remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Created By Username', ];
-	$x->ColFieldName = ['email_id_allocation_id', 'name_of_person', 'allocated_email_id', 'alternative_email_id', 'date_of_allocation', 'status', 'reporting_manager', 'remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Name of person', 'Allocated email id', 'Alternative email id', 'Date of allocation', 'Status', 'Reporting manager', 'Remarks', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Created By Username', 'Last Updated by Username', ];
+	$x->ColFieldName = ['email_id_allocation_id', 'name_of_person', 'allocated_email_id', 'alternative_email_id', 'date_of_allocation', 'status', 'reporting_manager', 'remarks', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', 'last_updated_by_username', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/email_id_allocation_table_templateTV.html';

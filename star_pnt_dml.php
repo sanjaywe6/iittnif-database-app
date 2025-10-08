@@ -28,6 +28,7 @@ function star_pnt_insert(&$error_message = '') {
 		'year_and_department' => Request::val('year_and_department', ''),
 		'project_title' => br2nl(Request::val('project_title', '')),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
+		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
 
 
@@ -438,6 +439,8 @@ function star_pnt_form($selectedId = '', $allowUpdate = true, $allowInsert = tru
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by_username)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by_username)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
@@ -467,6 +470,10 @@ function star_pnt_form($selectedId = '', $allowUpdate = true, $allowInsert = tru
 		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', safe_html($urow['created_by_username']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode($urow['created_by_username']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode($urow['created_at']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by_username)%%>', safe_html($urow['last_updated_by_username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by_username)%%>', urlencode($urow['last_updated_by_username']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
@@ -490,6 +497,10 @@ function star_pnt_form($selectedId = '', $allowUpdate = true, $allowInsert = tru
 		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode('<%%creationDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by_username)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by_username)%%>', urlencode(''), $templateCode);
 	}
 
 	// process translations

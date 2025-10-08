@@ -1,4 +1,4 @@
-		<td colspan="15" class="row">
+		<td colspan="17" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="visiting_card_table-visiting_card_id-caption field-caption-tv">ID</dt>
@@ -25,13 +25,13 @@
 					<dt class="visiting_card_table-company_website_addr-caption field-caption-tv">Company website address</dt>
 					<dd id="visiting_card_table-company_website_addr-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-company_website_addr"><%%SELECT%%><%%VALUE(company_website_addr)%%><%%ENDSELECT%%></dd>
 
+					<dt class="visiting_card_table-given_by-caption field-caption-tv">Given by</dt>
+					<dd id="visiting_card_table-given_by-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-given_by"><%%SELECT%%><%%VALUE(given_by)%%><%%ENDSELECT%%></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="visiting_card_table-given_by-caption field-caption-tv">Given by</dt>
-					<dd id="visiting_card_table-given_by-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-given_by"><%%SELECT%%><%%VALUE(given_by)%%><%%ENDSELECT%%></dd>
-
 					<dt class="visiting_card_table-suggested_way_forward-caption field-caption-tv">Suggested way forward</dt>
 					<dd id="visiting_card_table-suggested_way_forward-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-suggested_way_forward"><%%SELECT%%><%%VALUE(suggested_way_forward)%%><%%ENDSELECT%%></dd>
 
@@ -49,6 +49,12 @@
 
 					<dt class="visiting_card_table-created_by_username-caption field-caption-tv">Created By Username</dt>
 					<dd id="visiting_card_table-created_by_username-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-created_by_username"><%%SELECT%%><%%VALUE(created_by_username)%%><%%ENDSELECT%%></dd>
+
+					<dt class="visiting_card_table-created_at-caption field-caption-tv">Created At</dt>
+					<dd id="visiting_card_table-created_at-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="visiting_card_table-last_updated_by_username-caption field-caption-tv">Last Updated by Username</dt>
+					<dd id="visiting_card_table-last_updated_by_username-<%%VALUE(visiting_card_id)%%>" class="visiting_card_table-last_updated_by_username"><%%SELECT%%><%%VALUE(last_updated_by_username)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>

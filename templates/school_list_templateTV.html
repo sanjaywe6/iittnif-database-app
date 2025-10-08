@@ -1,4 +1,4 @@
-		<td colspan="10" class="row">
+		<td colspan="12" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="school_list-id-caption field-caption-tv">ID</dt>
@@ -16,13 +16,13 @@
 					<dt class="school_list-pincode-caption field-caption-tv">Pincode</dt>
 					<dd id="school_list-pincode-<%%VALUE(id)%%>" class="school_list-pincode"><%%SELECT%%><%%VALUE(pincode)%%><%%ENDSELECT%%></dd>
 
+					<dt class="school_list-school_type-caption field-caption-tv">School type</dt>
+					<dd id="school_list-school_type-<%%VALUE(id)%%>" class="school_list-school_type"><%%SELECT%%><%%VALUE(school_type)%%><%%ENDSELECT%%></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="school_list-school_type-caption field-caption-tv">School type</dt>
-					<dd id="school_list-school_type-<%%VALUE(id)%%>" class="school_list-school_type"><%%SELECT%%><%%VALUE(school_type)%%><%%ENDSELECT%%></dd>
-
 					<dt class="school_list-school_phone_number-caption field-caption-tv">School phone number</dt>
 					<dd id="school_list-school_phone_number-<%%VALUE(id)%%>" class="school_list-school_phone_number"><%%SELECT%%><%%VALUE(school_phone_number)%%><%%ENDSELECT%%></dd>
 
@@ -34,6 +34,12 @@
 
 					<dt class="school_list-created_by_username-caption field-caption-tv">Created By Username</dt>
 					<dd id="school_list-created_by_username-<%%VALUE(id)%%>" class="school_list-created_by_username"><%%SELECT%%><%%VALUE(created_by_username)%%><%%ENDSELECT%%></dd>
+
+					<dt class="school_list-created_at-caption field-caption-tv">Created At</dt>
+					<dd id="school_list-created_at-<%%VALUE(id)%%>" class="school_list-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="school_list-last_updated_by_username-caption field-caption-tv">Last Updated by Username</dt>
+					<dd id="school_list-last_updated_by_username-<%%VALUE(id)%%>" class="school_list-last_updated_by_username"><%%SELECT%%><%%VALUE(last_updated_by_username)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>

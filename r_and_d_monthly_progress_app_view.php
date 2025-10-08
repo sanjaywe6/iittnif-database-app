@@ -29,6 +29,8 @@
 		"`r_and_d_monthly_progress_app`.`created_by`" => "created_by",
 		"`r_and_d_monthly_progress_app`.`last_updated_by`" => "last_updated_by",
 		"`r_and_d_monthly_progress_app`.`created_by_username`" => "created_by_username",
+		"`r_and_d_monthly_progress_app`.`created_at`" => "created_at",
+		"`r_and_d_monthly_progress_app`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -43,6 +45,8 @@
 		9 => 9,
 		10 => 10,
 		11 => 11,
+		12 => 12,
+		13 => 13,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -58,6 +62,8 @@
 		"`r_and_d_monthly_progress_app`.`created_by`" => "created_by",
 		"`r_and_d_monthly_progress_app`.`last_updated_by`" => "last_updated_by",
 		"`r_and_d_monthly_progress_app`.`created_by_username`" => "created_by_username",
+		"`r_and_d_monthly_progress_app`.`created_at`" => "created_at",
+		"`r_and_d_monthly_progress_app`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -72,6 +78,8 @@
 		"`r_and_d_monthly_progress_app`.`created_by`" => "Created By",
 		"`r_and_d_monthly_progress_app`.`last_updated_by`" => "Last Updated By",
 		"`r_and_d_monthly_progress_app`.`created_by_username`" => "Created By Username",
+		"`r_and_d_monthly_progress_app`.`created_at`" => "Created At",
+		"`r_and_d_monthly_progress_app`.`last_updated_by_username`" => "Last Updated by Username",
 	];
 
 	// Fields that can be quick searched
@@ -87,6 +95,8 @@
 		"`r_and_d_monthly_progress_app`.`created_by`" => "created_by",
 		"`r_and_d_monthly_progress_app`.`last_updated_by`" => "last_updated_by",
 		"`r_and_d_monthly_progress_app`.`created_by_username`" => "created_by_username",
+		"`r_and_d_monthly_progress_app`.`created_at`" => "created_at",
+		"`r_and_d_monthly_progress_app`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -122,10 +132,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'R and D Progress Details', 'Month-Year', 'Progress Achieved', 'Plan for Next Month', 'Problems/Suggestion (If Any)', 'Ceo remarks', 'PD\'s Remarks', 'Created By', 'Last Updated By', 'Created By Username', ];
-	$x->ColFieldName = ['id', 'r_and_d_lookup', 'month_year', 'Progress_Achieved', 'Plan_for_Next_Month', 'problem_suggestion', 'ceo_remarks', 'pd_remarks', 'created_by', 'last_updated_by', 'created_by_username', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'R and D Progress Details', 'Month-Year', 'Progress Achieved', 'Plan for Next Month', 'Problems/Suggestion (If Any)', 'Ceo remarks', 'PD\'s Remarks', 'Created By', 'Last Updated By', 'Created By Username', 'Created At', 'Last Updated by Username', ];
+	$x->ColFieldName = ['id', 'r_and_d_lookup', 'month_year', 'Progress_Achieved', 'Plan_for_Next_Month', 'problem_suggestion', 'ceo_remarks', 'pd_remarks', 'created_by', 'last_updated_by', 'created_by_username', 'created_at', 'last_updated_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/r_and_d_monthly_progress_app_templateTV.html';

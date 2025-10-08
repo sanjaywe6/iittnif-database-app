@@ -582,6 +582,7 @@ function employees_personal_data_table_form($selectedId = '', $allowUpdate = tru
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(employee_str)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by_username)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by_username)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
@@ -639,6 +640,8 @@ function employees_personal_data_table_form($selectedId = '', $allowUpdate = tru
 		$templateCode = str_replace('<%%URLVALUE(employee_str)%%>', urlencode($urow['employee_str']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', safe_html($urow['created_by_username']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode($urow['created_by_username']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by_username)%%>', safe_html($urow['last_updated_by_username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by_username)%%>', urlencode($urow['last_updated_by_username']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
@@ -680,6 +683,8 @@ function employees_personal_data_table_form($selectedId = '', $allowUpdate = tru
 		$templateCode = str_replace('<%%URLVALUE(employee_str)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by_username)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by_username)%%>', urlencode(''), $templateCode);
 	}
 
 	// process translations

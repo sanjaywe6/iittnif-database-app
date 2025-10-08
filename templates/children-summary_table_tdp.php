@@ -195,6 +195,7 @@
 						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][27]}"; ?>" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][27]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><?php echo safe_html($record[27]); ?></td>
 						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][28]}"; ?>" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][28]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><?php echo safe_html($record[28]); ?></td>
 						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][29]}"; ?>" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][29]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><?php echo safe_html($record[29]); ?></td>
+						<td class="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][30]}"; ?>" id="<?php echo "{$parameters['ChildTable']}-{$config['display-field-names'][30]}-" . html_attr($record[$config['child-primary-key-index']]); ?>"><?php echo safe_html($record[30]); ?></td>
 					</tr>
 					<?php } ?>
 				</tbody>

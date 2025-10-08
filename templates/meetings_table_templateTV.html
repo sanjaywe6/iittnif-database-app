@@ -1,4 +1,4 @@
-		<td colspan="10" class="row">
+		<td colspan="12" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="meetings_table-meetings_id-caption field-caption-tv">ID</dt>
@@ -16,13 +16,13 @@
 					<dt class="meetings_table-meeting_from_date-caption field-caption-tv">Meeting from date</dt>
 					<dd id="meetings_table-meeting_from_date-<%%VALUE(meetings_id)%%>" class="meetings_table-meeting_from_date"><%%SELECT%%><%%VALUE(meeting_from_date)%%><%%ENDSELECT%%></dd>
 
+					<dt class="meetings_table-meeting_to_date-caption field-caption-tv">Meeting to date</dt>
+					<dd id="meetings_table-meeting_to_date-<%%VALUE(meetings_id)%%>" class="meetings_table-meeting_to_date"><%%SELECT%%><%%VALUE(meeting_to_date)%%><%%ENDSELECT%%></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="meetings_table-meeting_to_date-caption field-caption-tv">Meeting to date</dt>
-					<dd id="meetings_table-meeting_to_date-<%%VALUE(meetings_id)%%>" class="meetings_table-meeting_to_date"><%%SELECT%%><%%VALUE(meeting_to_date)%%><%%ENDSELECT%%></dd>
-
 					<dt class="meetings_table-minutes_of_meeting-caption field-caption-tv">Minutes of Meeting</dt>
 					<dd id="meetings_table-minutes_of_meeting-<%%VALUE(meetings_id)%%>" class="meetings_table-minutes_of_meeting"><%%SELECT%%><%%VALUE(minutes_of_meeting)%%><%%ENDSELECT%%></dd>
 
@@ -34,6 +34,12 @@
 
 					<dt class="meetings_table-created_by_username-caption field-caption-tv">Created By Username</dt>
 					<dd id="meetings_table-created_by_username-<%%VALUE(meetings_id)%%>" class="meetings_table-created_by_username"><%%SELECT%%><%%VALUE(created_by_username)%%><%%ENDSELECT%%></dd>
+
+					<dt class="meetings_table-created_at-caption field-caption-tv">Created At</dt>
+					<dd id="meetings_table-created_at-<%%VALUE(meetings_id)%%>" class="meetings_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="meetings_table-last_updated_by_username-caption field-caption-tv">Last Updated by Username</dt>
+					<dd id="meetings_table-last_updated_by_username-<%%VALUE(meetings_id)%%>" class="meetings_table-last_updated_by_username"><%%SELECT%%><%%VALUE(last_updated_by_username)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>

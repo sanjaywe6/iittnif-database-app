@@ -1,4 +1,4 @@
-		<td colspan="11" class="row">
+		<td colspan="13" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="participants_table-participants_id-caption field-caption-tv">ID</dt>
@@ -19,13 +19,13 @@
 					<dt class="participants_table-participant_type-caption field-caption-tv">Participant type</dt>
 					<dd id="participants_table-participant_type-<%%VALUE(participants_id)%%>" class="participants_table-participant_type"><%%SELECT%%><%%VALUE(participant_type)%%><%%ENDSELECT%%></dd>
 
+					<dt class="participants_table-accepted_status-caption field-caption-tv">Accepted status</dt>
+					<dd id="participants_table-accepted_status-<%%VALUE(participants_id)%%>" class="participants_table-accepted_status"><%%SELECT%%><%%VALUE(accepted_status)%%><%%ENDSELECT%%></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="participants_table-accepted_status-caption field-caption-tv">Accepted status</dt>
-					<dd id="participants_table-accepted_status-<%%VALUE(participants_id)%%>" class="participants_table-accepted_status"><%%SELECT%%><%%VALUE(accepted_status)%%><%%ENDSELECT%%></dd>
-
 					<dt class="participants_table-status_date-caption field-caption-tv">Status date</dt>
 					<dd id="participants_table-status_date-<%%VALUE(participants_id)%%>" class="participants_table-status_date"><%%SELECT%%><%%VALUE(status_date)%%><%%ENDSELECT%%></dd>
 
@@ -37,6 +37,12 @@
 
 					<dt class="participants_table-created_by_username-caption field-caption-tv">Created By Username</dt>
 					<dd id="participants_table-created_by_username-<%%VALUE(participants_id)%%>" class="participants_table-created_by_username"><%%SELECT%%><%%VALUE(created_by_username)%%><%%ENDSELECT%%></dd>
+
+					<dt class="participants_table-created_at-caption field-caption-tv">Created At</dt>
+					<dd id="participants_table-created_at-<%%VALUE(participants_id)%%>" class="participants_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="participants_table-last_updated_by_username-caption field-caption-tv">Last Updated by Username</dt>
+					<dd id="participants_table-last_updated_by_username-<%%VALUE(participants_id)%%>" class="participants_table-last_updated_by_username"><%%SELECT%%><%%VALUE(last_updated_by_username)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>

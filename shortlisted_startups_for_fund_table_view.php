@@ -43,6 +43,7 @@
 		"`shortlisted_startups_for_fund_table`.`last_updated_by`" => "last_updated_by",
 		"`shortlisted_startups_for_fund_table`.`last_updated_at`" => "last_updated_at",
 		"`shortlisted_startups_for_fund_table`.`created_by_username`" => "created_by_username",
+		"`shortlisted_startups_for_fund_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -71,6 +72,7 @@
 		23 => 23,
 		24 => 24,
 		25 => 25,
+		26 => 26,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -100,6 +102,7 @@
 		"`shortlisted_startups_for_fund_table`.`last_updated_by`" => "last_updated_by",
 		"`shortlisted_startups_for_fund_table`.`last_updated_at`" => "last_updated_at",
 		"`shortlisted_startups_for_fund_table`.`created_by_username`" => "created_by_username",
+		"`shortlisted_startups_for_fund_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -128,6 +131,7 @@
 		"`shortlisted_startups_for_fund_table`.`last_updated_by`" => "Last updated by",
 		"`shortlisted_startups_for_fund_table`.`last_updated_at`" => "Last updated at",
 		"`shortlisted_startups_for_fund_table`.`created_by_username`" => "Created By Username",
+		"`shortlisted_startups_for_fund_table`.`last_updated_by_username`" => "Last Updated by Username",
 	];
 
 	// Fields that can be quick searched
@@ -157,6 +161,7 @@
 		"`shortlisted_startups_for_fund_table`.`last_updated_by`" => "last_updated_by",
 		"`shortlisted_startups_for_fund_table`.`last_updated_at`" => "last_updated_at",
 		"`shortlisted_startups_for_fund_table`.`created_by_username`" => "created_by_username",
+		"`shortlisted_startups_for_fund_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -192,10 +197,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Select startup', 'Scheme', 'Recommended fund (in Lakhs INR)', 'Name of founder', 'Email of founder', 'Phone number of founder', 'Due diligence start', 'Terms agreed', 'Grant amount (in INR)', 'Debt amount (in INR)', 'OCD/CCD Amount (in INR)', 'Equity amount (in INR)', 'Interest rate (in %)', 'Period (in Years)', 'Conversion formula', 'Equity diluted (in %)', 'Comments', 'Remarks 1', 'Remarks 2', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Created By Username', ];
-	$x->ColFieldName = ['id', 'startup', 'scheme', 'recommended_fund', 'name_of_founder', 'email_of_founder', 'phone_number_of_founder', 'due_diligence_start', 'terms_agreed', 'grant_amount', 'debt_amount', 'ocd_or_ccd_amount', 'equity_amount', 'interest_rate', 'period', 'conversion_formula', 'equity_diluted', 'comments', 'remarks_1', 'remarks_2', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Select startup', 'Scheme', 'Recommended fund (in Lakhs INR)', 'Name of founder', 'Email of founder', 'Phone number of founder', 'Due diligence start', 'Terms agreed', 'Grant amount (in INR)', 'Debt amount (in INR)', 'OCD/CCD Amount (in INR)', 'Equity amount (in INR)', 'Interest rate (in %)', 'Period (in Years)', 'Conversion formula', 'Equity diluted (in %)', 'Comments', 'Remarks 1', 'Remarks 2', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Created By Username', 'Last Updated by Username', ];
+	$x->ColFieldName = ['id', 'startup', 'scheme', 'recommended_fund', 'name_of_founder', 'email_of_founder', 'phone_number_of_founder', 'due_diligence_start', 'terms_agreed', 'grant_amount', 'debt_amount', 'ocd_or_ccd_amount', 'equity_amount', 'interest_rate', 'period', 'conversion_formula', 'equity_diluted', 'comments', 'remarks_1', 'remarks_2', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', 'last_updated_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/shortlisted_startups_for_fund_table_templateTV.html';

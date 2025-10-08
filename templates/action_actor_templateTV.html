@@ -1,4 +1,4 @@
-		<td colspan="6" class="row">
+		<td colspan="8" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="action_actor-actor_ID-caption field-caption-tv">ID</dt>
@@ -10,18 +10,24 @@
 					<dt class="action_actor-action_status-caption field-caption-tv">Action status</dt>
 					<dd id="action_actor-action_status-<%%VALUE(actor_ID)%%>" class="action_actor-action_status"><%%SELECT%%><%%VALUE(action_status)%%><%%ENDSELECT%%></dd>
 
+					<dt class="action_actor-created_by-caption field-caption-tv">Created By</dt>
+					<dd id="action_actor-created_by-<%%VALUE(actor_ID)%%>" class="action_actor-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="action_actor-created_by-caption field-caption-tv">Created By</dt>
-					<dd id="action_actor-created_by-<%%VALUE(actor_ID)%%>" class="action_actor-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
-
 					<dt class="action_actor-last_updated_by-caption field-caption-tv">Last Updated By</dt>
 					<dd id="action_actor-last_updated_by-<%%VALUE(actor_ID)%%>" class="action_actor-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
 
 					<dt class="action_actor-created_by_username-caption field-caption-tv">Created By Username</dt>
 					<dd id="action_actor-created_by_username-<%%VALUE(actor_ID)%%>" class="action_actor-created_by_username"><%%SELECT%%><%%VALUE(created_by_username)%%><%%ENDSELECT%%></dd>
+
+					<dt class="action_actor-created_at-caption field-caption-tv">Created At</dt>
+					<dd id="action_actor-created_at-<%%VALUE(actor_ID)%%>" class="action_actor-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="action_actor-last_updated_by_username-caption field-caption-tv">Last Updated by Username</dt>
+					<dd id="action_actor-last_updated_by_username-<%%VALUE(actor_ID)%%>" class="action_actor-last_updated_by_username"><%%SELECT%%><%%VALUE(last_updated_by_username)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>

@@ -39,6 +39,8 @@
 		"`it_inventory_app`.`last_updated_at`" => "last_updated_at",
 		"`it_inventory_app`.`created_by`" => "created_by",
 		"`it_inventory_app`.`created_by_username`" => "created_by_username",
+		"`it_inventory_app`.`created_at`" => "created_at",
+		"`it_inventory_app`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -63,6 +65,8 @@
 		19 => 19,
 		20 => 20,
 		21 => 21,
+		22 => 22,
+		23 => 23,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -88,6 +92,8 @@
 		"`it_inventory_app`.`last_updated_at`" => "last_updated_at",
 		"`it_inventory_app`.`created_by`" => "created_by",
 		"`it_inventory_app`.`created_by_username`" => "created_by_username",
+		"`it_inventory_app`.`created_at`" => "created_at",
+		"`it_inventory_app`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -111,6 +117,8 @@
 		"`it_inventory_app`.`last_updated_at`" => "Last updated at",
 		"`it_inventory_app`.`created_by`" => "Created By",
 		"`it_inventory_app`.`created_by_username`" => "Created By Username",
+		"`it_inventory_app`.`created_at`" => "Created At",
+		"`it_inventory_app`.`last_updated_by_username`" => "Last Updated by Username",
 	];
 
 	// Fields that can be quick searched
@@ -135,6 +143,8 @@
 		"`it_inventory_app`.`last_updated_at`" => "last_updated_at",
 		"`it_inventory_app`.`created_by`" => "created_by",
 		"`it_inventory_app`.`created_by_username`" => "created_by_username",
+		"`it_inventory_app`.`created_at`" => "created_at",
+		"`it_inventory_app`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -170,10 +180,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Date', 'Description', 'Classification of asset', 'Sub category', 'Qty', 'Asset serial number', 'Qr and bar code', 'Custody department', 'Custodian', 'Custodian signature', 'Number of years useful life of assets', 'Date of useful life of assets ends', 'Remarks', 'Sactioned by', 'It inventory str', 'Last updated by', 'Last updated at', 'Created By', 'Created By Username', ];
-	$x->ColFieldName = ['it_inventory_id', 'date', 'description', 'classification_of_asset', 'sub_category', 'qty', 'asset_serial_number', 'qr_and_bar_code', 'custody_department', 'custodian', 'custodian_signature', 'no_of_years_useful_life_of_assets', 'date_of_useful_life_of_assets_ends', 'remarks', 'sactioned_by', 'it_inventory_str', 'last_updated_by', 'last_updated_at', 'created_by', 'created_by_username', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Date', 'Description', 'Classification of asset', 'Sub category', 'Qty', 'Asset serial number', 'Qr and bar code', 'Custody department', 'Custodian', 'Custodian signature', 'Number of years useful life of assets', 'Date of useful life of assets ends', 'Remarks', 'Sactioned by', 'It inventory str', 'Last updated by', 'Last updated at', 'Created By', 'Created By Username', 'Created At', 'Last Updated by Username', ];
+	$x->ColFieldName = ['it_inventory_id', 'date', 'description', 'classification_of_asset', 'sub_category', 'qty', 'asset_serial_number', 'qr_and_bar_code', 'custody_department', 'custodian', 'custodian_signature', 'no_of_years_useful_life_of_assets', 'date_of_useful_life_of_assets_ends', 'remarks', 'sactioned_by', 'it_inventory_str', 'last_updated_by', 'last_updated_at', 'created_by', 'created_by_username', 'created_at', 'last_updated_by_username', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/it_inventory_app_templateTV.html';

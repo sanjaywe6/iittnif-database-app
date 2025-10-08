@@ -28,6 +28,8 @@
 		"`event_table`.`created_by`" => "created_by",
 		"`event_table`.`last_updated_by`" => "last_updated_by",
 		"`event_table`.`created_by_username`" => "created_by_username",
+		"`event_table`.`created_at`" => "created_at",
+		"`event_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -41,6 +43,8 @@
 		8 => 8,
 		9 => 9,
 		10 => 10,
+		11 => 11,
+		12 => 12,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -55,6 +59,8 @@
 		"`event_table`.`created_by`" => "created_by",
 		"`event_table`.`last_updated_by`" => "last_updated_by",
 		"`event_table`.`created_by_username`" => "created_by_username",
+		"`event_table`.`created_at`" => "created_at",
+		"`event_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -68,6 +74,8 @@
 		"`event_table`.`created_by`" => "Created By",
 		"`event_table`.`last_updated_by`" => "Last Updated By",
 		"`event_table`.`created_by_username`" => "Created By Username",
+		"`event_table`.`created_at`" => "Created At",
+		"`event_table`.`last_updated_by_username`" => "Last Updated by Username",
 	];
 
 	// Fields that can be quick searched
@@ -82,6 +90,8 @@
 		"`event_table`.`created_by`" => "created_by",
 		"`event_table`.`last_updated_by`" => "last_updated_by",
 		"`event_table`.`created_by_username`" => "created_by_username",
+		"`event_table`.`created_at`" => "created_at",
+		"`event_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -117,10 +127,10 @@
 	$x->DefaultSortField = '4';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Event name', 'Participants', 'Venue', 'Event from date', 'Event to date', 'Created By', 'Last Updated By', 'Created By Username', ];
-	$x->ColFieldName = ['event_id', 'event_name', 'participants', 'venue', 'event_from_date', 'event_to_date', 'created_by', 'last_updated_by', 'created_by_username', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 8, 9, 10, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Event name', 'Participants', 'Venue', 'Event from date', 'Event to date', 'Created By', 'Last Updated By', 'Created By Username', 'Created At', 'Last Updated by Username', ];
+	$x->ColFieldName = ['event_id', 'event_name', 'participants', 'venue', 'event_from_date', 'event_to_date', 'created_by', 'last_updated_by', 'created_by_username', 'created_at', 'last_updated_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/event_table_templateTV.html';

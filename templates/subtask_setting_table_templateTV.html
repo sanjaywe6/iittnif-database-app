@@ -1,4 +1,4 @@
-		<td colspan="12" class="row">
+		<td colspan="14" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="subtask_setting_table-subtask_id-caption field-caption-tv">ID</dt>
@@ -19,13 +19,13 @@
 					<dt class="subtask_setting_table-subtask_set_date-caption field-caption-tv">Subtask set date</dt>
 					<dd id="subtask_setting_table-subtask_set_date-<%%VALUE(subtask_id)%%>" class="subtask_setting_table-subtask_set_date"><%%SELECT%%><%%VALUE(subtask_set_date)%%><%%ENDSELECT%%></dd>
 
+					<dt class="subtask_setting_table-supervisor_name-caption field-caption-tv">Supervisor name</dt>
+					<dd id="subtask_setting_table-supervisor_name-<%%VALUE(subtask_id)%%>" class="subtask_setting_table-supervisor_name"><%%SELECT%%><%%VALUE(supervisor_name)%%><%%ENDSELECT%%></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="subtask_setting_table-supervisor_name-caption field-caption-tv">Supervisor name</dt>
-					<dd id="subtask_setting_table-supervisor_name-<%%VALUE(subtask_id)%%>" class="subtask_setting_table-supervisor_name"><%%SELECT%%><%%VALUE(supervisor_name)%%><%%ENDSELECT%%></dd>
-
 					<dt class="subtask_setting_table-assigned_to-caption field-caption-tv">Assigned to</dt>
 					<dd id="subtask_setting_table-assigned_to-<%%VALUE(subtask_id)%%>" class="subtask_setting_table-assigned_to"><%%SELECT%%><%%VALUE(assigned_to)%%><%%ENDSELECT%%></dd>
 
@@ -40,6 +40,12 @@
 
 					<dt class="subtask_setting_table-created_by_username-caption field-caption-tv">Created By Username</dt>
 					<dd id="subtask_setting_table-created_by_username-<%%VALUE(subtask_id)%%>" class="subtask_setting_table-created_by_username"><%%SELECT%%><%%VALUE(created_by_username)%%><%%ENDSELECT%%></dd>
+
+					<dt class="subtask_setting_table-created_at-caption field-caption-tv">Created At</dt>
+					<dd id="subtask_setting_table-created_at-<%%VALUE(subtask_id)%%>" class="subtask_setting_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="subtask_setting_table-last_updated_by_username-caption field-caption-tv">Last Updated by Username</dt>
+					<dd id="subtask_setting_table-last_updated_by_username-<%%VALUE(subtask_id)%%>" class="subtask_setting_table-last_updated_by_username"><%%SELECT%%><%%VALUE(last_updated_by_username)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>

@@ -43,6 +43,8 @@
 		"`asset_table`.`last_updated_at`" => "last_updated_at",
 		"`asset_table`.`created_by`" => "created_by",
 		"`asset_table`.`created_by_username`" => "created_by_username",
+		"`asset_table`.`created_at`" => "created_at",
+		"`asset_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -71,6 +73,8 @@
 		23 => 23,
 		24 => 24,
 		25 => 25,
+		26 => 26,
+		27 => 27,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -100,6 +104,8 @@
 		"`asset_table`.`last_updated_at`" => "last_updated_at",
 		"`asset_table`.`created_by`" => "created_by",
 		"`asset_table`.`created_by_username`" => "created_by_username",
+		"`asset_table`.`created_at`" => "created_at",
+		"`asset_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -128,6 +134,8 @@
 		"`asset_table`.`last_updated_at`" => "Last updated at",
 		"`asset_table`.`created_by`" => "Created By",
 		"`asset_table`.`created_by_username`" => "Created By Username",
+		"`asset_table`.`created_at`" => "Created At",
+		"`asset_table`.`last_updated_by_username`" => "Last Updated by Username",
 	];
 
 	// Fields that can be quick searched
@@ -157,6 +165,8 @@
 		"`asset_table`.`last_updated_at`" => "last_updated_at",
 		"`asset_table`.`created_by`" => "created_by",
 		"`asset_table`.`created_by_username`" => "created_by_username",
+		"`asset_table`.`created_at`" => "created_at",
+		"`asset_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -192,10 +202,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Date', 'Classification of Assest', 'Sub Category', 'Asset Serial No', 'QR & Bar Code', 'Asset No', 'PO. NO.', 'P/O Date', 'Partculars of Supplier Vendor Name & Address', 'Item Description', 'Bill No.', 'Bill Date', 'Quantity', 'Cost of the Asset (in INR)', 'Total Invoice Value (in INR)', 'Custody Department', 'Custodian', 'Custodian Signature', 'Remarks', 'Last updated by', 'Last updated at', 'Created By', 'Created By Username', ];
-	$x->ColFieldName = ['id', 'Date', 'ClassificationofAssest', 'SubCategory', 'AssetSerialNo', 'QRBarCode', 'AssetNo', 'PONO', 'PODATE', 'particulars_of_supplier_name_address', 'ItemDescription', 'BillNo', 'BillDate', 'QUANTITY', 'CostoftheAssetinINR', 'TotalInvoiceValueinINR', 'CustodyDepartment', 'custodian', 'CustodianSignature', 'remarks', 'last_updated_by', 'last_updated_at', 'created_by', 'created_by_username', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Date', 'Classification of Assest', 'Sub Category', 'Asset Serial No', 'QR & Bar Code', 'Asset No', 'PO. NO.', 'P/O Date', 'Partculars of Supplier Vendor Name & Address', 'Item Description', 'Bill No.', 'Bill Date', 'Quantity', 'Cost of the Asset (in INR)', 'Total Invoice Value (in INR)', 'Custody Department', 'Custodian', 'Custodian Signature', 'Remarks', 'Last updated by', 'Last updated at', 'Created By', 'Created By Username', 'Created At', 'Last Updated by Username', ];
+	$x->ColFieldName = ['id', 'Date', 'ClassificationofAssest', 'SubCategory', 'AssetSerialNo', 'QRBarCode', 'AssetNo', 'PONO', 'PODATE', 'particulars_of_supplier_name_address', 'ItemDescription', 'BillNo', 'BillDate', 'QUANTITY', 'CostoftheAssetinINR', 'TotalInvoiceValueinINR', 'CustodyDepartment', 'custodian', 'CustodianSignature', 'remarks', 'last_updated_by', 'last_updated_at', 'created_by', 'created_by_username', 'created_at', 'last_updated_by_username', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/asset_table_templateTV.html';

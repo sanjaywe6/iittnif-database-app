@@ -1,4 +1,4 @@
-		<td colspan="20" class="row">
+		<td colspan="21" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="travel_stay_table-id-caption field-caption-tv">ID</dt>
@@ -31,13 +31,13 @@
 					<dt class="travel_stay_table-checkin_date-caption field-caption-tv">Checkin date</dt>
 					<dd id="travel_stay_table-checkin_date-<%%VALUE(id)%%>" class="travel_stay_table-checkin_date"><%%SELECT%%><%%VALUE(checkin_date)%%><%%ENDSELECT%%></dd>
 
+					<dt class="travel_stay_table-checkout_date-caption field-caption-tv">Checkout date</dt>
+					<dd id="travel_stay_table-checkout_date-<%%VALUE(id)%%>" class="travel_stay_table-checkout_date"><%%SELECT%%><%%VALUE(checkout_date)%%><%%ENDSELECT%%></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="travel_stay_table-checkout_date-caption field-caption-tv">Checkout date</dt>
-					<dd id="travel_stay_table-checkout_date-<%%VALUE(id)%%>" class="travel_stay_table-checkout_date"><%%SELECT%%><%%VALUE(checkout_date)%%><%%ENDSELECT%%></dd>
-
 					<dt class="travel_stay_table-room_preferance-caption field-caption-tv">Room preferance</dt>
 					<dd id="travel_stay_table-room_preferance-<%%VALUE(id)%%>" class="travel_stay_table-room_preferance"><%%SELECT%%><%%VALUE(room_preferance)%%><%%ENDSELECT%%></dd>
 
@@ -64,6 +64,9 @@
 
 					<dt class="travel_stay_table-created_by_username-caption field-caption-tv">Created By Username</dt>
 					<dd id="travel_stay_table-created_by_username-<%%VALUE(id)%%>" class="travel_stay_table-created_by_username"><%%SELECT%%><%%VALUE(created_by_username)%%><%%ENDSELECT%%></dd>
+
+					<dt class="travel_stay_table-last_updated_by_username-caption field-caption-tv">Last Updated by Username</dt>
+					<dd id="travel_stay_table-last_updated_by_username-<%%VALUE(id)%%>" class="travel_stay_table-last_updated_by_username"><%%SELECT%%><%%VALUE(last_updated_by_username)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>

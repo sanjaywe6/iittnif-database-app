@@ -1,4 +1,4 @@
-		<td colspan="20" class="row">
+		<td colspan="22" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="it_inventory_app-it_inventory_id-caption field-caption-tv">ID</dt>
@@ -31,13 +31,13 @@
 					<dt class="it_inventory_app-custodian-caption field-caption-tv">Custodian</dt>
 					<dd id="it_inventory_app-custodian-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-custodian"><%%SELECT%%><%%VALUE(custodian)%%><%%ENDSELECT%%></dd>
 
+					<dt class="it_inventory_app-custodian_signature-caption field-caption-tv">Custodian signature</dt>
+					<dd id="it_inventory_app-custodian_signature-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-custodian_signature"><%%SELECT%%><img src="thumbnail.php?i=<%%VALUE(custodian_signature)%%>&t=it_inventory_app&f=custodian_signature&v=tv" class="img-thumbnail"><%%ENDSELECT%%></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="it_inventory_app-custodian_signature-caption field-caption-tv">Custodian signature</dt>
-					<dd id="it_inventory_app-custodian_signature-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-custodian_signature"><%%SELECT%%><img src="thumbnail.php?i=<%%VALUE(custodian_signature)%%>&t=it_inventory_app&f=custodian_signature&v=tv" class="img-thumbnail"><%%ENDSELECT%%></dd>
-
 					<dt class="it_inventory_app-no_of_years_useful_life_of_assets-caption field-caption-tv">Number of years useful life of assets</dt>
 					<dd id="it_inventory_app-no_of_years_useful_life_of_assets-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-no_of_years_useful_life_of_assets"><%%SELECT%%><%%VALUE(no_of_years_useful_life_of_assets)%%><%%ENDSELECT%%></dd>
 
@@ -64,6 +64,12 @@
 
 					<dt class="it_inventory_app-created_by_username-caption field-caption-tv">Created By Username</dt>
 					<dd id="it_inventory_app-created_by_username-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-created_by_username"><%%SELECT%%><%%VALUE(created_by_username)%%><%%ENDSELECT%%></dd>
+
+					<dt class="it_inventory_app-created_at-caption field-caption-tv">Created At</dt>
+					<dd id="it_inventory_app-created_at-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="it_inventory_app-last_updated_by_username-caption field-caption-tv">Last Updated by Username</dt>
+					<dd id="it_inventory_app-last_updated_by_username-<%%VALUE(it_inventory_id)%%>" class="it_inventory_app-last_updated_by_username"><%%SELECT%%><%%VALUE(last_updated_by_username)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>

@@ -30,6 +30,8 @@
 		"`computer_details_table`.`created_by`" => "created_by",
 		"`computer_details_table`.`last_updated_by`" => "last_updated_by",
 		"`computer_details_table`.`created_by_username`" => "created_by_username",
+		"`computer_details_table`.`created_at`" => "created_at",
+		"`computer_details_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -45,6 +47,8 @@
 		10 => 10,
 		11 => 11,
 		12 => 12,
+		13 => 13,
+		14 => 14,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -61,6 +65,8 @@
 		"`computer_details_table`.`created_by`" => "created_by",
 		"`computer_details_table`.`last_updated_by`" => "last_updated_by",
 		"`computer_details_table`.`created_by_username`" => "created_by_username",
+		"`computer_details_table`.`created_at`" => "created_at",
+		"`computer_details_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -76,6 +82,8 @@
 		"`computer_details_table`.`created_by`" => "Created By",
 		"`computer_details_table`.`last_updated_by`" => "Last Updated By",
 		"`computer_details_table`.`created_by_username`" => "Created By Username",
+		"`computer_details_table`.`created_at`" => "Created At",
+		"`computer_details_table`.`last_updated_by_username`" => "Last Updated by Username",
 	];
 
 	// Fields that can be quick searched
@@ -92,6 +100,8 @@
 		"`computer_details_table`.`created_by`" => "created_by",
 		"`computer_details_table`.`last_updated_by`" => "last_updated_by",
 		"`computer_details_table`.`created_by_username`" => "created_by_username",
+		"`computer_details_table`.`created_at`" => "created_at",
+		"`computer_details_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -127,10 +137,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'PC number', 'PC hostname', 'PC MAC Address', 'PC Static IP', 'Room number', 'Maintained by', 'Assigned to user', 'Remote access', 'Created By', 'Last Updated By', 'Created By Username', ];
-	$x->ColFieldName = ['id', 'pc_number', 'pc_hostname', 'pc_mac_address', 'pc_static_ip', 'room_number', 'maintained_by', 'assigned_to_user', 'remote_access', 'created_by', 'last_updated_by', 'created_by_username', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'PC number', 'PC hostname', 'PC MAC Address', 'PC Static IP', 'Room number', 'Maintained by', 'Assigned to user', 'Remote access', 'Created By', 'Last Updated By', 'Created By Username', 'Created At', 'Last Updated by Username', ];
+	$x->ColFieldName = ['id', 'pc_number', 'pc_hostname', 'pc_mac_address', 'pc_static_ip', 'room_number', 'maintained_by', 'assigned_to_user', 'remote_access', 'created_by', 'last_updated_by', 'created_by_username', 'created_at', 'last_updated_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/computer_details_table_templateTV.html';

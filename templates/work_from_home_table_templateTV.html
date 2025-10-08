@@ -1,4 +1,4 @@
-		<td colspan="10" class="row">
+		<td colspan="11" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="work_from_home_table-id-caption field-caption-tv">ID</dt>
@@ -16,13 +16,13 @@
 					<dt class="work_from_home_table-approval_status-caption field-caption-tv">Approval Status</dt>
 					<dd id="work_from_home_table-approval_status-<%%VALUE(id)%%>" class="work_from_home_table-approval_status"><%%SELECT%%><%%VALUE(approval_status)%%><%%ENDSELECT%%></dd>
 
+					<dt class="work_from_home_table-created_by-caption field-caption-tv">Created By</dt>
+					<dd id="work_from_home_table-created_by-<%%VALUE(id)%%>" class="work_from_home_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="work_from_home_table-created_by-caption field-caption-tv">Created By</dt>
-					<dd id="work_from_home_table-created_by-<%%VALUE(id)%%>" class="work_from_home_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
-
 					<dt class="work_from_home_table-created_at-caption field-caption-tv">Created At</dt>
 					<dd id="work_from_home_table-created_at-<%%VALUE(id)%%>" class="work_from_home_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
 
@@ -34,6 +34,9 @@
 
 					<dt class="work_from_home_table-created_by_username-caption field-caption-tv">Created By Username</dt>
 					<dd id="work_from_home_table-created_by_username-<%%VALUE(id)%%>" class="work_from_home_table-created_by_username"><%%SELECT%%><%%VALUE(created_by_username)%%><%%ENDSELECT%%></dd>
+
+					<dt class="work_from_home_table-last_updated_by_username-caption field-caption-tv">Last Updated by Username</dt>
+					<dd id="work_from_home_table-last_updated_by_username-<%%VALUE(id)%%>" class="work_from_home_table-last_updated_by_username"><%%SELECT%%><%%VALUE(last_updated_by_username)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>

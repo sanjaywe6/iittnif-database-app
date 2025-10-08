@@ -1,4 +1,4 @@
-		<td colspan="20" class="row">
+		<td colspan="21" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="travel_table-id-caption field-caption-tv">ID</dt>
@@ -31,13 +31,13 @@
 					<dt class="travel_table-to_place-caption field-caption-tv">To Place</dt>
 					<dd id="travel_table-to_place-<%%VALUE(id)%%>" class="travel_table-to_place"><%%SELECT%%><%%VALUE(to_place)%%><%%ENDSELECT%%></dd>
 
+					<dt class="travel_table-date_from-caption field-caption-tv">Date from</dt>
+					<dd id="travel_table-date_from-<%%VALUE(id)%%>" class="travel_table-date_from"><%%SELECT%%><%%VALUE(date_from)%%><%%ENDSELECT%%></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="travel_table-date_from-caption field-caption-tv">Date from</dt>
-					<dd id="travel_table-date_from-<%%VALUE(id)%%>" class="travel_table-date_from"><%%SELECT%%><%%VALUE(date_from)%%><%%ENDSELECT%%></dd>
-
 					<dt class="travel_table-date_to-caption field-caption-tv">Date to</dt>
 					<dd id="travel_table-date_to-<%%VALUE(id)%%>" class="travel_table-date_to"><%%SELECT%%><%%VALUE(date_to)%%><%%ENDSELECT%%></dd>
 
@@ -64,6 +64,9 @@
 
 					<dt class="travel_table-created_by_username-caption field-caption-tv">Created By Username</dt>
 					<dd id="travel_table-created_by_username-<%%VALUE(id)%%>" class="travel_table-created_by_username"><%%SELECT%%><%%VALUE(created_by_username)%%><%%ENDSELECT%%></dd>
+
+					<dt class="travel_table-last_updated_by_username-caption field-caption-tv">Last Updated by Username</dt>
+					<dd id="travel_table-last_updated_by_username-<%%VALUE(id)%%>" class="travel_table-last_updated_by_username"><%%SELECT%%><%%VALUE(last_updated_by_username)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>

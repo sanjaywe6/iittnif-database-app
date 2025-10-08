@@ -26,6 +26,8 @@
 		"`cafeteria_table`.`created_by`" => "created_by",
 		"`cafeteria_table`.`last_updated_by`" => "last_updated_by",
 		"`cafeteria_table`.`created_by_username`" => "created_by_username",
+		"`cafeteria_table`.`created_at`" => "created_at",
+		"`cafeteria_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -37,6 +39,8 @@
 		6 => 6,
 		7 => 7,
 		8 => 8,
+		9 => 9,
+		10 => 10,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -49,6 +53,8 @@
 		"`cafeteria_table`.`created_by`" => "created_by",
 		"`cafeteria_table`.`last_updated_by`" => "last_updated_by",
 		"`cafeteria_table`.`created_by_username`" => "created_by_username",
+		"`cafeteria_table`.`created_at`" => "created_at",
+		"`cafeteria_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -60,6 +66,8 @@
 		"`cafeteria_table`.`created_by`" => "Created By",
 		"`cafeteria_table`.`last_updated_by`" => "Last Updated By",
 		"`cafeteria_table`.`created_by_username`" => "Created By Username",
+		"`cafeteria_table`.`created_at`" => "Created At",
+		"`cafeteria_table`.`last_updated_by_username`" => "Last Updated by Username",
 	];
 
 	// Fields that can be quick searched
@@ -72,6 +80,8 @@
 		"`cafeteria_table`.`created_by`" => "created_by",
 		"`cafeteria_table`.`last_updated_by`" => "last_updated_by",
 		"`cafeteria_table`.`created_by_username`" => "created_by_username",
+		"`cafeteria_table`.`created_at`" => "created_at",
+		"`cafeteria_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -107,10 +117,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Type', 'Time', 'Date', 'Remarks (Optional)', 'Created By', 'Last Updated By', 'Created By Username', ];
-	$x->ColFieldName = ['id', 'type', 'time', 'date', 'remarks', 'created_by', 'last_updated_by', 'created_by_username', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Type', 'Time', 'Date', 'Remarks (Optional)', 'Created By', 'Last Updated By', 'Created By Username', 'Created At', 'Last Updated by Username', ];
+	$x->ColFieldName = ['id', 'type', 'time', 'date', 'remarks', 'created_by', 'last_updated_by', 'created_by_username', 'created_at', 'last_updated_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/cafeteria_table_templateTV.html';

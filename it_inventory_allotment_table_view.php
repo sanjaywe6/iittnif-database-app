@@ -35,6 +35,8 @@
 		"`it_inventory_allotment_table`.`last_updated_at`" => "last_updated_at",
 		"`it_inventory_allotment_table`.`created_by`" => "created_by",
 		"`it_inventory_allotment_table`.`created_by_username`" => "created_by_username",
+		"`it_inventory_allotment_table`.`created_at`" => "created_at",
+		"`it_inventory_allotment_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -55,6 +57,8 @@
 		15 => 15,
 		16 => 16,
 		17 => 17,
+		18 => 18,
+		19 => 19,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -76,6 +80,8 @@
 		"`it_inventory_allotment_table`.`last_updated_at`" => "last_updated_at",
 		"`it_inventory_allotment_table`.`created_by`" => "created_by",
 		"`it_inventory_allotment_table`.`created_by_username`" => "created_by_username",
+		"`it_inventory_allotment_table`.`created_at`" => "created_at",
+		"`it_inventory_allotment_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -96,6 +102,8 @@
 		"`it_inventory_allotment_table`.`last_updated_at`" => "Last updated at",
 		"`it_inventory_allotment_table`.`created_by`" => "Created By",
 		"`it_inventory_allotment_table`.`created_by_username`" => "Created By Username",
+		"`it_inventory_allotment_table`.`created_at`" => "Created At",
+		"`it_inventory_allotment_table`.`last_updated_by_username`" => "Last Updated by Username",
 	];
 
 	// Fields that can be quick searched
@@ -117,6 +125,8 @@
 		"`it_inventory_allotment_table`.`last_updated_at`" => "last_updated_at",
 		"`it_inventory_allotment_table`.`created_by`" => "created_by",
 		"`it_inventory_allotment_table`.`created_by_username`" => "created_by_username",
+		"`it_inventory_allotment_table`.`created_at`" => "created_at",
+		"`it_inventory_allotment_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -152,10 +162,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Select employee', 'Department', 'Date', 'Inventory Details', 'Purpose', 'Alloted by', 'Allotment Status', 'Approval status', 'Approval remarks', 'Return status', 'Returned date', 'Last updated by', 'Last updated at', 'Created By', 'Created By Username', ];
-	$x->ColFieldName = ['id', 'select_employee', 'department', 'date', 'inventory_details', 'purpose', 'alloted_by', 'allotment_status', 'approval_status', 'approval_remarks', 'return_status', 'returned_date', 'last_updated_by', 'last_updated_at', 'created_by', 'created_by_username', ];
-	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Select employee', 'Department', 'Date', 'Inventory Details', 'Purpose', 'Alloted by', 'Allotment Status', 'Approval status', 'Approval remarks', 'Return status', 'Returned date', 'Last updated by', 'Last updated at', 'Created By', 'Created By Username', 'Created At', 'Last Updated by Username', ];
+	$x->ColFieldName = ['id', 'select_employee', 'department', 'date', 'inventory_details', 'purpose', 'alloted_by', 'allotment_status', 'approval_status', 'approval_remarks', 'return_status', 'returned_date', 'last_updated_by', 'last_updated_at', 'created_by', 'created_by_username', 'created_at', 'last_updated_by_username', ];
+	$x->ColNumber  = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/it_inventory_allotment_table_templateTV.html';

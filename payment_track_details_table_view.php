@@ -35,6 +35,7 @@
 		"`payment_track_details_table`.`last_updated_by`" => "last_updated_by",
 		"`payment_track_details_table`.`last_updated_at`" => "last_updated_at",
 		"`payment_track_details_table`.`created_by_username`" => "created_by_username",
+		"`payment_track_details_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -55,6 +56,7 @@
 		15 => 15,
 		16 => 16,
 		17 => 17,
+		18 => 18,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -76,6 +78,7 @@
 		"`payment_track_details_table`.`last_updated_by`" => "last_updated_by",
 		"`payment_track_details_table`.`last_updated_at`" => "last_updated_at",
 		"`payment_track_details_table`.`created_by_username`" => "created_by_username",
+		"`payment_track_details_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -94,6 +97,7 @@
 		"`payment_track_details_table`.`last_updated_by`" => "Last updated by",
 		"`payment_track_details_table`.`last_updated_at`" => "Last updated at",
 		"`payment_track_details_table`.`created_by_username`" => "Created By Username",
+		"`payment_track_details_table`.`last_updated_by_username`" => "Last Updated by Username",
 	];
 
 	// Fields that can be quick searched
@@ -113,6 +117,7 @@
 		"`payment_track_details_table`.`last_updated_by`" => "last_updated_by",
 		"`payment_track_details_table`.`last_updated_at`" => "last_updated_at",
 		"`payment_track_details_table`.`created_by_username`" => "created_by_username",
+		"`payment_track_details_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -148,10 +153,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'PFMS Num.', 'Date', 'Description', 'Amount (Rs.)', 'Requested by', 'Paid to', 'Paid status', 'Payment date', 'Remarks (Recurring / Non-Recurring)', 'Upload scanned file (first)', 'Upload scanned file (second)', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Created By Username', ];
-	$x->ColFieldName = ['payment_track_details_id', 'pfms_num', 'date', 'description', 'amount', 'requested_by', 'paid_to', 'paid_status', 'payment_date', 'remarks', 'upload_scanned_file_1', 'upload_scanned_file_2', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'PFMS Num.', 'Date', 'Description', 'Amount (Rs.)', 'Requested by', 'Paid to', 'Paid status', 'Payment date', 'Remarks (Recurring / Non-Recurring)', 'Upload scanned file (first)', 'Upload scanned file (second)', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Created By Username', 'Last Updated by Username', ];
+	$x->ColFieldName = ['payment_track_details_id', 'pfms_num', 'date', 'description', 'amount', 'requested_by', 'paid_to', 'paid_status', 'payment_date', 'remarks', 'upload_scanned_file_1', 'upload_scanned_file_2', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', 'last_updated_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/payment_track_details_table_templateTV.html';

@@ -48,6 +48,7 @@
 		"`summary_table_tdp`.`last_updated_by`" => "last_updated_by",
 		"`summary_table_tdp`.`last_updated_at`" => "last_updated_at",
 		"`summary_table_tdp`.`created_by_username`" => "created_by_username",
+		"`summary_table_tdp`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -81,6 +82,7 @@
 		28 => 28,
 		29 => 29,
 		30 => 30,
+		31 => 31,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -115,6 +117,7 @@
 		"`summary_table_tdp`.`last_updated_by`" => "last_updated_by",
 		"`summary_table_tdp`.`last_updated_at`" => "last_updated_at",
 		"`summary_table_tdp`.`created_by_username`" => "created_by_username",
+		"`summary_table_tdp`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -148,6 +151,7 @@
 		"`summary_table_tdp`.`last_updated_by`" => "Last updated by",
 		"`summary_table_tdp`.`last_updated_at`" => "Last updated at",
 		"`summary_table_tdp`.`created_by_username`" => "Created By Username",
+		"`summary_table_tdp`.`last_updated_by_username`" => "Last Updated by Username",
 	];
 
 	// Fields that can be quick searched
@@ -182,6 +186,7 @@
 		"`summary_table_tdp`.`last_updated_by`" => "last_updated_by",
 		"`summary_table_tdp`.`last_updated_at`" => "last_updated_at",
 		"`summary_table_tdp`.`created_by_username`" => "created_by_username",
+		"`summary_table_tdp`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -217,10 +222,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Project number', 'Project title', 'Year', 'PI', 'Institute', 'Duration in months', 'Overall budget in Rs.', 'Number of products', 'TRL status', 'Sactioned date', 'Ongoing month of project', 'Last monthly report', 'No. of UG', 'No. of PG', 'No. of PhD', 'No. of Post Doc', '1st Milestone Amount & Date', 'Stage 1 completion', '2nd Milestone Amount & Date', 'Stage 2 completion', '3rd Milestone Amount & Date', 'Stage 3 completion', '4th Milestone Amount & Date', 'Stage 4 completion', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Created By Username', ];
-	$x->ColFieldName = ['id', 'project_number', 'project_title', 'year', 'pi', 'institute', 'duration_in_months', 'overall_budget', 'number_of_products', 'trl_status', 'sactioned_date', 'ongoing_month_of_project', 'last_monthly_report', 'no_of_ug', 'no_of_pg', 'no_of_phd', 'no_of_postdoc', 'first_milestone_amount_and_date', 'stage_I_completion', 'second_milestone_amount_and_date', 'stage_2_completion', 'third_milestone_amount_and_date', 'stage_3_completion', 'fourth_milestone_amount_and_date', 'stage_4_completion', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Project number', 'Project title', 'Year', 'PI', 'Institute', 'Duration in months', 'Overall budget in Rs.', 'Number of products', 'TRL status', 'Sactioned date', 'Ongoing month of project', 'Last monthly report', 'No. of UG', 'No. of PG', 'No. of PhD', 'No. of Post Doc', '1st Milestone Amount & Date', 'Stage 1 completion', '2nd Milestone Amount & Date', 'Stage 2 completion', '3rd Milestone Amount & Date', 'Stage 3 completion', '4th Milestone Amount & Date', 'Stage 4 completion', 'Created by', 'Created at', 'Last updated by', 'Last updated at', 'Created By Username', 'Last Updated by Username', ];
+	$x->ColFieldName = ['id', 'project_number', 'project_title', 'year', 'pi', 'institute', 'duration_in_months', 'overall_budget', 'number_of_products', 'trl_status', 'sactioned_date', 'ongoing_month_of_project', 'last_monthly_report', 'no_of_ug', 'no_of_pg', 'no_of_phd', 'no_of_postdoc', 'first_milestone_amount_and_date', 'stage_I_completion', 'second_milestone_amount_and_date', 'stage_2_completion', 'third_milestone_amount_and_date', 'stage_3_completion', 'fourth_milestone_amount_and_date', 'stage_4_completion', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', 'last_updated_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/summary_table_tdp_templateTV.html';

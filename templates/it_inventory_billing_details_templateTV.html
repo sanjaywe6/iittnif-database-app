@@ -1,4 +1,4 @@
-		<td colspan="16" class="row">
+		<td colspan="18" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="it_inventory_billing_details-it_inventory_biling_details_id-caption field-caption-tv">ID</dt>
@@ -25,13 +25,13 @@
 					<dt class="it_inventory_billing_details-bill_date-caption field-caption-tv">Bill date</dt>
 					<dd id="it_inventory_billing_details-bill_date-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-bill_date"><%%SELECT%%><%%VALUE(bill_date)%%><%%ENDSELECT%%></dd>
 
+					<dt class="it_inventory_billing_details-quantity-caption field-caption-tv">Quantity</dt>
+					<dd id="it_inventory_billing_details-quantity-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-quantity"><%%SELECT%%><%%VALUE(quantity)%%><%%ENDSELECT%%></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="it_inventory_billing_details-quantity-caption field-caption-tv">Quantity</dt>
-					<dd id="it_inventory_billing_details-quantity-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-quantity"><%%SELECT%%><%%VALUE(quantity)%%><%%ENDSELECT%%></dd>
-
 					<dt class="it_inventory_billing_details-total_invoice_value-caption field-caption-tv">Total invoice value</dt>
 					<dd id="it_inventory_billing_details-total_invoice_value-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-total_invoice_value"><%%SELECT%%><%%VALUE(total_invoice_value)%%><%%ENDSELECT%%></dd>
 
@@ -52,6 +52,12 @@
 
 					<dt class="it_inventory_billing_details-created_by_username-caption field-caption-tv">Created By Username</dt>
 					<dd id="it_inventory_billing_details-created_by_username-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-created_by_username"><%%SELECT%%><%%VALUE(created_by_username)%%><%%ENDSELECT%%></dd>
+
+					<dt class="it_inventory_billing_details-created_at-caption field-caption-tv">Created At</dt>
+					<dd id="it_inventory_billing_details-created_at-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
+					<dt class="it_inventory_billing_details-last_updated_by_username-caption field-caption-tv">Last Updated by Username</dt>
+					<dd id="it_inventory_billing_details-last_updated_by_username-<%%VALUE(it_inventory_biling_details_id)%%>" class="it_inventory_billing_details-last_updated_by_username"><%%SELECT%%><%%VALUE(last_updated_by_username)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>

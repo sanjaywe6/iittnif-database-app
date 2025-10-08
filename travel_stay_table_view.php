@@ -38,6 +38,7 @@
 		"`travel_stay_table`.`created_at`" => "created_at",
 		"`travel_stay_table`.`last_updated_at`" => "last_updated_at",
 		"`travel_stay_table`.`created_by_username`" => "created_by_username",
+		"`travel_stay_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -61,6 +62,7 @@
 		18 => 18,
 		19 => 19,
 		20 => 20,
+		21 => 21,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -85,6 +87,7 @@
 		"`travel_stay_table`.`created_at`" => "created_at",
 		"`travel_stay_table`.`last_updated_at`" => "last_updated_at",
 		"`travel_stay_table`.`created_by_username`" => "created_by_username",
+		"`travel_stay_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -108,6 +111,7 @@
 		"`travel_stay_table`.`created_at`" => "Created at",
 		"`travel_stay_table`.`last_updated_at`" => "Last updated at",
 		"`travel_stay_table`.`created_by_username`" => "Created By Username",
+		"`travel_stay_table`.`last_updated_by_username`" => "Last Updated by Username",
 	];
 
 	// Fields that can be quick searched
@@ -132,6 +136,7 @@
 		"`travel_stay_table`.`created_at`" => "created_at",
 		"`travel_stay_table`.`last_updated_at`" => "last_updated_at",
 		"`travel_stay_table`.`created_by_username`" => "created_by_username",
+		"`travel_stay_table`.`last_updated_by_username`" => "last_updated_by_username",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -167,10 +172,10 @@
 	$x->DefaultSortField = '`travel_stay_table`.`checkout_date`';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Username', 'First name', 'Last name', 'Age', 'Gender', 'Mobile number', 'Hotel name', 'Hotel address', 'Checkin date', 'Checkout date', 'Room preferance', 'Remarks', 'Approval Status', 'Approval remarks', 'Approved By', 'Created by', 'Created at', 'Last updated at', 'Created By Username', ];
-	$x->ColFieldName = ['id', 'username', 'first_name', 'last_name', 'age', 'gender', 'mobile_number', 'hotel_name', 'hotel_address', 'checkin_date', 'checkout_date', 'room_preferance', 'remarks', 'approval_status', 'approval_remarks', 'approved_by', 'created_by', 'created_at', 'last_updated_at', 'created_by_username', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Username', 'First name', 'Last name', 'Age', 'Gender', 'Mobile number', 'Hotel name', 'Hotel address', 'Checkin date', 'Checkout date', 'Room preferance', 'Remarks', 'Approval Status', 'Approval remarks', 'Approved By', 'Created by', 'Created at', 'Last updated at', 'Created By Username', 'Last Updated by Username', ];
+	$x->ColFieldName = ['id', 'username', 'first_name', 'last_name', 'age', 'gender', 'mobile_number', 'hotel_name', 'hotel_address', 'checkin_date', 'checkout_date', 'room_preferance', 'remarks', 'approval_status', 'approval_remarks', 'approved_by', 'created_by', 'created_at', 'last_updated_at', 'created_by_username', 'last_updated_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/travel_stay_table_templateTV.html';

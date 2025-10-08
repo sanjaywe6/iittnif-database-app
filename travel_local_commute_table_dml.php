@@ -426,6 +426,7 @@ function travel_local_commute_table_form($selectedId = '', $allowUpdate = true, 
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(approved_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by_username)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by_username)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
@@ -474,6 +475,8 @@ function travel_local_commute_table_form($selectedId = '', $allowUpdate = true, 
 		$templateCode = str_replace('<%%URLVALUE(approved_at)%%>', urlencode($urow['approved_at']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', safe_html($urow['created_by_username']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode($urow['created_by_username']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by_username)%%>', safe_html($urow['last_updated_by_username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by_username)%%>', urlencode($urow['last_updated_by_username']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
@@ -511,6 +514,8 @@ function travel_local_commute_table_form($selectedId = '', $allowUpdate = true, 
 		$templateCode = str_replace('<%%URLVALUE(approved_at)%%>', urlencode('<%%editingDateTime%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by_username)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by_username)%%>', urlencode(''), $templateCode);
 	}
 
 	// process translations

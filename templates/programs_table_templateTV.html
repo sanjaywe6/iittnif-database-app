@@ -1,4 +1,4 @@
-		<td colspan="8" class="row">
+		<td colspan="9" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="programs_table-programs_id-caption field-caption-tv">ID</dt>
@@ -13,13 +13,13 @@
 					<dt class="programs_table-created_by-caption field-caption-tv">Created by</dt>
 					<dd id="programs_table-created_by-<%%VALUE(programs_id)%%>" class="programs_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
 
+					<dt class="programs_table-created_at-caption field-caption-tv">Created at</dt>
+					<dd id="programs_table-created_at-<%%VALUE(programs_id)%%>" class="programs_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
+
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="programs_table-created_at-caption field-caption-tv">Created at</dt>
-					<dd id="programs_table-created_at-<%%VALUE(programs_id)%%>" class="programs_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
-
 					<dt class="programs_table-last_updated_by-caption field-caption-tv">Last updated by</dt>
 					<dd id="programs_table-last_updated_by-<%%VALUE(programs_id)%%>" class="programs_table-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></dd>
 
@@ -28,6 +28,9 @@
 
 					<dt class="programs_table-created_by_username-caption field-caption-tv">Created By Username</dt>
 					<dd id="programs_table-created_by_username-<%%VALUE(programs_id)%%>" class="programs_table-created_by_username"><%%SELECT%%><%%VALUE(created_by_username)%%><%%ENDSELECT%%></dd>
+
+					<dt class="programs_table-last_updated_by_username-caption field-caption-tv">Last Updated by Username</dt>
+					<dd id="programs_table-last_updated_by_username-<%%VALUE(programs_id)%%>" class="programs_table-last_updated_by_username"><%%SELECT%%><%%VALUE(last_updated_by_username)%%><%%ENDSELECT%%></dd>
 
 				</dl>
 			</div>

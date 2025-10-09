@@ -35,127 +35,74 @@
 		setupTable('cycle_usage_table', []);
 		setupIndexes('cycle_usage_table', ['cycle_lookup',]);
 
-		setupTable('gym_table', [
-				"ALTER TABLE `gym_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('gym_table', []);
 
-		setupTable('coffee_table', [
-				"ALTER TABLE `coffee_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('coffee_table', []);
 
-		setupTable('cafeteria_table', [
-				"ALTER TABLE `cafeteria_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('cafeteria_table', []);
 
-		setupTable('event_table', [
-				"ALTER TABLE `event_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('event_table', []);
 
-		setupTable('outcomes_expected_table', [
-				"ALTER TABLE `outcomes_expected_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('outcomes_expected_table', []);
 		setupIndexes('outcomes_expected_table', ['event_lookup',]);
 
-		setupTable('event_decision_table', [
-				"ALTER TABLE `event_decision_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('event_decision_table', []);
 		setupIndexes('event_decision_table', ['outcomes_expected_lookup','decision_actor',]);
 
-		setupTable('meetings_table', [
-				"ALTER TABLE `meetings_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('meetings_table', []);
 		setupIndexes('meetings_table', ['visiting_card_lookup','event_lookup',]);
 
-		setupTable('agenda_table', [
-				"ALTER TABLE `agenda_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('agenda_table', []);
 		setupIndexes('agenda_table', ['meeting_lookup',]);
 
-		setupTable('decision_table', [
-				"ALTER TABLE `decision_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('decision_table', []);
 		setupIndexes('decision_table', ['agenda_lookup','decision_actor',]);
 
-		setupTable('participants_table', [
-				"ALTER TABLE `participants_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('participants_table', []);
 		setupIndexes('participants_table', ['event_lookup','meeting_lookup',]);
 
-		setupTable('action_actor', [
-				"ALTER TABLE `action_actor` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('action_actor', []);
 		setupIndexes('action_actor', ['actor',]);
 
-		setupTable('visiting_card_table', [
-				"ALTER TABLE `visiting_card_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('visiting_card_table', []);
 		setupIndexes('visiting_card_table', ['given_by',]);
 
-		setupTable('mou_details_table', [
-				"ALTER TABLE `mou_details_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('mou_details_table', []);
 		setupIndexes('mou_details_table', ['assigned_mou_to',]);
 
-		setupTable('mou_company_area_details_table', [
-				"ALTER TABLE `mou_company_area_details_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('mou_company_area_details_table', []);
 		setupIndexes('mou_company_area_details_table', ['name_of_the_company','assigned_mou_to',]);
 
-		setupTable('goal_setting_table', [
-				"ALTER TABLE `goal_setting_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('goal_setting_table', []);
 		setupIndexes('goal_setting_table', ['supervisor_name','assigned_to',]);
 
-		setupTable('goal_progress_table', [
-				"ALTER TABLE `goal_progress_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('goal_progress_table', []);
 		setupIndexes('goal_progress_table', ['goal_lookup','remarks_by',]);
 
-		setupTable('task_setting_table', [
-				"ALTER TABLE `task_setting_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('task_setting_table', []);
 		setupIndexes('task_setting_table', ['supervisor_name','assigned_to',]);
 
-		setupTable('subtask_setting_table', [
-				"ALTER TABLE `subtask_setting_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('subtask_setting_table', []);
 		setupIndexes('subtask_setting_table', ['task_lookup','supervisor_name','assigned_to',]);
 
-		setupTable('internship_fellowship_details_app', [
-				"ALTER TABLE `internship_fellowship_details_app` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('internship_fellowship_details_app', []);
 
-		setupTable('star_pnt', [
-				"ALTER TABLE `star_pnt` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('star_pnt', []);
 		setupIndexes('star_pnt', ['iittnif_id',]);
 
 		setupTable('hrd_sdp_events_table', []);
 
-		setupTable('training_program_on_geospatial_tchnologies_table', [
-				"ALTER TABLE `training_program_on_geospatial_tchnologies_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('training_program_on_geospatial_tchnologies_table', []);
 
-		setupTable('space_day_school_details_app', [
-				"ALTER TABLE `space_day_school_details_app` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('space_day_school_details_app', []);
 
-		setupTable('space_day_college_student_table', [
-				"ALTER TABLE `space_day_college_student_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('space_day_college_student_table', []);
 
-		setupTable('school_list', [
-				"ALTER TABLE `school_list` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('school_list', []);
 
-		setupTable('sdp_participants_college_details_table', [
-				"ALTER TABLE `sdp_participants_college_details_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('sdp_participants_college_details_table', []);
 
-		setupTable('asset_table', [
-				"ALTER TABLE `asset_table` ADD `last_updated_at_1` VARCHAR(255) NULL ",
-				"ALTER TABLE `asset_table` DROP `last_updated_at_1`",
-			]);
+		setupTable('asset_table', []);
 
 		setupTable('asset_allotment_table', []);
 		setupIndexes('asset_allotment_table', ['asset_lookup','select_employee','alloted_by',]);
@@ -174,18 +121,12 @@
 		setupTable('it_inventory_allotment_table', []);
 		setupIndexes('it_inventory_allotment_table', ['select_employee','alloted_by',]);
 
-		setupTable('computer_details_table', [
-				"ALTER TABLE `computer_details_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('computer_details_table', []);
 
-		setupTable('computer_user_details', [
-				"ALTER TABLE `computer_user_details` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('computer_user_details', []);
 		setupIndexes('computer_user_details', ['pc_id',]);
 
-		setupTable('computer_allotment_table', [
-				"ALTER TABLE `computer_allotment_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('computer_allotment_table', []);
 		setupIndexes('computer_allotment_table', ['pc_id',]);
 
 		setupTable('employees_personal_data_table', []);
@@ -248,15 +189,11 @@
 
 		setupTable('payment_track_details_table', []);
 
-		setupTable('travel_table', [
-				"ALTER TABLE `travel_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('travel_table', []);
 
 		setupTable('travel_stay_table', []);
 
-		setupTable('travel_local_commute_table', [
-				"ALTER TABLE `travel_local_commute_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('travel_local_commute_table', []);
 
 		setupTable('r_and_d_progress', []);
 
@@ -288,22 +225,14 @@
 		setupTable('project_details_tdp', []);
 		setupIndexes('project_details_tdp', ['project_number',]);
 
-		setupTable('newsletter_table', [
-				"ALTER TABLE `newsletter_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('newsletter_table', []);
 
-		setupTable('contact_call_log_table', [
-				"ALTER TABLE `contact_call_log_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('contact_call_log_table', []);
 
-		setupTable('r_and_d_monthly_progress_app', [
-				"ALTER TABLE `r_and_d_monthly_progress_app` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('r_and_d_monthly_progress_app', []);
 		setupIndexes('r_and_d_monthly_progress_app', ['r_and_d_lookup',]);
 
-		setupTable('r_and_d_quarterly_progress_app', [
-				"ALTER TABLE `r_and_d_quarterly_progress_app` ADD `last_updated_at` VARCHAR(255) NULL ",
-			]);
+		setupTable('r_and_d_quarterly_progress_app', []);
 		setupIndexes('r_and_d_quarterly_progress_app', ['r_and_d_lookup',]);
 
 

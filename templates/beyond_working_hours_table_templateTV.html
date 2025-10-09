@@ -1,15 +1,18 @@
-		<td colspan="14" class="row">
+		<td colspan="15" class="row">
 			<div id="beyond_working_hours_table-id-<%%VALUE(id)%%>" class="beyond_working_hours_table-id col-sm-12 h5 text-bold"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
-					<dt class="beyond_working_hours_table-reason_for_overtime-caption field-caption-tv">Reason for Overtime</dt>
-					<dd id="beyond_working_hours_table-reason_for_overtime-<%%VALUE(id)%%>" class="beyond_working_hours_table-reason_for_overtime"><%%SELECT%%><%%VALUE(reason_for_overtime)%%><%%ENDSELECT%%></dd>
+					<dt class="beyond_working_hours_table-days_remark-caption field-caption-tv">Days Remark (Mention Day Names like SUN,MON,TUE,WED,THU,FRI,SAT)</dt>
+					<dd id="beyond_working_hours_table-days_remark-<%%VALUE(id)%%>" class="beyond_working_hours_table-days_remark"><%%SELECT%%><%%VALUE(days_remark)%%><%%ENDSELECT%%></dd>
 
 					<dt class="beyond_working_hours_table-start_datetime-caption field-caption-tv">Start Date & Time</dt>
 					<dd id="beyond_working_hours_table-start_datetime-<%%VALUE(id)%%>" class="beyond_working_hours_table-start_datetime"><%%SELECT%%><%%VALUE(start_datetime)%%><%%ENDSELECT%%></dd>
 
 					<dt class="beyond_working_hours_table-end_datetime-caption field-caption-tv">End Date & Time</dt>
 					<dd id="beyond_working_hours_table-end_datetime-<%%VALUE(id)%%>" class="beyond_working_hours_table-end_datetime"><%%SELECT%%><%%VALUE(end_datetime)%%><%%ENDSELECT%%></dd>
+
+					<dt class="beyond_working_hours_table-reason_for_overtime-caption field-caption-tv">Reason for Overtime</dt>
+					<dd id="beyond_working_hours_table-reason_for_overtime-<%%VALUE(id)%%>" class="beyond_working_hours_table-reason_for_overtime"><%%SELECT%%><%%VALUE(reason_for_overtime)%%><%%ENDSELECT%%></dd>
 
 					<dt class="beyond_working_hours_table-details_of_work_done-caption field-caption-tv">Details of Work Planned/Done</dt>
 					<dd id="beyond_working_hours_table-details_of_work_done-<%%VALUE(id)%%>" class="beyond_working_hours_table-details_of_work_done"><%%SELECT%%><%%VALUE(details_of_work_done)%%><%%ENDSELECT%%></dd>
@@ -20,13 +23,13 @@
 					<dt class="beyond_working_hours_table-approval_status-caption field-caption-tv">Approval Status</dt>
 					<dd id="beyond_working_hours_table-approval_status-<%%VALUE(id)%%>" class="beyond_working_hours_table-approval_status"><%%SELECT%%><%%VALUE(approval_status)%%><%%ENDSELECT%%></dd>
 
-					<dt class="beyond_working_hours_table-approval_remarks-caption field-caption-tv">Approval Remarks</dt>
-					<dd id="beyond_working_hours_table-approval_remarks-<%%VALUE(id)%%>" class="beyond_working_hours_table-approval_remarks"><%%SELECT%%><%%VALUE(approval_remarks)%%><%%ENDSELECT%%></dd>
-
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
+					<dt class="beyond_working_hours_table-approval_remarks-caption field-caption-tv">Approval Remarks</dt>
+					<dd id="beyond_working_hours_table-approval_remarks-<%%VALUE(id)%%>" class="beyond_working_hours_table-approval_remarks"><%%SELECT%%><%%VALUE(approval_remarks)%%><%%ENDSELECT%%></dd>
+
 					<dt class="beyond_working_hours_table-created_by_username-caption field-caption-tv">Created by Username</dt>
 					<dd id="beyond_working_hours_table-created_by_username-<%%VALUE(id)%%>" class="beyond_working_hours_table-created_by_username"><%%SELECT%%><%%VALUE(created_by_username)%%><%%ENDSELECT%%></dd>
 

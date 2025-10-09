@@ -19,9 +19,10 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`beyond_working_hours_table`.`id`" => "id",
-		"`beyond_working_hours_table`.`reason_for_overtime`" => "reason_for_overtime",
+		"`beyond_working_hours_table`.`days_remark`" => "days_remark",
 		"if(`beyond_working_hours_table`.`start_datetime`,date_format(`beyond_working_hours_table`.`start_datetime`,'%d/%m/%Y %H:%i'),'')" => "start_datetime",
 		"if(`beyond_working_hours_table`.`end_datetime`,date_format(`beyond_working_hours_table`.`end_datetime`,'%d/%m/%Y %H:%i'),'')" => "end_datetime",
+		"`beyond_working_hours_table`.`reason_for_overtime`" => "reason_for_overtime",
 		"`beyond_working_hours_table`.`details_of_work_done`" => "details_of_work_done",
 		"`beyond_working_hours_table`.`number_of_hours`" => "number_of_hours",
 		"`beyond_working_hours_table`.`approval_status`" => "approval_status",
@@ -49,14 +50,16 @@
 		12 => 12,
 		13 => 13,
 		14 => 14,
+		15 => 15,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`beyond_working_hours_table`.`id`" => "id",
-		"`beyond_working_hours_table`.`reason_for_overtime`" => "reason_for_overtime",
+		"`beyond_working_hours_table`.`days_remark`" => "days_remark",
 		"if(`beyond_working_hours_table`.`start_datetime`,date_format(`beyond_working_hours_table`.`start_datetime`,'%d/%m/%Y %H:%i'),'')" => "start_datetime",
 		"if(`beyond_working_hours_table`.`end_datetime`,date_format(`beyond_working_hours_table`.`end_datetime`,'%d/%m/%Y %H:%i'),'')" => "end_datetime",
+		"`beyond_working_hours_table`.`reason_for_overtime`" => "reason_for_overtime",
 		"`beyond_working_hours_table`.`details_of_work_done`" => "details_of_work_done",
 		"`beyond_working_hours_table`.`number_of_hours`" => "number_of_hours",
 		"`beyond_working_hours_table`.`approval_status`" => "approval_status",
@@ -71,9 +74,10 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`beyond_working_hours_table`.`id`" => "ID",
-		"`beyond_working_hours_table`.`reason_for_overtime`" => "Reason for Overtime",
+		"`beyond_working_hours_table`.`days_remark`" => "Days Remark (Mention Day Names like SUN,MON,TUE,WED,THU,FRI,SAT)",
 		"`beyond_working_hours_table`.`start_datetime`" => "Start Date & Time",
 		"`beyond_working_hours_table`.`end_datetime`" => "End Date & Time",
+		"`beyond_working_hours_table`.`reason_for_overtime`" => "Reason for Overtime",
 		"`beyond_working_hours_table`.`details_of_work_done`" => "Details of Work Planned/Done",
 		"`beyond_working_hours_table`.`number_of_hours`" => "Number of Hours",
 		"`beyond_working_hours_table`.`approval_status`" => "Approval Status",
@@ -89,9 +93,10 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`beyond_working_hours_table`.`id`" => "id",
-		"`beyond_working_hours_table`.`reason_for_overtime`" => "reason_for_overtime",
+		"`beyond_working_hours_table`.`days_remark`" => "days_remark",
 		"if(`beyond_working_hours_table`.`start_datetime`,date_format(`beyond_working_hours_table`.`start_datetime`,'%d/%m/%Y %H:%i'),'')" => "start_datetime",
 		"if(`beyond_working_hours_table`.`end_datetime`,date_format(`beyond_working_hours_table`.`end_datetime`,'%d/%m/%Y %H:%i'),'')" => "end_datetime",
+		"`beyond_working_hours_table`.`reason_for_overtime`" => "reason_for_overtime",
 		"`beyond_working_hours_table`.`details_of_work_done`" => "details_of_work_done",
 		"`beyond_working_hours_table`.`number_of_hours`" => "number_of_hours",
 		"`beyond_working_hours_table`.`approval_status`" => "approval_status",
@@ -137,10 +142,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Reason for Overtime', 'Start Date & Time', 'End Date & Time', 'Details of Work Planned/Done', 'Number of Hours', 'Approval Status', 'Approval Remarks', 'Created by Username', 'Created by', 'Created at', 'Last Updated By Username', 'Last updated by', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'reason_for_overtime', 'start_datetime', 'end_datetime', 'details_of_work_done', 'number_of_hours', 'approval_status', 'approval_remarks', 'created_by_username', 'created_by', 'created_at', 'last_updated_by_username', 'last_updated_by', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Days Remark (Mention Day Names like SUN,MON,TUE,WED,THU,FRI,SAT)', 'Start Date & Time', 'End Date & Time', 'Reason for Overtime', 'Details of Work Planned/Done', 'Number of Hours', 'Approval Status', 'Approval Remarks', 'Created by Username', 'Created by', 'Created at', 'Last Updated By Username', 'Last updated by', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'days_remark', 'start_datetime', 'end_datetime', 'reason_for_overtime', 'details_of_work_done', 'number_of_hours', 'approval_status', 'approval_remarks', 'created_by_username', 'created_by', 'created_at', 'last_updated_by_username', 'last_updated_by', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/beyond_working_hours_table_templateTV.html';

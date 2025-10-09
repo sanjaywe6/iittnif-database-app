@@ -7353,10 +7353,10 @@
 							'description' => '',
 						],
 					],
-					'reason_for_overtime' => [
+					'days_remark' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
-							'caption' => 'Reason for Overtime',
+							'caption' => 'Days Remark (Mention Day Names like SUN,MON,TUE,WED,THU,FRI,SAT)',
 							'description' => '',
 						],
 					],
@@ -7371,6 +7371,13 @@
 						'appgini' => "DATETIME NOT NULL",
 						'info' => [
 							'caption' => 'End Date & Time',
+							'description' => '',
+						],
+					],
+					'reason_for_overtime' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Reason for Overtime',
 							'description' => '',
 						],
 					],

@@ -19,12 +19,12 @@
 		<div class="col-md-8 col-lg-10" id="beyond_working_hours_table_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: Reason for Overtime -->
-				<div class="form-group beyond_working_hours_table-reason_for_overtime">
+				<!-- Field: Days Remark (Mention Day Names like SUN,MON,TUE,WED,THU,FRI,SAT) -->
+				<div class="form-group beyond_working_hours_table-days_remark">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="reason_for_overtime">Reason for Overtime</label>
+					<label class="control-label col-lg-3" for="days_remark">Days Remark (Mention Day Names like SUN,MON,TUE,WED,THU,FRI,SAT)</label>
 					<div class="col-lg-9 has-nicedit">
-						<%%HTMLAREA(reason_for_overtime)%%>
+						<%%HTMLAREA(days_remark)%%>
 					</div>
 				</div>
 
@@ -43,6 +43,15 @@
 					<label class="control-label col-lg-3" for="end_datetime">End Date & Time<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
 						<div class="input-group date datetimepicker"><input maxlength="22" type="text" class="form-control" name="end_datetime" id="end_datetime" value="<%%VALUE(end_datetime)%%>" required><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>
+					</div>
+				</div>
+
+				<!-- Field: Reason for Overtime -->
+				<div class="form-group beyond_working_hours_table-reason_for_overtime">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="reason_for_overtime">Reason for Overtime</label>
+					<div class="col-lg-9 has-nicedit">
+						<%%HTMLAREA(reason_for_overtime)%%>
 					</div>
 				</div>
 
@@ -131,6 +140,7 @@
 			AppGini.once({
 				condition: function() { return bkLib != undefined; },
 				action: function() {
+					if($j('textarea#days_remark').length) new nicEditor({ fullPanel : true }).panelInstance('days_remark');
 					if($j('textarea#reason_for_overtime').length) new nicEditor({ fullPanel : true }).panelInstance('reason_for_overtime');
 					if($j('textarea#details_of_work_done').length) new nicEditor({ fullPanel : true }).panelInstance('details_of_work_done');
 					if($j('textarea#approval_remarks').length) new nicEditor({ fullPanel : true }).panelInstance('approval_remarks');
@@ -143,7 +153,7 @@
 			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
 				AppGini.once({
 					condition: function() {
-						return $j('.form-group.beyond_working_hours_table-reason_for_overtime')
+						return $j('.form-group.beyond_working_hours_table-days_remark')
 									.find('.nicEdit-main, .select2-container, input[type=radio]')
 									.length > 0
 								// or read-only DV
@@ -152,7 +162,7 @@
 					action: function() {
 						$j('#beyond_working_hours_table_dv_container-loading').addClass('hidden');
 						$j('#beyond_working_hours_table_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('beyond_working_hours_table', 'reason_for_overtime');
+						AppGini.focusFormElement('beyond_working_hours_table', 'days_remark');
 					},
 					timeout:  5000,
 					doActionOnTimeout:  true

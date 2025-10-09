@@ -16,9 +16,10 @@ function beyond_working_hours_table_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'reason_for_overtime' => Request::val('reason_for_overtime', ''),
+		'days_remark' => Request::val('days_remark', ''),
 		'start_datetime' => Request::datetime('start_datetime', ''),
 		'end_datetime' => Request::datetime('end_datetime', ''),
+		'reason_for_overtime' => Request::val('reason_for_overtime', ''),
 		'details_of_work_done' => Request::val('details_of_work_done', ''),
 		'approval_status' => Request::val('approval_status', 'Under Consideration'),
 		'approval_remarks' => Request::val('approval_remarks', ''),
@@ -90,9 +91,10 @@ function beyond_working_hours_table_update(&$selected_id, &$error_message = '') 
 	if(!check_record_permission('beyond_working_hours_table', $selected_id, 'edit')) return false;
 
 	$data = [
-		'reason_for_overtime' => Request::val('reason_for_overtime', ''),
+		'days_remark' => Request::val('days_remark', ''),
 		'start_datetime' => Request::datetime('start_datetime', ''),
 		'end_datetime' => Request::datetime('end_datetime', ''),
+		'reason_for_overtime' => Request::val('reason_for_overtime', ''),
 		'details_of_work_done' => Request::val('details_of_work_done', ''),
 		'approval_status' => Request::val('approval_status', ''),
 		'approval_remarks' => Request::val('approval_remarks', ''),
@@ -227,7 +229,7 @@ function beyond_working_hours_table_form($selectedId = '', $allowUpdate = true, 
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '7' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '8' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 	}
 	$combo_approval_status->Render();
 
@@ -364,9 +366,10 @@ function beyond_working_hours_table_form($selectedId = '', $allowUpdate = true, 
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(reason_for_overtime)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(days_remark)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(start_datetime)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(end_datetime)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(reason_for_overtime)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(details_of_work_done)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(number_of_hours)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(approval_status)%%>', '', $templateCode);
@@ -383,16 +386,23 @@ function beyond_working_hours_table_form($selectedId = '', $allowUpdate = true, 
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
 		if($fieldsAreEditable) {
+			$templateCode = str_replace('<%%HTMLAREA(days_remark)%%>', '<textarea maxlength="65500" name="days_remark" id="days_remark" rows="5">' . safe_html(htmlspecialchars_decode($row['days_remark'])) . '</textarea>', $templateCode);
+		} else {
+			$templateCode = str_replace('<%%HTMLAREA(days_remark)%%>', '<div id="days_remark" class="form-control-static">' . $row['days_remark'] . '</div>', $templateCode);
+		}
+		$templateCode = str_replace('<%%VALUE(days_remark)%%>', nl2br($row['days_remark']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(days_remark)%%>', urlencode($urow['days_remark']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(start_datetime)%%>', app_datetime($row['start_datetime'], 'dt'), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(start_datetime)%%>', urlencode(app_datetime($urow['start_datetime'], 'dt')), $templateCode);
+		$templateCode = str_replace('<%%VALUE(end_datetime)%%>', app_datetime($row['end_datetime'], 'dt'), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(end_datetime)%%>', urlencode(app_datetime($urow['end_datetime'], 'dt')), $templateCode);
+		if($fieldsAreEditable) {
 			$templateCode = str_replace('<%%HTMLAREA(reason_for_overtime)%%>', '<textarea maxlength="65500" name="reason_for_overtime" id="reason_for_overtime" rows="5">' . safe_html(htmlspecialchars_decode($row['reason_for_overtime'])) . '</textarea>', $templateCode);
 		} else {
 			$templateCode = str_replace('<%%HTMLAREA(reason_for_overtime)%%>', '<div id="reason_for_overtime" class="form-control-static">' . $row['reason_for_overtime'] . '</div>', $templateCode);
 		}
 		$templateCode = str_replace('<%%VALUE(reason_for_overtime)%%>', nl2br($row['reason_for_overtime']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(reason_for_overtime)%%>', urlencode($urow['reason_for_overtime']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(start_datetime)%%>', app_datetime($row['start_datetime'], 'dt'), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(start_datetime)%%>', urlencode(app_datetime($urow['start_datetime'], 'dt')), $templateCode);
-		$templateCode = str_replace('<%%VALUE(end_datetime)%%>', app_datetime($row['end_datetime'], 'dt'), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(end_datetime)%%>', urlencode(app_datetime($urow['end_datetime'], 'dt')), $templateCode);
 		if($fieldsAreEditable) {
 			$templateCode = str_replace('<%%HTMLAREA(details_of_work_done)%%>', '<textarea maxlength="65500" name="details_of_work_done" id="details_of_work_done" rows="5">' . safe_html(htmlspecialchars_decode($row['details_of_work_done'])) . '</textarea>', $templateCode);
 		} else {
@@ -427,11 +437,12 @@ function beyond_working_hours_table_form($selectedId = '', $allowUpdate = true, 
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%HTMLAREA(reason_for_overtime)%%>', '<textarea maxlength="65500" name="reason_for_overtime" id="reason_for_overtime" rows="5"></textarea>', $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(days_remark)%%>', '<textarea maxlength="65500" name="days_remark" id="days_remark" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(start_datetime)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(start_datetime)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(end_datetime)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(end_datetime)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(reason_for_overtime)%%>', '<textarea maxlength="65500" name="reason_for_overtime" id="reason_for_overtime" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%HTMLAREA(details_of_work_done)%%>', '<textarea maxlength="65500" name="details_of_work_done" id="details_of_work_done" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(number_of_hours)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(number_of_hours)%%>', urlencode(''), $templateCode);

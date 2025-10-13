@@ -137,7 +137,9 @@
 		setupTable('employees_appraisal_table', []);
 		setupIndexes('employees_appraisal_table', ['employee_designation_lookup','reviewing_officer',]);
 
-		setupTable('beyond_working_hours_table', []);
+		setupTable('beyond_working_hours_table', [
+				"ALTER TABLE `beyond_working_hours_table` DROP `day_calculated`",
+			]);
 
 		setupTable('leave_table', []);
 

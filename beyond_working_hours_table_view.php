@@ -74,11 +74,11 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`beyond_working_hours_table`.`id`" => "ID",
-		"`beyond_working_hours_table`.`days_remark`" => "Days Remark (Mention Day Names like SUN,MON,TUE,WED,THU,FRI,SAT)",
+		"`beyond_working_hours_table`.`days_remark`" => "Days Remark (Mention Day Names like SUN,MON,TUE,WED,THU,FRI,SAT) & Name of Holiday as in TIH Calendar",
 		"`beyond_working_hours_table`.`start_datetime`" => "Start Date & Time",
 		"`beyond_working_hours_table`.`end_datetime`" => "End Date & Time",
 		"`beyond_working_hours_table`.`reason_for_overtime`" => "Reason for Overtime",
-		"`beyond_working_hours_table`.`details_of_work_done`" => "Details of Work Planned/Done",
+		"`beyond_working_hours_table`.`details_of_work_done`" => "Details of Work Planned/Done (Justify Why Beyond Working Hours was Necessary Indiacating Project Urgency or Orders of Superiors(Designation of Superior) )",
 		"`beyond_working_hours_table`.`number_of_hours`" => "Number of Hours",
 		"`beyond_working_hours_table`.`approval_status`" => "Approval Status",
 		"`beyond_working_hours_table`.`approval_remarks`" => "Approval Remarks",
@@ -143,7 +143,7 @@
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Days Remark (Mention Day Names like SUN,MON,TUE,WED,THU,FRI,SAT)', 'Start Date & Time', 'End Date & Time', 'Reason for Overtime', 'Details of Work Planned/Done', 'Number of Hours', 'Approval Status', 'Approval Remarks', 'Created by Username', 'Created by', 'Created at', 'Last Updated By Username', 'Last updated by', 'Last updated at', ];
+	$x->ColCaption = ['ID', 'Days Remark (Mention Day Names like SUN,MON,TUE,WED,THU,FRI,SAT) & Name of Holiday as in TIH Calendar', 'Start Date & Time', 'End Date & Time', 'Reason for Overtime', 'Details of Work Planned/Done (Justify Why Beyond Working Hours was Necessary Indiacating Project Urgency or Orders of Superiors(Designation of Superior) )', 'Number of Hours', 'Approval Status', 'Approval Remarks', 'Created by Username', 'Created by', 'Created at', 'Last Updated By Username', 'Last updated by', 'Last updated at', ];
 	$x->ColFieldName = ['id', 'days_remark', 'start_datetime', 'end_datetime', 'reason_for_overtime', 'details_of_work_done', 'number_of_hours', 'approval_status', 'approval_remarks', 'created_by_username', 'created_by', 'created_at', 'last_updated_by_username', 'last_updated_by', 'last_updated_at', ];
 	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ];
 

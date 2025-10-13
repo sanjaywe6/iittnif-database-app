@@ -7356,7 +7356,7 @@
 					'days_remark' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
-							'caption' => 'Days Remark (Mention Day Names like SUN,MON,TUE,WED,THU,FRI,SAT)',
+							'caption' => 'Days Remark (Mention Day Names like SUN,MON,TUE,WED,THU,FRI,SAT) & Name of Holiday as in TIH Calendar',
 							'description' => '',
 						],
 					],
@@ -7384,7 +7384,7 @@
 					'details_of_work_done' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
-							'caption' => 'Details of Work Planned/Done',
+							'caption' => 'Details of Work Planned/Done (Justify Why Beyond Working Hours was Necessary Indiacating Project Urgency or Orders of Superiors(Designation of Superior) )',
 							'description' => '',
 						],
 					],
@@ -7613,6 +7613,20 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last updated by',
 							'description' => '',
 						],
 					],
@@ -8227,20 +8241,6 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last updated at',
-							'description' => '',
-						],
-					],
-					'created_by_username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created By Username',
-							'description' => '',
-						],
-					],
-					'last_updated_by_username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last Updated by Username',
 							'description' => '',
 						],
 					],
@@ -15144,36 +15144,7 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
-			'attendence_details_table' => [
-				'created_by_username' => 'SELECT CONCAT(
-					  
-					membership_users.memberID, \' : \',
-					  
-					membership_users.custom1
-					
-					)
-					
-					FROM membership_users
-					
-					INNER JOIN %TABLENAME%
-					  
-					ON membership_users.memberID = %TABLENAME%.created_by
-					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
-				'last_updated_by_username' => 'SELECT CONCAT(
-					  
-					membership_users.memberID, \' : \',
-					  
-					membership_users.custom1
-					
-					)
-					
-					FROM membership_users
-					
-					INNER JOIN %TABLENAME%
-					  
-					ON membership_users.memberID = %TABLENAME%.last_updated_by
-					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
-			],
+			'attendence_details_table' => [],
 			'all_startup_data_table' => [
 				'created_by_username' => 'SELECT CONCAT(
 					  

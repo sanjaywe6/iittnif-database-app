@@ -142,12 +142,6 @@
 
 			return $data;
 		},
-		'mou_company_area_details_table' => function($data, $options = []) {
-			if(isset($data['name_of_the_company'])) $data['name_of_the_company'] = pkGivenLookupText($data['name_of_the_company'], 'mou_company_area_details_table', 'name_of_the_company');
-			if(isset($data['assigned_mou_to'])) $data['assigned_mou_to'] = pkGivenLookupText($data['assigned_mou_to'], 'mou_company_area_details_table', 'assigned_mou_to');
-
-			return $data;
-		},
 		'goal_setting_table' => function($data, $options = []) {
 			if(isset($data['goal_set_date'])) $data['goal_set_date'] = guessMySQLDateTime($data['goal_set_date']);
 			if(isset($data['supervisor_name'])) $data['supervisor_name'] = pkGivenLookupText($data['supervisor_name'], 'goal_setting_table', 'supervisor_name');
@@ -556,7 +550,6 @@
 		'action_actor' => function($data, $options = []) { return true; },
 		'visiting_card_table' => function($data, $options = []) { return true; },
 		'mou_details_table' => function($data, $options = []) { return true; },
-		'mou_company_area_details_table' => function($data, $options = []) { return true; },
 		'goal_setting_table' => function($data, $options = []) { return true; },
 		'goal_progress_table' => function($data, $options = []) { return true; },
 		'task_setting_table' => function($data, $options = []) { return true; },

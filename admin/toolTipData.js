@@ -425,24 +425,6 @@ mou_details_table_delete1Tip=["",spacer+"This option allows each member of the g
 mou_details_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'MoU details - App' table."];
 mou_details_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'MoU details - App' table."];
 
-// mou_company_area_details_table table
-mou_company_area_details_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'MoU Scope - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
-
-mou_company_area_details_table_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'MoU Scope - App' table."];
-mou_company_area_details_table_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'MoU Scope - App' table."];
-mou_company_area_details_table_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'MoU Scope - App' table."];
-mou_company_area_details_table_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'MoU Scope - App' table."];
-
-mou_company_area_details_table_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'MoU Scope - App' table."];
-mou_company_area_details_table_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'MoU Scope - App' table."];
-mou_company_area_details_table_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'MoU Scope - App' table."];
-mou_company_area_details_table_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'MoU Scope - App' table, regardless of their owner."];
-
-mou_company_area_details_table_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'MoU Scope - App' table."];
-mou_company_area_details_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'MoU Scope - App' table."];
-mou_company_area_details_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'MoU Scope - App' table."];
-mou_company_area_details_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'MoU Scope - App' table."];
-
 // goal_setting_table table
 goal_setting_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Goal setting - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
 

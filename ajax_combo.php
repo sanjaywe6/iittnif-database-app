@@ -309,30 +309,6 @@
 				'not_null' => false,
 			],
 		],
-		'mou_company_area_details_table' => [
-			'name_of_the_company' => [
-				'parent_table' => 'mou_details_table',
-				'parent_pk_field' => 'id',
-				'parent_caption' => '`mou_details_table`.`company_name`',
-				'parent_from' => '`mou_details_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`mou_details_table`.`assigned_mou_to` ',
-				'filterers' => [],
-				'custom_query' => '',
-				'inherit_permissions' => false,
-				'list_type' => 0,
-				'not_null' => false,
-			],
-			'assigned_mou_to' => [
-				'parent_table' => 'user_table',
-				'parent_pk_field' => 'user_id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
-				'parent_from' => '`user_table` ',
-				'filterers' => [],
-				'custom_query' => '',
-				'inherit_permissions' => false,
-				'list_type' => 0,
-				'not_null' => false,
-			],
-		],
 		'goal_setting_table' => [
 			'supervisor_name' => [
 				'parent_table' => 'user_table',

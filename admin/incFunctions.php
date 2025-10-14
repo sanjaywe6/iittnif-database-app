@@ -279,13 +279,6 @@
 					'group' => $tg[2],
 					'homepageShowCount' => 1
 				],
-				'mou_company_area_details_table' => [
-					'Caption' => 'MoU Scope - App',
-					'Description' => '',
-					'tableIcon' => 'table.gif',
-					'group' => $tg[2],
-					'homepageShowCount' => 1
-				],
 				'goal_setting_table' => [
 					'Caption' => 'Goal setting - App',
 					'Description' => '',
@@ -773,7 +766,6 @@
 			'action_actor' => ['Action actor', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'visiting_card_table' => ['Visiting card - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'mou_details_table' => ['MoU details - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
-			'mou_company_area_details_table' => ['MoU Scope - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'goal_setting_table' => ['Goal setting - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'goal_progress_table' => ['Goal progress table', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'task_setting_table' => ['Task setting - App', '<a href="https://lookerstudio.google.com/reporting/52ec0149-4f45-4041-92b6-afc26208458e"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Task Setting App Report</b></button></a>', 'table.gif', 'Events / Meetings / Goals Apps'],
@@ -3972,85 +3964,6 @@
 						'info' => [
 							'caption' => 'Upload MoU (PDF or DOC format)',
 							'description' => 'Maximum file size allowed: 100 KB.<br>Allowed file types: txt, doc, docx, docm, odt, pdf, rtf',
-						],
-					],
-					'created_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created By',
-							'description' => '',
-						],
-					],
-					'last_updated_by' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last Updated By',
-							'description' => '',
-						],
-					],
-					'created_by_username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created By Username',
-							'description' => '',
-						],
-					],
-					'created_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Created At',
-							'description' => '',
-						],
-					],
-					'last_updated_by_username' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last Updated by Username',
-							'description' => '',
-						],
-					],
-					'last_updated_at' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Last Updated At',
-							'description' => '',
-						],
-					],
-				],
-				'mou_company_area_details_table' => [
-					'id' => [
-						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
-						'info' => [
-							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'name_of_the_company' => [
-						'appgini' => "INT(10) UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Name of the company',
-							'description' => '',
-						],
-					],
-					'area' => [
-						'appgini' => "TEXT NULL",
-						'info' => [
-							'caption' => 'Area / Scope',
-							'description' => '',
-						],
-					],
-					'assigned_mou_to' => [
-						'appgini' => "INT UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Assigned MoU to',
-							'description' => '',
-						],
-					],
-					'remarks' => [
-						'appgini' => "TEXT NULL",
-						'info' => [
-							'caption' => 'Remarks',
-							'description' => '',
 						],
 					],
 					'created_by' => [
@@ -13303,10 +13216,6 @@
 			'mou_details_table' => [
 				'user_table' => ['assigned_mou_to'],
 			],
-			'mou_company_area_details_table' => [
-				'mou_details_table' => ['name_of_the_company'],
-				'user_table' => ['assigned_mou_to'],
-			],
 			'goal_setting_table' => [
 				'user_table' => ['assigned_to', 'supervisor_name'],
 			],
@@ -14074,36 +13983,6 @@
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
 			'mou_details_table' => [
-				'created_by_username' => 'SELECT CONCAT(
-					  
-					membership_users.memberID, \' : \',
-					  
-					membership_users.custom1
-					
-					)
-					
-					FROM membership_users
-					
-					INNER JOIN %TABLENAME%
-					  
-					ON membership_users.memberID = %TABLENAME%.created_by
-					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
-				'last_updated_by_username' => 'SELECT CONCAT(
-					  
-					membership_users.memberID, \' : \',
-					  
-					membership_users.custom1
-					
-					)
-					
-					FROM membership_users
-					
-					INNER JOIN %TABLENAME%
-					  
-					ON membership_users.memberID = %TABLENAME%.last_updated_by
-					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
-			],
-			'mou_company_area_details_table' => [
 				'created_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -16233,10 +16112,6 @@
 				'given_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'mou_details_table' => [
-				'assigned_mou_to' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
-			],
-			'mou_company_area_details_table' => [
-				'name_of_the_company' => 'SELECT `mou_details_table`.`id`, `mou_details_table`.`company_name` FROM `mou_details_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`mou_details_table`.`assigned_mou_to` ORDER BY 2',
 				'assigned_mou_to' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'goal_setting_table' => [

@@ -650,12 +650,6 @@ function mou_details_table_validateData(insertMode) {
 
 	return !errors;
 }
-function mou_company_area_details_table_validateData(insertMode) {
-	$j('.has-error').removeClass('has-error');
-	var errors = false;
-
-	return !errors;
-}
 function goal_setting_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;

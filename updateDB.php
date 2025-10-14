@@ -70,9 +70,6 @@
 		setupTable('mou_details_table', []);
 		setupIndexes('mou_details_table', ['assigned_mou_to',]);
 
-		setupTable('mou_company_area_details_table', []);
-		setupIndexes('mou_company_area_details_table', ['name_of_the_company','assigned_mou_to',]);
-
 		setupTable('goal_setting_table', []);
 		setupIndexes('goal_setting_table', ['supervisor_name','assigned_to',]);
 
@@ -137,9 +134,7 @@
 		setupTable('employees_appraisal_table', []);
 		setupIndexes('employees_appraisal_table', ['employee_designation_lookup','reviewing_officer',]);
 
-		setupTable('beyond_working_hours_table', [
-				"ALTER TABLE `beyond_working_hours_table` DROP `day_calculated`",
-			]);
+		setupTable('beyond_working_hours_table', []);
 
 		setupTable('leave_table', []);
 

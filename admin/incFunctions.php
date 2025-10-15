@@ -3963,7 +3963,7 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Upload MoU (PDF or DOC format)',
-							'description' => 'Maximum file size allowed: 100 KB.<br>Allowed file types: txt, doc, docx, docm, odt, pdf, rtf',
+							'description' => 'Maximum file size allowed: 10000 KB.<br>Allowed file types: txt, doc, docx, docm, odt, pdf, rtf',
 						],
 					],
 					'created_by' => [

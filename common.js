@@ -643,7 +643,7 @@ function mou_details_table_validateData(insertMode) {
 	var errors = false;
 
 	// check file uploads (file type and size)
-	if($j('#upload_mou').val() && !AppGini.checkFileUpload('upload_mou', 'txt|doc|docx|docm|odt|pdf|rtf', 102400)) {
+	if($j('#upload_mou').val() && !AppGini.checkFileUpload('upload_mou', 'txt|doc|docx|docm|odt|pdf|rtf', 10240000)) {
 		AppGini.scrollTo('upload_mou');
 		return false;
 	}

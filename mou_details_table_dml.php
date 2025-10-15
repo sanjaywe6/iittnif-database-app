@@ -30,7 +30,7 @@ function mou_details_table_insert(&$error_message = '') {
 		'country' => Request::val('country', ''),
 		'assigned_mou_to' => Request::lookup('assigned_mou_to', ''),
 		'upload_mou' => Request::fileUpload('upload_mou', [
-			'maxSize' => 102400,
+			'maxSize' => 10240000,
 			'types' => 'txt|doc|docx|docm|odt|pdf|rtf',
 			'noRename' => false,
 			'dir' => '',
@@ -125,7 +125,7 @@ function mou_details_table_update(&$selected_id, &$error_message = '') {
 		'country' => Request::val('country', ''),
 		'assigned_mou_to' => Request::lookup('assigned_mou_to', ''),
 		'upload_mou' => Request::fileUpload('upload_mou', [
-			'maxSize' => 102400,
+			'maxSize' => 10240000,
 			'types' => 'txt|doc|docx|docm|odt|pdf|rtf',
 			'noRename' => false,
 			'dir' => '',
@@ -563,7 +563,7 @@ function mou_details_table_form($selectedId = '', $allowUpdate = true, $allowIns
 	$templateCode = str_replace('<%%UPLOADFILE(website_link)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(country)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(assigned_mou_to)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(upload_mou)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="upload_mou" id="upload_mou" data-filetypes="txt|doc|docx|docm|odt|pdf|rtf" data-maxsize="102400" style="max-width: calc(100% - 1.5rem);" accept=".txt,.doc,.docx,.docm,.odt,.pdf,.rtf">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(upload_mou)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="upload_mou" id="upload_mou" data-filetypes="txt|doc|docx|docm|odt|pdf|rtf" data-maxsize="10240000" style="max-width: calc(100% - 1.5rem);" accept=".txt,.doc,.docx,.docm,.odt,.pdf,.rtf">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
 	if($allowUpdate && $row['upload_mou'] != '') {
 		$templateCode = str_replace('<%%REMOVEFILE(upload_mou)%%>', '<input type="checkbox" name="upload_mou_remove" id="upload_mou_remove" value="1"> <label for="upload_mou_remove" style="color: red; font-weight: bold;">'.$Translation['remove image'].'</label>', $templateCode);
 	} else {

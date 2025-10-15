@@ -166,7 +166,7 @@
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'mou_details_table_view.php';
-	$x->TableTitle = 'MoU details - App';
+	$x->TableTitle = 'MoU Details - App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`mou_details_table`.`id`';
 	$x->DefaultSortField = '1';

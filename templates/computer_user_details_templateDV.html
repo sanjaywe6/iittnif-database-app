@@ -28,21 +28,21 @@
 					</div>
 				</div>
 
-				<!-- Field: Entry time -->
-				<div class="form-group computer_user_details-entry_time">
+				<!-- Field: Time -->
+				<div class="form-group computer_user_details-time">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="entry_time">Entry time</label>
+					<label class="control-label col-lg-3" for="time">Time</label>
 					<div class="col-lg-9">
-						<input maxlength="11" type="text" class="form-control" name="entry_time" id="entry_time" value="<%%VALUE(entry_time)%%>">
+						<input maxlength="11" type="text" class="form-control" name="time" id="time" value="<%%VALUE(time)%%>">
 					</div>
 				</div>
 
-				<!-- Field: Exit time -->
-				<div class="form-group computer_user_details-exit_time">
+				<!-- Field: Type -->
+				<div class="form-group computer_user_details-type">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="exit_time">Exit time</label>
+					<label class="control-label col-lg-3" for="type">Type</label>
 					<div class="col-lg-9">
-						<input maxlength="11" type="text" class="form-control" name="exit_time" id="exit_time" value="<%%VALUE(exit_time)%%>">
+						<%%COMBO(type)%%>
 					</div>
 				</div>
 

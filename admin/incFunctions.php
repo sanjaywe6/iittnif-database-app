@@ -273,7 +273,7 @@
 					'homepageShowCount' => 1
 				],
 				'mou_details_table' => [
-					'Caption' => 'MoU details - App',
+					'Caption' => 'MoU Details - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[2],
@@ -765,7 +765,7 @@
 			'participants_table' => ['Participants / Speaker / VIP List - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'action_actor' => ['Action actor', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'visiting_card_table' => ['Visiting card - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
-			'mou_details_table' => ['MoU details - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
+			'mou_details_table' => ['MoU Details - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'goal_setting_table' => ['Goal setting - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'goal_progress_table' => ['Goal progress table', '', 'table.gif', 'Events / Meetings / Goals Apps'],
 			'task_setting_table' => ['Task setting - App', '<a href="https://lookerstudio.google.com/reporting/52ec0149-4f45-4041-92b6-afc26208458e"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Task Setting App Report</b></button></a>', 'table.gif', 'Events / Meetings / Goals Apps'],
@@ -6654,17 +6654,17 @@
 							'description' => '',
 						],
 					],
-					'entry_time' => [
+					'time' => [
 						'appgini' => "TIME NULL",
 						'info' => [
-							'caption' => 'Entry time',
+							'caption' => 'Time',
 							'description' => '',
 						],
 					],
-					'exit_time' => [
+					'type' => [
 						'appgini' => "TIME NULL",
 						'info' => [
-							'caption' => 'Exit time',
+							'caption' => 'Type',
 							'description' => '',
 						],
 					],

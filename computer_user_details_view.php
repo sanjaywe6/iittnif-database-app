@@ -20,8 +20,8 @@
 	$x->QueryFieldsTV = [
 		"`computer_user_details`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`computer_details_table1`.`pc_number`) || CHAR_LENGTH(`computer_details_table1`.`pc_hostname`), CONCAT_WS('',   `computer_details_table1`.`pc_number`, '::', `computer_details_table1`.`pc_hostname`), '') /* PC ID */" => "pc_id",
-		"`computer_user_details`.`entry_time`" => "entry_time",
-		"`computer_user_details`.`exit_time`" => "exit_time",
+		"`computer_user_details`.`time`" => "time",
+		"`computer_user_details`.`type`" => "type",
 		"if(`computer_user_details`.`date`,date_format(`computer_user_details`.`date`,'%d/%m/%Y'),'')" => "date",
 		"`computer_user_details`.`created_by`" => "created_by",
 		"`computer_user_details`.`last_updated_by`" => "last_updated_by",
@@ -34,8 +34,8 @@
 	$x->SortFields = [
 		1 => '`computer_user_details`.`id`',
 		2 => 2,
-		3 => '`computer_user_details`.`entry_time`',
-		4 => '`computer_user_details`.`exit_time`',
+		3 => '`computer_user_details`.`time`',
+		4 => '`computer_user_details`.`type`',
 		5 => '`computer_user_details`.`date`',
 		6 => 6,
 		7 => 7,
@@ -49,8 +49,8 @@
 	$x->QueryFieldsCSV = [
 		"`computer_user_details`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`computer_details_table1`.`pc_number`) || CHAR_LENGTH(`computer_details_table1`.`pc_hostname`), CONCAT_WS('',   `computer_details_table1`.`pc_number`, '::', `computer_details_table1`.`pc_hostname`), '') /* PC ID */" => "pc_id",
-		"`computer_user_details`.`entry_time`" => "entry_time",
-		"`computer_user_details`.`exit_time`" => "exit_time",
+		"`computer_user_details`.`time`" => "time",
+		"`computer_user_details`.`type`" => "type",
 		"if(`computer_user_details`.`date`,date_format(`computer_user_details`.`date`,'%d/%m/%Y'),'')" => "date",
 		"`computer_user_details`.`created_by`" => "created_by",
 		"`computer_user_details`.`last_updated_by`" => "last_updated_by",
@@ -63,8 +63,8 @@
 	$x->QueryFieldsFilters = [
 		"`computer_user_details`.`id`" => "ID",
 		"IF(    CHAR_LENGTH(`computer_details_table1`.`pc_number`) || CHAR_LENGTH(`computer_details_table1`.`pc_hostname`), CONCAT_WS('',   `computer_details_table1`.`pc_number`, '::', `computer_details_table1`.`pc_hostname`), '') /* PC ID */" => "PC ID",
-		"`computer_user_details`.`entry_time`" => "Entry time",
-		"`computer_user_details`.`exit_time`" => "Exit time",
+		"`computer_user_details`.`time`" => "Time",
+		"`computer_user_details`.`type`" => "Type",
 		"`computer_user_details`.`date`" => "Date",
 		"`computer_user_details`.`created_by`" => "Created By",
 		"`computer_user_details`.`last_updated_by`" => "Last Updated By",
@@ -78,8 +78,8 @@
 	$x->QueryFieldsQS = [
 		"`computer_user_details`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`computer_details_table1`.`pc_number`) || CHAR_LENGTH(`computer_details_table1`.`pc_hostname`), CONCAT_WS('',   `computer_details_table1`.`pc_number`, '::', `computer_details_table1`.`pc_hostname`), '') /* PC ID */" => "pc_id",
-		"`computer_user_details`.`entry_time`" => "entry_time",
-		"`computer_user_details`.`exit_time`" => "exit_time",
+		"`computer_user_details`.`time`" => "time",
+		"`computer_user_details`.`type`" => "type",
 		"if(`computer_user_details`.`date`,date_format(`computer_user_details`.`date`,'%d/%m/%Y'),'')" => "date",
 		"`computer_user_details`.`created_by`" => "created_by",
 		"`computer_user_details`.`last_updated_by`" => "last_updated_by",
@@ -119,12 +119,12 @@
 	$x->TableTitle = 'Computer Uses Entry Table';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`computer_user_details`.`id`';
-	$x->DefaultSortField = '1';
+	$x->DefaultSortField = '`computer_user_details`.`date`';
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'PC ID', 'Entry time', 'Exit time', 'Date', 'Created By', 'Last Updated By', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
-	$x->ColFieldName = ['id', 'pc_id', 'entry_time', 'exit_time', 'date', 'created_by', 'last_updated_by', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
+	$x->ColCaption = ['ID', 'PC ID', 'Time', 'Type', 'Date', 'Created By', 'Last Updated By', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
+	$x->ColFieldName = ['id', 'pc_id', 'time', 'type', 'date', 'created_by', 'last_updated_by', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
 	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
 
 	// template paths below are based on the app main directory

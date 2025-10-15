@@ -17,8 +17,8 @@ function computer_user_details_insert(&$error_message = '') {
 
 	$data = [
 		'pc_id' => Request::lookup('pc_id', ''),
-		'time' => Request::val('time', ''),
-		'type' => Request::val('type', ''),
+		'entry_time' => Request::val('entry_time', ''),
+		'exit_time' => Request::val('exit_time', ''),
 		'date' => Request::dateComponents('date', '1'),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
@@ -89,13 +89,23 @@ function computer_user_details_update(&$selected_id, &$error_message = '') {
 
 	$data = [
 		'pc_id' => Request::lookup('pc_id', ''),
-		'time' => Request::val('time', ''),
-		'type' => Request::val('type', ''),
+		'entry_time' => Request::val('entry_time', ''),
+		'exit_time' => Request::val('exit_time', ''),
 		'date' => Request::dateComponents('date', ''),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 	];
 
+	if($data['pc_id'] === '') {
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'PC ID': {$Translation['field not null']}<br><br>";
+		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
+		exit;
+	}
+	if($data['entry_time'] === '') {
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Entry time': {$Translation['field not null']}<br><br>";
+		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
+		exit;
+	}
 	// get existing values
 	$old_data = getRecord('computer_user_details', $selected_id);
 	if(is_array($old_data)) {
@@ -189,21 +199,6 @@ function computer_user_details_form($selectedId = '', $allowUpdate = true, $allo
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
 	// combobox: pc_id
 	$combo_pc_id = new DataCombo;
-	// combobox: type
-	$combo_type = new Combo;
-	$combo_type->ListType = 0;
-	$combo_type->MultipleSeparator = ', ';
-	$combo_type->ListBoxHeight = 10;
-	$combo_type->RadiosPerLine = 1;
-	if(is_file(__DIR__ . '/hooks/computer_user_details.type.csv')) {
-		$type_data = addslashes(implode('', @file(__DIR__ . '/hooks/computer_user_details.type.csv')));
-		$combo_type->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($type_data))));
-		$combo_type->ListData = $combo_type->ListItem;
-	} else {
-		$combo_type->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Entry;;Exit"))));
-		$combo_type->ListData = $combo_type->ListItem;
-	}
-	$combo_type->SelectName = 'type';
 	// combobox: date
 	$combo_date = new DateCombo;
 	$combo_date->DateFormat = "dmy";
@@ -218,7 +213,6 @@ function computer_user_details_form($selectedId = '', $allowUpdate = true, $allo
 			return error_message($Translation['No records found'], 'computer_user_details_view.php', false);
 		}
 		$combo_pc_id->SelectedData = $row['pc_id'];
-		$combo_type->SelectedData = $row['type'];
 		$combo_date->DefaultDate = $row['date'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
@@ -227,11 +221,9 @@ function computer_user_details_form($selectedId = '', $allowUpdate = true, $allo
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
 		$combo_pc_id->SelectedData = $filterer_pc_id;
-		$combo_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
 	$combo_pc_id->HTML = '<span id="pc_id-container' . $rnd1 . '"></span><input type="hidden" name="pc_id" id="pc_id' . $rnd1 . '" value="' . html_attr($combo_pc_id->SelectedData) . '">';
 	$combo_pc_id->MatchText = '<span id="pc_id-container-readonly' . $rnd1 . '"></span><input type="hidden" name="pc_id" id="pc_id' . $rnd1 . '" value="' . html_attr($combo_pc_id->SelectedData) . '">';
-	$combo_type->Render();
 
 	ob_start();
 	?>
@@ -409,8 +401,8 @@ function computer_user_details_form($selectedId = '', $allowUpdate = true, $allo
 		$jsReadOnly = '';
 		$jsReadOnly .= "\t\$j('#pc_id').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#pc_id_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\t\$j('#time').replaceWith('<div class=\"form-control-static\" id=\"time\">' + (\$j('#time').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#type').replaceWith('<div class=\"form-control-static\" id=\"type\">' + (\$j('#type').val() || '') + '</div>'); \$j('#type-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#entry_time').replaceWith('<div class=\"form-control-static\" id=\"entry_time\">' + (\$j('#entry_time').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#exit_time').replaceWith('<div class=\"form-control-static\" id=\"exit_time\">' + (\$j('#exit_time').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#date').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#dateDay, #dateMonth, #dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
@@ -419,8 +411,8 @@ function computer_user_details_form($selectedId = '', $allowUpdate = true, $allo
 	} else {
 		// temporarily disable form change handler till time and datetime pickers are enabled
 		$jsEditable = "\t\$j('form').eq(0).data('already_changed', true);";
-		$jsEditable .= "\t\$j('#time').addClass('always_shown').timepicker({ defaultTime: false, showSeconds: true, showMeridian: false, showInputs: false, disableFocus: true, minuteStep: AppGini.config.timeFieldMinutesStep || 5 });";
-		$jsEditable .= "\t\$j('#type').addClass('always_shown').timepicker({ defaultTime: false, showSeconds: true, showMeridian: false, showInputs: false, disableFocus: true, minuteStep: AppGini.config.timeFieldMinutesStep || 5 });";
+		$jsEditable .= "\t\$j('#entry_time').addClass('always_shown').timepicker({ defaultTime: false, showSeconds: true, showMeridian: false, showInputs: false, disableFocus: true, minuteStep: AppGini.config.timeFieldMinutesStep || 5 });";
+		$jsEditable .= "\t\$j('#exit_time').addClass('always_shown').timepicker({ defaultTime: false, showSeconds: true, showMeridian: false, showInputs: false, disableFocus: true, minuteStep: AppGini.config.timeFieldMinutesStep || 5 });";
 		$jsEditable .= "\t\$j('form').eq(0).data('already_changed', false);"; // re-enable form change handler
 	}
 
@@ -428,8 +420,6 @@ function computer_user_details_form($selectedId = '', $allowUpdate = true, $allo
 	$templateCode = str_replace('<%%COMBO(pc_id)%%>', $combo_pc_id->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(pc_id)%%>', $combo_pc_id->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(pc_id)%%>', urlencode($combo_pc_id->MatchText), $templateCode);
-	$templateCode = str_replace('<%%COMBO(type)%%>', $combo_type->HTML, $templateCode);
-	$templateCode = str_replace('<%%COMBOTEXT(type)%%>', $combo_type->SelectedData, $templateCode);
 	$templateCode = str_replace(
 		'<%%COMBO(date)%%>',
 		(!$fieldsAreEditable ?
@@ -457,8 +447,8 @@ function computer_user_details_form($selectedId = '', $allowUpdate = true, $allo
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(pc_id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(time)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(type)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(entry_time)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(exit_time)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
@@ -474,12 +464,12 @@ function computer_user_details_form($selectedId = '', $allowUpdate = true, $allo
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(pc_id)%%>', safe_html($urow['pc_id']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(pc_id)%%>', html_attr($row['pc_id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(pc_id)%%>', urlencode($urow['pc_id']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(time)%%>', safe_html($urow['time']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(time)%%>', html_attr($row['time']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(time)%%>', urlencode($urow['time']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(type)%%>', safe_html($urow['type']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(type)%%>', html_attr($row['type']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(type)%%>', urlencode($urow['type']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(entry_time)%%>', safe_html($urow['entry_time']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(entry_time)%%>', html_attr($row['entry_time']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(entry_time)%%>', urlencode($urow['entry_time']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(exit_time)%%>', safe_html($urow['exit_time']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(exit_time)%%>', html_attr($row['exit_time']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(exit_time)%%>', urlencode($urow['exit_time']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date)%%>', app_datetime($row['date']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date)%%>', urlencode(app_datetime($urow['date'])), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
@@ -499,10 +489,10 @@ function computer_user_details_form($selectedId = '', $allowUpdate = true, $allo
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(pc_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(pc_id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(time)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(time)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(type)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(type)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(entry_time)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(entry_time)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(exit_time)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(exit_time)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date)%%>', '1', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date)%%>', urlencode('1'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);

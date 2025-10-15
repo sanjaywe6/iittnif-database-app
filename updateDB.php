@@ -120,7 +120,12 @@
 
 		setupTable('computer_details_table', []);
 
-		setupTable('computer_user_details', []);
+		setupTable('computer_user_details', [
+				" ALTER TABLE `computer_user_details` CHANGE `pc_id` `pc_id` INT(10) UNSIGNED NOT NULL ",
+				" ALTER TABLE `computer_user_details` CHANGE `entry_time` `entry_time` TIME NOT NULL ",
+				" ALTER TABLE `computer_user_details` CHANGE `exit_time` `exit_time` TIME NOT NULL ",
+				" ALTER TABLE `computer_user_details` CHANGE `exit_time` `exit_time` TIME NULL ",
+			]);
 		setupIndexes('computer_user_details', ['pc_id',]);
 
 		setupTable('computer_allotment_table', []);

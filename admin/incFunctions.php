@@ -6648,23 +6648,23 @@
 						],
 					],
 					'pc_id' => [
-						'appgini' => "INT(10) UNSIGNED NULL",
+						'appgini' => "INT(10) UNSIGNED NOT NULL",
 						'info' => [
 							'caption' => 'PC ID',
 							'description' => '',
 						],
 					],
-					'time' => [
-						'appgini' => "TIME NULL",
+					'entry_time' => [
+						'appgini' => "TIME NOT NULL",
 						'info' => [
-							'caption' => 'Time',
+							'caption' => 'Entry time',
 							'description' => '',
 						],
 					],
-					'type' => [
+					'exit_time' => [
 						'appgini' => "TIME NULL",
 						'info' => [
-							'caption' => 'Type',
+							'caption' => 'Exit time',
 							'description' => '',
 						],
 					],

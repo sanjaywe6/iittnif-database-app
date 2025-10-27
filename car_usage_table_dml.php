@@ -15,12 +15,8 @@ function car_usage_table_insert(&$error_message = '') {
 		return false;
 	}
 
-	// automatic car_lookup if passed as filterer
-	if(Request::val('filterer_car_lookup')) {
-		$_REQUEST['car_lookup'] = Request::val('filterer_car_lookup');
-	}
-
 	$data = [
+		'car_lookup' => Request::lookup('car_lookup', ''),
 		'used_by' => Request::val('used_by', ''),
 		'datetime_from' => Request::datetime('datetime_from', ''),
 		'datetime_to' => Request::datetime('datetime_to', ''),
@@ -30,11 +26,6 @@ function car_usage_table_insert(&$error_message = '') {
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
 
-
-	// automatic car_lookup if passed as filterer
-	if(Request::val('filterer_car_lookup')) {
-		$data['car_lookup'] = Request::val('filterer_car_lookup');
-	}
 	// record owner is current user
 	$recordOwner = getLoggedMemberID();
 
@@ -99,6 +90,7 @@ function car_usage_table_update(&$selected_id, &$error_message = '') {
 	if(!check_record_permission('car_usage_table', $selected_id, 'edit')) return false;
 
 	$data = [
+		'car_lookup' => Request::lookup('car_lookup', ''),
 		'used_by' => Request::val('used_by', ''),
 		'datetime_from' => Request::datetime('datetime_from', ''),
 		'datetime_to' => Request::datetime('datetime_to', ''),
@@ -392,6 +384,8 @@ function car_usage_table_form($selectedId = '', $allowUpdate = true, $allowInser
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
+		$jsReadOnly .= "\t\$j('#car_lookup').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#car_lookup_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\t\$j('#used_by').replaceWith('<div class=\"form-control-static\" id=\"used_by\">' + (\$j('#used_by').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#datetime_from').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"datetime_from\">' + (\$j('#datetime_from').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#datetime_to').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"datetime_to\">' + (\$j('#datetime_to').val() || '') + '</div>');\n";
@@ -450,7 +444,8 @@ function car_usage_table_form($selectedId = '', $allowUpdate = true, $allowInser
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(car_lookup)%%>', safe_html($urow['car_lookup']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(car_lookup)%%>', safe_html($urow['car_lookup']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(car_lookup)%%>', html_attr($row['car_lookup']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(car_lookup)%%>', urlencode($urow['car_lookup']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(used_by)%%>', safe_html($urow['used_by']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(used_by)%%>', html_attr($row['used_by']), $templateCode);
@@ -543,8 +538,6 @@ function car_usage_table_form($selectedId = '', $allowUpdate = true, $allowInser
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
-	if(isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>')
-		$templateCode.="\n<input type=hidden name=car_lookup value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery
 	$templateCode = preg_replace('/blank.gif" data-lightbox=".*?"/', 'blank.gif"', $templateCode);

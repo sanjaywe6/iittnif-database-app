@@ -26,6 +26,12 @@
 			'profile_photo' => '../' . getUploadDir(''),
 			'signature' => '../' . getUploadDir(''),
 		],
+		'leave_table' => [
+			'upload_img' => '../' . getUploadDir(''),
+		],
+		'work_from_home_table' => [
+			'upload_img' => '../' . getUploadDir(''),
+		],
 		'payment_track_details_table' => [
 			'upload_scanned_file_1' => '../' . getUploadDir(''),
 			'upload_scanned_file_2' => '../' . getUploadDir(''),

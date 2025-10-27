@@ -20,6 +20,35 @@ function leave_table_insert(&$error_message = '') {
 		'purpose_of_leave' => Request::val('purpose_of_leave', ''),
 		'from_date' => Request::dateComponents('from_date', ''),
 		'to_date' => Request::dateComponents('to_date', ''),
+		'upload_img' => Request::fileUpload('upload_img', [
+			'maxSize' => 10240000,
+			'types' => 'jpg|jpeg|gif|png|webp',
+			'noRename' => false,
+			'dir' => '',
+			'success' => function($name, $selected_id) {
+				Thumbnail::create($name, getThumbnailSpecs('leave_table', 'upload_img', 'tv'));
+			},
+			'failure' => function($selected_id, $fileRemoved) {
+				if(!strlen(Request::val('SelectedID'))) return '';
+
+				/* for empty upload fields, when saving a copy of an existing record, copy the original upload field */
+				return existing_value('leave_table', 'upload_img', Request::val('SelectedID'));
+			},
+		]),
+		'upload_pdf' => Request::fileUpload('upload_pdf', [
+			'maxSize' => 10240000,
+			'types' => 'txt|doc|docx|docm|odt|pdf|rtf',
+			'noRename' => false,
+			'dir' => '',
+			'success' => function($name, $selected_id) {
+			},
+			'failure' => function($selected_id, $fileRemoved) {
+				if(!strlen(Request::val('SelectedID'))) return '';
+
+				/* for empty upload fields, when saving a copy of an existing record, copy the original upload field */
+				return existing_value('leave_table', 'upload_pdf', Request::val('SelectedID'));
+			},
+		]),
 		'approval_status' => Request::val('approval_status', 'Under Consideration'),
 		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
@@ -71,6 +100,26 @@ function leave_table_delete($selected_id, $AllowDeleteOfParents = false, $skipCh
 			);
 	}
 
+	// delete file stored in the 'upload_img' field
+	$res = sql("SELECT `upload_img` FROM `leave_table` WHERE `id`='{$selected_id}'", $eo);
+	if($row = @db_fetch_row($res)) {
+		if($row[0] != '') {
+			@unlink(getUploadDir('') . $row[0]);
+			$thumbDV = preg_replace('/\.(jpg|jpeg|gif|png|webp)$/i', '_dv.$1', $row[0]);
+			$thumbTV = preg_replace('/\.(jpg|jpeg|gif|png|webp)$/i', '_tv.$1', $row[0]);
+			@unlink(getUploadDir('') . $thumbTV);
+			@unlink(getUploadDir('') . $thumbDV);
+		}
+	}
+
+	// delete file stored in the 'upload_pdf' field
+	$res = sql("SELECT `upload_pdf` FROM `leave_table` WHERE `id`='{$selected_id}'", $eo);
+	if($row = @db_fetch_row($res)) {
+		if($row[0] != '') {
+			@unlink(getUploadDir('') . $row[0]);
+		}
+	}
+
 	sql("DELETE FROM `leave_table` WHERE `id`='{$selected_id}'", $eo);
 
 	// hook: leave_table_after_delete
@@ -94,6 +143,58 @@ function leave_table_update(&$selected_id, &$error_message = '') {
 		'purpose_of_leave' => Request::val('purpose_of_leave', ''),
 		'from_date' => Request::dateComponents('from_date', ''),
 		'to_date' => Request::dateComponents('to_date', ''),
+		'upload_img' => Request::fileUpload('upload_img', [
+			'maxSize' => 10240000,
+			'types' => 'jpg|jpeg|gif|png|webp',
+			'noRename' => false,
+			'dir' => '',
+			'id' => $selected_id,
+			'success' => function($name, $selected_id) {
+				Thumbnail::create($name, getThumbnailSpecs('leave_table', 'upload_img', 'tv'));
+			},
+			'removeOnSuccess' => true,
+			'removeOnRequest' => true,
+			'remove' => function($selected_id) {
+				// delete old file from server
+				$oldFile = existing_value('leave_table', 'upload_img', $selected_id);
+				if(!$oldFile) return;
+
+				@unlink(getUploadDir('') . $oldFile);
+
+				// delete thumbnails
+				preg_match('/^[a-z0-9_]+\.(jpg|jpeg|gif|png|webp)$/i', $oldFile, $m);
+				$thumbDV = str_replace(".{$m[1]}ffffgggg", "_dv.{$m[1]}", $oldFile . 'ffffgggg');
+				$thumbTV = str_replace(".{$m[1]}ffffgggg", "_tv.{$m[1]}", $oldFile . 'ffffgggg');
+				@unlink(getUploadDir('') . $thumbTV);
+				@unlink(getUploadDir('') . $thumbDV);
+			},
+			'failure' => function($selected_id, $fileRemoved) {
+				if($fileRemoved) return '';
+				return existing_value('leave_table', 'upload_img', $selected_id);
+			},
+		]),
+		'upload_pdf' => Request::fileUpload('upload_pdf', [
+			'maxSize' => 10240000,
+			'types' => 'txt|doc|docx|docm|odt|pdf|rtf',
+			'noRename' => false,
+			'dir' => '',
+			'id' => $selected_id,
+			'success' => function($name, $selected_id) {
+			},
+			'removeOnSuccess' => true,
+			'removeOnRequest' => true,
+			'remove' => function($selected_id) {
+				// delete old file from server
+				$oldFile = existing_value('leave_table', 'upload_pdf', $selected_id);
+				if(!$oldFile) return;
+
+				@unlink(getUploadDir('') . $oldFile);
+			},
+			'failure' => function($selected_id, $fileRemoved) {
+				if($fileRemoved) return '';
+				return existing_value('leave_table', 'upload_pdf', $selected_id);
+			},
+		]),
 		'approval_status' => Request::val('approval_status', ''),
 		'approval_remarks' => br2nl(Request::val('approval_remarks', '')),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
@@ -262,7 +363,7 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
 		$combo_leave_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Casual Leave'));
-		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '6' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '8' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 	}
 	$combo_leave_type->Render();
 	$combo_approval_status->Render();
@@ -367,6 +468,8 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 		$jsReadOnly .= "\t\$j('#from_dateDay, #from_dateMonth, #from_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#to_date').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#to_dateDay, #to_dateMonth, #to_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#upload_img').replaceWith('<div class=\"form-control-static\" id=\"upload_img\">' + (\$j('#upload_img').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#upload_pdf').parent().replaceWith(`<div class=\"form-control-static\" id=\"upload_pdf\">\${\$j('#upload_pdf').val() || ''}\${\$j('#upload_pdf').val() ? '<a target=\"_blank\" class=\"hspacer-lg\" href=\"' + \$j('#upload_pdf').val() + '\" target=\"_blank\"><i class=\"glyphicon glyphicon-globe\"></i></a>' : ''}</div>`);\n";
 		$jsReadOnly .= "\t\$j('#approval_status').replaceWith('<div class=\"form-control-static\" id=\"approval_status\">' + (\$j('#approval_status').val() || '') + '</div>'); \$j('#approval_status-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#approval_remarks').replaceWith('<div class=\"form-control-static\" id=\"approval_remarks\">' + (\$j('#approval_remarks').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
@@ -420,6 +523,8 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	$templateCode = str_replace('<%%UPLOADFILE(purpose_of_leave)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(from_date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(to_date)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(upload_img)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="upload_img" id="upload_img" data-filetypes="jpg|jpeg|gif|png|webp" data-maxsize="10240000" style="max-width: calc(100% - 1.5rem);" accept="capture=camera,image/*">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(upload_pdf)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="upload_pdf" id="upload_pdf" data-filetypes="txt|doc|docx|docm|odt|pdf|rtf" data-maxsize="10240000" style="max-width: calc(100% - 1.5rem);" accept=".txt,.doc,.docx,.docm,.odt,.pdf,.rtf">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(approval_status)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(approval_remarks)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by_username)%%>', '', $templateCode);
@@ -447,6 +552,12 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 		$templateCode = str_replace('<%%URLVALUE(from_date)%%>', urlencode(app_datetime($urow['from_date'])), $templateCode);
 		$templateCode = str_replace('<%%VALUE(to_date)%%>', app_datetime($row['to_date']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(to_date)%%>', urlencode(app_datetime($urow['to_date'])), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(upload_img)%%>', safe_html($urow['upload_img']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(upload_img)%%>', html_attr($row['upload_img']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(upload_img)%%>', urlencode($urow['upload_img']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(upload_pdf)%%>', safe_html($urow['upload_pdf']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(upload_pdf)%%>', html_attr($row['upload_pdf']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(upload_pdf)%%>', urlencode($urow['upload_pdf']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', safe_html($urow['approval_status']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', html_attr($row['approval_status']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode($urow['approval_status']), $templateCode);
@@ -474,6 +585,10 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 		$templateCode = str_replace('<%%URLVALUE(from_date)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(to_date)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(to_date)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(upload_img)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(upload_img)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(upload_pdf)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(upload_pdf)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(approval_status)%%>', 'Under Consideration', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode('Under Consideration'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(approval_remarks)%%>', '', $templateCode);
@@ -512,6 +627,8 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 		$templateCode .= $jsEditable;
 
 		if(!$hasSelectedId) {
+			$templateCode.="\n\tif(document.getElementById('upload_pdfEdit')) { document.getElementById('upload_pdfEdit').style.display='inline'; }";
+			$templateCode.="\n\tif(document.getElementById('upload_pdfEditLink')) { document.getElementById('upload_pdfEditLink').style.display='none'; }";
 		}
 
 		$templateCode.="\n});</script>\n";

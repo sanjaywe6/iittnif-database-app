@@ -53,6 +53,16 @@
 			'upload_file_3' => getUploadDir(''),
 			'primary key' => 'id'
 		],
+		'leave_table' => [
+			'upload_img' => getUploadDir(''),
+			'upload_pdf' => getUploadDir(''),
+			'primary key' => 'id'
+		],
+		'work_from_home_table' => [
+			'upload_img' => getUploadDir(''),
+			'upload_pdf' => getUploadDir(''),
+			'primary key' => 'id'
+		],
 		'navavishkar_stay_payment_table' => [
 			'payment_img' => getUploadDir(''),
 			'primary key' => 'id'

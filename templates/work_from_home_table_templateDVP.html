@@ -42,6 +42,20 @@
 				<div class="form-control-static"><%%COMBOTEXT(approval_status)%%></div>
 			</div>
 		</div>
+		<!-- Field: Supporting Document (Image) -->
+		<div class="form-group work_from_home_table-upload_img" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Supporting Document (Image)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(upload_img)%%></div>
+			</div>
+		</div>
+		<!-- Field: Supporting Document (PDF) -->
+		<div class="form-group work_from_home_table-upload_pdf" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Supporting Document (PDF)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><a id="upload_pdf-link" href="link.php?t=work_from_home_table&f=upload_pdf&i=<%%VALUE(id)%%>" target="_blank"><i class="glyphicon glyphicon-lg glyphicon-file" title="<%%VALUE(upload_pdf)%%>"></i></a><script>$j(function() { var e_upload_pdf = '<%%VALUE(upload_pdf)%%>'; if(e_upload_pdf == '' || e_upload_pdf == '&nbsp;' || e_upload_pdf == 'blank.gif') $j('#upload_pdf-link').hide(); });</script></div>
+			</div>
+		</div>
 		<!-- Field: Created By Username -->
 		<div class="form-group work_from_home_table-created_by_username" style="border-bottom: dotted 1px #DDD;">
 			<label class="col-xs-3 control-label">Created By Username</label>

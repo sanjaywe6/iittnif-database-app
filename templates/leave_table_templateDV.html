@@ -55,6 +55,50 @@
 					</div>
 				</div>
 
+				<!-- Field: Supporting Document (Image) -->
+				<div class="form-group leave_table-upload_img">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Supporting Document (Image) <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#upload_img-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="upload_img-description"><div class="alert alert-info bspacer-xs">Maximum file size allowed: 10000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp</div></span>
+						<div class="form-control-static well well-sm">
+							<div class="row" style="margin-right: 0; margin-left: 0;">
+								<div class="col-lg-8 col-md-6" style="padding-left: 0;"></div>
+								<div class="hidden-md hidden-lg vspacer-lg"></div>
+								<div class="col-lg-4 col-md-6 well upload-toolbox">
+									<%%REMOVEFILE(upload_img)%%>
+									<%%UPLOADFILE(upload_img)%%>
+									<div class="text-bold text-danger file-type-error hidden"><%%TRANSLATION(invalid file type)%%></div>
+									<div class="text-bold text-danger file-size-error hidden"><%%TRANSLATION(file too large)%%></div>
+								</div>
+							</div>
+						</div>
+						<script>/* disable empty links */ $j(() => { const e_upload_img = '<%%VALUE(upload_img)%%>'; if(e_upload_img == '' || e_upload_img == '&nbsp;' || e_upload_img == 'blank.gif') { $j('#upload_img-link').hide(); $j('#upload_img-image').parents('a').attr('href', '').on('click', (e) => e.preventDefault()); } });</script>
+					</div>
+				</div>
+
+				<!-- Field: Supporting Document (PDF) -->
+				<div class="form-group leave_table-upload_pdf">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Supporting Document (PDF) <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#upload_pdf-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="upload_pdf-description"><div class="alert alert-info bspacer-xs">Maximum file size allowed: 10000 KB.<br>Allowed file types: txt, doc, docx, docm, odt, pdf, rtf</div></span>
+						<div class="form-control-static well well-sm">
+							<div class="row" style="margin-right: 0; margin-left: 0;">
+								<div class="col-lg-8 col-md-6" style="padding-left: 0;"><a id="upload_pdf-link" href="link.php?t=leave_table&f=upload_pdf&i=<%%VALUE(id)%%>" target="_blank" class="rspacer-lg"><i class="glyphicon glyphicon-file" title="<%%VALUE(upload_pdf)%%>" style="font-size: 4em;"></i></a></div>
+								<div class="hidden-md hidden-lg vspacer-lg"></div>
+								<div class="col-lg-4 col-md-6 well upload-toolbox">
+									<%%REMOVEFILE(upload_pdf)%%>
+									<%%UPLOADFILE(upload_pdf)%%>
+									<div class="text-bold text-danger file-type-error hidden"><%%TRANSLATION(invalid file type)%%></div>
+									<div class="text-bold text-danger file-size-error hidden"><%%TRANSLATION(file too large)%%></div>
+								</div>
+							</div>
+						</div>
+						<script>/* disable empty links */ $j(() => { const e_upload_pdf = '<%%VALUE(upload_pdf)%%>'; if(e_upload_pdf == '' || e_upload_pdf == '&nbsp;' || e_upload_pdf == 'blank.gif') { $j('#upload_pdf-link').hide(); $j('#upload_pdf-image').parents('a').attr('href', '').on('click', (e) => e.preventDefault()); } });</script>
+					</div>
+				</div>
+
 				<!-- Field: Approval status -->
 				<div class="form-group leave_table-approval_status">
 					<hr class="hidden-md hidden-lg">

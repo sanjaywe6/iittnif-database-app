@@ -1,4 +1,4 @@
-		<td colspan="11" class="row">
+		<td colspan="13" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="work_from_home_table-id-caption field-caption-tv">ID</dt>
@@ -16,13 +16,19 @@
 					<dt class="work_from_home_table-approval_status-caption field-caption-tv">Approval Status</dt>
 					<dd id="work_from_home_table-approval_status-<%%VALUE(id)%%>" class="work_from_home_table-approval_status"><%%SELECT%%><%%VALUE(approval_status)%%><%%ENDSELECT%%></dd>
 
-					<dt class="work_from_home_table-created_by-caption field-caption-tv">Created By</dt>
-					<dd id="work_from_home_table-created_by-<%%VALUE(id)%%>" class="work_from_home_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
+					<dt class="work_from_home_table-upload_img-caption field-caption-tv">Supporting Document (Image)</dt>
+					<dd id="work_from_home_table-upload_img-<%%VALUE(id)%%>" class="work_from_home_table-upload_img"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(upload_img)%%>" data-lightbox="work_from_home_table-upload_img"><img src="thumbnail.php?i=<%%VALUE(upload_img)%%>&t=work_from_home_table&f=upload_img&v=tv" class="img-thumbnail"></a></dd>
+
+					<dt class="work_from_home_table-upload_pdf-caption field-caption-tv">Supporting Document (PDF)</dt>
+					<dd id="work_from_home_table-upload_pdf-<%%VALUE(id)%%>" class="work_from_home_table-upload_pdf"><a href="link.php?t=work_from_home_table&f=upload_pdf&i=<%%VALUE(id)%%>" target="_blank" title="<%%VALUE(upload_pdf)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-file text-info"></i></a></dd>
 
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
+					<dt class="work_from_home_table-created_by-caption field-caption-tv">Created By</dt>
+					<dd id="work_from_home_table-created_by-<%%VALUE(id)%%>" class="work_from_home_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
+
 					<dt class="work_from_home_table-created_at-caption field-caption-tv">Created At</dt>
 					<dd id="work_from_home_table-created_at-<%%VALUE(id)%%>" class="work_from_home_table-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></dd>
 
@@ -41,3 +47,6 @@
 				</dl>
 			</div>
 		</td>
+		<script>$j(function() {
+			var e_upload_pdf = '<%%VALUE(upload_pdf)%%>'; if(e_upload_pdf == '' || e_upload_pdf == '&nbsp;') $j(/*<*/ '#work_from_home_table-upload_pdf-<%%VALUE(id)%%>' /*>*/).html('');
+		});</script>

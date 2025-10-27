@@ -20,6 +20,35 @@ function work_from_home_table_insert(&$error_message = '') {
 		'from_date' => Request::dateComponents('from_date', '1'),
 		'to_date' => Request::dateComponents('to_date', '1'),
 		'approval_status' => Request::val('approval_status', 'Under Consideration'),
+		'upload_img' => Request::fileUpload('upload_img', [
+			'maxSize' => 10240000,
+			'types' => 'jpg|jpeg|gif|png|webp',
+			'noRename' => false,
+			'dir' => '',
+			'success' => function($name, $selected_id) {
+				Thumbnail::create($name, getThumbnailSpecs('work_from_home_table', 'upload_img', 'tv'));
+			},
+			'failure' => function($selected_id, $fileRemoved) {
+				if(!strlen(Request::val('SelectedID'))) return '';
+
+				/* for empty upload fields, when saving a copy of an existing record, copy the original upload field */
+				return existing_value('work_from_home_table', 'upload_img', Request::val('SelectedID'));
+			},
+		]),
+		'upload_pdf' => Request::fileUpload('upload_pdf', [
+			'maxSize' => 10240000,
+			'types' => 'txt|doc|docx|docm|odt|pdf|rtf',
+			'noRename' => false,
+			'dir' => '',
+			'success' => function($name, $selected_id) {
+			},
+			'failure' => function($selected_id, $fileRemoved) {
+				if(!strlen(Request::val('SelectedID'))) return '';
+
+				/* for empty upload fields, when saving a copy of an existing record, copy the original upload field */
+				return existing_value('work_from_home_table', 'upload_pdf', Request::val('SelectedID'));
+			},
+		]),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
@@ -89,6 +118,26 @@ function work_from_home_table_delete($selected_id, $AllowDeleteOfParents = false
 		return $RetMsg;
 	}
 
+	// delete file stored in the 'upload_img' field
+	$res = sql("SELECT `upload_img` FROM `work_from_home_table` WHERE `id`='{$selected_id}'", $eo);
+	if($row = @db_fetch_row($res)) {
+		if($row[0] != '') {
+			@unlink(getUploadDir('') . $row[0]);
+			$thumbDV = preg_replace('/\.(jpg|jpeg|gif|png|webp)$/i', '_dv.$1', $row[0]);
+			$thumbTV = preg_replace('/\.(jpg|jpeg|gif|png|webp)$/i', '_tv.$1', $row[0]);
+			@unlink(getUploadDir('') . $thumbTV);
+			@unlink(getUploadDir('') . $thumbDV);
+		}
+	}
+
+	// delete file stored in the 'upload_pdf' field
+	$res = sql("SELECT `upload_pdf` FROM `work_from_home_table` WHERE `id`='{$selected_id}'", $eo);
+	if($row = @db_fetch_row($res)) {
+		if($row[0] != '') {
+			@unlink(getUploadDir('') . $row[0]);
+		}
+	}
+
 	sql("DELETE FROM `work_from_home_table` WHERE `id`='{$selected_id}'", $eo);
 
 	// hook: work_from_home_table_after_delete
@@ -112,6 +161,58 @@ function work_from_home_table_update(&$selected_id, &$error_message = '') {
 		'from_date' => Request::dateComponents('from_date', ''),
 		'to_date' => Request::dateComponents('to_date', ''),
 		'approval_status' => Request::val('approval_status', ''),
+		'upload_img' => Request::fileUpload('upload_img', [
+			'maxSize' => 10240000,
+			'types' => 'jpg|jpeg|gif|png|webp',
+			'noRename' => false,
+			'dir' => '',
+			'id' => $selected_id,
+			'success' => function($name, $selected_id) {
+				Thumbnail::create($name, getThumbnailSpecs('work_from_home_table', 'upload_img', 'tv'));
+			},
+			'removeOnSuccess' => true,
+			'removeOnRequest' => true,
+			'remove' => function($selected_id) {
+				// delete old file from server
+				$oldFile = existing_value('work_from_home_table', 'upload_img', $selected_id);
+				if(!$oldFile) return;
+
+				@unlink(getUploadDir('') . $oldFile);
+
+				// delete thumbnails
+				preg_match('/^[a-z0-9_]+\.(jpg|jpeg|gif|png|webp)$/i', $oldFile, $m);
+				$thumbDV = str_replace(".{$m[1]}ffffgggg", "_dv.{$m[1]}", $oldFile . 'ffffgggg');
+				$thumbTV = str_replace(".{$m[1]}ffffgggg", "_tv.{$m[1]}", $oldFile . 'ffffgggg');
+				@unlink(getUploadDir('') . $thumbTV);
+				@unlink(getUploadDir('') . $thumbDV);
+			},
+			'failure' => function($selected_id, $fileRemoved) {
+				if($fileRemoved) return '';
+				return existing_value('work_from_home_table', 'upload_img', $selected_id);
+			},
+		]),
+		'upload_pdf' => Request::fileUpload('upload_pdf', [
+			'maxSize' => 10240000,
+			'types' => 'txt|doc|docx|docm|odt|pdf|rtf',
+			'noRename' => false,
+			'dir' => '',
+			'id' => $selected_id,
+			'success' => function($name, $selected_id) {
+			},
+			'removeOnSuccess' => true,
+			'removeOnRequest' => true,
+			'remove' => function($selected_id) {
+				// delete old file from server
+				$oldFile = existing_value('work_from_home_table', 'upload_pdf', $selected_id);
+				if(!$oldFile) return;
+
+				@unlink(getUploadDir('') . $oldFile);
+			},
+			'failure' => function($selected_id, $fileRemoved) {
+				if($fileRemoved) return '';
+				return existing_value('work_from_home_table', 'upload_pdf', $selected_id);
+			},
+		]),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 	];
@@ -370,6 +471,8 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 		$jsReadOnly .= "\t\$j('#to_date').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#to_dateDay, #to_dateMonth, #to_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#approval_status').replaceWith('<div class=\"form-control-static\" id=\"approval_status\">' + (\$j('#approval_status').val() || '') + '</div>'); \$j('#approval_status-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#upload_img').replaceWith('<div class=\"form-control-static\" id=\"upload_img\">' + (\$j('#upload_img').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#upload_pdf').parent().replaceWith(`<div class=\"form-control-static\" id=\"upload_pdf\">\${\$j('#upload_pdf').val() || ''}\${\$j('#upload_pdf').val() ? '<a target=\"_blank\" class=\"hspacer-lg\" href=\"' + \$j('#upload_pdf').val() + '\" target=\"_blank\"><i class=\"glyphicon glyphicon-globe\"></i></a>' : ''}</div>`);\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -419,6 +522,8 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 	$templateCode = str_replace('<%%UPLOADFILE(from_date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(to_date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(approval_status)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(upload_img)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="upload_img" id="upload_img" data-filetypes="jpg|jpeg|gif|png|webp" data-maxsize="10240000" style="max-width: calc(100% - 1.5rem);" accept="capture=camera,image/*">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(upload_pdf)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="upload_pdf" id="upload_pdf" data-filetypes="txt|doc|docx|docm|odt|pdf|rtf" data-maxsize="10240000" style="max-width: calc(100% - 1.5rem);" accept=".txt,.doc,.docx,.docm,.odt,.pdf,.rtf">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
@@ -444,6 +549,12 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', safe_html($urow['approval_status']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_status)%%>', html_attr($row['approval_status']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode($urow['approval_status']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(upload_img)%%>', safe_html($urow['upload_img']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(upload_img)%%>', html_attr($row['upload_img']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(upload_img)%%>', urlencode($urow['upload_img']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(upload_pdf)%%>', safe_html($urow['upload_pdf']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(upload_pdf)%%>', html_attr($row['upload_pdf']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(upload_pdf)%%>', urlencode($urow['upload_pdf']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
@@ -466,6 +577,10 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 		$templateCode = str_replace('<%%URLVALUE(to_date)%%>', urlencode('1'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(approval_status)%%>', 'Under Consideration', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(approval_status)%%>', urlencode('Under Consideration'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(upload_img)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(upload_img)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(upload_pdf)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(upload_pdf)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);
@@ -500,6 +615,8 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 		$templateCode .= $jsEditable;
 
 		if(!$hasSelectedId) {
+			$templateCode.="\n\tif(document.getElementById('upload_pdfEdit')) { document.getElementById('upload_pdfEdit').style.display='inline'; }";
+			$templateCode.="\n\tif(document.getElementById('upload_pdfEditLink')) { document.getElementById('upload_pdfEditLink').style.display='none'; }";
 		}
 
 		$templateCode.="\n});</script>\n";

@@ -906,6 +906,16 @@ function leave_table_validateData(insertMode) {
 
 	if(errors) return false;
 
+	// check file uploads (file type and size)
+	if($j('#upload_img').val() && !AppGini.checkFileUpload('upload_img', 'jpg|jpeg|gif|png|webp', 10240000)) {
+		AppGini.scrollTo('upload_img');
+		return false;
+	}
+	if($j('#upload_pdf').val() && !AppGini.checkFileUpload('upload_pdf', 'txt|doc|docx|docm|odt|pdf|rtf', 10240000)) {
+		AppGini.scrollTo('upload_pdf');
+		return false;
+	}
+
 	return !errors;
 }
 function half_day_leave_table_validateData(insertMode) {
@@ -951,6 +961,16 @@ function work_from_home_table_validateData(insertMode) {
 	});
 
 	if(errors) return false;
+
+	// check file uploads (file type and size)
+	if($j('#upload_img').val() && !AppGini.checkFileUpload('upload_img', 'jpg|jpeg|gif|png|webp', 10240000)) {
+		AppGini.scrollTo('upload_img');
+		return false;
+	}
+	if($j('#upload_pdf').val() && !AppGini.checkFileUpload('upload_pdf', 'txt|doc|docx|docm|odt|pdf|rtf', 10240000)) {
+		AppGini.scrollTo('upload_pdf');
+		return false;
+	}
 
 	return !errors;
 }

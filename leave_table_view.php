@@ -23,6 +23,8 @@
 		"`leave_table`.`purpose_of_leave`" => "purpose_of_leave",
 		"if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
 		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
+		"`leave_table`.`upload_img`" => "upload_img",
+		"`leave_table`.`upload_pdf`" => "upload_pdf",
 		"`leave_table`.`approval_status`" => "approval_status",
 		"`leave_table`.`approval_remarks`" => "approval_remarks",
 		"`leave_table`.`created_by_username`" => "created_by_username",
@@ -47,6 +49,8 @@
 		11 => 11,
 		12 => 12,
 		13 => 13,
+		14 => 14,
+		15 => 15,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -56,6 +60,8 @@
 		"`leave_table`.`purpose_of_leave`" => "purpose_of_leave",
 		"if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
 		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
+		"`leave_table`.`upload_img`" => "upload_img",
+		"`leave_table`.`upload_pdf`" => "upload_pdf",
 		"`leave_table`.`approval_status`" => "approval_status",
 		"`leave_table`.`approval_remarks`" => "approval_remarks",
 		"`leave_table`.`created_by_username`" => "created_by_username",
@@ -72,6 +78,7 @@
 		"`leave_table`.`purpose_of_leave`" => "Purpose of leave",
 		"`leave_table`.`from_date`" => "From Date",
 		"`leave_table`.`to_date`" => "To Date & Time",
+		"`leave_table`.`upload_pdf`" => "Supporting Document (PDF)",
 		"`leave_table`.`approval_status`" => "Approval status",
 		"`leave_table`.`approval_remarks`" => "Approval remarks",
 		"`leave_table`.`created_by_username`" => "Created by Username",
@@ -89,6 +96,7 @@
 		"`leave_table`.`purpose_of_leave`" => "purpose_of_leave",
 		"if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
 		"if(`leave_table`.`to_date`,date_format(`leave_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
+		"`leave_table`.`upload_pdf`" => "upload_pdf",
 		"`leave_table`.`approval_status`" => "approval_status",
 		"`leave_table`.`approval_remarks`" => "approval_remarks",
 		"`leave_table`.`created_by_username`" => "created_by_username",
@@ -132,10 +140,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Leave type', 'Purpose of leave', 'From Date', 'To Date & Time', 'Approval status', 'Approval remarks', 'Created by Username', 'Created at', 'Last Updated By Username', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'leave_type', 'purpose_of_leave', 'from_date', 'to_date', 'approval_status', 'approval_remarks', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 13, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Leave type', 'Purpose of leave', 'From Date', 'To Date & Time', 'Supporting Document (Image)', 'Supporting Document (PDF)', 'Approval status', 'Approval remarks', 'Created by Username', 'Created at', 'Last Updated By Username', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'leave_type', 'purpose_of_leave', 'from_date', 'to_date', 'upload_img', 'upload_pdf', 'approval_status', 'approval_remarks', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 15, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/leave_table_templateTV.html';

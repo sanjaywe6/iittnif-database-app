@@ -23,6 +23,8 @@
 		"if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
 		"if(`work_from_home_table`.`to_date`,date_format(`work_from_home_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
 		"`work_from_home_table`.`approval_status`" => "approval_status",
+		"`work_from_home_table`.`upload_img`" => "upload_img",
+		"`work_from_home_table`.`upload_pdf`" => "upload_pdf",
 		"`work_from_home_table`.`created_by`" => "created_by",
 		"`work_from_home_table`.`created_at`" => "created_at",
 		"`work_from_home_table`.`last_updated_by`" => "last_updated_by",
@@ -43,6 +45,8 @@
 		9 => 9,
 		10 => 10,
 		11 => 11,
+		12 => 12,
+		13 => 13,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -52,6 +56,8 @@
 		"if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
 		"if(`work_from_home_table`.`to_date`,date_format(`work_from_home_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
 		"`work_from_home_table`.`approval_status`" => "approval_status",
+		"`work_from_home_table`.`upload_img`" => "upload_img",
+		"`work_from_home_table`.`upload_pdf`" => "upload_pdf",
 		"`work_from_home_table`.`created_by`" => "created_by",
 		"`work_from_home_table`.`created_at`" => "created_at",
 		"`work_from_home_table`.`last_updated_by`" => "last_updated_by",
@@ -66,6 +72,7 @@
 		"`work_from_home_table`.`from_date`" => "From date",
 		"`work_from_home_table`.`to_date`" => "To date",
 		"`work_from_home_table`.`approval_status`" => "Approval Status",
+		"`work_from_home_table`.`upload_pdf`" => "Supporting Document (PDF)",
 		"`work_from_home_table`.`created_by`" => "Created By",
 		"`work_from_home_table`.`created_at`" => "Created At",
 		"`work_from_home_table`.`last_updated_by`" => "Last Updated By",
@@ -81,6 +88,7 @@
 		"if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
 		"if(`work_from_home_table`.`to_date`,date_format(`work_from_home_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
 		"`work_from_home_table`.`approval_status`" => "approval_status",
+		"`work_from_home_table`.`upload_pdf`" => "upload_pdf",
 		"`work_from_home_table`.`created_by`" => "created_by",
 		"`work_from_home_table`.`created_at`" => "created_at",
 		"`work_from_home_table`.`last_updated_by`" => "last_updated_by",
@@ -122,10 +130,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Purpose of Work From Home', 'From date', 'To date', 'Approval Status', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', 'Created By Username', 'Last Updated by Username', ];
-	$x->ColFieldName = ['id', 'work_from_home_purpose', 'from_date', 'to_date', 'approval_status', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', 'last_updated_by_username', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Purpose of Work From Home', 'From date', 'To date', 'Approval Status', 'Supporting Document (Image)', 'Supporting Document (PDF)', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', 'Created By Username', 'Last Updated by Username', ];
+	$x->ColFieldName = ['id', 'work_from_home_purpose', 'from_date', 'to_date', 'approval_status', 'upload_img', 'upload_pdf', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', 'last_updated_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/work_from_home_table_templateTV.html';

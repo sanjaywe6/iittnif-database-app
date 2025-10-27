@@ -136,11 +136,19 @@
 
 		setupTable('beyond_working_hours_table', []);
 
-		setupTable('leave_table', []);
+		setupTable('leave_table', [
+				"ALTER TABLE `leave_table` ADD `upload_img` VARCHAR(255) NULL ",
+				"ALTER TABLE `leave_table` ADD `upload_pdf` VARCHAR(255) NULL ",
+			]);
 
 		setupTable('half_day_leave_table', []);
 
-		setupTable('work_from_home_table', []);
+		setupTable('work_from_home_table', [
+				"ALTER TABLE work_from_home_table ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `work_from_home_table` CHANGE `field1` `upload_img` VARCHAR(255) NULL ",
+				"ALTER TABLE work_from_home_table ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `work_from_home_table` CHANGE `field1` `upload_pdf` VARCHAR(255) NULL ",
+			]);
 
 		setupTable('work_from_home_tasks_app', []);
 		setupIndexes('work_from_home_tasks_app', ['work_from_home_details',]);

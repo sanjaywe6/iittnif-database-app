@@ -898,6 +898,10 @@
 			return ['width'=>50, 'height'=>50, 'identifier'=>'_tv'];
 		elseif($tableName=='employees_personal_data_table' && $fieldName=='signature' && $view=='dv')
 			return ['width'=>250, 'height'=>250, 'identifier'=>'_dv'];
+		elseif($tableName=='leave_table' && $fieldName=='upload_img' && $view=='tv')
+			return ['width'=>50, 'height'=>50, 'identifier'=>'_tv'];
+		elseif($tableName=='work_from_home_table' && $fieldName=='upload_img' && $view=='tv')
+			return ['width'=>50, 'height'=>50, 'identifier'=>'_tv'];
 		elseif($tableName=='payment_track_details_table' && $fieldName=='upload_scanned_file_1' && $view=='tv')
 			return ['width'=>50, 'height'=>50, 'identifier'=>'_tv'];
 		elseif($tableName=='payment_track_details_table' && $fieldName=='upload_scanned_file_1' && $view=='dv')
@@ -7401,6 +7405,20 @@
 							'description' => '',
 						],
 					],
+					'upload_img' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Supporting Document (Image)',
+							'description' => 'Maximum file size allowed: 10000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
+						],
+					],
+					'upload_pdf' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Supporting Document (PDF)',
+							'description' => 'Maximum file size allowed: 10000 KB.<br>Allowed file types: txt, doc, docx, docm, odt, pdf, rtf',
+						],
+					],
 					'approval_status' => [
 						'appgini' => "VARCHAR(255) NULL DEFAULT 'Under Consideration'",
 						'info' => [
@@ -7578,6 +7596,20 @@
 						'info' => [
 							'caption' => 'Approval Status',
 							'description' => '',
+						],
+					],
+					'upload_img' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Supporting Document (Image)',
+							'description' => 'Maximum file size allowed: 10000 KB.<br>Allowed file types: jpg, jpeg, gif, png, webp',
+						],
+					],
+					'upload_pdf' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Supporting Document (PDF)',
+							'description' => 'Maximum file size allowed: 10000 KB.<br>Allowed file types: txt, doc, docx, docm, odt, pdf, rtf',
 						],
 					],
 					'created_by' => [

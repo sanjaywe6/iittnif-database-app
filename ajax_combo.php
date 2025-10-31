@@ -357,7 +357,7 @@
 				'not_null' => false,
 			],
 		],
-		'task_setting_table' => [
+		'task_allocation_table' => [
 			'supervisor_name' => [
 				'parent_table' => 'user_table',
 				'parent_pk_field' => 'user_id',
@@ -381,34 +381,12 @@
 				'not_null' => false,
 			],
 		],
-		'subtask_setting_table' => [
+		'task_progress_status_table' => [
 			'task_lookup' => [
-				'parent_table' => 'task_setting_table',
+				'parent_table' => 'task_allocation_table',
 				'parent_pk_field' => 'task_id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`task_setting_table`.`task_description`) || CHAR_LENGTH(`task_setting_table`.`assigned_to`), CONCAT_WS(\'\', `task_setting_table`.`task_description`, \'::\', IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS(\'\',   `user_table2`.`memberID`, \'::\', `user_table2`.`name`), \'\')), \'\')',
-				'parent_from' => '`task_setting_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`task_setting_table`.`supervisor_name` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`task_setting_table`.`assigned_to` ',
-				'filterers' => [],
-				'custom_query' => '',
-				'inherit_permissions' => false,
-				'list_type' => 0,
-				'not_null' => false,
-			],
-			'supervisor_name' => [
-				'parent_table' => 'user_table',
-				'parent_pk_field' => 'user_id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
-				'parent_from' => '`user_table` ',
-				'filterers' => [],
-				'custom_query' => '',
-				'inherit_permissions' => false,
-				'list_type' => 0,
-				'not_null' => false,
-			],
-			'assigned_to' => [
-				'parent_table' => 'user_table',
-				'parent_pk_field' => 'user_id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
-				'parent_from' => '`user_table` ',
+				'parent_caption' => 'IF(CHAR_LENGTH(`task_allocation_table`.`task_description`) || CHAR_LENGTH(`task_allocation_table`.`assigned_to`), CONCAT_WS(\'\', `task_allocation_table`.`task_description`, \'::\', IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS(\'\',   `user_table2`.`memberID`, \'::\', `user_table2`.`name`), \'\')), \'\')',
+				'parent_from' => '`task_allocation_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`task_allocation_table`.`supervisor_name` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`task_allocation_table`.`assigned_to` ',
 				'filterers' => [],
 				'custom_query' => '',
 				'inherit_permissions' => false,

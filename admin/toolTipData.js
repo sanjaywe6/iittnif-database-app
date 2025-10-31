@@ -461,41 +461,41 @@ goal_progress_table_delete1Tip=["",spacer+"This option allows each member of the
 goal_progress_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Goal progress table' table."];
 goal_progress_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Goal progress table' table."];
 
-// task_setting_table table
-task_setting_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Task setting - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
+// task_allocation_table table
+task_allocation_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Task Allocation - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
 
-task_setting_table_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Task setting - App' table."];
-task_setting_table_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Task setting - App' table."];
-task_setting_table_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Task setting - App' table."];
-task_setting_table_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Task setting - App' table."];
+task_allocation_table_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Task Allocation - App' table."];
+task_allocation_table_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Task Allocation - App' table."];
+task_allocation_table_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Task Allocation - App' table."];
+task_allocation_table_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Task Allocation - App' table."];
 
-task_setting_table_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Task setting - App' table."];
-task_setting_table_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Task setting - App' table."];
-task_setting_table_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Task setting - App' table."];
-task_setting_table_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Task setting - App' table, regardless of their owner."];
+task_allocation_table_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Task Allocation - App' table."];
+task_allocation_table_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Task Allocation - App' table."];
+task_allocation_table_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Task Allocation - App' table."];
+task_allocation_table_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Task Allocation - App' table, regardless of their owner."];
 
-task_setting_table_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Task setting - App' table."];
-task_setting_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Task setting - App' table."];
-task_setting_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Task setting - App' table."];
-task_setting_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Task setting - App' table."];
+task_allocation_table_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Task Allocation - App' table."];
+task_allocation_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Task Allocation - App' table."];
+task_allocation_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Task Allocation - App' table."];
+task_allocation_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Task Allocation - App' table."];
 
-// subtask_setting_table table
-subtask_setting_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Subtask setting - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
+// task_progress_status_table table
+task_progress_status_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Task Progress Status - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
 
-subtask_setting_table_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Subtask setting - App' table."];
-subtask_setting_table_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Subtask setting - App' table."];
-subtask_setting_table_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Subtask setting - App' table."];
-subtask_setting_table_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Subtask setting - App' table."];
+task_progress_status_table_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Task Progress Status - App' table."];
+task_progress_status_table_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Task Progress Status - App' table."];
+task_progress_status_table_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Task Progress Status - App' table."];
+task_progress_status_table_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Task Progress Status - App' table."];
 
-subtask_setting_table_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Subtask setting - App' table."];
-subtask_setting_table_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Subtask setting - App' table."];
-subtask_setting_table_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Subtask setting - App' table."];
-subtask_setting_table_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Subtask setting - App' table, regardless of their owner."];
+task_progress_status_table_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Task Progress Status - App' table."];
+task_progress_status_table_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Task Progress Status - App' table."];
+task_progress_status_table_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Task Progress Status - App' table."];
+task_progress_status_table_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Task Progress Status - App' table, regardless of their owner."];
 
-subtask_setting_table_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Subtask setting - App' table."];
-subtask_setting_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Subtask setting - App' table."];
-subtask_setting_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Subtask setting - App' table."];
-subtask_setting_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Subtask setting - App' table."];
+task_progress_status_table_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Task Progress Status - App' table."];
+task_progress_status_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Task Progress Status - App' table."];
+task_progress_status_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Task Progress Status - App' table."];
+task_progress_status_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Task Progress Status - App' table."];
 
 // internship_fellowship_details_app table
 internship_fellowship_details_app_addTip=["",spacer+"This option allows all members of the group to add records to the 'Internship/Fellowship details - App' table. A member who adds a record to the table becomes the 'owner' of that record."];

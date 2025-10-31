@@ -14,57 +14,57 @@
 
 <div class="panel-body">
 	<fieldset class="form-horizontal">
-		<!-- Field: Task status -->
-		<div class="form-group task_setting_table-task_status" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Task status</label>
-			<div class="col-xs-9">
-				<div class="form-control-static"><%%COMBOTEXT(task_status)%%></div>
-			</div>
-		</div>
 		<!-- Field: Task description -->
-		<div class="form-group task_setting_table-task_description" style="border-bottom: dotted 1px #DDD;">
+		<div class="form-group task_allocation_table-task_description" style="border-bottom: dotted 1px #DDD;">
 			<label class="col-xs-3 control-label">Task description</label>
 			<div class="col-xs-9">
 				<div class="form-control-static"><%%VALUE(task_description)%%></div>
 			</div>
 		</div>
-		<!-- Field: Task duration -->
-		<div class="form-group task_setting_table-task_duration" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Task duration</label>
+		<!-- Field: Task status -->
+		<div class="form-group task_allocation_table-task_status" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Task status</label>
 			<div class="col-xs-9">
-				<div class="form-control-static"><%%COMBOTEXT(task_duration)%%></div>
+				<div class="form-control-static"><%%COMBOTEXT(task_status)%%></div>
 			</div>
 		</div>
-		<!-- Field: Task set date -->
-		<div class="form-group task_setting_table-task_set_date" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Task set date</label>
+		<!-- Field: Task Duration (Number of Days) -->
+		<div class="form-group task_allocation_table-task_duration" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Task Duration (Number of Days)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(task_duration)%%></div>
+			</div>
+		</div>
+		<!-- Field: Task Assigned Date -->
+		<div class="form-group task_allocation_table-task_set_date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Task Assigned Date</label>
 			<div class="col-xs-9">
 				<div class="form-control-static"><%%COMBOTEXT(task_set_date)%%></div>
 			</div>
 		</div>
 		<!-- Field: Supervisor name -->
-		<div class="form-group task_setting_table-supervisor_name" style="border-bottom: dotted 1px #DDD;">
+		<div class="form-group task_allocation_table-supervisor_name" style="border-bottom: dotted 1px #DDD;">
 			<label class="col-xs-3 control-label">Supervisor name</label>
 			<div class="col-xs-9">
 				<div class="form-control-static"><span id="supervisor_name<%%RND1%%>"><%%COMBOTEXT(supervisor_name)%%></span></div>
 			</div>
 		</div>
 		<!-- Field: Assigned to -->
-		<div class="form-group task_setting_table-assigned_to" style="border-bottom: dotted 1px #DDD;">
+		<div class="form-group task_allocation_table-assigned_to" style="border-bottom: dotted 1px #DDD;">
 			<label class="col-xs-3 control-label">Assigned to</label>
 			<div class="col-xs-9">
 				<div class="form-control-static"><span id="assigned_to<%%RND1%%>"><%%COMBOTEXT(assigned_to)%%></span></div>
 			</div>
 		</div>
 		<!-- Field: Created By Username -->
-		<div class="form-group task_setting_table-created_by_username" style="border-bottom: dotted 1px #DDD;">
+		<div class="form-group task_allocation_table-created_by_username" style="border-bottom: dotted 1px #DDD;">
 			<label class="col-xs-3 control-label">Created By Username</label>
 			<div class="col-xs-9">
 				<div class="form-control-static"><%%VALUE(created_by_username)%%></div>
 			</div>
 		</div>
 		<!-- Field: Last Updated by Username -->
-		<div class="form-group task_setting_table-last_updated_by_username" style="border-bottom: dotted 1px #DDD;">
+		<div class="form-group task_allocation_table-last_updated_by_username" style="border-bottom: dotted 1px #DDD;">
 			<label class="col-xs-3 control-label">Last Updated by Username</label>
 			<div class="col-xs-9">
 				<div class="form-control-static"><%%VALUE(last_updated_by_username)%%></div>
@@ -85,21 +85,21 @@
 </script>
 <!-- child records -->
 <div class="panel-body">
-	<div id="task_setting_table-children"></div>
+	<div id="task_allocation_table-children"></div>
 </div>
 
 <script>
 	$j(function() {
 		/* prevent loading child records in multiple DVP */
-		if($j('[id=task_setting_table-children]').length > 1) return;
+		if($j('[id=task_allocation_table-children]').length > 1) return;
 
 		post(
 			'parent-children.php', {
-				ParentTable: 'task_setting_table',
+				ParentTable: 'task_allocation_table',
 				SelectedID: '<%%VALUE(task_id)%%>',
 				Operation: 'show-children-printable'
 			},
-			'task_setting_table-children',
+			'task_allocation_table-children',
 			'disable-element',
 			'loading-element',
 			apply_persisting_children

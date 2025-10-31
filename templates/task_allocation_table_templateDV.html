@@ -1,17 +1,17 @@
-<!-- To change the layout of the detail view form, we recommend using JS code in hooks/task_setting_table-dv.js rather than editing this file -->
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/task_allocation_table-dv.js rather than editing this file -->
 
 <div id="detail-view"></div>
 <div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
 
-<div id="task_setting_table_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+<div id="task_allocation_table_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
 
-<div class="panel-body hidden" id="task_setting_table_dv_container">
+<div class="panel-body hidden" id="task_allocation_table_dv_container">
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
-			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="subtask_setting_table_view.php?filterer_task_lookup=<%%URLVALUE(task_id)%%>&<%%EMBEDDED%%>" id="subtask_setting_table_link"><img src="table.gif"> Subtask setting - App</a>
-			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="subtask_setting_table_view.php?filterer_task_lookup=<%%URLVALUE(task_id)%%>&<%%EMBEDDED%%>" id="xs_subtask_setting_table_link"><img src="table.gif"> Subtask setting - App</a>
-			<input type="hidden" id="subtask_setting_table_hclink" value="subtask_setting_table_view.php?filterer_task_lookup=<%%URLVALUE(task_id)%%>&<%%EMBEDDED%%>">
+			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="task_progress_status_table_view.php?filterer_task_lookup=<%%URLVALUE(task_id)%%>&<%%EMBEDDED%%>" id="task_progress_status_table_link"><img src="table.gif"> Task Progress Status - App</a>
+			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="task_progress_status_table_view.php?filterer_task_lookup=<%%URLVALUE(task_id)%%>&<%%EMBEDDED%%>" id="xs_task_progress_status_table_link"><img src="table.gif"> Task Progress Status - App</a>
+			<input type="hidden" id="task_progress_status_table_hclink" value="task_progress_status_table_view.php?filterer_task_lookup=<%%URLVALUE(task_id)%%>&<%%EMBEDDED%%>">
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -19,11 +19,20 @@
 
 	<div class="row">
 		<!-- form inputs -->
-		<div class="col-md-8 col-lg-10" id="task_setting_table_dv_form">
+		<div class="col-md-8 col-lg-10" id="task_allocation_table_dv_form">
 			<fieldset class="form-horizontal">
 
+				<!-- Field: Task description -->
+				<div class="form-group task_allocation_table-task_description">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="task_description">Task description</label>
+					<div class="col-lg-9 has-nicedit">
+						<%%HTMLAREA(task_description)%%>
+					</div>
+				</div>
+
 				<!-- Field: Task status -->
-				<div class="form-group task_setting_table-task_status">
+				<div class="form-group task_allocation_table-task_status">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="task_status">Task status</label>
 					<div class="col-lg-9">
@@ -31,35 +40,26 @@
 					</div>
 				</div>
 
-				<!-- Field: Task description -->
-				<div class="form-group task_setting_table-task_description">
+				<!-- Field: Task Duration (Number of Days) -->
+				<div class="form-group task_allocation_table-task_duration">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="task_description">Task description</label>
+					<label class="control-label col-lg-3" for="task_duration">Task Duration (Number of Days)</label>
 					<div class="col-lg-9">
-						<textarea maxlength="65500" class="form-control" name="task_description" id="task_description" rows=" 5"><%%VALUE(task_description)%%></textarea>
+						<input maxlength="11" type="text" class="form-control" name="task_duration" id="task_duration" value="<%%VALUE(task_duration)%%>">
 					</div>
 				</div>
 
-				<!-- Field: Task duration -->
-				<div class="form-group task_setting_table-task_duration">
+				<!-- Field: Task Assigned Date -->
+				<div class="form-group task_allocation_table-task_set_date">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="task_duration">Task duration</label>
-					<div class="col-lg-9">
-						<%%COMBO(task_duration)%%>
-					</div>
-				</div>
-
-				<!-- Field: Task set date -->
-				<div class="form-group task_setting_table-task_set_date">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="task_set_date-dd">Task set date</label>
+					<label class="control-label col-lg-3" for="task_set_date-dd">Task Assigned Date</label>
 					<div class="col-lg-9">
 						<%%COMBO(task_set_date)%%>
 					</div>
 				</div>
 
 				<!-- Field: Supervisor name -->
-				<div class="form-group task_setting_table-supervisor_name">
+				<div class="form-group task_allocation_table-supervisor_name">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="supervisor_name" data-parent_link="view_parent_modal">Supervisor name</label>
 					<div class="col-lg-9">
@@ -68,7 +68,7 @@
 				</div>
 
 				<!-- Field: Assigned to -->
-				<div class="form-group task_setting_table-assigned_to">
+				<div class="form-group task_allocation_table-assigned_to">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="assigned_to" data-parent_link="view_parent_modal">Assigned to</label>
 					<div class="col-lg-9">
@@ -77,7 +77,7 @@
 				</div>
 
 				<!-- Field: Created By Username -->
-				<div class="form-group task_setting_table-created_by_username">
+				<div class="form-group task_allocation_table-created_by_username">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3">Created By Username</label>
 					<div class="col-lg-9">
@@ -86,7 +86,7 @@
 				</div>
 
 				<!-- Field: Last Updated by Username -->
-				<div class="form-group task_setting_table-last_updated_by_username">
+				<div class="form-group task_allocation_table-last_updated_by_username">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3">Last Updated by Username</label>
 					<div class="col-lg-9">
@@ -99,7 +99,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2 dv-action-buttons" id="task_setting_table_dv_action_buttons">
+		<div class="col-md-4 col-lg-2 dv-action-buttons" id="task_allocation_table_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>
@@ -121,7 +121,7 @@
 	<hr>
 	<div class="row">
 		<div class="col-lg-10 col-lg-offset-1">
-			<div id="task_setting_table-children" class="children-tabs">
+			<div id="task_allocation_table-children" class="children-tabs">
 				<div class="text-center"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
 			</div>
 		</div>
@@ -141,6 +141,12 @@
 				setTimeout(AppGini.closeParentModal, 2000);
 			}
 
+			AppGini.once({
+				condition: function() { return bkLib != undefined; },
+				action: function() {
+					if($j('textarea#task_description').length) new nicEditor({ fullPanel : true }).panelInstance('task_description');
+				}
+			});
 
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
@@ -148,24 +154,27 @@
 			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
 				AppGini.once({
 					condition: function() {
-						return $j('.form-group.task_setting_table-task_status')
+						return $j('.form-group.task_allocation_table-task_description')
 									.find('.nicEdit-main, .select2-container, input[type=radio]')
 									.length > 0
 								// or read-only DV
 								|| (!$j('#update').length && !$j('#insert').length);
 					},
 					action: function() {
-						$j('#task_setting_table_dv_container-loading').addClass('hidden');
-						$j('#task_setting_table_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('task_setting_table', 'task_status');
+						$j('#task_allocation_table_dv_container-loading').addClass('hidden');
+						$j('#task_allocation_table_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('task_allocation_table', 'task_description');
 					},
 					timeout:  5000,
 					doActionOnTimeout:  true
 				});
 			} else {
-				$j('#task_setting_table_dv_container-loading').addClass('hidden');
-				$j('#task_setting_table_dv_container').removeClass('hidden');
+				$j('#task_allocation_table_dv_container-loading').addClass('hidden');
+				$j('#task_allocation_table_dv_container').removeClass('hidden');
 			}
+
+			// try to detect rich text changes by adding 'input' handler after nicedit is loaded ...
+			AppGini.detectContentEditableChanges();
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 
@@ -194,11 +203,11 @@
 			} else {
 				post(
 					'parent-children.php', {
-						ParentTable: 'task_setting_table',
+						ParentTable: 'task_allocation_table',
 						SelectedID: '<%%VALUE(task_id)%%>',
 						Operation: 'show-children'
 					},
-					'task_setting_table-children'
+					'task_allocation_table-children'
 				);
 			}
 
@@ -218,7 +227,7 @@
 							localStorage.removeItem(pt + '_last_added_id');
 							AppGini.lookupText({
 								id: new_id,
-								table: 'task_setting_table',
+								table: 'task_allocation_table',
 								field: field_id,
 								callback: function(data) {
 									$j('#' + field_id + '-container').select2('data', data, true);
@@ -278,21 +287,21 @@
 				}
 			});
 
-			task_setting_tableUniqueFields.forEach(fieldName => enforce_uniqueness('task_setting_table', fieldName));
+			task_allocation_tableUniqueFields.forEach(fieldName => enforce_uniqueness('task_allocation_table', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
 				$j('body').append('<div id="admin-tools-appendix"></div>');
 				$j('#admin-tools-appendix').load(
-					'ajax_admin_tools.php?table=task_setting_table&id=<%%URLVALUE(task_id)%%>',
+					'ajax_admin_tools.php?table=task_allocation_table&id=<%%URLVALUE(task_id)%%>',
 					function(resp) {
 						if(!resp.length) return;
-						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=task_setting_table&id=<%%URLVALUE(task_id)%%>');
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=task_allocation_table&id=<%%URLVALUE(task_id)%%>');
 					}
 				);
 			}
 		});
 
-		var task_setting_tableUniqueFields = [
+		var task_allocation_tableUniqueFields = [
 		];
 	</script>

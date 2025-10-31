@@ -8,7 +8,7 @@
 
 	header('Content-type: text/javascript; charset=' . datalist_db_encoding);
 
-	$table_perms = getTablePermissions('subtask_setting_table');
+	$table_perms = getTablePermissions('task_allocation_table');
 	if(!$table_perms['access']) die('// Access denied!');
 
 	$mfk = Request::val('mfk');

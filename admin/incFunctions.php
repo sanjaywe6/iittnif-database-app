@@ -102,7 +102,7 @@
 		$tg = [
 			'Approvals &amp; Sanctions',
 			'Facilities Apps',
-			'Events / Meetings / Goals Apps',
+			'Event / Meeting / Goal /Tasks Apps',
 			'HRD Apps',
 			'SDP Apps',
 			'Program Apps',
@@ -293,15 +293,15 @@
 					'group' => $tg[2],
 					'homepageShowCount' => 0
 				],
-				'task_setting_table' => [
-					'Caption' => 'Task setting - App',
+				'task_allocation_table' => [
+					'Caption' => 'Task Allocation - App',
 					'Description' => '<a href="https://lookerstudio.google.com/reporting/52ec0149-4f45-4041-92b6-afc26208458e"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Task Setting App Report</b></button></a>',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[2],
 					'homepageShowCount' => 1
 				],
-				'subtask_setting_table' => [
-					'Caption' => 'Subtask setting - App',
+				'task_progress_status_table' => [
+					'Caption' => 'Task Progress Status - App',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[2],
@@ -756,20 +756,20 @@
 			'gym_table' => ['Gym - App', '', 'table.gif', 'Facilities Apps'],
 			'coffee_table' => ['Coffee - App', '', 'table.gif', 'Facilities Apps'],
 			'cafeteria_table' => ['Cafeteria - App', '', 'table.gif', 'Facilities Apps'],
-			'event_table' => ['Event - App', '<a href="https://lookerstudio.google.com/reporting/7a6332d1-62b0-4602-baf9-7da8e4033e98"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Event App Report</b></button></a>', 'table.gif', 'Events / Meetings / Goals Apps'],
-			'outcomes_expected_table' => ['Outcomes Expected Table', '', 'table.gif', 'Events / Meetings / Goals Apps'],
-			'event_decision_table' => ['Decision - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
-			'meetings_table' => ['Meetings - App', '<a href="https://lookerstudio.google.com/reporting/b7bf99ff-cb80-42d5-8c5e-9256eb638f3a"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Meetings App Report</b></button></a>', 'table.gif', 'Events / Meetings / Goals Apps'],
-			'agenda_table' => ['Agenda - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
-			'decision_table' => ['Decision - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
-			'participants_table' => ['Participants / Speaker / VIP List - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
-			'action_actor' => ['Action actor', '', 'table.gif', 'Events / Meetings / Goals Apps'],
-			'visiting_card_table' => ['Visiting card - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
-			'mou_details_table' => ['MoU Details - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
-			'goal_setting_table' => ['Goal setting - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
-			'goal_progress_table' => ['Goal progress table', '', 'table.gif', 'Events / Meetings / Goals Apps'],
-			'task_setting_table' => ['Task setting - App', '<a href="https://lookerstudio.google.com/reporting/52ec0149-4f45-4041-92b6-afc26208458e"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Task Setting App Report</b></button></a>', 'table.gif', 'Events / Meetings / Goals Apps'],
-			'subtask_setting_table' => ['Subtask setting - App', '', 'table.gif', 'Events / Meetings / Goals Apps'],
+			'event_table' => ['Event - App', '<a href="https://lookerstudio.google.com/reporting/7a6332d1-62b0-4602-baf9-7da8e4033e98"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Event App Report</b></button></a>', 'table.gif', 'Event / Meeting / Goal /Tasks Apps'],
+			'outcomes_expected_table' => ['Outcomes Expected Table', '', 'table.gif', 'Event / Meeting / Goal /Tasks Apps'],
+			'event_decision_table' => ['Decision - App', '', 'table.gif', 'Event / Meeting / Goal /Tasks Apps'],
+			'meetings_table' => ['Meetings - App', '<a href="https://lookerstudio.google.com/reporting/b7bf99ff-cb80-42d5-8c5e-9256eb638f3a"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Meetings App Report</b></button></a>', 'table.gif', 'Event / Meeting / Goal /Tasks Apps'],
+			'agenda_table' => ['Agenda - App', '', 'table.gif', 'Event / Meeting / Goal /Tasks Apps'],
+			'decision_table' => ['Decision - App', '', 'table.gif', 'Event / Meeting / Goal /Tasks Apps'],
+			'participants_table' => ['Participants / Speaker / VIP List - App', '', 'table.gif', 'Event / Meeting / Goal /Tasks Apps'],
+			'action_actor' => ['Action actor', '', 'table.gif', 'Event / Meeting / Goal /Tasks Apps'],
+			'visiting_card_table' => ['Visiting card - App', '', 'table.gif', 'Event / Meeting / Goal /Tasks Apps'],
+			'mou_details_table' => ['MoU Details - App', '', 'table.gif', 'Event / Meeting / Goal /Tasks Apps'],
+			'goal_setting_table' => ['Goal setting - App', '', 'table.gif', 'Event / Meeting / Goal /Tasks Apps'],
+			'goal_progress_table' => ['Goal progress table', '', 'table.gif', 'Event / Meeting / Goal /Tasks Apps'],
+			'task_allocation_table' => ['Task Allocation - App', '<a href="https://lookerstudio.google.com/reporting/52ec0149-4f45-4041-92b6-afc26208458e"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Task Setting App Report</b></button></a>', 'table.gif', 'Event / Meeting / Goal /Tasks Apps'],
+			'task_progress_status_table' => ['Task Progress Status - App', '', 'table.gif', 'Event / Meeting / Goal /Tasks Apps'],
 			'internship_fellowship_details_app' => ['Internship/Fellowship details - App', 'HRD', 'table.gif', 'HRD Apps'],
 			'star_pnt' => ['Star-PNT - APP', 'HRD', 'table.gif', 'HRD Apps'],
 			'hrd_sdp_events_table' => ['HRD & SDP Events - App', 'HRD & SDP', 'table.gif', 'HRD Apps'],
@@ -4192,18 +4192,11 @@
 						],
 					],
 				],
-				'task_setting_table' => [
+				'task_allocation_table' => [
 					'task_id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
-							'description' => '',
-						],
-					],
-					'task_status' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Task status',
 							'description' => '',
 						],
 					],
@@ -4214,17 +4207,24 @@
 							'description' => '',
 						],
 					],
-					'task_duration' => [
+					'task_status' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Task duration',
+							'caption' => 'Task status',
+							'description' => '',
+						],
+					],
+					'task_duration' => [
+						'appgini' => "INT NULL",
+						'info' => [
+							'caption' => 'Task Duration (Number of Days)',
 							'description' => '',
 						],
 					],
 					'task_set_date' => [
 						'appgini' => "DATE NULL",
 						'info' => [
-							'caption' => 'Task set date',
+							'caption' => 'Task Assigned Date',
 							'description' => '',
 						],
 					],
@@ -4239,13 +4239,6 @@
 						'appgini' => "INT UNSIGNED NULL",
 						'info' => [
 							'caption' => 'Assigned to',
-							'description' => '',
-						],
-					],
-					'task_setting_str' => [
-						'appgini' => "TEXT NULL",
-						'info' => [
-							'caption' => 'Task setting str',
 							'description' => '',
 						],
 					],
@@ -4292,8 +4285,8 @@
 						],
 					],
 				],
-				'subtask_setting_table' => [
-					'subtask_id' => [
+				'task_progress_status_table' => [
+					'id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
@@ -4307,52 +4300,17 @@
 							'description' => '',
 						],
 					],
-					'subtask_status' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Subtask status',
-							'description' => '',
-						],
-					],
-					'subtask_description' => [
+					'progress_description' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
-							'caption' => 'Subtask description',
+							'caption' => 'Progress Description',
 							'description' => '',
 						],
 					],
-					'subtask_duration' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Subtask duration',
-							'description' => '',
-						],
-					],
-					'subtask_set_date' => [
+					'progree_entry_date' => [
 						'appgini' => "DATE NULL",
 						'info' => [
-							'caption' => 'Subtask set date',
-							'description' => '',
-						],
-					],
-					'supervisor_name' => [
-						'appgini' => "INT UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Supervisor name',
-							'description' => '',
-						],
-					],
-					'assigned_to' => [
-						'appgini' => "INT UNSIGNED NULL",
-						'info' => [
-							'caption' => 'Assigned to',
-							'description' => '',
-						],
-					],
-					'subtask_setting_str' => [
-						'appgini' => "TEXT NULL",
-						'info' => [
-							'caption' => 'Subtask setting str',
+							'caption' => 'Progree Entry Date & Time',
 							'description' => '',
 						],
 					],
@@ -13255,12 +13213,11 @@
 				'goal_setting_table' => ['goal_lookup'],
 				'user_table' => ['remarks_by'],
 			],
-			'task_setting_table' => [
+			'task_allocation_table' => [
 				'user_table' => ['assigned_to', 'supervisor_name'],
 			],
-			'subtask_setting_table' => [
-				'task_setting_table' => ['task_lookup'],
-				'user_table' => ['assigned_to', 'supervisor_name'],
+			'task_progress_status_table' => [
+				'task_allocation_table' => ['task_lookup'],
 			],
 			'star_pnt' => [
 				'internship_fellowship_details_app' => ['iittnif_id'],
@@ -14104,7 +14061,7 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
-			'task_setting_table' => [
+			'task_allocation_table' => [
 				'created_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -14134,7 +14091,7 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
-			'subtask_setting_table' => [
+			'task_progress_status_table' => [
 				'created_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -16154,14 +16111,12 @@
 				'goal_lookup' => 'SELECT `goal_setting_table`.`goal_id`, IF(CHAR_LENGTH(`goal_setting_table`.`goal_description`) || CHAR_LENGTH(`goal_setting_table`.`goal_duration`), CONCAT_WS(\'\', `goal_setting_table`.`goal_description`, \'::\', `goal_setting_table`.`goal_duration`), \'\') FROM `goal_setting_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`goal_setting_table`.`supervisor_name` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`goal_setting_table`.`assigned_to` ORDER BY 2',
 				'remarks_by' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
-			'task_setting_table' => [
+			'task_allocation_table' => [
 				'supervisor_name' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 				'assigned_to' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
-			'subtask_setting_table' => [
-				'task_lookup' => 'SELECT `task_setting_table`.`task_id`, IF(CHAR_LENGTH(`task_setting_table`.`task_description`) || CHAR_LENGTH(`task_setting_table`.`assigned_to`), CONCAT_WS(\'\', `task_setting_table`.`task_description`, \'::\', IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS(\'\',   `user_table2`.`memberID`, \'::\', `user_table2`.`name`), \'\')), \'\') FROM `task_setting_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`task_setting_table`.`supervisor_name` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`task_setting_table`.`assigned_to` ORDER BY 2',
-				'supervisor_name' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
-				'assigned_to' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+			'task_progress_status_table' => [
+				'task_lookup' => 'SELECT `task_allocation_table`.`task_id`, IF(CHAR_LENGTH(`task_allocation_table`.`task_description`) || CHAR_LENGTH(`task_allocation_table`.`assigned_to`), CONCAT_WS(\'\', `task_allocation_table`.`task_description`, \'::\', IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS(\'\',   `user_table2`.`memberID`, \'::\', `user_table2`.`name`), \'\')), \'\') FROM `task_allocation_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`task_allocation_table`.`supervisor_name` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`task_allocation_table`.`assigned_to` ORDER BY 2',
 			],
 			'internship_fellowship_details_app' => [
 			],

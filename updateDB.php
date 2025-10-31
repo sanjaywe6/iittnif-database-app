@@ -76,11 +76,13 @@
 		setupTable('goal_progress_table', []);
 		setupIndexes('goal_progress_table', ['goal_lookup','remarks_by',]);
 
-		setupTable('task_setting_table', []);
-		setupIndexes('task_setting_table', ['supervisor_name','assigned_to',]);
+		setupTable('task_allocation_table', []);
+		setupIndexes('task_allocation_table', ['supervisor_name','assigned_to',]);
 
-		setupTable('subtask_setting_table', []);
-		setupIndexes('subtask_setting_table', ['task_lookup','supervisor_name','assigned_to',]);
+		setupTable('task_progress_status_table', [
+				"ALTER TABLE `task_progress_status_table` DROP `subtask_setting_str`",
+			]);
+		setupIndexes('task_progress_status_table', ['task_lookup',]);
 
 		setupTable('internship_fellowship_details_app', []);
 
@@ -136,19 +138,11 @@
 
 		setupTable('beyond_working_hours_table', []);
 
-		setupTable('leave_table', [
-				"ALTER TABLE `leave_table` ADD `upload_img` VARCHAR(255) NULL ",
-				"ALTER TABLE `leave_table` ADD `upload_pdf` VARCHAR(255) NULL ",
-			]);
+		setupTable('leave_table', []);
 
 		setupTable('half_day_leave_table', []);
 
-		setupTable('work_from_home_table', [
-				"ALTER TABLE work_from_home_table ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `work_from_home_table` CHANGE `field1` `upload_img` VARCHAR(255) NULL ",
-				"ALTER TABLE work_from_home_table ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `work_from_home_table` CHANGE `field1` `upload_pdf` VARCHAR(255) NULL ",
-			]);
+		setupTable('work_from_home_table', []);
 
 		setupTable('work_from_home_tasks_app', []);
 		setupIndexes('work_from_home_tasks_app', ['work_from_home_details',]);

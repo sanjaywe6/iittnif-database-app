@@ -4,11 +4,10 @@
 ?>
 <script>
 	$j(function() {
-		var tn = 'subtask_setting_table';
+		var tn = 'task_allocation_table';
 
 		/* data for selected record, or defaults if none is selected */
 		var data = {
-			task_lookup: <?php echo json_encode(['id' => $rdata['task_lookup'], 'value' => $rdata['task_lookup'], 'text' => $jdata['task_lookup']]); ?>,
 			supervisor_name: <?php echo json_encode(['id' => $rdata['supervisor_name'], 'value' => $rdata['supervisor_name'], 'text' => $jdata['supervisor_name']]); ?>,
 			assigned_to: <?php echo json_encode(['id' => $rdata['assigned_to'], 'value' => $rdata['assigned_to'], 'text' => $jdata['assigned_to']]); ?>
 		};
@@ -17,14 +16,6 @@
 		AppGini.cache = AppGini.cache || {};
 		AppGini.cache[tn] = AppGini.cache[tn] || AppGini.ajaxCache();
 		var cache = AppGini.cache[tn];
-
-		/* saved value for task_lookup */
-		cache.addCheck(function(u, d) {
-			if(u != 'ajax_combo.php') return false;
-			if(d.t == tn && d.f == 'task_lookup' && d.id == data.task_lookup.id)
-				return { results: [ data.task_lookup ], more: false, elapsed: 0.01 };
-			return false;
-		});
 
 		/* saved value for supervisor_name */
 		cache.addCheck(function(u, d) {

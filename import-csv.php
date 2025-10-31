@@ -155,18 +155,16 @@
 
 			return $data;
 		},
-		'task_setting_table' => function($data, $options = []) {
+		'task_allocation_table' => function($data, $options = []) {
 			if(isset($data['task_set_date'])) $data['task_set_date'] = guessMySQLDateTime($data['task_set_date']);
-			if(isset($data['supervisor_name'])) $data['supervisor_name'] = pkGivenLookupText($data['supervisor_name'], 'task_setting_table', 'supervisor_name');
-			if(isset($data['assigned_to'])) $data['assigned_to'] = pkGivenLookupText($data['assigned_to'], 'task_setting_table', 'assigned_to');
+			if(isset($data['supervisor_name'])) $data['supervisor_name'] = pkGivenLookupText($data['supervisor_name'], 'task_allocation_table', 'supervisor_name');
+			if(isset($data['assigned_to'])) $data['assigned_to'] = pkGivenLookupText($data['assigned_to'], 'task_allocation_table', 'assigned_to');
 
 			return $data;
 		},
-		'subtask_setting_table' => function($data, $options = []) {
-			if(isset($data['task_lookup'])) $data['task_lookup'] = pkGivenLookupText($data['task_lookup'], 'subtask_setting_table', 'task_lookup');
-			if(isset($data['subtask_set_date'])) $data['subtask_set_date'] = guessMySQLDateTime($data['subtask_set_date']);
-			if(isset($data['supervisor_name'])) $data['supervisor_name'] = pkGivenLookupText($data['supervisor_name'], 'subtask_setting_table', 'supervisor_name');
-			if(isset($data['assigned_to'])) $data['assigned_to'] = pkGivenLookupText($data['assigned_to'], 'subtask_setting_table', 'assigned_to');
+		'task_progress_status_table' => function($data, $options = []) {
+			if(isset($data['task_lookup'])) $data['task_lookup'] = pkGivenLookupText($data['task_lookup'], 'task_progress_status_table', 'task_lookup');
+			if(isset($data['progree_entry_date'])) $data['progree_entry_date'] = guessMySQLDateTime($data['progree_entry_date']);
 
 			return $data;
 		},
@@ -552,8 +550,8 @@
 		'mou_details_table' => function($data, $options = []) { return true; },
 		'goal_setting_table' => function($data, $options = []) { return true; },
 		'goal_progress_table' => function($data, $options = []) { return true; },
-		'task_setting_table' => function($data, $options = []) { return true; },
-		'subtask_setting_table' => function($data, $options = []) { return true; },
+		'task_allocation_table' => function($data, $options = []) { return true; },
+		'task_progress_status_table' => function($data, $options = []) { return true; },
 		'internship_fellowship_details_app' => function($data, $options = []) { return true; },
 		'star_pnt' => function($data, $options = []) { return true; },
 		'hrd_sdp_events_table' => function($data, $options = []) { return true; },

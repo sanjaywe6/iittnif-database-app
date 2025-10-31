@@ -662,13 +662,13 @@ function goal_progress_table_validateData(insertMode) {
 
 	return !errors;
 }
-function task_setting_table_validateData(insertMode) {
+function task_allocation_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
 
 	return !errors;
 }
-function subtask_setting_table_validateData(insertMode) {
+function task_progress_status_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
 

@@ -35,8 +35,8 @@
 				<div class="form-group task_progress_status_table-progress_description">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="progress_description">Progress Description</label>
-					<div class="col-lg-9">
-						<textarea maxlength="65500" class="form-control" name="progress_description" id="progress_description" rows=" 5"><%%VALUE(progress_description)%%></textarea>
+					<div class="col-lg-9 has-nicedit">
+						<%%HTMLAREA(progress_description)%%>
 					</div>
 				</div>
 
@@ -77,13 +77,40 @@
 				setTimeout(AppGini.closeParentModal, 2000);
 			}
 
+			AppGini.once({
+				condition: function() { return bkLib != undefined; },
+				action: function() {
+					if($j('textarea#progress_description').length) new nicEditor({ fullPanel : true }).panelInstance('progress_description');
+				}
+			});
 
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-			$j('#task_progress_status_table_dv_container-loading').addClass('hidden');
-			$j('#task_progress_status_table_dv_container').removeClass('hidden');
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('task_progress_status_table', 'progress_description');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
+				AppGini.once({
+					condition: function() {
+						return $j('.form-group.task_progress_status_table-progress_description')
+									.find('.nicEdit-main, .select2-container, input[type=radio]')
+									.length > 0
+								// or read-only DV
+								|| (!$j('#update').length && !$j('#insert').length);
+					},
+					action: function() {
+						$j('#task_progress_status_table_dv_container-loading').addClass('hidden');
+						$j('#task_progress_status_table_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('task_progress_status_table', 'progress_description');
+					},
+					timeout:  5000,
+					doActionOnTimeout:  true
+				});
+			} else {
+				$j('#task_progress_status_table_dv_container-loading').addClass('hidden');
+				$j('#task_progress_status_table_dv_container').removeClass('hidden');
+			}
+
+			// try to detect rich text changes by adding 'input' handler after nicedit is loaded ...
+			AppGini.detectContentEditableChanges();
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 

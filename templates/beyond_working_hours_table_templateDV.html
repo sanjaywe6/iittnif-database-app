@@ -19,6 +19,15 @@
 		<div class="col-md-8 col-lg-10" id="beyond_working_hours_table_dv_form">
 			<fieldset class="form-horizontal">
 
+				<!-- Field: Approval From -->
+				<div class="form-group beyond_working_hours_table-approval_from">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="approval_from">Approval From</label>
+					<div class="col-lg-9">
+						<%%COMBO(approval_from)%%>
+					</div>
+				</div>
+
 				<!-- Field: Days Remark (Mention Day Names like SUN,MON,TUE,WED,THU,FRI,SAT) & Name of Holiday as in TIH Calendar -->
 				<div class="form-group beyond_working_hours_table-days_remark">
 					<hr class="hidden-md hidden-lg">
@@ -153,7 +162,7 @@
 			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
 				AppGini.once({
 					condition: function() {
-						return $j('.form-group.beyond_working_hours_table-days_remark')
+						return $j('.form-group.beyond_working_hours_table-approval_from')
 									.find('.nicEdit-main, .select2-container, input[type=radio]')
 									.length > 0
 								// or read-only DV
@@ -162,7 +171,7 @@
 					action: function() {
 						$j('#beyond_working_hours_table_dv_container-loading').addClass('hidden');
 						$j('#beyond_working_hours_table_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('beyond_working_hours_table', 'days_remark');
+						AppGini.focusFormElement('beyond_working_hours_table', 'approval_from');
 					},
 					timeout:  5000,
 					doActionOnTimeout:  true

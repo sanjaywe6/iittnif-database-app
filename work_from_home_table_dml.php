@@ -16,6 +16,7 @@ function work_from_home_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'approval_from' => Request::val('approval_from', 'CEO'),
 		'work_from_home_purpose' => Request::val('work_from_home_purpose', ''),
 		'from_date' => Request::dateComponents('from_date', '1'),
 		'to_date' => Request::dateComponents('to_date', '1'),
@@ -157,6 +158,7 @@ function work_from_home_table_update(&$selected_id, &$error_message = '') {
 	if(!check_record_permission('work_from_home_table', $selected_id, 'edit')) return false;
 
 	$data = [
+		'approval_from' => Request::val('approval_from', ''),
 		'work_from_home_purpose' => Request::val('work_from_home_purpose', ''),
 		'from_date' => Request::dateComponents('from_date', ''),
 		'to_date' => Request::dateComponents('to_date', ''),
@@ -322,6 +324,21 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 
 	// unique random identifier
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
+	// combobox: approval_from
+	$combo_approval_from = new Combo;
+	$combo_approval_from->ListType = 0;
+	$combo_approval_from->MultipleSeparator = ', ';
+	$combo_approval_from->ListBoxHeight = 10;
+	$combo_approval_from->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/work_from_home_table.approval_from.csv')) {
+		$approval_from_data = addslashes(implode('', @file(__DIR__ . '/hooks/work_from_home_table.approval_from.csv')));
+		$combo_approval_from->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($approval_from_data))));
+		$combo_approval_from->ListData = $combo_approval_from->ListItem;
+	} else {
+		$combo_approval_from->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("CEO;;PD"))));
+		$combo_approval_from->ListData = $combo_approval_from->ListItem;
+	}
+	$combo_approval_from->SelectName = 'approval_from';
 	// combobox: from_date
 	$combo_from_date = new DateCombo;
 	$combo_from_date->DateFormat = "dmy";
@@ -358,6 +375,7 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 		if(!($row = getRecord('work_from_home_table', $selectedId))) {
 			return error_message($Translation['No records found'], 'work_from_home_table_view.php', false);
 		}
+		$combo_approval_from->SelectedData = $row['approval_from'];
 		$combo_from_date->DefaultDate = $row['from_date'];
 		$combo_to_date->DefaultDate = $row['to_date'];
 		$combo_approval_status->SelectedData = $row['approval_status'];
@@ -367,8 +385,10 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
+		$combo_approval_from->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('CEO'));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '6' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 	}
+	$combo_approval_from->Render();
 	$combo_approval_status->Render();
 
 	ob_start();
@@ -466,6 +486,7 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
+		$jsReadOnly .= "\t\$j('#approval_from').replaceWith('<div class=\"form-control-static\" id=\"approval_from\">' + (\$j('#approval_from').val() || '') + '</div>'); \$j('#approval_from-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#from_date').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#from_dateDay, #from_dateMonth, #from_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#to_date').prop('readonly', true);\n";
@@ -483,6 +504,8 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 	}
 
 	// process combos
+	$templateCode = str_replace('<%%COMBO(approval_from)%%>', $combo_approval_from->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(approval_from)%%>', $combo_approval_from->SelectedData, $templateCode);
 	$templateCode = str_replace(
 		'<%%COMBO(from_date)%%>',
 		(!$fieldsAreEditable ?
@@ -518,6 +541,7 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approval_from)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(work_from_home_purpose)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(from_date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(to_date)%%>', '', $templateCode);
@@ -535,6 +559,9 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_from)%%>', safe_html($urow['approval_from']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_from)%%>', html_attr($row['approval_from']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_from)%%>', urlencode($urow['approval_from']), $templateCode);
 		if($fieldsAreEditable) {
 			$templateCode = str_replace('<%%HTMLAREA(work_from_home_purpose)%%>', '<textarea maxlength="65500" name="work_from_home_purpose" id="work_from_home_purpose" rows="5">' . safe_html(htmlspecialchars_decode($row['work_from_home_purpose'])) . '</textarea>', $templateCode);
 		} else {
@@ -570,6 +597,8 @@ function work_from_home_table_form($selectedId = '', $allowUpdate = true, $allow
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_from)%%>', 'CEO', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_from)%%>', urlencode('CEO'), $templateCode);
 		$templateCode = str_replace('<%%HTMLAREA(work_from_home_purpose)%%>', '<textarea maxlength="65500" name="work_from_home_purpose" id="work_from_home_purpose" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(from_date)%%>', '1', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(from_date)%%>', urlencode('1'), $templateCode);

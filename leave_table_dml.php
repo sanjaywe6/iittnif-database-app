@@ -16,6 +16,8 @@ function leave_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'approval_from' => Request::val('approval_from', 'CEO'),
+		'type' => Request::val('type', ''),
 		'leave_type' => Request::val('leave_type', 'Casual Leave'),
 		'purpose_of_leave' => Request::val('purpose_of_leave', ''),
 		'from_date' => Request::dateComponents('from_date', ''),
@@ -139,6 +141,8 @@ function leave_table_update(&$selected_id, &$error_message = '') {
 	if(!check_record_permission('leave_table', $selected_id, 'edit')) return false;
 
 	$data = [
+		'approval_from' => Request::val('approval_from', ''),
+		'type' => Request::val('type', ''),
 		'leave_type' => Request::val('leave_type', ''),
 		'purpose_of_leave' => Request::val('purpose_of_leave', ''),
 		'from_date' => Request::dateComponents('from_date', ''),
@@ -301,6 +305,36 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 
 	// unique random identifier
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
+	// combobox: approval_from
+	$combo_approval_from = new Combo;
+	$combo_approval_from->ListType = 0;
+	$combo_approval_from->MultipleSeparator = ', ';
+	$combo_approval_from->ListBoxHeight = 10;
+	$combo_approval_from->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/leave_table.approval_from.csv')) {
+		$approval_from_data = addslashes(implode('', @file(__DIR__ . '/hooks/leave_table.approval_from.csv')));
+		$combo_approval_from->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($approval_from_data))));
+		$combo_approval_from->ListData = $combo_approval_from->ListItem;
+	} else {
+		$combo_approval_from->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("CEO;;PD"))));
+		$combo_approval_from->ListData = $combo_approval_from->ListItem;
+	}
+	$combo_approval_from->SelectName = 'approval_from';
+	// combobox: type
+	$combo_type = new Combo;
+	$combo_type->ListType = 2;
+	$combo_type->MultipleSeparator = ', ';
+	$combo_type->ListBoxHeight = 10;
+	$combo_type->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/leave_table.type.csv')) {
+		$type_data = addslashes(implode('', @file(__DIR__ . '/hooks/leave_table.type.csv')));
+		$combo_type->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($type_data))));
+		$combo_type->ListData = $combo_type->ListItem;
+	} else {
+		$combo_type->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("On Duty"))));
+		$combo_type->ListData = $combo_type->ListItem;
+	}
+	$combo_type->SelectName = 'type';
 	// combobox: leave_type
 	$combo_leave_type = new Combo;
 	$combo_leave_type->ListType = 0;
@@ -352,6 +386,8 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 		if(!($row = getRecord('leave_table', $selectedId))) {
 			return error_message($Translation['No records found'], 'leave_table_view.php', false);
 		}
+		$combo_approval_from->SelectedData = $row['approval_from'];
+		$combo_type->SelectedData = $row['type'];
 		$combo_leave_type->SelectedData = $row['leave_type'];
 		$combo_from_date->DefaultDate = $row['from_date'];
 		$combo_to_date->DefaultDate = $row['to_date'];
@@ -362,9 +398,13 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_leave_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Casual Leave'));
-		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '8' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
+		$combo_approval_from->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('CEO'));
+		$combo_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_leave_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Casual Leave'));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '10' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 	}
+	$combo_approval_from->Render();
+	$combo_type->Render();
 	$combo_leave_type->Render();
 	$combo_approval_status->Render();
 
@@ -463,6 +503,8 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
+		$jsReadOnly .= "\t\$j('#approval_from').replaceWith('<div class=\"form-control-static\" id=\"approval_from\">' + (\$j('#approval_from').val() || '') + '</div>'); \$j('#approval_from-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('input[name=type]').parent().html('<div class=\"form-control-static\">' + \$j('input[name=type]:checked').next().text() + '</div>')\n";
 		$jsReadOnly .= "\t\$j('#leave_type').replaceWith('<div class=\"form-control-static\" id=\"leave_type\">' + (\$j('#leave_type').val() || '') + '</div>'); \$j('#leave_type-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#from_date').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#from_dateDay, #from_dateMonth, #from_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
@@ -482,6 +524,10 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	}
 
 	// process combos
+	$templateCode = str_replace('<%%COMBO(approval_from)%%>', $combo_approval_from->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(approval_from)%%>', $combo_approval_from->SelectedData, $templateCode);
+	$templateCode = str_replace('<%%COMBO(type)%%>', $combo_type->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(type)%%>', $combo_type->SelectedData, $templateCode);
 	$templateCode = str_replace('<%%COMBO(leave_type)%%>', $combo_leave_type->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(leave_type)%%>', $combo_leave_type->SelectedData, $templateCode);
 	$templateCode = str_replace(
@@ -519,6 +565,8 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approval_from)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(type)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(leave_type)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(purpose_of_leave)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(from_date)%%>', '', $templateCode);
@@ -538,6 +586,12 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_from)%%>', safe_html($urow['approval_from']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_from)%%>', html_attr($row['approval_from']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_from)%%>', urlencode($urow['approval_from']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(type)%%>', safe_html($urow['type']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(type)%%>', html_attr($row['type']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(type)%%>', urlencode($urow['type']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(leave_type)%%>', safe_html($urow['leave_type']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(leave_type)%%>', html_attr($row['leave_type']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(leave_type)%%>', urlencode($urow['leave_type']), $templateCode);
@@ -578,6 +632,10 @@ function leave_table_form($selectedId = '', $allowUpdate = true, $allowInsert = 
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_from)%%>', 'CEO', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_from)%%>', urlencode('CEO'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(type)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(type)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(leave_type)%%>', 'Casual Leave', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(leave_type)%%>', urlencode('Casual Leave'), $templateCode);
 		$templateCode = str_replace('<%%HTMLAREA(purpose_of_leave)%%>', '<textarea maxlength="65500" name="purpose_of_leave" id="purpose_of_leave" rows="5"></textarea>', $templateCode);

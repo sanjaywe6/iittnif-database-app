@@ -19,6 +19,8 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`leave_table`.`id`" => "id",
+		"`leave_table`.`approval_from`" => "approval_from",
+		"`leave_table`.`type`" => "type",
 		"`leave_table`.`leave_type`" => "leave_type",
 		"`leave_table`.`purpose_of_leave`" => "purpose_of_leave",
 		"if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
@@ -39,10 +41,10 @@
 		1 => '`leave_table`.`id`',
 		2 => 2,
 		3 => 3,
-		4 => '`leave_table`.`from_date`',
-		5 => '`leave_table`.`to_date`',
-		6 => 6,
-		7 => 7,
+		4 => 4,
+		5 => 5,
+		6 => '`leave_table`.`from_date`',
+		7 => '`leave_table`.`to_date`',
 		8 => 8,
 		9 => 9,
 		10 => 10,
@@ -51,11 +53,15 @@
 		13 => 13,
 		14 => 14,
 		15 => 15,
+		16 => 16,
+		17 => 17,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`leave_table`.`id`" => "id",
+		"`leave_table`.`approval_from`" => "approval_from",
+		"`leave_table`.`type`" => "type",
 		"`leave_table`.`leave_type`" => "leave_type",
 		"`leave_table`.`purpose_of_leave`" => "purpose_of_leave",
 		"if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
@@ -74,6 +80,8 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`leave_table`.`id`" => "ID",
+		"`leave_table`.`approval_from`" => "Approval From",
+		"`leave_table`.`type`" => "Type",
 		"`leave_table`.`leave_type`" => "Leave type",
 		"`leave_table`.`purpose_of_leave`" => "Purpose of leave",
 		"`leave_table`.`from_date`" => "From Date",
@@ -92,6 +100,8 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`leave_table`.`id`" => "id",
+		"`leave_table`.`approval_from`" => "approval_from",
+		"`leave_table`.`type`" => "type",
 		"`leave_table`.`leave_type`" => "leave_type",
 		"`leave_table`.`purpose_of_leave`" => "purpose_of_leave",
 		"if(`leave_table`.`from_date`,date_format(`leave_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
@@ -140,10 +150,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Leave type', 'Purpose of leave', 'From Date', 'To Date & Time', 'Supporting Document (Image)', 'Supporting Document (PDF)', 'Approval status', 'Approval remarks', 'Created by Username', 'Created at', 'Last Updated By Username', 'Last updated at', ];
-	$x->ColFieldName = ['id', 'leave_type', 'purpose_of_leave', 'from_date', 'to_date', 'upload_img', 'upload_pdf', 'approval_status', 'approval_remarks', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 15, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Approval From', 'Type', 'Leave type', 'Purpose of leave', 'From Date', 'To Date & Time', 'Supporting Document (Image)', 'Supporting Document (PDF)', 'Approval status', 'Approval remarks', 'Created by Username', 'Created at', 'Last Updated By Username', 'Last updated at', ];
+	$x->ColFieldName = ['id', 'approval_from', 'type', 'leave_type', 'purpose_of_leave', 'from_date', 'to_date', 'upload_img', 'upload_pdf', 'approval_status', 'approval_remarks', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 17, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/leave_table_templateTV.html';

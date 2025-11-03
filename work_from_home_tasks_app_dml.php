@@ -21,6 +21,7 @@ function work_from_home_tasks_app_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'approval_from' => Request::val('approval_from', 'CEO'),
 		'day' => Request::dateComponents('day', ''),
 		'hour_from' => Request::val('hour_from', ''),
 		'hour_to' => Request::val('hour_to', ''),
@@ -99,6 +100,7 @@ function work_from_home_tasks_app_update(&$selected_id, &$error_message = '') {
 	if(!check_record_permission('work_from_home_tasks_app', $selected_id, 'edit')) return false;
 
 	$data = [
+		'approval_from' => Request::val('approval_from', ''),
 		'day' => Request::dateComponents('day', ''),
 		'hour_from' => Request::val('hour_from', ''),
 		'hour_to' => Request::val('hour_to', ''),
@@ -199,6 +201,21 @@ function work_from_home_tasks_app_form($selectedId = '', $allowUpdate = true, $a
 
 	// unique random identifier
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
+	// combobox: approval_from
+	$combo_approval_from = new Combo;
+	$combo_approval_from->ListType = 0;
+	$combo_approval_from->MultipleSeparator = ', ';
+	$combo_approval_from->ListBoxHeight = 10;
+	$combo_approval_from->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/work_from_home_tasks_app.approval_from.csv')) {
+		$approval_from_data = addslashes(implode('', @file(__DIR__ . '/hooks/work_from_home_tasks_app.approval_from.csv')));
+		$combo_approval_from->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($approval_from_data))));
+		$combo_approval_from->ListData = $combo_approval_from->ListItem;
+	} else {
+		$combo_approval_from->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("CEO;;PD"))));
+		$combo_approval_from->ListData = $combo_approval_from->ListItem;
+	}
+	$combo_approval_from->SelectName = 'approval_from';
 	// combobox: work_from_home_details
 	$combo_work_from_home_details = new DataCombo;
 	// combobox: day
@@ -229,6 +246,7 @@ function work_from_home_tasks_app_form($selectedId = '', $allowUpdate = true, $a
 		if(!($row = getRecord('work_from_home_tasks_app', $selectedId))) {
 			return error_message($Translation['No records found'], 'work_from_home_tasks_app_view.php', false);
 		}
+		$combo_approval_from->SelectedData = $row['approval_from'];
 		$combo_work_from_home_details->SelectedData = $row['work_from_home_details'];
 		$combo_day->DefaultDate = $row['day'];
 		$combo_approval_status->SelectedData = $row['approval_status'];
@@ -238,9 +256,11 @@ function work_from_home_tasks_app_form($selectedId = '', $allowUpdate = true, $a
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
+		$combo_approval_from->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('CEO'));
 		$combo_work_from_home_details->SelectedData = $filterer_work_from_home_details;
-		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '7' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '8' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 	}
+	$combo_approval_from->Render();
 	$combo_work_from_home_details->HTML = '<span id="work_from_home_details-container' . $rnd1 . '"></span><input type="hidden" name="work_from_home_details" id="work_from_home_details' . $rnd1 . '" value="' . html_attr($combo_work_from_home_details->SelectedData) . '">';
 	$combo_work_from_home_details->MatchText = '<span id="work_from_home_details-container-readonly' . $rnd1 . '"></span><input type="hidden" name="work_from_home_details" id="work_from_home_details' . $rnd1 . '" value="' . html_attr($combo_work_from_home_details->SelectedData) . '">';
 	$combo_approval_status->Render();
@@ -419,6 +439,7 @@ function work_from_home_tasks_app_form($selectedId = '', $allowUpdate = true, $a
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
+		$jsReadOnly .= "\t\$j('#approval_from').replaceWith('<div class=\"form-control-static\" id=\"approval_from\">' + (\$j('#approval_from').val() || '') + '</div>'); \$j('#approval_from-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#day').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#dayDay, #dayMonth, #dayYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#hour_from').replaceWith('<div class=\"form-control-static\" id=\"hour_from\">' + (\$j('#hour_from').val() || '') + '</div>');\n";
@@ -436,6 +457,8 @@ function work_from_home_tasks_app_form($selectedId = '', $allowUpdate = true, $a
 	}
 
 	// process combos
+	$templateCode = str_replace('<%%COMBO(approval_from)%%>', $combo_approval_from->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(approval_from)%%>', $combo_approval_from->SelectedData, $templateCode);
 	$templateCode = str_replace('<%%COMBO(work_from_home_details)%%>', $combo_work_from_home_details->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(work_from_home_details)%%>', $combo_work_from_home_details->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(work_from_home_details)%%>', urlencode($combo_work_from_home_details->MatchText), $templateCode);
@@ -467,6 +490,7 @@ function work_from_home_tasks_app_form($selectedId = '', $allowUpdate = true, $a
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approval_from)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(work_from_home_details)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(day)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(hour_from)%%>', '', $templateCode);
@@ -484,6 +508,9 @@ function work_from_home_tasks_app_form($selectedId = '', $allowUpdate = true, $a
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_from)%%>', safe_html($urow['approval_from']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_from)%%>', html_attr($row['approval_from']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_from)%%>', urlencode($urow['approval_from']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(work_from_home_details)%%>', safe_html($urow['work_from_home_details']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(work_from_home_details)%%>', urlencode($urow['work_from_home_details']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(day)%%>', app_datetime($row['day']), $templateCode);
@@ -519,6 +546,8 @@ function work_from_home_tasks_app_form($selectedId = '', $allowUpdate = true, $a
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_from)%%>', 'CEO', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_from)%%>', urlencode('CEO'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(work_from_home_details)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(work_from_home_details)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(day)%%>', '', $templateCode);
@@ -582,7 +611,7 @@ function work_from_home_tasks_app_form($selectedId = '', $allowUpdate = true, $a
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
-	if(isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>')
+	if(isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>')
 		$templateCode.="\n<input type=hidden name=work_from_home_details value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery

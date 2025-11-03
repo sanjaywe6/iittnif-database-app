@@ -19,6 +19,15 @@
 		<div class="col-md-8 col-lg-10" id="work_from_home_tasks_app_dv_form">
 			<fieldset class="form-horizontal">
 
+				<!-- Field: Approval From -->
+				<div class="form-group work_from_home_tasks_app-approval_from">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="approval_from">Approval From</label>
+					<div class="col-lg-9">
+						<%%COMBO(approval_from)%%>
+					</div>
+				</div>
+
 				<!-- Field: Work From Home Details -->
 				<div class="form-group work_from_home_tasks_app-work_from_home_details">
 					<hr class="hidden-md hidden-lg">
@@ -141,9 +150,27 @@
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-			$j('#work_from_home_tasks_app_dv_container-loading').addClass('hidden');
-			$j('#work_from_home_tasks_app_dv_container').removeClass('hidden');
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('work_from_home_tasks_app', 'day');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
+				AppGini.once({
+					condition: function() {
+						return $j('.form-group.work_from_home_tasks_app-approval_from')
+									.find('.nicEdit-main, .select2-container, input[type=radio]')
+									.length > 0
+								// or read-only DV
+								|| (!$j('#update').length && !$j('#insert').length);
+					},
+					action: function() {
+						$j('#work_from_home_tasks_app_dv_container-loading').addClass('hidden');
+						$j('#work_from_home_tasks_app_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('work_from_home_tasks_app', 'approval_from');
+					},
+					timeout:  5000,
+					doActionOnTimeout:  true
+				});
+			} else {
+				$j('#work_from_home_tasks_app_dv_container-loading').addClass('hidden');
+				$j('#work_from_home_tasks_app_dv_container').removeClass('hidden');
+			}
 
 			// try to detect rich text changes by adding 'input' handler after nicedit is loaded ...
 			AppGini.detectContentEditableChanges();

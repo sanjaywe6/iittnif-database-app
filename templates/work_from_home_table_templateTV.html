@@ -1,8 +1,11 @@
-		<td colspan="13" class="row">
+		<td colspan="14" class="row">
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
 					<dt class="work_from_home_table-id-caption field-caption-tv">ID</dt>
 					<dd id="work_from_home_table-id-<%%VALUE(id)%%>" class="work_from_home_table-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></dd>
+
+					<dt class="work_from_home_table-approval_from-caption field-caption-tv">Approval From</dt>
+					<dd id="work_from_home_table-approval_from-<%%VALUE(id)%%>" class="work_from_home_table-approval_from"><%%SELECT%%><%%VALUE(approval_from)%%><%%ENDSELECT%%></dd>
 
 					<dt class="work_from_home_table-work_from_home_purpose-caption field-caption-tv">Purpose of Work From Home</dt>
 					<dd id="work_from_home_table-work_from_home_purpose-<%%VALUE(id)%%>" class="work_from_home_table-work_from_home_purpose"><%%SELECT%%><%%VALUE(work_from_home_purpose)%%><%%ENDSELECT%%></dd>
@@ -19,13 +22,13 @@
 					<dt class="work_from_home_table-upload_img-caption field-caption-tv">Supporting Document (Image)</dt>
 					<dd id="work_from_home_table-upload_img-<%%VALUE(id)%%>" class="work_from_home_table-upload_img"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(upload_img)%%>" data-lightbox="work_from_home_table-upload_img"><img src="thumbnail.php?i=<%%VALUE(upload_img)%%>&t=work_from_home_table&f=upload_img&v=tv" class="img-thumbnail"></a></dd>
 
-					<dt class="work_from_home_table-upload_pdf-caption field-caption-tv">Supporting Document (PDF)</dt>
-					<dd id="work_from_home_table-upload_pdf-<%%VALUE(id)%%>" class="work_from_home_table-upload_pdf"><a href="link.php?t=work_from_home_table&f=upload_pdf&i=<%%VALUE(id)%%>" target="_blank" title="<%%VALUE(upload_pdf)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-file text-info"></i></a></dd>
-
 				</dl>
 			</div>
 			<div class="col-md-6">
 				<dl class="dl-horizontal">
+					<dt class="work_from_home_table-upload_pdf-caption field-caption-tv">Supporting Document (PDF)</dt>
+					<dd id="work_from_home_table-upload_pdf-<%%VALUE(id)%%>" class="work_from_home_table-upload_pdf"><a href="link.php?t=work_from_home_table&f=upload_pdf&i=<%%VALUE(id)%%>" target="_blank" title="<%%VALUE(upload_pdf)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-file text-info"></i></a></dd>
+
 					<dt class="work_from_home_table-created_by-caption field-caption-tv">Created By</dt>
 					<dd id="work_from_home_table-created_by-<%%VALUE(id)%%>" class="work_from_home_table-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></dd>
 

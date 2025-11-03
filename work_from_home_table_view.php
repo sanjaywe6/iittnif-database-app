@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`work_from_home_table`.`id`" => "id",
+		"`work_from_home_table`.`approval_from`" => "approval_from",
 		"`work_from_home_table`.`work_from_home_purpose`" => "work_from_home_purpose",
 		"if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
 		"if(`work_from_home_table`.`to_date`,date_format(`work_from_home_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
@@ -36,9 +37,9 @@
 	$x->SortFields = [
 		1 => '`work_from_home_table`.`id`',
 		2 => 2,
-		3 => '`work_from_home_table`.`from_date`',
-		4 => '`work_from_home_table`.`to_date`',
-		5 => 5,
+		3 => 3,
+		4 => '`work_from_home_table`.`from_date`',
+		5 => '`work_from_home_table`.`to_date`',
 		6 => 6,
 		7 => 7,
 		8 => 8,
@@ -47,11 +48,13 @@
 		11 => 11,
 		12 => 12,
 		13 => 13,
+		14 => 14,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`work_from_home_table`.`id`" => "id",
+		"`work_from_home_table`.`approval_from`" => "approval_from",
 		"`work_from_home_table`.`work_from_home_purpose`" => "work_from_home_purpose",
 		"if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
 		"if(`work_from_home_table`.`to_date`,date_format(`work_from_home_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
@@ -68,6 +71,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`work_from_home_table`.`id`" => "ID",
+		"`work_from_home_table`.`approval_from`" => "Approval From",
 		"`work_from_home_table`.`work_from_home_purpose`" => "Purpose of Work From Home",
 		"`work_from_home_table`.`from_date`" => "From date",
 		"`work_from_home_table`.`to_date`" => "To date",
@@ -84,6 +88,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`work_from_home_table`.`id`" => "id",
+		"`work_from_home_table`.`approval_from`" => "approval_from",
 		"`work_from_home_table`.`work_from_home_purpose`" => "work_from_home_purpose",
 		"if(`work_from_home_table`.`from_date`,date_format(`work_from_home_table`.`from_date`,'%d/%m/%Y'),'')" => "from_date",
 		"if(`work_from_home_table`.`to_date`,date_format(`work_from_home_table`.`to_date`,'%d/%m/%Y'),'')" => "to_date",
@@ -130,10 +135,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Purpose of Work From Home', 'From date', 'To date', 'Approval Status', 'Supporting Document (Image)', 'Supporting Document (PDF)', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', 'Created By Username', 'Last Updated by Username', ];
-	$x->ColFieldName = ['id', 'work_from_home_purpose', 'from_date', 'to_date', 'approval_status', 'upload_img', 'upload_pdf', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', 'last_updated_by_username', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Approval From', 'Purpose of Work From Home', 'From date', 'To date', 'Approval Status', 'Supporting Document (Image)', 'Supporting Document (PDF)', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', 'Created By Username', 'Last Updated by Username', ];
+	$x->ColFieldName = ['id', 'approval_from', 'work_from_home_purpose', 'from_date', 'to_date', 'approval_status', 'upload_img', 'upload_pdf', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', 'last_updated_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/work_from_home_table_templateTV.html';

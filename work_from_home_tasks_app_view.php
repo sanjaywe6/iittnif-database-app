@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`work_from_home_tasks_app`.`id`" => "id",
+		"`work_from_home_tasks_app`.`approval_from`" => "approval_from",
 		"IF(    CHAR_LENGTH(if(`work_from_home_table1`.`from_date`,date_format(`work_from_home_table1`.`from_date`,'%d/%m/%Y'),'')) || CHAR_LENGTH(`work_from_home_table1`.`work_from_home_purpose`), CONCAT_WS('',   if(`work_from_home_table1`.`from_date`,date_format(`work_from_home_table1`.`from_date`,'%d/%m/%Y'),''), '~', `work_from_home_table1`.`work_from_home_purpose`), '') /* Work From Home Details */" => "work_from_home_details",
 		"if(`work_from_home_tasks_app`.`day`,date_format(`work_from_home_tasks_app`.`day`,'%d/%m/%Y'),'')" => "day",
 		"`work_from_home_tasks_app`.`hour_from`" => "hour_from",
@@ -36,10 +37,10 @@
 	$x->SortFields = [
 		1 => '`work_from_home_tasks_app`.`id`',
 		2 => 2,
-		3 => '`work_from_home_tasks_app`.`day`',
-		4 => '`work_from_home_tasks_app`.`hour_from`',
-		5 => '`work_from_home_tasks_app`.`hour_to`',
-		6 => 6,
+		3 => 3,
+		4 => '`work_from_home_tasks_app`.`day`',
+		5 => '`work_from_home_tasks_app`.`hour_from`',
+		6 => '`work_from_home_tasks_app`.`hour_to`',
 		7 => 7,
 		8 => 8,
 		9 => 9,
@@ -47,11 +48,13 @@
 		11 => 11,
 		12 => 12,
 		13 => 13,
+		14 => 14,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`work_from_home_tasks_app`.`id`" => "id",
+		"`work_from_home_tasks_app`.`approval_from`" => "approval_from",
 		"IF(    CHAR_LENGTH(if(`work_from_home_table1`.`from_date`,date_format(`work_from_home_table1`.`from_date`,'%d/%m/%Y'),'')) || CHAR_LENGTH(`work_from_home_table1`.`work_from_home_purpose`), CONCAT_WS('',   if(`work_from_home_table1`.`from_date`,date_format(`work_from_home_table1`.`from_date`,'%d/%m/%Y'),''), '~', `work_from_home_table1`.`work_from_home_purpose`), '') /* Work From Home Details */" => "work_from_home_details",
 		"if(`work_from_home_tasks_app`.`day`,date_format(`work_from_home_tasks_app`.`day`,'%d/%m/%Y'),'')" => "day",
 		"`work_from_home_tasks_app`.`hour_from`" => "hour_from",
@@ -68,6 +71,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`work_from_home_tasks_app`.`id`" => "ID",
+		"`work_from_home_tasks_app`.`approval_from`" => "Approval From",
 		"IF(    CHAR_LENGTH(if(`work_from_home_table1`.`from_date`,date_format(`work_from_home_table1`.`from_date`,'%d/%m/%Y'),'')) || CHAR_LENGTH(`work_from_home_table1`.`work_from_home_purpose`), CONCAT_WS('',   if(`work_from_home_table1`.`from_date`,date_format(`work_from_home_table1`.`from_date`,'%d/%m/%Y'),''), '~', `work_from_home_table1`.`work_from_home_purpose`), '') /* Work From Home Details */" => "Work From Home Details",
 		"`work_from_home_tasks_app`.`day`" => "Day",
 		"`work_from_home_tasks_app`.`hour_from`" => "Hour From",
@@ -85,6 +89,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`work_from_home_tasks_app`.`id`" => "id",
+		"`work_from_home_tasks_app`.`approval_from`" => "approval_from",
 		"IF(    CHAR_LENGTH(if(`work_from_home_table1`.`from_date`,date_format(`work_from_home_table1`.`from_date`,'%d/%m/%Y'),'')) || CHAR_LENGTH(`work_from_home_table1`.`work_from_home_purpose`), CONCAT_WS('',   if(`work_from_home_table1`.`from_date`,date_format(`work_from_home_table1`.`from_date`,'%d/%m/%Y'),''), '~', `work_from_home_table1`.`work_from_home_purpose`), '') /* Work From Home Details */" => "work_from_home_details",
 		"if(`work_from_home_tasks_app`.`day`,date_format(`work_from_home_tasks_app`.`day`,'%d/%m/%Y'),'')" => "day",
 		"`work_from_home_tasks_app`.`hour_from`" => "hour_from",
@@ -132,10 +137,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Work From Home Details', 'Day', 'Hour From', 'Hour To', 'Activity Undertaken', 'Approval Status', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', 'Created By Username', 'Last Updated by Username', ];
-	$x->ColFieldName = ['id', 'work_from_home_details', 'day', 'hour_from', 'hour_to', 'activity_undertaken', 'approval_status', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', 'last_updated_by_username', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Approval From', 'Work From Home Details', 'Day', 'Hour From', 'Hour To', 'Activity Undertaken', 'Approval Status', 'Created By', 'Created At', 'Last Updated By', 'Last Updated At', 'Created By Username', 'Last Updated by Username', ];
+	$x->ColFieldName = ['id', 'approval_from', 'work_from_home_details', 'day', 'hour_from', 'hour_to', 'activity_undertaken', 'approval_status', 'created_by', 'created_at', 'last_updated_by', 'last_updated_at', 'created_by_username', 'last_updated_by_username', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/work_from_home_tasks_app_templateTV.html';

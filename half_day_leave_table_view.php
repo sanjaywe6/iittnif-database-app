@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`half_day_leave_table`.`id`" => "id",
+		"`half_day_leave_table`.`approval_from`" => "approval_from",
 		"`half_day_leave_table`.`leave_type`" => "leave_type",
 		"`half_day_leave_table`.`purpose_of_leave`" => "purpose_of_leave",
 		"if(`half_day_leave_table`.`date`,date_format(`half_day_leave_table`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -36,8 +37,8 @@
 		1 => '`half_day_leave_table`.`id`',
 		2 => 2,
 		3 => 3,
-		4 => '`half_day_leave_table`.`date`',
-		5 => 5,
+		4 => 4,
+		5 => '`half_day_leave_table`.`date`',
 		6 => 6,
 		7 => 7,
 		8 => 8,
@@ -45,11 +46,13 @@
 		10 => 10,
 		11 => 11,
 		12 => 12,
+		13 => 13,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`half_day_leave_table`.`id`" => "id",
+		"`half_day_leave_table`.`approval_from`" => "approval_from",
 		"`half_day_leave_table`.`leave_type`" => "leave_type",
 		"`half_day_leave_table`.`purpose_of_leave`" => "purpose_of_leave",
 		"if(`half_day_leave_table`.`date`,date_format(`half_day_leave_table`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -65,6 +68,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`half_day_leave_table`.`id`" => "ID",
+		"`half_day_leave_table`.`approval_from`" => "Approval From",
 		"`half_day_leave_table`.`leave_type`" => "Leave Type",
 		"`half_day_leave_table`.`purpose_of_leave`" => "Purpose of Leave",
 		"`half_day_leave_table`.`date`" => "Date",
@@ -81,6 +85,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`half_day_leave_table`.`id`" => "id",
+		"`half_day_leave_table`.`approval_from`" => "approval_from",
 		"`half_day_leave_table`.`leave_type`" => "leave_type",
 		"`half_day_leave_table`.`purpose_of_leave`" => "purpose_of_leave",
 		"if(`half_day_leave_table`.`date`,date_format(`half_day_leave_table`.`date`,'%d/%m/%Y'),'')" => "date",
@@ -127,10 +132,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['ID', 'Leave Type', 'Purpose of Leave', 'Date', 'Approval Status', 'Approval Remarks', 'Last Updated At', 'Created By Username', 'Created At', 'Last Updated by Username', 'Created by', 'Last updated by', ];
-	$x->ColFieldName = ['id', 'leave_type', 'purpose_of_leave', 'date', 'approval_status', 'approval_remarks', 'last_updated_at', 'created_by_username', 'created_at', 'last_updated_by_username', 'created_by', 'last_updated_by', ];
-	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Approval From', 'Leave Type', 'Purpose of Leave', 'Date', 'Approval Status', 'Approval Remarks', 'Last Updated At', 'Created By Username', 'Created At', 'Last Updated by Username', 'Created by', 'Last updated by', ];
+	$x->ColFieldName = ['id', 'approval_from', 'leave_type', 'purpose_of_leave', 'date', 'approval_status', 'approval_remarks', 'last_updated_at', 'created_by_username', 'created_at', 'last_updated_by_username', 'created_by', 'last_updated_by', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/half_day_leave_table_templateTV.html';

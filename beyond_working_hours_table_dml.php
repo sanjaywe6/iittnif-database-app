@@ -16,6 +16,7 @@ function beyond_working_hours_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'approval_from' => Request::val('approval_from', 'CEO'),
 		'days_remark' => Request::val('days_remark', ''),
 		'start_datetime' => Request::datetime('start_datetime', ''),
 		'end_datetime' => Request::datetime('end_datetime', ''),
@@ -91,6 +92,7 @@ function beyond_working_hours_table_update(&$selected_id, &$error_message = '') 
 	if(!check_record_permission('beyond_working_hours_table', $selected_id, 'edit')) return false;
 
 	$data = [
+		'approval_from' => Request::val('approval_from', ''),
 		'days_remark' => Request::val('days_remark', ''),
 		'start_datetime' => Request::datetime('start_datetime', ''),
 		'end_datetime' => Request::datetime('end_datetime', ''),
@@ -202,6 +204,21 @@ function beyond_working_hours_table_form($selectedId = '', $allowUpdate = true, 
 
 	// unique random identifier
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
+	// combobox: approval_from
+	$combo_approval_from = new Combo;
+	$combo_approval_from->ListType = 0;
+	$combo_approval_from->MultipleSeparator = ', ';
+	$combo_approval_from->ListBoxHeight = 10;
+	$combo_approval_from->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/beyond_working_hours_table.approval_from.csv')) {
+		$approval_from_data = addslashes(implode('', @file(__DIR__ . '/hooks/beyond_working_hours_table.approval_from.csv')));
+		$combo_approval_from->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($approval_from_data))));
+		$combo_approval_from->ListData = $combo_approval_from->ListItem;
+	} else {
+		$combo_approval_from->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("CEO;;PD"))));
+		$combo_approval_from->ListData = $combo_approval_from->ListItem;
+	}
+	$combo_approval_from->SelectName = 'approval_from';
 	// combobox: approval_status
 	$combo_approval_status = new Combo;
 	$combo_approval_status->ListType = 0;
@@ -222,6 +239,7 @@ function beyond_working_hours_table_form($selectedId = '', $allowUpdate = true, 
 		if(!($row = getRecord('beyond_working_hours_table', $selectedId))) {
 			return error_message($Translation['No records found'], 'beyond_working_hours_table_view.php', false);
 		}
+		$combo_approval_from->SelectedData = $row['approval_from'];
 		$combo_approval_status->SelectedData = $row['approval_status'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
@@ -229,8 +247,10 @@ function beyond_working_hours_table_form($selectedId = '', $allowUpdate = true, 
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '8' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
+		$combo_approval_from->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('CEO'));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '9' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 	}
+	$combo_approval_from->Render();
 	$combo_approval_status->Render();
 
 	ob_start();
@@ -328,6 +348,7 @@ function beyond_working_hours_table_form($selectedId = '', $allowUpdate = true, 
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
+		$jsReadOnly .= "\t\$j('#approval_from').replaceWith('<div class=\"form-control-static\" id=\"approval_from\">' + (\$j('#approval_from').val() || '') + '</div>'); \$j('#approval_from-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#start_datetime').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"start_datetime\">' + (\$j('#start_datetime').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#end_datetime').parents('.input-group').replaceWith('<div class=\"form-control-static\" id=\"end_datetime\">' + (\$j('#end_datetime').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#approval_status').replaceWith('<div class=\"form-control-static\" id=\"approval_status\">' + (\$j('#approval_status').val() || '') + '</div>'); \$j('#approval_status-multi-selection-help').hide();\n";
@@ -345,6 +366,8 @@ function beyond_working_hours_table_form($selectedId = '', $allowUpdate = true, 
 	}
 
 	// process combos
+	$templateCode = str_replace('<%%COMBO(approval_from)%%>', $combo_approval_from->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(approval_from)%%>', $combo_approval_from->SelectedData, $templateCode);
 	$templateCode = str_replace('<%%COMBO(approval_status)%%>', $combo_approval_status->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(approval_status)%%>', $combo_approval_status->SelectedData, $templateCode);
 
@@ -366,6 +389,7 @@ function beyond_working_hours_table_form($selectedId = '', $allowUpdate = true, 
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approval_from)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(days_remark)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(start_datetime)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(end_datetime)%%>', '', $templateCode);
@@ -385,6 +409,9 @@ function beyond_working_hours_table_form($selectedId = '', $allowUpdate = true, 
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_from)%%>', safe_html($urow['approval_from']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_from)%%>', html_attr($row['approval_from']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_from)%%>', urlencode($urow['approval_from']), $templateCode);
 		if($fieldsAreEditable) {
 			$templateCode = str_replace('<%%HTMLAREA(days_remark)%%>', '<textarea maxlength="65500" name="days_remark" id="days_remark" rows="5">' . safe_html(htmlspecialchars_decode($row['days_remark'])) . '</textarea>', $templateCode);
 		} else {
@@ -437,6 +464,8 @@ function beyond_working_hours_table_form($selectedId = '', $allowUpdate = true, 
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_from)%%>', 'CEO', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_from)%%>', urlencode('CEO'), $templateCode);
 		$templateCode = str_replace('<%%HTMLAREA(days_remark)%%>', '<textarea maxlength="65500" name="days_remark" id="days_remark" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(start_datetime)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(start_datetime)%%>', urlencode(''), $templateCode);

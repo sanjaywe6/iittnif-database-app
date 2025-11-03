@@ -21,7 +21,7 @@ function task_progress_status_table_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'progress_description' => br2nl(Request::val('progress_description', '')),
+		'progress_description' => Request::val('progress_description', ''),
 		'progree_entry_date' => parseCode('<%%creationDateTime%%>', true, true),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
@@ -96,7 +96,7 @@ function task_progress_status_table_update(&$selected_id, &$error_message = '') 
 	if(!check_record_permission('task_progress_status_table', $selected_id, 'edit')) return false;
 
 	$data = [
-		'progress_description' => br2nl(Request::val('progress_description', '')),
+		'progress_description' => Request::val('progress_description', ''),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 	];
@@ -394,7 +394,6 @@ function task_progress_status_table_form($selectedId = '', $allowUpdate = true, 
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\t\$j('#progress_description').replaceWith('<div class=\"form-control-static\" id=\"progress_description\">' + (\$j('#progress_description').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -450,7 +449,12 @@ function task_progress_status_table_form($selectedId = '', $allowUpdate = true, 
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(task_lookup)%%>', safe_html($urow['task_lookup']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(task_lookup)%%>', urlencode($urow['task_lookup']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(progress_description)%%>', safe_html($urow['progress_description'], $fieldsAreEditable), $templateCode);
+		if($fieldsAreEditable) {
+			$templateCode = str_replace('<%%HTMLAREA(progress_description)%%>', '<textarea maxlength="65500" name="progress_description" id="progress_description" rows="5">' . safe_html(htmlspecialchars_decode($row['progress_description'])) . '</textarea>', $templateCode);
+		} else {
+			$templateCode = str_replace('<%%HTMLAREA(progress_description)%%>', '<div id="progress_description" class="form-control-static">' . $row['progress_description'] . '</div>', $templateCode);
+		}
+		$templateCode = str_replace('<%%VALUE(progress_description)%%>', nl2br($row['progress_description']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(progress_description)%%>', urlencode($urow['progress_description']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(progree_entry_date)%%>', app_datetime($row['progree_entry_date']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(progree_entry_date)%%>', urlencode(app_datetime($urow['progree_entry_date'])), $templateCode);
@@ -471,8 +475,7 @@ function task_progress_status_table_form($selectedId = '', $allowUpdate = true, 
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(task_lookup)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(task_lookup)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(progress_description)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(progress_description)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%HTMLAREA(progress_description)%%>', '<textarea maxlength="65500" name="progress_description" id="progress_description" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(progree_entry_date)%%>', '<%%creationDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(progree_entry_date)%%>', urlencode('<%%creationDateTime%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);

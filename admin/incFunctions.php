@@ -7228,6 +7228,13 @@
 							'description' => '',
 						],
 					],
+					'approval_from' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'CEO'",
+						'info' => [
+							'caption' => 'Approval From',
+							'description' => '',
+						],
+					],
 					'days_remark' => [
 						'appgini' => "TEXT NULL",
 						'info' => [
@@ -7332,6 +7339,20 @@
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'approval_from' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'CEO'",
+						'info' => [
+							'caption' => 'Approval From',
+							'description' => '',
+						],
+					],
+					'type' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Type',
 							'description' => '',
 						],
 					],
@@ -7442,6 +7463,13 @@
 							'description' => '',
 						],
 					],
+					'approval_from' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'CEO'",
+						'info' => [
+							'caption' => 'Approval From',
+							'description' => '',
+						],
+					],
 					'leave_type' => [
 						'appgini' => "VARCHAR(255) NOT NULL DEFAULT 'Morning - Afternoon Shift (1st Half)'",
 						'info' => [
@@ -7525,6 +7553,13 @@
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'approval_from' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'CEO'",
+						'info' => [
+							'caption' => 'Approval From',
 							'description' => '',
 						],
 					],
@@ -7618,6 +7653,13 @@
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'approval_from' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'CEO'",
+						'info' => [
+							'caption' => 'Approval From',
 							'description' => '',
 						],
 					],

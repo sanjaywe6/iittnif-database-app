@@ -19,6 +19,24 @@
 		<div class="col-md-8 col-lg-10" id="leave_table_dv_form">
 			<fieldset class="form-horizontal">
 
+				<!-- Field: Approval From -->
+				<div class="form-group leave_table-approval_from">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="approval_from">Approval From</label>
+					<div class="col-lg-9">
+						<%%COMBO(approval_from)%%>
+					</div>
+				</div>
+
+				<!-- Field: Type -->
+				<div class="form-group leave_table-type">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Type</label>
+					<div class="col-lg-9">
+						<%%COMBO(type)%%>
+					</div>
+				</div>
+
 				<!-- Field: Leave type -->
 				<div class="form-group leave_table-leave_type">
 					<hr class="hidden-md hidden-lg">
@@ -185,7 +203,7 @@
 			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
 				AppGini.once({
 					condition: function() {
-						return $j('.form-group.leave_table-leave_type')
+						return $j('.form-group.leave_table-approval_from')
 									.find('.nicEdit-main, .select2-container, input[type=radio]')
 									.length > 0
 								// or read-only DV
@@ -194,7 +212,7 @@
 					action: function() {
 						$j('#leave_table_dv_container-loading').addClass('hidden');
 						$j('#leave_table_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('leave_table', 'leave_type');
+						AppGini.focusFormElement('leave_table', 'approval_from');
 					},
 					timeout:  5000,
 					doActionOnTimeout:  true

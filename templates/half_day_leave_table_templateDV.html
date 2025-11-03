@@ -19,6 +19,15 @@
 		<div class="col-md-8 col-lg-10" id="half_day_leave_table_dv_form">
 			<fieldset class="form-horizontal">
 
+				<!-- Field: Approval From -->
+				<div class="form-group half_day_leave_table-approval_from">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="approval_from">Approval From</label>
+					<div class="col-lg-9">
+						<%%COMBO(approval_from)%%>
+					</div>
+				</div>
+
 				<!-- Field: Leave Type -->
 				<div class="form-group half_day_leave_table-leave_type">
 					<hr class="hidden-md hidden-lg">
@@ -132,7 +141,7 @@
 			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
 				AppGini.once({
 					condition: function() {
-						return $j('.form-group.half_day_leave_table-leave_type')
+						return $j('.form-group.half_day_leave_table-approval_from')
 									.find('.nicEdit-main, .select2-container, input[type=radio]')
 									.length > 0
 								// or read-only DV
@@ -141,7 +150,7 @@
 					action: function() {
 						$j('#half_day_leave_table_dv_container-loading').addClass('hidden');
 						$j('#half_day_leave_table_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('half_day_leave_table', 'leave_type');
+						AppGini.focusFormElement('half_day_leave_table', 'approval_from');
 					},
 					timeout:  5000,
 					doActionOnTimeout:  true

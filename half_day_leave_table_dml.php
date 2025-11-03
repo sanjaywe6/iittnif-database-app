@@ -16,6 +16,7 @@ function half_day_leave_table_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'approval_from' => Request::val('approval_from', 'CEO'),
 		'leave_type' => Request::val('leave_type', 'Morning - Afternoon Shift (1st Half)'),
 		'purpose_of_leave' => br2nl(Request::val('purpose_of_leave', '')),
 		'date' => Request::dateComponents('date', '1'),
@@ -89,6 +90,7 @@ function half_day_leave_table_update(&$selected_id, &$error_message = '') {
 	if(!check_record_permission('half_day_leave_table', $selected_id, 'edit')) return false;
 
 	$data = [
+		'approval_from' => Request::val('approval_from', ''),
 		'leave_type' => Request::val('leave_type', ''),
 		'purpose_of_leave' => br2nl(Request::val('purpose_of_leave', '')),
 		'date' => Request::dateComponents('date', ''),
@@ -203,6 +205,21 @@ function half_day_leave_table_form($selectedId = '', $allowUpdate = true, $allow
 
 	// unique random identifier
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
+	// combobox: approval_from
+	$combo_approval_from = new Combo;
+	$combo_approval_from->ListType = 0;
+	$combo_approval_from->MultipleSeparator = ', ';
+	$combo_approval_from->ListBoxHeight = 10;
+	$combo_approval_from->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/half_day_leave_table.approval_from.csv')) {
+		$approval_from_data = addslashes(implode('', @file(__DIR__ . '/hooks/half_day_leave_table.approval_from.csv')));
+		$combo_approval_from->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($approval_from_data))));
+		$combo_approval_from->ListData = $combo_approval_from->ListItem;
+	} else {
+		$combo_approval_from->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("CEO;;PD"))));
+		$combo_approval_from->ListData = $combo_approval_from->ListItem;
+	}
+	$combo_approval_from->SelectName = 'approval_from';
 	// combobox: leave_type
 	$combo_leave_type = new Combo;
 	$combo_leave_type->ListType = 0;
@@ -247,6 +264,7 @@ function half_day_leave_table_form($selectedId = '', $allowUpdate = true, $allow
 		if(!($row = getRecord('half_day_leave_table', $selectedId))) {
 			return error_message($Translation['No records found'], 'half_day_leave_table_view.php', false);
 		}
+		$combo_approval_from->SelectedData = $row['approval_from'];
 		$combo_leave_type->SelectedData = $row['leave_type'];
 		$combo_date->DefaultDate = $row['date'];
 		$combo_approval_status->SelectedData = $row['approval_status'];
@@ -256,9 +274,11 @@ function half_day_leave_table_form($selectedId = '', $allowUpdate = true, $allow
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_leave_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Morning - Afternoon Shift (1st Half)'));
-		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
+		$combo_approval_from->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('CEO'));
+		$combo_leave_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Morning - Afternoon Shift (1st Half)'));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '6' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 	}
+	$combo_approval_from->Render();
 	$combo_leave_type->Render();
 	$combo_approval_status->Render();
 
@@ -357,6 +377,7 @@ function half_day_leave_table_form($selectedId = '', $allowUpdate = true, $allow
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
+		$jsReadOnly .= "\t\$j('#approval_from').replaceWith('<div class=\"form-control-static\" id=\"approval_from\">' + (\$j('#approval_from').val() || '') + '</div>'); \$j('#approval_from-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#leave_type').replaceWith('<div class=\"form-control-static\" id=\"leave_type\">' + (\$j('#leave_type').val() || '') + '</div>'); \$j('#leave_type-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#purpose_of_leave').replaceWith('<div class=\"form-control-static\" id=\"purpose_of_leave\">' + (\$j('#purpose_of_leave').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#date').prop('readonly', true);\n";
@@ -372,6 +393,8 @@ function half_day_leave_table_form($selectedId = '', $allowUpdate = true, $allow
 	}
 
 	// process combos
+	$templateCode = str_replace('<%%COMBO(approval_from)%%>', $combo_approval_from->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(approval_from)%%>', $combo_approval_from->SelectedData, $templateCode);
 	$templateCode = str_replace('<%%COMBO(leave_type)%%>', $combo_leave_type->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(leave_type)%%>', $combo_leave_type->SelectedData, $templateCode);
 	$templateCode = str_replace(
@@ -402,6 +425,7 @@ function half_day_leave_table_form($selectedId = '', $allowUpdate = true, $allow
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(approval_from)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(leave_type)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(purpose_of_leave)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(date)%%>', '', $templateCode);
@@ -418,6 +442,9 @@ function half_day_leave_table_form($selectedId = '', $allowUpdate = true, $allow
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(approval_from)%%>', safe_html($urow['approval_from']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(approval_from)%%>', html_attr($row['approval_from']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_from)%%>', urlencode($urow['approval_from']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(leave_type)%%>', safe_html($urow['leave_type']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(leave_type)%%>', html_attr($row['leave_type']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(leave_type)%%>', urlencode($urow['leave_type']), $templateCode);
@@ -450,6 +477,8 @@ function half_day_leave_table_form($selectedId = '', $allowUpdate = true, $allow
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_from)%%>', 'CEO', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_from)%%>', urlencode('CEO'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(leave_type)%%>', 'Morning - Afternoon Shift (1st Half)', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(leave_type)%%>', urlencode('Morning - Afternoon Shift (1st Half)'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(purpose_of_leave)%%>', '', $templateCode);

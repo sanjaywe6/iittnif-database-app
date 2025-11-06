@@ -114,7 +114,7 @@ function td_technology_products_update(&$selected_id, &$error_message = '') {
 		exit;
 	}
 	if($data['tech_product_title'] === '') {
-		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'IP Category': {$Translation['field not null']}<br><br>";
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Tech Product Title': {$Translation['field not null']}<br><br>";
 		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
 		exit;
 	}
@@ -422,7 +422,7 @@ function td_technology_products_form($selectedId = '', $allowUpdate = true, $all
 	}
 
 	// process form title
-	$templateCode = str_replace('<%%DETAIL_VIEW_TITLE%%>', 'Intellectual property details', $templateCode);
+	$templateCode = str_replace('<%%DETAIL_VIEW_TITLE%%>', 'Td technology product details', $templateCode);
 	$templateCode = str_replace('<%%RND1%%>', $rnd1, $templateCode);
 	$templateCode = str_replace('<%%EMBEDDED%%>', (Request::val('Embedded') ? 'Embedded=1' : ''), $templateCode);
 	// process buttons

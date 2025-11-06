@@ -12179,7 +12179,7 @@
 					'tech_product_title' => [
 						'appgini' => "VARCHAR(255) NOT NULL",
 						'info' => [
-							'caption' => 'IP Category',
+							'caption' => 'Tech Product Title',
 							'description' => '',
 						],
 					],

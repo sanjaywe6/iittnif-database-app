@@ -229,33 +229,12 @@
 		setupTable('r_and_d_monthly_progress_app', []);
 		setupIndexes('r_and_d_monthly_progress_app', ['r_and_d_lookup',]);
 
-		setupTable('r_and_d_quarterly_progress_app', [
-				"ALTER TABLE `r_and_d_quarterly_progress_app` ADD `created_at_1` VARCHAR(255) NULL ",
-				"ALTER TABLE `r_and_d_quarterly_progress_app` DROP `created_at_1`",
-			]);
+		setupTable('r_and_d_quarterly_progress_app', []);
 		setupIndexes('r_and_d_quarterly_progress_app', ['r_and_d_lookup',]);
 
-		setupTable('td_intellectual_property', [
-				" ALTER TABLE `td_intellectual_property` CHANGE `source_of_ip_category` `source_of_ip_category` VARCHAR(255) NULL DEFAULT 'EIR' ",
-				" ALTER TABLE `td_intellectual_property` CHANGE `type` `type` VARCHAR(255) NULL DEFAULT 'National' ",
-				"ALTER TABLE `td_intellectual_property` ADD `created_by_username` VARCHAR(255) NULL ",
-				"ALTER TABLE `td_intellectual_property` ADD `created_at` VARCHAR(255) NULL ",
-				"ALTER TABLE `td_intellectual_property` ADD `last_updated_by_username` VARCHAR(255) NULL ",
-				"ALTER TABLE `td_intellectual_property` ADD `last_updated_at` VARCHAR(255) NULL ",
-				"ALTER TABLE `td_intellectual_property` ADD `created_by` VARCHAR(255) NULL ",
-				"ALTER TABLE `td_intellectual_property` ADD `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('td_intellectual_property', []);
 
-		setupTable('td_technology_products', [
-				" ALTER TABLE `td_technology_products` CHANGE `source_of_ip_category` `source_of_ip_category` VARCHAR(255) NOT NULL ",
-				" ALTER TABLE `td_technology_products` CHANGE `source_of_ip_category` `source_of_ip_category` VARCHAR(255) NOT NULL DEFAULT 'EIR' ",
-				"ALTER TABLE `td_technology_products` ADD `created_by_username` VARCHAR(255) NULL ",
-				"ALTER TABLE `td_technology_products` ADD `created_at` VARCHAR(255) NULL ",
-				"ALTER TABLE `td_technology_products` ADD `last_updated_by_username` VARCHAR(255) NULL ",
-				"ALTER TABLE `td_technology_products` ADD `last_updated_at` VARCHAR(255) NULL ",
-				"ALTER TABLE `td_technology_products` ADD `created_by` VARCHAR(255) NULL ",
-				"ALTER TABLE `td_technology_products` ADD `last_updated_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('td_technology_products', []);
 
 
 

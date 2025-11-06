@@ -81,7 +81,7 @@
 	$x->QueryFieldsFilters = [
 		"`td_technology_products`.`id`" => "ID",
 		"`td_technology_products`.`year`" => "Year",
-		"`td_technology_products`.`tech_product_title`" => "IP Category",
+		"`td_technology_products`.`tech_product_title`" => "Tech Product Title",
 		"`td_technology_products`.`tech_produc_type`" => "Tech Product Type",
 		"`td_technology_products`.`technology_area`" => "Technology Area",
 		"`td_technology_products`.`project_value`" => "Project Value (Rs.) In Lakhs",
@@ -153,7 +153,7 @@
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['Year', 'IP Category', 'Tech Product Type', 'Technology Area', 'Project Value (Rs.) In Lakhs', 'Status of License Transfer', 'Value of the Transfer in Lakhs (Rs.)', 'TRL Level', 'Commercialised', 'Source of IP Category', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
+	$x->ColCaption = ['Year', 'Tech Product Title', 'Tech Product Type', 'Technology Area', 'Project Value (Rs.) In Lakhs', 'Status of License Transfer', 'Value of the Transfer in Lakhs (Rs.)', 'TRL Level', 'Commercialised', 'Source of IP Category', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
 	$x->ColFieldName = ['year', 'tech_product_title', 'tech_produc_type', 'technology_area', 'project_value', 'status_of_license_transfer', 'value_of_transfer', 'trl_level', 'commercialised', 'source_of_ip_category', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
 	$x->ColNumber  = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ];
 

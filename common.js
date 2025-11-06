@@ -1278,7 +1278,7 @@ function td_technology_products_validateData(insertMode) {
 	const reqFields = [
 		// [field-type, field-name, field-caption], ...
 		['list', 'year', 'Year'],
-		['text', 'tech_product_title', 'IP Category'],
+		['text', 'tech_product_title', 'Tech Product Title'],
 		['list', 'tech_produc_type', 'Tech Product Type'],
 		['list', 'technology_area', 'Technology Area'],
 		['text', 'project_value', 'Project Value (Rs.) In Lakhs'],

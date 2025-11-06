@@ -28,6 +28,12 @@
 		"`td_intellectual_property`.`patent_id`" => "patent_id",
 		"`td_intellectual_property`.`type`" => "type",
 		"`td_intellectual_property`.`source_of_ip_category`" => "source_of_ip_category",
+		"`td_intellectual_property`.`created_by_username`" => "created_by_username",
+		"`td_intellectual_property`.`created_at`" => "created_at",
+		"`td_intellectual_property`.`last_updated_by_username`" => "last_updated_by_username",
+		"`td_intellectual_property`.`last_updated_at`" => "last_updated_at",
+		"`td_intellectual_property`.`created_by`" => "created_by",
+		"`td_intellectual_property`.`last_updated_by`" => "last_updated_by",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -41,6 +47,12 @@
 		8 => 8,
 		9 => 9,
 		10 => 10,
+		11 => 11,
+		12 => 12,
+		13 => 13,
+		14 => 14,
+		15 => 15,
+		16 => 16,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -55,6 +67,12 @@
 		"`td_intellectual_property`.`patent_id`" => "patent_id",
 		"`td_intellectual_property`.`type`" => "type",
 		"`td_intellectual_property`.`source_of_ip_category`" => "source_of_ip_category",
+		"`td_intellectual_property`.`created_by_username`" => "created_by_username",
+		"`td_intellectual_property`.`created_at`" => "created_at",
+		"`td_intellectual_property`.`last_updated_by_username`" => "last_updated_by_username",
+		"`td_intellectual_property`.`last_updated_at`" => "last_updated_at",
+		"`td_intellectual_property`.`created_by`" => "created_by",
+		"`td_intellectual_property`.`last_updated_by`" => "last_updated_by",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -68,6 +86,12 @@
 		"`td_intellectual_property`.`patent_id`" => "Patent ID",
 		"`td_intellectual_property`.`type`" => "Type",
 		"`td_intellectual_property`.`source_of_ip_category`" => "Source of IP Category",
+		"`td_intellectual_property`.`created_by_username`" => "Created By Username",
+		"`td_intellectual_property`.`created_at`" => "Created At",
+		"`td_intellectual_property`.`last_updated_by_username`" => "Last Updated by Username",
+		"`td_intellectual_property`.`last_updated_at`" => "Last Updated At",
+		"`td_intellectual_property`.`created_by`" => "Created By",
+		"`td_intellectual_property`.`last_updated_by`" => "Last Updated By",
 	];
 
 	// Fields that can be quick searched
@@ -82,6 +106,12 @@
 		"`td_intellectual_property`.`patent_id`" => "patent_id",
 		"`td_intellectual_property`.`type`" => "type",
 		"`td_intellectual_property`.`source_of_ip_category`" => "source_of_ip_category",
+		"`td_intellectual_property`.`created_by_username`" => "created_by_username",
+		"`td_intellectual_property`.`created_at`" => "created_at",
+		"`td_intellectual_property`.`last_updated_by_username`" => "last_updated_by_username",
+		"`td_intellectual_property`.`last_updated_at`" => "last_updated_at",
+		"`td_intellectual_property`.`created_by`" => "created_by",
+		"`td_intellectual_property`.`last_updated_by`" => "last_updated_by",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -117,10 +147,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['Year', 'IP Category', 'IP Title', 'Technology Area', 'Year Field', 'Year Granted', 'Patent ID', 'Type', 'Source of IP Category', ];
-	$x->ColFieldName = ['year', 'ip_category', 'ip_title', 'technology_area', 'year_field', 'year_granted', 'patent_id', 'type', 'source_of_ip_category', ];
-	$x->ColNumber  = [2, 3, 4, 5, 6, 7, 8, 9, 10, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['Year', 'IP Category', 'IP Title', 'Technology Area', 'Year Field', 'Year Granted', 'Patent ID', 'Type', 'Source of IP Category', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
+	$x->ColFieldName = ['year', 'ip_category', 'ip_title', 'technology_area', 'year_field', 'year_granted', 'patent_id', 'type', 'source_of_ip_category', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
+	$x->ColNumber  = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/td_intellectual_property_templateTV.html';
@@ -131,7 +161,7 @@
 	$x->ShowTableHeader = 0;
 	$x->TVClasses = "";
 	$x->DVClasses = "";
-	$x->HasCalculatedFields = false;
+	$x->HasCalculatedFields = true;
 	$x->AllowConsoleLog = false;
 	$x->AllowDVNavigation = true;
 

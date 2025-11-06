@@ -1286,6 +1286,7 @@ function td_technology_products_validateData(insertMode) {
 		['text', 'value_of_transfer', 'Value of the Transfer in Lakhs (Rs.)'],
 		['list', 'trl_level', 'TRL Level'],
 		['list', 'commercialised', 'Commercialised'],
+		['list', 'source_of_ip_category', 'Source of IP Category'],
 	];
 
 	reqFields.map(function(rf) {

@@ -25,7 +25,9 @@ function td_technology_products_insert(&$error_message = '') {
 		'value_of_transfer' => Request::val('value_of_transfer', ''),
 		'trl_level' => Request::val('trl_level', ''),
 		'commercialised' => Request::val('commercialised', ''),
-		'source_of_ip_category' => Request::val('source_of_ip_category', ''),
+		'source_of_ip_category' => Request::val('source_of_ip_category', 'EIR'),
+		'created_at' => parseCode('<%%creationDateTime%%>', true),
+		'created_by' => parseCode('<%%creatorUsername%%>', true),
 	];
 
 	// record owner is current user
@@ -102,6 +104,8 @@ function td_technology_products_update(&$selected_id, &$error_message = '') {
 		'trl_level' => Request::val('trl_level', ''),
 		'commercialised' => Request::val('commercialised', ''),
 		'source_of_ip_category' => Request::val('source_of_ip_category', ''),
+		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
+		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 	];
 
 	if($data['year'] === '') {
@@ -146,6 +150,11 @@ function td_technology_products_update(&$selected_id, &$error_message = '') {
 	}
 	if($data['commercialised'] === '') {
 		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Commercialised': {$Translation['field not null']}<br><br>";
+		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
+		exit;
+	}
+	if($data['source_of_ip_category'] === '') {
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Source of IP Category': {$Translation['field not null']}<br><br>";
 		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
 		exit;
 	}
@@ -350,6 +359,7 @@ function td_technology_products_form($selectedId = '', $allowUpdate = true, $all
 		$combo_source_of_ip_category->ListData = $combo_source_of_ip_category->ListItem;
 	}
 	$combo_source_of_ip_category->SelectName = 'source_of_ip_category';
+	$combo_source_of_ip_category->AllowNull = false;
 
 	if($hasSelectedId) {
 		if(!($row = getRecord('td_technology_products', $selectedId))) {
@@ -374,7 +384,7 @@ function td_technology_products_form($selectedId = '', $allowUpdate = true, $all
 		$combo_status_of_license_transfer->SelectedText = (isset($filterField[1]) && $filterField[1] == '7' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 		$combo_trl_level->SelectedText = (isset($filterField[1]) && $filterField[1] == '9' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 		$combo_commercialised->SelectedText = (isset($filterField[1]) && $filterField[1] == '10' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_source_of_ip_category->SelectedText = (isset($filterField[1]) && $filterField[1] == '11' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_source_of_ip_category->SelectedText = (isset($filterField[1]) && $filterField[1] == '11' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('EIR'));
 	}
 	$combo_year->Render();
 	$combo_tech_produc_type->Render();
@@ -542,6 +552,12 @@ function td_technology_products_form($selectedId = '', $allowUpdate = true, $all
 	$templateCode = str_replace('<%%UPLOADFILE(trl_level)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(commercialised)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(source_of_ip_category)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(created_by_username)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by_username)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_updated_at)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
@@ -577,6 +593,18 @@ function td_technology_products_form($selectedId = '', $allowUpdate = true, $all
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(source_of_ip_category)%%>', safe_html($urow['source_of_ip_category']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(source_of_ip_category)%%>', html_attr($row['source_of_ip_category']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(source_of_ip_category)%%>', urlencode($urow['source_of_ip_category']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', safe_html($urow['created_by_username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode($urow['created_by_username']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode($urow['created_at']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by_username)%%>', safe_html($urow['last_updated_by_username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by_username)%%>', urlencode($urow['last_updated_by_username']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
@@ -598,8 +626,20 @@ function td_technology_products_form($selectedId = '', $allowUpdate = true, $all
 		$templateCode = str_replace('<%%URLVALUE(trl_level)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(commercialised)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(commercialised)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(source_of_ip_category)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(source_of_ip_category)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(source_of_ip_category)%%>', 'EIR', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(source_of_ip_category)%%>', urlencode('EIR'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode('<%%creationDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by_username)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by_username)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', '<%%editingDateTime%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode('<%%editingDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 	}
 
 	// process translations

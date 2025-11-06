@@ -23,8 +23,10 @@ function td_intellectual_property_insert(&$error_message = '') {
 		'year_field' => Request::dateComponents('year_field', ''),
 		'year_granted' => Request::dateComponents('year_granted', ''),
 		'patent_id' => Request::val('patent_id', ''),
-		'type' => Request::val('type', ''),
-		'source_of_ip_category' => Request::val('source_of_ip_category', ''),
+		'type' => Request::val('type', 'National'),
+		'source_of_ip_category' => Request::val('source_of_ip_category', 'EIR'),
+		'created_at' => parseCode('<%%creationDateTime%%>', true),
+		'created_by' => parseCode('<%%creatorUsername%%>', true),
 	];
 
 	// record owner is current user
@@ -100,6 +102,8 @@ function td_intellectual_property_update(&$selected_id, &$error_message = '') {
 		'patent_id' => Request::val('patent_id', ''),
 		'type' => Request::val('type', ''),
 		'source_of_ip_category' => Request::val('source_of_ip_category', ''),
+		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
+		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 	];
 
 	if($data['year'] === '') {
@@ -327,8 +331,8 @@ function td_intellectual_property_form($selectedId = '', $allowUpdate = true, $a
 		$combo_year->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('2020-21'));
 		$combo_ip_category->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Patent'));
 		$combo_technology_area->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '9' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_source_of_ip_category->SelectedText = (isset($filterField[1]) && $filterField[1] == '10' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '9' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('National'));
+		$combo_source_of_ip_category->SelectedText = (isset($filterField[1]) && $filterField[1] == '10' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('EIR'));
 	}
 	$combo_year->Render();
 	$combo_ip_category->Render();
@@ -504,6 +508,12 @@ function td_intellectual_property_form($selectedId = '', $allowUpdate = true, $a
 	$templateCode = str_replace('<%%UPLOADFILE(patent_id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(type)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(source_of_ip_category)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(created_by_username)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by_username)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_updated_at)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(created_by)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
@@ -534,6 +544,18 @@ function td_intellectual_property_form($selectedId = '', $allowUpdate = true, $a
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(source_of_ip_category)%%>', safe_html($urow['source_of_ip_category']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(source_of_ip_category)%%>', html_attr($row['source_of_ip_category']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(source_of_ip_category)%%>', urlencode($urow['source_of_ip_category']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', safe_html($urow['created_by_username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode($urow['created_by_username']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode($urow['created_at']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by_username)%%>', safe_html($urow['last_updated_by_username']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by_username)%%>', urlencode($urow['last_updated_by_username']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', safe_html($urow['last_updated_at']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode($urow['last_updated_at']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', safe_html($urow['created_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode($urow['created_by']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', safe_html($urow['last_updated_by']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode($urow['last_updated_by']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
@@ -551,10 +573,22 @@ function td_intellectual_property_form($selectedId = '', $allowUpdate = true, $a
 		$templateCode = str_replace('<%%URLVALUE(year_granted)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(patent_id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(patent_id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(type)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(type)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(source_of_ip_category)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(source_of_ip_category)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(type)%%>', 'National', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(type)%%>', urlencode('National'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(source_of_ip_category)%%>', 'EIR', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(source_of_ip_category)%%>', urlencode('EIR'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_at)%%>', urlencode('<%%creationDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by_username)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by_username)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_at)%%>', '<%%editingDateTime%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_at)%%>', urlencode('<%%editingDateTime%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(created_by)%%>', '<%%creatorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(created_by)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(last_updated_by)%%>', '<%%editorUsername%%>', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(last_updated_by)%%>', urlencode('<%%editorUsername%%>'), $templateCode);
 	}
 
 	// process translations

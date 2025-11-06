@@ -192,8 +192,8 @@
 			'contact_call_log_table' => "`contact_call_log_table`.`id` as 'id', `contact_call_log_table`.`number` as 'number', `contact_call_log_table`.`query` as 'query', `contact_call_log_table`.`reply` as 'reply', `contact_call_log_table`.`remarks_ceo` as 'remarks_ceo', `contact_call_log_table`.`remarks_pd` as 'remarks_pd', `contact_call_log_table`.`created_by` as 'created_by', `contact_call_log_table`.`last_updated_by` as 'last_updated_by', `contact_call_log_table`.`created_by_username` as 'created_by_username', `contact_call_log_table`.`created_at` as 'created_at', `contact_call_log_table`.`last_updated_by_username` as 'last_updated_by_username', `contact_call_log_table`.`last_updated_at` as 'last_updated_at'",
 			'r_and_d_monthly_progress_app' => "`r_and_d_monthly_progress_app`.`id` as 'id', IF(    CHAR_LENGTH(`r_and_d_progress1`.`labs`) || CHAR_LENGTH(`r_and_d_progress1`.`today_progress`), CONCAT_WS('',   `r_and_d_progress1`.`labs`, '::', `r_and_d_progress1`.`today_progress`), '') as 'r_and_d_lookup', `r_and_d_monthly_progress_app`.`month_year` as 'month_year', `r_and_d_monthly_progress_app`.`Progress_Achieved` as 'Progress_Achieved', `r_and_d_monthly_progress_app`.`Plan_for_Next_Month` as 'Plan_for_Next_Month', `r_and_d_monthly_progress_app`.`problem_suggestion` as 'problem_suggestion', `r_and_d_monthly_progress_app`.`ceo_remarks` as 'ceo_remarks', `r_and_d_monthly_progress_app`.`pd_remarks` as 'pd_remarks', `r_and_d_monthly_progress_app`.`created_by` as 'created_by', `r_and_d_monthly_progress_app`.`last_updated_by` as 'last_updated_by', `r_and_d_monthly_progress_app`.`created_by_username` as 'created_by_username', `r_and_d_monthly_progress_app`.`created_at` as 'created_at', `r_and_d_monthly_progress_app`.`last_updated_by_username` as 'last_updated_by_username', `r_and_d_monthly_progress_app`.`last_updated_at` as 'last_updated_at'",
 			'r_and_d_quarterly_progress_app' => "`r_and_d_quarterly_progress_app`.`id` as 'id', IF(    CHAR_LENGTH(`r_and_d_progress1`.`labs`) || CHAR_LENGTH(`r_and_d_progress1`.`today_progress`), CONCAT_WS('',   `r_and_d_progress1`.`labs`, '::', `r_and_d_progress1`.`today_progress`), '') as 'r_and_d_lookup', if(`r_and_d_quarterly_progress_app`.`date`,date_format(`r_and_d_quarterly_progress_app`.`date`,'%d/%m/%Y'),'') as 'date', `r_and_d_quarterly_progress_app`.`attendees` as 'attendees', `r_and_d_quarterly_progress_app`.`minutes` as 'minutes', `r_and_d_quarterly_progress_app`.`Tech_Mgr_Remarks` as 'Tech_Mgr_Remarks', `r_and_d_quarterly_progress_app`.`ceo_remarks` as 'ceo_remarks', `r_and_d_quarterly_progress_app`.`pd_remarks` as 'pd_remarks', `r_and_d_quarterly_progress_app`.`created_by` as 'created_by', `r_and_d_quarterly_progress_app`.`last_updated_by` as 'last_updated_by', `r_and_d_quarterly_progress_app`.`created_by_username` as 'created_by_username', `r_and_d_quarterly_progress_app`.`created_at` as 'created_at', `r_and_d_quarterly_progress_app`.`last_updated_by_username` as 'last_updated_by_username', `r_and_d_quarterly_progress_app`.`last_updated_at` as 'last_updated_at'",
-			'td_intellectual_property' => "`td_intellectual_property`.`id` as 'id', `td_intellectual_property`.`year` as 'year', `td_intellectual_property`.`ip_category` as 'ip_category', `td_intellectual_property`.`ip_title` as 'ip_title', `td_intellectual_property`.`technology_area` as 'technology_area', if(`td_intellectual_property`.`year_field`,date_format(`td_intellectual_property`.`year_field`,'%d/%m/%Y'),'') as 'year_field', if(`td_intellectual_property`.`year_granted`,date_format(`td_intellectual_property`.`year_granted`,'%d/%m/%Y'),'') as 'year_granted', `td_intellectual_property`.`patent_id` as 'patent_id', `td_intellectual_property`.`type` as 'type', `td_intellectual_property`.`source_of_ip_category` as 'source_of_ip_category'",
-			'td_technology_products' => "`td_technology_products`.`id` as 'id', `td_technology_products`.`year` as 'year', `td_technology_products`.`tech_product_title` as 'tech_product_title', `td_technology_products`.`tech_produc_type` as 'tech_produc_type', `td_technology_products`.`technology_area` as 'technology_area', `td_technology_products`.`project_value` as 'project_value', `td_technology_products`.`status_of_license_transfer` as 'status_of_license_transfer', `td_technology_products`.`value_of_transfer` as 'value_of_transfer', `td_technology_products`.`trl_level` as 'trl_level', `td_technology_products`.`commercialised` as 'commercialised', `td_technology_products`.`source_of_ip_category` as 'source_of_ip_category'",
+			'td_intellectual_property' => "`td_intellectual_property`.`id` as 'id', `td_intellectual_property`.`year` as 'year', `td_intellectual_property`.`ip_category` as 'ip_category', `td_intellectual_property`.`ip_title` as 'ip_title', `td_intellectual_property`.`technology_area` as 'technology_area', if(`td_intellectual_property`.`year_field`,date_format(`td_intellectual_property`.`year_field`,'%d/%m/%Y'),'') as 'year_field', if(`td_intellectual_property`.`year_granted`,date_format(`td_intellectual_property`.`year_granted`,'%d/%m/%Y'),'') as 'year_granted', `td_intellectual_property`.`patent_id` as 'patent_id', `td_intellectual_property`.`type` as 'type', `td_intellectual_property`.`source_of_ip_category` as 'source_of_ip_category', `td_intellectual_property`.`created_by_username` as 'created_by_username', `td_intellectual_property`.`created_at` as 'created_at', `td_intellectual_property`.`last_updated_by_username` as 'last_updated_by_username', `td_intellectual_property`.`last_updated_at` as 'last_updated_at', `td_intellectual_property`.`created_by` as 'created_by', `td_intellectual_property`.`last_updated_by` as 'last_updated_by'",
+			'td_technology_products' => "`td_technology_products`.`id` as 'id', `td_technology_products`.`year` as 'year', `td_technology_products`.`tech_product_title` as 'tech_product_title', `td_technology_products`.`tech_produc_type` as 'tech_produc_type', `td_technology_products`.`technology_area` as 'technology_area', `td_technology_products`.`project_value` as 'project_value', `td_technology_products`.`status_of_license_transfer` as 'status_of_license_transfer', `td_technology_products`.`value_of_transfer` as 'value_of_transfer', `td_technology_products`.`trl_level` as 'trl_level', `td_technology_products`.`commercialised` as 'commercialised', `td_technology_products`.`source_of_ip_category` as 'source_of_ip_category', `td_technology_products`.`created_by_username` as 'created_by_username', `td_technology_products`.`created_at` as 'created_at', `td_technology_products`.`last_updated_by_username` as 'last_updated_by_username', `td_technology_products`.`last_updated_at` as 'last_updated_at', `td_technology_products`.`created_by` as 'created_by', `td_technology_products`.`last_updated_by` as 'last_updated_by'",
 		];
 
 		if(isset($sql_fields[$table_name])) return $sql_fields[$table_name];
@@ -2078,8 +2078,14 @@
 				'year_field' => '',
 				'year_granted' => '',
 				'patent_id' => '',
-				'type' => '',
-				'source_of_ip_category' => '',
+				'type' => 'National',
+				'source_of_ip_category' => 'EIR',
+				'created_by_username' => '',
+				'created_at' => '',
+				'last_updated_by_username' => '',
+				'last_updated_at' => '',
+				'created_by' => '',
+				'last_updated_by' => '',
 			],
 			'td_technology_products' => [
 				'id' => '',
@@ -2092,7 +2098,13 @@
 				'value_of_transfer' => '',
 				'trl_level' => '',
 				'commercialised' => '',
-				'source_of_ip_category' => '',
+				'source_of_ip_category' => 'EIR',
+				'created_by_username' => '',
+				'created_at' => '',
+				'last_updated_by_username' => '',
+				'last_updated_at' => '',
+				'created_by' => '',
+				'last_updated_by' => '',
 			],
 		];
 

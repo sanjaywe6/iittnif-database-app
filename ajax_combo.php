@@ -943,6 +943,8 @@
 				'not_null' => false,
 			],
 		],
+		'td_intellectual_property' => [
+		],
 	];
 
 	// XSS prevention

@@ -113,7 +113,8 @@
 			'Accounts &amp; Finance Apps',
 			'Transport Apps',
 			'Newsletters &amp; Updates Apps',
-			'Suggestions &amp; Others App'
+			'Suggestions &amp; Others App',
+			'NMICPS Portal - Apps'
 		];
 
 		$all_tables = [
@@ -727,6 +728,13 @@
 					'group' => $tg[6],
 					'homepageShowCount' => 0
 				],
+				'td_intellectual_property' => [
+					'Caption' => 'Intellectual Property',
+					'Description' => '<span style="color:red;;"><b>Technology Development </b></span>',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[14],
+					'homepageShowCount' => 1
+				],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) return $all_tables;
@@ -830,6 +838,7 @@
 			'contact_call_log_table' => ['Contact Call Log - App', '', 'table.gif', 'Suggestions &amp; Others App'],
 			'r_and_d_monthly_progress_app' => ['Monthly Progress App', '', 'table.gif', 'Technology Development Apps'],
 			'r_and_d_quarterly_progress_app' => ['Quarterly Progress App', '', 'table.gif', 'Technology Development Apps'],
+			'td_intellectual_property' => ['Intellectual Property', '<span style="color:red;;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) {
@@ -12030,6 +12039,78 @@
 						],
 					],
 				],
+				'td_intellectual_property' => [
+					'id' => [
+						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'year' => [
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT '2020-21'",
+						'info' => [
+							'caption' => 'Year',
+							'description' => '',
+						],
+					],
+					'ip_category' => [
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT 'Patent'",
+						'info' => [
+							'caption' => 'IP Category',
+							'description' => '',
+						],
+					],
+					'ip_title' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'IP Title',
+							'description' => '',
+						],
+					],
+					'technology_area' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Technology Area',
+							'description' => '',
+						],
+					],
+					'year_field' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Year Field',
+							'description' => '',
+						],
+					],
+					'year_granted' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Year Granted',
+							'description' => '',
+						],
+					],
+					'patent_id' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Patent ID',
+							'description' => '',
+						],
+					],
+					'type' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Type',
+							'description' => '',
+						],
+					],
+					'source_of_ip_category' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Source of IP Category',
+							'description' => '',
+						],
+					],
+				],
 			];
 
 			$internalTablesSimple = [
@@ -15955,6 +16036,7 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
+			'td_intellectual_property' => [],
 		];
 	}
 	#########################################################
@@ -16318,6 +16400,8 @@
 			],
 			'r_and_d_quarterly_progress_app' => [
 				'r_and_d_lookup' => 'SELECT `r_and_d_progress`.`id`, IF(CHAR_LENGTH(`r_and_d_progress`.`labs`) || CHAR_LENGTH(`r_and_d_progress`.`today_progress`), CONCAT_WS(\'\', `r_and_d_progress`.`labs`, \'::\', `r_and_d_progress`.`today_progress`), \'\') FROM `r_and_d_progress` ORDER BY 2',
+			],
+			'td_intellectual_property' => [
 			],
 		];
 

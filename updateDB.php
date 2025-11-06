@@ -134,27 +134,15 @@
 		setupTable('employees_appraisal_table', []);
 		setupIndexes('employees_appraisal_table', ['employee_designation_lookup','reviewing_officer',]);
 
-		setupTable('beyond_working_hours_table', [
-				"ALTER TABLE `beyond_working_hours_table` ADD `approval_from` VARCHAR(255) NULL DEFAULT 'CEO' ",
-			]);
+		setupTable('beyond_working_hours_table', []);
 
-		setupTable('leave_table', [
-				"ALTER TABLE `leave_table` ADD `approval_from` VARCHAR(255) NULL DEFAULT 'CEO' ",
-				"ALTER TABLE leave_table ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `leave_table` CHANGE `field1` `type` VARCHAR(255) NULL ",
-			]);
+		setupTable('leave_table', []);
 
-		setupTable('half_day_leave_table', [
-				"ALTER TABLE `half_day_leave_table` ADD `approval_from` VARCHAR(255) NULL DEFAULT 'CEO' ",
-			]);
+		setupTable('half_day_leave_table', []);
 
-		setupTable('work_from_home_table', [
-				"ALTER TABLE `work_from_home_table` ADD `approval_from` VARCHAR(255) NULL DEFAULT 'CEO' ",
-			]);
+		setupTable('work_from_home_table', []);
 
-		setupTable('work_from_home_tasks_app', [
-				"ALTER TABLE `work_from_home_tasks_app` ADD `approval_from` VARCHAR(255) NULL DEFAULT 'CEO' ",
-			]);
+		setupTable('work_from_home_tasks_app', []);
 		setupIndexes('work_from_home_tasks_app', ['work_from_home_details',]);
 
 		setupTable('navavishkar_stay_table', []);
@@ -243,6 +231,8 @@
 
 		setupTable('r_and_d_quarterly_progress_app', []);
 		setupIndexes('r_and_d_quarterly_progress_app', ['r_and_d_lookup',]);
+
+		setupTable('td_intellectual_property', []);
 
 
 

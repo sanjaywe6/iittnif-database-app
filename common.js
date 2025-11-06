@@ -1270,6 +1270,35 @@ function td_intellectual_property_validateData(insertMode) {
 
 	return !errors;
 }
+function td_technology_products_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	// check all required fields have values
+	const reqFields = [
+		// [field-type, field-name, field-caption], ...
+		['list', 'year', 'Year'],
+		['text', 'tech_product_title', 'IP Category'],
+		['list', 'tech_produc_type', 'Tech Product Type'],
+		['list', 'technology_area', 'Technology Area'],
+		['text', 'project_value', 'Project Value (Rs.) In Lakhs'],
+		['list', 'status_of_license_transfer', 'Status of License Transfer'],
+		['text', 'value_of_transfer', 'Value of the Transfer in Lakhs (Rs.)'],
+		['list', 'trl_level', 'TRL Level'],
+		['list', 'commercialised', 'Commercialised'],
+	];
+
+	reqFields.map(function(rf) {
+		// avoid displaying more error messages and overwhelming users
+		if(rf.length != 3 || errors) return;
+
+		if(!AppGini.Validation.fieldRequired(rf[0], rf[1], rf[2], insertMode)) errors = true;
+	});
+
+	if(errors) return false;
+
+	return !errors;
+}
 
 function post(url, params, update, disable, loading, success_callback) {
 	$j.ajax({

@@ -234,6 +234,43 @@
 
 		setupTable('td_intellectual_property', []);
 
+		setupTable('td_technology_products', [
+				"ALTER TABLE `td_intellectual_property_1` RENAME `td_technology_products`",
+				"UPDATE `membership_userrecords` SET `tableName`='td_technology_products' WHERE `tableName`='td_intellectual_property_1'",
+				"UPDATE `membership_userpermissions` SET `tableName`='td_technology_products' WHERE `tableName`='td_intellectual_property_1'",
+				"UPDATE `membership_grouppermissions` SET `tableName`='td_technology_products' WHERE `tableName`='td_intellectual_property_1'",
+				"ALTER TABLE `td_technology_products` CHANGE `ip_category` `tech_product_title` VARCHAR(255) NOT NULL DEFAULT 'Patent' ",
+				" ALTER TABLE `td_technology_products` CHANGE `tech_product_title` `tech_product_title` VARCHAR(255) NOT NULL ",
+				"ALTER TABLE `td_technology_products` CHANGE `ip_title` `tech_produc_type` VARCHAR(255) NOT NULL ",
+				"ALTER TABLE `td_technology_products` DROP `year_field`",
+				"ALTER TABLE `td_technology_products` DROP `year_granted`",
+				"ALTER TABLE `td_technology_products` DROP `patent_id`",
+				"ALTER TABLE `td_technology_products` DROP `type`",
+				"ALTER TABLE `td_technology_products` DROP `source_of_ip_category`",
+				"ALTER TABLE td_technology_products ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `td_technology_products` CHANGE `field1` `project_value` VARCHAR(255) NULL ",
+				" ALTER TABLE `td_technology_products` CHANGE `project_value` `project_value` VARCHAR(255) NOT NULL ",
+				" ALTER TABLE `td_technology_products` CHANGE `project_value` `project_value` INT NOT NULL ",
+				"ALTER TABLE td_technology_products ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `td_technology_products` CHANGE `field1` `status_of_license_transfer` VARCHAR(255) NULL ",
+				" ALTER TABLE `td_technology_products` CHANGE `status_of_license_transfer` `status_of_license_transfer` VARCHAR(255) NOT NULL ",
+				"ALTER TABLE td_technology_products ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `td_technology_products` CHANGE `field1` `value_of_transfer` VARCHAR(255) NULL ",
+				" ALTER TABLE `td_technology_products` CHANGE `value_of_transfer` `value_of_transfer` INT NULL ",
+				" ALTER TABLE `td_technology_products` CHANGE `value_of_transfer` `value_of_transfer` INT NOT NULL ",
+				"ALTER TABLE td_technology_products ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `td_technology_products` CHANGE `field1` `trl_level` VARCHAR(255) NULL ",
+				" ALTER TABLE `td_technology_products` CHANGE `trl_level` `trl_level` VARCHAR(255) NOT NULL ",
+				"ALTER TABLE td_technology_products ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `td_technology_products` CHANGE `field1` `commercialised` VARCHAR(255) NULL ",
+				" ALTER TABLE `td_technology_products` CHANGE `commercialised` `commercialised` VARCHAR(255) NOT NULL ",
+				"ALTER TABLE td_technology_products ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `td_technology_products` CHANGE `field1` `source_of_ip_category` VARCHAR(255) NULL ",
+				" ALTER TABLE `td_technology_products` CHANGE `source_of_ip_category` `source_of_ip_category` VARCHAR(255) NOT NULL ",
+				"ALTER TABLE `td_technology_products` DROP `source_of_ip_category`",
+				"ALTER TABLE `td_technology_products` ADD `source_of_ip_category` VARCHAR(255) NULL ",
+			]);
+
 
 
 		// set up internal tables

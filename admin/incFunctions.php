@@ -730,7 +730,14 @@
 				],
 				'td_intellectual_property' => [
 					'Caption' => 'Intellectual Property',
-					'Description' => '<span style="color:red;;"><b>Technology Development </b></span>',
+					'Description' => '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[14],
+					'homepageShowCount' => 1
+				],
+				'td_technology_products' => [
+					'Caption' => 'Technology Products',
+					'Description' => '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[14],
 					'homepageShowCount' => 1
@@ -838,7 +845,8 @@
 			'contact_call_log_table' => ['Contact Call Log - App', '', 'table.gif', 'Suggestions &amp; Others App'],
 			'r_and_d_monthly_progress_app' => ['Monthly Progress App', '', 'table.gif', 'Technology Development Apps'],
 			'r_and_d_quarterly_progress_app' => ['Quarterly Progress App', '', 'table.gif', 'Technology Development Apps'],
-			'td_intellectual_property' => ['Intellectual Property', '<span style="color:red;;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
+			'td_intellectual_property' => ['Intellectual Property', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
+			'td_technology_products' => ['Technology Products', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) {
@@ -12111,6 +12119,85 @@
 						],
 					],
 				],
+				'td_technology_products' => [
+					'id' => [
+						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'year' => [
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT '2020-21'",
+						'info' => [
+							'caption' => 'Year',
+							'description' => '',
+						],
+					],
+					'tech_product_title' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'IP Category',
+							'description' => '',
+						],
+					],
+					'tech_produc_type' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Tech Product Type',
+							'description' => '',
+						],
+					],
+					'technology_area' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Technology Area',
+							'description' => '',
+						],
+					],
+					'project_value' => [
+						'appgini' => "INT NOT NULL",
+						'info' => [
+							'caption' => 'Project Value (Rs.) In Lakhs',
+							'description' => '',
+						],
+					],
+					'status_of_license_transfer' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Status of License Transfer',
+							'description' => '',
+						],
+					],
+					'value_of_transfer' => [
+						'appgini' => "INT NOT NULL",
+						'info' => [
+							'caption' => 'Value of the Transfer in Lakhs (Rs.)',
+							'description' => '',
+						],
+					],
+					'trl_level' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'TRL Level',
+							'description' => '',
+						],
+					],
+					'commercialised' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Commercialised',
+							'description' => '',
+						],
+					],
+					'source_of_ip_category' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Source of IP Category',
+							'description' => '',
+						],
+					],
+				],
 			];
 
 			$internalTablesSimple = [
@@ -16037,6 +16124,7 @@
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
 			'td_intellectual_property' => [],
+			'td_technology_products' => [],
 		];
 	}
 	#########################################################
@@ -16402,6 +16490,8 @@
 				'r_and_d_lookup' => 'SELECT `r_and_d_progress`.`id`, IF(CHAR_LENGTH(`r_and_d_progress`.`labs`) || CHAR_LENGTH(`r_and_d_progress`.`today_progress`), CONCAT_WS(\'\', `r_and_d_progress`.`labs`, \'::\', `r_and_d_progress`.`today_progress`), \'\') FROM `r_and_d_progress` ORDER BY 2',
 			],
 			'td_intellectual_property' => [
+			],
+			'td_technology_products' => [
 			],
 		];
 

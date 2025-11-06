@@ -527,6 +527,10 @@
 
 			return $data;
 		},
+		'td_technology_products' => function($data, $options = []) {
+
+			return $data;
+		},
 	];
 
 	// accept a record as an assoc array, return a boolean indicating whether to import or skip record
@@ -619,6 +623,7 @@
 		'r_and_d_monthly_progress_app' => function($data, $options = []) { return true; },
 		'r_and_d_quarterly_progress_app' => function($data, $options = []) { return true; },
 		'td_intellectual_property' => function($data, $options = []) { return true; },
+		'td_technology_products' => function($data, $options = []) { return true; },
 	];
 
 	/*

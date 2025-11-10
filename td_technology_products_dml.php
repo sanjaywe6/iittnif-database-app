@@ -23,7 +23,7 @@ function td_technology_products_insert(&$error_message = '') {
 		'project_value' => Request::val('project_value', ''),
 		'status_of_license_transfer' => Request::val('status_of_license_transfer', ''),
 		'value_of_transfer' => Request::val('value_of_transfer', ''),
-		'trl_level' => Request::val('trl_level', ''),
+		'trl_level' => Request::val('trl_level', 'TRL 1'),
 		'commercialised' => Request::val('commercialised', ''),
 		'source_of_ip_category' => Request::val('source_of_ip_category', 'EIR'),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
@@ -382,7 +382,7 @@ function td_technology_products_form($selectedId = '', $allowUpdate = true, $all
 		$combo_tech_produc_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 		$combo_technology_area->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 		$combo_status_of_license_transfer->SelectedText = (isset($filterField[1]) && $filterField[1] == '7' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_trl_level->SelectedText = (isset($filterField[1]) && $filterField[1] == '9' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_trl_level->SelectedText = (isset($filterField[1]) && $filterField[1] == '9' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('TRL 1'));
 		$combo_commercialised->SelectedText = (isset($filterField[1]) && $filterField[1] == '10' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 		$combo_source_of_ip_category->SelectedText = (isset($filterField[1]) && $filterField[1] == '11' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('EIR'));
 	}
@@ -622,8 +622,8 @@ function td_technology_products_form($selectedId = '', $allowUpdate = true, $all
 		$templateCode = str_replace('<%%URLVALUE(status_of_license_transfer)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(value_of_transfer)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(value_of_transfer)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(trl_level)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(trl_level)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(trl_level)%%>', 'TRL 1', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(trl_level)%%>', urlencode('TRL 1'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(commercialised)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(commercialised)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(source_of_ip_category)%%>', 'EIR', $templateCode);

@@ -1,0 +1,415 @@
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/projects-dv.js rather than editing this file -->
+
+<div id="detail-view"></div>
+<div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
+
+<div id="projects_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+
+<div class="panel-body hidden" id="projects_dv_container">
+	<!-- child links -->
+	<div class="row vspacer-md">
+		<div class="col-xs-12 children-links">
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<hr class="hidden-xs hidden-sm">
+
+	<div class="row">
+		<!-- form inputs -->
+		<div class="col-md-8 col-lg-10" id="projects_dv_form">
+			<fieldset class="form-horizontal">
+
+				<!-- Field: Category -->
+				<div class="form-group projects-category">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="category">Category</label>
+					<div class="col-lg-9">
+						<%%COMBO(category)%%>
+					</div>
+				</div>
+
+				<!-- Field: Collaboration Partner Type -->
+				<div class="form-group projects-collaboration_partner_type">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="collaboration_partner_type">Collaboration Partner Type</label>
+					<div class="col-lg-9">
+						<%%COMBO(collaboration_partner_type)%%>
+					</div>
+				</div>
+
+				<!-- Field: Collaboration Partner Name -->
+				<div class="form-group projects-collaboration_partner_name">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="collaboration_partner_name">Collaboration Partner Name<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="collaboration_partner_name" id="collaboration_partner_name" value="<%%VALUE(collaboration_partner_name)%%>" required>
+					</div>
+				</div>
+
+				<!-- Field: Project title -->
+				<div class="form-group projects-project_title">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="project_title">Project title<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="project_title" id="project_title" value="<%%VALUE(project_title)%%>" required>
+					</div>
+				</div>
+
+				<!-- Field: TRL Level -->
+				<div class="form-group projects-trl_level">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="trl_level">TRL Level</label>
+					<div class="col-lg-9">
+						<%%COMBO(trl_level)%%>
+					</div>
+				</div>
+
+				<!-- Field: Project Status -->
+				<div class="form-group projects-project_status">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="project_status">Project Status</label>
+					<div class="col-lg-9">
+						<%%COMBO(project_status)%%>
+					</div>
+				</div>
+
+				<!-- Field: Project Commercialized -->
+				<div class="form-group projects-project_commercialized">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="project_commercialized">Project Commercialized</label>
+					<div class="col-lg-9">
+						<%%COMBO(project_commercialized)%%>
+					</div>
+				</div>
+
+				<!-- Field: Brief of the Project -->
+				<div class="form-group projects-brief_of_the_project">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="brief_of_the_project">Brief of the Project</label>
+					<div class="col-lg-9">
+						<textarea maxlength="65500" class="form-control" name="brief_of_the_project" id="brief_of_the_project" rows=" 5"><%%VALUE(brief_of_the_project)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Commercialization Areas -->
+				<div class="form-group projects-commercialization_areas">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="commercialization_areas">Commercialization Areas</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="commercialization_areas" id="commercialization_areas" value="<%%VALUE(commercialization_areas)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Targeted SDG -->
+				<div class="form-group projects-targeted_sdg">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="targeted_sdg">Targeted SDG</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="targeted_sdg" id="targeted_sdg" value="<%%VALUE(targeted_sdg)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Year of Commercialization Area -->
+				<div class="form-group projects-year_of_commercialization_area">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="year_of_commercialization_area">Year of Commercialization Area</label>
+					<div class="col-lg-9">
+						<input maxlength="5" type="text" class="form-control" name="year_of_commercialization_area" id="year_of_commercialization_area" value="<%%VALUE(year_of_commercialization_area)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Commercialization Value (In Lakhs) -->
+				<div class="form-group projects-commercialization_value">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="commercialization_value">Commercialization Value (In Lakhs)</label>
+					<div class="col-lg-9">
+						<input maxlength="11" type="text" class="form-control" name="commercialization_value" id="commercialization_value" value="<%%VALUE(commercialization_value)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Total Approved Amount (In INR) -->
+				<div class="form-group projects-total_approved_amount">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="total_approved_amount">Total Approved Amount (In INR)</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="total_approved_amount" id="total_approved_amount" value="<%%VALUE(total_approved_amount)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Funding Released 2020-21 (In Lakhs) -->
+				<div class="form-group projects-funding_released_2020">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="funding_released_2020">Funding Released 2020-21 (In Lakhs)</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="funding_released_2020" id="funding_released_2020" value="<%%VALUE(funding_released_2020)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Funding Released 2021-22 (In Lakhs) -->
+				<div class="form-group projects-funding_released_2021">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="funding_released_2021">Funding Released 2021-22 (In Lakhs)</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="funding_released_2021" id="funding_released_2021" value="<%%VALUE(funding_released_2021)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Funding Released 2022-23 (In Lakhs) -->
+				<div class="form-group projects-funding_released_2022">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="funding_released_2022">Funding Released 2022-23 (In Lakhs)</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="funding_released_2022" id="funding_released_2022" value="<%%VALUE(funding_released_2022)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Funding Released 2023-24 (In Lakhs) -->
+				<div class="form-group projects-funding_released_2023">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="funding_released_2023">Funding Released 2023-24 (In Lakhs)</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="funding_released_2023" id="funding_released_2023" value="<%%VALUE(funding_released_2023)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Funding Released 2024-25 (In Lakhs) -->
+				<div class="form-group projects-funding_released_2024">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="funding_released_2024">Funding Released 2024-25 (In Lakhs)</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="funding_released_2024" id="funding_released_2024" value="<%%VALUE(funding_released_2024)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Funding Released 2025-26 (In Lakhs) -->
+				<div class="form-group projects-funding_released_2025">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="funding_released_2025">Funding Released 2025-26 (In Lakhs)</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="funding_released_2025" id="funding_released_2025" value="<%%VALUE(funding_released_2025)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Funding Released 2026-27 (In Lakhs) -->
+				<div class="form-group projects-funding_released_2026">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="funding_released_2026">Funding Released 2026-27 (In Lakhs)</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="funding_released_2026" id="funding_released_2026" value="<%%VALUE(funding_released_2026)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Funding Released 2027-28(In Lakhs) -->
+				<div class="form-group projects-funding_released_2027">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="funding_released_2027">Funding Released 2027-28(In Lakhs)</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="funding_released_2027" id="funding_released_2027" value="<%%VALUE(funding_released_2027)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Total Value Released (In Lakhs) -->
+				<div class="form-group projects-total_value_released">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="total_value_released">Total Value Released (In Lakhs)</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="total_value_released" id="total_value_released" value="<%%VALUE(total_value_released)%%>">
+					</div>
+				</div>
+
+				<!-- Field: External Funding Amount (In Lakhs) -->
+				<div class="form-group projects-external_funding_amount">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="external_funding_amount">External Funding Amount (In Lakhs)</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="external_funding_amount" id="external_funding_amount" value="<%%VALUE(external_funding_amount)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Remarks -->
+				<div class="form-group projects-remarks">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="remarks">Remarks</label>
+					<div class="col-lg-9">
+						<textarea maxlength="65500" class="form-control" name="remarks" id="remarks" rows=" 5"><%%VALUE(remarks)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Created By Username -->
+				<div class="form-group projects-created_by_username">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Created By Username</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="created_by_username"><%%VALUE(created_by_username)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Last Updated by Username -->
+				<div class="form-group projects-last_updated_by_username">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Last Updated by Username</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="last_updated_by_username"><%%VALUE(last_updated_by_username)%%></div>
+					</div>
+				</div>
+
+			</fieldset>
+		</div>
+
+		<!-- DV action buttons -->
+		<hr class="hidden-md hidden-lg">
+		<div class="col-md-4 col-lg-2 dv-action-buttons" id="projects_dv_action_buttons">
+			<div class="btn-toolbar">
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%UPDATE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%DESELECT_BUTTON%%>
+					<%%DVPRINT_BUTTON%%>
+					<%%DELETE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%INSERT_BUTTON%%>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div><!-- /div class="panel-body" -->
+	<script>
+		$j(function() {
+			var add_new_mode = (!$j('input[name=SelectedID]').val());
+			var embedded_mode = ($j('input[name=Embedded]').val() == 1);
+
+			/* auto-close embedded page? */
+			var autoclose_mode = ($j('input[name=AutoClose]').val() == 1);
+			var record_added_ok = (location.search.split('record-added-ok=').length == 2);
+			var record_updated_ok = (location.search.split('record-updated-ok=').length == 2);
+			if((record_added_ok || record_updated_ok) && embedded_mode && autoclose_mode) {
+				setTimeout(AppGini.closeParentModal, 2000);
+			}
+
+
+			/* enable DV action buttons to float on scrolling down the form */
+			enable_dvab_floating();
+
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
+				AppGini.once({
+					condition: function() {
+						return $j('.form-group.projects-category')
+									.find('.nicEdit-main, .select2-container, input[type=radio]')
+									.length > 0
+								// or read-only DV
+								|| (!$j('#update').length && !$j('#insert').length);
+					},
+					action: function() {
+						$j('#projects_dv_container-loading').addClass('hidden');
+						$j('#projects_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('projects', 'category');
+					},
+					timeout:  5000,
+					doActionOnTimeout:  true
+				});
+			} else {
+				$j('#projects_dv_container-loading').addClass('hidden');
+				$j('#projects_dv_container').removeClass('hidden');
+			}
+
+			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
+
+
+			if(true /* !embedded_mode */) {
+				$j('.add_new_parent').click(function() {
+					var pt = $j(this).attr('id').replace(/_add_new$/, '');
+					modal_window({
+						url: pt + '_view.php?addNew_x=1&Embedded=1',
+						close: function() {
+							var field_id = $j('#' + pt + '_add_new').prevAll('input:hidden').eq(0).attr('id');
+							$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+							/* if a new parent was added, select it */
+							var new_id = localStorage.getItem(pt + '_last_added_id');
+							if(new_id === null) return;
+
+							localStorage.removeItem(pt + '_last_added_id');
+							AppGini.lookupText({
+								id: new_id,
+								table: 'projects',
+								field: field_id,
+								callback: function(data) {
+									$j('#' + field_id + '-container').select2('data', data, true);
+								}
+							});
+						},
+						size: 'full',
+						title: $j(this).attr('title')
+					});
+				});
+			}
+
+			AppGini.hideViewParentLinks();
+
+			$j('form').on('click', '.view_parent', function() {
+				var pt = $j(this).attr('id').replace(/_view_parent$/, '');
+				if($j(this).prevAll('input:hidden').length) {
+					var parent_id = $j(this).prevAll('input:hidden').eq(0).val();
+				} else {
+					var parent_id = $j(this).prevAll().children('input:hidden').eq(0).val();
+				}
+
+				/* handle radio lookups */
+				if($j(this).prevAll('[type=radio]').length) {
+					parent_id = $j(this).prevAll('[type=radio]').eq(0).val();
+				}
+
+				if(parent_id != '{empty_value}' && parent_id != undefined && parent_id != '') {
+					var parent_link = $j(this).parents('.form-group').children('label').data('parent_link');
+					switch(parent_link) {
+						case 'view_parent_hidden':
+							break;
+						case 'view_parent_modal':
+							modal_window({
+								url: pt + '_view.php?Embedded=1&SelectedID=' + encodeURIComponent(parent_id),
+								close: function() {
+									var field_id = $j('#' + pt + '_view_parent').prevAll('input:hidden').eq(0).attr('id');
+									$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+									// in case the parent record was updated, we should update auto-fills
+									var updaterName = field_id + '_update_autofills';
+									if(typeof(window[updaterName]) == 'function')
+										window[updaterName]();
+								},
+								size: 'full',
+								title: $j(this).attr('title')
+							});
+							break;
+						case 'view_parent_same_window':
+							window.location = pt + '_view.php?Embedded=' + (embedded_mode ? '1' : '') + '&SelectedID=' + encodeURIComponent(parent_id);
+							break;
+						case 'view_parent_new_window':
+							window.open(pt + '_view.php?SelectedID=' + encodeURIComponent(parent_id));
+							break;
+					}
+
+				}
+			});
+
+			projectsUniqueFields.forEach(fieldName => enforce_uniqueness('projects', fieldName));
+
+			/* load admin tools for admin user */
+			if(!add_new_mode) {
+				$j('body').append('<div id="admin-tools-appendix"></div>');
+				$j('#admin-tools-appendix').load(
+					'ajax_admin_tools.php?table=projects&id=<%%URLVALUE(id)%%>',
+					function(resp) {
+						if(!resp.length) return;
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=projects&id=<%%URLVALUE(id)%%>');
+					}
+				);
+			}
+		});
+
+		var projectsUniqueFields = [
+		];
+	</script>

@@ -1,0 +1,211 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Category -->
+		<div class="form-group projects-category" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Category</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(category)%%></div>
+			</div>
+		</div>
+		<!-- Field: Collaboration Partner Type -->
+		<div class="form-group projects-collaboration_partner_type" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Collaboration Partner Type</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(collaboration_partner_type)%%></div>
+			</div>
+		</div>
+		<!-- Field: Collaboration Partner Name -->
+		<div class="form-group projects-collaboration_partner_name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Collaboration Partner Name</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(collaboration_partner_name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Project title -->
+		<div class="form-group projects-project_title" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Project title</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(project_title)%%></div>
+			</div>
+		</div>
+		<!-- Field: TRL Level -->
+		<div class="form-group projects-trl_level" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">TRL Level</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(trl_level)%%></div>
+			</div>
+		</div>
+		<!-- Field: Project Status -->
+		<div class="form-group projects-project_status" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Project Status</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(project_status)%%></div>
+			</div>
+		</div>
+		<!-- Field: Project Commercialized -->
+		<div class="form-group projects-project_commercialized" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Project Commercialized</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(project_commercialized)%%></div>
+			</div>
+		</div>
+		<!-- Field: Brief of the Project -->
+		<div class="form-group projects-brief_of_the_project" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Brief of the Project</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(brief_of_the_project)%%></div>
+			</div>
+		</div>
+		<!-- Field: Commercialization Areas -->
+		<div class="form-group projects-commercialization_areas" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Commercialization Areas</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(commercialization_areas)%%></div>
+			</div>
+		</div>
+		<!-- Field: Targeted SDG -->
+		<div class="form-group projects-targeted_sdg" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Targeted SDG</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(targeted_sdg)%%></div>
+			</div>
+		</div>
+		<!-- Field: Year of Commercialization Area -->
+		<div class="form-group projects-year_of_commercialization_area" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Year of Commercialization Area</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(year_of_commercialization_area)%%></div>
+			</div>
+		</div>
+		<!-- Field: Commercialization Value (In Lakhs) -->
+		<div class="form-group projects-commercialization_value" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Commercialization Value (In Lakhs)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(commercialization_value)%%></div>
+			</div>
+		</div>
+		<!-- Field: Total Approved Amount (In INR) -->
+		<div class="form-group projects-total_approved_amount" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Total Approved Amount (In INR)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(total_approved_amount)%%></div>
+			</div>
+		</div>
+		<!-- Field: Funding Released 2020-21 (In Lakhs) -->
+		<div class="form-group projects-funding_released_2020" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Funding Released 2020-21 (In Lakhs)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(funding_released_2020)%%></div>
+			</div>
+		</div>
+		<!-- Field: Funding Released 2021-22 (In Lakhs) -->
+		<div class="form-group projects-funding_released_2021" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Funding Released 2021-22 (In Lakhs)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(funding_released_2021)%%></div>
+			</div>
+		</div>
+		<!-- Field: Funding Released 2022-23 (In Lakhs) -->
+		<div class="form-group projects-funding_released_2022" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Funding Released 2022-23 (In Lakhs)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(funding_released_2022)%%></div>
+			</div>
+		</div>
+		<!-- Field: Funding Released 2023-24 (In Lakhs) -->
+		<div class="form-group projects-funding_released_2023" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Funding Released 2023-24 (In Lakhs)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(funding_released_2023)%%></div>
+			</div>
+		</div>
+		<!-- Field: Funding Released 2024-25 (In Lakhs) -->
+		<div class="form-group projects-funding_released_2024" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Funding Released 2024-25 (In Lakhs)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(funding_released_2024)%%></div>
+			</div>
+		</div>
+		<!-- Field: Funding Released 2025-26 (In Lakhs) -->
+		<div class="form-group projects-funding_released_2025" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Funding Released 2025-26 (In Lakhs)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(funding_released_2025)%%></div>
+			</div>
+		</div>
+		<!-- Field: Funding Released 2026-27 (In Lakhs) -->
+		<div class="form-group projects-funding_released_2026" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Funding Released 2026-27 (In Lakhs)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(funding_released_2026)%%></div>
+			</div>
+		</div>
+		<!-- Field: Funding Released 2027-28(In Lakhs) -->
+		<div class="form-group projects-funding_released_2027" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Funding Released 2027-28(In Lakhs)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(funding_released_2027)%%></div>
+			</div>
+		</div>
+		<!-- Field: Total Value Released (In Lakhs) -->
+		<div class="form-group projects-total_value_released" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Total Value Released (In Lakhs)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(total_value_released)%%></div>
+			</div>
+		</div>
+		<!-- Field: External Funding Amount (In Lakhs) -->
+		<div class="form-group projects-external_funding_amount" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">External Funding Amount (In Lakhs)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(external_funding_amount)%%></div>
+			</div>
+		</div>
+		<!-- Field: Remarks -->
+		<div class="form-group projects-remarks" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Remarks</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(remarks)%%></div>
+			</div>
+		</div>
+		<!-- Field: Created By Username -->
+		<div class="form-group projects-created_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Created By Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(created_by_username)%%></div>
+			</div>
+		</div>
+		<!-- Field: Last Updated by Username -->
+		<div class="form-group projects-last_updated_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Last Updated by Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(last_updated_by_username)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

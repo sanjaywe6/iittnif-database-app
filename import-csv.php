@@ -521,6 +521,10 @@
 
 			return $data;
 		},
+		'projects' => function($data, $options = []) {
+
+			return $data;
+		},
 		'td_intellectual_property' => function($data, $options = []) {
 			if(isset($data['year_field'])) $data['year_field'] = guessMySQLDateTime($data['year_field']);
 			if(isset($data['year_granted'])) $data['year_granted'] = guessMySQLDateTime($data['year_granted']);
@@ -622,6 +626,7 @@
 		'contact_call_log_table' => function($data, $options = []) { return true; },
 		'r_and_d_monthly_progress_app' => function($data, $options = []) { return true; },
 		'r_and_d_quarterly_progress_app' => function($data, $options = []) { return true; },
+		'projects' => function($data, $options = []) { return true; },
 		'td_intellectual_property' => function($data, $options = []) { return true; },
 		'td_technology_products' => function($data, $options = []) { return true; },
 	];

@@ -728,6 +728,13 @@
 					'group' => $tg[6],
 					'homepageShowCount' => 0
 				],
+				'projects' => [
+					'Caption' => 'Projects',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[14],
+					'homepageShowCount' => 1
+				],
 				'td_intellectual_property' => [
 					'Caption' => 'Intellectual Property',
 					'Description' => '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>',
@@ -845,6 +852,7 @@
 			'contact_call_log_table' => ['Contact Call Log - App', '', 'table.gif', 'Suggestions &amp; Others App'],
 			'r_and_d_monthly_progress_app' => ['Monthly Progress App', '', 'table.gif', 'Technology Development Apps'],
 			'r_and_d_quarterly_progress_app' => ['Quarterly Progress App', '', 'table.gif', 'Technology Development Apps'],
+			'projects' => ['Projects', '', 'table.gif', 'NMICPS Portal - Apps'],
 			'td_intellectual_property' => ['Intellectual Property', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 			'td_technology_products' => ['Technology Products', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 		];
@@ -12047,6 +12055,225 @@
 						],
 					],
 				],
+				'projects' => [
+					'id' => [
+						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'category' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'PRAYAS'",
+						'info' => [
+							'caption' => 'Category',
+							'description' => '',
+						],
+					],
+					'collaboration_partner_type' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Institute'",
+						'info' => [
+							'caption' => 'Collaboration Partner Type',
+							'description' => '',
+						],
+					],
+					'collaboration_partner_name' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Collaboration Partner Name',
+							'description' => '',
+						],
+					],
+					'project_title' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Project title',
+							'description' => '',
+						],
+					],
+					'trl_level' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'TRL 1'",
+						'info' => [
+							'caption' => 'TRL Level',
+							'description' => '',
+						],
+					],
+					'project_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Ongoing'",
+						'info' => [
+							'caption' => 'Project Status',
+							'description' => '',
+						],
+					],
+					'project_commercialized' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Yes'",
+						'info' => [
+							'caption' => 'Project Commercialized',
+							'description' => '',
+						],
+					],
+					'brief_of_the_project' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Brief of the Project',
+							'description' => '',
+						],
+					],
+					'commercialization_areas' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Commercialization Areas',
+							'description' => '',
+						],
+					],
+					'targeted_sdg' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Targeted SDG',
+							'description' => '',
+						],
+					],
+					'year_of_commercialization_area' => [
+						'appgini' => "YEAR NULL",
+						'info' => [
+							'caption' => 'Year of Commercialization Area',
+							'description' => '',
+						],
+					],
+					'commercialization_value' => [
+						'appgini' => "INT NULL",
+						'info' => [
+							'caption' => 'Commercialization Value (In Lakhs)',
+							'description' => '',
+						],
+					],
+					'total_approved_amount' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Total Approved Amount (In INR)',
+							'description' => '',
+						],
+					],
+					'funding_released_2020' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Funding Released 2020-21 (In Lakhs)',
+							'description' => '',
+						],
+					],
+					'funding_released_2021' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Funding Released 2021-22 (In Lakhs)',
+							'description' => '',
+						],
+					],
+					'funding_released_2022' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Funding Released 2022-23 (In Lakhs)',
+							'description' => '',
+						],
+					],
+					'funding_released_2023' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Funding Released 2023-24 (In Lakhs)',
+							'description' => '',
+						],
+					],
+					'funding_released_2024' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Funding Released 2024-25 (In Lakhs)',
+							'description' => '',
+						],
+					],
+					'funding_released_2025' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Funding Released 2025-26 (In Lakhs)',
+							'description' => '',
+						],
+					],
+					'funding_released_2026' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Funding Released 2026-27 (In Lakhs)',
+							'description' => '',
+						],
+					],
+					'funding_released_2027' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Funding Released 2027-28(In Lakhs)',
+							'description' => '',
+						],
+					],
+					'total_value_released' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Total Value Released (In Lakhs)',
+							'description' => '',
+						],
+					],
+					'external_funding_amount' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'External Funding Amount (In Lakhs)',
+							'description' => '',
+						],
+					],
+					'remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Remarks',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created At',
+							'description' => '',
+						],
+					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+				],
 				'td_intellectual_property' => [
 					'id' => [
 						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
@@ -12219,7 +12446,7 @@
 						],
 					],
 					'trl_level' => [
-						'appgini' => "VARCHAR(255) NOT NULL",
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT 'TRL 1'",
 						'info' => [
 							'caption' => 'TRL Level',
 							'description' => '',
@@ -16207,6 +16434,36 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
+			'projects' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+				'last_updated_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
 			'td_intellectual_property' => [
 				'created_by_username' => 'SELECT CONCAT(
 					  
@@ -16630,6 +16887,8 @@
 			],
 			'r_and_d_quarterly_progress_app' => [
 				'r_and_d_lookup' => 'SELECT `r_and_d_progress`.`id`, IF(CHAR_LENGTH(`r_and_d_progress`.`labs`) || CHAR_LENGTH(`r_and_d_progress`.`today_progress`), CONCAT_WS(\'\', `r_and_d_progress`.`labs`, \'::\', `r_and_d_progress`.`today_progress`), \'\') FROM `r_and_d_progress` ORDER BY 2',
+			],
+			'projects' => [
 			],
 			'td_intellectual_property' => [
 			],

@@ -943,6 +943,8 @@
 				'not_null' => false,
 			],
 		],
+		'projects' => [
+		],
 		'td_intellectual_property' => [
 		],
 		'td_technology_products' => [

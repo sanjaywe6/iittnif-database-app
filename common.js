@@ -1279,6 +1279,7 @@ function td_intellectual_property_validateData(insertMode) {
 		['list', 'ip_category', 'IP Category'],
 		['text', 'ip_title', 'IP Title'],
 		['list', 'technology_area', 'Technology Area'],
+		['list', 'source_of_ip_category', 'Source of IP Category'],
 	];
 
 	reqFields.map(function(rf) {
@@ -1309,6 +1310,28 @@ function td_technology_products_validateData(insertMode) {
 		['list', 'trl_level', 'TRL Level'],
 		['list', 'commercialised', 'Commercialised'],
 		['list', 'source_of_ip_category', 'Source of IP Category'],
+	];
+
+	reqFields.map(function(rf) {
+		// avoid displaying more error messages and overwhelming users
+		if(rf.length != 3 || errors) return;
+
+		if(!AppGini.Validation.fieldRequired(rf[0], rf[1], rf[2], insertMode)) errors = true;
+	});
+
+	if(errors) return false;
+
+	return !errors;
+}
+function publications_and_intellectual_activities_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	// check all required fields have values
+	const reqFields = [
+		// [field-type, field-name, field-caption], ...
+		['list', 'year', 'Year'],
+		['list', 'type', 'Type'],
 	];
 
 	reqFields.map(function(rf) {

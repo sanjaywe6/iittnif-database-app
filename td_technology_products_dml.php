@@ -26,6 +26,7 @@ function td_technology_products_insert(&$error_message = '') {
 		'trl_level' => Request::val('trl_level', 'TRL 1'),
 		'commercialised' => Request::val('commercialised', ''),
 		'source_of_ip_category' => Request::val('source_of_ip_category', 'EIR'),
+		'source_of_ip' => Request::lookup('source_of_ip', ''),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 	];
@@ -104,6 +105,7 @@ function td_technology_products_update(&$selected_id, &$error_message = '') {
 		'trl_level' => Request::val('trl_level', ''),
 		'commercialised' => Request::val('commercialised', ''),
 		'source_of_ip_category' => Request::val('source_of_ip_category', ''),
+		'source_of_ip' => Request::lookup('source_of_ip', ''),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 	];
@@ -243,6 +245,7 @@ function td_technology_products_form($selectedId = '', $allowUpdate = true, $all
 	$showSaveAsCopy = !$dvprint && ($allowInsert && $hasSelectedId && !$noSaveAsCopy);
 	$fieldsAreEditable = !$dvprint && (($allowInsert && !$hasSelectedId) || ($allowUpdate && $hasSelectedId) || $showSaveAsCopy);
 
+	$filterer_source_of_ip = Request::val('filterer_source_of_ip');
 
 	// populate filterers, starting from children to grand-parents
 
@@ -360,6 +363,8 @@ function td_technology_products_form($selectedId = '', $allowUpdate = true, $all
 	}
 	$combo_source_of_ip_category->SelectName = 'source_of_ip_category';
 	$combo_source_of_ip_category->AllowNull = false;
+	// combobox: source_of_ip
+	$combo_source_of_ip = new DataCombo;
 
 	if($hasSelectedId) {
 		if(!($row = getRecord('td_technology_products', $selectedId))) {
@@ -372,6 +377,7 @@ function td_technology_products_form($selectedId = '', $allowUpdate = true, $all
 		$combo_trl_level->SelectedData = $row['trl_level'];
 		$combo_commercialised->SelectedData = $row['commercialised'];
 		$combo_source_of_ip_category->SelectedData = $row['source_of_ip_category'];
+		$combo_source_of_ip->SelectedData = $row['source_of_ip'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
 	} else {
@@ -385,6 +391,7 @@ function td_technology_products_form($selectedId = '', $allowUpdate = true, $all
 		$combo_trl_level->SelectedText = (isset($filterField[1]) && $filterField[1] == '9' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('TRL 1'));
 		$combo_commercialised->SelectedText = (isset($filterField[1]) && $filterField[1] == '10' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 		$combo_source_of_ip_category->SelectedText = (isset($filterField[1]) && $filterField[1] == '11' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('EIR'));
+		$combo_source_of_ip->SelectedData = $filterer_source_of_ip;
 	}
 	$combo_year->Render();
 	$combo_tech_produc_type->Render();
@@ -393,17 +400,98 @@ function td_technology_products_form($selectedId = '', $allowUpdate = true, $all
 	$combo_trl_level->Render();
 	$combo_commercialised->Render();
 	$combo_source_of_ip_category->Render();
+	$combo_source_of_ip->HTML = '<span id="source_of_ip-container' . $rnd1 . '"></span><input type="hidden" name="source_of_ip" id="source_of_ip' . $rnd1 . '" value="' . html_attr($combo_source_of_ip->SelectedData) . '">';
+	$combo_source_of_ip->MatchText = '<span id="source_of_ip-container-readonly' . $rnd1 . '"></span><input type="hidden" name="source_of_ip" id="source_of_ip' . $rnd1 . '" value="' . html_attr($combo_source_of_ip->SelectedData) . '">';
 
 	ob_start();
 	?>
 
 	<script>
 		// initial lookup values
+		AppGini.current_source_of_ip__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['source_of_ip'] : htmlspecialchars($filterer_source_of_ip, ENT_QUOTES)); ?>"};
 
 		$j(function() {
 			setTimeout(function() {
+				if(typeof(source_of_ip_reload__RAND__) == 'function') source_of_ip_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
+		function source_of_ip_reload__RAND__() {
+		<?php if($fieldsAreEditable) { ?>
+
+			$j("#source_of_ip-container__RAND__").select2({
+				/* initial default value */
+				initSelection: function(e, c) {
+					$j.ajax({
+						url: 'ajax_combo.php',
+						dataType: 'json',
+						data: { id: AppGini.current_source_of_ip__RAND__.value, t: 'td_technology_products', f: 'source_of_ip' },
+						success: function(resp) {
+							c({
+								id: resp.results[0].id,
+								text: resp.results[0].text
+							});
+							$j('[name="source_of_ip"]').val(resp.results[0].id);
+							$j('[id=source_of_ip-container-readonly__RAND__]').html('<span class="match-text" id="source_of_ip-match-text">' + resp.results[0].text + '</span>');
+							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=projects_view_parent]').hide(); } else { $j('.btn[id=projects_view_parent]').show(); }
+
+
+							if(typeof(source_of_ip_update_autofills__RAND__) == 'function') source_of_ip_update_autofills__RAND__();
+						}
+					});
+				},
+				width: '100%',
+				formatNoMatches: function(term) { return '<?php echo addslashes($Translation['No matches found!']); ?>'; },
+				minimumResultsForSearch: 5,
+				loadMorePadding: 200,
+				ajax: {
+					url: 'ajax_combo.php',
+					dataType: 'json',
+					cache: true,
+					data: function(term, page) { return { s: term, p: page, t: 'td_technology_products', f: 'source_of_ip' }; },
+					results: function(resp, page) { return resp; }
+				},
+				escapeMarkup: function(str) { return str; }
+			}).on('change', function(e) {
+				AppGini.current_source_of_ip__RAND__.value = e.added.id;
+				AppGini.current_source_of_ip__RAND__.text = e.added.text;
+				$j('[name="source_of_ip"]').val(e.added.id);
+				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=projects_view_parent]').hide(); } else { $j('.btn[id=projects_view_parent]').show(); }
+
+
+				if(typeof(source_of_ip_update_autofills__RAND__) == 'function') source_of_ip_update_autofills__RAND__();
+			});
+
+			if(!$j("#source_of_ip-container__RAND__").length) {
+				$j.ajax({
+					url: 'ajax_combo.php',
+					dataType: 'json',
+					data: { id: AppGini.current_source_of_ip__RAND__.value, t: 'td_technology_products', f: 'source_of_ip' },
+					success: function(resp) {
+						$j('[name="source_of_ip"]').val(resp.results[0].id);
+						$j('[id=source_of_ip-container-readonly__RAND__]').html('<span class="match-text" id="source_of_ip-match-text">' + resp.results[0].text + '</span>');
+						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=projects_view_parent]').hide(); } else { $j('.btn[id=projects_view_parent]').show(); }
+
+						if(typeof(source_of_ip_update_autofills__RAND__) == 'function') source_of_ip_update_autofills__RAND__();
+					}
+				});
+			}
+
+		<?php } else { ?>
+
+			$j.ajax({
+				url: 'ajax_combo.php',
+				dataType: 'json',
+				data: { id: AppGini.current_source_of_ip__RAND__.value, t: 'td_technology_products', f: 'source_of_ip' },
+				success: function(resp) {
+					$j('[id=source_of_ip-container__RAND__], [id=source_of_ip-container-readonly__RAND__]').html('<span class="match-text" id="source_of_ip-match-text">' + resp.results[0].text + '</span>');
+					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=projects_view_parent]').hide(); } else { $j('.btn[id=projects_view_parent]').show(); }
+
+					if(typeof(source_of_ip_update_autofills__RAND__) == 'function') source_of_ip_update_autofills__RAND__();
+				}
+			});
+		<?php } ?>
+
+		}
 	</script>
 	<?php
 
@@ -499,6 +587,8 @@ function td_technology_products_form($selectedId = '', $allowUpdate = true, $all
 		$jsReadOnly .= "\t\$j('#trl_level').replaceWith('<div class=\"form-control-static\" id=\"trl_level\">' + (\$j('#trl_level').val() || '') + '</div>'); \$j('#trl_level-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#commercialised').replaceWith('<div class=\"form-control-static\" id=\"commercialised\">' + (\$j('#commercialised').val() || '') + '</div>'); \$j('#commercialised-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#source_of_ip_category').replaceWith('<div class=\"form-control-static\" id=\"source_of_ip_category\">' + (\$j('#source_of_ip_category').val() || '') + '</div>'); \$j('#source_of_ip_category-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#source_of_ip').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#source_of_ip_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -523,9 +613,12 @@ function td_technology_products_form($selectedId = '', $allowUpdate = true, $all
 	$templateCode = str_replace('<%%COMBOTEXT(commercialised)%%>', $combo_commercialised->SelectedData, $templateCode);
 	$templateCode = str_replace('<%%COMBO(source_of_ip_category)%%>', $combo_source_of_ip_category->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(source_of_ip_category)%%>', $combo_source_of_ip_category->SelectedData, $templateCode);
+	$templateCode = str_replace('<%%COMBO(source_of_ip)%%>', $combo_source_of_ip->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(source_of_ip)%%>', $combo_source_of_ip->MatchText, $templateCode);
+	$templateCode = str_replace('<%%URLCOMBOTEXT(source_of_ip)%%>', urlencode($combo_source_of_ip->MatchText), $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
-	$lookup_fields = [];
+	$lookup_fields = ['source_of_ip' => ['projects', 'Source of IP'], ];
 	foreach($lookup_fields as $luf => $ptfc) {
 		$pt_perm = getTablePermissions($ptfc[0]);
 
@@ -552,6 +645,7 @@ function td_technology_products_form($selectedId = '', $allowUpdate = true, $all
 	$templateCode = str_replace('<%%UPLOADFILE(trl_level)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(commercialised)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(source_of_ip_category)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(source_of_ip)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by_username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by_username)%%>', '', $templateCode);
@@ -593,6 +687,9 @@ function td_technology_products_form($selectedId = '', $allowUpdate = true, $all
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(source_of_ip_category)%%>', safe_html($urow['source_of_ip_category']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(source_of_ip_category)%%>', html_attr($row['source_of_ip_category']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(source_of_ip_category)%%>', urlencode($urow['source_of_ip_category']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(source_of_ip)%%>', safe_html($urow['source_of_ip']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(source_of_ip)%%>', html_attr($row['source_of_ip']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(source_of_ip)%%>', urlencode($urow['source_of_ip']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', safe_html($urow['created_by_username']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode($urow['created_by_username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
@@ -628,6 +725,8 @@ function td_technology_products_form($selectedId = '', $allowUpdate = true, $all
 		$templateCode = str_replace('<%%URLVALUE(commercialised)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(source_of_ip_category)%%>', 'EIR', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(source_of_ip_category)%%>', urlencode('EIR'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(source_of_ip)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(source_of_ip)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);

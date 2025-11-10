@@ -528,10 +528,16 @@
 		'td_intellectual_property' => function($data, $options = []) {
 			if(isset($data['year_field'])) $data['year_field'] = guessMySQLDateTime($data['year_field']);
 			if(isset($data['year_granted'])) $data['year_granted'] = guessMySQLDateTime($data['year_granted']);
+			if(isset($data['source_of_ip'])) $data['source_of_ip'] = pkGivenLookupText($data['source_of_ip'], 'td_intellectual_property', 'source_of_ip');
 
 			return $data;
 		},
 		'td_technology_products' => function($data, $options = []) {
+			if(isset($data['source_of_ip'])) $data['source_of_ip'] = pkGivenLookupText($data['source_of_ip'], 'td_technology_products', 'source_of_ip');
+
+			return $data;
+		},
+		'publications_and_intellectual_activities' => function($data, $options = []) {
 
 			return $data;
 		},
@@ -629,6 +635,7 @@
 		'projects' => function($data, $options = []) { return true; },
 		'td_intellectual_property' => function($data, $options = []) { return true; },
 		'td_technology_products' => function($data, $options = []) { return true; },
+		'publications_and_intellectual_activities' => function($data, $options = []) { return true; },
 	];
 
 	/*

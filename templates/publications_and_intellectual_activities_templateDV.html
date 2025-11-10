@@ -1,11 +1,11 @@
-<!-- To change the layout of the detail view form, we recommend using JS code in hooks/td_intellectual_property-dv.js rather than editing this file -->
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/publications_and_intellectual_activities-dv.js rather than editing this file -->
 
 <div id="detail-view"></div>
 <div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
 
-<div id="td_intellectual_property_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+<div id="publications_and_intellectual_activities_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
 
-<div class="panel-body hidden" id="td_intellectual_property_dv_container">
+<div class="panel-body hidden" id="publications_and_intellectual_activities_dv_container">
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
@@ -16,11 +16,11 @@
 
 	<div class="row">
 		<!-- form inputs -->
-		<div class="col-md-8 col-lg-10" id="td_intellectual_property_dv_form">
+		<div class="col-md-8 col-lg-10" id="publications_and_intellectual_activities_dv_form">
 			<fieldset class="form-horizontal">
 
 				<!-- Field: Year -->
-				<div class="form-group td_intellectual_property-year">
+				<div class="form-group publications_and_intellectual_activities-year">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="year">Year<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
@@ -28,89 +28,17 @@
 					</div>
 				</div>
 
-				<!-- Field: IP Category -->
-				<div class="form-group td_intellectual_property-ip_category">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="ip_category">IP Category<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
-					<div class="col-lg-9">
-						<%%COMBO(ip_category)%%>
-					</div>
-				</div>
-
-				<!-- Field: IP Title -->
-				<div class="form-group td_intellectual_property-ip_title">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="ip_title">IP Title<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
-					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="ip_title" id="ip_title" value="<%%VALUE(ip_title)%%>" required>
-					</div>
-				</div>
-
-				<!-- Field: Technology Area -->
-				<div class="form-group td_intellectual_property-technology_area">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="technology_area">Technology Area<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
-					<div class="col-lg-9">
-						<%%COMBO(technology_area)%%>
-					</div>
-				</div>
-
-				<!-- Field: Year Field -->
-				<div class="form-group td_intellectual_property-year_field">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="year_field-dd">Year Field</label>
-					<div class="col-lg-9">
-						<%%COMBO(year_field)%%>
-					</div>
-				</div>
-
-				<!-- Field: Year Granted -->
-				<div class="form-group td_intellectual_property-year_granted">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="year_granted-dd">Year Granted</label>
-					<div class="col-lg-9">
-						<%%COMBO(year_granted)%%>
-					</div>
-				</div>
-
-				<!-- Field: Patent ID -->
-				<div class="form-group td_intellectual_property-patent_id">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="patent_id">Patent ID</label>
-					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="patent_id" id="patent_id" value="<%%VALUE(patent_id)%%>">
-					</div>
-				</div>
-
 				<!-- Field: Type -->
-				<div class="form-group td_intellectual_property-type">
+				<div class="form-group publications_and_intellectual_activities-type">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="type">Type</label>
+					<label class="control-label col-lg-3" for="type">Type<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
 						<%%COMBO(type)%%>
 					</div>
 				</div>
 
-				<!-- Field: Source of IP Category -->
-				<div class="form-group td_intellectual_property-source_of_ip_category">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="source_of_ip_category">Source of IP Category<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
-					<div class="col-lg-9">
-						<%%COMBO(source_of_ip_category)%%>
-					</div>
-				</div>
-
-				<!-- Field: Source of IP -->
-				<div class="form-group td_intellectual_property-source_of_ip">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="source_of_ip" data-parent_link="view_parent_modal">Source of IP</label>
-					<div class="col-lg-9">
-						<div class="lookup-flex"><%%COMBO(source_of_ip)%%><%%PLINK(source_of_ip)%%><%%ADDNEW(projects)%%></div>
-					</div>
-				</div>
-
 				<!-- Field: Created By Username -->
-				<div class="form-group td_intellectual_property-created_by_username">
+				<div class="form-group publications_and_intellectual_activities-created_by_username">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3">Created By Username</label>
 					<div class="col-lg-9">
@@ -119,7 +47,7 @@
 				</div>
 
 				<!-- Field: Last Updated by Username -->
-				<div class="form-group td_intellectual_property-last_updated_by_username">
+				<div class="form-group publications_and_intellectual_activities-last_updated_by_username">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3">Last Updated by Username</label>
 					<div class="col-lg-9">
@@ -132,7 +60,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2 dv-action-buttons" id="td_intellectual_property_dv_action_buttons">
+		<div class="col-md-4 col-lg-2 dv-action-buttons" id="publications_and_intellectual_activities_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>
@@ -171,23 +99,23 @@
 			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
 				AppGini.once({
 					condition: function() {
-						return $j('.form-group.td_intellectual_property-year')
+						return $j('.form-group.publications_and_intellectual_activities-year')
 									.find('.nicEdit-main, .select2-container, input[type=radio]')
 									.length > 0
 								// or read-only DV
 								|| (!$j('#update').length && !$j('#insert').length);
 					},
 					action: function() {
-						$j('#td_intellectual_property_dv_container-loading').addClass('hidden');
-						$j('#td_intellectual_property_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('td_intellectual_property', 'year');
+						$j('#publications_and_intellectual_activities_dv_container-loading').addClass('hidden');
+						$j('#publications_and_intellectual_activities_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('publications_and_intellectual_activities', 'year');
 					},
 					timeout:  5000,
 					doActionOnTimeout:  true
 				});
 			} else {
-				$j('#td_intellectual_property_dv_container-loading').addClass('hidden');
-				$j('#td_intellectual_property_dv_container').removeClass('hidden');
+				$j('#publications_and_intellectual_activities_dv_container-loading').addClass('hidden');
+				$j('#publications_and_intellectual_activities_dv_container').removeClass('hidden');
 			}
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
@@ -209,7 +137,7 @@
 							localStorage.removeItem(pt + '_last_added_id');
 							AppGini.lookupText({
 								id: new_id,
-								table: 'td_intellectual_property',
+								table: 'publications_and_intellectual_activities',
 								field: field_id,
 								callback: function(data) {
 									$j('#' + field_id + '-container').select2('data', data, true);
@@ -269,21 +197,21 @@
 				}
 			});
 
-			td_intellectual_propertyUniqueFields.forEach(fieldName => enforce_uniqueness('td_intellectual_property', fieldName));
+			publications_and_intellectual_activitiesUniqueFields.forEach(fieldName => enforce_uniqueness('publications_and_intellectual_activities', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
 				$j('body').append('<div id="admin-tools-appendix"></div>');
 				$j('#admin-tools-appendix').load(
-					'ajax_admin_tools.php?table=td_intellectual_property&id=<%%URLVALUE(id)%%>',
+					'ajax_admin_tools.php?table=publications_and_intellectual_activities&id=<%%URLVALUE(id)%%>',
 					function(resp) {
 						if(!resp.length) return;
-						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=td_intellectual_property&id=<%%URLVALUE(id)%%>');
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=publications_and_intellectual_activities&id=<%%URLVALUE(id)%%>');
 					}
 				);
 			}
 		});
 
-		var td_intellectual_propertyUniqueFields = [
+		var publications_and_intellectual_activitiesUniqueFields = [
 		];
 	</script>

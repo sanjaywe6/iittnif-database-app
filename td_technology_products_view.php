@@ -29,6 +29,7 @@
 		"`td_technology_products`.`trl_level`" => "trl_level",
 		"`td_technology_products`.`commercialised`" => "commercialised",
 		"`td_technology_products`.`source_of_ip_category`" => "source_of_ip_category",
+		"IF(    CHAR_LENGTH(`projects1`.`category`) || CHAR_LENGTH(`projects1`.`project_title`), CONCAT_WS('',   `projects1`.`category`, ' ~ ', `projects1`.`project_title`), '') /* Source of IP */" => "source_of_ip",
 		"`td_technology_products`.`created_by_username`" => "created_by_username",
 		"`td_technology_products`.`created_at`" => "created_at",
 		"`td_technology_products`.`last_updated_by_username`" => "last_updated_by_username",
@@ -55,6 +56,7 @@
 		15 => 15,
 		16 => 16,
 		17 => 17,
+		18 => 18,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -70,6 +72,7 @@
 		"`td_technology_products`.`trl_level`" => "trl_level",
 		"`td_technology_products`.`commercialised`" => "commercialised",
 		"`td_technology_products`.`source_of_ip_category`" => "source_of_ip_category",
+		"IF(    CHAR_LENGTH(`projects1`.`category`) || CHAR_LENGTH(`projects1`.`project_title`), CONCAT_WS('',   `projects1`.`category`, ' ~ ', `projects1`.`project_title`), '') /* Source of IP */" => "source_of_ip",
 		"`td_technology_products`.`created_by_username`" => "created_by_username",
 		"`td_technology_products`.`created_at`" => "created_at",
 		"`td_technology_products`.`last_updated_by_username`" => "last_updated_by_username",
@@ -90,6 +93,7 @@
 		"`td_technology_products`.`trl_level`" => "TRL Level",
 		"`td_technology_products`.`commercialised`" => "Commercialised",
 		"`td_technology_products`.`source_of_ip_category`" => "Source of IP Category",
+		"IF(    CHAR_LENGTH(`projects1`.`category`) || CHAR_LENGTH(`projects1`.`project_title`), CONCAT_WS('',   `projects1`.`category`, ' ~ ', `projects1`.`project_title`), '') /* Source of IP */" => "Source of IP",
 		"`td_technology_products`.`created_by_username`" => "Created By Username",
 		"`td_technology_products`.`created_at`" => "Created At",
 		"`td_technology_products`.`last_updated_by_username`" => "Last Updated by Username",
@@ -111,6 +115,7 @@
 		"`td_technology_products`.`trl_level`" => "trl_level",
 		"`td_technology_products`.`commercialised`" => "commercialised",
 		"`td_technology_products`.`source_of_ip_category`" => "source_of_ip_category",
+		"IF(    CHAR_LENGTH(`projects1`.`category`) || CHAR_LENGTH(`projects1`.`project_title`), CONCAT_WS('',   `projects1`.`category`, ' ~ ', `projects1`.`project_title`), '') /* Source of IP */" => "source_of_ip",
 		"`td_technology_products`.`created_by_username`" => "created_by_username",
 		"`td_technology_products`.`created_at`" => "created_at",
 		"`td_technology_products`.`last_updated_by_username`" => "last_updated_by_username",
@@ -120,9 +125,9 @@
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = [];
+	$x->filterers = ['source_of_ip' => 'Source of IP', ];
 
-	$x->QueryFrom = "`td_technology_products` ";
+	$x->QueryFrom = "`td_technology_products` LEFT JOIN `projects` as projects1 ON `projects1`.`id`=`td_technology_products`.`source_of_ip` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -152,10 +157,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['Year', 'Tech Product Title', 'Tech Product Type', 'Technology Area', 'Project Value (Rs.) In Lakhs', 'Status of License Transfer', 'Value of the Transfer in Lakhs (Rs.)', 'TRL Level', 'Commercialised', 'Source of IP Category', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
-	$x->ColFieldName = ['year', 'tech_product_title', 'tech_produc_type', 'technology_area', 'project_value', 'status_of_license_transfer', 'value_of_transfer', 'trl_level', 'commercialised', 'source_of_ip_category', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
-	$x->ColNumber  = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['Year', 'Tech Product Title', 'Tech Product Type', 'Technology Area', 'Project Value (Rs.) In Lakhs', 'Status of License Transfer', 'Value of the Transfer in Lakhs (Rs.)', 'TRL Level', 'Commercialised', 'Source of IP Category', 'Source of IP', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
+	$x->ColFieldName = ['year', 'tech_product_title', 'tech_produc_type', 'technology_area', 'project_value', 'status_of_license_transfer', 'value_of_transfer', 'trl_level', 'commercialised', 'source_of_ip_category', 'source_of_ip', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
+	$x->ColNumber  = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/td_technology_products_templateTV.html';

@@ -25,6 +25,7 @@ function td_intellectual_property_insert(&$error_message = '') {
 		'patent_id' => Request::val('patent_id', ''),
 		'type' => Request::val('type', 'National'),
 		'source_of_ip_category' => Request::val('source_of_ip_category', 'EIR'),
+		'source_of_ip' => Request::lookup('source_of_ip', ''),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 	];
@@ -102,6 +103,7 @@ function td_intellectual_property_update(&$selected_id, &$error_message = '') {
 		'patent_id' => Request::val('patent_id', ''),
 		'type' => Request::val('type', ''),
 		'source_of_ip_category' => Request::val('source_of_ip_category', ''),
+		'source_of_ip' => Request::lookup('source_of_ip', ''),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 	];
@@ -123,6 +125,11 @@ function td_intellectual_property_update(&$selected_id, &$error_message = '') {
 	}
 	if($data['technology_area'] === '') {
 		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Technology Area': {$Translation['field not null']}<br><br>";
+		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
+		exit;
+	}
+	if($data['source_of_ip_category'] === '') {
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Source of IP Category': {$Translation['field not null']}<br><br>";
 		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
 		exit;
 	}
@@ -211,6 +218,7 @@ function td_intellectual_property_form($selectedId = '', $allowUpdate = true, $a
 	$showSaveAsCopy = !$dvprint && ($allowInsert && $hasSelectedId && !$noSaveAsCopy);
 	$fieldsAreEditable = !$dvprint && (($allowInsert && !$hasSelectedId) || ($allowUpdate && $hasSelectedId) || $showSaveAsCopy);
 
+	$filterer_source_of_ip = Request::val('filterer_source_of_ip');
 
 	// populate filterers, starting from children to grand-parents
 
@@ -310,6 +318,9 @@ function td_intellectual_property_form($selectedId = '', $allowUpdate = true, $a
 		$combo_source_of_ip_category->ListData = $combo_source_of_ip_category->ListItem;
 	}
 	$combo_source_of_ip_category->SelectName = 'source_of_ip_category';
+	$combo_source_of_ip_category->AllowNull = false;
+	// combobox: source_of_ip
+	$combo_source_of_ip = new DataCombo;
 
 	if($hasSelectedId) {
 		if(!($row = getRecord('td_intellectual_property', $selectedId))) {
@@ -322,6 +333,7 @@ function td_intellectual_property_form($selectedId = '', $allowUpdate = true, $a
 		$combo_year_granted->DefaultDate = $row['year_granted'];
 		$combo_type->SelectedData = $row['type'];
 		$combo_source_of_ip_category->SelectedData = $row['source_of_ip_category'];
+		$combo_source_of_ip->SelectedData = $row['source_of_ip'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
 	} else {
@@ -333,23 +345,105 @@ function td_intellectual_property_form($selectedId = '', $allowUpdate = true, $a
 		$combo_technology_area->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 		$combo_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '9' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('National'));
 		$combo_source_of_ip_category->SelectedText = (isset($filterField[1]) && $filterField[1] == '10' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('EIR'));
+		$combo_source_of_ip->SelectedData = $filterer_source_of_ip;
 	}
 	$combo_year->Render();
 	$combo_ip_category->Render();
 	$combo_technology_area->Render();
 	$combo_type->Render();
 	$combo_source_of_ip_category->Render();
+	$combo_source_of_ip->HTML = '<span id="source_of_ip-container' . $rnd1 . '"></span><input type="hidden" name="source_of_ip" id="source_of_ip' . $rnd1 . '" value="' . html_attr($combo_source_of_ip->SelectedData) . '">';
+	$combo_source_of_ip->MatchText = '<span id="source_of_ip-container-readonly' . $rnd1 . '"></span><input type="hidden" name="source_of_ip" id="source_of_ip' . $rnd1 . '" value="' . html_attr($combo_source_of_ip->SelectedData) . '">';
 
 	ob_start();
 	?>
 
 	<script>
 		// initial lookup values
+		AppGini.current_source_of_ip__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['source_of_ip'] : htmlspecialchars($filterer_source_of_ip, ENT_QUOTES)); ?>"};
 
 		$j(function() {
 			setTimeout(function() {
+				if(typeof(source_of_ip_reload__RAND__) == 'function') source_of_ip_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
+		function source_of_ip_reload__RAND__() {
+		<?php if($fieldsAreEditable) { ?>
+
+			$j("#source_of_ip-container__RAND__").select2({
+				/* initial default value */
+				initSelection: function(e, c) {
+					$j.ajax({
+						url: 'ajax_combo.php',
+						dataType: 'json',
+						data: { id: AppGini.current_source_of_ip__RAND__.value, t: 'td_intellectual_property', f: 'source_of_ip' },
+						success: function(resp) {
+							c({
+								id: resp.results[0].id,
+								text: resp.results[0].text
+							});
+							$j('[name="source_of_ip"]').val(resp.results[0].id);
+							$j('[id=source_of_ip-container-readonly__RAND__]').html('<span class="match-text" id="source_of_ip-match-text">' + resp.results[0].text + '</span>');
+							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=projects_view_parent]').hide(); } else { $j('.btn[id=projects_view_parent]').show(); }
+
+
+							if(typeof(source_of_ip_update_autofills__RAND__) == 'function') source_of_ip_update_autofills__RAND__();
+						}
+					});
+				},
+				width: '100%',
+				formatNoMatches: function(term) { return '<?php echo addslashes($Translation['No matches found!']); ?>'; },
+				minimumResultsForSearch: 5,
+				loadMorePadding: 200,
+				ajax: {
+					url: 'ajax_combo.php',
+					dataType: 'json',
+					cache: true,
+					data: function(term, page) { return { s: term, p: page, t: 'td_intellectual_property', f: 'source_of_ip' }; },
+					results: function(resp, page) { return resp; }
+				},
+				escapeMarkup: function(str) { return str; }
+			}).on('change', function(e) {
+				AppGini.current_source_of_ip__RAND__.value = e.added.id;
+				AppGini.current_source_of_ip__RAND__.text = e.added.text;
+				$j('[name="source_of_ip"]').val(e.added.id);
+				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=projects_view_parent]').hide(); } else { $j('.btn[id=projects_view_parent]').show(); }
+
+
+				if(typeof(source_of_ip_update_autofills__RAND__) == 'function') source_of_ip_update_autofills__RAND__();
+			});
+
+			if(!$j("#source_of_ip-container__RAND__").length) {
+				$j.ajax({
+					url: 'ajax_combo.php',
+					dataType: 'json',
+					data: { id: AppGini.current_source_of_ip__RAND__.value, t: 'td_intellectual_property', f: 'source_of_ip' },
+					success: function(resp) {
+						$j('[name="source_of_ip"]').val(resp.results[0].id);
+						$j('[id=source_of_ip-container-readonly__RAND__]').html('<span class="match-text" id="source_of_ip-match-text">' + resp.results[0].text + '</span>');
+						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=projects_view_parent]').hide(); } else { $j('.btn[id=projects_view_parent]').show(); }
+
+						if(typeof(source_of_ip_update_autofills__RAND__) == 'function') source_of_ip_update_autofills__RAND__();
+					}
+				});
+			}
+
+		<?php } else { ?>
+
+			$j.ajax({
+				url: 'ajax_combo.php',
+				dataType: 'json',
+				data: { id: AppGini.current_source_of_ip__RAND__.value, t: 'td_intellectual_property', f: 'source_of_ip' },
+				success: function(resp) {
+					$j('[id=source_of_ip-container__RAND__], [id=source_of_ip-container-readonly__RAND__]').html('<span class="match-text" id="source_of_ip-match-text">' + resp.results[0].text + '</span>');
+					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=projects_view_parent]').hide(); } else { $j('.btn[id=projects_view_parent]').show(); }
+
+					if(typeof(source_of_ip_update_autofills__RAND__) == 'function') source_of_ip_update_autofills__RAND__();
+				}
+			});
+		<?php } ?>
+
+		}
 	</script>
 	<?php
 
@@ -446,6 +540,8 @@ function td_intellectual_property_form($selectedId = '', $allowUpdate = true, $a
 		$jsReadOnly .= "\t\$j('#patent_id').replaceWith('<div class=\"form-control-static\" id=\"patent_id\">' + (\$j('#patent_id').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#type').replaceWith('<div class=\"form-control-static\" id=\"type\">' + (\$j('#type').val() || '') + '</div>'); \$j('#type-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#source_of_ip_category').replaceWith('<div class=\"form-control-static\" id=\"source_of_ip_category\">' + (\$j('#source_of_ip_category').val() || '') + '</div>'); \$j('#source_of_ip_category-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#source_of_ip').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#source_of_ip_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -480,9 +576,12 @@ function td_intellectual_property_form($selectedId = '', $allowUpdate = true, $a
 	$templateCode = str_replace('<%%COMBOTEXT(type)%%>', $combo_type->SelectedData, $templateCode);
 	$templateCode = str_replace('<%%COMBO(source_of_ip_category)%%>', $combo_source_of_ip_category->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(source_of_ip_category)%%>', $combo_source_of_ip_category->SelectedData, $templateCode);
+	$templateCode = str_replace('<%%COMBO(source_of_ip)%%>', $combo_source_of_ip->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(source_of_ip)%%>', $combo_source_of_ip->MatchText, $templateCode);
+	$templateCode = str_replace('<%%URLCOMBOTEXT(source_of_ip)%%>', urlencode($combo_source_of_ip->MatchText), $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
-	$lookup_fields = [];
+	$lookup_fields = ['source_of_ip' => ['projects', 'Source of IP'], ];
 	foreach($lookup_fields as $luf => $ptfc) {
 		$pt_perm = getTablePermissions($ptfc[0]);
 
@@ -508,6 +607,7 @@ function td_intellectual_property_form($selectedId = '', $allowUpdate = true, $a
 	$templateCode = str_replace('<%%UPLOADFILE(patent_id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(type)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(source_of_ip_category)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(source_of_ip)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by_username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by_username)%%>', '', $templateCode);
@@ -544,6 +644,9 @@ function td_intellectual_property_form($selectedId = '', $allowUpdate = true, $a
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(source_of_ip_category)%%>', safe_html($urow['source_of_ip_category']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(source_of_ip_category)%%>', html_attr($row['source_of_ip_category']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(source_of_ip_category)%%>', urlencode($urow['source_of_ip_category']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(source_of_ip)%%>', safe_html($urow['source_of_ip']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(source_of_ip)%%>', html_attr($row['source_of_ip']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(source_of_ip)%%>', urlencode($urow['source_of_ip']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', safe_html($urow['created_by_username']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode($urow['created_by_username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
@@ -577,6 +680,8 @@ function td_intellectual_property_form($selectedId = '', $allowUpdate = true, $a
 		$templateCode = str_replace('<%%URLVALUE(type)%%>', urlencode('National'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(source_of_ip_category)%%>', 'EIR', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(source_of_ip_category)%%>', urlencode('EIR'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(source_of_ip)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(source_of_ip)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);

@@ -749,6 +749,13 @@
 					'group' => $tg[14],
 					'homepageShowCount' => 1
 				],
+				'publications_and_intellectual_activities' => [
+					'Caption' => 'Publications and Intellectual Activities',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[14],
+					'homepageShowCount' => 1
+				],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) return $all_tables;
@@ -855,6 +862,7 @@
 			'projects' => ['Projects', '', 'table.gif', 'NMICPS Portal - Apps'],
 			'td_intellectual_property' => ['Intellectual Property', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 			'td_technology_products' => ['Technology Products', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
+			'publications_and_intellectual_activities' => ['Publications and Intellectual Activities', '', 'table.gif', 'NMICPS Portal - Apps'],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) {
@@ -12106,7 +12114,7 @@
 						],
 					],
 					'project_commercialized' => [
-						'appgini' => "VARCHAR(255) NULL DEFAULT 'Yes'",
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'No'",
 						'info' => [
 							'caption' => 'Project Commercialized',
 							'description' => '',
@@ -12339,9 +12347,16 @@
 						],
 					],
 					'source_of_ip_category' => [
-						'appgini' => "VARCHAR(255) NULL DEFAULT 'EIR'",
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT 'EIR'",
 						'info' => [
 							'caption' => 'Source of IP Category',
+							'description' => '',
+						],
+					],
+					'source_of_ip' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Source of IP',
 							'description' => '',
 						],
 					],
@@ -12463,6 +12478,78 @@
 						'appgini' => "VARCHAR(255) NOT NULL DEFAULT 'EIR'",
 						'info' => [
 							'caption' => 'Source of IP Category',
+							'description' => '',
+						],
+					],
+					'source_of_ip' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Source of IP',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created At',
+							'description' => '',
+						],
+					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+				],
+				'publications_and_intellectual_activities' => [
+					'id' => [
+						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'year' => [
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT '2020-21'",
+						'info' => [
+							'caption' => 'Year',
+							'description' => '',
+						],
+					],
+					'type' => [
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT 'Publications'",
+						'info' => [
+							'caption' => 'Type',
 							'description' => '',
 						],
 					],
@@ -13835,6 +13922,12 @@
 			],
 			'r_and_d_quarterly_progress_app' => [
 				'r_and_d_progress' => ['r_and_d_lookup'],
+			],
+			'td_intellectual_property' => [
+				'projects' => ['source_of_ip'],
+			],
+			'td_technology_products' => [
+				'projects' => ['source_of_ip'],
 			],
 		];
 
@@ -16524,6 +16617,36 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
+			'publications_and_intellectual_activities' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+				'last_updated_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
 		];
 	}
 	#########################################################
@@ -16891,8 +17014,12 @@
 			'projects' => [
 			],
 			'td_intellectual_property' => [
+				'source_of_ip' => 'SELECT `projects`.`id`, IF(CHAR_LENGTH(`projects`.`category`) || CHAR_LENGTH(`projects`.`project_title`), CONCAT_WS(\'\', `projects`.`category`, \' ~ \', `projects`.`project_title`), \'\') FROM `projects` ORDER BY 2',
 			],
 			'td_technology_products' => [
+				'source_of_ip' => 'SELECT `projects`.`id`, IF(CHAR_LENGTH(`projects`.`category`) || CHAR_LENGTH(`projects`.`project_title`), CONCAT_WS(\'\', `projects`.`category`, \' ~ \', `projects`.`project_title`), \'\') FROM `projects` ORDER BY 2',
+			],
+			'publications_and_intellectual_activities' => [
 			],
 		];
 

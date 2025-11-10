@@ -22,7 +22,7 @@ function projects_insert(&$error_message = '') {
 		'project_title' => Request::val('project_title', ''),
 		'trl_level' => Request::val('trl_level', 'TRL 1'),
 		'project_status' => Request::val('project_status', 'Ongoing'),
-		'project_commercialized' => Request::val('project_commercialized', 'Yes'),
+		'project_commercialized' => Request::val('project_commercialized', 'No'),
 		'brief_of_the_project' => br2nl(Request::val('brief_of_the_project', '')),
 		'commercialization_areas' => Request::val('commercialization_areas', ''),
 		'targeted_sdg' => Request::val('targeted_sdg', ''),
@@ -87,6 +87,46 @@ function projects_delete($selected_id, $AllowDeleteOfParents = false, $skipCheck
 					'<div class="text-bold">' . strip_tags($args['error_message']) . '</div>'
 					: ''
 			);
+	}
+
+	// child table: td_intellectual_property
+	$res = sql("SELECT `id` FROM `projects` WHERE `id`='{$selected_id}'", $eo);
+	$id = db_fetch_row($res);
+	$rires = sql("SELECT COUNT(1) FROM `td_intellectual_property` WHERE `source_of_ip`='" . makeSafe($id[0]) . "'", $eo);
+	$rirow = db_fetch_row($rires);
+	$childrenATag = '<a class="alert-link" href="td_intellectual_property_view.php?filterer_source_of_ip=' . urlencode($id[0]) . '">%s</a>';
+	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation["couldn't delete"];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'td_intellectual_property'), $RetMsg);
+		return $RetMsg;
+	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation['confirm delete'];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'td_intellectual_property'), $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `projects_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `projects_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		return $RetMsg;
+	}
+
+	// child table: td_technology_products
+	$res = sql("SELECT `id` FROM `projects` WHERE `id`='{$selected_id}'", $eo);
+	$id = db_fetch_row($res);
+	$rires = sql("SELECT COUNT(1) FROM `td_technology_products` WHERE `source_of_ip`='" . makeSafe($id[0]) . "'", $eo);
+	$rirow = db_fetch_row($rires);
+	$childrenATag = '<a class="alert-link" href="td_technology_products_view.php?filterer_source_of_ip=' . urlencode($id[0]) . '">%s</a>';
+	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation["couldn't delete"];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'td_technology_products'), $RetMsg);
+		return $RetMsg;
+	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation['confirm delete'];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'td_technology_products'), $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `projects_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `projects_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		return $RetMsg;
 	}
 
 	sql("DELETE FROM `projects` WHERE `id`='{$selected_id}'", $eo);
@@ -331,7 +371,7 @@ function projects_form($selectedId = '', $allowUpdate = true, $allowInsert = tru
 		$combo_collaboration_partner_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Institute'));
 		$combo_trl_level->SelectedText = (isset($filterField[1]) && $filterField[1] == '6' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('TRL 1'));
 		$combo_project_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '7' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Ongoing'));
-		$combo_project_commercialized->SelectedText = (isset($filterField[1]) && $filterField[1] == '8' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Yes'));
+		$combo_project_commercialized->SelectedText = (isset($filterField[1]) && $filterField[1] == '8' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('No'));
 	}
 	$combo_category->Render();
 	$combo_collaboration_partner_type->Render();
@@ -629,8 +669,8 @@ function projects_form($selectedId = '', $allowUpdate = true, $allowInsert = tru
 		$templateCode = str_replace('<%%URLVALUE(trl_level)%%>', urlencode('TRL 1'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(project_status)%%>', 'Ongoing', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(project_status)%%>', urlencode('Ongoing'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(project_commercialized)%%>', 'Yes', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(project_commercialized)%%>', urlencode('Yes'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(project_commercialized)%%>', 'No', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(project_commercialized)%%>', urlencode('No'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(brief_of_the_project)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(brief_of_the_project)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(commercialization_areas)%%>', '', $templateCode);

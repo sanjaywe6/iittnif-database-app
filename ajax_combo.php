@@ -946,8 +946,32 @@
 		'projects' => [
 		],
 		'td_intellectual_property' => [
+			'source_of_ip' => [
+				'parent_table' => 'projects',
+				'parent_pk_field' => 'id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`projects`.`category`) || CHAR_LENGTH(`projects`.`project_title`), CONCAT_WS(\'\', `projects`.`category`, \' ~ \', `projects`.`project_title`), \'\')',
+				'parent_from' => '`projects` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
 		],
 		'td_technology_products' => [
+			'source_of_ip' => [
+				'parent_table' => 'projects',
+				'parent_pk_field' => 'id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`projects`.`category`) || CHAR_LENGTH(`projects`.`project_title`), CONCAT_WS(\'\', `projects`.`category`, \' ~ \', `projects`.`project_title`), \'\')',
+				'parent_from' => '`projects` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
+		],
+		'publications_and_intellectual_activities' => [
 		],
 	];
 

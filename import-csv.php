@@ -566,6 +566,10 @@
 
 			return $data;
 		},
+		'tbi' => function($data, $options = []) {
+
+			return $data;
+		},
 	];
 
 	// accept a record as an assoc array, return a boolean indicating whether to import or skip record
@@ -665,6 +669,7 @@
 		'publications' => function($data, $options = []) { return true; },
 		'ipr' => function($data, $options = []) { return true; },
 		'cps_research_base' => function($data, $options = []) { return true; },
+		'tbi' => function($data, $options = []) { return true; },
 	];
 
 	/*

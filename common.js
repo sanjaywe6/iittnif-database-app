@@ -1455,6 +1455,12 @@ function cps_research_base_validateData(insertMode) {
 
 	return !errors;
 }
+function tbi_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
 
 function post(url, params, update, disable, loading, success_callback) {
 	$j.ajax({

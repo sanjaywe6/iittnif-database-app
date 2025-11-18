@@ -1025,6 +1025,8 @@
 		],
 		'cps_research_base' => [
 		],
+		'tbi' => [
+		],
 	];
 
 	// XSS prevention

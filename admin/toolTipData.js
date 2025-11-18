@@ -1721,6 +1721,24 @@ cps_research_base_delete1Tip=["",spacer+"This option allows each member of the g
 cps_research_base_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'CPS Research Base' table."];
 cps_research_base_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'CPS Research Base' table."];
 
+// tbi table
+tbi_addTip=["",spacer+"This option allows all members of the group to add records to the 'Technology Business Incubator (TBI)' table. A member who adds a record to the table becomes the 'owner' of that record."];
+
+tbi_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Technology Business Incubator (TBI)' table."];
+tbi_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Technology Business Incubator (TBI)' table."];
+tbi_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Technology Business Incubator (TBI)' table."];
+tbi_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Technology Business Incubator (TBI)' table."];
+
+tbi_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Technology Business Incubator (TBI)' table."];
+tbi_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Technology Business Incubator (TBI)' table."];
+tbi_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Technology Business Incubator (TBI)' table."];
+tbi_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Technology Business Incubator (TBI)' table, regardless of their owner."];
+
+tbi_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Technology Business Incubator (TBI)' table."];
+tbi_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Technology Business Incubator (TBI)' table."];
+tbi_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Technology Business Incubator (TBI)' table."];
+tbi_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Technology Business Incubator (TBI)' table."];
+
 /*
 	Style syntax:
 	-------------

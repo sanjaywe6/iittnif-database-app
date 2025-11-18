@@ -29,8 +29,6 @@
 		"`projects`.`brief_of_the_project`" => "brief_of_the_project",
 		"`projects`.`commercialization_areas`" => "commercialization_areas",
 		"`projects`.`targeted_sdg`" => "targeted_sdg",
-		"`projects`.`year_of_commercialization_area`" => "year_of_commercialization_area",
-		"`projects`.`commercialization_value`" => "commercialization_value",
 		"`projects`.`total_approved_amount`" => "total_approved_amount",
 		"`projects`.`funding_released_2020`" => "funding_released_2020",
 		"`projects`.`funding_released_2021`" => "funding_released_2021",
@@ -63,8 +61,8 @@
 		9 => 9,
 		10 => 10,
 		11 => 11,
-		12 => '`projects`.`year_of_commercialization_area`',
-		13 => '`projects`.`commercialization_value`',
+		12 => 12,
+		13 => 13,
 		14 => 14,
 		15 => 15,
 		16 => 16,
@@ -81,8 +79,6 @@
 		27 => 27,
 		28 => 28,
 		29 => 29,
-		30 => 30,
-		31 => 31,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -98,8 +94,6 @@
 		"`projects`.`brief_of_the_project`" => "brief_of_the_project",
 		"`projects`.`commercialization_areas`" => "commercialization_areas",
 		"`projects`.`targeted_sdg`" => "targeted_sdg",
-		"`projects`.`year_of_commercialization_area`" => "year_of_commercialization_area",
-		"`projects`.`commercialization_value`" => "commercialization_value",
 		"`projects`.`total_approved_amount`" => "total_approved_amount",
 		"`projects`.`funding_released_2020`" => "funding_released_2020",
 		"`projects`.`funding_released_2021`" => "funding_released_2021",
@@ -132,8 +126,6 @@
 		"`projects`.`brief_of_the_project`" => "Brief of the Project",
 		"`projects`.`commercialization_areas`" => "Commercialization Areas",
 		"`projects`.`targeted_sdg`" => "Targeted SDG",
-		"`projects`.`year_of_commercialization_area`" => "Year of Commercialization Area",
-		"`projects`.`commercialization_value`" => "Commercialization Value (In Lakhs)",
 		"`projects`.`total_approved_amount`" => "Total Approved Amount (In INR)",
 		"`projects`.`funding_released_2020`" => "Funding Released 2020-21 (In Lakhs)",
 		"`projects`.`funding_released_2021`" => "Funding Released 2021-22 (In Lakhs)",
@@ -167,8 +159,6 @@
 		"`projects`.`brief_of_the_project`" => "brief_of_the_project",
 		"`projects`.`commercialization_areas`" => "commercialization_areas",
 		"`projects`.`targeted_sdg`" => "targeted_sdg",
-		"`projects`.`year_of_commercialization_area`" => "year_of_commercialization_area",
-		"`projects`.`commercialization_value`" => "commercialization_value",
 		"`projects`.`total_approved_amount`" => "total_approved_amount",
 		"`projects`.`funding_released_2020`" => "funding_released_2020",
 		"`projects`.`funding_released_2021`" => "funding_released_2021",
@@ -222,10 +212,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['Category', 'Collaboration Partner Type', 'Collaboration Partner Name', 'Project title', 'TRL Level', 'Project Status', 'Project Commercialized', 'Brief of the Project', 'Commercialization Areas', 'Targeted SDG', 'Year of Commercialization Area', 'Commercialization Value (In Lakhs)', 'Total Approved Amount (In INR)', 'Funding Released 2020-21 (In Lakhs)', 'Funding Released 2021-22 (In Lakhs)', 'Funding Released 2022-23 (In Lakhs)', 'Funding Released 2023-24 (In Lakhs)', 'Funding Released 2024-25 (In Lakhs)', 'Funding Released 2025-26 (In Lakhs)', 'Funding Released 2026-27 (In Lakhs)', 'Funding Released 2027-28(In Lakhs)', 'Total Value Released (In Lakhs)', 'External Funding Amount (In Lakhs)', 'Remarks', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
-	$x->ColFieldName = ['category', 'collaboration_partner_type', 'collaboration_partner_name', 'project_title', 'trl_level', 'project_status', 'project_commercialized', 'brief_of_the_project', 'commercialization_areas', 'targeted_sdg', 'year_of_commercialization_area', 'commercialization_value', 'total_approved_amount', 'funding_released_2020', 'funding_released_2021', 'funding_released_2022', 'funding_released_2023', 'funding_released_2024', 'funding_released_2025', 'funding_released_2026', 'funding_released_2027', 'total_value_released', 'external_funding_amount', 'remarks', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
-	$x->ColNumber  = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['Category', 'Collaboration Partner Type', 'Collaboration Partner Name', 'Project title', 'TRL Level', 'Project Status', 'Project Commercialized', 'Brief of the Project', 'Commercialization Areas', 'Targeted SDG', 'Total Approved Amount (In INR)', 'Funding Released 2020-21 (In Lakhs)', 'Funding Released 2021-22 (In Lakhs)', 'Funding Released 2022-23 (In Lakhs)', 'Funding Released 2023-24 (In Lakhs)', 'Funding Released 2024-25 (In Lakhs)', 'Funding Released 2025-26 (In Lakhs)', 'Funding Released 2026-27 (In Lakhs)', 'Funding Released 2027-28(In Lakhs)', 'Total Value Released (In Lakhs)', 'External Funding Amount (In Lakhs)', 'Remarks', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
+	$x->ColFieldName = ['category', 'collaboration_partner_type', 'collaboration_partner_name', 'project_title', 'trl_level', 'project_status', 'project_commercialized', 'brief_of_the_project', 'commercialization_areas', 'targeted_sdg', 'total_approved_amount', 'funding_released_2020', 'funding_released_2021', 'funding_released_2022', 'funding_released_2023', 'funding_released_2024', 'funding_released_2025', 'funding_released_2026', 'funding_released_2027', 'total_value_released', 'external_funding_amount', 'remarks', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
+	$x->ColNumber  = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/projects_templateTV.html';

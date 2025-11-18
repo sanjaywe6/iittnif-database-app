@@ -774,12 +774,19 @@
 					'Caption' => 'IPR',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[0],
+					'group' => $tg[14],
 					'homepageShowCount' => 1
 				],
 				'cps_research_base' => [
 					'Caption' => 'CPS Research Base',
 					'Description' => '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[14],
+					'homepageShowCount' => 1
+				],
+				'tbi' => [
+					'Caption' => 'Technology Business Incubator (TBI)',
+					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[14],
 					'homepageShowCount' => 1
@@ -893,8 +900,9 @@
 			'td_technology_products' => ['Technology Products', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 			'publications_and_intellectual_activities' => ['Publications and Intellectual Activities', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 			'publications' => ['Publications', '', 'table.gif', 'NMICPS Portal - Apps'],
-			'ipr' => ['IPR', '', 'table.gif', 'Approvals &amp; Sanctions'],
+			'ipr' => ['IPR', '', 'table.gif', 'NMICPS Portal - Apps'],
 			'cps_research_base' => ['CPS Research Base', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
+			'tbi' => ['Technology Business Incubator (TBI)', '', 'table.gif', 'NMICPS Portal - Apps'],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) {
@@ -12259,20 +12267,6 @@
 							'description' => '',
 						],
 					],
-					'year_of_commercialization_area' => [
-						'appgini' => "YEAR NULL",
-						'info' => [
-							'caption' => 'Year of Commercialization Area',
-							'description' => '',
-						],
-					],
-					'commercialization_value' => [
-						'appgini' => "INT NULL",
-						'info' => [
-							'caption' => 'Commercialization Value (In Lakhs)',
-							'description' => '',
-						],
-					],
 					'total_approved_amount' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
@@ -13045,6 +13039,15 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+				],
+				'tbi' => [
+					'id' => [
+						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
 							'description' => '',
 						],
 					],
@@ -17207,6 +17210,7 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
+			'tbi' => [],
 		];
 	}
 	#########################################################
@@ -17592,6 +17596,8 @@
 				'publications_and_intellectual_activities_details' => 'SELECT `publications_and_intellectual_activities`.`id`, IF(CHAR_LENGTH(`publications_and_intellectual_activities`.`year`) || CHAR_LENGTH(`publications_and_intellectual_activities`.`created_by_username`), CONCAT_WS(\'\', `publications_and_intellectual_activities`.`year`, \'  \', `publications_and_intellectual_activities`.`created_by_username`), \'\') FROM `publications_and_intellectual_activities` ORDER BY 2',
 			],
 			'cps_research_base' => [
+			],
+			'tbi' => [
 			],
 		];
 

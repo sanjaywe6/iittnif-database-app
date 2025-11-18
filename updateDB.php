@@ -235,7 +235,10 @@
 		setupTable('r_and_d_quarterly_progress_app', []);
 		setupIndexes('r_and_d_quarterly_progress_app', ['r_and_d_lookup',]);
 
-		setupTable('projects', []);
+		setupTable('projects', [
+				"ALTER TABLE `projects` DROP `year_of_commercialization_area`",
+				"ALTER TABLE `projects` DROP `commercialization_value`",
+			]);
 
 		setupTable('td_intellectual_property', []);
 		setupIndexes('td_intellectual_property', ['source_of_ip',]);
@@ -252,6 +255,8 @@
 		setupIndexes('ipr', ['publications_and_intellectual_activities_details',]);
 
 		setupTable('cps_research_base', []);
+
+		setupTable('tbi', []);
 
 
 

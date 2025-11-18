@@ -26,8 +26,6 @@ function projects_insert(&$error_message = '') {
 		'brief_of_the_project' => br2nl(Request::val('brief_of_the_project', '')),
 		'commercialization_areas' => Request::val('commercialization_areas', ''),
 		'targeted_sdg' => Request::val('targeted_sdg', ''),
-		'year_of_commercialization_area' => Request::val('year_of_commercialization_area', ''),
-		'commercialization_value' => Request::val('commercialization_value', ''),
 		'total_approved_amount' => Request::val('total_approved_amount', ''),
 		'funding_released_2020' => Request::val('funding_released_2020', ''),
 		'funding_released_2021' => Request::val('funding_released_2021', ''),
@@ -178,8 +176,6 @@ function projects_update(&$selected_id, &$error_message = '') {
 		'brief_of_the_project' => br2nl(Request::val('brief_of_the_project', '')),
 		'commercialization_areas' => Request::val('commercialization_areas', ''),
 		'targeted_sdg' => Request::val('targeted_sdg', ''),
-		'year_of_commercialization_area' => Request::val('year_of_commercialization_area', ''),
-		'commercialization_value' => Request::val('commercialization_value', ''),
 		'total_approved_amount' => Request::val('total_approved_amount', ''),
 		'funding_released_2020' => Request::val('funding_released_2020', ''),
 		'funding_released_2021' => Request::val('funding_released_2021', ''),
@@ -504,8 +500,6 @@ function projects_form($selectedId = '', $allowUpdate = true, $allowInsert = tru
 		$jsReadOnly .= "\t\$j('#brief_of_the_project').replaceWith('<div class=\"form-control-static\" id=\"brief_of_the_project\">' + (\$j('#brief_of_the_project').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#commercialization_areas').replaceWith('<div class=\"form-control-static\" id=\"commercialization_areas\">' + (\$j('#commercialization_areas').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#targeted_sdg').replaceWith('<div class=\"form-control-static\" id=\"targeted_sdg\">' + (\$j('#targeted_sdg').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#year_of_commercialization_area').replaceWith('<div class=\"form-control-static\" id=\"year_of_commercialization_area\">' + (\$j('#year_of_commercialization_area').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#commercialization_value').replaceWith('<div class=\"form-control-static\" id=\"commercialization_value\">' + (\$j('#commercialization_value').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#total_approved_amount').replaceWith('<div class=\"form-control-static\" id=\"total_approved_amount\">' + (\$j('#total_approved_amount').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#funding_released_2020').replaceWith('<div class=\"form-control-static\" id=\"funding_released_2020\">' + (\$j('#funding_released_2020').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#funding_released_2021').replaceWith('<div class=\"form-control-static\" id=\"funding_released_2021\">' + (\$j('#funding_released_2021').val() || '') + '</div>');\n";
@@ -567,8 +561,6 @@ function projects_form($selectedId = '', $allowUpdate = true, $allowInsert = tru
 	$templateCode = str_replace('<%%UPLOADFILE(brief_of_the_project)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(commercialization_areas)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(targeted_sdg)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(year_of_commercialization_area)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(commercialization_value)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(total_approved_amount)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(funding_released_2020)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(funding_released_2021)%%>', '', $templateCode);
@@ -621,12 +613,6 @@ function projects_form($selectedId = '', $allowUpdate = true, $allowInsert = tru
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(targeted_sdg)%%>', safe_html($urow['targeted_sdg']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(targeted_sdg)%%>', html_attr($row['targeted_sdg']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(targeted_sdg)%%>', urlencode($urow['targeted_sdg']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(year_of_commercialization_area)%%>', safe_html($urow['year_of_commercialization_area']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(year_of_commercialization_area)%%>', html_attr($row['year_of_commercialization_area']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(year_of_commercialization_area)%%>', urlencode($urow['year_of_commercialization_area']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(commercialization_value)%%>', safe_html($urow['commercialization_value']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(commercialization_value)%%>', html_attr($row['commercialization_value']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(commercialization_value)%%>', urlencode($urow['commercialization_value']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(total_approved_amount)%%>', safe_html($urow['total_approved_amount']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(total_approved_amount)%%>', html_attr($row['total_approved_amount']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(total_approved_amount)%%>', urlencode($urow['total_approved_amount']), $templateCode);
@@ -697,10 +683,6 @@ function projects_form($selectedId = '', $allowUpdate = true, $allowInsert = tru
 		$templateCode = str_replace('<%%URLVALUE(commercialization_areas)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(targeted_sdg)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(targeted_sdg)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(year_of_commercialization_area)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(year_of_commercialization_area)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(commercialization_value)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(commercialization_value)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(total_approved_amount)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(total_approved_amount)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(funding_released_2020)%%>', '', $templateCode);

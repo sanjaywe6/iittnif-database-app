@@ -541,6 +541,13 @@
 
 			return $data;
 		},
+		'timesheet_entry_table' => function($data, $options = []) {
+			if(isset($data['time_in'])) $data['time_in'] = guessMySQLDateTime($data['time_in']);
+			if(isset($data['time_out'])) $data['time_out'] = guessMySQLDateTime($data['time_out']);
+			if(isset($data['reporting_manager'])) $data['reporting_manager'] = pkGivenLookupText($data['reporting_manager'], 'timesheet_entry_table', 'reporting_manager');
+
+			return $data;
+		},
 	];
 
 	// accept a record as an assoc array, return a boolean indicating whether to import or skip record
@@ -636,6 +643,7 @@
 		'td_intellectual_property' => function($data, $options = []) { return true; },
 		'td_technology_products' => function($data, $options = []) { return true; },
 		'publications_and_intellectual_activities' => function($data, $options = []) { return true; },
+		'timesheet_entry_table' => function($data, $options = []) { return true; },
 	];
 
 	/*

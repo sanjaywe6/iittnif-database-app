@@ -234,21 +234,48 @@
 
 		setupTable('projects', []);
 
-		setupTable('td_intellectual_property', [
-				"ALTER TABLE td_intellectual_property ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `td_intellectual_property` CHANGE `field1` `soure_of_ip` VARCHAR(255) NULL ",
-				"ALTER TABLE `td_intellectual_property` CHANGE `soure_of_ip` `source_of_ip` VARCHAR(255) NULL ",
-				" ALTER TABLE `td_intellectual_property` CHANGE `source_of_ip_category` `source_of_ip_category` VARCHAR(255) NOT NULL DEFAULT 'EIR' ",
-			]);
+		setupTable('td_intellectual_property', []);
 		setupIndexes('td_intellectual_property', ['source_of_ip',]);
 
-		setupTable('td_technology_products', [
-				"ALTER TABLE `td_technology_products` ADD `source_of_ip` INT UNSIGNED NULL ",
-				"ALTER TABLE `td_technology_products` ADD INDEX `source_of_ip`",
-			]);
+		setupTable('td_technology_products', []);
 		setupIndexes('td_technology_products', ['source_of_ip',]);
 
 		setupTable('publications_and_intellectual_activities', []);
+
+		setupTable('timesheet_entry_table', [
+				"ALTER TABLE `table92` RENAME `timesheet_entry_table`",
+				"UPDATE `membership_userrecords` SET `tableName`='timesheet_entry_table' WHERE `tableName`='table92'",
+				"UPDATE `membership_userpermissions` SET `tableName`='timesheet_entry_table' WHERE `tableName`='table92'",
+				"UPDATE `membership_grouppermissions` SET `tableName`='timesheet_entry_table' WHERE `tableName`='table92'",
+				"ALTER TABLE timesheet_entry_table ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `timesheet_entry_table` CHANGE `id` `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ",
+				"ALTER TABLE `timesheet_entry_table` CHANGE `field1` `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ",
+				"ALTER TABLE timesheet_entry_table ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `timesheet_entry_table` CHANGE `date` `date` DATE NULL ",
+				"ALTER TABLE `timesheet_entry_table` CHANGE `field1` `work_date` DATE NULL ",
+				"ALTER TABLE timesheet_entry_table ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `timesheet_entry_table` CHANGE `field1` `time_in` VARCHAR(255) NULL ",
+				" ALTER TABLE `timesheet_entry_table` CHANGE `time_in` `time_in` TIME NULL ",
+				"ALTER TABLE timesheet_entry_table ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `timesheet_entry_table` CHANGE `field1` `time_out` VARCHAR(255) NULL ",
+				" ALTER TABLE `timesheet_entry_table` CHANGE `time_out` `time_out` TIME NULL ",
+				"ALTER TABLE timesheet_entry_table ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `timesheet_entry_table` CHANGE `comments` `comments` TEXT NULL ",
+				"ALTER TABLE `timesheet_entry_table` CHANGE `field1` `description` TEXT NULL ",
+				"ALTER TABLE `timesheet_entry_table` ADD `reporting_manager` INT UNSIGNED NULL ",
+				"ALTER TABLE `timesheet_entry_table` ADD INDEX `reporting_manager`",
+				"ALTER TABLE `timesheet_entry_table` ADD `number_of_hours` VARCHAR(255) NULL ",
+				"ALTER TABLE `timesheet_entry_table` DROP `work_date`",
+				" ALTER TABLE `timesheet_entry_table` CHANGE `time_in` `time_in` DATETIME NULL ",
+				" ALTER TABLE `timesheet_entry_table` CHANGE `time_out` `time_out` DATETIME NULL ",
+				"ALTER TABLE `timesheet_entry_table` ADD `created_by_username` VARCHAR(255) NULL ",
+				"ALTER TABLE `timesheet_entry_table` ADD `created_at` VARCHAR(255) NULL ",
+				"ALTER TABLE `timesheet_entry_table` ADD `last_updated_by_username` VARCHAR(255) NULL ",
+				"ALTER TABLE `timesheet_entry_table` ADD `last_updated_at` VARCHAR(255) NULL ",
+				"ALTER TABLE `timesheet_entry_table` ADD `created_by` VARCHAR(255) NULL ",
+				"ALTER TABLE `timesheet_entry_table` ADD `last_updated_by` VARCHAR(255) NULL ",
+			]);
+		setupIndexes('timesheet_entry_table', ['reporting_manager',]);
 
 
 

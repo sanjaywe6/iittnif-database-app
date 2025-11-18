@@ -1345,6 +1345,12 @@ function publications_and_intellectual_activities_validateData(insertMode) {
 
 	return !errors;
 }
+function timesheet_entry_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
 
 function post(url, params, update, disable, loading, success_callback) {
 	$j.ajax({

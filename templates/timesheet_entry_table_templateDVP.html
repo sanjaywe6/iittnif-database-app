@@ -1,0 +1,71 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: From Date Time -->
+		<div class="form-group timesheet_entry_table-time_in" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">From Date Time</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(time_in)%%></div>
+			</div>
+		</div>
+		<!-- Field: To Date Time -->
+		<div class="form-group timesheet_entry_table-time_out" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">To Date Time</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(time_out)%%></div>
+			</div>
+		</div>
+		<!-- Field: Task Description -->
+		<div class="form-group timesheet_entry_table-description" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Task Description</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(description)%%></div>
+			</div>
+		</div>
+		<!-- Field: Reporting manager -->
+		<div class="form-group timesheet_entry_table-reporting_manager" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Reporting manager</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="reporting_manager<%%RND1%%>"><%%COMBOTEXT(reporting_manager)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Created By Username -->
+		<div class="form-group timesheet_entry_table-created_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Created By Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(created_by_username)%%></div>
+			</div>
+		</div>
+		<!-- Field: Last Updated by Username -->
+		<div class="form-group timesheet_entry_table-last_updated_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Last Updated by Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(last_updated_by_username)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

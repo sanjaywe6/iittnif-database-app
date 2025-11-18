@@ -756,6 +756,13 @@
 					'group' => $tg[14],
 					'homepageShowCount' => 1
 				],
+				'timesheet_entry_table' => [
+					'Caption' => 'Timesheet Entry - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[0],
+					'homepageShowCount' => 1
+				],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) return $all_tables;
@@ -863,6 +870,7 @@
 			'td_intellectual_property' => ['Intellectual Property', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 			'td_technology_products' => ['Technology Products', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 			'publications_and_intellectual_activities' => ['Publications and Intellectual Activities', '', 'table.gif', 'NMICPS Portal - Apps'],
+			'timesheet_entry_table' => ['Timesheet Entry - App', '', 'table.gif', 'Approvals &amp; Sanctions'],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) {
@@ -12596,6 +12604,92 @@
 						],
 					],
 				],
+				'timesheet_entry_table' => [
+					'id' => [
+						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'time_in' => [
+						'appgini' => "DATETIME NULL",
+						'info' => [
+							'caption' => 'From Date Time',
+							'description' => '',
+						],
+					],
+					'time_out' => [
+						'appgini' => "DATETIME NULL",
+						'info' => [
+							'caption' => 'To Date Time',
+							'description' => '',
+						],
+					],
+					'number_of_hours' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Number of Hours',
+							'description' => '',
+						],
+					],
+					'description' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Task Description',
+							'description' => '',
+						],
+					],
+					'reporting_manager' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Reporting manager',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created At',
+							'description' => '',
+						],
+					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+				],
 			];
 
 			$internalTablesSimple = [
@@ -13928,6 +14022,9 @@
 			],
 			'td_technology_products' => [
 				'projects' => ['source_of_ip'],
+			],
+			'timesheet_entry_table' => [
+				'user_table' => ['reporting_manager'],
 			],
 		];
 
@@ -16647,6 +16744,42 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
+			'timesheet_entry_table' => [
+				'number_of_hours' => 'SELECT 
+					    TIMESTAMPDIFF(
+					SECOND, %TABLENAME%.`time_in`, 
+					%TABLENAME%.`time_out`)/3600 
+					AS DifferenceInSeconds
+					FROM %TABLENAME% WHERE id = %ID%;',
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+				'last_updated_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
 		];
 	}
 	#########################################################
@@ -17020,6 +17153,9 @@
 				'source_of_ip' => 'SELECT `projects`.`id`, IF(CHAR_LENGTH(`projects`.`category`) || CHAR_LENGTH(`projects`.`project_title`), CONCAT_WS(\'\', `projects`.`category`, \' ~ \', `projects`.`project_title`), \'\') FROM `projects` ORDER BY 2',
 			],
 			'publications_and_intellectual_activities' => [
+			],
+			'timesheet_entry_table' => [
+				'reporting_manager' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
 			],
 		];
 

@@ -196,6 +196,7 @@
 			'td_intellectual_property' => "`td_intellectual_property`.`id` as 'id', `td_intellectual_property`.`year` as 'year', `td_intellectual_property`.`ip_category` as 'ip_category', `td_intellectual_property`.`ip_title` as 'ip_title', `td_intellectual_property`.`technology_area` as 'technology_area', if(`td_intellectual_property`.`year_field`,date_format(`td_intellectual_property`.`year_field`,'%d/%m/%Y'),'') as 'year_field', if(`td_intellectual_property`.`year_granted`,date_format(`td_intellectual_property`.`year_granted`,'%d/%m/%Y'),'') as 'year_granted', `td_intellectual_property`.`patent_id` as 'patent_id', `td_intellectual_property`.`type` as 'type', `td_intellectual_property`.`source_of_ip_category` as 'source_of_ip_category', IF(    CHAR_LENGTH(`projects1`.`category`) || CHAR_LENGTH(`projects1`.`project_title`), CONCAT_WS('',   `projects1`.`category`, ' ~ ', `projects1`.`project_title`), '') as 'source_of_ip', `td_intellectual_property`.`created_by_username` as 'created_by_username', `td_intellectual_property`.`created_at` as 'created_at', `td_intellectual_property`.`last_updated_by_username` as 'last_updated_by_username', `td_intellectual_property`.`last_updated_at` as 'last_updated_at', `td_intellectual_property`.`created_by` as 'created_by', `td_intellectual_property`.`last_updated_by` as 'last_updated_by'",
 			'td_technology_products' => "`td_technology_products`.`id` as 'id', `td_technology_products`.`year` as 'year', `td_technology_products`.`tech_product_title` as 'tech_product_title', `td_technology_products`.`tech_produc_type` as 'tech_produc_type', `td_technology_products`.`technology_area` as 'technology_area', `td_technology_products`.`project_value` as 'project_value', `td_technology_products`.`status_of_license_transfer` as 'status_of_license_transfer', `td_technology_products`.`value_of_transfer` as 'value_of_transfer', `td_technology_products`.`trl_level` as 'trl_level', `td_technology_products`.`commercialised` as 'commercialised', `td_technology_products`.`source_of_ip_category` as 'source_of_ip_category', IF(    CHAR_LENGTH(`projects1`.`category`) || CHAR_LENGTH(`projects1`.`project_title`), CONCAT_WS('',   `projects1`.`category`, ' ~ ', `projects1`.`project_title`), '') as 'source_of_ip', `td_technology_products`.`created_by_username` as 'created_by_username', `td_technology_products`.`created_at` as 'created_at', `td_technology_products`.`last_updated_by_username` as 'last_updated_by_username', `td_technology_products`.`last_updated_at` as 'last_updated_at', `td_technology_products`.`created_by` as 'created_by', `td_technology_products`.`last_updated_by` as 'last_updated_by'",
 			'publications_and_intellectual_activities' => "`publications_and_intellectual_activities`.`id` as 'id', `publications_and_intellectual_activities`.`year` as 'year', `publications_and_intellectual_activities`.`type` as 'type', `publications_and_intellectual_activities`.`created_by_username` as 'created_by_username', `publications_and_intellectual_activities`.`created_at` as 'created_at', `publications_and_intellectual_activities`.`last_updated_by_username` as 'last_updated_by_username', `publications_and_intellectual_activities`.`last_updated_at` as 'last_updated_at', `publications_and_intellectual_activities`.`created_by` as 'created_by', `publications_and_intellectual_activities`.`last_updated_by` as 'last_updated_by'",
+			'timesheet_entry_table' => "`timesheet_entry_table`.`id` as 'id', if(`timesheet_entry_table`.`time_in`,date_format(`timesheet_entry_table`.`time_in`,'%d/%m/%Y %H:%i'),'') as 'time_in', if(`timesheet_entry_table`.`time_out`,date_format(`timesheet_entry_table`.`time_out`,'%d/%m/%Y %H:%i'),'') as 'time_out', `timesheet_entry_table`.`number_of_hours` as 'number_of_hours', `timesheet_entry_table`.`description` as 'description', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'reporting_manager', `timesheet_entry_table`.`created_by_username` as 'created_by_username', `timesheet_entry_table`.`created_at` as 'created_at', `timesheet_entry_table`.`last_updated_by_username` as 'last_updated_by_username', `timesheet_entry_table`.`last_updated_at` as 'last_updated_at', `timesheet_entry_table`.`created_by` as 'created_by', `timesheet_entry_table`.`last_updated_by` as 'last_updated_by'",
 		];
 
 		if(isset($sql_fields[$table_name])) return $sql_fields[$table_name];
@@ -298,6 +299,7 @@
 			'td_intellectual_property' => "`td_intellectual_property` LEFT JOIN `projects` as projects1 ON `projects1`.`id`=`td_intellectual_property`.`source_of_ip` ",
 			'td_technology_products' => "`td_technology_products` LEFT JOIN `projects` as projects1 ON `projects1`.`id`=`td_technology_products`.`source_of_ip` ",
 			'publications_and_intellectual_activities' => "`publications_and_intellectual_activities` ",
+			'timesheet_entry_table' => "`timesheet_entry_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`timesheet_entry_table`.`reporting_manager` ",
 		];
 
 		$pkey = [
@@ -392,6 +394,7 @@
 			'td_intellectual_property' => 'id',
 			'td_technology_products' => 'id',
 			'publications_and_intellectual_activities' => 'id',
+			'timesheet_entry_table' => 'id',
 		];
 
 		if(!isset($sql_from[$table_name])) return false;
@@ -2151,6 +2154,20 @@
 				'id' => '',
 				'year' => '2020-21',
 				'type' => 'Publications',
+				'created_by_username' => '',
+				'created_at' => '',
+				'last_updated_by_username' => '',
+				'last_updated_at' => '',
+				'created_by' => '',
+				'last_updated_by' => '',
+			],
+			'timesheet_entry_table' => [
+				'id' => '',
+				'time_in' => '',
+				'time_out' => '',
+				'number_of_hours' => '',
+				'description' => '',
+				'reporting_manager' => '',
 				'created_by_username' => '',
 				'created_at' => '',
 				'last_updated_by_username' => '',
@@ -4991,6 +5008,32 @@ EOT;
 			],
 			'publications_and_intellectual_activities' => [
 			],
+			'timesheet_entry_table' => [
+				'reporting_manager' => [
+					'parent-table' => 'user_table',
+					'parent-primary-key' => 'user_id',
+					'child-primary-key' => 'id',
+					'child-primary-key-index' => 0,
+					'tab-label' => 'Timesheet Entry - App <span class="hidden child-label-timesheet_entry_table child-field-caption">(Reporting manager)</span>',
+					'auto-close' => false,
+					'table-icon' => 'table.gif',
+					'display-refresh' => true,
+					'display-add-new' => true,
+					'forced-where' => '',
+					'display-fields' => [1 => 'From Date Time', 2 => 'To Date Time', 3 => 'Number of Hours', 4 => 'Task Description', 5 => 'Reporting manager', 6 => 'Created By Username', 7 => 'Created At', 8 => 'Last Updated by Username', 9 => 'Last Updated At'],
+					'display-field-names' => [1 => 'time_in', 2 => 'time_out', 3 => 'number_of_hours', 4 => 'description', 5 => 'reporting_manager', 6 => 'created_by_username', 7 => 'created_at', 8 => 'last_updated_by_username', 9 => 'last_updated_at'],
+					'sortable-fields' => [0 => '`timesheet_entry_table`.`id`', 1 => '`timesheet_entry_table`.`time_in`', 2 => '`timesheet_entry_table`.`time_out`', 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => 9, 9 => 10, 10 => 11, 11 => 12],
+					'records-per-page' => 10,
+					'default-sort-by' => false,
+					'default-sort-direction' => 'asc',
+					'open-detail-view-on-click' => true,
+					'display-page-selector' => true,
+					'show-page-progress' => true,
+					'template' => 'children-timesheet_entry_table',
+					'template-printable' => 'children-timesheet_entry_table-printable',
+					'query' => "SELECT `timesheet_entry_table`.`id` as 'id', if(`timesheet_entry_table`.`time_in`,date_format(`timesheet_entry_table`.`time_in`,'%d/%m/%Y %H:%i'),'') as 'time_in', if(`timesheet_entry_table`.`time_out`,date_format(`timesheet_entry_table`.`time_out`,'%d/%m/%Y %H:%i'),'') as 'time_out', `timesheet_entry_table`.`number_of_hours` as 'number_of_hours', `timesheet_entry_table`.`description` as 'description', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'reporting_manager', `timesheet_entry_table`.`created_by_username` as 'created_by_username', `timesheet_entry_table`.`created_at` as 'created_at', `timesheet_entry_table`.`last_updated_by_username` as 'last_updated_by_username', `timesheet_entry_table`.`last_updated_at` as 'last_updated_at', `timesheet_entry_table`.`created_by` as 'created_by', `timesheet_entry_table`.`last_updated_by` as 'last_updated_by' FROM `timesheet_entry_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`timesheet_entry_table`.`reporting_manager` "
+				],
+			],
 		];
 
 		if($skipPermissions) return $pcConfig;
@@ -5036,7 +5079,7 @@ EOT;
 	#########################################################
 
 	function isDetailViewEnabled($tn) {
-		$tables = ['user_table', 'suggestion', 'approval_table', 'techlead_web_page', 'navavishkar_stay_facilities_table', 'navavishkar_stay_facilities_allotment_table', 'car_table', 'car_usage_table', 'cycle_table', 'cycle_usage_table', 'gym_table', 'coffee_table', 'cafeteria_table', 'event_table', 'outcomes_expected_table', 'event_decision_table', 'meetings_table', 'agenda_table', 'decision_table', 'participants_table', 'action_actor', 'visiting_card_table', 'mou_details_table', 'goal_setting_table', 'goal_progress_table', 'task_allocation_table', 'task_progress_status_table', 'internship_fellowship_details_app', 'star_pnt', 'hrd_sdp_events_table', 'training_program_on_geospatial_tchnologies_table', 'space_day_school_details_app', 'space_day_college_student_table', 'school_list', 'sdp_participants_college_details_table', 'asset_table', 'asset_allotment_table', 'sub_asset_table', 'sub_asset_allotment_table', 'it_inventory_app', 'it_inventory_billing_details', 'it_inventory_allotment_table', 'computer_details_table', 'computer_user_details', 'computer_allotment_table', 'employees_personal_data_table', 'employees_designation_table', 'employees_appraisal_table', 'beyond_working_hours_table', 'leave_table', 'half_day_leave_table', 'work_from_home_table', 'work_from_home_tasks_app', 'navavishkar_stay_table', 'navavishkar_stay_payment_table', 'email_id_allocation_table', 'attendence_details_table', 'all_startup_data_table', 'shortlisted_startups_for_fund_table', 'shortlisted_startups_dd_and_agreement_table', 'vikas_startup_applications_table', 'programs_table', 'evaluation_table', 'problem_statement_table', 'evaluators_table', 'approval_billing_table', 'honorarium_claim_table', 'all_bank_account_statement_table', 'payment_track_details_table', 'travel_table', 'travel_stay_table', 'travel_local_commute_table', 'r_and_d_progress', 'panel_decision_table_tdp', 'selected_proposals_final_tdp', 'stage_wise_budget_table_tdp', 'first_level_shortlisted_proposals_tdp', 'budget_table_tdp', 'panel_comments_tdp', 'selected_tdp', 'address_tdp', 'summary_table_tdp', 'project_details_tdp', 'newsletter_table', 'contact_call_log_table', 'r_and_d_monthly_progress_app', 'r_and_d_quarterly_progress_app', 'projects', 'td_intellectual_property', 'td_technology_products', 'publications_and_intellectual_activities', ];
+		$tables = ['user_table', 'suggestion', 'approval_table', 'techlead_web_page', 'navavishkar_stay_facilities_table', 'navavishkar_stay_facilities_allotment_table', 'car_table', 'car_usage_table', 'cycle_table', 'cycle_usage_table', 'gym_table', 'coffee_table', 'cafeteria_table', 'event_table', 'outcomes_expected_table', 'event_decision_table', 'meetings_table', 'agenda_table', 'decision_table', 'participants_table', 'action_actor', 'visiting_card_table', 'mou_details_table', 'goal_setting_table', 'goal_progress_table', 'task_allocation_table', 'task_progress_status_table', 'internship_fellowship_details_app', 'star_pnt', 'hrd_sdp_events_table', 'training_program_on_geospatial_tchnologies_table', 'space_day_school_details_app', 'space_day_college_student_table', 'school_list', 'sdp_participants_college_details_table', 'asset_table', 'asset_allotment_table', 'sub_asset_table', 'sub_asset_allotment_table', 'it_inventory_app', 'it_inventory_billing_details', 'it_inventory_allotment_table', 'computer_details_table', 'computer_user_details', 'computer_allotment_table', 'employees_personal_data_table', 'employees_designation_table', 'employees_appraisal_table', 'beyond_working_hours_table', 'leave_table', 'half_day_leave_table', 'work_from_home_table', 'work_from_home_tasks_app', 'navavishkar_stay_table', 'navavishkar_stay_payment_table', 'email_id_allocation_table', 'attendence_details_table', 'all_startup_data_table', 'shortlisted_startups_for_fund_table', 'shortlisted_startups_dd_and_agreement_table', 'vikas_startup_applications_table', 'programs_table', 'evaluation_table', 'problem_statement_table', 'evaluators_table', 'approval_billing_table', 'honorarium_claim_table', 'all_bank_account_statement_table', 'payment_track_details_table', 'travel_table', 'travel_stay_table', 'travel_local_commute_table', 'r_and_d_progress', 'panel_decision_table_tdp', 'selected_proposals_final_tdp', 'stage_wise_budget_table_tdp', 'first_level_shortlisted_proposals_tdp', 'budget_table_tdp', 'panel_comments_tdp', 'selected_tdp', 'address_tdp', 'summary_table_tdp', 'project_details_tdp', 'newsletter_table', 'contact_call_log_table', 'r_and_d_monthly_progress_app', 'r_and_d_quarterly_progress_app', 'projects', 'td_intellectual_property', 'td_technology_products', 'publications_and_intellectual_activities', 'timesheet_entry_table', ];
 		return in_array($tn, $tables);
 	}
 

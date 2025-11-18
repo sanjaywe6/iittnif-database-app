@@ -1,18 +1,14 @@
-<!-- To change the layout of the detail view form, we recommend using JS code in hooks/publications_and_intellectual_activities-dv.js rather than editing this file -->
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/publications-dv.js rather than editing this file -->
 
 <div id="detail-view"></div>
 <div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
 
-<div id="publications_and_intellectual_activities_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+<div id="publications_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
 
-<div class="panel-body hidden" id="publications_and_intellectual_activities_dv_container">
+<div class="panel-body hidden" id="publications_dv_container">
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
-			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="publications_view.php?filterer_publications_and_intellectual_activities_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="publications_link"><img src="table.gif"> Publications</a>
-			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="publications_view.php?filterer_publications_and_intellectual_activities_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_publications_link"><img src="table.gif"> Publications</a>
-			<input type="hidden" id="publications_hclink" value="publications_view.php?filterer_publications_and_intellectual_activities_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
-			<input type="hidden" id="ipr_hclink" value="ipr_view.php?filterer_publications_and_intellectual_activities_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -20,20 +16,104 @@
 
 	<div class="row">
 		<!-- form inputs -->
-		<div class="col-md-8 col-lg-10" id="publications_and_intellectual_activities_dv_form">
+		<div class="col-md-8 col-lg-10" id="publications_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: Year -->
-				<div class="form-group publications_and_intellectual_activities-year">
+				<!-- Field: Publications and Intellectual Activities Details -->
+				<div class="form-group publications-publications_and_intellectual_activities_details">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="year">Year<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Publications and Intellectual Activities Details</label>
 					<div class="col-lg-9">
-						<%%COMBO(year)%%>
+						<div class="form-control-static">
+							<span id="publications_and_intellectual_activities_details-readonly"><%%COMBOTEXT(publications_and_intellectual_activities_details)%%></span>
+							<%%PLINK(publications_and_intellectual_activities_details)%%>
+						</div>
+					</div>
+				</div>
+
+				<!-- Field: Publication Type -->
+				<div class="form-group publications-publication_type">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="publication_type">Publication Type<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(publication_type)%%>
+					</div>
+				</div>
+
+				<!-- Field: Title -->
+				<div class="form-group publications-title">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="title">Title<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="title" id="title" value="<%%VALUE(title)%%>" required>
+					</div>
+				</div>
+
+				<!-- Field: Technology Area -->
+				<div class="form-group publications-technology_area">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="technology_area">Technology Area<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(technology_area)%%>
+					</div>
+				</div>
+
+				<!-- Field: Publication Year -->
+				<div class="form-group publications-publication_year">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="publication_year-dd">Publication Year<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(publication_year)%%>
+					</div>
+				</div>
+
+				<!-- Field: Author Names -->
+				<div class="form-group publications-author_names">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="author_names">Author Names<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="author_names" id="author_names" value="<%%VALUE(author_names)%%>" required>
+					</div>
+				</div>
+
+				<!-- Field: Peer Reviewed -->
+				<div class="form-group publications-peer_reviewed">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="peer_reviewed">Peer Reviewed<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(peer_reviewed)%%>
+					</div>
+				</div>
+
+				<!-- Field: Link -->
+				<div class="form-group publications-link">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="link">Link<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="link" id="link" value="<%%VALUE(link)%%>" required>
+					</div>
+				</div>
+
+				<!-- Field: Source of IP Category -->
+				<div class="form-group publications-source_of_ip_category">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="source_of_ip_category">Source of IP Category<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(source_of_ip_category)%%>
+					</div>
+				</div>
+
+				<!-- Field: Source of IP -->
+				<div class="form-group publications-source_of_ip">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="source_of_ip" data-parent_link="view_parent_modal">Source of IP</label>
+					<div class="col-lg-9">
+						<div class="lookup-flex"><%%COMBO(source_of_ip)%%><%%PLINK(source_of_ip)%%><%%ADDNEW(projects)%%></div>
 					</div>
 				</div>
 
 				<!-- Field: Created By Username -->
-				<div class="form-group publications_and_intellectual_activities-created_by_username">
+				<div class="form-group publications-created_by_username">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3">Created By Username</label>
 					<div class="col-lg-9">
@@ -42,7 +122,7 @@
 				</div>
 
 				<!-- Field: Last Updated by Username -->
-				<div class="form-group publications_and_intellectual_activities-last_updated_by_username">
+				<div class="form-group publications-last_updated_by_username">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3">Last Updated by Username</label>
 					<div class="col-lg-9">
@@ -55,7 +135,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2 dv-action-buttons" id="publications_and_intellectual_activities_dv_action_buttons">
+		<div class="col-md-4 col-lg-2 dv-action-buttons" id="publications_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>
@@ -72,16 +152,6 @@
 		</div>
 	</div>
 
-
-	<!-- child records -->
-	<hr>
-	<div class="row">
-		<div class="col-lg-10 col-lg-offset-1">
-			<div id="publications_and_intellectual_activities-children" class="children-tabs">
-				<div class="text-center"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
-			</div>
-		</div>
-	</div>
 
 </div><!-- /div class="panel-body" -->
 	<script>
@@ -104,59 +174,27 @@
 			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
 				AppGini.once({
 					condition: function() {
-						return $j('.form-group.publications_and_intellectual_activities-year')
+						return $j('.form-group.publications-publication_type')
 									.find('.nicEdit-main, .select2-container, input[type=radio]')
 									.length > 0
 								// or read-only DV
 								|| (!$j('#update').length && !$j('#insert').length);
 					},
 					action: function() {
-						$j('#publications_and_intellectual_activities_dv_container-loading').addClass('hidden');
-						$j('#publications_and_intellectual_activities_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('publications_and_intellectual_activities', 'year');
+						$j('#publications_dv_container-loading').addClass('hidden');
+						$j('#publications_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('publications', 'publication_type');
 					},
 					timeout:  5000,
 					doActionOnTimeout:  true
 				});
 			} else {
-				$j('#publications_and_intellectual_activities_dv_container-loading').addClass('hidden');
-				$j('#publications_and_intellectual_activities_dv_container').removeClass('hidden');
+				$j('#publications_dv_container-loading').addClass('hidden');
+				$j('#publications_dv_container').removeClass('hidden');
 			}
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 
-			if(embedded_mode) {
-				/* hide links to children tables in embedded mode */
-				$j('.detail_view a[id$=_link]').remove();
-
-				/* append embedded mode to all links */
-				var append_embedded = function() {
-					$j('a[href]:not([href^="#"]):not([href^="javascript"]):not([href$="Embedded=1"]):not([href*="link.php?t="]):not([href^="mailto:"]):not([href$=".jpg"]):not([href$=".png"]):not([href$=".gif"])').each(
-						function() {
-							$j(this).attr('href', $j(this).attr('href') + '&Embedded=1');
-						}
-					);
-				}
-				setTimeout(append_embedded, 500);
-				setTimeout(append_embedded, 1500);
-				setTimeout(append_embedded, 2500);
-				setTimeout(append_embedded, 3500);
-			}
-
-			/* when no record is selected ('add new' mode) */
-			if(add_new_mode) {
-				/* hide links to children tables */
-				$j('.detail_view a[id$=_link]').remove();
-			} else {
-				post(
-					'parent-children.php', {
-						ParentTable: 'publications_and_intellectual_activities',
-						SelectedID: '<%%VALUE(id)%%>',
-						Operation: 'show-children'
-					},
-					'publications_and_intellectual_activities-children'
-				);
-			}
 
 			if(true /* !embedded_mode */) {
 				$j('.add_new_parent').click(function() {
@@ -174,7 +212,7 @@
 							localStorage.removeItem(pt + '_last_added_id');
 							AppGini.lookupText({
 								id: new_id,
-								table: 'publications_and_intellectual_activities',
+								table: 'publications',
 								field: field_id,
 								callback: function(data) {
 									$j('#' + field_id + '-container').select2('data', data, true);
@@ -234,21 +272,21 @@
 				}
 			});
 
-			publications_and_intellectual_activitiesUniqueFields.forEach(fieldName => enforce_uniqueness('publications_and_intellectual_activities', fieldName));
+			publicationsUniqueFields.forEach(fieldName => enforce_uniqueness('publications', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
 				$j('body').append('<div id="admin-tools-appendix"></div>');
 				$j('#admin-tools-appendix').load(
-					'ajax_admin_tools.php?table=publications_and_intellectual_activities&id=<%%URLVALUE(id)%%>',
+					'ajax_admin_tools.php?table=publications&id=<%%URLVALUE(id)%%>',
 					function(resp) {
 						if(!resp.length) return;
-						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=publications_and_intellectual_activities&id=<%%URLVALUE(id)%%>');
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=publications&id=<%%URLVALUE(id)%%>');
 					}
 				);
 			}
 		});
 
-		var publications_and_intellectual_activitiesUniqueFields = [
+		var publicationsUniqueFields = [
 		];
 	</script>

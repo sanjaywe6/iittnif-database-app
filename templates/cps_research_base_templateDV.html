@@ -1,11 +1,11 @@
-<!-- To change the layout of the detail view form, we recommend using JS code in hooks/timesheet_entry_table-dv.js rather than editing this file -->
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/cps_research_base-dv.js rather than editing this file -->
 
 <div id="detail-view"></div>
 <div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
 
-<div id="timesheet_entry_table_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+<div id="cps_research_base_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
 
-<div class="panel-body hidden" id="timesheet_entry_table_dv_container">
+<div class="panel-body hidden" id="cps_research_base_dv_container">
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
@@ -16,47 +16,74 @@
 
 	<div class="row">
 		<!-- form inputs -->
-		<div class="col-md-8 col-lg-10" id="timesheet_entry_table_dv_form">
+		<div class="col-md-8 col-lg-10" id="cps_research_base_dv_form">
 			<fieldset class="form-horizontal">
 
-				<!-- Field: From Date Time -->
-				<div class="form-group timesheet_entry_table-time_in">
+				<!-- Field: Year -->
+				<div class="form-group cps_research_base-year">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="time_in">From Date Time<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<label class="control-label col-lg-3" for="year">Year<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
-						<div class="input-group date datetimepicker"><input maxlength="22" type="text" class="form-control" name="time_in" id="time_in" value="<%%VALUE(time_in)%%>" required><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>
+						<%%COMBO(year)%%>
 					</div>
 				</div>
 
-				<!-- Field: To Date Time -->
-				<div class="form-group timesheet_entry_table-time_out">
+				<!-- Field: Reasearch Name -->
+				<div class="form-group cps_research_base-reasearch_name">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="time_out">To Date Time<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<label class="control-label col-lg-3" for="reasearch_name">Reasearch Name<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
-						<div class="input-group date datetimepicker"><input maxlength="22" type="text" class="form-control" name="time_out" id="time_out" value="<%%VALUE(time_out)%%>" required><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>
+						<input maxlength="255" type="text" class="form-control" name="reasearch_name" id="reasearch_name" value="<%%VALUE(reasearch_name)%%>" required>
 					</div>
 				</div>
 
-				<!-- Field: Task Description -->
-				<div class="form-group timesheet_entry_table-description">
+				<!-- Field: Institution -->
+				<div class="form-group cps_research_base-Institution">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="description">Task Description<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
-					<div class="col-lg-9 has-nicedit">
-						<%%HTMLAREA(description)%%>
+					<label class="control-label col-lg-3" for="Institution">Institution<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="Institution" id="Institution" value="<%%VALUE(Institution)%%>" required>
 					</div>
 				</div>
 
-				<!-- Field: Reporting manager -->
-				<div class="form-group timesheet_entry_table-reporting_manager">
+				<!-- Field: Department -->
+				<div class="form-group cps_research_base-department">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="reporting_manager" data-parent_link="view_parent_modal">Reporting manager</label>
+					<label class="control-label col-lg-3" for="department">Department</label>
 					<div class="col-lg-9">
-						<div class="lookup-flex"><%%COMBO(reporting_manager)%%><%%PLINK(reporting_manager)%%><%%ADDNEW(user_table)%%></div>
+						<input maxlength="255" type="text" class="form-control" name="department" id="department" value="<%%VALUE(department)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Technology Area -->
+				<div class="form-group cps_research_base-technology_area">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="technology_area">Technology Area<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(technology_area)%%>
+					</div>
+				</div>
+
+				<!-- Field: Gender -->
+				<div class="form-group cps_research_base-gender">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="gender">Gender<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(gender)%%>
+					</div>
+				</div>
+
+				<!-- Field: Cast Category -->
+				<div class="form-group cps_research_base-cast_category">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="cast_category">Cast Category</label>
+					<div class="col-lg-9">
+						<%%COMBO(cast_category)%%>
 					</div>
 				</div>
 
 				<!-- Field: Created By Username -->
-				<div class="form-group timesheet_entry_table-created_by_username">
+				<div class="form-group cps_research_base-created_by_username">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3">Created By Username</label>
 					<div class="col-lg-9">
@@ -65,7 +92,7 @@
 				</div>
 
 				<!-- Field: Last Updated by Username -->
-				<div class="form-group timesheet_entry_table-last_updated_by_username">
+				<div class="form-group cps_research_base-last_updated_by_username">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3">Last Updated by Username</label>
 					<div class="col-lg-9">
@@ -78,7 +105,7 @@
 
 		<!-- DV action buttons -->
 		<hr class="hidden-md hidden-lg">
-		<div class="col-md-4 col-lg-2 dv-action-buttons" id="timesheet_entry_table_dv_action_buttons">
+		<div class="col-md-4 col-lg-2 dv-action-buttons" id="cps_research_base_dv_action_buttons">
 			<div class="btn-toolbar">
 				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
 					<%%UPDATE_BUTTON%%>
@@ -110,22 +137,31 @@
 				setTimeout(AppGini.closeParentModal, 2000);
 			}
 
-			AppGini.once({
-				condition: function() { return bkLib != undefined; },
-				action: function() {
-					if($j('textarea#description').length) new nicEditor({ fullPanel : true }).panelInstance('description');
-				}
-			});
 
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-			$j('#timesheet_entry_table_dv_container-loading').addClass('hidden');
-			$j('#timesheet_entry_table_dv_container').removeClass('hidden');
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('timesheet_entry_table', 'time_in');
-
-			// try to detect rich text changes by adding 'input' handler after nicedit is loaded ...
-			AppGini.detectContentEditableChanges();
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
+				AppGini.once({
+					condition: function() {
+						return $j('.form-group.cps_research_base-year')
+									.find('.nicEdit-main, .select2-container, input[type=radio]')
+									.length > 0
+								// or read-only DV
+								|| (!$j('#update').length && !$j('#insert').length);
+					},
+					action: function() {
+						$j('#cps_research_base_dv_container-loading').addClass('hidden');
+						$j('#cps_research_base_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('cps_research_base', 'year');
+					},
+					timeout:  5000,
+					doActionOnTimeout:  true
+				});
+			} else {
+				$j('#cps_research_base_dv_container-loading').addClass('hidden');
+				$j('#cps_research_base_dv_container').removeClass('hidden');
+			}
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 
@@ -146,7 +182,7 @@
 							localStorage.removeItem(pt + '_last_added_id');
 							AppGini.lookupText({
 								id: new_id,
-								table: 'timesheet_entry_table',
+								table: 'cps_research_base',
 								field: field_id,
 								callback: function(data) {
 									$j('#' + field_id + '-container').select2('data', data, true);
@@ -206,21 +242,21 @@
 				}
 			});
 
-			timesheet_entry_tableUniqueFields.forEach(fieldName => enforce_uniqueness('timesheet_entry_table', fieldName));
+			cps_research_baseUniqueFields.forEach(fieldName => enforce_uniqueness('cps_research_base', fieldName));
 
 			/* load admin tools for admin user */
 			if(!add_new_mode) {
 				$j('body').append('<div id="admin-tools-appendix"></div>');
 				$j('#admin-tools-appendix').load(
-					'ajax_admin_tools.php?table=timesheet_entry_table&id=<%%URLVALUE(id)%%>',
+					'ajax_admin_tools.php?table=cps_research_base&id=<%%URLVALUE(id)%%>',
 					function(resp) {
 						if(!resp.length) return;
-						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=timesheet_entry_table&id=<%%URLVALUE(id)%%>');
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=cps_research_base&id=<%%URLVALUE(id)%%>');
 					}
 				);
 			}
 		});
 
-		var timesheet_entry_tableUniqueFields = [
+		var cps_research_baseUniqueFields = [
 		];
 	</script>

@@ -17,7 +17,6 @@ function publications_and_intellectual_activities_insert(&$error_message = '') {
 
 	$data = [
 		'year' => Request::val('year', '2020-21'),
-		'type' => Request::val('type', 'Publications'),
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 		'created_by' => parseCode('<%%creatorUsername%%>', true),
 	];
@@ -67,6 +66,46 @@ function publications_and_intellectual_activities_delete($selected_id, $AllowDel
 			);
 	}
 
+	// child table: publications
+	$res = sql("SELECT `id` FROM `publications_and_intellectual_activities` WHERE `id`='{$selected_id}'", $eo);
+	$id = db_fetch_row($res);
+	$rires = sql("SELECT COUNT(1) FROM `publications` WHERE `publications_and_intellectual_activities_details`='" . makeSafe($id[0]) . "'", $eo);
+	$rirow = db_fetch_row($rires);
+	$childrenATag = '<a class="alert-link" href="publications_view.php?filterer_publications_and_intellectual_activities_details=' . urlencode($id[0]) . '">%s</a>';
+	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation["couldn't delete"];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'publications'), $RetMsg);
+		return $RetMsg;
+	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation['confirm delete'];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'publications'), $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `publications_and_intellectual_activities_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `publications_and_intellectual_activities_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		return $RetMsg;
+	}
+
+	// child table: ipr
+	$res = sql("SELECT `id` FROM `publications_and_intellectual_activities` WHERE `id`='{$selected_id}'", $eo);
+	$id = db_fetch_row($res);
+	$rires = sql("SELECT COUNT(1) FROM `ipr` WHERE `publications_and_intellectual_activities_details`='" . makeSafe($id[0]) . "'", $eo);
+	$rirow = db_fetch_row($rires);
+	$childrenATag = '<a class="alert-link" href="ipr_view.php?filterer_publications_and_intellectual_activities_details=' . urlencode($id[0]) . '">%s</a>';
+	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation["couldn't delete"];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'ipr'), $RetMsg);
+		return $RetMsg;
+	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation['confirm delete'];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'ipr'), $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `publications_and_intellectual_activities_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `publications_and_intellectual_activities_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		return $RetMsg;
+	}
+
 	sql("DELETE FROM `publications_and_intellectual_activities` WHERE `id`='{$selected_id}'", $eo);
 
 	// hook: publications_and_intellectual_activities_after_delete
@@ -87,18 +126,12 @@ function publications_and_intellectual_activities_update(&$selected_id, &$error_
 
 	$data = [
 		'year' => Request::val('year', ''),
-		'type' => Request::val('type', ''),
 		'last_updated_at' => parseCode('<%%editingDateTime%%>', false),
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 	];
 
 	if($data['year'] === '') {
 		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Year': {$Translation['field not null']}<br><br>";
-		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
-		exit;
-	}
-	if($data['type'] === '') {
-		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Type': {$Translation['field not null']}<br><br>";
 		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
 		exit;
 	}
@@ -208,29 +241,12 @@ function publications_and_intellectual_activities_form($selectedId = '', $allowU
 	}
 	$combo_year->SelectName = 'year';
 	$combo_year->AllowNull = false;
-	// combobox: type
-	$combo_type = new Combo;
-	$combo_type->ListType = 0;
-	$combo_type->MultipleSeparator = ', ';
-	$combo_type->ListBoxHeight = 10;
-	$combo_type->RadiosPerLine = 1;
-	if(is_file(__DIR__ . '/hooks/publications_and_intellectual_activities.type.csv')) {
-		$type_data = addslashes(implode('', @file(__DIR__ . '/hooks/publications_and_intellectual_activities.type.csv')));
-		$combo_type->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($type_data))));
-		$combo_type->ListData = $combo_type->ListItem;
-	} else {
-		$combo_type->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Publications;;IPR"))));
-		$combo_type->ListData = $combo_type->ListItem;
-	}
-	$combo_type->SelectName = 'type';
-	$combo_type->AllowNull = false;
 
 	if($hasSelectedId) {
 		if(!($row = getRecord('publications_and_intellectual_activities', $selectedId))) {
 			return error_message($Translation['No records found'], 'publications_and_intellectual_activities_view.php', false);
 		}
 		$combo_year->SelectedData = $row['year'];
-		$combo_type->SelectedData = $row['type'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
 	} else {
@@ -238,10 +254,8 @@ function publications_and_intellectual_activities_form($selectedId = '', $allowU
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
 		$combo_year->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('2020-21'));
-		$combo_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Publications'));
 	}
 	$combo_year->Render();
-	$combo_type->Render();
 
 	ob_start();
 	?>
@@ -339,7 +353,6 @@ function publications_and_intellectual_activities_form($selectedId = '', $allowU
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
 		$jsReadOnly .= "\t\$j('#year').replaceWith('<div class=\"form-control-static\" id=\"year\">' + (\$j('#year').val() || '') + '</div>'); \$j('#year-multi-selection-help').hide();\n";
-		$jsReadOnly .= "\t\$j('#type').replaceWith('<div class=\"form-control-static\" id=\"type\">' + (\$j('#type').val() || '') + '</div>'); \$j('#type-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -352,8 +365,6 @@ function publications_and_intellectual_activities_form($selectedId = '', $allowU
 	// process combos
 	$templateCode = str_replace('<%%COMBO(year)%%>', $combo_year->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(year)%%>', $combo_year->SelectedData, $templateCode);
-	$templateCode = str_replace('<%%COMBO(type)%%>', $combo_type->HTML, $templateCode);
-	$templateCode = str_replace('<%%COMBOTEXT(type)%%>', $combo_type->SelectedData, $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
 	$lookup_fields = [];
@@ -374,7 +385,6 @@ function publications_and_intellectual_activities_form($selectedId = '', $allowU
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(year)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(type)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_by_username)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(created_at)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(last_updated_by_username)%%>', '', $templateCode);
@@ -389,9 +399,6 @@ function publications_and_intellectual_activities_form($selectedId = '', $allowU
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(year)%%>', safe_html($urow['year']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(year)%%>', html_attr($row['year']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(year)%%>', urlencode($urow['year']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(type)%%>', safe_html($urow['type']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(type)%%>', html_attr($row['type']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(type)%%>', urlencode($urow['type']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', safe_html($urow['created_by_username']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode($urow['created_by_username']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', safe_html($urow['created_at']), $templateCode);
@@ -409,8 +416,6 @@ function publications_and_intellectual_activities_form($selectedId = '', $allowU
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(year)%%>', '2020-21', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(year)%%>', urlencode('2020-21'), $templateCode);
-		$templateCode = str_replace('<%%VALUE(type)%%>', 'Publications', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(type)%%>', urlencode('Publications'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_by_username)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(created_by_username)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(created_at)%%>', '<%%creationDateTime%%>', $templateCode);

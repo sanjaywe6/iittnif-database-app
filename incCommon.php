@@ -132,6 +132,7 @@
 			'goal_progress_table' => "`goal_progress_table`.`id` as 'id', IF(    CHAR_LENGTH(`goal_setting_table1`.`goal_description`) || CHAR_LENGTH(`goal_setting_table1`.`goal_duration`), CONCAT_WS('',   `goal_setting_table1`.`goal_description`, '::', `goal_setting_table1`.`goal_duration`), '') as 'goal_lookup', `goal_progress_table`.`goal_progress` as 'goal_progress', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'remarks_by', `goal_progress_table`.`remarks` as 'remarks', `goal_progress_table`.`created_by` as 'created_by', `goal_progress_table`.`last_updated_by` as 'last_updated_by', `goal_progress_table`.`created_by_username` as 'created_by_username', `goal_progress_table`.`created_at` as 'created_at', `goal_progress_table`.`last_updated_by_username` as 'last_updated_by_username', `goal_progress_table`.`last_updated_at` as 'last_updated_at'",
 			'task_allocation_table' => "`task_allocation_table`.`task_id` as 'task_id', `task_allocation_table`.`task_description` as 'task_description', `task_allocation_table`.`task_status` as 'task_status', `task_allocation_table`.`task_duration` as 'task_duration', if(`task_allocation_table`.`task_set_date`,date_format(`task_allocation_table`.`task_set_date`,'%d/%m/%Y'),'') as 'task_set_date', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'supervisor_name', IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS('',   `user_table2`.`memberID`, '::', `user_table2`.`name`), '') as 'assigned_to', `task_allocation_table`.`created_by` as 'created_by', `task_allocation_table`.`last_updated_by` as 'last_updated_by', `task_allocation_table`.`created_by_username` as 'created_by_username', `task_allocation_table`.`created_at` as 'created_at', `task_allocation_table`.`last_updated_by_username` as 'last_updated_by_username', `task_allocation_table`.`last_updated_at` as 'last_updated_at'",
 			'task_progress_status_table' => "`task_progress_status_table`.`id` as 'id', IF(    CHAR_LENGTH(`task_allocation_table1`.`task_description`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `task_allocation_table1`.`task_description`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'task_lookup', `task_progress_status_table`.`progress_description` as 'progress_description', if(`task_progress_status_table`.`progree_entry_date`,date_format(`task_progress_status_table`.`progree_entry_date`,'%d/%m/%Y'),'') as 'progree_entry_date', `task_progress_status_table`.`created_by` as 'created_by', `task_progress_status_table`.`last_updated_by` as 'last_updated_by', `task_progress_status_table`.`created_by_username` as 'created_by_username', `task_progress_status_table`.`created_at` as 'created_at', `task_progress_status_table`.`last_updated_by_username` as 'last_updated_by_username', `task_progress_status_table`.`last_updated_at` as 'last_updated_at'",
+			'timesheet_entry_table' => "`timesheet_entry_table`.`id` as 'id', if(`timesheet_entry_table`.`time_in`,date_format(`timesheet_entry_table`.`time_in`,'%d/%m/%Y %H:%i'),'') as 'time_in', if(`timesheet_entry_table`.`time_out`,date_format(`timesheet_entry_table`.`time_out`,'%d/%m/%Y %H:%i'),'') as 'time_out', `timesheet_entry_table`.`number_of_hours` as 'number_of_hours', `timesheet_entry_table`.`description` as 'description', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'reporting_manager', `timesheet_entry_table`.`created_by_username` as 'created_by_username', `timesheet_entry_table`.`created_at` as 'created_at', `timesheet_entry_table`.`last_updated_by_username` as 'last_updated_by_username', `timesheet_entry_table`.`last_updated_at` as 'last_updated_at', `timesheet_entry_table`.`created_by` as 'created_by', `timesheet_entry_table`.`last_updated_by` as 'last_updated_by'",
 			'internship_fellowship_details_app' => "`internship_fellowship_details_app`.`id` as 'id', `internship_fellowship_details_app`.`username` as 'username', `internship_fellowship_details_app`.`standard` as 'standard', `internship_fellowship_details_app`.`iittnif_id` as 'iittnif_id', `internship_fellowship_details_app`.`name_of_the_candidate` as 'name_of_the_candidate', `internship_fellowship_details_app`.`type_of_internship_fellowship` as 'type_of_internship_fellowship', `internship_fellowship_details_app`.`year` as 'year', `internship_fellowship_details_app`.`project_title` as 'project_title', `internship_fellowship_details_app`.`gender` as 'gender', `internship_fellowship_details_app`.`department` as 'department', `internship_fellowship_details_app`.`institute_id_number` as 'institute_id_number', `internship_fellowship_details_app`.`institute` as 'institute', `internship_fellowship_details_app`.`latitude` as 'latitude', `internship_fellowship_details_app`.`longitude` as 'longitude', `internship_fellowship_details_app`.`start_date` as 'start_date', `internship_fellowship_details_app`.`end_date` as 'end_date', `internship_fellowship_details_app`.`status` as 'status', `internship_fellowship_details_app`.`cotegory` as 'cotegory', `internship_fellowship_details_app`.`report_link` as 'report_link', `internship_fellowship_details_app`.`outcomes` as 'outcomes', `internship_fellowship_details_app`.`created_by` as 'created_by', `internship_fellowship_details_app`.`last_updated_by` as 'last_updated_by', `internship_fellowship_details_app`.`created_by_username` as 'created_by_username', `internship_fellowship_details_app`.`created_at` as 'created_at', `internship_fellowship_details_app`.`last_updated_by_username` as 'last_updated_by_username', `internship_fellowship_details_app`.`last_updated_at` as 'last_updated_at'",
 			'star_pnt' => "`star_pnt`.`id` as 'id', `star_pnt`.`username` as 'username', IF(    CHAR_LENGTH(`internship_fellowship_details_app1`.`iittnif_id`), CONCAT_WS('',   `internship_fellowship_details_app1`.`iittnif_id`), '') as 'iittnif_id', `star_pnt`.`name_of_the_candidate` as 'name_of_the_candidate', `star_pnt`.`institute` as 'institute', `star_pnt`.`workspace` as 'workspace', `star_pnt`.`year_and_department` as 'year_and_department', `star_pnt`.`project_title` as 'project_title', `star_pnt`.`created_by` as 'created_by', `star_pnt`.`last_updated_by` as 'last_updated_by', `star_pnt`.`created_by_username` as 'created_by_username', `star_pnt`.`created_at` as 'created_at', `star_pnt`.`last_updated_by_username` as 'last_updated_by_username', `star_pnt`.`last_updated_at` as 'last_updated_at'",
 			'hrd_sdp_events_table' => "`hrd_sdp_events_table`.`id` as 'id', `hrd_sdp_events_table`.`username` as 'username', `hrd_sdp_events_table`.`year` as 'year', `hrd_sdp_events_table`.`program_name` as 'program_name', `hrd_sdp_events_table`.`area_of_workshop` as 'area_of_workshop', `hrd_sdp_events_table`.`host_name` as 'host_name', `hrd_sdp_events_table`.`location` as 'location', if(`hrd_sdp_events_table`.`start_date`,date_format(`hrd_sdp_events_table`.`start_date`,'%d/%m/%Y'),'') as 'start_date', if(`hrd_sdp_events_table`.`end_date`,date_format(`hrd_sdp_events_table`.`end_date`,'%d/%m/%Y'),'') as 'end_date', `hrd_sdp_events_table`.`number_of_participants` as 'number_of_participants', `hrd_sdp_events_table`.`more_details` as 'more_details', `hrd_sdp_events_table`.`created_by` as 'created_by', `hrd_sdp_events_table`.`last_updated_by` as 'last_updated_by', `hrd_sdp_events_table`.`created_by_username` as 'created_by_username', `hrd_sdp_events_table`.`created_at` as 'created_at', `hrd_sdp_events_table`.`last_updated_by_username` as 'last_updated_by_username'",
@@ -195,8 +196,10 @@
 			'projects' => "`projects`.`id` as 'id', `projects`.`category` as 'category', `projects`.`collaboration_partner_type` as 'collaboration_partner_type', `projects`.`collaboration_partner_name` as 'collaboration_partner_name', `projects`.`project_title` as 'project_title', `projects`.`trl_level` as 'trl_level', `projects`.`project_status` as 'project_status', `projects`.`project_commercialized` as 'project_commercialized', `projects`.`brief_of_the_project` as 'brief_of_the_project', `projects`.`commercialization_areas` as 'commercialization_areas', `projects`.`targeted_sdg` as 'targeted_sdg', `projects`.`year_of_commercialization_area` as 'year_of_commercialization_area', `projects`.`commercialization_value` as 'commercialization_value', `projects`.`total_approved_amount` as 'total_approved_amount', `projects`.`funding_released_2020` as 'funding_released_2020', `projects`.`funding_released_2021` as 'funding_released_2021', `projects`.`funding_released_2022` as 'funding_released_2022', `projects`.`funding_released_2023` as 'funding_released_2023', `projects`.`funding_released_2024` as 'funding_released_2024', `projects`.`funding_released_2025` as 'funding_released_2025', `projects`.`funding_released_2026` as 'funding_released_2026', `projects`.`funding_released_2027` as 'funding_released_2027', `projects`.`total_value_released` as 'total_value_released', `projects`.`external_funding_amount` as 'external_funding_amount', `projects`.`remarks` as 'remarks', `projects`.`created_by_username` as 'created_by_username', `projects`.`created_at` as 'created_at', `projects`.`last_updated_by_username` as 'last_updated_by_username', `projects`.`last_updated_at` as 'last_updated_at', `projects`.`created_by` as 'created_by', `projects`.`last_updated_by` as 'last_updated_by'",
 			'td_intellectual_property' => "`td_intellectual_property`.`id` as 'id', `td_intellectual_property`.`year` as 'year', `td_intellectual_property`.`ip_category` as 'ip_category', `td_intellectual_property`.`ip_title` as 'ip_title', `td_intellectual_property`.`technology_area` as 'technology_area', if(`td_intellectual_property`.`year_field`,date_format(`td_intellectual_property`.`year_field`,'%d/%m/%Y'),'') as 'year_field', if(`td_intellectual_property`.`year_granted`,date_format(`td_intellectual_property`.`year_granted`,'%d/%m/%Y'),'') as 'year_granted', `td_intellectual_property`.`patent_id` as 'patent_id', `td_intellectual_property`.`type` as 'type', `td_intellectual_property`.`source_of_ip_category` as 'source_of_ip_category', IF(    CHAR_LENGTH(`projects1`.`category`) || CHAR_LENGTH(`projects1`.`project_title`), CONCAT_WS('',   `projects1`.`category`, ' ~ ', `projects1`.`project_title`), '') as 'source_of_ip', `td_intellectual_property`.`created_by_username` as 'created_by_username', `td_intellectual_property`.`created_at` as 'created_at', `td_intellectual_property`.`last_updated_by_username` as 'last_updated_by_username', `td_intellectual_property`.`last_updated_at` as 'last_updated_at', `td_intellectual_property`.`created_by` as 'created_by', `td_intellectual_property`.`last_updated_by` as 'last_updated_by'",
 			'td_technology_products' => "`td_technology_products`.`id` as 'id', `td_technology_products`.`year` as 'year', `td_technology_products`.`tech_product_title` as 'tech_product_title', `td_technology_products`.`tech_produc_type` as 'tech_produc_type', `td_technology_products`.`technology_area` as 'technology_area', `td_technology_products`.`project_value` as 'project_value', `td_technology_products`.`status_of_license_transfer` as 'status_of_license_transfer', `td_technology_products`.`value_of_transfer` as 'value_of_transfer', `td_technology_products`.`trl_level` as 'trl_level', `td_technology_products`.`commercialised` as 'commercialised', `td_technology_products`.`source_of_ip_category` as 'source_of_ip_category', IF(    CHAR_LENGTH(`projects1`.`category`) || CHAR_LENGTH(`projects1`.`project_title`), CONCAT_WS('',   `projects1`.`category`, ' ~ ', `projects1`.`project_title`), '') as 'source_of_ip', `td_technology_products`.`created_by_username` as 'created_by_username', `td_technology_products`.`created_at` as 'created_at', `td_technology_products`.`last_updated_by_username` as 'last_updated_by_username', `td_technology_products`.`last_updated_at` as 'last_updated_at', `td_technology_products`.`created_by` as 'created_by', `td_technology_products`.`last_updated_by` as 'last_updated_by'",
-			'publications_and_intellectual_activities' => "`publications_and_intellectual_activities`.`id` as 'id', `publications_and_intellectual_activities`.`year` as 'year', `publications_and_intellectual_activities`.`type` as 'type', `publications_and_intellectual_activities`.`created_by_username` as 'created_by_username', `publications_and_intellectual_activities`.`created_at` as 'created_at', `publications_and_intellectual_activities`.`last_updated_by_username` as 'last_updated_by_username', `publications_and_intellectual_activities`.`last_updated_at` as 'last_updated_at', `publications_and_intellectual_activities`.`created_by` as 'created_by', `publications_and_intellectual_activities`.`last_updated_by` as 'last_updated_by'",
-			'timesheet_entry_table' => "`timesheet_entry_table`.`id` as 'id', if(`timesheet_entry_table`.`time_in`,date_format(`timesheet_entry_table`.`time_in`,'%d/%m/%Y %H:%i'),'') as 'time_in', if(`timesheet_entry_table`.`time_out`,date_format(`timesheet_entry_table`.`time_out`,'%d/%m/%Y %H:%i'),'') as 'time_out', `timesheet_entry_table`.`number_of_hours` as 'number_of_hours', `timesheet_entry_table`.`description` as 'description', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'reporting_manager', `timesheet_entry_table`.`created_by_username` as 'created_by_username', `timesheet_entry_table`.`created_at` as 'created_at', `timesheet_entry_table`.`last_updated_by_username` as 'last_updated_by_username', `timesheet_entry_table`.`last_updated_at` as 'last_updated_at', `timesheet_entry_table`.`created_by` as 'created_by', `timesheet_entry_table`.`last_updated_by` as 'last_updated_by'",
+			'publications_and_intellectual_activities' => "`publications_and_intellectual_activities`.`id` as 'id', `publications_and_intellectual_activities`.`year` as 'year', `publications_and_intellectual_activities`.`created_by_username` as 'created_by_username', `publications_and_intellectual_activities`.`created_at` as 'created_at', `publications_and_intellectual_activities`.`last_updated_by_username` as 'last_updated_by_username', `publications_and_intellectual_activities`.`last_updated_at` as 'last_updated_at', `publications_and_intellectual_activities`.`created_by` as 'created_by', `publications_and_intellectual_activities`.`last_updated_by` as 'last_updated_by'",
+			'publications' => "`publications`.`id` as 'id', IF(    CHAR_LENGTH(`publications_and_intellectual_activities1`.`year`) || CHAR_LENGTH(`publications_and_intellectual_activities1`.`created_by_username`), CONCAT_WS('',   `publications_and_intellectual_activities1`.`year`, '  ', `publications_and_intellectual_activities1`.`created_by_username`), '') as 'publications_and_intellectual_activities_details', `publications`.`publication_type` as 'publication_type', `publications`.`title` as 'title', `publications`.`technology_area` as 'technology_area', if(`publications`.`publication_year`,date_format(`publications`.`publication_year`,'%d/%m/%Y'),'') as 'publication_year', `publications`.`author_names` as 'author_names', `publications`.`peer_reviewed` as 'peer_reviewed', `publications`.`link` as 'link', `publications`.`source_of_ip_category` as 'source_of_ip_category', IF(    CHAR_LENGTH(`projects1`.`category`) || CHAR_LENGTH(`projects1`.`project_title`), CONCAT_WS('',   `projects1`.`category`, ' ~ ', `projects1`.`project_title`), '') as 'source_of_ip', `publications`.`created_by_username` as 'created_by_username', `publications`.`created_at` as 'created_at', `publications`.`last_updated_by_username` as 'last_updated_by_username', `publications`.`last_updated_at` as 'last_updated_at', `publications`.`created_by` as 'created_by', `publications`.`last_updated_by` as 'last_updated_by'",
+			'ipr' => "`ipr`.`id` as 'id', IF(    CHAR_LENGTH(`publications_and_intellectual_activities1`.`year`) || CHAR_LENGTH(`publications_and_intellectual_activities1`.`created_by_username`), CONCAT_WS('',   `publications_and_intellectual_activities1`.`year`, '  ', `publications_and_intellectual_activities1`.`created_by_username`), '') as 'publications_and_intellectual_activities_details', `ipr`.`title` as 'title', `ipr`.`ipr_ia` as 'ipr_ia', `ipr`.`event_type` as 'event_type', `ipr`.`technology_domain` as 'technology_domain', `ipr`.`collaborating_organization` as 'collaborating_organization', `ipr`.`event_venue_address` as 'event_venue_address', `ipr`.`state` as 'state', `ipr`.`district` as 'district', if(`ipr`.`start_date`,date_format(`ipr`.`start_date`,'%d/%m/%Y'),'') as 'start_date', if(`ipr`.`end_date`,date_format(`ipr`.`end_date`,'%d/%m/%Y'),'') as 'end_date', `ipr`.`total_number_of_participants` as 'total_number_of_participants', `ipr`.`women_participants` as 'women_participants', `ipr`.`st_participants` as 'st_participants', `ipr`.`sc_participants` as 'sc_participants', `ipr`.`outcomes` as 'outcomes'",
+			'cps_research_base' => "`cps_research_base`.`id` as 'id', `cps_research_base`.`year` as 'year', `cps_research_base`.`reasearch_name` as 'reasearch_name', `cps_research_base`.`Institution` as 'Institution', `cps_research_base`.`department` as 'department', `cps_research_base`.`technology_area` as 'technology_area', `cps_research_base`.`gender` as 'gender', `cps_research_base`.`cast_category` as 'cast_category', `cps_research_base`.`created_by_username` as 'created_by_username', `cps_research_base`.`created_at` as 'created_at', `cps_research_base`.`last_updated_by_username` as 'last_updated_by_username', `cps_research_base`.`last_updated_at` as 'last_updated_at', `cps_research_base`.`created_by` as 'created_by', `cps_research_base`.`last_updated_by` as 'last_updated_by'",
 		];
 
 		if(isset($sql_fields[$table_name])) return $sql_fields[$table_name];
@@ -235,6 +238,7 @@
 			'goal_progress_table' => "`goal_progress_table` LEFT JOIN `goal_setting_table` as goal_setting_table1 ON `goal_setting_table1`.`goal_id`=`goal_progress_table`.`goal_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`goal_progress_table`.`remarks_by` ",
 			'task_allocation_table' => "`task_allocation_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`task_allocation_table`.`supervisor_name` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`task_allocation_table`.`assigned_to` ",
 			'task_progress_status_table' => "`task_progress_status_table` LEFT JOIN `task_allocation_table` as task_allocation_table1 ON `task_allocation_table1`.`task_id`=`task_progress_status_table`.`task_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`task_allocation_table1`.`assigned_to` ",
+			'timesheet_entry_table' => "`timesheet_entry_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`timesheet_entry_table`.`reporting_manager` ",
 			'internship_fellowship_details_app' => "`internship_fellowship_details_app` ",
 			'star_pnt' => "`star_pnt` LEFT JOIN `internship_fellowship_details_app` as internship_fellowship_details_app1 ON `internship_fellowship_details_app1`.`id`=`star_pnt`.`iittnif_id` ",
 			'hrd_sdp_events_table' => "`hrd_sdp_events_table` ",
@@ -299,7 +303,9 @@
 			'td_intellectual_property' => "`td_intellectual_property` LEFT JOIN `projects` as projects1 ON `projects1`.`id`=`td_intellectual_property`.`source_of_ip` ",
 			'td_technology_products' => "`td_technology_products` LEFT JOIN `projects` as projects1 ON `projects1`.`id`=`td_technology_products`.`source_of_ip` ",
 			'publications_and_intellectual_activities' => "`publications_and_intellectual_activities` ",
-			'timesheet_entry_table' => "`timesheet_entry_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`timesheet_entry_table`.`reporting_manager` ",
+			'publications' => "`publications` LEFT JOIN `publications_and_intellectual_activities` as publications_and_intellectual_activities1 ON `publications_and_intellectual_activities1`.`id`=`publications`.`publications_and_intellectual_activities_details` LEFT JOIN `projects` as projects1 ON `projects1`.`id`=`publications`.`source_of_ip` ",
+			'ipr' => "`ipr` LEFT JOIN `publications_and_intellectual_activities` as publications_and_intellectual_activities1 ON `publications_and_intellectual_activities1`.`id`=`ipr`.`publications_and_intellectual_activities_details` ",
+			'cps_research_base' => "`cps_research_base` ",
 		];
 
 		$pkey = [
@@ -330,6 +336,7 @@
 			'goal_progress_table' => 'id',
 			'task_allocation_table' => 'task_id',
 			'task_progress_status_table' => 'id',
+			'timesheet_entry_table' => 'id',
 			'internship_fellowship_details_app' => 'id',
 			'star_pnt' => 'id',
 			'hrd_sdp_events_table' => 'id',
@@ -394,7 +401,9 @@
 			'td_intellectual_property' => 'id',
 			'td_technology_products' => 'id',
 			'publications_and_intellectual_activities' => 'id',
-			'timesheet_entry_table' => 'id',
+			'publications' => 'id',
+			'ipr' => 'id',
+			'cps_research_base' => 'id',
 		];
 
 		if(!isset($sql_from[$table_name])) return false;
@@ -878,6 +887,20 @@
 				'created_at' => '',
 				'last_updated_by_username' => '',
 				'last_updated_at' => '',
+			],
+			'timesheet_entry_table' => [
+				'id' => '',
+				'time_in' => '',
+				'time_out' => '',
+				'number_of_hours' => '',
+				'description' => '',
+				'reporting_manager' => '',
+				'created_by_username' => '',
+				'created_at' => '',
+				'last_updated_by_username' => '',
+				'last_updated_at' => '',
+				'created_by' => '',
+				'last_updated_by' => '',
 			],
 			'internship_fellowship_details_app' => [
 				'id' => '',
@@ -2153,7 +2176,6 @@
 			'publications_and_intellectual_activities' => [
 				'id' => '',
 				'year' => '2020-21',
-				'type' => 'Publications',
 				'created_by_username' => '',
 				'created_at' => '',
 				'last_updated_by_username' => '',
@@ -2161,13 +2183,53 @@
 				'created_by' => '',
 				'last_updated_by' => '',
 			],
-			'timesheet_entry_table' => [
+			'publications' => [
 				'id' => '',
-				'time_in' => '',
-				'time_out' => '',
-				'number_of_hours' => '',
-				'description' => '',
-				'reporting_manager' => '',
+				'publications_and_intellectual_activities_details' => '',
+				'publication_type' => '',
+				'title' => '',
+				'technology_area' => '',
+				'publication_year' => '',
+				'author_names' => '',
+				'peer_reviewed' => '',
+				'link' => '',
+				'source_of_ip_category' => 'EIR',
+				'source_of_ip' => '',
+				'created_by_username' => '',
+				'created_at' => '',
+				'last_updated_by_username' => '',
+				'last_updated_at' => '',
+				'created_by' => '',
+				'last_updated_by' => '',
+			],
+			'ipr' => [
+				'id' => '',
+				'publications_and_intellectual_activities_details' => '',
+				'title' => '',
+				'ipr_ia' => '',
+				'event_type' => '',
+				'technology_domain' => '',
+				'collaborating_organization' => '',
+				'event_venue_address' => '',
+				'state' => '',
+				'district' => '',
+				'start_date' => '',
+				'end_date' => '',
+				'total_number_of_participants' => '',
+				'women_participants' => '',
+				'st_participants' => '',
+				'sc_participants' => '',
+				'outcomes' => '',
+			],
+			'cps_research_base' => [
+				'id' => '',
+				'year' => '2020-21',
+				'reasearch_name' => '',
+				'Institution' => '',
+				'department' => '',
+				'technology_area' => '',
+				'gender' => 'Male',
+				'cast_category' => 'SC',
 				'created_by_username' => '',
 				'created_at' => '',
 				'last_updated_by_username' => '',
@@ -2997,7 +3059,7 @@
 		if(is_array($arrTables)) {
 			foreach($arrTables as $tn => $tc) {
 				/* ---- list of tables where hide link in nav menu is set ---- */
-				$tChkHL = array_search($tn, ['user_table','suggestion','approval_table','techlead_web_page','navavishkar_stay_facilities_table','navavishkar_stay_facilities_allotment_table','car_table','car_usage_table','cycle_table','cycle_usage_table','gym_table','coffee_table','cafeteria_table','event_table','outcomes_expected_table','event_decision_table','meetings_table','agenda_table','decision_table','participants_table','action_actor','visiting_card_table','mou_details_table','goal_setting_table','goal_progress_table','task_allocation_table','task_progress_status_table','internship_fellowship_details_app','star_pnt','hrd_sdp_events_table','training_program_on_geospatial_tchnologies_table','space_day_school_details_app','space_day_college_student_table','school_list','sdp_participants_college_details_table','asset_table','asset_allotment_table','sub_asset_table','sub_asset_allotment_table','it_inventory_app','it_inventory_billing_details','it_inventory_allotment_table','computer_details_table','computer_user_details','computer_allotment_table','employees_personal_data_table','employees_designation_table','employees_appraisal_table','beyond_working_hours_table','leave_table','half_day_leave_table','work_from_home_table','work_from_home_tasks_app','navavishkar_stay_table','navavishkar_stay_payment_table','email_id_allocation_table','attendence_details_table','all_startup_data_table','shortlisted_startups_for_fund_table','shortlisted_startups_dd_and_agreement_table','vikas_startup_applications_table','programs_table','evaluation_table','problem_statement_table','evaluators_table','approval_billing_table','honorarium_claim_table','all_bank_account_statement_table','payment_track_details_table','travel_table','travel_stay_table','travel_local_commute_table','r_and_d_progress','panel_decision_table_tdp','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','summary_table_tdp','project_details_tdp','newsletter_table','contact_call_log_table','r_and_d_monthly_progress_app','r_and_d_quarterly_progress_app','projects','td_intellectual_property','td_technology_products','publications_and_intellectual_activities']);
+				$tChkHL = array_search($tn, ['user_table','suggestion','approval_table','techlead_web_page','navavishkar_stay_facilities_table','navavishkar_stay_facilities_allotment_table','car_table','car_usage_table','cycle_table','cycle_usage_table','gym_table','coffee_table','cafeteria_table','event_table','outcomes_expected_table','event_decision_table','meetings_table','agenda_table','decision_table','participants_table','action_actor','visiting_card_table','mou_details_table','goal_setting_table','goal_progress_table','task_allocation_table','task_progress_status_table','timesheet_entry_table','internship_fellowship_details_app','star_pnt','hrd_sdp_events_table','training_program_on_geospatial_tchnologies_table','space_day_school_details_app','space_day_college_student_table','school_list','sdp_participants_college_details_table','asset_table','asset_allotment_table','sub_asset_table','sub_asset_allotment_table','it_inventory_app','it_inventory_billing_details','it_inventory_allotment_table','computer_details_table','computer_user_details','computer_allotment_table','employees_personal_data_table','employees_designation_table','employees_appraisal_table','beyond_working_hours_table','leave_table','half_day_leave_table','work_from_home_table','work_from_home_tasks_app','navavishkar_stay_table','navavishkar_stay_payment_table','email_id_allocation_table','attendence_details_table','all_startup_data_table','shortlisted_startups_for_fund_table','shortlisted_startups_dd_and_agreement_table','vikas_startup_applications_table','programs_table','evaluation_table','problem_statement_table','evaluators_table','approval_billing_table','honorarium_claim_table','all_bank_account_statement_table','payment_track_details_table','travel_table','travel_stay_table','travel_local_commute_table','r_and_d_progress','panel_decision_table_tdp','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','summary_table_tdp','project_details_tdp','newsletter_table','contact_call_log_table','r_and_d_monthly_progress_app','r_and_d_quarterly_progress_app','projects','td_intellectual_property','td_technology_products','publications_and_intellectual_activities','publications','ipr','cps_research_base']);
 
 				/* ---- list of tables where filter first is set ---- */
 				$tChkFF = array_search($tn, ['task_progress_status_table']);
@@ -3894,6 +3956,32 @@ EOT;
 					'template' => 'children-task_progress_status_table',
 					'template-printable' => 'children-task_progress_status_table-printable',
 					'query' => "SELECT `task_progress_status_table`.`id` as 'id', IF(    CHAR_LENGTH(`task_allocation_table1`.`task_description`) || CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `task_allocation_table1`.`task_description`, '::', `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'task_lookup', `task_progress_status_table`.`progress_description` as 'progress_description', if(`task_progress_status_table`.`progree_entry_date`,date_format(`task_progress_status_table`.`progree_entry_date`,'%d/%m/%Y'),'') as 'progree_entry_date', `task_progress_status_table`.`created_by` as 'created_by', `task_progress_status_table`.`last_updated_by` as 'last_updated_by', `task_progress_status_table`.`created_by_username` as 'created_by_username', `task_progress_status_table`.`created_at` as 'created_at', `task_progress_status_table`.`last_updated_by_username` as 'last_updated_by_username', `task_progress_status_table`.`last_updated_at` as 'last_updated_at' FROM `task_progress_status_table` LEFT JOIN `task_allocation_table` as task_allocation_table1 ON `task_allocation_table1`.`task_id`=`task_progress_status_table`.`task_lookup` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`task_allocation_table1`.`assigned_to` "
+				],
+			],
+			'timesheet_entry_table' => [
+				'reporting_manager' => [
+					'parent-table' => 'user_table',
+					'parent-primary-key' => 'user_id',
+					'child-primary-key' => 'id',
+					'child-primary-key-index' => 0,
+					'tab-label' => 'Timesheet Entry - App <span class="hidden child-label-timesheet_entry_table child-field-caption">(Reporting manager)</span>',
+					'auto-close' => false,
+					'table-icon' => 'table.gif',
+					'display-refresh' => true,
+					'display-add-new' => true,
+					'forced-where' => '',
+					'display-fields' => [1 => 'From Date Time', 2 => 'To Date Time', 3 => 'Number of Hours', 4 => 'Task Description', 5 => 'Reporting manager', 6 => 'Created By Username', 7 => 'Created At', 8 => 'Last Updated by Username', 9 => 'Last Updated At'],
+					'display-field-names' => [1 => 'time_in', 2 => 'time_out', 3 => 'number_of_hours', 4 => 'description', 5 => 'reporting_manager', 6 => 'created_by_username', 7 => 'created_at', 8 => 'last_updated_by_username', 9 => 'last_updated_at'],
+					'sortable-fields' => [0 => '`timesheet_entry_table`.`id`', 1 => '`timesheet_entry_table`.`time_in`', 2 => '`timesheet_entry_table`.`time_out`', 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => 9, 9 => 10, 10 => 11, 11 => 12],
+					'records-per-page' => 10,
+					'default-sort-by' => 0,
+					'default-sort-direction' => 'desc',
+					'open-detail-view-on-click' => true,
+					'display-page-selector' => true,
+					'show-page-progress' => true,
+					'template' => 'children-timesheet_entry_table',
+					'template-printable' => 'children-timesheet_entry_table-printable',
+					'query' => "SELECT `timesheet_entry_table`.`id` as 'id', if(`timesheet_entry_table`.`time_in`,date_format(`timesheet_entry_table`.`time_in`,'%d/%m/%Y %H:%i'),'') as 'time_in', if(`timesheet_entry_table`.`time_out`,date_format(`timesheet_entry_table`.`time_out`,'%d/%m/%Y %H:%i'),'') as 'time_out', `timesheet_entry_table`.`number_of_hours` as 'number_of_hours', `timesheet_entry_table`.`description` as 'description', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'reporting_manager', `timesheet_entry_table`.`created_by_username` as 'created_by_username', `timesheet_entry_table`.`created_at` as 'created_at', `timesheet_entry_table`.`last_updated_by_username` as 'last_updated_by_username', `timesheet_entry_table`.`last_updated_at` as 'last_updated_at', `timesheet_entry_table`.`created_by` as 'created_by', `timesheet_entry_table`.`last_updated_by` as 'last_updated_by' FROM `timesheet_entry_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`timesheet_entry_table`.`reporting_manager` "
 				],
 			],
 			'internship_fellowship_details_app' => [
@@ -5008,31 +5096,83 @@ EOT;
 			],
 			'publications_and_intellectual_activities' => [
 			],
-			'timesheet_entry_table' => [
-				'reporting_manager' => [
-					'parent-table' => 'user_table',
-					'parent-primary-key' => 'user_id',
+			'publications' => [
+				'publications_and_intellectual_activities_details' => [
+					'parent-table' => 'publications_and_intellectual_activities',
+					'parent-primary-key' => 'id',
 					'child-primary-key' => 'id',
 					'child-primary-key-index' => 0,
-					'tab-label' => 'Timesheet Entry - App <span class="hidden child-label-timesheet_entry_table child-field-caption">(Reporting manager)</span>',
+					'tab-label' => 'Publications <span class="hidden child-label-publications child-field-caption">(Publications and Intellectual Activities Details)</span>',
 					'auto-close' => false,
 					'table-icon' => 'table.gif',
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => [1 => 'From Date Time', 2 => 'To Date Time', 3 => 'Number of Hours', 4 => 'Task Description', 5 => 'Reporting manager', 6 => 'Created By Username', 7 => 'Created At', 8 => 'Last Updated by Username', 9 => 'Last Updated At'],
-					'display-field-names' => [1 => 'time_in', 2 => 'time_out', 3 => 'number_of_hours', 4 => 'description', 5 => 'reporting_manager', 6 => 'created_by_username', 7 => 'created_at', 8 => 'last_updated_by_username', 9 => 'last_updated_at'],
-					'sortable-fields' => [0 => '`timesheet_entry_table`.`id`', 1 => '`timesheet_entry_table`.`time_in`', 2 => '`timesheet_entry_table`.`time_out`', 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => 9, 9 => 10, 10 => 11, 11 => 12],
+					'display-fields' => [1 => 'Publications and Intellectual Activities Details', 2 => 'Publication Type', 3 => 'Title', 4 => 'Technology Area', 5 => 'Publication Year', 6 => 'Author Names', 7 => 'Peer Reviewed', 8 => 'Link', 9 => 'Source of IP Category', 10 => 'Source of IP', 11 => 'Created By Username', 12 => 'Created At', 13 => 'Last Updated by Username', 14 => 'Last Updated At'],
+					'display-field-names' => [1 => 'publications_and_intellectual_activities_details', 2 => 'publication_type', 3 => 'title', 4 => 'technology_area', 5 => 'publication_year', 6 => 'author_names', 7 => 'peer_reviewed', 8 => 'link', 9 => 'source_of_ip_category', 10 => 'source_of_ip', 11 => 'created_by_username', 12 => 'created_at', 13 => 'last_updated_by_username', 14 => 'last_updated_at'],
+					'sortable-fields' => [0 => '`publications`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => '`publications`.`publication_year`', 6 => 7, 7 => 8, 8 => 9, 9 => 10, 10 => 11, 11 => 12, 12 => 13, 13 => 14, 14 => 15, 15 => 16, 16 => 17],
 					'records-per-page' => 10,
-					'default-sort-by' => false,
-					'default-sort-direction' => 'asc',
+					'default-sort-by' => 0,
+					'default-sort-direction' => 'desc',
 					'open-detail-view-on-click' => true,
 					'display-page-selector' => true,
 					'show-page-progress' => true,
-					'template' => 'children-timesheet_entry_table',
-					'template-printable' => 'children-timesheet_entry_table-printable',
-					'query' => "SELECT `timesheet_entry_table`.`id` as 'id', if(`timesheet_entry_table`.`time_in`,date_format(`timesheet_entry_table`.`time_in`,'%d/%m/%Y %H:%i'),'') as 'time_in', if(`timesheet_entry_table`.`time_out`,date_format(`timesheet_entry_table`.`time_out`,'%d/%m/%Y %H:%i'),'') as 'time_out', `timesheet_entry_table`.`number_of_hours` as 'number_of_hours', `timesheet_entry_table`.`description` as 'description', IF(    CHAR_LENGTH(`user_table1`.`memberID`) || CHAR_LENGTH(`user_table1`.`name`), CONCAT_WS('',   `user_table1`.`memberID`, '::', `user_table1`.`name`), '') as 'reporting_manager', `timesheet_entry_table`.`created_by_username` as 'created_by_username', `timesheet_entry_table`.`created_at` as 'created_at', `timesheet_entry_table`.`last_updated_by_username` as 'last_updated_by_username', `timesheet_entry_table`.`last_updated_at` as 'last_updated_at', `timesheet_entry_table`.`created_by` as 'created_by', `timesheet_entry_table`.`last_updated_by` as 'last_updated_by' FROM `timesheet_entry_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`timesheet_entry_table`.`reporting_manager` "
+					'template' => 'children-publications',
+					'template-printable' => 'children-publications-printable',
+					'query' => "SELECT `publications`.`id` as 'id', IF(    CHAR_LENGTH(`publications_and_intellectual_activities1`.`year`) || CHAR_LENGTH(`publications_and_intellectual_activities1`.`created_by_username`), CONCAT_WS('',   `publications_and_intellectual_activities1`.`year`, '  ', `publications_and_intellectual_activities1`.`created_by_username`), '') as 'publications_and_intellectual_activities_details', `publications`.`publication_type` as 'publication_type', `publications`.`title` as 'title', `publications`.`technology_area` as 'technology_area', if(`publications`.`publication_year`,date_format(`publications`.`publication_year`,'%d/%m/%Y'),'') as 'publication_year', `publications`.`author_names` as 'author_names', `publications`.`peer_reviewed` as 'peer_reviewed', `publications`.`link` as 'link', `publications`.`source_of_ip_category` as 'source_of_ip_category', IF(    CHAR_LENGTH(`projects1`.`category`) || CHAR_LENGTH(`projects1`.`project_title`), CONCAT_WS('',   `projects1`.`category`, ' ~ ', `projects1`.`project_title`), '') as 'source_of_ip', `publications`.`created_by_username` as 'created_by_username', `publications`.`created_at` as 'created_at', `publications`.`last_updated_by_username` as 'last_updated_by_username', `publications`.`last_updated_at` as 'last_updated_at', `publications`.`created_by` as 'created_by', `publications`.`last_updated_by` as 'last_updated_by' FROM `publications` LEFT JOIN `publications_and_intellectual_activities` as publications_and_intellectual_activities1 ON `publications_and_intellectual_activities1`.`id`=`publications`.`publications_and_intellectual_activities_details` LEFT JOIN `projects` as projects1 ON `projects1`.`id`=`publications`.`source_of_ip` "
 				],
+				'source_of_ip' => [
+					'parent-table' => 'projects',
+					'parent-primary-key' => 'id',
+					'child-primary-key' => 'id',
+					'child-primary-key-index' => 0,
+					'tab-label' => 'Publications <span class="hidden child-label-publications child-field-caption">(Source of IP)</span>',
+					'auto-close' => false,
+					'table-icon' => 'table.gif',
+					'display-refresh' => true,
+					'display-add-new' => true,
+					'forced-where' => '',
+					'display-fields' => [1 => 'Publications and Intellectual Activities Details', 2 => 'Publication Type', 3 => 'Title', 4 => 'Technology Area', 5 => 'Publication Year', 6 => 'Author Names', 7 => 'Peer Reviewed', 8 => 'Link', 9 => 'Source of IP Category', 10 => 'Source of IP', 11 => 'Created By Username', 12 => 'Created At', 13 => 'Last Updated by Username', 14 => 'Last Updated At'],
+					'display-field-names' => [1 => 'publications_and_intellectual_activities_details', 2 => 'publication_type', 3 => 'title', 4 => 'technology_area', 5 => 'publication_year', 6 => 'author_names', 7 => 'peer_reviewed', 8 => 'link', 9 => 'source_of_ip_category', 10 => 'source_of_ip', 11 => 'created_by_username', 12 => 'created_at', 13 => 'last_updated_by_username', 14 => 'last_updated_at'],
+					'sortable-fields' => [0 => '`publications`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => '`publications`.`publication_year`', 6 => 7, 7 => 8, 8 => 9, 9 => 10, 10 => 11, 11 => 12, 12 => 13, 13 => 14, 14 => 15, 15 => 16, 16 => 17],
+					'records-per-page' => 10,
+					'default-sort-by' => 0,
+					'default-sort-direction' => 'desc',
+					'open-detail-view-on-click' => true,
+					'display-page-selector' => true,
+					'show-page-progress' => true,
+					'template' => 'children-publications',
+					'template-printable' => 'children-publications-printable',
+					'query' => "SELECT `publications`.`id` as 'id', IF(    CHAR_LENGTH(`publications_and_intellectual_activities1`.`year`) || CHAR_LENGTH(`publications_and_intellectual_activities1`.`created_by_username`), CONCAT_WS('',   `publications_and_intellectual_activities1`.`year`, '  ', `publications_and_intellectual_activities1`.`created_by_username`), '') as 'publications_and_intellectual_activities_details', `publications`.`publication_type` as 'publication_type', `publications`.`title` as 'title', `publications`.`technology_area` as 'technology_area', if(`publications`.`publication_year`,date_format(`publications`.`publication_year`,'%d/%m/%Y'),'') as 'publication_year', `publications`.`author_names` as 'author_names', `publications`.`peer_reviewed` as 'peer_reviewed', `publications`.`link` as 'link', `publications`.`source_of_ip_category` as 'source_of_ip_category', IF(    CHAR_LENGTH(`projects1`.`category`) || CHAR_LENGTH(`projects1`.`project_title`), CONCAT_WS('',   `projects1`.`category`, ' ~ ', `projects1`.`project_title`), '') as 'source_of_ip', `publications`.`created_by_username` as 'created_by_username', `publications`.`created_at` as 'created_at', `publications`.`last_updated_by_username` as 'last_updated_by_username', `publications`.`last_updated_at` as 'last_updated_at', `publications`.`created_by` as 'created_by', `publications`.`last_updated_by` as 'last_updated_by' FROM `publications` LEFT JOIN `publications_and_intellectual_activities` as publications_and_intellectual_activities1 ON `publications_and_intellectual_activities1`.`id`=`publications`.`publications_and_intellectual_activities_details` LEFT JOIN `projects` as projects1 ON `projects1`.`id`=`publications`.`source_of_ip` "
+				],
+			],
+			'ipr' => [
+				'publications_and_intellectual_activities_details' => [
+					'parent-table' => 'publications_and_intellectual_activities',
+					'parent-primary-key' => 'id',
+					'child-primary-key' => 'id',
+					'child-primary-key-index' => 0,
+					'tab-label' => 'IPR <span class="hidden child-label-ipr child-field-caption">(Publications and Intellectual Activities Details)</span>',
+					'auto-close' => false,
+					'table-icon' => 'table.gif',
+					'display-refresh' => true,
+					'display-add-new' => true,
+					'forced-where' => '',
+					'display-fields' => [0 => 'ID', 1 => 'Publications and Intellectual Activities Details', 2 => 'Title', 3 => 'IPR / Intellectual Activity', 4 => 'Event type', 5 => 'Technology Domain', 6 => 'Collaborating Organization', 7 => 'Event venue address', 8 => 'State', 9 => 'District', 10 => 'Start date', 11 => 'End date', 12 => 'Total Number of Participants', 13 => 'Women participants', 14 => 'ST Participants', 15 => 'SC Participants', 16 => 'Outcomes'],
+					'display-field-names' => [0 => 'id', 1 => 'publications_and_intellectual_activities_details', 2 => 'title', 3 => 'ipr_ia', 4 => 'event_type', 5 => 'technology_domain', 6 => 'collaborating_organization', 7 => 'event_venue_address', 8 => 'state', 9 => 'district', 10 => 'start_date', 11 => 'end_date', 12 => 'total_number_of_participants', 13 => 'women_participants', 14 => 'st_participants', 15 => 'sc_participants', 16 => 'outcomes'],
+					'sortable-fields' => [0 => '`ipr`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => 9, 9 => 10, 10 => '`ipr`.`start_date`', 11 => '`ipr`.`end_date`', 12 => '`ipr`.`total_number_of_participants`', 13 => '`ipr`.`women_participants`', 14 => '`ipr`.`st_participants`', 15 => '`ipr`.`sc_participants`', 16 => 17],
+					'records-per-page' => 10,
+					'default-sort-by' => 0,
+					'default-sort-direction' => 'desc',
+					'open-detail-view-on-click' => true,
+					'display-page-selector' => true,
+					'show-page-progress' => true,
+					'template' => 'children-ipr',
+					'template-printable' => 'children-ipr-printable',
+					'query' => "SELECT `ipr`.`id` as 'id', IF(    CHAR_LENGTH(`publications_and_intellectual_activities1`.`year`) || CHAR_LENGTH(`publications_and_intellectual_activities1`.`created_by_username`), CONCAT_WS('',   `publications_and_intellectual_activities1`.`year`, '  ', `publications_and_intellectual_activities1`.`created_by_username`), '') as 'publications_and_intellectual_activities_details', `ipr`.`title` as 'title', `ipr`.`ipr_ia` as 'ipr_ia', `ipr`.`event_type` as 'event_type', `ipr`.`technology_domain` as 'technology_domain', `ipr`.`collaborating_organization` as 'collaborating_organization', `ipr`.`event_venue_address` as 'event_venue_address', `ipr`.`state` as 'state', `ipr`.`district` as 'district', if(`ipr`.`start_date`,date_format(`ipr`.`start_date`,'%d/%m/%Y'),'') as 'start_date', if(`ipr`.`end_date`,date_format(`ipr`.`end_date`,'%d/%m/%Y'),'') as 'end_date', `ipr`.`total_number_of_participants` as 'total_number_of_participants', `ipr`.`women_participants` as 'women_participants', `ipr`.`st_participants` as 'st_participants', `ipr`.`sc_participants` as 'sc_participants', `ipr`.`outcomes` as 'outcomes' FROM `ipr` LEFT JOIN `publications_and_intellectual_activities` as publications_and_intellectual_activities1 ON `publications_and_intellectual_activities1`.`id`=`ipr`.`publications_and_intellectual_activities_details` "
+				],
+			],
+			'cps_research_base' => [
 			],
 		];
 
@@ -5079,7 +5219,7 @@ EOT;
 	#########################################################
 
 	function isDetailViewEnabled($tn) {
-		$tables = ['user_table', 'suggestion', 'approval_table', 'techlead_web_page', 'navavishkar_stay_facilities_table', 'navavishkar_stay_facilities_allotment_table', 'car_table', 'car_usage_table', 'cycle_table', 'cycle_usage_table', 'gym_table', 'coffee_table', 'cafeteria_table', 'event_table', 'outcomes_expected_table', 'event_decision_table', 'meetings_table', 'agenda_table', 'decision_table', 'participants_table', 'action_actor', 'visiting_card_table', 'mou_details_table', 'goal_setting_table', 'goal_progress_table', 'task_allocation_table', 'task_progress_status_table', 'internship_fellowship_details_app', 'star_pnt', 'hrd_sdp_events_table', 'training_program_on_geospatial_tchnologies_table', 'space_day_school_details_app', 'space_day_college_student_table', 'school_list', 'sdp_participants_college_details_table', 'asset_table', 'asset_allotment_table', 'sub_asset_table', 'sub_asset_allotment_table', 'it_inventory_app', 'it_inventory_billing_details', 'it_inventory_allotment_table', 'computer_details_table', 'computer_user_details', 'computer_allotment_table', 'employees_personal_data_table', 'employees_designation_table', 'employees_appraisal_table', 'beyond_working_hours_table', 'leave_table', 'half_day_leave_table', 'work_from_home_table', 'work_from_home_tasks_app', 'navavishkar_stay_table', 'navavishkar_stay_payment_table', 'email_id_allocation_table', 'attendence_details_table', 'all_startup_data_table', 'shortlisted_startups_for_fund_table', 'shortlisted_startups_dd_and_agreement_table', 'vikas_startup_applications_table', 'programs_table', 'evaluation_table', 'problem_statement_table', 'evaluators_table', 'approval_billing_table', 'honorarium_claim_table', 'all_bank_account_statement_table', 'payment_track_details_table', 'travel_table', 'travel_stay_table', 'travel_local_commute_table', 'r_and_d_progress', 'panel_decision_table_tdp', 'selected_proposals_final_tdp', 'stage_wise_budget_table_tdp', 'first_level_shortlisted_proposals_tdp', 'budget_table_tdp', 'panel_comments_tdp', 'selected_tdp', 'address_tdp', 'summary_table_tdp', 'project_details_tdp', 'newsletter_table', 'contact_call_log_table', 'r_and_d_monthly_progress_app', 'r_and_d_quarterly_progress_app', 'projects', 'td_intellectual_property', 'td_technology_products', 'publications_and_intellectual_activities', 'timesheet_entry_table', ];
+		$tables = ['user_table', 'suggestion', 'approval_table', 'techlead_web_page', 'navavishkar_stay_facilities_table', 'navavishkar_stay_facilities_allotment_table', 'car_table', 'car_usage_table', 'cycle_table', 'cycle_usage_table', 'gym_table', 'coffee_table', 'cafeteria_table', 'event_table', 'outcomes_expected_table', 'event_decision_table', 'meetings_table', 'agenda_table', 'decision_table', 'participants_table', 'action_actor', 'visiting_card_table', 'mou_details_table', 'goal_setting_table', 'goal_progress_table', 'task_allocation_table', 'task_progress_status_table', 'timesheet_entry_table', 'internship_fellowship_details_app', 'star_pnt', 'hrd_sdp_events_table', 'training_program_on_geospatial_tchnologies_table', 'space_day_school_details_app', 'space_day_college_student_table', 'school_list', 'sdp_participants_college_details_table', 'asset_table', 'asset_allotment_table', 'sub_asset_table', 'sub_asset_allotment_table', 'it_inventory_app', 'it_inventory_billing_details', 'it_inventory_allotment_table', 'computer_details_table', 'computer_user_details', 'computer_allotment_table', 'employees_personal_data_table', 'employees_designation_table', 'employees_appraisal_table', 'beyond_working_hours_table', 'leave_table', 'half_day_leave_table', 'work_from_home_table', 'work_from_home_tasks_app', 'navavishkar_stay_table', 'navavishkar_stay_payment_table', 'email_id_allocation_table', 'attendence_details_table', 'all_startup_data_table', 'shortlisted_startups_for_fund_table', 'shortlisted_startups_dd_and_agreement_table', 'vikas_startup_applications_table', 'programs_table', 'evaluation_table', 'problem_statement_table', 'evaluators_table', 'approval_billing_table', 'honorarium_claim_table', 'all_bank_account_statement_table', 'payment_track_details_table', 'travel_table', 'travel_stay_table', 'travel_local_commute_table', 'r_and_d_progress', 'panel_decision_table_tdp', 'selected_proposals_final_tdp', 'stage_wise_budget_table_tdp', 'first_level_shortlisted_proposals_tdp', 'budget_table_tdp', 'panel_comments_tdp', 'selected_tdp', 'address_tdp', 'summary_table_tdp', 'project_details_tdp', 'newsletter_table', 'contact_call_log_table', 'r_and_d_monthly_progress_app', 'r_and_d_quarterly_progress_app', 'projects', 'td_intellectual_property', 'td_technology_products', 'publications_and_intellectual_activities', 'publications', 'ipr', 'cps_research_base', ];
 		return in_array($tn, $tables);
 	}
 

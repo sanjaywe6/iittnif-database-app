@@ -124,6 +124,8 @@
 	$x->TableTitle = 'Timesheet Entry - App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`timesheet_entry_table`.`id`';
+	$x->DefaultSortField = '1';
+	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
 	$x->ColCaption = ['From Date Time', 'To Date Time', 'Number of Hours', 'Task Description', 'Reporting manager', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];

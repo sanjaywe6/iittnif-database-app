@@ -674,6 +674,29 @@ function task_progress_status_table_validateData(insertMode) {
 
 	return !errors;
 }
+function timesheet_entry_table_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	// check all required fields have values
+	const reqFields = [
+		// [field-type, field-name, field-caption], ...
+		['datetime', 'time_in', 'From Date Time'],
+		['datetime', 'time_out', 'To Date Time'],
+		['html', 'description', 'Task Description'],
+	];
+
+	reqFields.map(function(rf) {
+		// avoid displaying more error messages and overwhelming users
+		if(rf.length != 3 || errors) return;
+
+		if(!AppGini.Validation.fieldRequired(rf[0], rf[1], rf[2], insertMode)) errors = true;
+	});
+
+	if(errors) return false;
+
+	return !errors;
+}
 function internship_fellowship_details_app_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
@@ -1331,7 +1354,6 @@ function publications_and_intellectual_activities_validateData(insertMode) {
 	const reqFields = [
 		// [field-type, field-name, field-caption], ...
 		['list', 'year', 'Year'],
-		['list', 'type', 'Type'],
 	];
 
 	reqFields.map(function(rf) {
@@ -1345,9 +1367,91 @@ function publications_and_intellectual_activities_validateData(insertMode) {
 
 	return !errors;
 }
-function timesheet_entry_table_validateData(insertMode) {
+function publications_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
+
+	// check all required fields have values
+	const reqFields = [
+		// [field-type, field-name, field-caption], ...
+		['list', 'publication_type', 'Publication Type'],
+		['text', 'title', 'Title'],
+		['list', 'technology_area', 'Technology Area'],
+		['date', 'publication_year', 'Publication Year'],
+		['text', 'author_names', 'Author Names'],
+		['list', 'peer_reviewed', 'Peer Reviewed'],
+		['text', 'link', 'Link'],
+		['list', 'source_of_ip_category', 'Source of IP Category'],
+	];
+
+	reqFields.map(function(rf) {
+		// avoid displaying more error messages and overwhelming users
+		if(rf.length != 3 || errors) return;
+
+		if(!AppGini.Validation.fieldRequired(rf[0], rf[1], rf[2], insertMode)) errors = true;
+	});
+
+	if(errors) return false;
+
+	return !errors;
+}
+function ipr_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	// check all required fields have values
+	const reqFields = [
+		// [field-type, field-name, field-caption], ...
+		['text', 'title', 'Title'],
+		['list', 'ipr_ia', 'IPR / Intellectual Activity'],
+		['list', 'event_type', 'Event type'],
+		['text', 'technology_domain', 'Technology Domain'],
+		['text', 'collaborating_organization', 'Collaborating Organization'],
+		['html', 'event_venue_address', 'Event venue address'],
+		['text', 'state', 'State'],
+		['text', 'district', 'District'],
+		['date', 'start_date', 'Start date'],
+		['date', 'end_date', 'End date'],
+		['text', 'total_number_of_participants', 'Total Number of Participants'],
+		['text', 'women_participants', 'Women participants'],
+		['text', 'st_participants', 'ST Participants'],
+		['text', 'sc_participants', 'SC Participants'],
+		['text', 'outcomes', 'Outcomes'],
+	];
+
+	reqFields.map(function(rf) {
+		// avoid displaying more error messages and overwhelming users
+		if(rf.length != 3 || errors) return;
+
+		if(!AppGini.Validation.fieldRequired(rf[0], rf[1], rf[2], insertMode)) errors = true;
+	});
+
+	if(errors) return false;
+
+	return !errors;
+}
+function cps_research_base_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	// check all required fields have values
+	const reqFields = [
+		// [field-type, field-name, field-caption], ...
+		['list', 'year', 'Year'],
+		['text', 'reasearch_name', 'Reasearch Name'],
+		['text', 'Institution', 'Institution'],
+		['list', 'technology_area', 'Technology Area'],
+		['list', 'gender', 'Gender'],
+	];
+
+	reqFields.map(function(rf) {
+		// avoid displaying more error messages and overwhelming users
+		if(rf.length != 3 || errors) return;
+
+		if(!AppGini.Validation.fieldRequired(rf[0], rf[1], rf[2], insertMode)) errors = true;
+	});
+
+	if(errors) return false;
 
 	return !errors;
 }

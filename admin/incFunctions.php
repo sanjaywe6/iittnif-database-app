@@ -308,6 +308,13 @@
 					'group' => $tg[2],
 					'homepageShowCount' => 1
 				],
+				'timesheet_entry_table' => [
+					'Caption' => 'Timesheet Entry - App',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[2],
+					'homepageShowCount' => 1
+				],
 				'internship_fellowship_details_app' => [
 					'Caption' => 'Internship/Fellowship details - App',
 					'Description' => 'HRD',
@@ -751,16 +758,30 @@
 				],
 				'publications_and_intellectual_activities' => [
 					'Caption' => 'Publications and Intellectual Activities',
+					'Description' => '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[14],
+					'homepageShowCount' => 1
+				],
+				'publications' => [
+					'Caption' => 'Publications',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[14],
 					'homepageShowCount' => 1
 				],
-				'timesheet_entry_table' => [
-					'Caption' => 'Timesheet Entry - App',
+				'ipr' => [
+					'Caption' => 'IPR',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[0],
+					'homepageShowCount' => 1
+				],
+				'cps_research_base' => [
+					'Caption' => 'CPS Research Base',
+					'Description' => '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[14],
 					'homepageShowCount' => 1
 				],
 		];
@@ -806,6 +827,7 @@
 			'goal_progress_table' => ['Goal progress table', '', 'table.gif', 'Event / Meeting / Goal /Tasks Apps'],
 			'task_allocation_table' => ['Task Allocation - App', '<a href="https://lookerstudio.google.com/reporting/52ec0149-4f45-4041-92b6-afc26208458e"><button style="background-color: #bf0606; color: white;padding: 6px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; width:100%;"><b>Task Setting App Report</b></button></a>', 'table.gif', 'Event / Meeting / Goal /Tasks Apps'],
 			'task_progress_status_table' => ['Task Progress Status - App', '', 'table.gif', 'Event / Meeting / Goal /Tasks Apps'],
+			'timesheet_entry_table' => ['Timesheet Entry - App', '', 'table.gif', 'Event / Meeting / Goal /Tasks Apps'],
 			'internship_fellowship_details_app' => ['Internship/Fellowship details - App', 'HRD', 'table.gif', 'HRD Apps'],
 			'star_pnt' => ['Star-PNT - APP', 'HRD', 'table.gif', 'HRD Apps'],
 			'hrd_sdp_events_table' => ['HRD & SDP Events - App', 'HRD & SDP', 'table.gif', 'HRD Apps'],
@@ -869,8 +891,10 @@
 			'projects' => ['Projects', '', 'table.gif', 'NMICPS Portal - Apps'],
 			'td_intellectual_property' => ['Intellectual Property', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 			'td_technology_products' => ['Technology Products', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
-			'publications_and_intellectual_activities' => ['Publications and Intellectual Activities', '', 'table.gif', 'NMICPS Portal - Apps'],
-			'timesheet_entry_table' => ['Timesheet Entry - App', '', 'table.gif', 'Approvals &amp; Sanctions'],
+			'publications_and_intellectual_activities' => ['Publications and Intellectual Activities', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
+			'publications' => ['Publications', '', 'table.gif', 'NMICPS Portal - Apps'],
+			'ipr' => ['IPR', '', 'table.gif', 'Approvals &amp; Sanctions'],
+			'cps_research_base' => ['CPS Research Base', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) {
@@ -4394,6 +4418,92 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+				],
+				'timesheet_entry_table' => [
+					'id' => [
+						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'time_in' => [
+						'appgini' => "DATETIME NOT NULL",
+						'info' => [
+							'caption' => 'From Date Time',
+							'description' => '',
+						],
+					],
+					'time_out' => [
+						'appgini' => "DATETIME NOT NULL",
+						'info' => [
+							'caption' => 'To Date Time',
+							'description' => '',
+						],
+					],
+					'number_of_hours' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Number of Hours',
+							'description' => '',
+						],
+					],
+					'description' => [
+						'appgini' => "TEXT NOT NULL",
+						'info' => [
+							'caption' => 'Task Description',
+							'description' => '',
+						],
+					],
+					'reporting_manager' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Reporting manager',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created At',
+							'description' => '',
+						],
+					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
 							'description' => '',
 						],
 					],
@@ -12554,10 +12664,124 @@
 							'description' => '',
 						],
 					],
-					'type' => [
-						'appgini' => "VARCHAR(255) NOT NULL DEFAULT 'Publications'",
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
-							'caption' => 'Type',
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created At',
+							'description' => '',
+						],
+					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+				],
+				'publications' => [
+					'id' => [
+						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'publications_and_intellectual_activities_details' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Publications and Intellectual Activities Details',
+							'description' => '',
+						],
+					],
+					'publication_type' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Publication Type',
+							'description' => '',
+						],
+					],
+					'title' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Title',
+							'description' => '',
+						],
+					],
+					'technology_area' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Technology Area',
+							'description' => '',
+						],
+					],
+					'publication_year' => [
+						'appgini' => "DATE NOT NULL",
+						'info' => [
+							'caption' => 'Publication Year',
+							'description' => '',
+						],
+					],
+					'author_names' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Author Names',
+							'description' => '',
+						],
+					],
+					'peer_reviewed' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Peer Reviewed',
+							'description' => '',
+						],
+					],
+					'link' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Link',
+							'description' => '',
+						],
+					],
+					'source_of_ip_category' => [
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT 'EIR'",
+						'info' => [
+							'caption' => 'Source of IP Category',
+							'description' => '',
+						],
+					],
+					'source_of_ip' => [
+						'appgini' => "INT UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Source of IP',
 							'description' => '',
 						],
 					],
@@ -12604,7 +12828,7 @@
 						],
 					],
 				],
-				'timesheet_entry_table' => [
+				'ipr' => [
 					'id' => [
 						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
@@ -12612,38 +12836,173 @@
 							'description' => '',
 						],
 					],
-					'time_in' => [
-						'appgini' => "DATETIME NULL",
-						'info' => [
-							'caption' => 'From Date Time',
-							'description' => '',
-						],
-					],
-					'time_out' => [
-						'appgini' => "DATETIME NULL",
-						'info' => [
-							'caption' => 'To Date Time',
-							'description' => '',
-						],
-					],
-					'number_of_hours' => [
-						'appgini' => "VARCHAR(255) NULL",
-						'info' => [
-							'caption' => 'Number of Hours',
-							'description' => '',
-						],
-					],
-					'description' => [
-						'appgini' => "TEXT NULL",
-						'info' => [
-							'caption' => 'Task Description',
-							'description' => '',
-						],
-					],
-					'reporting_manager' => [
+					'publications_and_intellectual_activities_details' => [
 						'appgini' => "INT UNSIGNED NULL",
 						'info' => [
-							'caption' => 'Reporting manager',
+							'caption' => 'Publications and Intellectual Activities Details',
+							'description' => '',
+						],
+					],
+					'title' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Title',
+							'description' => '',
+						],
+					],
+					'ipr_ia' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'IPR / Intellectual Activity',
+							'description' => '',
+						],
+					],
+					'event_type' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Event type',
+							'description' => '',
+						],
+					],
+					'technology_domain' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Technology Domain',
+							'description' => '',
+						],
+					],
+					'collaborating_organization' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Collaborating Organization',
+							'description' => '',
+						],
+					],
+					'event_venue_address' => [
+						'appgini' => "TEXT NOT NULL",
+						'info' => [
+							'caption' => 'Event venue address',
+							'description' => '',
+						],
+					],
+					'state' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'State',
+							'description' => '',
+						],
+					],
+					'district' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'District',
+							'description' => '',
+						],
+					],
+					'start_date' => [
+						'appgini' => "DATE NOT NULL",
+						'info' => [
+							'caption' => 'Start date',
+							'description' => '',
+						],
+					],
+					'end_date' => [
+						'appgini' => "DATE NOT NULL",
+						'info' => [
+							'caption' => 'End date',
+							'description' => '',
+						],
+					],
+					'total_number_of_participants' => [
+						'appgini' => "INT NOT NULL",
+						'info' => [
+							'caption' => 'Total Number of Participants',
+							'description' => '',
+						],
+					],
+					'women_participants' => [
+						'appgini' => "INT NOT NULL",
+						'info' => [
+							'caption' => 'Women participants',
+							'description' => '',
+						],
+					],
+					'st_participants' => [
+						'appgini' => "INT NOT NULL",
+						'info' => [
+							'caption' => 'ST Participants',
+							'description' => '',
+						],
+					],
+					'sc_participants' => [
+						'appgini' => "INT NOT NULL",
+						'info' => [
+							'caption' => 'SC Participants',
+							'description' => '',
+						],
+					],
+					'outcomes' => [
+						'appgini' => "TEXT NOT NULL",
+						'info' => [
+							'caption' => 'Outcomes',
+							'description' => '',
+						],
+					],
+				],
+				'cps_research_base' => [
+					'id' => [
+						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'year' => [
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT '2020-21'",
+						'info' => [
+							'caption' => 'Year',
+							'description' => '',
+						],
+					],
+					'reasearch_name' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Reasearch Name',
+							'description' => '',
+						],
+					],
+					'Institution' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Institution',
+							'description' => '',
+						],
+					],
+					'department' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Department',
+							'description' => '',
+						],
+					],
+					'technology_area' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Technology Area',
+							'description' => '',
+						],
+					],
+					'gender' => [
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT 'Male'",
+						'info' => [
+							'caption' => 'Gender',
+							'description' => '',
+						],
+					],
+					'cast_category' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'SC'",
+						'info' => [
+							'caption' => 'Cast Category',
 							'description' => '',
 						],
 					],
@@ -13921,6 +14280,9 @@
 			'task_progress_status_table' => [
 				'task_allocation_table' => ['task_lookup'],
 			],
+			'timesheet_entry_table' => [
+				'user_table' => ['reporting_manager'],
+			],
 			'star_pnt' => [
 				'internship_fellowship_details_app' => ['iittnif_id'],
 			],
@@ -14023,8 +14385,12 @@
 			'td_technology_products' => [
 				'projects' => ['source_of_ip'],
 			],
-			'timesheet_entry_table' => [
-				'user_table' => ['reporting_manager'],
+			'publications' => [
+				'publications_and_intellectual_activities' => ['publications_and_intellectual_activities_details'],
+				'projects' => ['source_of_ip'],
+			],
+			'ipr' => [
+				'publications_and_intellectual_activities' => ['publications_and_intellectual_activities_details'],
 			],
 		];
 
@@ -14803,6 +15169,42 @@
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
 			'task_progress_status_table' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+				'last_updated_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'timesheet_entry_table' => [
+				'number_of_hours' => 'SELECT 
+					    TIMESTAMPDIFF(
+					SECOND, %TABLENAME%.`time_in`, 
+					%TABLENAME%.`time_out`)/3600 
+					AS DifferenceInSeconds
+					FROM %TABLENAME% WHERE id = %ID%;',
 				'created_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -16744,13 +17146,38 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
-			'timesheet_entry_table' => [
-				'number_of_hours' => 'SELECT 
-					    TIMESTAMPDIFF(
-					SECOND, %TABLENAME%.`time_in`, 
-					%TABLENAME%.`time_out`)/3600 
-					AS DifferenceInSeconds
-					FROM %TABLENAME% WHERE id = %ID%;',
+			'publications' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+				'last_updated_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'ipr' => [],
+			'cps_research_base' => [
 				'created_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -16985,6 +17412,9 @@
 			'task_progress_status_table' => [
 				'task_lookup' => 'SELECT `task_allocation_table`.`task_id`, IF(CHAR_LENGTH(`task_allocation_table`.`task_description`) || CHAR_LENGTH(`task_allocation_table`.`assigned_to`), CONCAT_WS(\'\', `task_allocation_table`.`task_description`, \'::\', IF(    CHAR_LENGTH(`user_table2`.`memberID`) || CHAR_LENGTH(`user_table2`.`name`), CONCAT_WS(\'\',   `user_table2`.`memberID`, \'::\', `user_table2`.`name`), \'\')), \'\') FROM `task_allocation_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`task_allocation_table`.`supervisor_name` LEFT JOIN `user_table` as user_table2 ON `user_table2`.`user_id`=`task_allocation_table`.`assigned_to` ORDER BY 2',
 			],
+			'timesheet_entry_table' => [
+				'reporting_manager' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+			],
 			'internship_fellowship_details_app' => [
 			],
 			'star_pnt' => [
@@ -17154,8 +17584,14 @@
 			],
 			'publications_and_intellectual_activities' => [
 			],
-			'timesheet_entry_table' => [
-				'reporting_manager' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\') FROM `user_table` ORDER BY 2',
+			'publications' => [
+				'publications_and_intellectual_activities_details' => 'SELECT `publications_and_intellectual_activities`.`id`, IF(CHAR_LENGTH(`publications_and_intellectual_activities`.`year`) || CHAR_LENGTH(`publications_and_intellectual_activities`.`created_by_username`), CONCAT_WS(\'\', `publications_and_intellectual_activities`.`year`, \'  \', `publications_and_intellectual_activities`.`created_by_username`), \'\') FROM `publications_and_intellectual_activities` ORDER BY 2',
+				'source_of_ip' => 'SELECT `projects`.`id`, IF(CHAR_LENGTH(`projects`.`category`) || CHAR_LENGTH(`projects`.`project_title`), CONCAT_WS(\'\', `projects`.`category`, \' ~ \', `projects`.`project_title`), \'\') FROM `projects` ORDER BY 2',
+			],
+			'ipr' => [
+				'publications_and_intellectual_activities_details' => 'SELECT `publications_and_intellectual_activities`.`id`, IF(CHAR_LENGTH(`publications_and_intellectual_activities`.`year`) || CHAR_LENGTH(`publications_and_intellectual_activities`.`created_by_username`), CONCAT_WS(\'\', `publications_and_intellectual_activities`.`year`, \'  \', `publications_and_intellectual_activities`.`created_by_username`), \'\') FROM `publications_and_intellectual_activities` ORDER BY 2',
+			],
+			'cps_research_base' => [
 			],
 		];
 

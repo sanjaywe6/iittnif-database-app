@@ -394,6 +394,19 @@
 				'not_null' => false,
 			],
 		],
+		'timesheet_entry_table' => [
+			'reporting_manager' => [
+				'parent_table' => 'user_table',
+				'parent_pk_field' => 'user_id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
+				'parent_from' => '`user_table` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
+		],
 		'internship_fellowship_details_app' => [
 		],
 		'star_pnt' => [
@@ -973,18 +986,44 @@
 		],
 		'publications_and_intellectual_activities' => [
 		],
-		'timesheet_entry_table' => [
-			'reporting_manager' => [
-				'parent_table' => 'user_table',
-				'parent_pk_field' => 'user_id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`user_table`.`memberID`) || CHAR_LENGTH(`user_table`.`name`), CONCAT_WS(\'\', `user_table`.`memberID`, \'::\', `user_table`.`name`), \'\')',
-				'parent_from' => '`user_table` ',
+		'publications' => [
+			'publications_and_intellectual_activities_details' => [
+				'parent_table' => 'publications_and_intellectual_activities',
+				'parent_pk_field' => 'id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`publications_and_intellectual_activities`.`year`) || CHAR_LENGTH(`publications_and_intellectual_activities`.`created_by_username`), CONCAT_WS(\'\', `publications_and_intellectual_activities`.`year`, \'  \', `publications_and_intellectual_activities`.`created_by_username`), \'\')',
+				'parent_from' => '`publications_and_intellectual_activities` ',
 				'filterers' => [],
 				'custom_query' => '',
 				'inherit_permissions' => false,
 				'list_type' => 0,
 				'not_null' => false,
 			],
+			'source_of_ip' => [
+				'parent_table' => 'projects',
+				'parent_pk_field' => 'id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`projects`.`category`) || CHAR_LENGTH(`projects`.`project_title`), CONCAT_WS(\'\', `projects`.`category`, \' ~ \', `projects`.`project_title`), \'\')',
+				'parent_from' => '`projects` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
+		],
+		'ipr' => [
+			'publications_and_intellectual_activities_details' => [
+				'parent_table' => 'publications_and_intellectual_activities',
+				'parent_pk_field' => 'id',
+				'parent_caption' => 'IF(CHAR_LENGTH(`publications_and_intellectual_activities`.`year`) || CHAR_LENGTH(`publications_and_intellectual_activities`.`created_by_username`), CONCAT_WS(\'\', `publications_and_intellectual_activities`.`year`, \'  \', `publications_and_intellectual_activities`.`created_by_username`), \'\')',
+				'parent_from' => '`publications_and_intellectual_activities` ',
+				'filterers' => [],
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false,
+			],
+		],
+		'cps_research_base' => [
 		],
 	];
 

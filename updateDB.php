@@ -82,6 +82,9 @@
 		setupTable('task_progress_status_table', []);
 		setupIndexes('task_progress_status_table', ['task_lookup',]);
 
+		setupTable('timesheet_entry_table', []);
+		setupIndexes('timesheet_entry_table', ['reporting_manager',]);
+
 		setupTable('internship_fellowship_details_app', []);
 
 		setupTable('star_pnt', []);
@@ -242,40 +245,13 @@
 
 		setupTable('publications_and_intellectual_activities', []);
 
-		setupTable('timesheet_entry_table', [
-				"ALTER TABLE `table92` RENAME `timesheet_entry_table`",
-				"UPDATE `membership_userrecords` SET `tableName`='timesheet_entry_table' WHERE `tableName`='table92'",
-				"UPDATE `membership_userpermissions` SET `tableName`='timesheet_entry_table' WHERE `tableName`='table92'",
-				"UPDATE `membership_grouppermissions` SET `tableName`='timesheet_entry_table' WHERE `tableName`='table92'",
-				"ALTER TABLE timesheet_entry_table ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `timesheet_entry_table` CHANGE `id` `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ",
-				"ALTER TABLE `timesheet_entry_table` CHANGE `field1` `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ",
-				"ALTER TABLE timesheet_entry_table ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `timesheet_entry_table` CHANGE `date` `date` DATE NULL ",
-				"ALTER TABLE `timesheet_entry_table` CHANGE `field1` `work_date` DATE NULL ",
-				"ALTER TABLE timesheet_entry_table ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `timesheet_entry_table` CHANGE `field1` `time_in` VARCHAR(255) NULL ",
-				" ALTER TABLE `timesheet_entry_table` CHANGE `time_in` `time_in` TIME NULL ",
-				"ALTER TABLE timesheet_entry_table ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `timesheet_entry_table` CHANGE `field1` `time_out` VARCHAR(255) NULL ",
-				" ALTER TABLE `timesheet_entry_table` CHANGE `time_out` `time_out` TIME NULL ",
-				"ALTER TABLE timesheet_entry_table ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `timesheet_entry_table` CHANGE `comments` `comments` TEXT NULL ",
-				"ALTER TABLE `timesheet_entry_table` CHANGE `field1` `description` TEXT NULL ",
-				"ALTER TABLE `timesheet_entry_table` ADD `reporting_manager` INT UNSIGNED NULL ",
-				"ALTER TABLE `timesheet_entry_table` ADD INDEX `reporting_manager`",
-				"ALTER TABLE `timesheet_entry_table` ADD `number_of_hours` VARCHAR(255) NULL ",
-				"ALTER TABLE `timesheet_entry_table` DROP `work_date`",
-				" ALTER TABLE `timesheet_entry_table` CHANGE `time_in` `time_in` DATETIME NULL ",
-				" ALTER TABLE `timesheet_entry_table` CHANGE `time_out` `time_out` DATETIME NULL ",
-				"ALTER TABLE `timesheet_entry_table` ADD `created_by_username` VARCHAR(255) NULL ",
-				"ALTER TABLE `timesheet_entry_table` ADD `created_at` VARCHAR(255) NULL ",
-				"ALTER TABLE `timesheet_entry_table` ADD `last_updated_by_username` VARCHAR(255) NULL ",
-				"ALTER TABLE `timesheet_entry_table` ADD `last_updated_at` VARCHAR(255) NULL ",
-				"ALTER TABLE `timesheet_entry_table` ADD `created_by` VARCHAR(255) NULL ",
-				"ALTER TABLE `timesheet_entry_table` ADD `last_updated_by` VARCHAR(255) NULL ",
-			]);
-		setupIndexes('timesheet_entry_table', ['reporting_manager',]);
+		setupTable('publications', []);
+		setupIndexes('publications', ['publications_and_intellectual_activities_details','source_of_ip',]);
+
+		setupTable('ipr', []);
+		setupIndexes('ipr', ['publications_and_intellectual_activities_details',]);
+
+		setupTable('cps_research_base', []);
 
 
 

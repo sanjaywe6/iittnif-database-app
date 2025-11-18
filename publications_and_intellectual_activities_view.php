@@ -20,7 +20,6 @@
 	$x->QueryFieldsTV = [
 		"`publications_and_intellectual_activities`.`id`" => "id",
 		"`publications_and_intellectual_activities`.`year`" => "year",
-		"`publications_and_intellectual_activities`.`type`" => "type",
 		"`publications_and_intellectual_activities`.`created_by_username`" => "created_by_username",
 		"`publications_and_intellectual_activities`.`created_at`" => "created_at",
 		"`publications_and_intellectual_activities`.`last_updated_by_username`" => "last_updated_by_username",
@@ -38,14 +37,12 @@
 		6 => 6,
 		7 => 7,
 		8 => 8,
-		9 => 9,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`publications_and_intellectual_activities`.`id`" => "id",
 		"`publications_and_intellectual_activities`.`year`" => "year",
-		"`publications_and_intellectual_activities`.`type`" => "type",
 		"`publications_and_intellectual_activities`.`created_by_username`" => "created_by_username",
 		"`publications_and_intellectual_activities`.`created_at`" => "created_at",
 		"`publications_and_intellectual_activities`.`last_updated_by_username`" => "last_updated_by_username",
@@ -57,7 +54,6 @@
 	$x->QueryFieldsFilters = [
 		"`publications_and_intellectual_activities`.`id`" => "ID",
 		"`publications_and_intellectual_activities`.`year`" => "Year",
-		"`publications_and_intellectual_activities`.`type`" => "Type",
 		"`publications_and_intellectual_activities`.`created_by_username`" => "Created By Username",
 		"`publications_and_intellectual_activities`.`created_at`" => "Created At",
 		"`publications_and_intellectual_activities`.`last_updated_by_username`" => "Last Updated by Username",
@@ -70,7 +66,6 @@
 	$x->QueryFieldsQS = [
 		"`publications_and_intellectual_activities`.`id`" => "id",
 		"`publications_and_intellectual_activities`.`year`" => "year",
-		"`publications_and_intellectual_activities`.`type`" => "type",
 		"`publications_and_intellectual_activities`.`created_by_username`" => "created_by_username",
 		"`publications_and_intellectual_activities`.`created_at`" => "created_at",
 		"`publications_and_intellectual_activities`.`last_updated_by_username`" => "last_updated_by_username",
@@ -112,10 +107,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['Year', 'Type', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
-	$x->ColFieldName = ['year', 'type', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
-	$x->ColNumber  = [2, 3, 4, 5, 6, 7, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['Year', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
+	$x->ColFieldName = ['year', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
+	$x->ColNumber  = [2, 3, 4, 5, 6, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/publications_and_intellectual_activities_templateTV.html';

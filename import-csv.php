@@ -168,6 +168,13 @@
 
 			return $data;
 		},
+		'timesheet_entry_table' => function($data, $options = []) {
+			if(isset($data['time_in'])) $data['time_in'] = guessMySQLDateTime($data['time_in']);
+			if(isset($data['time_out'])) $data['time_out'] = guessMySQLDateTime($data['time_out']);
+			if(isset($data['reporting_manager'])) $data['reporting_manager'] = pkGivenLookupText($data['reporting_manager'], 'timesheet_entry_table', 'reporting_manager');
+
+			return $data;
+		},
 		'internship_fellowship_details_app' => function($data, $options = []) {
 
 			return $data;
@@ -541,10 +548,21 @@
 
 			return $data;
 		},
-		'timesheet_entry_table' => function($data, $options = []) {
-			if(isset($data['time_in'])) $data['time_in'] = guessMySQLDateTime($data['time_in']);
-			if(isset($data['time_out'])) $data['time_out'] = guessMySQLDateTime($data['time_out']);
-			if(isset($data['reporting_manager'])) $data['reporting_manager'] = pkGivenLookupText($data['reporting_manager'], 'timesheet_entry_table', 'reporting_manager');
+		'publications' => function($data, $options = []) {
+			if(isset($data['publications_and_intellectual_activities_details'])) $data['publications_and_intellectual_activities_details'] = pkGivenLookupText($data['publications_and_intellectual_activities_details'], 'publications', 'publications_and_intellectual_activities_details');
+			if(isset($data['publication_year'])) $data['publication_year'] = guessMySQLDateTime($data['publication_year']);
+			if(isset($data['source_of_ip'])) $data['source_of_ip'] = pkGivenLookupText($data['source_of_ip'], 'publications', 'source_of_ip');
+
+			return $data;
+		},
+		'ipr' => function($data, $options = []) {
+			if(isset($data['publications_and_intellectual_activities_details'])) $data['publications_and_intellectual_activities_details'] = pkGivenLookupText($data['publications_and_intellectual_activities_details'], 'ipr', 'publications_and_intellectual_activities_details');
+			if(isset($data['start_date'])) $data['start_date'] = guessMySQLDateTime($data['start_date']);
+			if(isset($data['end_date'])) $data['end_date'] = guessMySQLDateTime($data['end_date']);
+
+			return $data;
+		},
+		'cps_research_base' => function($data, $options = []) {
 
 			return $data;
 		},
@@ -579,6 +597,7 @@
 		'goal_progress_table' => function($data, $options = []) { return true; },
 		'task_allocation_table' => function($data, $options = []) { return true; },
 		'task_progress_status_table' => function($data, $options = []) { return true; },
+		'timesheet_entry_table' => function($data, $options = []) { return true; },
 		'internship_fellowship_details_app' => function($data, $options = []) { return true; },
 		'star_pnt' => function($data, $options = []) { return true; },
 		'hrd_sdp_events_table' => function($data, $options = []) { return true; },
@@ -643,7 +662,9 @@
 		'td_intellectual_property' => function($data, $options = []) { return true; },
 		'td_technology_products' => function($data, $options = []) { return true; },
 		'publications_and_intellectual_activities' => function($data, $options = []) { return true; },
-		'timesheet_entry_table' => function($data, $options = []) { return true; },
+		'publications' => function($data, $options = []) { return true; },
+		'ipr' => function($data, $options = []) { return true; },
+		'cps_research_base' => function($data, $options = []) { return true; },
 	];
 
 	/*

@@ -497,6 +497,24 @@ task_progress_status_table_delete1Tip=["",spacer+"This option allows each member
 task_progress_status_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Task Progress Status - App' table."];
 task_progress_status_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Task Progress Status - App' table."];
 
+// timesheet_entry_table table
+timesheet_entry_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Timesheet Entry - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
+
+timesheet_entry_table_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Timesheet Entry - App' table."];
+timesheet_entry_table_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Timesheet Entry - App' table."];
+timesheet_entry_table_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Timesheet Entry - App' table."];
+timesheet_entry_table_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Timesheet Entry - App' table."];
+
+timesheet_entry_table_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Timesheet Entry - App' table."];
+timesheet_entry_table_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Timesheet Entry - App' table."];
+timesheet_entry_table_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Timesheet Entry - App' table."];
+timesheet_entry_table_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Timesheet Entry - App' table, regardless of their owner."];
+
+timesheet_entry_table_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Timesheet Entry - App' table."];
+timesheet_entry_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Timesheet Entry - App' table."];
+timesheet_entry_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Timesheet Entry - App' table."];
+timesheet_entry_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Timesheet Entry - App' table."];
+
 // internship_fellowship_details_app table
 internship_fellowship_details_app_addTip=["",spacer+"This option allows all members of the group to add records to the 'Internship/Fellowship details - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
 
@@ -1649,23 +1667,59 @@ publications_and_intellectual_activities_delete1Tip=["",spacer+"This option allo
 publications_and_intellectual_activities_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Publications and Intellectual Activities' table."];
 publications_and_intellectual_activities_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Publications and Intellectual Activities' table."];
 
-// timesheet_entry_table table
-timesheet_entry_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'Timesheet Entry - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
+// publications table
+publications_addTip=["",spacer+"This option allows all members of the group to add records to the 'Publications' table. A member who adds a record to the table becomes the 'owner' of that record."];
 
-timesheet_entry_table_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Timesheet Entry - App' table."];
-timesheet_entry_table_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Timesheet Entry - App' table."];
-timesheet_entry_table_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Timesheet Entry - App' table."];
-timesheet_entry_table_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Timesheet Entry - App' table."];
+publications_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Publications' table."];
+publications_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Publications' table."];
+publications_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Publications' table."];
+publications_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Publications' table."];
 
-timesheet_entry_table_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Timesheet Entry - App' table."];
-timesheet_entry_table_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Timesheet Entry - App' table."];
-timesheet_entry_table_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Timesheet Entry - App' table."];
-timesheet_entry_table_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Timesheet Entry - App' table, regardless of their owner."];
+publications_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Publications' table."];
+publications_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Publications' table."];
+publications_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Publications' table."];
+publications_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Publications' table, regardless of their owner."];
 
-timesheet_entry_table_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Timesheet Entry - App' table."];
-timesheet_entry_table_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Timesheet Entry - App' table."];
-timesheet_entry_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Timesheet Entry - App' table."];
-timesheet_entry_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Timesheet Entry - App' table."];
+publications_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Publications' table."];
+publications_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Publications' table."];
+publications_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Publications' table."];
+publications_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Publications' table."];
+
+// ipr table
+ipr_addTip=["",spacer+"This option allows all members of the group to add records to the 'IPR' table. A member who adds a record to the table becomes the 'owner' of that record."];
+
+ipr_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'IPR' table."];
+ipr_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'IPR' table."];
+ipr_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'IPR' table."];
+ipr_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'IPR' table."];
+
+ipr_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'IPR' table."];
+ipr_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'IPR' table."];
+ipr_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'IPR' table."];
+ipr_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'IPR' table, regardless of their owner."];
+
+ipr_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'IPR' table."];
+ipr_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'IPR' table."];
+ipr_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'IPR' table."];
+ipr_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'IPR' table."];
+
+// cps_research_base table
+cps_research_base_addTip=["",spacer+"This option allows all members of the group to add records to the 'CPS Research Base' table. A member who adds a record to the table becomes the 'owner' of that record."];
+
+cps_research_base_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'CPS Research Base' table."];
+cps_research_base_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'CPS Research Base' table."];
+cps_research_base_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'CPS Research Base' table."];
+cps_research_base_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'CPS Research Base' table."];
+
+cps_research_base_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'CPS Research Base' table."];
+cps_research_base_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'CPS Research Base' table."];
+cps_research_base_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'CPS Research Base' table."];
+cps_research_base_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'CPS Research Base' table, regardless of their owner."];
+
+cps_research_base_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'CPS Research Base' table."];
+cps_research_base_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'CPS Research Base' table."];
+cps_research_base_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'CPS Research Base' table."];
+cps_research_base_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'CPS Research Base' table."];
 
 /*
 	Style syntax:

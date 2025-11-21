@@ -742,14 +742,14 @@
 					'group' => $tg[14],
 					'homepageShowCount' => 1
 				],
-				'td_intellectual_property' => [
+				'projects_td_intellectual_property' => [
 					'Caption' => 'Intellectual Property',
 					'Description' => '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[14],
 					'homepageShowCount' => 1
 				],
-				'td_technology_products' => [
+				'projects_td_technology_products' => [
 					'Caption' => 'Technology Products',
 					'Description' => '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>',
 					'tableIcon' => 'table.gif',
@@ -786,7 +786,7 @@
 				],
 				'tbi' => [
 					'Caption' => 'Technology Business Incubator (TBI)',
-					'Description' => '',
+					'Description' => '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[14],
 					'homepageShowCount' => 1
@@ -896,13 +896,13 @@
 			'r_and_d_monthly_progress_app' => ['Monthly Progress App', '', 'table.gif', 'Technology Development Apps'],
 			'r_and_d_quarterly_progress_app' => ['Quarterly Progress App', '', 'table.gif', 'Technology Development Apps'],
 			'projects' => ['Projects', '', 'table.gif', 'NMICPS Portal - Apps'],
-			'td_intellectual_property' => ['Intellectual Property', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
-			'td_technology_products' => ['Technology Products', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
+			'projects_td_intellectual_property' => ['Intellectual Property', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
+			'projects_td_technology_products' => ['Technology Products', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 			'publications_and_intellectual_activities' => ['Publications and Intellectual Activities', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 			'publications' => ['Publications', '', 'table.gif', 'NMICPS Portal - Apps'],
 			'ipr' => ['IPR', '', 'table.gif', 'NMICPS Portal - Apps'],
 			'cps_research_base' => ['CPS Research Base', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
-			'tbi' => ['Technology Business Incubator (TBI)', '', 'table.gif', 'NMICPS Portal - Apps'],
+			'tbi' => ['Technology Business Incubator (TBI)', '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) {
@@ -12394,7 +12394,7 @@
 						],
 					],
 				],
-				'td_intellectual_property' => [
+				'projects_td_intellectual_property' => [
 					'id' => [
 						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
@@ -12515,7 +12515,7 @@
 						],
 					],
 				],
-				'td_technology_products' => [
+				'projects_td_technology_products' => [
 					'id' => [
 						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
@@ -13048,6 +13048,55 @@
 						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
 							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'year' => [
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT '2020-21'",
+						'info' => [
+							'caption' => 'Year',
+							'description' => '',
+						],
+					],
+					'tbi_name' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'TBI Name',
+							'description' => '',
+						],
+					],
+					'type' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Type',
+							'description' => '',
+						],
+					],
+					'tbi_facilities' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'TBI Facilities',
+							'description' => '',
+						],
+					],
+					'collaboration_date' => [
+						'appgini' => "DATE NOT NULL",
+						'info' => [
+							'caption' => 'Collaboration/TBI Start Date',
+							'description' => '',
+						],
+					],
+					'tih_payment' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'TIH Payment for Facilities',
+							'description' => '',
+						],
+					],
+					'charging_status' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Is TIH Charging Startups',
 							'description' => '',
 						],
 					],
@@ -14382,10 +14431,10 @@
 			'r_and_d_quarterly_progress_app' => [
 				'r_and_d_progress' => ['r_and_d_lookup'],
 			],
-			'td_intellectual_property' => [
+			'projects_td_intellectual_property' => [
 				'projects' => ['source_of_ip'],
 			],
-			'td_technology_products' => [
+			'projects_td_technology_products' => [
 				'projects' => ['source_of_ip'],
 			],
 			'publications' => [
@@ -17059,7 +17108,7 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
-			'td_intellectual_property' => [
+			'projects_td_intellectual_property' => [
 				'created_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -17089,7 +17138,7 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
-			'td_technology_products' => [
+			'projects_td_technology_products' => [
 				'created_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -17580,10 +17629,10 @@
 			],
 			'projects' => [
 			],
-			'td_intellectual_property' => [
+			'projects_td_intellectual_property' => [
 				'source_of_ip' => 'SELECT `projects`.`id`, IF(CHAR_LENGTH(`projects`.`category`) || CHAR_LENGTH(`projects`.`project_title`), CONCAT_WS(\'\', `projects`.`category`, \' ~ \', `projects`.`project_title`), \'\') FROM `projects` ORDER BY 2',
 			],
-			'td_technology_products' => [
+			'projects_td_technology_products' => [
 				'source_of_ip' => 'SELECT `projects`.`id`, IF(CHAR_LENGTH(`projects`.`category`) || CHAR_LENGTH(`projects`.`project_title`), CONCAT_WS(\'\', `projects`.`category`, \' ~ \', `projects`.`project_title`), \'\') FROM `projects` ORDER BY 2',
 			],
 			'publications_and_intellectual_activities' => [

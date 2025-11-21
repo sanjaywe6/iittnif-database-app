@@ -1613,41 +1613,41 @@ projects_delete1Tip=["",spacer+"This option allows each member of the group to d
 projects_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Projects' table."];
 projects_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Projects' table."];
 
-// td_intellectual_property table
-td_intellectual_property_addTip=["",spacer+"This option allows all members of the group to add records to the 'Intellectual Property' table. A member who adds a record to the table becomes the 'owner' of that record."];
+// projects_td_intellectual_property table
+projects_td_intellectual_property_addTip=["",spacer+"This option allows all members of the group to add records to the 'Intellectual Property' table. A member who adds a record to the table becomes the 'owner' of that record."];
 
-td_intellectual_property_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Intellectual Property' table."];
-td_intellectual_property_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Intellectual Property' table."];
-td_intellectual_property_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Intellectual Property' table."];
-td_intellectual_property_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Intellectual Property' table."];
+projects_td_intellectual_property_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Intellectual Property' table."];
+projects_td_intellectual_property_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Intellectual Property' table."];
+projects_td_intellectual_property_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Intellectual Property' table."];
+projects_td_intellectual_property_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Intellectual Property' table."];
 
-td_intellectual_property_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Intellectual Property' table."];
-td_intellectual_property_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Intellectual Property' table."];
-td_intellectual_property_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Intellectual Property' table."];
-td_intellectual_property_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Intellectual Property' table, regardless of their owner."];
+projects_td_intellectual_property_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Intellectual Property' table."];
+projects_td_intellectual_property_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Intellectual Property' table."];
+projects_td_intellectual_property_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Intellectual Property' table."];
+projects_td_intellectual_property_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Intellectual Property' table, regardless of their owner."];
 
-td_intellectual_property_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Intellectual Property' table."];
-td_intellectual_property_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Intellectual Property' table."];
-td_intellectual_property_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Intellectual Property' table."];
-td_intellectual_property_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Intellectual Property' table."];
+projects_td_intellectual_property_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Intellectual Property' table."];
+projects_td_intellectual_property_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Intellectual Property' table."];
+projects_td_intellectual_property_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Intellectual Property' table."];
+projects_td_intellectual_property_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Intellectual Property' table."];
 
-// td_technology_products table
-td_technology_products_addTip=["",spacer+"This option allows all members of the group to add records to the 'Technology Products' table. A member who adds a record to the table becomes the 'owner' of that record."];
+// projects_td_technology_products table
+projects_td_technology_products_addTip=["",spacer+"This option allows all members of the group to add records to the 'Technology Products' table. A member who adds a record to the table becomes the 'owner' of that record."];
 
-td_technology_products_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Technology Products' table."];
-td_technology_products_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Technology Products' table."];
-td_technology_products_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Technology Products' table."];
-td_technology_products_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Technology Products' table."];
+projects_td_technology_products_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Technology Products' table."];
+projects_td_technology_products_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Technology Products' table."];
+projects_td_technology_products_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Technology Products' table."];
+projects_td_technology_products_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Technology Products' table."];
 
-td_technology_products_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Technology Products' table."];
-td_technology_products_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Technology Products' table."];
-td_technology_products_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Technology Products' table."];
-td_technology_products_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Technology Products' table, regardless of their owner."];
+projects_td_technology_products_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Technology Products' table."];
+projects_td_technology_products_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Technology Products' table."];
+projects_td_technology_products_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Technology Products' table."];
+projects_td_technology_products_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Technology Products' table, regardless of their owner."];
 
-td_technology_products_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Technology Products' table."];
-td_technology_products_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Technology Products' table."];
-td_technology_products_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Technology Products' table."];
-td_technology_products_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Technology Products' table."];
+projects_td_technology_products_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Technology Products' table."];
+projects_td_technology_products_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Technology Products' table."];
+projects_td_technology_products_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Technology Products' table."];
+projects_td_technology_products_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Technology Products' table."];
 
 // publications_and_intellectual_activities table
 publications_and_intellectual_activities_addTip=["",spacer+"This option allows all members of the group to add records to the 'Publications and Intellectual Activities' table. A member who adds a record to the table becomes the 'owner' of that record."];

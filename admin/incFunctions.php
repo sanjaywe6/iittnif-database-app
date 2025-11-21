@@ -742,51 +742,58 @@
 					'group' => $tg[14],
 					'homepageShowCount' => 1
 				],
-				'projects_td_intellectual_property' => [
+				'td_projects_td_intellectual_property' => [
 					'Caption' => 'Intellectual Property',
 					'Description' => '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[14],
 					'homepageShowCount' => 1
 				],
-				'projects_td_technology_products' => [
+				'td_projects_td_technology_products' => [
 					'Caption' => 'Technology Products',
 					'Description' => '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[14],
 					'homepageShowCount' => 1
 				],
-				'publications_and_intellectual_activities' => [
+				'td_publications_and_intellectual_activities' => [
 					'Caption' => 'Publications and Intellectual Activities',
 					'Description' => '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[14],
 					'homepageShowCount' => 1
 				],
-				'publications' => [
-					'Caption' => 'Publications',
+				'td_publications' => [
+					'Caption' => 'Td publications',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[14],
 					'homepageShowCount' => 1
 				],
-				'ipr' => [
+				'td_ipr' => [
 					'Caption' => 'IPR',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[14],
 					'homepageShowCount' => 1
 				],
-				'cps_research_base' => [
+				'td_cps_research_base' => [
 					'Caption' => 'CPS Research Base',
 					'Description' => '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[14],
 					'homepageShowCount' => 1
 				],
-				'tbi' => [
+				'ed_tbi' => [
 					'Caption' => 'Technology Business Incubator (TBI)',
 					'Description' => '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[14],
+					'homepageShowCount' => 1
+				],
+				'ed_startup_companies' => [
+					'Caption' => 'Start-ups & Spin-off companies',
+					'Description' => '',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[14],
 					'homepageShowCount' => 1
@@ -896,13 +903,14 @@
 			'r_and_d_monthly_progress_app' => ['Monthly Progress App', '', 'table.gif', 'Technology Development Apps'],
 			'r_and_d_quarterly_progress_app' => ['Quarterly Progress App', '', 'table.gif', 'Technology Development Apps'],
 			'projects' => ['Projects', '', 'table.gif', 'NMICPS Portal - Apps'],
-			'projects_td_intellectual_property' => ['Intellectual Property', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
-			'projects_td_technology_products' => ['Technology Products', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
-			'publications_and_intellectual_activities' => ['Publications and Intellectual Activities', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
-			'publications' => ['Publications', '', 'table.gif', 'NMICPS Portal - Apps'],
-			'ipr' => ['IPR', '', 'table.gif', 'NMICPS Portal - Apps'],
-			'cps_research_base' => ['CPS Research Base', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
-			'tbi' => ['Technology Business Incubator (TBI)', '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
+			'td_projects_td_intellectual_property' => ['Intellectual Property', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
+			'td_projects_td_technology_products' => ['Technology Products', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
+			'td_publications_and_intellectual_activities' => ['Publications and Intellectual Activities', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
+			'td_publications' => ['Td publications', '', 'table.gif', 'NMICPS Portal - Apps'],
+			'td_ipr' => ['IPR', '', 'table.gif', 'NMICPS Portal - Apps'],
+			'td_cps_research_base' => ['CPS Research Base', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
+			'ed_tbi' => ['Technology Business Incubator (TBI)', '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
+			'ed_startup_companies' => ['Start-ups & Spin-off companies', '', 'table.gif', 'NMICPS Portal - Apps'],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) {
@@ -12394,7 +12402,7 @@
 						],
 					],
 				],
-				'projects_td_intellectual_property' => [
+				'td_projects_td_intellectual_property' => [
 					'id' => [
 						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
@@ -12515,7 +12523,7 @@
 						],
 					],
 				],
-				'projects_td_technology_products' => [
+				'td_projects_td_technology_products' => [
 					'id' => [
 						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
@@ -12643,7 +12651,7 @@
 						],
 					],
 				],
-				'publications_and_intellectual_activities' => [
+				'td_publications_and_intellectual_activities' => [
 					'id' => [
 						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
@@ -12701,7 +12709,7 @@
 						],
 					],
 				],
-				'publications' => [
+				'td_publications' => [
 					'id' => [
 						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
@@ -12822,7 +12830,7 @@
 						],
 					],
 				],
-				'ipr' => [
+				'td_ipr' => [
 					'id' => [
 						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
@@ -12942,8 +12950,50 @@
 							'description' => '',
 						],
 					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created At',
+							'description' => '',
+						],
+					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
 				],
-				'cps_research_base' => [
+				'td_cps_research_base' => [
 					'id' => [
 						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
@@ -13043,7 +13093,7 @@
 						],
 					],
 				],
-				'tbi' => [
+				'ed_tbi' => [
 					'id' => [
 						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
 						'info' => [
@@ -13072,6 +13122,13 @@
 							'description' => '',
 						],
 					],
+					'institution' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Institution',
+							'description' => '',
+						],
+					],
 					'tbi_facilities' => [
 						'appgini' => "VARCHAR(255) NOT NULL",
 						'info' => [
@@ -13097,6 +13154,344 @@
 						'appgini' => "VARCHAR(255) NOT NULL",
 						'info' => [
 							'caption' => 'Is TIH Charging Startups',
+							'description' => '',
+						],
+					],
+					'charges' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Facility Charged by TIH',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created At',
+							'description' => '',
+						],
+					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+				],
+				'ed_startup_companies' => [
+					'id' => [
+						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'year' => [
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT '2020-21'",
+						'info' => [
+							'caption' => 'Year',
+							'description' => '',
+						],
+					],
+					'startup_name' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Startup Name',
+							'description' => '',
+						],
+					],
+					'founder_name' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Founder Name',
+							'description' => '',
+						],
+					],
+					'gender' => [
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT 'Male'",
+						'info' => [
+							'caption' => 'Gender',
+							'description' => '',
+						],
+					],
+					'cast_category' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'SC'",
+						'info' => [
+							'caption' => 'Cast Category',
+							'description' => '',
+						],
+					],
+					'technology_area' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Technology Area',
+							'description' => '',
+						],
+					],
+					'deep_tech' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Deep tech',
+							'description' => '',
+						],
+					],
+					'product_brief' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Product brief',
+							'description' => '',
+						],
+					],
+					'trl_status' => [
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT 'TRL 1'",
+						'info' => [
+							'caption' => 'TRL Status',
+							'description' => '',
+						],
+					],
+					'product_status' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'Ongoing'",
+						'info' => [
+							'caption' => 'Product Development Status',
+							'description' => '',
+						],
+					],
+					'CommercialisationArea' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Commercialisation Area',
+							'description' => '',
+						],
+					],
+					'Is_Commercialized' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Is Commercialized',
+							'description' => '',
+						],
+					],
+					'Customer_Details' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Customer Details',
+							'description' => '',
+						],
+					],
+					'Total_Approved_Amount' => [
+						'appgini' => "INT NULL",
+						'info' => [
+							'caption' => 'Total Approved Amount',
+							'description' => '',
+						],
+					],
+					'funding_released_2020' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Funding Released 2020-21 (In Lakhs)',
+							'description' => '',
+						],
+					],
+					'funding_released_2021' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Funding Released 2021-22 (In Lakhs)',
+							'description' => '',
+						],
+					],
+					'funding_released_2022' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Funding Released 2022-23 (In Lakhs)',
+							'description' => '',
+						],
+					],
+					'funding_released_2023' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Funding Released 2023-24 (In Lakhs)',
+							'description' => '',
+						],
+					],
+					'funding_released_2024' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Funding Released 2024-25 (In Lakhs)',
+							'description' => '',
+						],
+					],
+					'funding_released_2025' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Funding Released 2025-26 (In Lakhs)',
+							'description' => '',
+						],
+					],
+					'funding_released_2026' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Funding Released 2026-27 (In Lakhs)',
+							'description' => '',
+						],
+					],
+					'funding_released_2027' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Funding Released 2027-28(In Lakhs)',
+							'description' => '',
+						],
+					],
+					'total_value_released' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Total Released Amount (In Lakhs)',
+							'description' => '',
+						],
+					],
+					'external_funding_amount' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'External Funding Amount (In Lakhs)',
+							'description' => '',
+						],
+					],
+					'Funding_Type' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Funding Type',
+							'description' => '',
+						],
+					],
+					'Equity_Percentage' => [
+						'appgini' => "INT NULL",
+						'info' => [
+							'caption' => 'Equity Percentage',
+							'description' => '',
+						],
+					],
+					'valuation' => [
+						'appgini' => "INT NOT NULL",
+						'info' => [
+							'caption' => 'Valuation',
+							'description' => '',
+						],
+					],
+					'Collaboration_Partner_Type' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Collaboration Partner Type',
+							'description' => '',
+						],
+					],
+					'Website' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Website',
+							'description' => '',
+						],
+					],
+					'CIN_LLP' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'CIN / LLP',
+							'description' => '',
+						],
+					],
+					'state' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'State',
+							'description' => '',
+						],
+					],
+					'district' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'District',
+							'description' => '',
+						],
+					],
+					'remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Remarks',
+							'description' => '',
+						],
+					],
+					'Registered_Address' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Registered Address',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created At',
+							'description' => '',
+						],
+					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
 							'description' => '',
 						],
 					],
@@ -14431,18 +14826,18 @@
 			'r_and_d_quarterly_progress_app' => [
 				'r_and_d_progress' => ['r_and_d_lookup'],
 			],
-			'projects_td_intellectual_property' => [
+			'td_projects_td_intellectual_property' => [
 				'projects' => ['source_of_ip'],
 			],
-			'projects_td_technology_products' => [
+			'td_projects_td_technology_products' => [
 				'projects' => ['source_of_ip'],
 			],
-			'publications' => [
-				'publications_and_intellectual_activities' => ['publications_and_intellectual_activities_details'],
+			'td_publications' => [
+				'td_publications_and_intellectual_activities' => ['publications_and_intellectual_activities_details'],
 				'projects' => ['source_of_ip'],
 			],
-			'ipr' => [
-				'publications_and_intellectual_activities' => ['publications_and_intellectual_activities_details'],
+			'td_ipr' => [
+				'td_publications_and_intellectual_activities' => ['publications_and_intellectual_activities_details'],
 			],
 		];
 
@@ -17108,7 +17503,7 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
-			'projects_td_intellectual_property' => [
+			'td_projects_td_intellectual_property' => [
 				'created_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -17138,7 +17533,7 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
-			'projects_td_technology_products' => [
+			'td_projects_td_technology_products' => [
 				'created_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -17168,7 +17563,7 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
-			'publications_and_intellectual_activities' => [
+			'td_publications_and_intellectual_activities' => [
 				'created_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -17198,7 +17593,7 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
-			'publications' => [
+			'td_publications' => [
 				'created_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -17228,8 +17623,7 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
-			'ipr' => [],
-			'cps_research_base' => [
+			'td_ipr' => [
 				'created_by_username' => 'SELECT CONCAT(
 					  
 					membership_users.memberID, \' : \',
@@ -17259,7 +17653,96 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
-			'tbi' => [],
+			'td_cps_research_base' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+				'last_updated_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'ed_tbi' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+				'last_updated_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'ed_startup_companies' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+				'last_updated_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
 		];
 	}
 	#########################################################
@@ -17629,24 +18112,26 @@
 			],
 			'projects' => [
 			],
-			'projects_td_intellectual_property' => [
+			'td_projects_td_intellectual_property' => [
 				'source_of_ip' => 'SELECT `projects`.`id`, IF(CHAR_LENGTH(`projects`.`category`) || CHAR_LENGTH(`projects`.`project_title`), CONCAT_WS(\'\', `projects`.`category`, \' ~ \', `projects`.`project_title`), \'\') FROM `projects` ORDER BY 2',
 			],
-			'projects_td_technology_products' => [
+			'td_projects_td_technology_products' => [
 				'source_of_ip' => 'SELECT `projects`.`id`, IF(CHAR_LENGTH(`projects`.`category`) || CHAR_LENGTH(`projects`.`project_title`), CONCAT_WS(\'\', `projects`.`category`, \' ~ \', `projects`.`project_title`), \'\') FROM `projects` ORDER BY 2',
 			],
-			'publications_and_intellectual_activities' => [
+			'td_publications_and_intellectual_activities' => [
 			],
-			'publications' => [
-				'publications_and_intellectual_activities_details' => 'SELECT `publications_and_intellectual_activities`.`id`, IF(CHAR_LENGTH(`publications_and_intellectual_activities`.`year`) || CHAR_LENGTH(`publications_and_intellectual_activities`.`created_by_username`), CONCAT_WS(\'\', `publications_and_intellectual_activities`.`year`, \'  \', `publications_and_intellectual_activities`.`created_by_username`), \'\') FROM `publications_and_intellectual_activities` ORDER BY 2',
+			'td_publications' => [
+				'publications_and_intellectual_activities_details' => 'SELECT `td_publications_and_intellectual_activities`.`id`, IF(CHAR_LENGTH(`td_publications_and_intellectual_activities`.`year`) || CHAR_LENGTH(`td_publications_and_intellectual_activities`.`created_by_username`), CONCAT_WS(\'\', `td_publications_and_intellectual_activities`.`year`, \'  \', `td_publications_and_intellectual_activities`.`created_by_username`), \'\') FROM `td_publications_and_intellectual_activities` ORDER BY 2',
 				'source_of_ip' => 'SELECT `projects`.`id`, IF(CHAR_LENGTH(`projects`.`category`) || CHAR_LENGTH(`projects`.`project_title`), CONCAT_WS(\'\', `projects`.`category`, \' ~ \', `projects`.`project_title`), \'\') FROM `projects` ORDER BY 2',
 			],
-			'ipr' => [
-				'publications_and_intellectual_activities_details' => 'SELECT `publications_and_intellectual_activities`.`id`, IF(CHAR_LENGTH(`publications_and_intellectual_activities`.`year`) || CHAR_LENGTH(`publications_and_intellectual_activities`.`created_by_username`), CONCAT_WS(\'\', `publications_and_intellectual_activities`.`year`, \'  \', `publications_and_intellectual_activities`.`created_by_username`), \'\') FROM `publications_and_intellectual_activities` ORDER BY 2',
+			'td_ipr' => [
+				'publications_and_intellectual_activities_details' => 'SELECT `td_publications_and_intellectual_activities`.`id`, IF(CHAR_LENGTH(`td_publications_and_intellectual_activities`.`year`) || CHAR_LENGTH(`td_publications_and_intellectual_activities`.`created_by_username`), CONCAT_WS(\'\', `td_publications_and_intellectual_activities`.`year`, \'  \', `td_publications_and_intellectual_activities`.`created_by_username`), \'\') FROM `td_publications_and_intellectual_activities` ORDER BY 2',
 			],
-			'cps_research_base' => [
+			'td_cps_research_base' => [
 			],
-			'tbi' => [
+			'ed_tbi' => [
+			],
+			'ed_startup_companies' => [
 			],
 		];
 

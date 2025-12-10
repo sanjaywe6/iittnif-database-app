@@ -1,0 +1,120 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Candidate Type -->
+		<div class="form-group hrd_sd-Candidate_Type" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Candidate Type</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(Candidate_Type)%%></div>
+			</div>
+		</div>
+		<!-- Field: Title of the Program -->
+		<div class="form-group hrd_sd-Title_of_the_Program" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Title of the Program</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Title_of_the_Program)%%></div>
+			</div>
+		</div>
+		<!-- Field: Total Number of Beneficiaries -->
+		<div class="form-group hrd_sd-Total_Number_of_Beneficiaries" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Total Number of Beneficiaries</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Total_Number_of_Beneficiaries)%%></div>
+			</div>
+		</div>
+		<!-- Field: Number of Women Beneficiaries -->
+		<div class="form-group hrd_sd-Number_of_Women_Beneficiaries" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Number of Women Beneficiaries</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Number_of_Women_Beneficiaries)%%></div>
+			</div>
+		</div>
+		<!-- Field: Total Number of SC Beneficiaries -->
+		<div class="form-group hrd_sd-Total_Number_of_SC_Beneficiaries" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Total Number of SC Beneficiaries</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Total_Number_of_SC_Beneficiaries)%%></div>
+			</div>
+		</div>
+		<!-- Field: Total Number of ST Beneficiaries -->
+		<div class="form-group hrd_sd-Total_Number_of_ST_Beneficiaries" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Total Number of ST Beneficiaries</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Total_Number_of_ST_Beneficiaries)%%></div>
+			</div>
+		</div>
+		<!-- Field: Category -->
+		<div class="form-group hrd_sd-category" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Category</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(category)%%></div>
+			</div>
+		</div>
+		<!-- Field: Start Date -->
+		<div class="form-group hrd_sd-Start_Date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Start Date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(Start_Date)%%></div>
+			</div>
+		</div>
+		<!-- Field: End Date -->
+		<div class="form-group hrd_sd-End_Date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">End Date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(End_Date)%%></div>
+			</div>
+		</div>
+		<!-- Field: Collaborating Organisation -->
+		<div class="form-group hrd_sd-Collaborating_Organisation" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Collaborating Organisation</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Collaborating_Organisation)%%></div>
+			</div>
+		</div>
+		<!-- Field: Outcomes of the skill development activity -->
+		<div class="form-group hrd_sd-Outcomes" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Outcomes of the skill development activity</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Outcomes)%%></div>
+			</div>
+		</div>
+		<!-- Field: Created By Username -->
+		<div class="form-group hrd_sd-created_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Created By Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(created_by_username)%%></div>
+			</div>
+		</div>
+		<!-- Field: Last Updated by Username -->
+		<div class="form-group hrd_sd-last_updated_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Last Updated by Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(last_updated_by_username)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

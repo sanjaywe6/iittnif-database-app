@@ -1,0 +1,308 @@
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/hrd_sd-dv.js rather than editing this file -->
+
+<div id="detail-view"></div>
+<div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
+
+<div id="hrd_sd_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+
+<div class="panel-body hidden" id="hrd_sd_dv_container">
+	<!-- child links -->
+	<div class="row vspacer-md">
+		<div class="col-xs-12 children-links">
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<hr class="hidden-xs hidden-sm">
+
+	<div class="row">
+		<!-- form inputs -->
+		<div class="col-md-8 col-lg-10" id="hrd_sd_dv_form">
+			<fieldset class="form-horizontal">
+
+				<!-- Field: Candidate Type -->
+				<div class="form-group hrd_sd-Candidate_Type">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="Candidate_Type">Candidate Type</label>
+					<div class="col-lg-9">
+						<%%COMBO(Candidate_Type)%%>
+					</div>
+				</div>
+
+				<!-- Field: Title of the Program -->
+				<div class="form-group hrd_sd-Title_of_the_Program">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="Title_of_the_Program">Title of the Program</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="Title_of_the_Program" id="Title_of_the_Program" value="<%%VALUE(Title_of_the_Program)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Total Number of Beneficiaries -->
+				<div class="form-group hrd_sd-Total_Number_of_Beneficiaries">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="Total_Number_of_Beneficiaries">Total Number of Beneficiaries</label>
+					<div class="col-lg-9">
+						<input maxlength="40" type="text" class="form-control" name="Total_Number_of_Beneficiaries" id="Total_Number_of_Beneficiaries" value="<%%VALUE(Total_Number_of_Beneficiaries)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Number of Women Beneficiaries -->
+				<div class="form-group hrd_sd-Number_of_Women_Beneficiaries">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="Number_of_Women_Beneficiaries">Number of Women Beneficiaries</label>
+					<div class="col-lg-9">
+						<input maxlength="40" type="text" class="form-control" name="Number_of_Women_Beneficiaries" id="Number_of_Women_Beneficiaries" value="<%%VALUE(Number_of_Women_Beneficiaries)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Total Number of SC Beneficiaries -->
+				<div class="form-group hrd_sd-Total_Number_of_SC_Beneficiaries">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="Total_Number_of_SC_Beneficiaries">Total Number of SC Beneficiaries</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="Total_Number_of_SC_Beneficiaries" id="Total_Number_of_SC_Beneficiaries" value="<%%VALUE(Total_Number_of_SC_Beneficiaries)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Total Number of ST Beneficiaries -->
+				<div class="form-group hrd_sd-Total_Number_of_ST_Beneficiaries">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="Total_Number_of_ST_Beneficiaries">Total Number of ST Beneficiaries</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="Total_Number_of_ST_Beneficiaries" id="Total_Number_of_ST_Beneficiaries" value="<%%VALUE(Total_Number_of_ST_Beneficiaries)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Category -->
+				<div class="form-group hrd_sd-category">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="category">Category</label>
+					<div class="col-lg-9">
+						<%%COMBO(category)%%>
+					</div>
+				</div>
+
+				<!-- Field: Start Date -->
+				<div class="form-group hrd_sd-Start_Date">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="Start_Date-dd">Start Date</label>
+					<div class="col-lg-9">
+						<%%COMBO(Start_Date)%%>
+					</div>
+				</div>
+
+				<!-- Field: End Date -->
+				<div class="form-group hrd_sd-End_Date">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="End_Date-dd">End Date</label>
+					<div class="col-lg-9">
+						<%%COMBO(End_Date)%%>
+					</div>
+				</div>
+
+				<!-- Field: Collaborating Organisation -->
+				<div class="form-group hrd_sd-Collaborating_Organisation">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="Collaborating_Organisation">Collaborating Organisation</label>
+					<div class="col-lg-9 has-nicedit">
+						<%%HTMLAREA(Collaborating_Organisation)%%>
+					</div>
+				</div>
+
+				<!-- Field: Outcomes of the skill development activity -->
+				<div class="form-group hrd_sd-Outcomes">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="Outcomes">Outcomes of the skill development activity</label>
+					<div class="col-lg-9 has-nicedit">
+						<%%HTMLAREA(Outcomes)%%>
+					</div>
+				</div>
+
+				<!-- Field: Created By Username -->
+				<div class="form-group hrd_sd-created_by_username">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Created By Username</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="created_by_username"><%%VALUE(created_by_username)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Last Updated by Username -->
+				<div class="form-group hrd_sd-last_updated_by_username">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Last Updated by Username</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="last_updated_by_username"><%%VALUE(last_updated_by_username)%%></div>
+					</div>
+				</div>
+
+			</fieldset>
+		</div>
+
+		<!-- DV action buttons -->
+		<hr class="hidden-md hidden-lg">
+		<div class="col-md-4 col-lg-2 dv-action-buttons" id="hrd_sd_dv_action_buttons">
+			<div class="btn-toolbar">
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%UPDATE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%DESELECT_BUTTON%%>
+					<%%DVPRINT_BUTTON%%>
+					<%%DELETE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%INSERT_BUTTON%%>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div><!-- /div class="panel-body" -->
+	<script>
+		$j(function() {
+			var add_new_mode = (!$j('input[name=SelectedID]').val());
+			var embedded_mode = ($j('input[name=Embedded]').val() == 1);
+
+			/* auto-close embedded page? */
+			var autoclose_mode = ($j('input[name=AutoClose]').val() == 1);
+			var record_added_ok = (location.search.split('record-added-ok=').length == 2);
+			var record_updated_ok = (location.search.split('record-updated-ok=').length == 2);
+			if((record_added_ok || record_updated_ok) && embedded_mode && autoclose_mode) {
+				setTimeout(AppGini.closeParentModal, 2000);
+			}
+
+			AppGini.once({
+				condition: function() { return bkLib != undefined; },
+				action: function() {
+					if($j('textarea#Collaborating_Organisation').length) new nicEditor({ fullPanel : true }).panelInstance('Collaborating_Organisation');
+					if($j('textarea#Outcomes').length) new nicEditor({ fullPanel : true }).panelInstance('Outcomes');
+				}
+			});
+
+			/* enable DV action buttons to float on scrolling down the form */
+			enable_dvab_floating();
+
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
+				AppGini.once({
+					condition: function() {
+						return $j('.form-group.hrd_sd-Candidate_Type')
+									.find('.nicEdit-main, .select2-container, input[type=radio]')
+									.length > 0
+								// or read-only DV
+								|| (!$j('#update').length && !$j('#insert').length);
+					},
+					action: function() {
+						$j('#hrd_sd_dv_container-loading').addClass('hidden');
+						$j('#hrd_sd_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('hrd_sd', 'Candidate_Type');
+					},
+					timeout:  5000,
+					doActionOnTimeout:  true
+				});
+			} else {
+				$j('#hrd_sd_dv_container-loading').addClass('hidden');
+				$j('#hrd_sd_dv_container').removeClass('hidden');
+			}
+
+			// try to detect rich text changes by adding 'input' handler after nicedit is loaded ...
+			AppGini.detectContentEditableChanges();
+
+			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
+
+
+			if(true /* !embedded_mode */) {
+				$j('.add_new_parent').click(function() {
+					var pt = $j(this).attr('id').replace(/_add_new$/, '');
+					modal_window({
+						url: pt + '_view.php?addNew_x=1&Embedded=1',
+						close: function() {
+							var field_id = $j('#' + pt + '_add_new').prevAll('input:hidden').eq(0).attr('id');
+							$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+							/* if a new parent was added, select it */
+							var new_id = localStorage.getItem(pt + '_last_added_id');
+							if(new_id === null) return;
+
+							localStorage.removeItem(pt + '_last_added_id');
+							AppGini.lookupText({
+								id: new_id,
+								table: 'hrd_sd',
+								field: field_id,
+								callback: function(data) {
+									$j('#' + field_id + '-container').select2('data', data, true);
+								}
+							});
+						},
+						size: 'full',
+						title: $j(this).attr('title')
+					});
+				});
+			}
+
+			AppGini.hideViewParentLinks();
+
+			$j('form').on('click', '.view_parent', function() {
+				var pt = $j(this).attr('id').replace(/_view_parent$/, '');
+				if($j(this).prevAll('input:hidden').length) {
+					var parent_id = $j(this).prevAll('input:hidden').eq(0).val();
+				} else {
+					var parent_id = $j(this).prevAll().children('input:hidden').eq(0).val();
+				}
+
+				/* handle radio lookups */
+				if($j(this).prevAll('[type=radio]').length) {
+					parent_id = $j(this).prevAll('[type=radio]').eq(0).val();
+				}
+
+				if(parent_id != '{empty_value}' && parent_id != undefined && parent_id != '') {
+					var parent_link = $j(this).parents('.form-group').children('label').data('parent_link');
+					switch(parent_link) {
+						case 'view_parent_hidden':
+							break;
+						case 'view_parent_modal':
+							modal_window({
+								url: pt + '_view.php?Embedded=1&SelectedID=' + encodeURIComponent(parent_id),
+								close: function() {
+									var field_id = $j('#' + pt + '_view_parent').prevAll('input:hidden').eq(0).attr('id');
+									$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+									// in case the parent record was updated, we should update auto-fills
+									var updaterName = field_id + '_update_autofills';
+									if(typeof(window[updaterName]) == 'function')
+										window[updaterName]();
+								},
+								size: 'full',
+								title: $j(this).attr('title')
+							});
+							break;
+						case 'view_parent_same_window':
+							window.location = pt + '_view.php?Embedded=' + (embedded_mode ? '1' : '') + '&SelectedID=' + encodeURIComponent(parent_id);
+							break;
+						case 'view_parent_new_window':
+							window.open(pt + '_view.php?SelectedID=' + encodeURIComponent(parent_id));
+							break;
+					}
+
+				}
+			});
+
+			hrd_sdUniqueFields.forEach(fieldName => enforce_uniqueness('hrd_sd', fieldName));
+
+			/* load admin tools for admin user */
+			if(!add_new_mode) {
+				$j('body').append('<div id="admin-tools-appendix"></div>');
+				$j('#admin-tools-appendix').load(
+					'ajax_admin_tools.php?table=hrd_sd&id=<%%URLVALUE(id)%%>',
+					function(resp) {
+						if(!resp.length) return;
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=hrd_sd&id=<%%URLVALUE(id)%%>');
+					}
+				);
+			}
+		});
+
+		var hrd_sdUniqueFields = [
+		];
+	</script>

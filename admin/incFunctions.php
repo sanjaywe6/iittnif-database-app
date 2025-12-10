@@ -826,6 +826,13 @@
 					'group' => $tg[14],
 					'homepageShowCount' => 1
 				],
+				'hrd_sd' => [
+					'Caption' => 'Skill Development',
+					'Description' => '<span style="color:red;font-size: 20px;"><b>Human Resource Development </b></span>',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[14],
+					'homepageShowCount' => 1
+				],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) return $all_tables;
@@ -943,6 +950,7 @@
 			'ed_eir' => ['Entrepreneur In Residence (EIR)', '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 			'ed_job_creation' => ['Job Creation', '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 			'hrd_Fellowship' => ['Fellowship', '<span style="color:red;font-size: 20px;"><b>Human Resource Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
+			'hrd_sd' => ['Skill Development', '<span style="color:red;font-size: 20px;"><b>Human Resource Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) {
@@ -14026,6 +14034,134 @@
 						],
 					],
 				],
+				'hrd_sd' => [
+					'id' => [
+						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'Candidate_Type' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Candidate Type',
+							'description' => '',
+						],
+					],
+					'Title_of_the_Program' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Title of the Program',
+							'description' => '',
+						],
+					],
+					'Total_Number_of_Beneficiaries' => [
+						'appgini' => "VARCHAR(40) NULL",
+						'info' => [
+							'caption' => 'Total Number of Beneficiaries',
+							'description' => '',
+						],
+					],
+					'Number_of_Women_Beneficiaries' => [
+						'appgini' => "VARCHAR(40) NULL",
+						'info' => [
+							'caption' => 'Number of Women Beneficiaries',
+							'description' => '',
+						],
+					],
+					'Total_Number_of_SC_Beneficiaries' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Total Number of SC Beneficiaries',
+							'description' => '',
+						],
+					],
+					'Total_Number_of_ST_Beneficiaries' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Total Number of ST Beneficiaries',
+							'description' => '',
+						],
+					],
+					'category' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Category',
+							'description' => '',
+						],
+					],
+					'Start_Date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Start Date',
+							'description' => '',
+						],
+					],
+					'End_Date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'End Date',
+							'description' => '',
+						],
+					],
+					'Collaborating_Organisation' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Collaborating Organisation',
+							'description' => '',
+						],
+					],
+					'Outcomes' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Outcomes of the skill development activity',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created At',
+							'description' => '',
+						],
+					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+				],
 			];
 
 			$internalTablesSimple = [
@@ -18393,6 +18529,36 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
+			'hrd_sd' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+				'last_updated_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
 		];
 	}
 	#########################################################
@@ -18790,6 +18956,8 @@
 			'ed_job_creation' => [
 			],
 			'hrd_Fellowship' => [
+			],
+			'hrd_sd' => [
 			],
 		];
 

@@ -1037,6 +1037,8 @@
 		],
 		'hrd_Fellowship' => [
 		],
+		'hrd_sd' => [
+		],
 	];
 
 	// XSS prevention

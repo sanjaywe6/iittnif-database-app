@@ -1598,6 +1598,12 @@ function hrd_Fellowship_validateData(insertMode) {
 
 	return !errors;
 }
+function hrd_sd_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
 
 function post(url, params, update, disable, loading, success_callback) {
 	$j.ajax({

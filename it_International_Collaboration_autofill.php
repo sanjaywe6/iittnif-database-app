@@ -8,7 +8,7 @@
 
 	header('Content-type: text/javascript; charset=' . datalist_db_encoding);
 
-	$table_perms = getTablePermissions('td_technology_products');
+	$table_perms = getTablePermissions('it_International_Collaboration');
 	if(!$table_perms['access']) die('// Access denied!');
 
 	$mfk = Request::val('mfk');

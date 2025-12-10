@@ -1039,6 +1039,8 @@
 		],
 		'hrd_sd' => [
 		],
+		'it_International_Collaboration' => [
+		],
 	];
 
 	// XSS prevention

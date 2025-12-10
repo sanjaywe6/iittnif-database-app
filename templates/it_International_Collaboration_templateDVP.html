@@ -1,0 +1,162 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Year -->
+		<div class="form-group it_International_Collaboration-year" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Year</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(year)%%></div>
+			</div>
+		</div>
+		<!-- Field: Collaborating Institute Name -->
+		<div class="form-group it_International_Collaboration-Collaborating_Institute_Name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Collaborating Institute Name</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Collaborating_Institute_Name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Country -->
+		<div class="form-group it_International_Collaboration-Country" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Country</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Country)%%></div>
+			</div>
+		</div>
+		<!-- Field: Title of the Program/Project -->
+		<div class="form-group it_International_Collaboration-title_of_the_Program" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Title of the Program/Project</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(title_of_the_Program)%%></div>
+			</div>
+		</div>
+		<!-- Field: Technology Area of Collaboration -->
+		<div class="form-group it_International_Collaboration-Technology_Area_of_Collaboration" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Technology Area of Collaboration</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Technology_Area_of_Collaboration)%%></div>
+			</div>
+		</div>
+		<!-- Field: Potential Area for Application -->
+		<div class="form-group it_International_Collaboration-Potential_Area_for_Application" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Potential Area for Application</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Potential_Area_for_Application)%%></div>
+			</div>
+		</div>
+		<!-- Field: Brief Description of Collaboration/Project -->
+		<div class="form-group it_International_Collaboration-Brief_Description_of_Collaboration" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Brief Description of Collaboration/Project</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Brief_Description_of_Collaboration)%%></div>
+			</div>
+		</div>
+		<!-- Field: Role of TIH/PI to Achieve the Objectives of the Collaboration/Project -->
+		<div class="form-group it_International_Collaboration-RoleofTIH" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Role of TIH/PI to Achieve the Objectives of the Collaboration/Project</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(RoleofTIH)%%></div>
+			</div>
+		</div>
+		<!-- Field: Role of Collaborator/PI to Achieve the Objectives of the Collaboration/Project -->
+		<div class="form-group it_International_Collaboration-RoleofCollaborator" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Role of Collaborator/PI to Achieve the Objectives of the Collaboration/Project</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(RoleofCollaborator)%%></div>
+			</div>
+		</div>
+		<!-- Field: Funding From TIH(In Lakhs) -->
+		<div class="form-group it_International_Collaboration-Funding_From_TIH" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Funding From TIH(In Lakhs)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Funding_From_TIH)%%></div>
+			</div>
+		</div>
+		<!-- Field: Funding from International Agency(In Lakhs) -->
+		<div class="form-group it_International_Collaboration-Funding_from_International_Agency" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Funding from International Agency(In Lakhs)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Funding_from_International_Agency)%%></div>
+			</div>
+		</div>
+		<!-- Field: Project Value -->
+		<div class="form-group it_International_Collaboration-Project_Value" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Project Value</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Project_Value)%%></div>
+			</div>
+		</div>
+		<!-- Field: MoU Signed Date -->
+		<div class="form-group it_International_Collaboration-MoU_Signed_Date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">MoU Signed Date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(MoU_Signed_Date)%%></div>
+			</div>
+		</div>
+		<!-- Field: Start Date -->
+		<div class="form-group it_International_Collaboration-Start_Date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Start Date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(Start_Date)%%></div>
+			</div>
+		</div>
+		<!-- Field: End Date -->
+		<div class="form-group it_International_Collaboration-End_Date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">End Date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(End_Date)%%></div>
+			</div>
+		</div>
+		<!-- Field: Status -->
+		<div class="form-group it_International_Collaboration-status" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Status</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(status)%%></div>
+			</div>
+		</div>
+		<!-- Field: Remarks -->
+		<div class="form-group it_International_Collaboration-remarks" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Remarks</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(remarks)%%></div>
+			</div>
+		</div>
+		<!-- Field: Created By Username -->
+		<div class="form-group it_International_Collaboration-created_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Created By Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(created_by_username)%%></div>
+			</div>
+		</div>
+		<!-- Field: Last Updated by Username -->
+		<div class="form-group it_International_Collaboration-last_updated_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Last Updated by Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(last_updated_by_username)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

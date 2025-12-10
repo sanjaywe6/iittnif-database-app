@@ -833,6 +833,13 @@
 					'group' => $tg[14],
 					'homepageShowCount' => 1
 				],
+				'it_International_Collaboration' => [
+					'Caption' => 'International Collaboration',
+					'Description' => '<span style="color:red;font-size: 20px;"><b> International Targets </b></span>',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[14],
+					'homepageShowCount' => 1
+				],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) return $all_tables;
@@ -951,6 +958,7 @@
 			'ed_job_creation' => ['Job Creation', '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 			'hrd_Fellowship' => ['Fellowship', '<span style="color:red;font-size: 20px;"><b>Human Resource Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 			'hrd_sd' => ['Skill Development', '<span style="color:red;font-size: 20px;"><b>Human Resource Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
+			'it_International_Collaboration' => ['International Collaboration', '<span style="color:red;font-size: 20px;"><b> International Targets </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) {
@@ -14042,6 +14050,13 @@
 							'description' => '',
 						],
 					],
+					'year' => [
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT '2020-21'",
+						'info' => [
+							'caption' => 'Year',
+							'description' => '',
+						],
+					],
 					'Candidate_Type' => [
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
@@ -14116,6 +14131,176 @@
 						'appgini' => "TEXT NULL",
 						'info' => [
 							'caption' => 'Outcomes of the skill development activity',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created At',
+							'description' => '',
+						],
+					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+				],
+				'it_International_Collaboration' => [
+					'id' => [
+						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'year' => [
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT '2020-21'",
+						'info' => [
+							'caption' => 'Year',
+							'description' => '',
+						],
+					],
+					'Collaborating_Institute_Name' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Collaborating Institute Name',
+							'description' => '',
+						],
+					],
+					'Country' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Country',
+							'description' => '',
+						],
+					],
+					'title_of_the_Program' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Title of the Program/Project',
+							'description' => '',
+						],
+					],
+					'Technology_Area_of_Collaboration' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Technology Area of Collaboration',
+							'description' => '',
+						],
+					],
+					'Potential_Area_for_Application' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Potential Area for Application',
+							'description' => '',
+						],
+					],
+					'Brief_Description_of_Collaboration' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Brief Description of Collaboration/Project',
+							'description' => '',
+						],
+					],
+					'RoleofTIH' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Role of TIH/PI to Achieve the Objectives of the Collaboration/Project',
+							'description' => '',
+						],
+					],
+					'RoleofCollaborator' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Role of Collaborator/PI to Achieve the Objectives of the Collaboration/Project',
+							'description' => '',
+						],
+					],
+					'Funding_From_TIH' => [
+						'appgini' => "VARCHAR(40) NULL",
+						'info' => [
+							'caption' => 'Funding From TIH(In Lakhs)',
+							'description' => '',
+						],
+					],
+					'Funding_from_International_Agency' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Funding from International Agency(In Lakhs)',
+							'description' => '',
+						],
+					],
+					'Project_Value' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Project Value',
+							'description' => '',
+						],
+					],
+					'MoU_Signed_Date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'MoU Signed Date',
+							'description' => '',
+						],
+					],
+					'Start_Date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Start Date',
+							'description' => '',
+						],
+					],
+					'End_Date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'End Date',
+							'description' => '',
+						],
+					],
+					'status' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Status',
+							'description' => '',
+						],
+					],
+					'remarks' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Remarks',
 							'description' => '',
 						],
 					],
@@ -18559,6 +18744,36 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
+			'it_International_Collaboration' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+				'last_updated_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
 		];
 	}
 	#########################################################
@@ -18958,6 +19173,8 @@
 			'hrd_Fellowship' => [
 			],
 			'hrd_sd' => [
+			],
+			'it_International_Collaboration' => [
 			],
 		];
 

@@ -19,6 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`hrd_sd`.`id`" => "id",
+		"`hrd_sd`.`year`" => "year",
 		"`hrd_sd`.`Candidate_Type`" => "Candidate_Type",
 		"`hrd_sd`.`Title_of_the_Program`" => "Title_of_the_Program",
 		"`hrd_sd`.`Total_Number_of_Beneficiaries`" => "Total_Number_of_Beneficiaries",
@@ -47,9 +48,9 @@
 		6 => 6,
 		7 => 7,
 		8 => 8,
-		9 => '`hrd_sd`.`Start_Date`',
-		10 => '`hrd_sd`.`End_Date`',
-		11 => 11,
+		9 => 9,
+		10 => '`hrd_sd`.`Start_Date`',
+		11 => '`hrd_sd`.`End_Date`',
 		12 => 12,
 		13 => 13,
 		14 => 14,
@@ -57,11 +58,13 @@
 		16 => 16,
 		17 => 17,
 		18 => 18,
+		19 => 19,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`hrd_sd`.`id`" => "id",
+		"`hrd_sd`.`year`" => "year",
 		"`hrd_sd`.`Candidate_Type`" => "Candidate_Type",
 		"`hrd_sd`.`Title_of_the_Program`" => "Title_of_the_Program",
 		"`hrd_sd`.`Total_Number_of_Beneficiaries`" => "Total_Number_of_Beneficiaries",
@@ -83,6 +86,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`hrd_sd`.`id`" => "ID",
+		"`hrd_sd`.`year`" => "Year",
 		"`hrd_sd`.`Candidate_Type`" => "Candidate Type",
 		"`hrd_sd`.`Title_of_the_Program`" => "Title of the Program",
 		"`hrd_sd`.`Total_Number_of_Beneficiaries`" => "Total Number of Beneficiaries",
@@ -105,6 +109,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`hrd_sd`.`id`" => "id",
+		"`hrd_sd`.`year`" => "year",
 		"`hrd_sd`.`Candidate_Type`" => "Candidate_Type",
 		"`hrd_sd`.`Title_of_the_Program`" => "Title_of_the_Program",
 		"`hrd_sd`.`Total_Number_of_Beneficiaries`" => "Total_Number_of_Beneficiaries",
@@ -157,10 +162,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['Candidate Type', 'Title of the Program', 'Total Number of Beneficiaries', 'Number of Women Beneficiaries', 'Total Number of SC Beneficiaries', 'Total Number of ST Beneficiaries', 'Category', 'Start Date', 'End Date', 'Collaborating Organisation', 'Outcomes of the skill development activity', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
-	$x->ColFieldName = ['Candidate_Type', 'Title_of_the_Program', 'Total_Number_of_Beneficiaries', 'Number_of_Women_Beneficiaries', 'Total_Number_of_SC_Beneficiaries', 'Total_Number_of_ST_Beneficiaries', 'category', 'Start_Date', 'End_Date', 'Collaborating_Organisation', 'Outcomes', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
-	$x->ColNumber  = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['Year', 'Candidate Type', 'Title of the Program', 'Total Number of Beneficiaries', 'Number of Women Beneficiaries', 'Total Number of SC Beneficiaries', 'Total Number of ST Beneficiaries', 'Category', 'Start Date', 'End Date', 'Collaborating Organisation', 'Outcomes of the skill development activity', 'Created By Username', 'Created At', 'Last Updated by Username', 'Last Updated At', ];
+	$x->ColFieldName = ['year', 'Candidate_Type', 'Title_of_the_Program', 'Total_Number_of_Beneficiaries', 'Number_of_Women_Beneficiaries', 'Total_Number_of_SC_Beneficiaries', 'Total_Number_of_ST_Beneficiaries', 'category', 'Start_Date', 'End_Date', 'Collaborating_Organisation', 'Outcomes', 'created_by_username', 'created_at', 'last_updated_by_username', 'last_updated_at', ];
+	$x->ColNumber  = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/hrd_sd_templateTV.html';

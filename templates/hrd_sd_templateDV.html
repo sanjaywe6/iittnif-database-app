@@ -19,6 +19,15 @@
 		<div class="col-md-8 col-lg-10" id="hrd_sd_dv_form">
 			<fieldset class="form-horizontal">
 
+				<!-- Field: Year -->
+				<div class="form-group hrd_sd-year">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="year">Year<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(year)%%>
+					</div>
+				</div>
+
 				<!-- Field: Candidate Type -->
 				<div class="form-group hrd_sd-Candidate_Type">
 					<hr class="hidden-md hidden-lg">
@@ -187,7 +196,7 @@
 			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
 				AppGini.once({
 					condition: function() {
-						return $j('.form-group.hrd_sd-Candidate_Type')
+						return $j('.form-group.hrd_sd-year')
 									.find('.nicEdit-main, .select2-container, input[type=radio]')
 									.length > 0
 								// or read-only DV
@@ -196,7 +205,7 @@
 					action: function() {
 						$j('#hrd_sd_dv_container-loading').addClass('hidden');
 						$j('#hrd_sd_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('hrd_sd', 'Candidate_Type');
+						AppGini.focusFormElement('hrd_sd', 'year');
 					},
 					timeout:  5000,
 					doActionOnTimeout:  true

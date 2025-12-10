@@ -5,6 +5,7 @@
 <!-- add the following to the hrd_sd_init() hook (in hooks/hrd_sd.php file) -->
 <!--     $options->ShowTableHeader = 0;     -->
 
+		<td id="hrd_sd-year-<%%VALUE(id)%%>" class="hrd_sd-year"><%%SELECT%%><%%VALUE(year)%%><%%ENDSELECT%%></td>
 		<td id="hrd_sd-Candidate_Type-<%%VALUE(id)%%>" class="hrd_sd-Candidate_Type"><%%SELECT%%><%%VALUE(Candidate_Type)%%><%%ENDSELECT%%></td>
 		<td id="hrd_sd-Title_of_the_Program-<%%VALUE(id)%%>" class="hrd_sd-Title_of_the_Program"><%%SELECT%%><%%VALUE(Title_of_the_Program)%%><%%ENDSELECT%%></td>
 		<td id="hrd_sd-Total_Number_of_Beneficiaries-<%%VALUE(id)%%>" class="hrd_sd-Total_Number_of_Beneficiaries"><%%SELECT%%><%%VALUE(Total_Number_of_Beneficiaries)%%><%%ENDSELECT%%></td>

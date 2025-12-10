@@ -16,6 +16,7 @@ function hrd_sd_insert(&$error_message = '') {
 	}
 
 	$data = [
+		'year' => Request::val('year', '2020-21'),
 		'Candidate_Type' => Request::val('Candidate_Type', ''),
 		'Title_of_the_Program' => Request::val('Title_of_the_Program', ''),
 		'Total_Number_of_Beneficiaries' => Request::val('Total_Number_of_Beneficiaries', ''),
@@ -95,6 +96,7 @@ function hrd_sd_update(&$selected_id, &$error_message = '') {
 	if(!check_record_permission('hrd_sd', $selected_id, 'edit')) return false;
 
 	$data = [
+		'year' => Request::val('year', ''),
 		'Candidate_Type' => Request::val('Candidate_Type', ''),
 		'Title_of_the_Program' => Request::val('Title_of_the_Program', ''),
 		'Total_Number_of_Beneficiaries' => Request::val('Total_Number_of_Beneficiaries', ''),
@@ -110,6 +112,11 @@ function hrd_sd_update(&$selected_id, &$error_message = '') {
 		'last_updated_by' => parseCode('<%%editorUsername%%>', false),
 	];
 
+	if($data['year'] === '') {
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Year': {$Translation['field not null']}<br><br>";
+		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
+		exit;
+	}
 	// get existing values
 	$old_data = getRecord('hrd_sd', $selected_id);
 	if(is_array($old_data)) {
@@ -200,6 +207,22 @@ function hrd_sd_form($selectedId = '', $allowUpdate = true, $allowInsert = true,
 
 	// unique random identifier
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
+	// combobox: year
+	$combo_year = new Combo;
+	$combo_year->ListType = 0;
+	$combo_year->MultipleSeparator = ', ';
+	$combo_year->ListBoxHeight = 10;
+	$combo_year->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/hrd_sd.year.csv')) {
+		$year_data = addslashes(implode('', @file(__DIR__ . '/hooks/hrd_sd.year.csv')));
+		$combo_year->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($year_data))));
+		$combo_year->ListData = $combo_year->ListItem;
+	} else {
+		$combo_year->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("2020-21;;2021-22;;2022-23;;2023-24;;2024-25;;2025-26;;2026-27;;2027-28"))));
+		$combo_year->ListData = $combo_year->ListItem;
+	}
+	$combo_year->SelectName = 'year';
+	$combo_year->AllowNull = false;
 	// combobox: Candidate_Type
 	$combo_Candidate_Type = new Combo;
 	$combo_Candidate_Type->ListType = 0;
@@ -251,6 +274,7 @@ function hrd_sd_form($selectedId = '', $allowUpdate = true, $allowInsert = true,
 		if(!($row = getRecord('hrd_sd', $selectedId))) {
 			return error_message($Translation['No records found'], 'hrd_sd_view.php', false);
 		}
+		$combo_year->SelectedData = $row['year'];
 		$combo_Candidate_Type->SelectedData = $row['Candidate_Type'];
 		$combo_category->SelectedData = $row['category'];
 		$combo_Start_Date->DefaultDate = $row['Start_Date'];
@@ -261,9 +285,11 @@ function hrd_sd_form($selectedId = '', $allowUpdate = true, $allowInsert = true,
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_Candidate_Type->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
-		$combo_category->SelectedText = (isset($filterField[1]) && $filterField[1] == '8' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_year->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('2020-21'));
+		$combo_Candidate_Type->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_category->SelectedText = (isset($filterField[1]) && $filterField[1] == '9' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
+	$combo_year->Render();
 	$combo_Candidate_Type->Render();
 	$combo_category->Render();
 
@@ -362,6 +388,7 @@ function hrd_sd_form($selectedId = '', $allowUpdate = true, $allowInsert = true,
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
+		$jsReadOnly .= "\t\$j('#year').replaceWith('<div class=\"form-control-static\" id=\"year\">' + (\$j('#year').val() || '') + '</div>'); \$j('#year-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#Candidate_Type').replaceWith('<div class=\"form-control-static\" id=\"Candidate_Type\">' + (\$j('#Candidate_Type').val() || '') + '</div>'); \$j('#Candidate_Type-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#Title_of_the_Program').replaceWith('<div class=\"form-control-static\" id=\"Title_of_the_Program\">' + (\$j('#Title_of_the_Program').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#Total_Number_of_Beneficiaries').replaceWith('<div class=\"form-control-static\" id=\"Total_Number_of_Beneficiaries\">' + (\$j('#Total_Number_of_Beneficiaries').val() || '') + '</div>');\n";
@@ -383,6 +410,8 @@ function hrd_sd_form($selectedId = '', $allowUpdate = true, $allowInsert = true,
 	}
 
 	// process combos
+	$templateCode = str_replace('<%%COMBO(year)%%>', $combo_year->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(year)%%>', $combo_year->SelectedData, $templateCode);
 	$templateCode = str_replace('<%%COMBO(Candidate_Type)%%>', $combo_Candidate_Type->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(Candidate_Type)%%>', $combo_Candidate_Type->SelectedData, $templateCode);
 	$templateCode = str_replace('<%%COMBO(category)%%>', $combo_category->HTML, $templateCode);
@@ -420,6 +449,7 @@ function hrd_sd_form($selectedId = '', $allowUpdate = true, $allowInsert = true,
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(year)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(Candidate_Type)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(Title_of_the_Program)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(Total_Number_of_Beneficiaries)%%>', '', $templateCode);
@@ -443,6 +473,9 @@ function hrd_sd_form($selectedId = '', $allowUpdate = true, $allowInsert = true,
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(id)%%>', html_attr($row['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(year)%%>', safe_html($urow['year']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(year)%%>', html_attr($row['year']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(year)%%>', urlencode($urow['year']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(Candidate_Type)%%>', safe_html($urow['Candidate_Type']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(Candidate_Type)%%>', html_attr($row['Candidate_Type']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(Candidate_Type)%%>', urlencode($urow['Candidate_Type']), $templateCode);
@@ -497,6 +530,8 @@ function hrd_sd_form($selectedId = '', $allowUpdate = true, $allowInsert = true,
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(year)%%>', '2020-21', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(year)%%>', urlencode('2020-21'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(Candidate_Type)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(Candidate_Type)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(Title_of_the_Program)%%>', '', $templateCode);

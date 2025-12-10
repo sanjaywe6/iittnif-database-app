@@ -805,6 +805,13 @@
 					'group' => $tg[14],
 					'homepageShowCount' => 1
 				],
+				'ed_eir' => [
+					'Caption' => 'Entrepreneur In Residence (EIR)',
+					'Description' => '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[14],
+					'homepageShowCount' => 1
+				],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) return $all_tables;
@@ -919,6 +926,7 @@
 			'ed_tbi' => ['Technology Business Incubator (TBI)', '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 			'ed_startup_companies' => ['Start-ups & Spin-off companies', '', 'table.gif', 'NMICPS Portal - Apps'],
 			'ed_gcc' => ['GCC - Grand Challenges & Competitions', '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
+			'ed_eir' => ['Entrepreneur In Residence (EIR)', '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) {
@@ -13618,6 +13626,134 @@
 						],
 					],
 				],
+				'ed_eir' => [
+					'id' => [
+						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'year' => [
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT '2020-21'",
+						'info' => [
+							'caption' => 'Year',
+							'description' => '',
+						],
+					],
+					'name' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Candidate Name',
+							'description' => '',
+						],
+					],
+					'gender' => [
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT 'Male'",
+						'info' => [
+							'caption' => 'Select the Candidate\'s Gender',
+							'description' => '',
+						],
+					],
+					'cast_category' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'SC'",
+						'info' => [
+							'caption' => 'Cast Category',
+							'description' => '',
+						],
+					],
+					'Technology_Area' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Technology Area',
+							'description' => '',
+						],
+					],
+					'Start_Date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Start Date',
+							'description' => '',
+						],
+					],
+					'End_Date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'End Date',
+							'description' => '',
+						],
+					],
+					'Co_funding_Agency_Type' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Co-funding Agency Type',
+							'description' => '',
+						],
+					],
+					'Co_funding_Agency_Name' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Co-funding Agency Name',
+							'description' => '',
+						],
+					],
+					'trl_level' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'TRL 1'",
+						'info' => [
+							'caption' => 'TRL Level',
+							'description' => '',
+						],
+					],
+					'status' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Status',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created At',
+							'description' => '',
+						],
+					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+				],
 			];
 
 			$internalTablesSimple = [
@@ -17895,6 +18031,36 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
+			'ed_eir' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+				'last_updated_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
 		];
 	}
 	#########################################################
@@ -18286,6 +18452,8 @@
 			'ed_startup_companies' => [
 			],
 			'ed_gcc' => [
+			],
+			'ed_eir' => [
 			],
 		];
 

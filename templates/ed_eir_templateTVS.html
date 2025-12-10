@@ -1,0 +1,22 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the ed_eir_init() hook (in hooks/ed_eir.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="ed_eir-year-<%%VALUE(id)%%>" class="ed_eir-year text-bold"><%%VALUE(year)%%></td>
+		<td id="ed_eir-name-<%%VALUE(id)%%>" class="ed_eir-name text-bold"><%%VALUE(name)%%></td>
+		<td id="ed_eir-gender-<%%VALUE(id)%%>" class="ed_eir-gender text-bold"><%%VALUE(gender)%%></td>
+		<td id="ed_eir-cast_category-<%%VALUE(id)%%>" class="ed_eir-cast_category text-bold"><%%VALUE(cast_category)%%></td>
+		<td id="ed_eir-Technology_Area-<%%VALUE(id)%%>" class="ed_eir-Technology_Area text-bold"><%%VALUE(Technology_Area)%%></td>
+		<td id="ed_eir-Start_Date-<%%VALUE(id)%%>" class="ed_eir-Start_Date text-bold"><%%VALUE(Start_Date)%%></td>
+		<td id="ed_eir-End_Date-<%%VALUE(id)%%>" class="ed_eir-End_Date text-bold"><%%VALUE(End_Date)%%></td>
+		<td id="ed_eir-Co_funding_Agency_Type-<%%VALUE(id)%%>" class="ed_eir-Co_funding_Agency_Type text-bold"><%%VALUE(Co_funding_Agency_Type)%%></td>
+		<td id="ed_eir-Co_funding_Agency_Name-<%%VALUE(id)%%>" class="ed_eir-Co_funding_Agency_Name text-bold"><%%VALUE(Co_funding_Agency_Name)%%></td>
+		<td id="ed_eir-trl_level-<%%VALUE(id)%%>" class="ed_eir-trl_level text-bold"><%%VALUE(trl_level)%%></td>
+		<td id="ed_eir-status-<%%VALUE(id)%%>" class="ed_eir-status text-bold"><%%VALUE(status)%%></td>
+		<td id="ed_eir-created_by_username-<%%VALUE(id)%%>" class="ed_eir-created_by_username text-bold"><%%VALUE(created_by_username)%%></td>
+		<td id="ed_eir-created_at-<%%VALUE(id)%%>" class="ed_eir-created_at text-bold"><%%VALUE(created_at)%%></td>
+		<td id="ed_eir-last_updated_by_username-<%%VALUE(id)%%>" class="ed_eir-last_updated_by_username text-bold"><%%VALUE(last_updated_by_username)%%></td>
+		<td id="ed_eir-last_updated_at-<%%VALUE(id)%%>" class="ed_eir-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>

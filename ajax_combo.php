@@ -1031,6 +1031,8 @@
 		],
 		'ed_gcc' => [
 		],
+		'ed_eir' => [
+		],
 	];
 
 	// XSS prevention

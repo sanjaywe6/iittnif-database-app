@@ -1775,6 +1775,24 @@ ed_gcc_delete1Tip=["",spacer+"This option allows each member of the group to del
 ed_gcc_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'GCC - Grand Challenges & Competitions' table."];
 ed_gcc_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'GCC - Grand Challenges & Competitions' table."];
 
+// ed_eir table
+ed_eir_addTip=["",spacer+"This option allows all members of the group to add records to the 'Entrepreneur In Residence (EIR)' table. A member who adds a record to the table becomes the 'owner' of that record."];
+
+ed_eir_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Entrepreneur In Residence (EIR)' table."];
+ed_eir_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Entrepreneur In Residence (EIR)' table."];
+ed_eir_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Entrepreneur In Residence (EIR)' table."];
+ed_eir_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Entrepreneur In Residence (EIR)' table."];
+
+ed_eir_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Entrepreneur In Residence (EIR)' table."];
+ed_eir_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Entrepreneur In Residence (EIR)' table."];
+ed_eir_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Entrepreneur In Residence (EIR)' table."];
+ed_eir_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Entrepreneur In Residence (EIR)' table, regardless of their owner."];
+
+ed_eir_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Entrepreneur In Residence (EIR)' table."];
+ed_eir_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Entrepreneur In Residence (EIR)' table."];
+ed_eir_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Entrepreneur In Residence (EIR)' table."];
+ed_eir_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Entrepreneur In Residence (EIR)' table."];
+
 /*
 	Style syntax:
 	-------------

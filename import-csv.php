@@ -581,6 +581,12 @@
 
 			return $data;
 		},
+		'ed_eir' => function($data, $options = []) {
+			if(isset($data['Start_Date'])) $data['Start_Date'] = guessMySQLDateTime($data['Start_Date']);
+			if(isset($data['End_Date'])) $data['End_Date'] = guessMySQLDateTime($data['End_Date']);
+
+			return $data;
+		},
 	];
 
 	// accept a record as an assoc array, return a boolean indicating whether to import or skip record
@@ -683,6 +689,7 @@
 		'ed_tbi' => function($data, $options = []) { return true; },
 		'ed_startup_companies' => function($data, $options = []) { return true; },
 		'ed_gcc' => function($data, $options = []) { return true; },
+		'ed_eir' => function($data, $options = []) { return true; },
 	];
 
 	/*

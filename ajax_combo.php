@@ -1033,6 +1033,10 @@
 		],
 		'ed_eir' => [
 		],
+		'ed_job_creation' => [
+		],
+		'hrd_Fellowship' => [
+		],
 	];
 
 	// XSS prevention

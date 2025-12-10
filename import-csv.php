@@ -587,6 +587,17 @@
 
 			return $data;
 		},
+		'ed_job_creation' => function($data, $options = []) {
+			if(isset($data['Joining_Date'])) $data['Joining_Date'] = guessMySQLDateTime($data['Joining_Date']);
+
+			return $data;
+		},
+		'hrd_Fellowship' => function($data, $options = []) {
+			if(isset($data['Start_Date'])) $data['Start_Date'] = guessMySQLDateTime($data['Start_Date']);
+			if(isset($data['End_Date'])) $data['End_Date'] = guessMySQLDateTime($data['End_Date']);
+
+			return $data;
+		},
 	];
 
 	// accept a record as an assoc array, return a boolean indicating whether to import or skip record
@@ -690,6 +701,8 @@
 		'ed_startup_companies' => function($data, $options = []) { return true; },
 		'ed_gcc' => function($data, $options = []) { return true; },
 		'ed_eir' => function($data, $options = []) { return true; },
+		'ed_job_creation' => function($data, $options = []) { return true; },
+		'hrd_Fellowship' => function($data, $options = []) { return true; },
 	];
 
 	/*

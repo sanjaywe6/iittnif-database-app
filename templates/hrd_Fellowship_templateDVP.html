@@ -1,0 +1,141 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Year -->
+		<div class="form-group hrd_Fellowship-year" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Year</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(year)%%></div>
+			</div>
+		</div>
+		<!-- Field: Name -->
+		<div class="form-group hrd_Fellowship-name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Name</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Gender -->
+		<div class="form-group hrd_Fellowship-gender" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Gender</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(gender)%%></div>
+			</div>
+		</div>
+		<!-- Field: Candidate's Institute ID Card No. -->
+		<div class="form-group hrd_Fellowship-id_no" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Candidate's Institute ID Card No.</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(id_no)%%></div>
+			</div>
+		</div>
+		<!-- Field: Candidate's Institute Name -->
+		<div class="form-group hrd_Fellowship-institute_name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Candidate's Institute Name</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(institute_name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Department -->
+		<div class="form-group hrd_Fellowship-Department" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Department</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Department)%%></div>
+			</div>
+		</div>
+		<!-- Field: Qualification -->
+		<div class="form-group hrd_Fellowship-Qualification" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Qualification</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Qualification)%%></div>
+			</div>
+		</div>
+		<!-- Field: Fellowship Type -->
+		<div class="form-group hrd_Fellowship-Fellowship_Type" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Fellowship Type</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(Fellowship_Type)%%></div>
+			</div>
+		</div>
+		<!-- Field: Category -->
+		<div class="form-group hrd_Fellowship-cast_category" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Category</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(cast_category)%%></div>
+			</div>
+		</div>
+		<!-- Field: Start Date -->
+		<div class="form-group hrd_Fellowship-Start_Date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Start Date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(Start_Date)%%></div>
+			</div>
+		</div>
+		<!-- Field: End Date -->
+		<div class="form-group hrd_Fellowship-End_Date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">End Date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(End_Date)%%></div>
+			</div>
+		</div>
+		<!-- Field: Status -->
+		<div class="form-group hrd_Fellowship-status" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Status</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(status)%%></div>
+			</div>
+		</div>
+		<!-- Field: Founded By -->
+		<div class="form-group hrd_Fellowship-founded_by" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Founded By</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(founded_by)%%></div>
+			</div>
+		</div>
+		<!-- Field: Amount Granted -->
+		<div class="form-group hrd_Fellowship-Amount_Granted" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Amount Granted</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Amount_Granted)%%></div>
+			</div>
+		</div>
+		<!-- Field: Created By Username -->
+		<div class="form-group hrd_Fellowship-created_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Created By Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(created_by_username)%%></div>
+			</div>
+		</div>
+		<!-- Field: Last Updated by Username -->
+		<div class="form-group hrd_Fellowship-last_updated_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Last Updated by Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(last_updated_by_username)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

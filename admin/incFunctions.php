@@ -793,7 +793,7 @@
 				],
 				'ed_startup_companies' => [
 					'Caption' => 'Start-ups & Spin-off companies',
-					'Description' => '',
+					'Description' => '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[14],
 					'homepageShowCount' => 1
@@ -808,6 +808,20 @@
 				'ed_eir' => [
 					'Caption' => 'Entrepreneur In Residence (EIR)',
 					'Description' => '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[14],
+					'homepageShowCount' => 1
+				],
+				'ed_job_creation' => [
+					'Caption' => 'Job Creation',
+					'Description' => '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[14],
+					'homepageShowCount' => 1
+				],
+				'hrd_Fellowship' => [
+					'Caption' => 'Fellowship',
+					'Description' => '<span style="color:red;font-size: 20px;"><b>Human Resource Development </b></span>',
 					'tableIcon' => 'table.gif',
 					'group' => $tg[14],
 					'homepageShowCount' => 1
@@ -924,9 +938,11 @@
 			'td_ipr' => ['IPR', '', 'table.gif', 'NMICPS Portal - Apps'],
 			'td_cps_research_base' => ['CPS Research Base', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 			'ed_tbi' => ['Technology Business Incubator (TBI)', '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
-			'ed_startup_companies' => ['Start-ups & Spin-off companies', '', 'table.gif', 'NMICPS Portal - Apps'],
+			'ed_startup_companies' => ['Start-ups & Spin-off companies', '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 			'ed_gcc' => ['GCC - Grand Challenges & Competitions', '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 			'ed_eir' => ['Entrepreneur In Residence (EIR)', '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
+			'ed_job_creation' => ['Job Creation', '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
+			'hrd_Fellowship' => ['Fellowship', '<span style="color:red;font-size: 20px;"><b>Human Resource Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) {
@@ -13754,6 +13770,262 @@
 						],
 					],
 				],
+				'ed_job_creation' => [
+					'id' => [
+						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'year' => [
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT '2020-21'",
+						'info' => [
+							'caption' => 'Year',
+							'description' => '',
+						],
+					],
+					'Name_of_the_Employee' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Name of the Employee',
+							'description' => '',
+						],
+					],
+					'gender' => [
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT 'Male'",
+						'info' => [
+							'caption' => 'Select the Candidate\'s Gender',
+							'description' => '',
+						],
+					],
+					'cast_category' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'SC'",
+						'info' => [
+							'caption' => 'Cast Category',
+							'description' => '',
+						],
+					],
+					'Type_of_Employment' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Type of Employment',
+							'description' => '',
+						],
+					],
+					'Joining_Date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Joining Date',
+							'description' => '',
+						],
+					],
+					'Designation' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Designation',
+							'description' => '',
+						],
+					],
+					'Organisation_Name' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Organisation Name',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created At',
+							'description' => '',
+						],
+					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+				],
+				'hrd_Fellowship' => [
+					'id' => [
+						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'year' => [
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT '2020-21'",
+						'info' => [
+							'caption' => 'Year',
+							'description' => '',
+						],
+					],
+					'name' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Name',
+							'description' => '',
+						],
+					],
+					'gender' => [
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT 'Male'",
+						'info' => [
+							'caption' => 'Gender',
+							'description' => '',
+						],
+					],
+					'id_no' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Candidate\'s Institute ID Card No.',
+							'description' => '',
+						],
+					],
+					'institute_name' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Candidate\'s Institute Name',
+							'description' => '',
+						],
+					],
+					'Department' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Department',
+							'description' => '',
+						],
+					],
+					'Qualification' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Qualification',
+							'description' => '',
+						],
+					],
+					'Fellowship_Type' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Fellowship Type',
+							'description' => '',
+						],
+					],
+					'cast_category' => [
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'SC'",
+						'info' => [
+							'caption' => 'Category',
+							'description' => '',
+						],
+					],
+					'Start_Date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Start Date',
+							'description' => '',
+						],
+					],
+					'End_Date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'End Date',
+							'description' => '',
+						],
+					],
+					'status' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Status',
+							'description' => '',
+						],
+					],
+					'founded_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Founded By',
+							'description' => '',
+						],
+					],
+					'Amount_Granted' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Amount Granted',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created At',
+							'description' => '',
+						],
+					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+				],
 			];
 
 			$internalTablesSimple = [
@@ -18061,6 +18333,66 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
+			'ed_job_creation' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+				'last_updated_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
+			'hrd_Fellowship' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+				'last_updated_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
 		];
 	}
 	#########################################################
@@ -18454,6 +18786,10 @@
 			'ed_gcc' => [
 			],
 			'ed_eir' => [
+			],
+			'ed_job_creation' => [
+			],
+			'hrd_Fellowship' => [
 			],
 		];
 

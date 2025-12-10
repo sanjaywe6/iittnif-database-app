@@ -204,6 +204,8 @@
 			'ed_startup_companies' => "`ed_startup_companies`.`id` as 'id', `ed_startup_companies`.`year` as 'year', `ed_startup_companies`.`startup_name` as 'startup_name', `ed_startup_companies`.`founder_name` as 'founder_name', `ed_startup_companies`.`gender` as 'gender', `ed_startup_companies`.`cast_category` as 'cast_category', `ed_startup_companies`.`technology_area` as 'technology_area', `ed_startup_companies`.`deep_tech` as 'deep_tech', `ed_startup_companies`.`product_brief` as 'product_brief', `ed_startup_companies`.`trl_status` as 'trl_status', `ed_startup_companies`.`product_status` as 'product_status', `ed_startup_companies`.`CommercialisationArea` as 'CommercialisationArea', `ed_startup_companies`.`Is_Commercialized` as 'Is_Commercialized', `ed_startup_companies`.`Customer_Details` as 'Customer_Details', `ed_startup_companies`.`Total_Approved_Amount` as 'Total_Approved_Amount', `ed_startup_companies`.`funding_released_2020` as 'funding_released_2020', `ed_startup_companies`.`funding_released_2021` as 'funding_released_2021', `ed_startup_companies`.`funding_released_2022` as 'funding_released_2022', `ed_startup_companies`.`funding_released_2023` as 'funding_released_2023', `ed_startup_companies`.`funding_released_2024` as 'funding_released_2024', `ed_startup_companies`.`funding_released_2025` as 'funding_released_2025', `ed_startup_companies`.`funding_released_2026` as 'funding_released_2026', `ed_startup_companies`.`funding_released_2027` as 'funding_released_2027', `ed_startup_companies`.`total_value_released` as 'total_value_released', `ed_startup_companies`.`external_funding_amount` as 'external_funding_amount', `ed_startup_companies`.`Funding_Type` as 'Funding_Type', `ed_startup_companies`.`Equity_Percentage` as 'Equity_Percentage', `ed_startup_companies`.`valuation` as 'valuation', `ed_startup_companies`.`Collaboration_Partner_Type` as 'Collaboration_Partner_Type', `ed_startup_companies`.`Website` as 'Website', `ed_startup_companies`.`CIN_LLP` as 'CIN_LLP', `ed_startup_companies`.`state` as 'state', `ed_startup_companies`.`district` as 'district', `ed_startup_companies`.`remarks` as 'remarks', `ed_startup_companies`.`Registered_Address` as 'Registered_Address', `ed_startup_companies`.`created_by_username` as 'created_by_username', `ed_startup_companies`.`created_at` as 'created_at', `ed_startup_companies`.`last_updated_by_username` as 'last_updated_by_username', `ed_startup_companies`.`last_updated_at` as 'last_updated_at', `ed_startup_companies`.`last_updated_by` as 'last_updated_by', `ed_startup_companies`.`created_by` as 'created_by'",
 			'ed_gcc' => "`ed_gcc`.`id` as 'id', `ed_gcc`.`year` as 'year', `ed_gcc`.`name` as 'name', `ed_gcc`.`finalists` as 'finalists', `ed_gcc`.`Number_of_Enrolled_Participants` as 'Number_of_Enrolled_Participants', `ed_gcc`.`Technology_Domain` as 'Technology_Domain', if(`ed_gcc`.`Start_Date`,date_format(`ed_gcc`.`Start_Date`,'%d/%m/%Y'),'') as 'Start_Date', if(`ed_gcc`.`End_Date`,date_format(`ed_gcc`.`End_Date`,'%d/%m/%Y'),'') as 'End_Date', `ed_gcc`.`status` as 'status', `ed_gcc`.`Co_Sponsors` as 'Co_Sponsors', `ed_gcc`.`created_by_username` as 'created_by_username', `ed_gcc`.`created_at` as 'created_at', `ed_gcc`.`last_updated_by_username` as 'last_updated_by_username', `ed_gcc`.`last_updated_at` as 'last_updated_at', `ed_gcc`.`last_updated_by` as 'last_updated_by', `ed_gcc`.`created_by` as 'created_by'",
 			'ed_eir' => "`ed_eir`.`id` as 'id', `ed_eir`.`year` as 'year', `ed_eir`.`name` as 'name', `ed_eir`.`gender` as 'gender', `ed_eir`.`cast_category` as 'cast_category', `ed_eir`.`Technology_Area` as 'Technology_Area', if(`ed_eir`.`Start_Date`,date_format(`ed_eir`.`Start_Date`,'%d/%m/%Y'),'') as 'Start_Date', if(`ed_eir`.`End_Date`,date_format(`ed_eir`.`End_Date`,'%d/%m/%Y'),'') as 'End_Date', `ed_eir`.`Co_funding_Agency_Type` as 'Co_funding_Agency_Type', `ed_eir`.`Co_funding_Agency_Name` as 'Co_funding_Agency_Name', `ed_eir`.`trl_level` as 'trl_level', `ed_eir`.`status` as 'status', `ed_eir`.`created_by_username` as 'created_by_username', `ed_eir`.`created_at` as 'created_at', `ed_eir`.`last_updated_by_username` as 'last_updated_by_username', `ed_eir`.`last_updated_at` as 'last_updated_at', `ed_eir`.`last_updated_by` as 'last_updated_by', `ed_eir`.`created_by` as 'created_by'",
+			'ed_job_creation' => "`ed_job_creation`.`id` as 'id', `ed_job_creation`.`year` as 'year', `ed_job_creation`.`Name_of_the_Employee` as 'Name_of_the_Employee', `ed_job_creation`.`gender` as 'gender', `ed_job_creation`.`cast_category` as 'cast_category', `ed_job_creation`.`Type_of_Employment` as 'Type_of_Employment', if(`ed_job_creation`.`Joining_Date`,date_format(`ed_job_creation`.`Joining_Date`,'%d/%m/%Y'),'') as 'Joining_Date', `ed_job_creation`.`Designation` as 'Designation', `ed_job_creation`.`Organisation_Name` as 'Organisation_Name', `ed_job_creation`.`created_by_username` as 'created_by_username', `ed_job_creation`.`created_at` as 'created_at', `ed_job_creation`.`last_updated_by_username` as 'last_updated_by_username', `ed_job_creation`.`last_updated_at` as 'last_updated_at', `ed_job_creation`.`last_updated_by` as 'last_updated_by', `ed_job_creation`.`created_by` as 'created_by'",
+			'hrd_Fellowship' => "`hrd_Fellowship`.`id` as 'id', `hrd_Fellowship`.`year` as 'year', `hrd_Fellowship`.`name` as 'name', `hrd_Fellowship`.`gender` as 'gender', `hrd_Fellowship`.`id_no` as 'id_no', `hrd_Fellowship`.`institute_name` as 'institute_name', `hrd_Fellowship`.`Department` as 'Department', `hrd_Fellowship`.`Qualification` as 'Qualification', `hrd_Fellowship`.`Fellowship_Type` as 'Fellowship_Type', `hrd_Fellowship`.`cast_category` as 'cast_category', if(`hrd_Fellowship`.`Start_Date`,date_format(`hrd_Fellowship`.`Start_Date`,'%d/%m/%Y'),'') as 'Start_Date', if(`hrd_Fellowship`.`End_Date`,date_format(`hrd_Fellowship`.`End_Date`,'%d/%m/%Y'),'') as 'End_Date', `hrd_Fellowship`.`status` as 'status', `hrd_Fellowship`.`founded_by` as 'founded_by', `hrd_Fellowship`.`Amount_Granted` as 'Amount_Granted', `hrd_Fellowship`.`created_by_username` as 'created_by_username', `hrd_Fellowship`.`created_at` as 'created_at', `hrd_Fellowship`.`last_updated_by_username` as 'last_updated_by_username', `hrd_Fellowship`.`last_updated_at` as 'last_updated_at', `hrd_Fellowship`.`last_updated_by` as 'last_updated_by', `hrd_Fellowship`.`created_by` as 'created_by'",
 		];
 
 		if(isset($sql_fields[$table_name])) return $sql_fields[$table_name];
@@ -314,6 +316,8 @@
 			'ed_startup_companies' => "`ed_startup_companies` ",
 			'ed_gcc' => "`ed_gcc` ",
 			'ed_eir' => "`ed_eir` ",
+			'ed_job_creation' => "`ed_job_creation` ",
+			'hrd_Fellowship' => "`hrd_Fellowship` ",
 		];
 
 		$pkey = [
@@ -416,6 +420,8 @@
 			'ed_startup_companies' => 'id',
 			'ed_gcc' => 'id',
 			'ed_eir' => 'id',
+			'ed_job_creation' => 'id',
+			'hrd_Fellowship' => 'id',
 		];
 
 		if(!isset($sql_from[$table_name])) return false;
@@ -2352,6 +2358,46 @@
 				'last_updated_by' => '',
 				'created_by' => '',
 			],
+			'ed_job_creation' => [
+				'id' => '',
+				'year' => '2020-21',
+				'Name_of_the_Employee' => '',
+				'gender' => 'Male',
+				'cast_category' => 'SC',
+				'Type_of_Employment' => '',
+				'Joining_Date' => '',
+				'Designation' => '',
+				'Organisation_Name' => '',
+				'created_by_username' => '',
+				'created_at' => '',
+				'last_updated_by_username' => '',
+				'last_updated_at' => '',
+				'last_updated_by' => '',
+				'created_by' => '',
+			],
+			'hrd_Fellowship' => [
+				'id' => '',
+				'year' => '2020-21',
+				'name' => '',
+				'gender' => 'Male',
+				'id_no' => '',
+				'institute_name' => '',
+				'Department' => '',
+				'Qualification' => '',
+				'Fellowship_Type' => '',
+				'cast_category' => 'SC',
+				'Start_Date' => '',
+				'End_Date' => '',
+				'status' => '',
+				'founded_by' => '',
+				'Amount_Granted' => '',
+				'created_by_username' => '',
+				'created_at' => '',
+				'last_updated_by_username' => '',
+				'last_updated_at' => '',
+				'last_updated_by' => '',
+				'created_by' => '',
+			],
 		];
 
 		return isset($defaults[$table]) ? $defaults[$table] : [];
@@ -3174,7 +3220,7 @@
 		if(is_array($arrTables)) {
 			foreach($arrTables as $tn => $tc) {
 				/* ---- list of tables where hide link in nav menu is set ---- */
-				$tChkHL = array_search($tn, ['user_table','suggestion','approval_table','techlead_web_page','navavishkar_stay_facilities_table','navavishkar_stay_facilities_allotment_table','car_table','car_usage_table','cycle_table','cycle_usage_table','gym_table','coffee_table','cafeteria_table','event_table','outcomes_expected_table','event_decision_table','meetings_table','agenda_table','decision_table','participants_table','action_actor','visiting_card_table','mou_details_table','goal_setting_table','goal_progress_table','task_allocation_table','task_progress_status_table','timesheet_entry_table','internship_fellowship_details_app','star_pnt','hrd_sdp_events_table','training_program_on_geospatial_tchnologies_table','space_day_school_details_app','space_day_college_student_table','school_list','sdp_participants_college_details_table','asset_table','asset_allotment_table','sub_asset_table','sub_asset_allotment_table','it_inventory_app','it_inventory_billing_details','it_inventory_allotment_table','computer_details_table','computer_user_details','computer_allotment_table','employees_personal_data_table','employees_designation_table','employees_appraisal_table','beyond_working_hours_table','leave_table','half_day_leave_table','work_from_home_table','work_from_home_tasks_app','navavishkar_stay_table','navavishkar_stay_payment_table','email_id_allocation_table','attendence_details_table','all_startup_data_table','shortlisted_startups_for_fund_table','shortlisted_startups_dd_and_agreement_table','vikas_startup_applications_table','programs_table','evaluation_table','problem_statement_table','evaluators_table','approval_billing_table','honorarium_claim_table','all_bank_account_statement_table','payment_track_details_table','travel_table','travel_stay_table','travel_local_commute_table','r_and_d_progress','panel_decision_table_tdp','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','summary_table_tdp','project_details_tdp','newsletter_table','contact_call_log_table','r_and_d_monthly_progress_app','r_and_d_quarterly_progress_app','projects','td_projects_td_intellectual_property','td_projects_td_technology_products','td_publications_and_intellectual_activities','td_publications','td_ipr','td_cps_research_base','ed_tbi','ed_startup_companies','ed_gcc','ed_eir']);
+				$tChkHL = array_search($tn, ['user_table','suggestion','approval_table','techlead_web_page','navavishkar_stay_facilities_table','navavishkar_stay_facilities_allotment_table','car_table','car_usage_table','cycle_table','cycle_usage_table','gym_table','coffee_table','cafeteria_table','event_table','outcomes_expected_table','event_decision_table','meetings_table','agenda_table','decision_table','participants_table','action_actor','visiting_card_table','mou_details_table','goal_setting_table','goal_progress_table','task_allocation_table','task_progress_status_table','timesheet_entry_table','internship_fellowship_details_app','star_pnt','hrd_sdp_events_table','training_program_on_geospatial_tchnologies_table','space_day_school_details_app','space_day_college_student_table','school_list','sdp_participants_college_details_table','asset_table','asset_allotment_table','sub_asset_table','sub_asset_allotment_table','it_inventory_app','it_inventory_billing_details','it_inventory_allotment_table','computer_details_table','computer_user_details','computer_allotment_table','employees_personal_data_table','employees_designation_table','employees_appraisal_table','beyond_working_hours_table','leave_table','half_day_leave_table','work_from_home_table','work_from_home_tasks_app','navavishkar_stay_table','navavishkar_stay_payment_table','email_id_allocation_table','attendence_details_table','all_startup_data_table','shortlisted_startups_for_fund_table','shortlisted_startups_dd_and_agreement_table','vikas_startup_applications_table','programs_table','evaluation_table','problem_statement_table','evaluators_table','approval_billing_table','honorarium_claim_table','all_bank_account_statement_table','payment_track_details_table','travel_table','travel_stay_table','travel_local_commute_table','r_and_d_progress','panel_decision_table_tdp','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','summary_table_tdp','project_details_tdp','newsletter_table','contact_call_log_table','r_and_d_monthly_progress_app','r_and_d_quarterly_progress_app','projects','td_projects_td_intellectual_property','td_projects_td_technology_products','td_publications_and_intellectual_activities','td_publications','td_ipr','td_cps_research_base','ed_tbi','ed_startup_companies','ed_gcc','ed_eir','ed_job_creation','hrd_Fellowship']);
 
 				/* ---- list of tables where filter first is set ---- */
 				$tChkFF = array_search($tn, ['task_progress_status_table']);
@@ -5297,6 +5343,10 @@ EOT;
 			],
 			'ed_eir' => [
 			],
+			'ed_job_creation' => [
+			],
+			'hrd_Fellowship' => [
+			],
 		];
 
 		if($skipPermissions) return $pcConfig;
@@ -5342,7 +5392,7 @@ EOT;
 	#########################################################
 
 	function isDetailViewEnabled($tn) {
-		$tables = ['user_table', 'suggestion', 'approval_table', 'techlead_web_page', 'navavishkar_stay_facilities_table', 'navavishkar_stay_facilities_allotment_table', 'car_table', 'car_usage_table', 'cycle_table', 'cycle_usage_table', 'gym_table', 'coffee_table', 'cafeteria_table', 'event_table', 'outcomes_expected_table', 'event_decision_table', 'meetings_table', 'agenda_table', 'decision_table', 'participants_table', 'action_actor', 'visiting_card_table', 'mou_details_table', 'goal_setting_table', 'goal_progress_table', 'task_allocation_table', 'task_progress_status_table', 'timesheet_entry_table', 'internship_fellowship_details_app', 'star_pnt', 'hrd_sdp_events_table', 'training_program_on_geospatial_tchnologies_table', 'space_day_school_details_app', 'space_day_college_student_table', 'school_list', 'sdp_participants_college_details_table', 'asset_table', 'asset_allotment_table', 'sub_asset_table', 'sub_asset_allotment_table', 'it_inventory_app', 'it_inventory_billing_details', 'it_inventory_allotment_table', 'computer_details_table', 'computer_user_details', 'computer_allotment_table', 'employees_personal_data_table', 'employees_designation_table', 'employees_appraisal_table', 'beyond_working_hours_table', 'leave_table', 'half_day_leave_table', 'work_from_home_table', 'work_from_home_tasks_app', 'navavishkar_stay_table', 'navavishkar_stay_payment_table', 'email_id_allocation_table', 'attendence_details_table', 'all_startup_data_table', 'shortlisted_startups_for_fund_table', 'shortlisted_startups_dd_and_agreement_table', 'vikas_startup_applications_table', 'programs_table', 'evaluation_table', 'problem_statement_table', 'evaluators_table', 'approval_billing_table', 'honorarium_claim_table', 'all_bank_account_statement_table', 'payment_track_details_table', 'travel_table', 'travel_stay_table', 'travel_local_commute_table', 'r_and_d_progress', 'panel_decision_table_tdp', 'selected_proposals_final_tdp', 'stage_wise_budget_table_tdp', 'first_level_shortlisted_proposals_tdp', 'budget_table_tdp', 'panel_comments_tdp', 'selected_tdp', 'address_tdp', 'summary_table_tdp', 'project_details_tdp', 'newsletter_table', 'contact_call_log_table', 'r_and_d_monthly_progress_app', 'r_and_d_quarterly_progress_app', 'projects', 'td_projects_td_intellectual_property', 'td_projects_td_technology_products', 'td_publications_and_intellectual_activities', 'td_publications', 'td_ipr', 'td_cps_research_base', 'ed_tbi', 'ed_startup_companies', 'ed_gcc', 'ed_eir', ];
+		$tables = ['user_table', 'suggestion', 'approval_table', 'techlead_web_page', 'navavishkar_stay_facilities_table', 'navavishkar_stay_facilities_allotment_table', 'car_table', 'car_usage_table', 'cycle_table', 'cycle_usage_table', 'gym_table', 'coffee_table', 'cafeteria_table', 'event_table', 'outcomes_expected_table', 'event_decision_table', 'meetings_table', 'agenda_table', 'decision_table', 'participants_table', 'action_actor', 'visiting_card_table', 'mou_details_table', 'goal_setting_table', 'goal_progress_table', 'task_allocation_table', 'task_progress_status_table', 'timesheet_entry_table', 'internship_fellowship_details_app', 'star_pnt', 'hrd_sdp_events_table', 'training_program_on_geospatial_tchnologies_table', 'space_day_school_details_app', 'space_day_college_student_table', 'school_list', 'sdp_participants_college_details_table', 'asset_table', 'asset_allotment_table', 'sub_asset_table', 'sub_asset_allotment_table', 'it_inventory_app', 'it_inventory_billing_details', 'it_inventory_allotment_table', 'computer_details_table', 'computer_user_details', 'computer_allotment_table', 'employees_personal_data_table', 'employees_designation_table', 'employees_appraisal_table', 'beyond_working_hours_table', 'leave_table', 'half_day_leave_table', 'work_from_home_table', 'work_from_home_tasks_app', 'navavishkar_stay_table', 'navavishkar_stay_payment_table', 'email_id_allocation_table', 'attendence_details_table', 'all_startup_data_table', 'shortlisted_startups_for_fund_table', 'shortlisted_startups_dd_and_agreement_table', 'vikas_startup_applications_table', 'programs_table', 'evaluation_table', 'problem_statement_table', 'evaluators_table', 'approval_billing_table', 'honorarium_claim_table', 'all_bank_account_statement_table', 'payment_track_details_table', 'travel_table', 'travel_stay_table', 'travel_local_commute_table', 'r_and_d_progress', 'panel_decision_table_tdp', 'selected_proposals_final_tdp', 'stage_wise_budget_table_tdp', 'first_level_shortlisted_proposals_tdp', 'budget_table_tdp', 'panel_comments_tdp', 'selected_tdp', 'address_tdp', 'summary_table_tdp', 'project_details_tdp', 'newsletter_table', 'contact_call_log_table', 'r_and_d_monthly_progress_app', 'r_and_d_quarterly_progress_app', 'projects', 'td_projects_td_intellectual_property', 'td_projects_td_technology_products', 'td_publications_and_intellectual_activities', 'td_publications', 'td_ipr', 'td_cps_research_base', 'ed_tbi', 'ed_startup_companies', 'ed_gcc', 'ed_eir', 'ed_job_creation', 'hrd_Fellowship', ];
 		return in_array($tn, $tables);
 	}
 

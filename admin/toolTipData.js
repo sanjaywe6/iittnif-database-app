@@ -1793,6 +1793,42 @@ ed_eir_delete1Tip=["",spacer+"This option allows each member of the group to del
 ed_eir_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Entrepreneur In Residence (EIR)' table."];
 ed_eir_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Entrepreneur In Residence (EIR)' table."];
 
+// ed_job_creation table
+ed_job_creation_addTip=["",spacer+"This option allows all members of the group to add records to the 'Job Creation' table. A member who adds a record to the table becomes the 'owner' of that record."];
+
+ed_job_creation_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Job Creation' table."];
+ed_job_creation_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Job Creation' table."];
+ed_job_creation_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Job Creation' table."];
+ed_job_creation_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Job Creation' table."];
+
+ed_job_creation_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Job Creation' table."];
+ed_job_creation_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Job Creation' table."];
+ed_job_creation_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Job Creation' table."];
+ed_job_creation_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Job Creation' table, regardless of their owner."];
+
+ed_job_creation_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Job Creation' table."];
+ed_job_creation_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Job Creation' table."];
+ed_job_creation_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Job Creation' table."];
+ed_job_creation_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Job Creation' table."];
+
+// hrd_Fellowship table
+hrd_Fellowship_addTip=["",spacer+"This option allows all members of the group to add records to the 'Fellowship' table. A member who adds a record to the table becomes the 'owner' of that record."];
+
+hrd_Fellowship_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Fellowship' table."];
+hrd_Fellowship_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Fellowship' table."];
+hrd_Fellowship_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Fellowship' table."];
+hrd_Fellowship_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Fellowship' table."];
+
+hrd_Fellowship_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Fellowship' table."];
+hrd_Fellowship_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Fellowship' table."];
+hrd_Fellowship_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Fellowship' table."];
+hrd_Fellowship_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Fellowship' table, regardless of their owner."];
+
+hrd_Fellowship_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Fellowship' table."];
+hrd_Fellowship_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Fellowship' table."];
+hrd_Fellowship_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Fellowship' table."];
+hrd_Fellowship_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Fellowship' table."];
+
 /*
 	Style syntax:
 	-------------

@@ -1,0 +1,155 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Publications and Intellectual Activities Details -->
+		<div class="form-group td_ipr-publications_and_intellectual_activities_details" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Publications and Intellectual Activities Details</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="publications_and_intellectual_activities_details-readonly<%%RND1%%>"><%%COMBOTEXT(publications_and_intellectual_activities_details)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Title -->
+		<div class="form-group td_ipr-title" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Title</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(title)%%></div>
+			</div>
+		</div>
+		<!-- Field: IPR / Intellectual Activity -->
+		<div class="form-group td_ipr-ipr_ia" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">IPR / Intellectual Activity</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(ipr_ia)%%></div>
+			</div>
+		</div>
+		<!-- Field: Event type -->
+		<div class="form-group td_ipr-event_type" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Event type</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(event_type)%%></div>
+			</div>
+		</div>
+		<!-- Field: Technology Domain -->
+		<div class="form-group td_ipr-technology_domain" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Technology Domain</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(technology_domain)%%></div>
+			</div>
+		</div>
+		<!-- Field: Collaborating Organization -->
+		<div class="form-group td_ipr-collaborating_organization" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Collaborating Organization</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(collaborating_organization)%%></div>
+			</div>
+		</div>
+		<!-- Field: Event venue address -->
+		<div class="form-group td_ipr-event_venue_address" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Event venue address</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(event_venue_address)%%></div>
+			</div>
+		</div>
+		<!-- Field: State -->
+		<div class="form-group td_ipr-state" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">State</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(state)%%></div>
+			</div>
+		</div>
+		<!-- Field: District -->
+		<div class="form-group td_ipr-district" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">District</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(district)%%></div>
+			</div>
+		</div>
+		<!-- Field: Start date -->
+		<div class="form-group td_ipr-start_date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Start date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(start_date)%%></div>
+			</div>
+		</div>
+		<!-- Field: End date -->
+		<div class="form-group td_ipr-end_date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">End date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(end_date)%%></div>
+			</div>
+		</div>
+		<!-- Field: Total Number of Participants -->
+		<div class="form-group td_ipr-total_number_of_participants" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Total Number of Participants</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(total_number_of_participants)%%></div>
+			</div>
+		</div>
+		<!-- Field: Women participants -->
+		<div class="form-group td_ipr-women_participants" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Women participants</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(women_participants)%%></div>
+			</div>
+		</div>
+		<!-- Field: ST Participants -->
+		<div class="form-group td_ipr-st_participants" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">ST Participants</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(st_participants)%%></div>
+			</div>
+		</div>
+		<!-- Field: SC Participants -->
+		<div class="form-group td_ipr-sc_participants" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">SC Participants</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(sc_participants)%%></div>
+			</div>
+		</div>
+		<!-- Field: Outcomes -->
+		<div class="form-group td_ipr-outcomes" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Outcomes</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(outcomes)%%></div>
+			</div>
+		</div>
+		<!-- Field: Created By Username -->
+		<div class="form-group td_ipr-created_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Created By Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(created_by_username)%%></div>
+			</div>
+		</div>
+		<!-- Field: Last Updated by Username -->
+		<div class="form-group td_ipr-last_updated_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Last Updated by Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(last_updated_by_username)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

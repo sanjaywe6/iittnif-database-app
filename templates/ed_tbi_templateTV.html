@@ -1,0 +1,21 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the ed_tbi_init() hook (in hooks/ed_tbi.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="ed_tbi-id-<%%VALUE(id)%%>" class="ed_tbi-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></td>
+		<td id="ed_tbi-year-<%%VALUE(id)%%>" class="ed_tbi-year"><%%SELECT%%><%%VALUE(year)%%><%%ENDSELECT%%></td>
+		<td id="ed_tbi-tbi_name-<%%VALUE(id)%%>" class="ed_tbi-tbi_name"><%%SELECT%%><%%VALUE(tbi_name)%%><%%ENDSELECT%%></td>
+		<td id="ed_tbi-type-<%%VALUE(id)%%>" class="ed_tbi-type"><%%SELECT%%><%%VALUE(type)%%><%%ENDSELECT%%></td>
+		<td id="ed_tbi-institution-<%%VALUE(id)%%>" class="ed_tbi-institution"><%%SELECT%%><%%VALUE(institution)%%><%%ENDSELECT%%></td>
+		<td id="ed_tbi-tbi_facilities-<%%VALUE(id)%%>" class="ed_tbi-tbi_facilities"><%%SELECT%%><%%VALUE(tbi_facilities)%%><%%ENDSELECT%%></td>
+		<td id="ed_tbi-collaboration_date-<%%VALUE(id)%%>" class="ed_tbi-collaboration_date"><%%SELECT%%><%%VALUE(collaboration_date)%%><%%ENDSELECT%%></td>
+		<td id="ed_tbi-tih_payment-<%%VALUE(id)%%>" class="ed_tbi-tih_payment"><%%SELECT%%><%%VALUE(tih_payment)%%><%%ENDSELECT%%></td>
+		<td id="ed_tbi-charging_status-<%%VALUE(id)%%>" class="ed_tbi-charging_status"><%%SELECT%%><%%VALUE(charging_status)%%><%%ENDSELECT%%></td>
+		<td id="ed_tbi-charges-<%%VALUE(id)%%>" class="ed_tbi-charges"><%%SELECT%%><%%VALUE(charges)%%><%%ENDSELECT%%></td>
+		<td id="ed_tbi-created_by_username-<%%VALUE(id)%%>" class="ed_tbi-created_by_username"><%%SELECT%%><%%VALUE(created_by_username)%%><%%ENDSELECT%%></td>
+		<td id="ed_tbi-created_at-<%%VALUE(id)%%>" class="ed_tbi-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
+		<td id="ed_tbi-last_updated_by_username-<%%VALUE(id)%%>" class="ed_tbi-last_updated_by_username"><%%SELECT%%><%%VALUE(last_updated_by_username)%%><%%ENDSELECT%%></td>
+		<td id="ed_tbi-last_updated_at-<%%VALUE(id)%%>" class="ed_tbi-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>

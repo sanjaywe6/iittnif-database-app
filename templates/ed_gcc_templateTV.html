@@ -1,0 +1,20 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the ed_gcc_init() hook (in hooks/ed_gcc.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="ed_gcc-year-<%%VALUE(id)%%>" class="ed_gcc-year"><%%SELECT%%><%%VALUE(year)%%><%%ENDSELECT%%></td>
+		<td id="ed_gcc-name-<%%VALUE(id)%%>" class="ed_gcc-name"><%%SELECT%%><%%VALUE(name)%%><%%ENDSELECT%%></td>
+		<td id="ed_gcc-finalists-<%%VALUE(id)%%>" class="ed_gcc-finalists text-right"><%%SELECT%%><%%VALUE(finalists)%%><%%ENDSELECT%%></td>
+		<td id="ed_gcc-Number_of_Enrolled_Participants-<%%VALUE(id)%%>" class="ed_gcc-Number_of_Enrolled_Participants text-right"><%%SELECT%%><%%VALUE(Number_of_Enrolled_Participants)%%><%%ENDSELECT%%></td>
+		<td id="ed_gcc-Technology_Domain-<%%VALUE(id)%%>" class="ed_gcc-Technology_Domain"><%%SELECT%%><%%VALUE(Technology_Domain)%%><%%ENDSELECT%%></td>
+		<td id="ed_gcc-Start_Date-<%%VALUE(id)%%>" class="ed_gcc-Start_Date"><%%SELECT%%><%%VALUE(Start_Date)%%><%%ENDSELECT%%></td>
+		<td id="ed_gcc-End_Date-<%%VALUE(id)%%>" class="ed_gcc-End_Date"><%%SELECT%%><%%VALUE(End_Date)%%><%%ENDSELECT%%></td>
+		<td id="ed_gcc-status-<%%VALUE(id)%%>" class="ed_gcc-status"><%%SELECT%%><%%VALUE(status)%%><%%ENDSELECT%%></td>
+		<td id="ed_gcc-Co_Sponsors-<%%VALUE(id)%%>" class="ed_gcc-Co_Sponsors"><%%SELECT%%><%%VALUE(Co_Sponsors)%%><%%ENDSELECT%%></td>
+		<td id="ed_gcc-created_by_username-<%%VALUE(id)%%>" class="ed_gcc-created_by_username"><%%SELECT%%><%%VALUE(created_by_username)%%><%%ENDSELECT%%></td>
+		<td id="ed_gcc-created_at-<%%VALUE(id)%%>" class="ed_gcc-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
+		<td id="ed_gcc-last_updated_by_username-<%%VALUE(id)%%>" class="ed_gcc-last_updated_by_username"><%%SELECT%%><%%VALUE(last_updated_by_username)%%><%%ENDSELECT%%></td>
+		<td id="ed_gcc-last_updated_at-<%%VALUE(id)%%>" class="ed_gcc-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>

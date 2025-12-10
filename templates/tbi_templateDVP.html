@@ -14,6 +14,55 @@
 
 <div class="panel-body">
 	<fieldset class="form-horizontal">
+		<!-- Field: Year -->
+		<div class="form-group tbi-year" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Year</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(year)%%></div>
+			</div>
+		</div>
+		<!-- Field: TBI Name -->
+		<div class="form-group tbi-tbi_name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">TBI Name</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(tbi_name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Type -->
+		<div class="form-group tbi-type" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Type</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(type)%%></div>
+			</div>
+		</div>
+		<!-- Field: TBI Facilities -->
+		<div class="form-group tbi-tbi_facilities" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">TBI Facilities</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(tbi_facilities)%%></div>
+			</div>
+		</div>
+		<!-- Field: Collaboration/TBI Start Date -->
+		<div class="form-group tbi-collaboration_date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Collaboration/TBI Start Date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(collaboration_date)%%></div>
+			</div>
+		</div>
+		<!-- Field: TIH Payment for Facilities -->
+		<div class="form-group tbi-tih_payment" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">TIH Payment for Facilities</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(tih_payment)%%></div>
+			</div>
+		</div>
+		<!-- Field: Is TIH Charging Startups -->
+		<div class="form-group tbi-charging_status" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Is TIH Charging Startups</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(charging_status)%%></div>
+			</div>
+		</div>
 	</fieldset>
 </div>
 <script>

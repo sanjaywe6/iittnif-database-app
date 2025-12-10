@@ -1,0 +1,113 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Year -->
+		<div class="form-group td_projects_td_intellectual_property-year" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Year</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(year)%%></div>
+			</div>
+		</div>
+		<!-- Field: IP Category -->
+		<div class="form-group td_projects_td_intellectual_property-ip_category" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">IP Category</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(ip_category)%%></div>
+			</div>
+		</div>
+		<!-- Field: IP Title -->
+		<div class="form-group td_projects_td_intellectual_property-ip_title" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">IP Title</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(ip_title)%%></div>
+			</div>
+		</div>
+		<!-- Field: Technology Area -->
+		<div class="form-group td_projects_td_intellectual_property-technology_area" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Technology Area</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(technology_area)%%></div>
+			</div>
+		</div>
+		<!-- Field: Year Field -->
+		<div class="form-group td_projects_td_intellectual_property-year_field" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Year Field</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(year_field)%%></div>
+			</div>
+		</div>
+		<!-- Field: Year Granted -->
+		<div class="form-group td_projects_td_intellectual_property-year_granted" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Year Granted</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(year_granted)%%></div>
+			</div>
+		</div>
+		<!-- Field: Patent ID -->
+		<div class="form-group td_projects_td_intellectual_property-patent_id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Patent ID</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(patent_id)%%></div>
+			</div>
+		</div>
+		<!-- Field: Type -->
+		<div class="form-group td_projects_td_intellectual_property-type" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Type</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(type)%%></div>
+			</div>
+		</div>
+		<!-- Field: Source of IP Category -->
+		<div class="form-group td_projects_td_intellectual_property-source_of_ip_category" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Source of IP Category</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(source_of_ip_category)%%></div>
+			</div>
+		</div>
+		<!-- Field: Source of IP -->
+		<div class="form-group td_projects_td_intellectual_property-source_of_ip" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Source of IP</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="source_of_ip<%%RND1%%>"><%%COMBOTEXT(source_of_ip)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Created By Username -->
+		<div class="form-group td_projects_td_intellectual_property-created_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Created By Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(created_by_username)%%></div>
+			</div>
+		</div>
+		<!-- Field: Last Updated by Username -->
+		<div class="form-group td_projects_td_intellectual_property-last_updated_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Last Updated by Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(last_updated_by_username)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

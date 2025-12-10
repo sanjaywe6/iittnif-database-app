@@ -19,24 +19,59 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`tbi`.`id`" => "id",
+		"`tbi`.`year`" => "year",
+		"`tbi`.`tbi_name`" => "tbi_name",
+		"`tbi`.`type`" => "type",
+		"`tbi`.`tbi_facilities`" => "tbi_facilities",
+		"if(`tbi`.`collaboration_date`,date_format(`tbi`.`collaboration_date`,'%d/%m/%Y'),'')" => "collaboration_date",
+		"`tbi`.`tih_payment`" => "tih_payment",
+		"`tbi`.`charging_status`" => "charging_status",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
 		1 => '`tbi`.`id`',
+		2 => 2,
+		3 => 3,
+		4 => 4,
+		5 => 5,
+		6 => '`tbi`.`collaboration_date`',
+		7 => 7,
+		8 => 8,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`tbi`.`id`" => "id",
+		"`tbi`.`year`" => "year",
+		"`tbi`.`tbi_name`" => "tbi_name",
+		"`tbi`.`type`" => "type",
+		"`tbi`.`tbi_facilities`" => "tbi_facilities",
+		"if(`tbi`.`collaboration_date`,date_format(`tbi`.`collaboration_date`,'%d/%m/%Y'),'')" => "collaboration_date",
+		"`tbi`.`tih_payment`" => "tih_payment",
+		"`tbi`.`charging_status`" => "charging_status",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`tbi`.`id`" => "ID",
+		"`tbi`.`year`" => "Year",
+		"`tbi`.`tbi_name`" => "TBI Name",
+		"`tbi`.`type`" => "Type",
+		"`tbi`.`tbi_facilities`" => "TBI Facilities",
+		"`tbi`.`collaboration_date`" => "Collaboration/TBI Start Date",
+		"`tbi`.`tih_payment`" => "TIH Payment for Facilities",
+		"`tbi`.`charging_status`" => "Is TIH Charging Startups",
 	];
 
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`tbi`.`id`" => "id",
+		"`tbi`.`year`" => "year",
+		"`tbi`.`tbi_name`" => "tbi_name",
+		"`tbi`.`type`" => "type",
+		"`tbi`.`tbi_facilities`" => "tbi_facilities",
+		"if(`tbi`.`collaboration_date`,date_format(`tbi`.`collaboration_date`,'%d/%m/%Y'),'')" => "collaboration_date",
+		"`tbi`.`tih_payment`" => "tih_payment",
+		"`tbi`.`charging_status`" => "charging_status",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -72,10 +107,10 @@
 	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, ];
-	$x->ColCaption = ['ID', ];
-	$x->ColFieldName = ['id', ];
-	$x->ColNumber  = [1, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['ID', 'Year', 'TBI Name', 'Type', 'TBI Facilities', 'Collaboration/TBI Start Date', 'TIH Payment for Facilities', 'Is TIH Charging Startups', ];
+	$x->ColFieldName = ['id', 'year', 'tbi_name', 'type', 'tbi_facilities', 'collaboration_date', 'tih_payment', 'charging_status', ];
+	$x->ColNumber  = [1, 2, 3, 4, 5, 6, 7, 8, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/tbi_templateTV.html';

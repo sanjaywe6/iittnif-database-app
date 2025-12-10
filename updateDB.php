@@ -235,28 +235,68 @@
 		setupTable('r_and_d_quarterly_progress_app', []);
 		setupIndexes('r_and_d_quarterly_progress_app', ['r_and_d_lookup',]);
 
-		setupTable('projects', [
-				"ALTER TABLE `projects` DROP `year_of_commercialization_area`",
-				"ALTER TABLE `projects` DROP `commercialization_value`",
+		setupTable('projects', []);
+
+		setupTable('td_projects_td_intellectual_property', []);
+		setupIndexes('td_projects_td_intellectual_property', ['source_of_ip',]);
+
+		setupTable('td_projects_td_technology_products', []);
+		setupIndexes('td_projects_td_technology_products', ['source_of_ip',]);
+
+		setupTable('td_publications_and_intellectual_activities', []);
+
+		setupTable('td_publications', []);
+		setupIndexes('td_publications', ['publications_and_intellectual_activities_details','source_of_ip',]);
+
+		setupTable('td_ipr', []);
+		setupIndexes('td_ipr', ['publications_and_intellectual_activities_details',]);
+
+		setupTable('td_cps_research_base', []);
+
+		setupTable('ed_tbi', []);
+
+		setupTable('ed_startup_companies', []);
+
+		setupTable('ed_gcc', [
+				"ALTER TABLE `table98` RENAME `ed_gcc`",
+				"UPDATE `membership_userrecords` SET `tableName`='ed_gcc' WHERE `tableName`='table98'",
+				"UPDATE `membership_userpermissions` SET `tableName`='ed_gcc' WHERE `tableName`='table98'",
+				"UPDATE `membership_grouppermissions` SET `tableName`='ed_gcc' WHERE `tableName`='table98'",
+				"ALTER TABLE ed_gcc ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `ed_gcc` CHANGE `id` `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ",
+				"ALTER TABLE `ed_gcc` CHANGE `field1` `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ",
+				"ALTER TABLE `ed_gcc` ADD `year` VARCHAR(255) NOT NULL DEFAULT '2020-21' ",
+				"ALTER TABLE ed_gcc ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `ed_gcc` CHANGE `field1` `name` VARCHAR(255) NULL ",
+				" ALTER TABLE `ed_gcc` CHANGE `name` `name` VARCHAR(255) NOT NULL ",
+				"ALTER TABLE ed_gcc ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `ed_gcc` CHANGE `field1` `finalists` VARCHAR(255) NULL ",
+				" ALTER TABLE `ed_gcc` CHANGE `finalists` `finalists` INT NULL ",
+				"ALTER TABLE ed_gcc ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `ed_gcc` CHANGE `field1` `NumberofEnrolledParticipants` VARCHAR(255) NULL ",
+				"ALTER TABLE `ed_gcc` CHANGE `NumberofEnrolledParticipants` `Number_of_Enrolled_Participants` VARCHAR(255) NULL ",
+				" ALTER TABLE `ed_gcc` CHANGE `Number_of_Enrolled_Participants` `Number_of_Enrolled_Participants` INT NULL ",
+				"ALTER TABLE ed_gcc ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `ed_gcc` CHANGE `field1` `Technology_Domain` VARCHAR(255) NULL ",
+				"ALTER TABLE ed_gcc ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `ed_gcc` CHANGE `date` `date` DATE NULL ",
+				"ALTER TABLE `ed_gcc` CHANGE `field1` `Start_Date` DATE NULL ",
+				" ALTER TABLE `ed_gcc` CHANGE `Start_Date` `Start_Date` DATE NULL ",
+				"ALTER TABLE ed_gcc ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `ed_gcc` CHANGE `date` `date` DATE NULL ",
+				"ALTER TABLE `ed_gcc` CHANGE `field1` `End_Date` DATE NULL ",
+				" ALTER TABLE `ed_gcc` CHANGE `End_Date` `End_Date` DATE NULL ",
+				"ALTER TABLE ed_gcc ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `ed_gcc` CHANGE `field1` `status` VARCHAR(255) NULL ",
+				"ALTER TABLE ed_gcc ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `ed_gcc` CHANGE `field1` `Co_Sponsors` VARCHAR(255) NULL ",
+				"ALTER TABLE `ed_gcc` ADD `created_by_username` VARCHAR(255) NULL ",
+				"ALTER TABLE `ed_gcc` ADD `created_at` VARCHAR(255) NULL ",
+				"ALTER TABLE `ed_gcc` ADD `last_updated_by_username` VARCHAR(255) NULL ",
+				"ALTER TABLE `ed_gcc` ADD `last_updated_at` VARCHAR(255) NULL ",
+				"ALTER TABLE `ed_gcc` ADD `last_updated_by` VARCHAR(255) NULL ",
+				"ALTER TABLE `ed_gcc` ADD `created_by` VARCHAR(255) NULL ",
 			]);
-
-		setupTable('td_intellectual_property', []);
-		setupIndexes('td_intellectual_property', ['source_of_ip',]);
-
-		setupTable('td_technology_products', []);
-		setupIndexes('td_technology_products', ['source_of_ip',]);
-
-		setupTable('publications_and_intellectual_activities', []);
-
-		setupTable('publications', []);
-		setupIndexes('publications', ['publications_and_intellectual_activities_details','source_of_ip',]);
-
-		setupTable('ipr', []);
-		setupIndexes('ipr', ['publications_and_intellectual_activities_details',]);
-
-		setupTable('cps_research_base', []);
-
-		setupTable('tbi', []);
 
 
 

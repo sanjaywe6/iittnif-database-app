@@ -1,0 +1,21 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the ed_tbi_init() hook (in hooks/ed_tbi.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="ed_tbi-id-<%%VALUE(id)%%>" class="ed_tbi-id text-right text-bold"><%%VALUE(id)%%></td>
+		<td id="ed_tbi-year-<%%VALUE(id)%%>" class="ed_tbi-year text-bold"><%%VALUE(year)%%></td>
+		<td id="ed_tbi-tbi_name-<%%VALUE(id)%%>" class="ed_tbi-tbi_name text-bold"><%%VALUE(tbi_name)%%></td>
+		<td id="ed_tbi-type-<%%VALUE(id)%%>" class="ed_tbi-type text-bold"><%%VALUE(type)%%></td>
+		<td id="ed_tbi-institution-<%%VALUE(id)%%>" class="ed_tbi-institution text-bold"><%%VALUE(institution)%%></td>
+		<td id="ed_tbi-tbi_facilities-<%%VALUE(id)%%>" class="ed_tbi-tbi_facilities text-bold"><%%VALUE(tbi_facilities)%%></td>
+		<td id="ed_tbi-collaboration_date-<%%VALUE(id)%%>" class="ed_tbi-collaboration_date text-bold"><%%VALUE(collaboration_date)%%></td>
+		<td id="ed_tbi-tih_payment-<%%VALUE(id)%%>" class="ed_tbi-tih_payment text-bold"><%%VALUE(tih_payment)%%></td>
+		<td id="ed_tbi-charging_status-<%%VALUE(id)%%>" class="ed_tbi-charging_status text-bold"><%%VALUE(charging_status)%%></td>
+		<td id="ed_tbi-charges-<%%VALUE(id)%%>" class="ed_tbi-charges text-bold"><%%VALUE(charges)%%></td>
+		<td id="ed_tbi-created_by_username-<%%VALUE(id)%%>" class="ed_tbi-created_by_username text-bold"><%%VALUE(created_by_username)%%></td>
+		<td id="ed_tbi-created_at-<%%VALUE(id)%%>" class="ed_tbi-created_at text-bold"><%%VALUE(created_at)%%></td>
+		<td id="ed_tbi-last_updated_by_username-<%%VALUE(id)%%>" class="ed_tbi-last_updated_by_username text-bold"><%%VALUE(last_updated_by_username)%%></td>
+		<td id="ed_tbi-last_updated_at-<%%VALUE(id)%%>" class="ed_tbi-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>

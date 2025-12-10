@@ -175,14 +175,14 @@
 	$x->AllowPrintingDV = 1;
 	$x->AllowCSV = 1;
 	$x->AllowAdminShowSQL = showSQL();
-	$x->RecordsPerPage = 30;
+	$x->RecordsPerPage = 10;
 	$x->QuickSearch = 1;
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'approval_table_view.php';
 	$x->TableTitle = 'Approval - App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`approval_table`.`id`';
-	$x->DefaultSortField = '1';
+	$x->DefaultSortField = '15';
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];

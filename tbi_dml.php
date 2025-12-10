@@ -15,8 +15,26 @@ function tbi_insert(&$error_message = '') {
 		return false;
 	}
 
-	// nothing to insert as all fields are read-only
-	return;
+	$data = [
+		'year' => Request::val('year', '2020-21'),
+		'tbi_name' => Request::val('tbi_name', ''),
+		'type' => Request::val('type', ''),
+		'tbi_facilities' => Request::val('tbi_facilities', ''),
+		'collaboration_date' => Request::dateComponents('collaboration_date', ''),
+		'tih_payment' => Request::val('tih_payment', ''),
+		'charging_status' => Request::val('charging_status', ''),
+	];
+
+	// record owner is current user
+	$recordOwner = getLoggedMemberID();
+
+	$recID = tableInsert('tbi', $data, $recordOwner, $error_message);
+
+	// if this record is a copy of another record, copy children if applicable
+	if(strlen(Request::val('SelectedID')) && $recID !== false)
+		tbi_copy_children($recID, Request::val('SelectedID'));
+
+	return $recID;
 }
 
 function tbi_copy_children($destination_id, $source_id) {
@@ -70,8 +88,99 @@ function tbi_update(&$selected_id, &$error_message = '') {
 	// mm: can member edit record?
 	if(!check_record_permission('tbi', $selected_id, 'edit')) return false;
 
-	// nothing to update as all fields are read-only
-	return;
+	$data = [
+		'year' => Request::val('year', ''),
+		'tbi_name' => Request::val('tbi_name', ''),
+		'type' => Request::val('type', ''),
+		'tbi_facilities' => Request::val('tbi_facilities', ''),
+		'collaboration_date' => Request::dateComponents('collaboration_date', ''),
+		'tih_payment' => Request::val('tih_payment', ''),
+		'charging_status' => Request::val('charging_status', ''),
+	];
+
+	if($data['year'] === '') {
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Year': {$Translation['field not null']}<br><br>";
+		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
+		exit;
+	}
+	if($data['tbi_name'] === '') {
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'TBI Name': {$Translation['field not null']}<br><br>";
+		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
+		exit;
+	}
+	if($data['type'] === '') {
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Type': {$Translation['field not null']}<br><br>";
+		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
+		exit;
+	}
+	if($data['tbi_facilities'] === '') {
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'TBI Facilities': {$Translation['field not null']}<br><br>";
+		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
+		exit;
+	}
+	if($data['collaboration_date'] === '') {
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Collaboration/TBI Start Date': {$Translation['field not null']}<br><br>";
+		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
+		exit;
+	}
+	if($data['tih_payment'] === '') {
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'TIH Payment for Facilities': {$Translation['field not null']}<br><br>";
+		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
+		exit;
+	}
+	if($data['charging_status'] === '') {
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Is TIH Charging Startups': {$Translation['field not null']}<br><br>";
+		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
+		exit;
+	}
+	// get existing values
+	$old_data = getRecord('tbi', $selected_id);
+	if(is_array($old_data)) {
+		$old_data = array_map('makeSafe', $old_data);
+		$old_data['selectedID'] = makeSafe($selected_id);
+	}
+
+	$data['selectedID'] = makeSafe($selected_id);
+
+	// hook: tbi_before_update
+	if(function_exists('tbi_before_update')) {
+		$args = ['old_data' => $old_data];
+		if(!tbi_before_update($data, getMemberInfo(), $args)) {
+			if(isset($args['error_message'])) $error_message = $args['error_message'];
+			return false;
+		}
+	}
+
+	$set = $data; unset($set['selectedID']);
+	foreach ($set as $field => $value) {
+		$set[$field] = ($value !== '' && $value !== NULL) ? $value : NULL;
+	}
+
+	if(!update(
+		'tbi',
+		backtick_keys_once($set),
+		['`id`' => $selected_id],
+		$error_message
+	)) {
+		echo $error_message;
+		echo '<a href="tbi_view.php?SelectedID=' . urlencode($selected_id) . "\">{$Translation['< back']}</a>";
+		exit;
+	}
+
+
+	update_calc_fields('tbi', $data['selectedID'], calculated_fields()['tbi']);
+
+	// hook: tbi_after_update
+	if(function_exists('tbi_after_update')) {
+		if($row = getRecord('tbi', $data['selectedID'])) $data = array_map('makeSafe', $row);
+
+		$data['selectedID'] = $data['id'];
+		$args = ['old_data' => $old_data];
+		if(!tbi_after_update($data, getMemberInfo(), $args)) return;
+	}
+
+	// mm: update record update timestamp
+	set_record_owner('tbi', $selected_id);
 }
 
 function tbi_form($selectedId = '', $allowUpdate = true, $allowInsert = true, $allowDelete = true, $separateDV = true, $templateDV = '', $templateDVP = '') {
@@ -114,18 +223,103 @@ function tbi_form($selectedId = '', $allowUpdate = true, $allowInsert = true, $a
 
 	// unique random identifier
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
+	// combobox: year
+	$combo_year = new Combo;
+	$combo_year->ListType = 0;
+	$combo_year->MultipleSeparator = ', ';
+	$combo_year->ListBoxHeight = 10;
+	$combo_year->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/tbi.year.csv')) {
+		$year_data = addslashes(implode('', @file(__DIR__ . '/hooks/tbi.year.csv')));
+		$combo_year->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($year_data))));
+		$combo_year->ListData = $combo_year->ListItem;
+	} else {
+		$combo_year->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("2020-21;;2021-22;;2022-23;;2023-24;;2024-25;;2025-26;;2026-27;;2027-28"))));
+		$combo_year->ListData = $combo_year->ListItem;
+	}
+	$combo_year->SelectName = 'year';
+	$combo_year->AllowNull = false;
+	// combobox: type
+	$combo_type = new Combo;
+	$combo_type->ListType = 0;
+	$combo_type->MultipleSeparator = ', ';
+	$combo_type->ListBoxHeight = 10;
+	$combo_type->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/tbi.type.csv')) {
+		$type_data = addslashes(implode('', @file(__DIR__ . '/hooks/tbi.type.csv')));
+		$combo_type->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($type_data))));
+		$combo_type->ListData = $combo_type->ListItem;
+	} else {
+		$combo_type->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Existing;;Tied-up;;Created"))));
+		$combo_type->ListData = $combo_type->ListItem;
+	}
+	$combo_type->SelectName = 'type';
+	$combo_type->AllowNull = false;
+	// combobox: tbi_facilities
+	$combo_tbi_facilities = new Combo;
+	$combo_tbi_facilities->ListType = 0;
+	$combo_tbi_facilities->MultipleSeparator = ', ';
+	$combo_tbi_facilities->ListBoxHeight = 10;
+	$combo_tbi_facilities->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/tbi.tbi_facilities.csv')) {
+		$tbi_facilities_data = addslashes(implode('', @file(__DIR__ . '/hooks/tbi.tbi_facilities.csv')));
+		$combo_tbi_facilities->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($tbi_facilities_data))));
+		$combo_tbi_facilities->ListData = $combo_tbi_facilities->ListItem;
+	} else {
+		$combo_tbi_facilities->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Using exisiting TBI from host institute;;Own TBI by TIH;;Not Applicable"))));
+		$combo_tbi_facilities->ListData = $combo_tbi_facilities->ListItem;
+	}
+	$combo_tbi_facilities->SelectName = 'tbi_facilities';
+	$combo_tbi_facilities->AllowNull = false;
+	// combobox: collaboration_date
+	$combo_collaboration_date = new DateCombo;
+	$combo_collaboration_date->DateFormat = "dmy";
+	$combo_collaboration_date->MinYear = defined('tbi.collaboration_date.MinYear') ? constant('tbi.collaboration_date.MinYear') : 1900;
+	$combo_collaboration_date->MaxYear = defined('tbi.collaboration_date.MaxYear') ? constant('tbi.collaboration_date.MaxYear') : 2100;
+	$combo_collaboration_date->DefaultDate = parseMySQLDate('', '');
+	$combo_collaboration_date->MonthNames = $Translation['month names'];
+	$combo_collaboration_date->NamePrefix = 'collaboration_date';
+	// combobox: charging_status
+	$combo_charging_status = new Combo;
+	$combo_charging_status->ListType = 0;
+	$combo_charging_status->MultipleSeparator = ', ';
+	$combo_charging_status->ListBoxHeight = 10;
+	$combo_charging_status->RadiosPerLine = 1;
+	if(is_file(__DIR__ . '/hooks/tbi.charging_status.csv')) {
+		$charging_status_data = addslashes(implode('', @file(__DIR__ . '/hooks/tbi.charging_status.csv')));
+		$combo_charging_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($charging_status_data))));
+		$combo_charging_status->ListData = $combo_charging_status->ListItem;
+	} else {
+		$combo_charging_status->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Yes;;No"))));
+		$combo_charging_status->ListData = $combo_charging_status->ListItem;
+	}
+	$combo_charging_status->SelectName = 'charging_status';
+	$combo_charging_status->AllowNull = false;
 
 	if($hasSelectedId) {
 		if(!($row = getRecord('tbi', $selectedId))) {
 			return error_message($Translation['No records found'], 'tbi_view.php', false);
 		}
+		$combo_year->SelectedData = $row['year'];
+		$combo_type->SelectedData = $row['type'];
+		$combo_tbi_facilities->SelectedData = $row['tbi_facilities'];
+		$combo_collaboration_date->DefaultDate = $row['collaboration_date'];
+		$combo_charging_status->SelectedData = $row['charging_status'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
 	} else {
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
+		$combo_year->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('2020-21'));
+		$combo_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '4' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_tbi_facilities->SelectedText = (isset($filterField[1]) && $filterField[1] == '5' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
+		$combo_charging_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '8' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 	}
+	$combo_year->Render();
+	$combo_type->Render();
+	$combo_tbi_facilities->Render();
+	$combo_charging_status->Render();
 
 	ob_start();
 	?>
@@ -222,6 +416,14 @@ function tbi_form($selectedId = '', $allowUpdate = true, $allowInsert = true, $a
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
+		$jsReadOnly .= "\t\$j('#year').replaceWith('<div class=\"form-control-static\" id=\"year\">' + (\$j('#year').val() || '') + '</div>'); \$j('#year-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#tbi_name').replaceWith('<div class=\"form-control-static\" id=\"tbi_name\">' + (\$j('#tbi_name').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#type').replaceWith('<div class=\"form-control-static\" id=\"type\">' + (\$j('#type').val() || '') + '</div>'); \$j('#type-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#tbi_facilities').replaceWith('<div class=\"form-control-static\" id=\"tbi_facilities\">' + (\$j('#tbi_facilities').val() || '') + '</div>'); \$j('#tbi_facilities-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#collaboration_date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#collaboration_dateDay, #collaboration_dateMonth, #collaboration_dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#tih_payment').replaceWith('<div class=\"form-control-static\" id=\"tih_payment\">' + (\$j('#tih_payment').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#charging_status').replaceWith('<div class=\"form-control-static\" id=\"charging_status\">' + (\$j('#charging_status').val() || '') + '</div>'); \$j('#charging_status-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -232,6 +434,21 @@ function tbi_form($selectedId = '', $allowUpdate = true, $allowInsert = true, $a
 	}
 
 	// process combos
+	$templateCode = str_replace('<%%COMBO(year)%%>', $combo_year->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(year)%%>', $combo_year->SelectedData, $templateCode);
+	$templateCode = str_replace('<%%COMBO(type)%%>', $combo_type->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(type)%%>', $combo_type->SelectedData, $templateCode);
+	$templateCode = str_replace('<%%COMBO(tbi_facilities)%%>', $combo_tbi_facilities->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(tbi_facilities)%%>', $combo_tbi_facilities->SelectedData, $templateCode);
+	$templateCode = str_replace(
+		'<%%COMBO(collaboration_date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_collaboration_date->GetHTML(true) . '</div>' :
+			$combo_collaboration_date->GetHTML()
+		), $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(collaboration_date)%%>', $combo_collaboration_date->GetHTML(true), $templateCode);
+	$templateCode = str_replace('<%%COMBO(charging_status)%%>', $combo_charging_status->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(charging_status)%%>', $combo_charging_status->SelectedData, $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
 	$lookup_fields = [];
@@ -251,14 +468,55 @@ function tbi_form($selectedId = '', $allowUpdate = true, $allowInsert = true, $a
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(year)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(tbi_name)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(type)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(tbi_facilities)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(collaboration_date)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(tih_payment)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(charging_status)%%>', '', $templateCode);
 
 	// process values
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(year)%%>', safe_html($urow['year']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(year)%%>', html_attr($row['year']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(year)%%>', urlencode($urow['year']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(tbi_name)%%>', safe_html($urow['tbi_name']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(tbi_name)%%>', html_attr($row['tbi_name']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(tbi_name)%%>', urlencode($urow['tbi_name']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(type)%%>', safe_html($urow['type']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(type)%%>', html_attr($row['type']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(type)%%>', urlencode($urow['type']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(tbi_facilities)%%>', safe_html($urow['tbi_facilities']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(tbi_facilities)%%>', html_attr($row['tbi_facilities']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(tbi_facilities)%%>', urlencode($urow['tbi_facilities']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(collaboration_date)%%>', app_datetime($row['collaboration_date']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(collaboration_date)%%>', urlencode(app_datetime($urow['collaboration_date'])), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(tih_payment)%%>', safe_html($urow['tih_payment']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(tih_payment)%%>', html_attr($row['tih_payment']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(tih_payment)%%>', urlencode($urow['tih_payment']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(charging_status)%%>', safe_html($urow['charging_status']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(charging_status)%%>', html_attr($row['charging_status']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(charging_status)%%>', urlencode($urow['charging_status']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(year)%%>', '2020-21', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(year)%%>', urlencode('2020-21'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(tbi_name)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(tbi_name)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(type)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(type)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(tbi_facilities)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(tbi_facilities)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(collaboration_date)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(collaboration_date)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(tih_payment)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(tih_payment)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(charging_status)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(charging_status)%%>', urlencode(''), $templateCode);
 	}
 
 	// process translations

@@ -1,0 +1,106 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Year -->
+		<div class="form-group ed_gcc-year" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Year</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(year)%%></div>
+			</div>
+		</div>
+		<!-- Field: Name of Competition -->
+		<div class="form-group ed_gcc-name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Name of Competition</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Number of Finalists -->
+		<div class="form-group ed_gcc-finalists" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Number of Finalists</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(finalists)%%></div>
+			</div>
+		</div>
+		<!-- Field: Number of Enrolled Participants -->
+		<div class="form-group ed_gcc-Number_of_Enrolled_Participants" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Number of Enrolled Participants</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Number_of_Enrolled_Participants)%%></div>
+			</div>
+		</div>
+		<!-- Field: Technology Domain -->
+		<div class="form-group ed_gcc-Technology_Domain" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Technology Domain</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Technology_Domain)%%></div>
+			</div>
+		</div>
+		<!-- Field: Start Date -->
+		<div class="form-group ed_gcc-Start_Date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Start Date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(Start_Date)%%></div>
+			</div>
+		</div>
+		<!-- Field: End Date -->
+		<div class="form-group ed_gcc-End_Date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">End Date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(End_Date)%%></div>
+			</div>
+		</div>
+		<!-- Field: Status -->
+		<div class="form-group ed_gcc-status" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Status</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(status)%%></div>
+			</div>
+		</div>
+		<!-- Field: Co-Sponsors -->
+		<div class="form-group ed_gcc-Co_Sponsors" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Co-Sponsors</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(Co_Sponsors)%%></div>
+			</div>
+		</div>
+		<!-- Field: Created By Username -->
+		<div class="form-group ed_gcc-created_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Created By Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(created_by_username)%%></div>
+			</div>
+		</div>
+		<!-- Field: Last Updated by Username -->
+		<div class="form-group ed_gcc-last_updated_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Last Updated by Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(last_updated_by_username)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

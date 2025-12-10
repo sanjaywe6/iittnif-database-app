@@ -1,0 +1,106 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Year -->
+		<div class="form-group ed_tbi-year" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Year</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(year)%%></div>
+			</div>
+		</div>
+		<!-- Field: TBI Name -->
+		<div class="form-group ed_tbi-tbi_name" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">TBI Name</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(tbi_name)%%></div>
+			</div>
+		</div>
+		<!-- Field: Type -->
+		<div class="form-group ed_tbi-type" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Type</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(type)%%></div>
+			</div>
+		</div>
+		<!-- Field: Institution -->
+		<div class="form-group ed_tbi-institution" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Institution</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(institution)%%></div>
+			</div>
+		</div>
+		<!-- Field: TBI Facilities -->
+		<div class="form-group ed_tbi-tbi_facilities" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">TBI Facilities</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(tbi_facilities)%%></div>
+			</div>
+		</div>
+		<!-- Field: Collaboration/TBI Start Date -->
+		<div class="form-group ed_tbi-collaboration_date" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Collaboration/TBI Start Date</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(collaboration_date)%%></div>
+			</div>
+		</div>
+		<!-- Field: TIH Payment for Facilities -->
+		<div class="form-group ed_tbi-tih_payment" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">TIH Payment for Facilities</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(tih_payment)%%></div>
+			</div>
+		</div>
+		<!-- Field: Is TIH Charging Startups ? -->
+		<div class="form-group ed_tbi-charging_status" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Is TIH Charging Startups ?</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(charging_status)%%></div>
+			</div>
+		</div>
+		<!-- Field: Facility Charged by TIH -->
+		<div class="form-group ed_tbi-charges" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Facility Charged by TIH</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(charges)%%></div>
+			</div>
+		</div>
+		<!-- Field: Created By Username -->
+		<div class="form-group ed_tbi-created_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Created By Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(created_by_username)%%></div>
+			</div>
+		</div>
+		<!-- Field: Last Updated by Username -->
+		<div class="form-group ed_tbi-last_updated_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Last Updated by Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(last_updated_by_username)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

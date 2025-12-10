@@ -1,0 +1,18 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the td_cps_research_base_init() hook (in hooks/td_cps_research_base.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="td_cps_research_base-year-<%%VALUE(id)%%>" class="td_cps_research_base-year text-bold"><%%VALUE(year)%%></td>
+		<td id="td_cps_research_base-reasearch_name-<%%VALUE(id)%%>" class="td_cps_research_base-reasearch_name text-bold"><%%VALUE(reasearch_name)%%></td>
+		<td id="td_cps_research_base-Institution-<%%VALUE(id)%%>" class="td_cps_research_base-Institution text-bold"><%%VALUE(Institution)%%></td>
+		<td id="td_cps_research_base-department-<%%VALUE(id)%%>" class="td_cps_research_base-department text-bold"><%%VALUE(department)%%></td>
+		<td id="td_cps_research_base-technology_area-<%%VALUE(id)%%>" class="td_cps_research_base-technology_area text-bold"><%%VALUE(technology_area)%%></td>
+		<td id="td_cps_research_base-gender-<%%VALUE(id)%%>" class="td_cps_research_base-gender text-bold"><%%VALUE(gender)%%></td>
+		<td id="td_cps_research_base-cast_category-<%%VALUE(id)%%>" class="td_cps_research_base-cast_category text-bold"><%%VALUE(cast_category)%%></td>
+		<td id="td_cps_research_base-created_by_username-<%%VALUE(id)%%>" class="td_cps_research_base-created_by_username text-bold"><%%VALUE(created_by_username)%%></td>
+		<td id="td_cps_research_base-created_at-<%%VALUE(id)%%>" class="td_cps_research_base-created_at text-bold"><%%VALUE(created_at)%%></td>
+		<td id="td_cps_research_base-last_updated_by_username-<%%VALUE(id)%%>" class="td_cps_research_base-last_updated_by_username text-bold"><%%VALUE(last_updated_by_username)%%></td>
+		<td id="td_cps_research_base-last_updated_at-<%%VALUE(id)%%>" class="td_cps_research_base-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>

@@ -1,0 +1,28 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the td_ipr_init() hook (in hooks/td_ipr.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="td_ipr-id-<%%VALUE(id)%%>" class="td_ipr-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></td>
+		<td id="td_ipr-publications_and_intellectual_activities_details-<%%VALUE(id)%%>" class="td_ipr-publications_and_intellectual_activities_details"><%%SELECT%%><%%VALUE(publications_and_intellectual_activities_details)%%><%%ENDSELECT%%></td>
+		<td id="td_ipr-title-<%%VALUE(id)%%>" class="td_ipr-title"><%%SELECT%%><%%VALUE(title)%%><%%ENDSELECT%%></td>
+		<td id="td_ipr-ipr_ia-<%%VALUE(id)%%>" class="td_ipr-ipr_ia"><%%SELECT%%><%%VALUE(ipr_ia)%%><%%ENDSELECT%%></td>
+		<td id="td_ipr-event_type-<%%VALUE(id)%%>" class="td_ipr-event_type"><%%SELECT%%><%%VALUE(event_type)%%><%%ENDSELECT%%></td>
+		<td id="td_ipr-technology_domain-<%%VALUE(id)%%>" class="td_ipr-technology_domain"><%%SELECT%%><%%VALUE(technology_domain)%%><%%ENDSELECT%%></td>
+		<td id="td_ipr-collaborating_organization-<%%VALUE(id)%%>" class="td_ipr-collaborating_organization"><%%SELECT%%><%%VALUE(collaborating_organization)%%><%%ENDSELECT%%></td>
+		<td id="td_ipr-event_venue_address-<%%VALUE(id)%%>" class="td_ipr-event_venue_address"><%%SELECT%%><%%VALUE(event_venue_address)%%><%%ENDSELECT%%></td>
+		<td id="td_ipr-state-<%%VALUE(id)%%>" class="td_ipr-state"><%%SELECT%%><%%VALUE(state)%%><%%ENDSELECT%%></td>
+		<td id="td_ipr-district-<%%VALUE(id)%%>" class="td_ipr-district"><%%SELECT%%><%%VALUE(district)%%><%%ENDSELECT%%></td>
+		<td id="td_ipr-start_date-<%%VALUE(id)%%>" class="td_ipr-start_date"><%%SELECT%%><%%VALUE(start_date)%%><%%ENDSELECT%%></td>
+		<td id="td_ipr-end_date-<%%VALUE(id)%%>" class="td_ipr-end_date"><%%SELECT%%><%%VALUE(end_date)%%><%%ENDSELECT%%></td>
+		<td id="td_ipr-total_number_of_participants-<%%VALUE(id)%%>" class="td_ipr-total_number_of_participants text-right"><%%SELECT%%><%%VALUE(total_number_of_participants)%%><%%ENDSELECT%%></td>
+		<td id="td_ipr-women_participants-<%%VALUE(id)%%>" class="td_ipr-women_participants text-right"><%%SELECT%%><%%VALUE(women_participants)%%><%%ENDSELECT%%></td>
+		<td id="td_ipr-st_participants-<%%VALUE(id)%%>" class="td_ipr-st_participants text-right"><%%SELECT%%><%%VALUE(st_participants)%%><%%ENDSELECT%%></td>
+		<td id="td_ipr-sc_participants-<%%VALUE(id)%%>" class="td_ipr-sc_participants text-right"><%%SELECT%%><%%VALUE(sc_participants)%%><%%ENDSELECT%%></td>
+		<td id="td_ipr-outcomes-<%%VALUE(id)%%>" class="td_ipr-outcomes"><%%SELECT%%><%%VALUE(outcomes)%%><%%ENDSELECT%%></td>
+		<td id="td_ipr-created_by_username-<%%VALUE(id)%%>" class="td_ipr-created_by_username"><%%SELECT%%><%%VALUE(created_by_username)%%><%%ENDSELECT%%></td>
+		<td id="td_ipr-created_at-<%%VALUE(id)%%>" class="td_ipr-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
+		<td id="td_ipr-last_updated_by_username-<%%VALUE(id)%%>" class="td_ipr-last_updated_by_username"><%%SELECT%%><%%VALUE(last_updated_by_username)%%><%%ENDSELECT%%></td>
+		<td id="td_ipr-last_updated_at-<%%VALUE(id)%%>" class="td_ipr-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>

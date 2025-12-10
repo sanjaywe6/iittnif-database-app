@@ -1,0 +1,298 @@
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/td_projects_td_technology_products-dv.js rather than editing this file -->
+
+<div id="detail-view"></div>
+<div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
+
+<div id="td_projects_td_technology_products_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+
+<div class="panel-body hidden" id="td_projects_td_technology_products_dv_container">
+	<!-- child links -->
+	<div class="row vspacer-md">
+		<div class="col-xs-12 children-links">
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<hr class="hidden-xs hidden-sm">
+
+	<div class="row">
+		<!-- form inputs -->
+		<div class="col-md-8 col-lg-10" id="td_projects_td_technology_products_dv_form">
+			<fieldset class="form-horizontal">
+
+				<!-- Field: Year -->
+				<div class="form-group td_projects_td_technology_products-year">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="year">Year<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(year)%%>
+					</div>
+				</div>
+
+				<!-- Field: Tech Product Title -->
+				<div class="form-group td_projects_td_technology_products-tech_product_title">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="tech_product_title">Tech Product Title<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="tech_product_title" id="tech_product_title" value="<%%VALUE(tech_product_title)%%>" required>
+					</div>
+				</div>
+
+				<!-- Field: Tech Product Type -->
+				<div class="form-group td_projects_td_technology_products-tech_produc_type">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="tech_produc_type">Tech Product Type<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(tech_produc_type)%%>
+					</div>
+				</div>
+
+				<!-- Field: Technology Area -->
+				<div class="form-group td_projects_td_technology_products-technology_area">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="technology_area">Technology Area<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(technology_area)%%>
+					</div>
+				</div>
+
+				<!-- Field: Project Value (Rs.) In Lakhs -->
+				<div class="form-group td_projects_td_technology_products-project_value">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="project_value">Project Value (Rs.) In Lakhs<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<input maxlength="11" type="text" class="form-control" name="project_value" id="project_value" value="<%%VALUE(project_value)%%>" required>
+					</div>
+				</div>
+
+				<!-- Field: Status of License Transfer -->
+				<div class="form-group td_projects_td_technology_products-status_of_license_transfer">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="status_of_license_transfer">Status of License Transfer<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(status_of_license_transfer)%%>
+					</div>
+				</div>
+
+				<!-- Field: Value of the Transfer in Lakhs (Rs.) -->
+				<div class="form-group td_projects_td_technology_products-value_of_transfer">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="value_of_transfer">Value of the Transfer in Lakhs (Rs.)<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<input maxlength="11" type="text" class="form-control" name="value_of_transfer" id="value_of_transfer" value="<%%VALUE(value_of_transfer)%%>" required>
+					</div>
+				</div>
+
+				<!-- Field: TRL Level -->
+				<div class="form-group td_projects_td_technology_products-trl_level">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="trl_level">TRL Level<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(trl_level)%%>
+					</div>
+				</div>
+
+				<!-- Field: Commercialised -->
+				<div class="form-group td_projects_td_technology_products-commercialised">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="commercialised">Commercialised<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(commercialised)%%>
+					</div>
+				</div>
+
+				<!-- Field: Source of IP Category -->
+				<div class="form-group td_projects_td_technology_products-source_of_ip_category">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="source_of_ip_category">Source of IP Category<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(source_of_ip_category)%%>
+					</div>
+				</div>
+
+				<!-- Field: Source of IP -->
+				<div class="form-group td_projects_td_technology_products-source_of_ip">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="source_of_ip" data-parent_link="view_parent_modal">Source of IP</label>
+					<div class="col-lg-9">
+						<div class="lookup-flex"><%%COMBO(source_of_ip)%%><%%PLINK(source_of_ip)%%><%%ADDNEW(projects)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Created By Username -->
+				<div class="form-group td_projects_td_technology_products-created_by_username">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Created By Username</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="created_by_username"><%%VALUE(created_by_username)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Last Updated by Username -->
+				<div class="form-group td_projects_td_technology_products-last_updated_by_username">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Last Updated by Username</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="last_updated_by_username"><%%VALUE(last_updated_by_username)%%></div>
+					</div>
+				</div>
+
+			</fieldset>
+		</div>
+
+		<!-- DV action buttons -->
+		<hr class="hidden-md hidden-lg">
+		<div class="col-md-4 col-lg-2 dv-action-buttons" id="td_projects_td_technology_products_dv_action_buttons">
+			<div class="btn-toolbar">
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%UPDATE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%DESELECT_BUTTON%%>
+					<%%DVPRINT_BUTTON%%>
+					<%%DELETE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%INSERT_BUTTON%%>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div><!-- /div class="panel-body" -->
+	<script>
+		$j(function() {
+			var add_new_mode = (!$j('input[name=SelectedID]').val());
+			var embedded_mode = ($j('input[name=Embedded]').val() == 1);
+
+			/* auto-close embedded page? */
+			var autoclose_mode = ($j('input[name=AutoClose]').val() == 1);
+			var record_added_ok = (location.search.split('record-added-ok=').length == 2);
+			var record_updated_ok = (location.search.split('record-updated-ok=').length == 2);
+			if((record_added_ok || record_updated_ok) && embedded_mode && autoclose_mode) {
+				setTimeout(AppGini.closeParentModal, 2000);
+			}
+
+
+			/* enable DV action buttons to float on scrolling down the form */
+			enable_dvab_floating();
+
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
+				AppGini.once({
+					condition: function() {
+						return $j('.form-group.td_projects_td_technology_products-year')
+									.find('.nicEdit-main, .select2-container, input[type=radio]')
+									.length > 0
+								// or read-only DV
+								|| (!$j('#update').length && !$j('#insert').length);
+					},
+					action: function() {
+						$j('#td_projects_td_technology_products_dv_container-loading').addClass('hidden');
+						$j('#td_projects_td_technology_products_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('td_projects_td_technology_products', 'year');
+					},
+					timeout:  5000,
+					doActionOnTimeout:  true
+				});
+			} else {
+				$j('#td_projects_td_technology_products_dv_container-loading').addClass('hidden');
+				$j('#td_projects_td_technology_products_dv_container').removeClass('hidden');
+			}
+
+			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
+
+
+			if(true /* !embedded_mode */) {
+				$j('.add_new_parent').click(function() {
+					var pt = $j(this).attr('id').replace(/_add_new$/, '');
+					modal_window({
+						url: pt + '_view.php?addNew_x=1&Embedded=1',
+						close: function() {
+							var field_id = $j('#' + pt + '_add_new').prevAll('input:hidden').eq(0).attr('id');
+							$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+							/* if a new parent was added, select it */
+							var new_id = localStorage.getItem(pt + '_last_added_id');
+							if(new_id === null) return;
+
+							localStorage.removeItem(pt + '_last_added_id');
+							AppGini.lookupText({
+								id: new_id,
+								table: 'td_projects_td_technology_products',
+								field: field_id,
+								callback: function(data) {
+									$j('#' + field_id + '-container').select2('data', data, true);
+								}
+							});
+						},
+						size: 'full',
+						title: $j(this).attr('title')
+					});
+				});
+			}
+
+			AppGini.hideViewParentLinks();
+
+			$j('form').on('click', '.view_parent', function() {
+				var pt = $j(this).attr('id').replace(/_view_parent$/, '');
+				if($j(this).prevAll('input:hidden').length) {
+					var parent_id = $j(this).prevAll('input:hidden').eq(0).val();
+				} else {
+					var parent_id = $j(this).prevAll().children('input:hidden').eq(0).val();
+				}
+
+				/* handle radio lookups */
+				if($j(this).prevAll('[type=radio]').length) {
+					parent_id = $j(this).prevAll('[type=radio]').eq(0).val();
+				}
+
+				if(parent_id != '{empty_value}' && parent_id != undefined && parent_id != '') {
+					var parent_link = $j(this).parents('.form-group').children('label').data('parent_link');
+					switch(parent_link) {
+						case 'view_parent_hidden':
+							break;
+						case 'view_parent_modal':
+							modal_window({
+								url: pt + '_view.php?Embedded=1&SelectedID=' + encodeURIComponent(parent_id),
+								close: function() {
+									var field_id = $j('#' + pt + '_view_parent').prevAll('input:hidden').eq(0).attr('id');
+									$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+									// in case the parent record was updated, we should update auto-fills
+									var updaterName = field_id + '_update_autofills';
+									if(typeof(window[updaterName]) == 'function')
+										window[updaterName]();
+								},
+								size: 'full',
+								title: $j(this).attr('title')
+							});
+							break;
+						case 'view_parent_same_window':
+							window.location = pt + '_view.php?Embedded=' + (embedded_mode ? '1' : '') + '&SelectedID=' + encodeURIComponent(parent_id);
+							break;
+						case 'view_parent_new_window':
+							window.open(pt + '_view.php?SelectedID=' + encodeURIComponent(parent_id));
+							break;
+					}
+
+				}
+			});
+
+			td_projects_td_technology_productsUniqueFields.forEach(fieldName => enforce_uniqueness('td_projects_td_technology_products', fieldName));
+
+			/* load admin tools for admin user */
+			if(!add_new_mode) {
+				$j('body').append('<div id="admin-tools-appendix"></div>');
+				$j('#admin-tools-appendix').load(
+					'ajax_admin_tools.php?table=td_projects_td_technology_products&id=<%%URLVALUE(id)%%>',
+					function(resp) {
+						if(!resp.length) return;
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=td_projects_td_technology_products&id=<%%URLVALUE(id)%%>');
+					}
+				);
+			}
+		});
+
+		var td_projects_td_technology_productsUniqueFields = [
+		];
+	</script>

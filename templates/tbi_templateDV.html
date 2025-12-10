@@ -19,6 +19,69 @@
 		<div class="col-md-8 col-lg-10" id="tbi_dv_form">
 			<fieldset class="form-horizontal">
 
+				<!-- Field: Year -->
+				<div class="form-group tbi-year">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="year">Year<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(year)%%>
+					</div>
+				</div>
+
+				<!-- Field: TBI Name -->
+				<div class="form-group tbi-tbi_name">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="tbi_name">TBI Name<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="tbi_name" id="tbi_name" value="<%%VALUE(tbi_name)%%>" required>
+					</div>
+				</div>
+
+				<!-- Field: Type -->
+				<div class="form-group tbi-type">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="type">Type<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(type)%%>
+					</div>
+				</div>
+
+				<!-- Field: TBI Facilities -->
+				<div class="form-group tbi-tbi_facilities">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="tbi_facilities">TBI Facilities<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(tbi_facilities)%%>
+					</div>
+				</div>
+
+				<!-- Field: Collaboration/TBI Start Date -->
+				<div class="form-group tbi-collaboration_date">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="collaboration_date-dd">Collaboration/TBI Start Date<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(collaboration_date)%%>
+					</div>
+				</div>
+
+				<!-- Field: TIH Payment for Facilities -->
+				<div class="form-group tbi-tih_payment">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="tih_payment">TIH Payment for Facilities<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="tih_payment" id="tih_payment" value="<%%VALUE(tih_payment)%%>" required>
+					</div>
+				</div>
+
+				<!-- Field: Is TIH Charging Startups -->
+				<div class="form-group tbi-charging_status">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="charging_status">Is TIH Charging Startups<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(charging_status)%%>
+					</div>
+				</div>
+
 			</fieldset>
 		</div>
 
@@ -60,8 +123,27 @@
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
+				AppGini.once({
+					condition: function() {
+						return $j('.form-group.tbi-year')
+									.find('.nicEdit-main, .select2-container, input[type=radio]')
+									.length > 0
+								// or read-only DV
+								|| (!$j('#update').length && !$j('#insert').length);
+					},
+					action: function() {
 						$j('#tbi_dv_container-loading').addClass('hidden');
 						$j('#tbi_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('tbi', 'year');
+					},
+					timeout:  5000,
+					doActionOnTimeout:  true
+				});
+			} else {
+				$j('#tbi_dv_container-loading').addClass('hidden');
+				$j('#tbi_dv_container').removeClass('hidden');
+			}
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 

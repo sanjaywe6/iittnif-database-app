@@ -1,0 +1,113 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Publications and Intellectual Activities Details -->
+		<div class="form-group td_publications-publications_and_intellectual_activities_details" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Publications and Intellectual Activities Details</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="publications_and_intellectual_activities_details-readonly<%%RND1%%>"><%%COMBOTEXT(publications_and_intellectual_activities_details)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Publication Type -->
+		<div class="form-group td_publications-publication_type" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Publication Type</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(publication_type)%%></div>
+			</div>
+		</div>
+		<!-- Field: Title -->
+		<div class="form-group td_publications-title" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Title</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(title)%%></div>
+			</div>
+		</div>
+		<!-- Field: Technology Area -->
+		<div class="form-group td_publications-technology_area" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Technology Area</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(technology_area)%%></div>
+			</div>
+		</div>
+		<!-- Field: Publication Year -->
+		<div class="form-group td_publications-publication_year" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Publication Year</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(publication_year)%%></div>
+			</div>
+		</div>
+		<!-- Field: Author Names -->
+		<div class="form-group td_publications-author_names" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Author Names</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(author_names)%%></div>
+			</div>
+		</div>
+		<!-- Field: Peer Reviewed -->
+		<div class="form-group td_publications-peer_reviewed" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Peer Reviewed</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(peer_reviewed)%%></div>
+			</div>
+		</div>
+		<!-- Field: Link -->
+		<div class="form-group td_publications-link" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Link</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(link)%%></div>
+			</div>
+		</div>
+		<!-- Field: Source of IP Category -->
+		<div class="form-group td_publications-source_of_ip_category" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Source of IP Category</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(source_of_ip_category)%%></div>
+			</div>
+		</div>
+		<!-- Field: Source of IP -->
+		<div class="form-group td_publications-source_of_ip" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Source of IP</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="source_of_ip<%%RND1%%>"><%%COMBOTEXT(source_of_ip)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Created By Username -->
+		<div class="form-group td_publications-created_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Created By Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(created_by_username)%%></div>
+			</div>
+		</div>
+		<!-- Field: Last Updated by Username -->
+		<div class="form-group td_publications-last_updated_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Last Updated by Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(last_updated_by_username)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

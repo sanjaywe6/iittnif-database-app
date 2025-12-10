@@ -1,0 +1,20 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the ed_gcc_init() hook (in hooks/ed_gcc.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="ed_gcc-year-<%%VALUE(id)%%>" class="ed_gcc-year text-bold"><%%VALUE(year)%%></td>
+		<td id="ed_gcc-name-<%%VALUE(id)%%>" class="ed_gcc-name text-bold"><%%VALUE(name)%%></td>
+		<td id="ed_gcc-finalists-<%%VALUE(id)%%>" class="ed_gcc-finalists text-right text-bold"><%%VALUE(finalists)%%></td>
+		<td id="ed_gcc-Number_of_Enrolled_Participants-<%%VALUE(id)%%>" class="ed_gcc-Number_of_Enrolled_Participants text-right text-bold"><%%VALUE(Number_of_Enrolled_Participants)%%></td>
+		<td id="ed_gcc-Technology_Domain-<%%VALUE(id)%%>" class="ed_gcc-Technology_Domain text-bold"><%%VALUE(Technology_Domain)%%></td>
+		<td id="ed_gcc-Start_Date-<%%VALUE(id)%%>" class="ed_gcc-Start_Date text-bold"><%%VALUE(Start_Date)%%></td>
+		<td id="ed_gcc-End_Date-<%%VALUE(id)%%>" class="ed_gcc-End_Date text-bold"><%%VALUE(End_Date)%%></td>
+		<td id="ed_gcc-status-<%%VALUE(id)%%>" class="ed_gcc-status text-bold"><%%VALUE(status)%%></td>
+		<td id="ed_gcc-Co_Sponsors-<%%VALUE(id)%%>" class="ed_gcc-Co_Sponsors text-bold"><%%VALUE(Co_Sponsors)%%></td>
+		<td id="ed_gcc-created_by_username-<%%VALUE(id)%%>" class="ed_gcc-created_by_username text-bold"><%%VALUE(created_by_username)%%></td>
+		<td id="ed_gcc-created_at-<%%VALUE(id)%%>" class="ed_gcc-created_at text-bold"><%%VALUE(created_at)%%></td>
+		<td id="ed_gcc-last_updated_by_username-<%%VALUE(id)%%>" class="ed_gcc-last_updated_by_username text-bold"><%%VALUE(last_updated_by_username)%%></td>
+		<td id="ed_gcc-last_updated_at-<%%VALUE(id)%%>" class="ed_gcc-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>

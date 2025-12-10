@@ -532,41 +532,52 @@
 
 			return $data;
 		},
-		'td_intellectual_property' => function($data, $options = []) {
+		'td_projects_td_intellectual_property' => function($data, $options = []) {
 			if(isset($data['year_field'])) $data['year_field'] = guessMySQLDateTime($data['year_field']);
 			if(isset($data['year_granted'])) $data['year_granted'] = guessMySQLDateTime($data['year_granted']);
-			if(isset($data['source_of_ip'])) $data['source_of_ip'] = pkGivenLookupText($data['source_of_ip'], 'td_intellectual_property', 'source_of_ip');
+			if(isset($data['source_of_ip'])) $data['source_of_ip'] = pkGivenLookupText($data['source_of_ip'], 'td_projects_td_intellectual_property', 'source_of_ip');
 
 			return $data;
 		},
-		'td_technology_products' => function($data, $options = []) {
-			if(isset($data['source_of_ip'])) $data['source_of_ip'] = pkGivenLookupText($data['source_of_ip'], 'td_technology_products', 'source_of_ip');
+		'td_projects_td_technology_products' => function($data, $options = []) {
+			if(isset($data['source_of_ip'])) $data['source_of_ip'] = pkGivenLookupText($data['source_of_ip'], 'td_projects_td_technology_products', 'source_of_ip');
 
 			return $data;
 		},
-		'publications_and_intellectual_activities' => function($data, $options = []) {
+		'td_publications_and_intellectual_activities' => function($data, $options = []) {
 
 			return $data;
 		},
-		'publications' => function($data, $options = []) {
-			if(isset($data['publications_and_intellectual_activities_details'])) $data['publications_and_intellectual_activities_details'] = pkGivenLookupText($data['publications_and_intellectual_activities_details'], 'publications', 'publications_and_intellectual_activities_details');
+		'td_publications' => function($data, $options = []) {
+			if(isset($data['publications_and_intellectual_activities_details'])) $data['publications_and_intellectual_activities_details'] = pkGivenLookupText($data['publications_and_intellectual_activities_details'], 'td_publications', 'publications_and_intellectual_activities_details');
 			if(isset($data['publication_year'])) $data['publication_year'] = guessMySQLDateTime($data['publication_year']);
-			if(isset($data['source_of_ip'])) $data['source_of_ip'] = pkGivenLookupText($data['source_of_ip'], 'publications', 'source_of_ip');
+			if(isset($data['source_of_ip'])) $data['source_of_ip'] = pkGivenLookupText($data['source_of_ip'], 'td_publications', 'source_of_ip');
 
 			return $data;
 		},
-		'ipr' => function($data, $options = []) {
-			if(isset($data['publications_and_intellectual_activities_details'])) $data['publications_and_intellectual_activities_details'] = pkGivenLookupText($data['publications_and_intellectual_activities_details'], 'ipr', 'publications_and_intellectual_activities_details');
+		'td_ipr' => function($data, $options = []) {
+			if(isset($data['publications_and_intellectual_activities_details'])) $data['publications_and_intellectual_activities_details'] = pkGivenLookupText($data['publications_and_intellectual_activities_details'], 'td_ipr', 'publications_and_intellectual_activities_details');
 			if(isset($data['start_date'])) $data['start_date'] = guessMySQLDateTime($data['start_date']);
 			if(isset($data['end_date'])) $data['end_date'] = guessMySQLDateTime($data['end_date']);
 
 			return $data;
 		},
-		'cps_research_base' => function($data, $options = []) {
+		'td_cps_research_base' => function($data, $options = []) {
 
 			return $data;
 		},
-		'tbi' => function($data, $options = []) {
+		'ed_tbi' => function($data, $options = []) {
+			if(isset($data['collaboration_date'])) $data['collaboration_date'] = guessMySQLDateTime($data['collaboration_date']);
+
+			return $data;
+		},
+		'ed_startup_companies' => function($data, $options = []) {
+
+			return $data;
+		},
+		'ed_gcc' => function($data, $options = []) {
+			if(isset($data['Start_Date'])) $data['Start_Date'] = guessMySQLDateTime($data['Start_Date']);
+			if(isset($data['End_Date'])) $data['End_Date'] = guessMySQLDateTime($data['End_Date']);
 
 			return $data;
 		},
@@ -663,13 +674,15 @@
 		'r_and_d_monthly_progress_app' => function($data, $options = []) { return true; },
 		'r_and_d_quarterly_progress_app' => function($data, $options = []) { return true; },
 		'projects' => function($data, $options = []) { return true; },
-		'td_intellectual_property' => function($data, $options = []) { return true; },
-		'td_technology_products' => function($data, $options = []) { return true; },
-		'publications_and_intellectual_activities' => function($data, $options = []) { return true; },
-		'publications' => function($data, $options = []) { return true; },
-		'ipr' => function($data, $options = []) { return true; },
-		'cps_research_base' => function($data, $options = []) { return true; },
-		'tbi' => function($data, $options = []) { return true; },
+		'td_projects_td_intellectual_property' => function($data, $options = []) { return true; },
+		'td_projects_td_technology_products' => function($data, $options = []) { return true; },
+		'td_publications_and_intellectual_activities' => function($data, $options = []) { return true; },
+		'td_publications' => function($data, $options = []) { return true; },
+		'td_ipr' => function($data, $options = []) { return true; },
+		'td_cps_research_base' => function($data, $options = []) { return true; },
+		'ed_tbi' => function($data, $options = []) { return true; },
+		'ed_startup_companies' => function($data, $options = []) { return true; },
+		'ed_gcc' => function($data, $options = []) { return true; },
 	];
 
 	/*

@@ -1757,6 +1757,24 @@ ed_startup_companies_delete1Tip=["",spacer+"This option allows each member of th
 ed_startup_companies_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Start-ups & Spin-off companies' table."];
 ed_startup_companies_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Start-ups & Spin-off companies' table."];
 
+// ed_gcc table
+ed_gcc_addTip=["",spacer+"This option allows all members of the group to add records to the 'GCC - Grand Challenges & Competitions' table. A member who adds a record to the table becomes the 'owner' of that record."];
+
+ed_gcc_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'GCC - Grand Challenges & Competitions' table."];
+ed_gcc_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'GCC - Grand Challenges & Competitions' table."];
+ed_gcc_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'GCC - Grand Challenges & Competitions' table."];
+ed_gcc_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'GCC - Grand Challenges & Competitions' table."];
+
+ed_gcc_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'GCC - Grand Challenges & Competitions' table."];
+ed_gcc_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'GCC - Grand Challenges & Competitions' table."];
+ed_gcc_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'GCC - Grand Challenges & Competitions' table."];
+ed_gcc_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'GCC - Grand Challenges & Competitions' table, regardless of their owner."];
+
+ed_gcc_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'GCC - Grand Challenges & Competitions' table."];
+ed_gcc_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'GCC - Grand Challenges & Competitions' table."];
+ed_gcc_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'GCC - Grand Challenges & Competitions' table."];
+ed_gcc_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'GCC - Grand Challenges & Competitions' table."];
+
 /*
 	Style syntax:
 	-------------

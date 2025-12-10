@@ -798,6 +798,13 @@
 					'group' => $tg[14],
 					'homepageShowCount' => 1
 				],
+				'ed_gcc' => [
+					'Caption' => 'GCC - Grand Challenges & Competitions',
+					'Description' => '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[14],
+					'homepageShowCount' => 1
+				],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) return $all_tables;
@@ -911,6 +918,7 @@
 			'td_cps_research_base' => ['CPS Research Base', '<span style="color:red;font-size: 20px;"><b>Technology Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 			'ed_tbi' => ['Technology Business Incubator (TBI)', '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 			'ed_startup_companies' => ['Start-ups & Spin-off companies', '', 'table.gif', 'NMICPS Portal - Apps'],
+			'ed_gcc' => ['GCC - Grand Challenges & Competitions', '<span style="color:red;font-size: 20px;"><b>Entrepreneurship Development </b></span>', 'table.gif', 'NMICPS Portal - Apps'],
 		];
 
 		if($skip_authentication || getLoggedAdmin()) {
@@ -13153,7 +13161,7 @@
 					'charging_status' => [
 						'appgini' => "VARCHAR(255) NOT NULL",
 						'info' => [
-							'caption' => 'Is TIH Charging Startups',
+							'caption' => 'Is TIH Charging Startups ?',
 							'description' => '',
 						],
 					],
@@ -13450,6 +13458,120 @@
 						'appgini' => "TEXT NULL",
 						'info' => [
 							'caption' => 'Registered Address',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By Username',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created At',
+							'description' => '',
+						],
+					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated At',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+				],
+				'ed_gcc' => [
+					'id' => [
+						'appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'year' => [
+						'appgini' => "VARCHAR(255) NOT NULL DEFAULT '2020-21'",
+						'info' => [
+							'caption' => 'Year',
+							'description' => '',
+						],
+					],
+					'name' => [
+						'appgini' => "VARCHAR(255) NOT NULL",
+						'info' => [
+							'caption' => 'Name of Competition',
+							'description' => '',
+						],
+					],
+					'finalists' => [
+						'appgini' => "INT NULL",
+						'info' => [
+							'caption' => 'Number of Finalists',
+							'description' => '',
+						],
+					],
+					'Number_of_Enrolled_Participants' => [
+						'appgini' => "INT NULL",
+						'info' => [
+							'caption' => 'Number of Enrolled Participants',
+							'description' => '',
+						],
+					],
+					'Technology_Domain' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Technology Domain',
+							'description' => '',
+						],
+					],
+					'Start_Date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Start Date',
+							'description' => '',
+						],
+					],
+					'End_Date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'End Date',
+							'description' => '',
+						],
+					],
+					'status' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Status',
+							'description' => '',
+						],
+					],
+					'Co_Sponsors' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Co-Sponsors',
 							'description' => '',
 						],
 					],
@@ -17743,6 +17865,36 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
 			],
+			'ed_gcc' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+				'last_updated_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.%PKFIELD% = %ID%;',
+			],
 		];
 	}
 	#########################################################
@@ -18132,6 +18284,8 @@
 			'ed_tbi' => [
 			],
 			'ed_startup_companies' => [
+			],
+			'ed_gcc' => [
 			],
 		];
 

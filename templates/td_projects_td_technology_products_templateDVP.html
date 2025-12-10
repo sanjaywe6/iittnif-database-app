@@ -1,0 +1,120 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Year -->
+		<div class="form-group td_projects_td_technology_products-year" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Year</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(year)%%></div>
+			</div>
+		</div>
+		<!-- Field: Tech Product Title -->
+		<div class="form-group td_projects_td_technology_products-tech_product_title" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Tech Product Title</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(tech_product_title)%%></div>
+			</div>
+		</div>
+		<!-- Field: Tech Product Type -->
+		<div class="form-group td_projects_td_technology_products-tech_produc_type" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Tech Product Type</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(tech_produc_type)%%></div>
+			</div>
+		</div>
+		<!-- Field: Technology Area -->
+		<div class="form-group td_projects_td_technology_products-technology_area" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Technology Area</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(technology_area)%%></div>
+			</div>
+		</div>
+		<!-- Field: Project Value (Rs.) In Lakhs -->
+		<div class="form-group td_projects_td_technology_products-project_value" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Project Value (Rs.) In Lakhs</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(project_value)%%></div>
+			</div>
+		</div>
+		<!-- Field: Status of License Transfer -->
+		<div class="form-group td_projects_td_technology_products-status_of_license_transfer" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Status of License Transfer</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(status_of_license_transfer)%%></div>
+			</div>
+		</div>
+		<!-- Field: Value of the Transfer in Lakhs (Rs.) -->
+		<div class="form-group td_projects_td_technology_products-value_of_transfer" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Value of the Transfer in Lakhs (Rs.)</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(value_of_transfer)%%></div>
+			</div>
+		</div>
+		<!-- Field: TRL Level -->
+		<div class="form-group td_projects_td_technology_products-trl_level" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">TRL Level</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(trl_level)%%></div>
+			</div>
+		</div>
+		<!-- Field: Commercialised -->
+		<div class="form-group td_projects_td_technology_products-commercialised" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Commercialised</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(commercialised)%%></div>
+			</div>
+		</div>
+		<!-- Field: Source of IP Category -->
+		<div class="form-group td_projects_td_technology_products-source_of_ip_category" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Source of IP Category</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(source_of_ip_category)%%></div>
+			</div>
+		</div>
+		<!-- Field: Source of IP -->
+		<div class="form-group td_projects_td_technology_products-source_of_ip" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Source of IP</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="source_of_ip<%%RND1%%>"><%%COMBOTEXT(source_of_ip)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Created By Username -->
+		<div class="form-group td_projects_td_technology_products-created_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Created By Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(created_by_username)%%></div>
+			</div>
+		</div>
+		<!-- Field: Last Updated by Username -->
+		<div class="form-group td_projects_td_technology_products-last_updated_by_username" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Last Updated by Username</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(last_updated_by_username)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

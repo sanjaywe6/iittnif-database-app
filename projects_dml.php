@@ -87,61 +87,61 @@ function projects_delete($selected_id, $AllowDeleteOfParents = false, $skipCheck
 			);
 	}
 
-	// child table: td_intellectual_property
+	// child table: td_projects_td_intellectual_property
 	$res = sql("SELECT `id` FROM `projects` WHERE `id`='{$selected_id}'", $eo);
 	$id = db_fetch_row($res);
-	$rires = sql("SELECT COUNT(1) FROM `td_intellectual_property` WHERE `source_of_ip`='" . makeSafe($id[0]) . "'", $eo);
+	$rires = sql("SELECT COUNT(1) FROM `td_projects_td_intellectual_property` WHERE `source_of_ip`='" . makeSafe($id[0]) . "'", $eo);
 	$rirow = db_fetch_row($rires);
-	$childrenATag = '<a class="alert-link" href="td_intellectual_property_view.php?filterer_source_of_ip=' . urlencode($id[0]) . '">%s</a>';
+	$childrenATag = '<a class="alert-link" href="td_projects_td_intellectual_property_view.php?filterer_source_of_ip=' . urlencode($id[0]) . '">%s</a>';
 	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
 		$RetMsg = $Translation["couldn't delete"];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
-		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'td_intellectual_property'), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'td_projects_td_intellectual_property'), $RetMsg);
 		return $RetMsg;
 	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
-		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'td_intellectual_property'), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'td_projects_td_intellectual_property'), $RetMsg);
 		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `projects_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `projects_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
-	// child table: td_technology_products
+	// child table: td_projects_td_technology_products
 	$res = sql("SELECT `id` FROM `projects` WHERE `id`='{$selected_id}'", $eo);
 	$id = db_fetch_row($res);
-	$rires = sql("SELECT COUNT(1) FROM `td_technology_products` WHERE `source_of_ip`='" . makeSafe($id[0]) . "'", $eo);
+	$rires = sql("SELECT COUNT(1) FROM `td_projects_td_technology_products` WHERE `source_of_ip`='" . makeSafe($id[0]) . "'", $eo);
 	$rirow = db_fetch_row($rires);
-	$childrenATag = '<a class="alert-link" href="td_technology_products_view.php?filterer_source_of_ip=' . urlencode($id[0]) . '">%s</a>';
+	$childrenATag = '<a class="alert-link" href="td_projects_td_technology_products_view.php?filterer_source_of_ip=' . urlencode($id[0]) . '">%s</a>';
 	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
 		$RetMsg = $Translation["couldn't delete"];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
-		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'td_technology_products'), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'td_projects_td_technology_products'), $RetMsg);
 		return $RetMsg;
 	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
-		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'td_technology_products'), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'td_projects_td_technology_products'), $RetMsg);
 		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `projects_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `projects_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;
 	}
 
-	// child table: publications
+	// child table: td_publications
 	$res = sql("SELECT `id` FROM `projects` WHERE `id`='{$selected_id}'", $eo);
 	$id = db_fetch_row($res);
-	$rires = sql("SELECT COUNT(1) FROM `publications` WHERE `source_of_ip`='" . makeSafe($id[0]) . "'", $eo);
+	$rires = sql("SELECT COUNT(1) FROM `td_publications` WHERE `source_of_ip`='" . makeSafe($id[0]) . "'", $eo);
 	$rirow = db_fetch_row($rires);
-	$childrenATag = '<a class="alert-link" href="publications_view.php?filterer_source_of_ip=' . urlencode($id[0]) . '">%s</a>';
+	$childrenATag = '<a class="alert-link" href="td_publications_view.php?filterer_source_of_ip=' . urlencode($id[0]) . '">%s</a>';
 	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
 		$RetMsg = $Translation["couldn't delete"];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
-		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'publications'), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'td_publications'), $RetMsg);
 		return $RetMsg;
 	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
 		$RetMsg = $Translation['confirm delete'];
 		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
-		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'publications'), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'td_publications'), $RetMsg);
 		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `projects_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `projects_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
 		return $RetMsg;

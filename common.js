@@ -1291,7 +1291,7 @@ function projects_validateData(insertMode) {
 
 	return !errors;
 }
-function td_intellectual_property_validateData(insertMode) {
+function td_projects_td_intellectual_property_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
 
@@ -1316,7 +1316,7 @@ function td_intellectual_property_validateData(insertMode) {
 
 	return !errors;
 }
-function td_technology_products_validateData(insertMode) {
+function td_projects_td_technology_products_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
 
@@ -1346,7 +1346,7 @@ function td_technology_products_validateData(insertMode) {
 
 	return !errors;
 }
-function publications_and_intellectual_activities_validateData(insertMode) {
+function td_publications_and_intellectual_activities_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
 
@@ -1367,7 +1367,7 @@ function publications_and_intellectual_activities_validateData(insertMode) {
 
 	return !errors;
 }
-function publications_validateData(insertMode) {
+function td_publications_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
 
@@ -1395,7 +1395,7 @@ function publications_validateData(insertMode) {
 
 	return !errors;
 }
-function ipr_validateData(insertMode) {
+function td_ipr_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
 
@@ -1430,7 +1430,7 @@ function ipr_validateData(insertMode) {
 
 	return !errors;
 }
-function cps_research_base_validateData(insertMode) {
+function td_cps_research_base_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
 
@@ -1455,9 +1455,80 @@ function cps_research_base_validateData(insertMode) {
 
 	return !errors;
 }
-function tbi_validateData(insertMode) {
+function ed_tbi_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
+
+	// check all required fields have values
+	const reqFields = [
+		// [field-type, field-name, field-caption], ...
+		['list', 'year', 'Year'],
+		['text', 'tbi_name', 'TBI Name'],
+		['list', 'type', 'Type'],
+		['text', 'institution', 'Institution'],
+		['list', 'tbi_facilities', 'TBI Facilities'],
+		['date', 'collaboration_date', 'Collaboration/TBI Start Date'],
+		['text', 'tih_payment', 'TIH Payment for Facilities'],
+		['list', 'charging_status', 'Is TIH Charging Startups ?'],
+		['text', 'charges', 'Facility Charged by TIH'],
+	];
+
+	reqFields.map(function(rf) {
+		// avoid displaying more error messages and overwhelming users
+		if(rf.length != 3 || errors) return;
+
+		if(!AppGini.Validation.fieldRequired(rf[0], rf[1], rf[2], insertMode)) errors = true;
+	});
+
+	if(errors) return false;
+
+	return !errors;
+}
+function ed_startup_companies_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	// check all required fields have values
+	const reqFields = [
+		// [field-type, field-name, field-caption], ...
+		['list', 'year', 'Year'],
+		['list', 'gender', 'Gender'],
+		['list', 'technology_area', 'Technology Area'],
+		['list', 'deep_tech', 'Deep tech'],
+		['list', 'trl_status', 'TRL Status'],
+		['text', 'valuation', 'Valuation'],
+	];
+
+	reqFields.map(function(rf) {
+		// avoid displaying more error messages and overwhelming users
+		if(rf.length != 3 || errors) return;
+
+		if(!AppGini.Validation.fieldRequired(rf[0], rf[1], rf[2], insertMode)) errors = true;
+	});
+
+	if(errors) return false;
+
+	return !errors;
+}
+function ed_gcc_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	// check all required fields have values
+	const reqFields = [
+		// [field-type, field-name, field-caption], ...
+		['list', 'year', 'Year'],
+		['text', 'name', 'Name of Competition'],
+	];
+
+	reqFields.map(function(rf) {
+		// avoid displaying more error messages and overwhelming users
+		if(rf.length != 3 || errors) return;
+
+		if(!AppGini.Validation.fieldRequired(rf[0], rf[1], rf[2], insertMode)) errors = true;
+	});
+
+	if(errors) return false;
 
 	return !errors;
 }

@@ -265,68 +265,9 @@
 
 		setupTable('hrd_Fellowship', []);
 
-		setupTable('hrd_sd', [
-				"ALTER TABLE `hrd_sd` ADD `year` VARCHAR(255) NOT NULL DEFAULT '2020-21' ",
-			]);
+		setupTable('hrd_sd', []);
 
-		setupTable('it_International_Collaboration', [
-				"ALTER TABLE `table103` RENAME `it_International_Collaboration`",
-				"UPDATE `membership_userrecords` SET `tableName`='it_International_Collaboration' WHERE `tableName`='table103'",
-				"UPDATE `membership_userpermissions` SET `tableName`='it_International_Collaboration' WHERE `tableName`='table103'",
-				"UPDATE `membership_grouppermissions` SET `tableName`='it_International_Collaboration' WHERE `tableName`='table103'",
-				"ALTER TABLE it_International_Collaboration ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `it_International_Collaboration` CHANGE `id` `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ",
-				"ALTER TABLE `it_International_Collaboration` CHANGE `field1` `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ",
-				"ALTER TABLE `it_International_Collaboration` ADD `year` VARCHAR(255) NOT NULL DEFAULT '2020-21' ",
-				"ALTER TABLE it_International_Collaboration ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `it_International_Collaboration` CHANGE `field1` `Collaborating_Institute_Name` VARCHAR(255) NULL ",
-				"ALTER TABLE it_International_Collaboration ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `it_International_Collaboration` CHANGE `field1` `Country` VARCHAR(255) NULL ",
-				"ALTER TABLE it_International_Collaboration ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `it_International_Collaboration` CHANGE `field1` `title_of_the_Program` VARCHAR(255) NULL ",
-				"ALTER TABLE it_International_Collaboration ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `it_International_Collaboration` CHANGE `field1` `Technology_Area_of_Collaboration` VARCHAR(255) NULL ",
-				"ALTER TABLE it_International_Collaboration ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `it_International_Collaboration` CHANGE `field1` `Potential_Area_for_Application` VARCHAR(255) NULL ",
-				"ALTER TABLE it_International_Collaboration ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `it_International_Collaboration` CHANGE `field1` `Brief_Description_of_Collaboration` VARCHAR(255) NULL ",
-				"ALTER TABLE it_International_Collaboration ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `it_International_Collaboration` CHANGE `field1` `RoleofTIH` VARCHAR(255) NULL ",
-				" ALTER TABLE `it_International_Collaboration` CHANGE `RoleofTIH` `RoleofTIH` TEXT NULL ",
-				"ALTER TABLE it_International_Collaboration ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `it_International_Collaboration` CHANGE `field1` `RoleofCollaborator` VARCHAR(255) NULL ",
-				"ALTER TABLE it_International_Collaboration ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `it_International_Collaboration` CHANGE `field1` `Funding_From_TIH` VARCHAR(255) NULL ",
-				" ALTER TABLE `it_International_Collaboration` CHANGE `Funding_From_TIH` `Funding_From_TIH` INT NULL ",
-				"ALTER TABLE it_International_Collaboration ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `it_International_Collaboration` CHANGE `field1` `Funding_from_International_Agency` VARCHAR(255) NULL ",
-				" ALTER TABLE `it_International_Collaboration` CHANGE `Funding_From_TIH` `Funding_From_TIH` VARCHAR(40) NULL ",
-				"ALTER TABLE it_International_Collaboration ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `it_International_Collaboration` CHANGE `field1` `Project_Value` VARCHAR(255) NULL ",
-				"ALTER TABLE it_International_Collaboration ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `it_International_Collaboration` CHANGE `date` `date` DATE NULL ",
-				"ALTER TABLE `it_International_Collaboration` CHANGE `field1` `MoU_Signed_Date` DATE NULL ",
-				" ALTER TABLE `it_International_Collaboration` CHANGE `MoU_Signed_Date` `MoU_Signed_Date` DATE NULL ",
-				"ALTER TABLE `it_International_Collaboration` ADD `Start_Date` DATE NULL ",
-				"ALTER TABLE it_International_Collaboration ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `it_International_Collaboration` DROP `field1`",
-				"ALTER TABLE `it_International_Collaboration` ADD `End_Date` DATE NULL ",
-				"ALTER TABLE it_International_Collaboration ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `it_International_Collaboration` CHANGE `field1` `status` VARCHAR(255) NULL ",
-				"ALTER TABLE `it_International_Collaboration` DROP `status`",
-				"ALTER TABLE `it_International_Collaboration` ADD `status` VARCHAR(255) NULL ",
-				"ALTER TABLE it_International_Collaboration ADD `field1` VARCHAR(40)",
-				"ALTER TABLE it_International_Collaboration ADD `field2` VARCHAR(40)",
-				"ALTER TABLE `it_International_Collaboration` DROP `field2`",
-				"ALTER TABLE `it_International_Collaboration` CHANGE `field1` `remarks` VARCHAR(255) NULL ",
-				" ALTER TABLE `it_International_Collaboration` CHANGE `remarks` `remarks` TEXT NULL ",
-				"ALTER TABLE `it_International_Collaboration` ADD `created_by_username` VARCHAR(255) NULL ",
-				"ALTER TABLE `it_International_Collaboration` ADD `created_at` VARCHAR(255) NULL ",
-				"ALTER TABLE `it_International_Collaboration` ADD `last_updated_by_username` VARCHAR(255) NULL ",
-				"ALTER TABLE `it_International_Collaboration` ADD `last_updated_at` VARCHAR(255) NULL ",
-				"ALTER TABLE `it_International_Collaboration` ADD `last_updated_by` VARCHAR(255) NULL ",
-				"ALTER TABLE `it_International_Collaboration` ADD `created_by` VARCHAR(255) NULL ",
-			]);
+		setupTable('it_International_Collaboration', []);
 
 
 

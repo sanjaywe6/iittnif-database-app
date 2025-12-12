@@ -1,73 +1,15 @@
-		<td colspan="22" class="row">
-			<div id="approval_table-id-<%%VALUE(id)%%>" class="approval_table-id col-sm-12 h5 text-bold"><%%VALUE(id)%%></div>
-			<div class="col-sm-12">
-				<dl class="dl-horizontal">
-					<dt class="approval_table-approval_from-caption field-caption-tv">Approval From</dt>
-					<dd id="approval_table-approval_from-<%%VALUE(id)%%>" class="approval_table-approval_from text-bold"><%%VALUE(approval_from)%%></dd>
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
 
-					<dt class="approval_table-type-caption field-caption-tv">Approval Type</dt>
-					<dd id="approval_table-type-<%%VALUE(id)%%>" class="approval_table-type text-bold"><%%VALUE(type)%%></dd>
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the approval_table_init() hook (in hooks/approval_table.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
 
-					<dt class="approval_table-description-caption field-caption-tv">Description</dt>
-					<dd id="approval_table-description-<%%VALUE(id)%%>" class="approval_table-description text-bold"><%%VALUE(description)%%></dd>
-
-					<dt class="approval_table-quantity-caption field-caption-tv">Quantity</dt>
-					<dd id="approval_table-quantity-<%%VALUE(id)%%>" class="approval_table-quantity text-bold"><%%VALUE(quantity)%%></dd>
-
-					<dt class="approval_table-full_est_value-caption field-caption-tv">Full Estimated Value</dt>
-					<dd id="approval_table-full_est_value-<%%VALUE(id)%%>" class="approval_table-full_est_value text-bold"><%%VALUE(full_est_value)%%></dd>
-
-					<dt class="approval_table-name_of_vendor-caption field-caption-tv">Name of Vendor</dt>
-					<dd id="approval_table-name_of_vendor-<%%VALUE(id)%%>" class="approval_table-name_of_vendor text-bold"><%%VALUE(name_of_vendor)%%></dd>
-
-					<dt class="approval_table-purpose-caption field-caption-tv">Purpose</dt>
-					<dd id="approval_table-purpose-<%%VALUE(id)%%>" class="approval_table-purpose text-bold"><%%VALUE(purpose)%%></dd>
-
-					<dt class="approval_table-requested_department-caption field-caption-tv">Requested Department/Appointment</dt>
-					<dd id="approval_table-requested_department-<%%VALUE(id)%%>" class="approval_table-requested_department text-bold"><%%VALUE(requested_department)%%></dd>
-
-					<dt class="approval_table-person_responsbility-caption field-caption-tv">Person Responsbility</dt>
-					<dd id="approval_table-person_responsbility-<%%VALUE(id)%%>" class="approval_table-person_responsbility text-bold"><%%VALUE(person_responsbility)%%></dd>
-
-					<dt class="approval_table-mode_of_purchase-caption field-caption-tv">Mode of Purchase</dt>
-					<dd id="approval_table-mode_of_purchase-<%%VALUE(id)%%>" class="approval_table-mode_of_purchase text-bold"><%%VALUE(mode_of_purchase)%%></dd>
-
-					<dt class="approval_table-others_if_any-caption field-caption-tv">Others if Any</dt>
-					<dd id="approval_table-others_if_any-<%%VALUE(id)%%>" class="approval_table-others_if_any text-bold"><%%VALUE(others_if_any)%%></dd>
-
-					<dt class="approval_table-recurring_budget-caption field-caption-tv">Recurring Budget (For Accounts Department)</dt>
-					<dd id="approval_table-recurring_budget-<%%VALUE(id)%%>" class="approval_table-recurring_budget text-bold"><%%VALUE(recurring_budget)%%></dd>
-
-					<dt class="approval_table-non_recurring_budget-caption field-caption-tv">Non Recurring Budget (For Account Department)</dt>
-					<dd id="approval_table-non_recurring_budget-<%%VALUE(id)%%>" class="approval_table-non_recurring_budget text-bold"><%%VALUE(non_recurring_budget)%%></dd>
-
-					<dt class="approval_table-approval_status-caption field-caption-tv">Approval Status</dt>
-					<dd id="approval_table-approval_status-<%%VALUE(id)%%>" class="approval_table-approval_status text-bold"><%%VALUE(approval_status)%%></dd>
-
-					<dt class="approval_table-remarks_for_approval-caption field-caption-tv">Remarks for Approval</dt>
-					<dd id="approval_table-remarks_for_approval-<%%VALUE(id)%%>" class="approval_table-remarks_for_approval text-bold"><%%VALUE(remarks_for_approval)%%></dd>
-
-					<dt class="approval_table-image-caption field-caption-tv">Upload Image if Any (Optional)</dt>
-					<dd id="approval_table-image-<%%VALUE(id)%%>" class="approval_table-image text-bold"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(image)%%>" data-lightbox="approval_table-image"><img src="thumbnail.php?i=<%%VALUE(image)%%>&t=approval_table&f=image&v=tv" class="img-thumbnail"></a></dd>
-
-					<dt class="approval_table-other_file-caption field-caption-tv">Upload Other File if Any (Optional)</dt>
-					<dd id="approval_table-other_file-<%%VALUE(id)%%>" class="approval_table-other_file text-bold"><a href="link.php?t=approval_table&f=other_file&i=<%%VALUE(id)%%>" target="_blank" title="<%%VALUE(other_file)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-file text-info"></i></a></dd>
-
-					<dt class="approval_table-created_by_username-caption field-caption-tv">Created by Username</dt>
-					<dd id="approval_table-created_by_username-<%%VALUE(id)%%>" class="approval_table-created_by_username text-bold"><%%VALUE(created_by_username)%%></dd>
-
-					<dt class="approval_table-created_at-caption field-caption-tv">Created At</dt>
-					<dd id="approval_table-created_at-<%%VALUE(id)%%>" class="approval_table-created_at text-bold"><%%VALUE(created_at)%%></dd>
-
-					<dt class="approval_table-last_updated_by_username-caption field-caption-tv">Last Updated by Username</dt>
-					<dd id="approval_table-last_updated_by_username-<%%VALUE(id)%%>" class="approval_table-last_updated_by_username text-bold"><%%VALUE(last_updated_by_username)%%></dd>
-
-					<dt class="approval_table-last_updated_at-caption field-caption-tv">Last Updated At</dt>
-					<dd id="approval_table-last_updated_at-<%%VALUE(id)%%>" class="approval_table-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></dd>
-
-				</dl>
-			</div>
-		</td>
-		<script>$j(function() {
-			var e_other_file = '<%%VALUE(other_file)%%>'; if(e_other_file == '' || e_other_file == '&nbsp;') $j(/*<*/ '#approval_table-other_file-<%%VALUE(id)%%>' /*>*/).html('');
-		});</script>
+		<td id="approval_table-id-<%%VALUE(id)%%>" class="approval_table-id text-right text-bold"><%%VALUE(id)%%></td>
+		<td id="approval_table-approval_from-<%%VALUE(id)%%>" class="approval_table-approval_from text-bold"><%%VALUE(approval_from)%%></td>
+		<td id="approval_table-type-<%%VALUE(id)%%>" class="approval_table-type text-bold"><%%VALUE(type)%%></td>
+		<td id="approval_table-description-<%%VALUE(id)%%>" class="approval_table-description text-bold"><%%VALUE(description)%%></td>
+		<td id="approval_table-full_est_value-<%%VALUE(id)%%>" class="approval_table-full_est_value text-bold"><%%VALUE(full_est_value)%%></td>
+		<td id="approval_table-approval_status-<%%VALUE(id)%%>" class="approval_table-approval_status text-bold"><%%VALUE(approval_status)%%></td>
+		<td id="approval_table-remarks_for_approval-<%%VALUE(id)%%>" class="approval_table-remarks_for_approval text-bold"><%%VALUE(remarks_for_approval)%%></td>
+		<td id="approval_table-created_by_username-<%%VALUE(id)%%>" class="approval_table-created_by_username text-bold"><%%VALUE(created_by_username)%%></td>

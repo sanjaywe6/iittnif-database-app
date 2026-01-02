@@ -1932,7 +1932,7 @@
 						],
 					],
 					'purpose' => [
-						'appgini' => "VARCHAR(255) NULL",
+						'appgini' => "TEXT NULL",
 						'info' => [
 							'caption' => 'Purpose',
 							'description' => '',

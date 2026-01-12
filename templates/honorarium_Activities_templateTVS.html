@@ -1,0 +1,19 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the honorarium_Activities_init() hook (in hooks/honorarium_Activities.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="honorarium_Activities-id-<%%VALUE(id)%%>" class="honorarium_Activities-id text-right text-bold"><%%VALUE(id)%%></td>
+		<td id="honorarium_Activities-honorarium_details-<%%VALUE(id)%%>" class="honorarium_Activities-honorarium_details text-bold"><%%VALUE(honorarium_details)%%></td>
+		<td id="honorarium_Activities-date-<%%VALUE(id)%%>" class="honorarium_Activities-date text-bold"><%%VALUE(date)%%></td>
+		<td id="honorarium_Activities-no_of_hours-<%%VALUE(id)%%>" class="honorarium_Activities-no_of_hours text-bold"><%%VALUE(no_of_hours)%%></td>
+		<td id="honorarium_Activities-case_reference_email_subject-<%%VALUE(id)%%>" class="honorarium_Activities-case_reference_email_subject text-bold"><%%VALUE(case_reference_email_subject)%%></td>
+		<td id="honorarium_Activities-activities-<%%VALUE(id)%%>" class="honorarium_Activities-activities text-bold"><%%VALUE(activities)%%></td>
+		<td id="honorarium_Activities-created_by-<%%VALUE(id)%%>" class="honorarium_Activities-created_by text-bold"><%%VALUE(created_by)%%></td>
+		<td id="honorarium_Activities-created_at-<%%VALUE(id)%%>" class="honorarium_Activities-created_at text-bold"><%%VALUE(created_at)%%></td>
+		<td id="honorarium_Activities-created_by_username-<%%VALUE(id)%%>" class="honorarium_Activities-created_by_username text-bold"><%%VALUE(created_by_username)%%></td>
+		<td id="honorarium_Activities-last_updated_by_username-<%%VALUE(id)%%>" class="honorarium_Activities-last_updated_by_username text-bold"><%%VALUE(last_updated_by_username)%%></td>
+		<td id="honorarium_Activities-last_updated_by-<%%VALUE(id)%%>" class="honorarium_Activities-last_updated_by text-bold"><%%VALUE(last_updated_by)%%></td>
+		<td id="honorarium_Activities-last_updated_at-<%%VALUE(id)%%>" class="honorarium_Activities-last_updated_at text-bold"><%%VALUE(last_updated_at)%%></td>

@@ -1235,6 +1235,24 @@ honorarium_claim_table_delete1Tip=["",spacer+"This option allows each member of 
 honorarium_claim_table_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Honorarium - App' table."];
 honorarium_claim_table_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Honorarium - App' table."];
 
+// honorarium_Activities table
+honorarium_Activities_addTip=["",spacer+"This option allows all members of the group to add records to the 'Honorarium Activities' table. A member who adds a record to the table becomes the 'owner' of that record."];
+
+honorarium_Activities_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Honorarium Activities' table."];
+honorarium_Activities_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Honorarium Activities' table."];
+honorarium_Activities_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Honorarium Activities' table."];
+honorarium_Activities_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Honorarium Activities' table."];
+
+honorarium_Activities_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Honorarium Activities' table."];
+honorarium_Activities_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Honorarium Activities' table."];
+honorarium_Activities_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Honorarium Activities' table."];
+honorarium_Activities_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Honorarium Activities' table, regardless of their owner."];
+
+honorarium_Activities_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Honorarium Activities' table."];
+honorarium_Activities_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Honorarium Activities' table."];
+honorarium_Activities_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Honorarium Activities' table."];
+honorarium_Activities_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Honorarium Activities' table."];
+
 // all_bank_account_statement_table table
 all_bank_account_statement_table_addTip=["",spacer+"This option allows all members of the group to add records to the 'All bank account statement - App' table. A member who adds a record to the table becomes the 'owner' of that record."];
 

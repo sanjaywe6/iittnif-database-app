@@ -24,20 +24,8 @@ function honorarium_claim_table_insert(&$error_message = '') {
 		'bank_name' => Request::val('bank_name', ''),
 		'pan' => Request::val('pan', ''),
 		'place_of_work' => Request::val('place_of_work', ''),
-		'date_1' => Request::dateComponents('date_1', ''),
-		'hours_1' => Request::val('hours_1', ''),
-		'date_2' => Request::dateComponents('date_2', ''),
-		'hours_2' => Request::val('hours_2', ''),
-		'date_3' => Request::dateComponents('date_3', ''),
-		'hours_3' => Request::val('hours_3', ''),
-		'date_4' => Request::dateComponents('date_4', ''),
-		'hours_4' => Request::val('hours_4', ''),
-		'date_5' => Request::dateComponents('date_5', ''),
-		'hours_5' => Request::val('hours_5', ''),
 		'total_no_of_days' => Request::val('total_no_of_days', ''),
 		'total_no_of_hours' => Request::val('total_no_of_hours', ''),
-		'case_reference_email_subject' => Request::val('case_reference_email_subject', ''),
-		'activities' => br2nl(Request::val('activities', '')),
 		'coordinated_by_tih_user' => Request::lookup('coordinated_by_tih_user', ''),
 		'payment_date' => Request::dateComponents('payment_date', ''),
 		'amount_paid' => Request::val('amount_paid', ''),
@@ -93,6 +81,26 @@ function honorarium_claim_table_delete($selected_id, $AllowDeleteOfParents = fal
 			);
 	}
 
+	// child table: honorarium_Activities
+	$res = sql("SELECT `id` FROM `honorarium_claim_table` WHERE `id`='{$selected_id}'", $eo);
+	$id = db_fetch_row($res);
+	$rires = sql("SELECT COUNT(1) FROM `honorarium_Activities` WHERE `honorarium_details`='" . makeSafe($id[0]) . "'", $eo);
+	$rirow = db_fetch_row($rires);
+	$childrenATag = '<a class="alert-link" href="honorarium_Activities_view.php?filterer_honorarium_details=' . urlencode($id[0]) . '">%s</a>';
+	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation["couldn't delete"];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'honorarium_Activities'), $RetMsg);
+		return $RetMsg;
+	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation['confirm delete'];
+		$RetMsg = str_replace('<RelatedRecords>', sprintf($childrenATag, $rirow[0]), $RetMsg);
+		$RetMsg = str_replace(['[<TableName>]', '<TableName>'], sprintf($childrenATag, 'honorarium_Activities'), $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="btn btn-danger" value="' . html_attr($Translation['yes']) . '" onClick="window.location = `honorarium_claim_table_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1&csrf_token=' . urlencode(csrf_token(false, true)) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="btn btn-success" value="' . html_attr($Translation[ 'no']) . '" onClick="window.location = `honorarium_claim_table_view.php?SelectedID=' . urlencode($selected_id) . (Request::val('Embedded') ? '&Embedded=1' : '') . '`;">', $RetMsg);
+		return $RetMsg;
+	}
+
 	sql("DELETE FROM `honorarium_claim_table` WHERE `id`='{$selected_id}'", $eo);
 
 	// hook: honorarium_claim_table_after_delete
@@ -120,20 +128,8 @@ function honorarium_claim_table_update(&$selected_id, &$error_message = '') {
 		'bank_name' => Request::val('bank_name', ''),
 		'pan' => Request::val('pan', ''),
 		'place_of_work' => Request::val('place_of_work', ''),
-		'date_1' => Request::dateComponents('date_1', ''),
-		'hours_1' => Request::val('hours_1', ''),
-		'date_2' => Request::dateComponents('date_2', ''),
-		'hours_2' => Request::val('hours_2', ''),
-		'date_3' => Request::dateComponents('date_3', ''),
-		'hours_3' => Request::val('hours_3', ''),
-		'date_4' => Request::dateComponents('date_4', ''),
-		'hours_4' => Request::val('hours_4', ''),
-		'date_5' => Request::dateComponents('date_5', ''),
-		'hours_5' => Request::val('hours_5', ''),
 		'total_no_of_days' => Request::val('total_no_of_days', ''),
 		'total_no_of_hours' => Request::val('total_no_of_hours', ''),
-		'case_reference_email_subject' => Request::val('case_reference_email_subject', ''),
-		'activities' => br2nl(Request::val('activities', '')),
 		'coordinated_by_tih_user' => Request::lookup('coordinated_by_tih_user', ''),
 		'payment_date' => Request::dateComponents('payment_date', ''),
 		'amount_paid' => Request::val('amount_paid', ''),
@@ -508,25 +504,8 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 		$jsReadOnly .= "\t\$j('#bank_name').replaceWith('<div class=\"form-control-static\" id=\"bank_name\">' + (\$j('#bank_name').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#pan').replaceWith('<div class=\"form-control-static\" id=\"pan\">' + (\$j('#pan').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#place_of_work').replaceWith('<div class=\"form-control-static\" id=\"place_of_work\">' + (\$j('#place_of_work').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#date_1').prop('readonly', true);\n";
-		$jsReadOnly .= "\t\$j('#date_1Day, #date_1Month, #date_1Year').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\t\$j('#hours_1').replaceWith('<div class=\"form-control-static\" id=\"hours_1\">' + (\$j('#hours_1').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#date_2').prop('readonly', true);\n";
-		$jsReadOnly .= "\t\$j('#date_2Day, #date_2Month, #date_2Year').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\t\$j('#hours_2').replaceWith('<div class=\"form-control-static\" id=\"hours_2\">' + (\$j('#hours_2').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#date_3').prop('readonly', true);\n";
-		$jsReadOnly .= "\t\$j('#date_3Day, #date_3Month, #date_3Year').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\t\$j('#hours_3').replaceWith('<div class=\"form-control-static\" id=\"hours_3\">' + (\$j('#hours_3').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#date_4').prop('readonly', true);\n";
-		$jsReadOnly .= "\t\$j('#date_4Day, #date_4Month, #date_4Year').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\t\$j('#hours_4').replaceWith('<div class=\"form-control-static\" id=\"hours_4\">' + (\$j('#hours_4').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#date_5').prop('readonly', true);\n";
-		$jsReadOnly .= "\t\$j('#date_5Day, #date_5Month, #date_5Year').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\t\$j('#hours_5').replaceWith('<div class=\"form-control-static\" id=\"hours_5\">' + (\$j('#hours_5').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#total_no_of_days').replaceWith('<div class=\"form-control-static\" id=\"total_no_of_days\">' + (\$j('#total_no_of_days').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#total_no_of_hours').replaceWith('<div class=\"form-control-static\" id=\"total_no_of_hours\">' + (\$j('#total_no_of_hours').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#case_reference_email_subject').replaceWith('<div class=\"form-control-static\" id=\"case_reference_email_subject\">' + (\$j('#case_reference_email_subject').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#activities').replaceWith('<div class=\"form-control-static\" id=\"activities\">' + (\$j('#activities').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#coordinated_by_tih_user').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#coordinated_by_tih_user_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\t\$j('#payment_date').prop('readonly', true);\n";

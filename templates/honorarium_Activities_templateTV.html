@@ -1,0 +1,19 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the honorarium_Activities_init() hook (in hooks/honorarium_Activities.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="honorarium_Activities-id-<%%VALUE(id)%%>" class="honorarium_Activities-id text-right"><%%SELECT%%><%%VALUE(id)%%><%%ENDSELECT%%></td>
+		<td id="honorarium_Activities-honorarium_details-<%%VALUE(id)%%>" class="honorarium_Activities-honorarium_details"><%%SELECT%%><%%VALUE(honorarium_details)%%><%%ENDSELECT%%></td>
+		<td id="honorarium_Activities-date-<%%VALUE(id)%%>" class="honorarium_Activities-date"><%%SELECT%%><%%VALUE(date)%%><%%ENDSELECT%%></td>
+		<td id="honorarium_Activities-no_of_hours-<%%VALUE(id)%%>" class="honorarium_Activities-no_of_hours"><%%SELECT%%><%%VALUE(no_of_hours)%%><%%ENDSELECT%%></td>
+		<td id="honorarium_Activities-case_reference_email_subject-<%%VALUE(id)%%>" class="honorarium_Activities-case_reference_email_subject"><%%SELECT%%><%%VALUE(case_reference_email_subject)%%><%%ENDSELECT%%></td>
+		<td id="honorarium_Activities-activities-<%%VALUE(id)%%>" class="honorarium_Activities-activities"><%%SELECT%%><%%VALUE(activities)%%><%%ENDSELECT%%></td>
+		<td id="honorarium_Activities-created_by-<%%VALUE(id)%%>" class="honorarium_Activities-created_by"><%%SELECT%%><%%VALUE(created_by)%%><%%ENDSELECT%%></td>
+		<td id="honorarium_Activities-created_at-<%%VALUE(id)%%>" class="honorarium_Activities-created_at"><%%SELECT%%><%%VALUE(created_at)%%><%%ENDSELECT%%></td>
+		<td id="honorarium_Activities-created_by_username-<%%VALUE(id)%%>" class="honorarium_Activities-created_by_username"><%%SELECT%%><%%VALUE(created_by_username)%%><%%ENDSELECT%%></td>
+		<td id="honorarium_Activities-last_updated_by_username-<%%VALUE(id)%%>" class="honorarium_Activities-last_updated_by_username"><%%SELECT%%><%%VALUE(last_updated_by_username)%%><%%ENDSELECT%%></td>
+		<td id="honorarium_Activities-last_updated_by-<%%VALUE(id)%%>" class="honorarium_Activities-last_updated_by"><%%SELECT%%><%%VALUE(last_updated_by)%%><%%ENDSELECT%%></td>
+		<td id="honorarium_Activities-last_updated_at-<%%VALUE(id)%%>" class="honorarium_Activities-last_updated_at"><%%SELECT%%><%%VALUE(last_updated_at)%%><%%ENDSELECT%%></td>

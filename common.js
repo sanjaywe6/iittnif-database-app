@@ -1113,6 +1113,12 @@ function honorarium_claim_table_validateData(insertMode) {
 
 	return !errors;
 }
+function honorarium_Activities_validateData(insertMode) {
+	$j('.has-error').removeClass('has-error');
+	var errors = false;
+
+	return !errors;
+}
 function all_bank_account_statement_table_validateData(insertMode) {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;

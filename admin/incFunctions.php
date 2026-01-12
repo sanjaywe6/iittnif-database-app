@@ -595,6 +595,13 @@
 					'group' => $tg[10],
 					'homepageShowCount' => 1
 				],
+				'honorarium_Activities' => [
+					'Caption' => 'Honorarium Activities',
+					'Description' => '',
+					'tableIcon' => 'table.gif',
+					'group' => $tg[0],
+					'homepageShowCount' => 1
+				],
 				'all_bank_account_statement_table' => [
 					'Caption' => 'All bank account statement - App',
 					'Description' => '',
@@ -924,6 +931,7 @@
 			'evaluators_table' => ['Evaluators table', '', 'table.gif', 'Program Apps'],
 			'approval_billing_table' => ['Approval billing table', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'honorarium_claim_table' => ['Honorarium - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
+			'honorarium_Activities' => ['Honorarium Activities', '', 'table.gif', 'Approvals &amp; Sanctions'],
 			'all_bank_account_statement_table' => ['All bank account statement - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'payment_track_details_table' => ['Payment track details - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'travel_table' => ['Travel - App', '', 'table.gif', 'Transport Apps'],
@@ -9692,6 +9700,92 @@
 						],
 					],
 				],
+				'honorarium_Activities' => [
+					'id' => [
+						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
+						'info' => [
+							'caption' => 'ID',
+							'description' => '',
+						],
+					],
+					'honorarium_details' => [
+						'appgini' => "INT(10) UNSIGNED NULL",
+						'info' => [
+							'caption' => 'Honorarium details',
+							'description' => '',
+						],
+					],
+					'date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Date',
+							'description' => '',
+						],
+					],
+					'no_of_hours' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'No. of hours',
+							'description' => '',
+						],
+					],
+					'case_reference_email_subject' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Case Reference Email Subject (If Any)',
+							'description' => '',
+						],
+					],
+					'activities' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Activities/Deliverables',
+							'description' => '',
+						],
+					],
+					'created_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created By',
+							'description' => '',
+						],
+					],
+					'created_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created At',
+							'description' => '',
+						],
+					],
+					'created_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Created by Username',
+							'description' => '',
+						],
+					],
+					'last_updated_by_username' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By Username',
+							'description' => '',
+						],
+					],
+					'last_updated_by' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Last Updated By',
+							'description' => '',
+						],
+					],
+					'last_updated_at' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'Approved At',
+							'description' => '',
+						],
+					],
+				],
 				'all_bank_account_statement_table' => [
 					'all_bank_account_statement_id' => [
 						'appgini' => "INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT",
@@ -15647,6 +15741,9 @@
 			'honorarium_claim_table' => [
 				'user_table' => ['coordinated_by_tih_user'],
 			],
+			'honorarium_Activities' => [
+				'honorarium_claim_table' => ['honorarium_details'],
+			],
 			'selected_proposals_final_tdp' => [
 				'panel_decision_table_tdp' => ['project_id'],
 			],
@@ -17724,6 +17821,36 @@
 					ON membership_users.memberID = %TABLENAME%.last_updated_by
 					WHERE %TABLENAME%.id = %ID%;',
 			],
+			'honorarium_Activities' => [
+				'created_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.created_by
+					WHERE %TABLENAME%.id = %ID%;',
+				'last_updated_by_username' => 'SELECT CONCAT(
+					  
+					membership_users.memberID, \' : \',
+					  
+					membership_users.custom1
+					
+					)
+					
+					FROM membership_users
+					
+					INNER JOIN %TABLENAME%
+					  
+					ON membership_users.memberID = %TABLENAME%.last_updated_by
+					WHERE %TABLENAME%.id = %ID%;',
+			],
 			'all_bank_account_statement_table' => [
 				'created_by_username' => 'SELECT CONCAT(
 					  
@@ -19090,6 +19217,9 @@
 			],
 			'honorarium_claim_table' => [
 				'coordinated_by_tih_user' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`name`) || CHAR_LENGTH(`user_table`.`memberID`), CONCAT_WS(\'\', `user_table`.`name`, \'::\', `user_table`.`memberID`), \'\') FROM `user_table` ORDER BY 2',
+			],
+			'honorarium_Activities' => [
+				'honorarium_details' => 'SELECT `honorarium_claim_table`.`id`, IF(CHAR_LENGTH(`honorarium_claim_table`.`id`) || CHAR_LENGTH(`honorarium_claim_table`.`name_of_advisor`), CONCAT_WS(\'\', `honorarium_claim_table`.`id`, `honorarium_claim_table`.`name_of_advisor`), \'\') FROM `honorarium_claim_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`honorarium_claim_table`.`coordinated_by_tih_user` ORDER BY 2',
 			],
 			'all_bank_account_statement_table' => [
 			],

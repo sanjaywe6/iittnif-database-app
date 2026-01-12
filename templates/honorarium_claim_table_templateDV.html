@@ -9,6 +9,9 @@
 	<!-- child links -->
 	<div class="row vspacer-md">
 		<div class="col-xs-12 children-links">
+			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="honorarium_Activities_view.php?filterer_honorarium_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="honorarium_Activities_link"><img src="table.gif"> Honorarium Activities</a>
+			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="honorarium_Activities_view.php?filterer_honorarium_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_honorarium_Activities_link"><img src="table.gif"> Honorarium Activities</a>
+			<input type="hidden" id="honorarium_Activities_hclink" value="honorarium_Activities_view.php?filterer_honorarium_details=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -91,96 +94,6 @@
 					</div>
 				</div>
 
-				<!-- Field: Day 1 Date -->
-				<div class="form-group honorarium_claim_table-date_1">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="date_1-dd">Day 1 Date</label>
-					<div class="col-lg-9">
-						<%%COMBO(date_1)%%>
-					</div>
-				</div>
-
-				<!-- Field: No. Hours -->
-				<div class="form-group honorarium_claim_table-hours_1">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="hours_1">No. Hours</label>
-					<div class="col-lg-9">
-						<input maxlength="40" type="text" class="form-control" name="hours_1" id="hours_1" value="<%%VALUE(hours_1)%%>">
-					</div>
-				</div>
-
-				<!-- Field: Day 2 Date -->
-				<div class="form-group honorarium_claim_table-date_2">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="date_2-dd">Day 2 Date</label>
-					<div class="col-lg-9">
-						<%%COMBO(date_2)%%>
-					</div>
-				</div>
-
-				<!-- Field: No. Hours -->
-				<div class="form-group honorarium_claim_table-hours_2">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="hours_2">No. Hours</label>
-					<div class="col-lg-9">
-						<input maxlength="40" type="text" class="form-control" name="hours_2" id="hours_2" value="<%%VALUE(hours_2)%%>">
-					</div>
-				</div>
-
-				<!-- Field: Day 3 Date -->
-				<div class="form-group honorarium_claim_table-date_3">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="date_3-dd">Day 3 Date</label>
-					<div class="col-lg-9">
-						<%%COMBO(date_3)%%>
-					</div>
-				</div>
-
-				<!-- Field: No. Hours -->
-				<div class="form-group honorarium_claim_table-hours_3">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="hours_3">No. Hours</label>
-					<div class="col-lg-9">
-						<input maxlength="40" type="text" class="form-control" name="hours_3" id="hours_3" value="<%%VALUE(hours_3)%%>">
-					</div>
-				</div>
-
-				<!-- Field: Day 4 Date -->
-				<div class="form-group honorarium_claim_table-date_4">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="date_4-dd">Day 4 Date</label>
-					<div class="col-lg-9">
-						<%%COMBO(date_4)%%>
-					</div>
-				</div>
-
-				<!-- Field: No. Hours -->
-				<div class="form-group honorarium_claim_table-hours_4">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="hours_4">No. Hours</label>
-					<div class="col-lg-9">
-						<input maxlength="40" type="text" class="form-control" name="hours_4" id="hours_4" value="<%%VALUE(hours_4)%%>">
-					</div>
-				</div>
-
-				<!-- Field: Day 5 Date -->
-				<div class="form-group honorarium_claim_table-date_5">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="date_5-dd">Day 5 Date</label>
-					<div class="col-lg-9">
-						<%%COMBO(date_5)%%>
-					</div>
-				</div>
-
-				<!-- Field: No. Hours -->
-				<div class="form-group honorarium_claim_table-hours_5">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="hours_5">No. Hours</label>
-					<div class="col-lg-9">
-						<input maxlength="40" type="text" class="form-control" name="hours_5" id="hours_5" value="<%%VALUE(hours_5)%%>">
-					</div>
-				</div>
-
 				<!-- Field: Total No. of Days -->
 				<div class="form-group honorarium_claim_table-total_no_of_days">
 					<hr class="hidden-md hidden-lg">
@@ -196,24 +109,6 @@
 					<label class="control-label col-lg-3" for="total_no_of_hours">Total no of hours</label>
 					<div class="col-lg-9">
 						<input maxlength="255" type="text" class="form-control" name="total_no_of_hours" id="total_no_of_hours" value="<%%VALUE(total_no_of_hours)%%>">
-					</div>
-				</div>
-
-				<!-- Field: Case Reference Email Subject (If Any) -->
-				<div class="form-group honorarium_claim_table-case_reference_email_subject">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="case_reference_email_subject">Case Reference Email Subject (If Any)</label>
-					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="case_reference_email_subject" id="case_reference_email_subject" value="<%%VALUE(case_reference_email_subject)%%>">
-					</div>
-				</div>
-
-				<!-- Field: Activities/Deliverables -->
-				<div class="form-group honorarium_claim_table-activities">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="activities">Activities/Deliverables</label>
-					<div class="col-lg-9">
-						<textarea maxlength="65500" class="form-control" name="activities" id="activities" rows=" 5"><%%VALUE(activities)%%></textarea>
 					</div>
 				</div>
 
@@ -321,6 +216,16 @@
 	</div>
 
 
+	<!-- child records -->
+	<hr>
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1">
+			<div id="honorarium_claim_table-children" class="children-tabs">
+				<div class="text-center"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+			</div>
+		</div>
+	</div>
+
 </div><!-- /div class="panel-body" -->
 	<script>
 		$j(function() {
@@ -345,6 +250,38 @@
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 
+			if(embedded_mode) {
+				/* hide links to children tables in embedded mode */
+				$j('.detail_view a[id$=_link]').remove();
+
+				/* append embedded mode to all links */
+				var append_embedded = function() {
+					$j('a[href]:not([href^="#"]):not([href^="javascript"]):not([href$="Embedded=1"]):not([href*="link.php?t="]):not([href^="mailto:"]):not([href$=".jpg"]):not([href$=".png"]):not([href$=".gif"])').each(
+						function() {
+							$j(this).attr('href', $j(this).attr('href') + '&Embedded=1');
+						}
+					);
+				}
+				setTimeout(append_embedded, 500);
+				setTimeout(append_embedded, 1500);
+				setTimeout(append_embedded, 2500);
+				setTimeout(append_embedded, 3500);
+			}
+
+			/* when no record is selected ('add new' mode) */
+			if(add_new_mode) {
+				/* hide links to children tables */
+				$j('.detail_view a[id$=_link]').remove();
+			} else {
+				post(
+					'parent-children.php', {
+						ParentTable: 'honorarium_claim_table',
+						SelectedID: '<%%VALUE(id)%%>',
+						Operation: 'show-children'
+					},
+					'honorarium_claim_table-children'
+				);
+			}
 
 			if(true /* !embedded_mode */) {
 				$j('.add_new_parent').click(function() {

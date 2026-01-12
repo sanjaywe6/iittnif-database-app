@@ -185,6 +185,30 @@
 		setupTable('honorarium_claim_table', []);
 		setupIndexes('honorarium_claim_table', ['coordinated_by_tih_user',]);
 
+		setupTable('honorarium_Activities', [
+				"ALTER TABLE `table104` RENAME `honorarium_Activities`",
+				"UPDATE `membership_userrecords` SET `tableName`='honorarium_Activities' WHERE `tableName`='table104'",
+				"UPDATE `membership_userpermissions` SET `tableName`='honorarium_Activities' WHERE `tableName`='table104'",
+				"UPDATE `membership_grouppermissions` SET `tableName`='honorarium_Activities' WHERE `tableName`='table104'",
+				"ALTER TABLE `honorarium_Activities` ADD `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT ",
+				"ALTER TABLE honorarium_Activities ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `honorarium_Activities` CHANGE `field1` `honorarium_details` VARCHAR(255) NULL ",
+				"ALTER TABLE honorarium_Activities ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `honorarium_Activities` CHANGE `date` `date` DATE NULL ",
+				"ALTER TABLE `honorarium_Activities` CHANGE `field1` `date` DATE NULL ",
+				"ALTER TABLE honorarium_Activities ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `honorarium_Activities` CHANGE `field1` `no_of_hours` VARCHAR(255) NULL ",
+				"ALTER TABLE `honorarium_Activities` ADD `case_reference_email_subject` VARCHAR(255) NULL ",
+				"ALTER TABLE `honorarium_Activities` ADD `activities` TEXT NULL ",
+				"ALTER TABLE `honorarium_Activities` ADD `created_by` VARCHAR(255) NULL ",
+				"ALTER TABLE `honorarium_Activities` ADD `created_at` VARCHAR(255) NULL ",
+				"ALTER TABLE `honorarium_Activities` ADD `created_by_username` VARCHAR(255) NULL ",
+				"ALTER TABLE `honorarium_Activities` ADD `last_updated_by_username` VARCHAR(255) NULL ",
+				"ALTER TABLE `honorarium_Activities` ADD `last_updated_by` VARCHAR(255) NULL ",
+				"ALTER TABLE `honorarium_Activities` ADD `last_updated_at` VARCHAR(255) NULL ",
+			]);
+		setupIndexes('honorarium_Activities', ['honorarium_details',]);
+
 		setupTable('all_bank_account_statement_table', []);
 
 		setupTable('payment_track_details_table', []);

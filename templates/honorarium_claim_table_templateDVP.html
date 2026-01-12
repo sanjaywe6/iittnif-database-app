@@ -70,76 +70,6 @@
 				<div class="form-control-static"><%%VALUE(place_of_work)%%></div>
 			</div>
 		</div>
-		<!-- Field: Day 1 Date -->
-		<div class="form-group honorarium_claim_table-date_1" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Day 1 Date</label>
-			<div class="col-xs-9">
-				<div class="form-control-static"><%%COMBOTEXT(date_1)%%></div>
-			</div>
-		</div>
-		<!-- Field: No. Hours -->
-		<div class="form-group honorarium_claim_table-hours_1" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">No. Hours</label>
-			<div class="col-xs-9">
-				<div class="form-control-static"><%%VALUE(hours_1)%%></div>
-			</div>
-		</div>
-		<!-- Field: Day 2 Date -->
-		<div class="form-group honorarium_claim_table-date_2" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Day 2 Date</label>
-			<div class="col-xs-9">
-				<div class="form-control-static"><%%COMBOTEXT(date_2)%%></div>
-			</div>
-		</div>
-		<!-- Field: No. Hours -->
-		<div class="form-group honorarium_claim_table-hours_2" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">No. Hours</label>
-			<div class="col-xs-9">
-				<div class="form-control-static"><%%VALUE(hours_2)%%></div>
-			</div>
-		</div>
-		<!-- Field: Day 3 Date -->
-		<div class="form-group honorarium_claim_table-date_3" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Day 3 Date</label>
-			<div class="col-xs-9">
-				<div class="form-control-static"><%%COMBOTEXT(date_3)%%></div>
-			</div>
-		</div>
-		<!-- Field: No. Hours -->
-		<div class="form-group honorarium_claim_table-hours_3" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">No. Hours</label>
-			<div class="col-xs-9">
-				<div class="form-control-static"><%%VALUE(hours_3)%%></div>
-			</div>
-		</div>
-		<!-- Field: Day 4 Date -->
-		<div class="form-group honorarium_claim_table-date_4" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Day 4 Date</label>
-			<div class="col-xs-9">
-				<div class="form-control-static"><%%COMBOTEXT(date_4)%%></div>
-			</div>
-		</div>
-		<!-- Field: No. Hours -->
-		<div class="form-group honorarium_claim_table-hours_4" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">No. Hours</label>
-			<div class="col-xs-9">
-				<div class="form-control-static"><%%VALUE(hours_4)%%></div>
-			</div>
-		</div>
-		<!-- Field: Day 5 Date -->
-		<div class="form-group honorarium_claim_table-date_5" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Day 5 Date</label>
-			<div class="col-xs-9">
-				<div class="form-control-static"><%%COMBOTEXT(date_5)%%></div>
-			</div>
-		</div>
-		<!-- Field: No. Hours -->
-		<div class="form-group honorarium_claim_table-hours_5" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">No. Hours</label>
-			<div class="col-xs-9">
-				<div class="form-control-static"><%%VALUE(hours_5)%%></div>
-			</div>
-		</div>
 		<!-- Field: Total No. of Days -->
 		<div class="form-group honorarium_claim_table-total_no_of_days" style="border-bottom: dotted 1px #DDD;">
 			<label class="col-xs-3 control-label">Total No. of Days</label>
@@ -152,20 +82,6 @@
 			<label class="col-xs-3 control-label">Total no of hours</label>
 			<div class="col-xs-9">
 				<div class="form-control-static"><%%VALUE(total_no_of_hours)%%></div>
-			</div>
-		</div>
-		<!-- Field: Case Reference Email Subject (If Any) -->
-		<div class="form-group honorarium_claim_table-case_reference_email_subject" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Case Reference Email Subject (If Any)</label>
-			<div class="col-xs-9">
-				<div class="form-control-static"><%%VALUE(case_reference_email_subject)%%></div>
-			</div>
-		</div>
-		<!-- Field: Activities/Deliverables -->
-		<div class="form-group honorarium_claim_table-activities" style="border-bottom: dotted 1px #DDD;">
-			<label class="col-xs-3 control-label">Activities/Deliverables</label>
-			<div class="col-xs-9">
-				<div class="form-control-static"><%%VALUE(activities)%%></div>
 			</div>
 		</div>
 		<!-- Field: Coordinated by TIH User (For Office Use of TIH) -->
@@ -244,3 +160,32 @@
 			.after('<i class="glyphicon glyphicon-unchecked"></i>')
 	})
 </script>
+<!-- child records -->
+<div class="panel-body">
+	<div id="honorarium_claim_table-children"></div>
+</div>
+
+<script>
+	$j(function() {
+		/* prevent loading child records in multiple DVP */
+		if($j('[id=honorarium_claim_table-children]').length > 1) return;
+
+		post(
+			'parent-children.php', {
+				ParentTable: 'honorarium_claim_table',
+				SelectedID: '<%%VALUE(id)%%>',
+				Operation: 'show-children-printable'
+			},
+			'honorarium_claim_table-children',
+			'disable-element',
+			'loading-element',
+			apply_persisting_children
+		);
+
+		$j('form').on('click', '#children-tabs button[data-target]', function() {
+			$j(this).toggleClass('active');
+			persist_expanded_child($j(this).attr('id'));
+		});
+	})
+</script>
+

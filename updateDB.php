@@ -182,16 +182,10 @@
 		setupTable('approval_billing_table', []);
 		setupIndexes('approval_billing_table', ['approval_lookup','paid_by',]);
 
-		setupTable('honorarium_claim_table', [
-				"ALTER TABLE `honorarium_claim_table` ADD `date` DATE NULL ",
-				"ALTER TABLE `honorarium_claim_table` ADD `no_of_hours` VARCHAR(255) NULL ",
-				"ALTER TABLE `honorarium_claim_table` ADD `case_reference_email_subject_1` VARCHAR(255) NULL ",
-				"ALTER TABLE `honorarium_claim_table` DROP `case_reference_email_subject_1`",
-			]);
+		setupTable('honorarium_claim_table', []);
 		setupIndexes('honorarium_claim_table', ['coordinated_by_tih_user',]);
 
 		setupTable('honorarium_Activities', []);
-		setupIndexes('honorarium_Activities', ['honorarium_details',]);
 
 		setupTable('all_bank_account_statement_table', []);
 

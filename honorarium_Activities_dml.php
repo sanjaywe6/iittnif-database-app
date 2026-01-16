@@ -15,11 +15,6 @@ function honorarium_Activities_insert(&$error_message = '') {
 		return false;
 	}
 
-	// automatic honorarium_details if passed as filterer
-	if(Request::val('filterer_honorarium_details')) {
-		$_REQUEST['honorarium_details'] = Request::val('filterer_honorarium_details');
-	}
-
 	$data = [
 		'date' => Request::dateComponents('date', '1'),
 		'no_of_hours' => Request::val('no_of_hours', ''),
@@ -29,11 +24,6 @@ function honorarium_Activities_insert(&$error_message = '') {
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
 
-
-	// automatic honorarium_details if passed as filterer
-	if(Request::val('filterer_honorarium_details')) {
-		$data['honorarium_details'] = Request::val('filterer_honorarium_details');
-	}
 	// record owner is current user
 	$recordOwner = getLoggedMemberID();
 
@@ -191,14 +181,11 @@ function honorarium_Activities_form($selectedId = '', $allowUpdate = true, $allo
 	$showSaveAsCopy = !$dvprint && ($allowInsert && $hasSelectedId && !$noSaveAsCopy);
 	$fieldsAreEditable = !$dvprint && (($allowInsert && !$hasSelectedId) || ($allowUpdate && $hasSelectedId) || $showSaveAsCopy);
 
-	$filterer_honorarium_details = Request::val('filterer_honorarium_details');
 
 	// populate filterers, starting from children to grand-parents
 
 	// unique random identifier
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
-	// combobox: honorarium_details
-	$combo_honorarium_details = new DataCombo;
 	// combobox: date
 	$combo_date = new DateCombo;
 	$combo_date->DateFormat = "dmy";
@@ -212,7 +199,6 @@ function honorarium_Activities_form($selectedId = '', $allowUpdate = true, $allo
 		if(!($row = getRecord('honorarium_Activities', $selectedId))) {
 			return error_message($Translation['No records found'], 'honorarium_Activities_view.php', false);
 		}
-		$combo_honorarium_details->SelectedData = $row['honorarium_details'];
 		$combo_date->DefaultDate = $row['date'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
@@ -220,100 +206,18 @@ function honorarium_Activities_form($selectedId = '', $allowUpdate = true, $allo
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_honorarium_details->SelectedData = $filterer_honorarium_details;
 	}
-	$combo_honorarium_details->HTML = '<span id="honorarium_details-container' . $rnd1 . '"></span><input type="hidden" name="honorarium_details" id="honorarium_details' . $rnd1 . '" value="' . html_attr($combo_honorarium_details->SelectedData) . '">';
-	$combo_honorarium_details->MatchText = '<span id="honorarium_details-container-readonly' . $rnd1 . '"></span><input type="hidden" name="honorarium_details" id="honorarium_details' . $rnd1 . '" value="' . html_attr($combo_honorarium_details->SelectedData) . '">';
 
 	ob_start();
 	?>
 
 	<script>
 		// initial lookup values
-		AppGini.current_honorarium_details__RAND__ = { text: "", value: "<?php echo addslashes($hasSelectedId ? $urow['honorarium_details'] : htmlspecialchars($filterer_honorarium_details, ENT_QUOTES)); ?>"};
 
 		$j(function() {
 			setTimeout(function() {
-				if(typeof(honorarium_details_reload__RAND__) == 'function') honorarium_details_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
-		function honorarium_details_reload__RAND__() {
-		<?php if($fieldsAreEditable) { ?>
-
-			$j("#honorarium_details-container__RAND__").select2({
-				/* initial default value */
-				initSelection: function(e, c) {
-					$j.ajax({
-						url: 'ajax_combo.php',
-						dataType: 'json',
-						data: { id: AppGini.current_honorarium_details__RAND__.value, t: 'honorarium_Activities', f: 'honorarium_details' },
-						success: function(resp) {
-							c({
-								id: resp.results[0].id,
-								text: resp.results[0].text
-							});
-							$j('[name="honorarium_details"]').val(resp.results[0].id);
-							$j('[id=honorarium_details-container-readonly__RAND__]').html('<span class="match-text" id="honorarium_details-match-text">' + resp.results[0].text + '</span>');
-							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=honorarium_claim_table_view_parent]').hide(); } else { $j('.btn[id=honorarium_claim_table_view_parent]').show(); }
-
-
-							if(typeof(honorarium_details_update_autofills__RAND__) == 'function') honorarium_details_update_autofills__RAND__();
-						}
-					});
-				},
-				width: '100%',
-				formatNoMatches: function(term) { return '<?php echo addslashes($Translation['No matches found!']); ?>'; },
-				minimumResultsForSearch: 5,
-				loadMorePadding: 200,
-				ajax: {
-					url: 'ajax_combo.php',
-					dataType: 'json',
-					cache: true,
-					data: function(term, page) { return { s: term, p: page, t: 'honorarium_Activities', f: 'honorarium_details' }; },
-					results: function(resp, page) { return resp; }
-				},
-				escapeMarkup: function(str) { return str; }
-			}).on('change', function(e) {
-				AppGini.current_honorarium_details__RAND__.value = e.added.id;
-				AppGini.current_honorarium_details__RAND__.text = e.added.text;
-				$j('[name="honorarium_details"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=honorarium_claim_table_view_parent]').hide(); } else { $j('.btn[id=honorarium_claim_table_view_parent]').show(); }
-
-
-				if(typeof(honorarium_details_update_autofills__RAND__) == 'function') honorarium_details_update_autofills__RAND__();
-			});
-
-			if(!$j("#honorarium_details-container__RAND__").length) {
-				$j.ajax({
-					url: 'ajax_combo.php',
-					dataType: 'json',
-					data: { id: AppGini.current_honorarium_details__RAND__.value, t: 'honorarium_Activities', f: 'honorarium_details' },
-					success: function(resp) {
-						$j('[name="honorarium_details"]').val(resp.results[0].id);
-						$j('[id=honorarium_details-container-readonly__RAND__]').html('<span class="match-text" id="honorarium_details-match-text">' + resp.results[0].text + '</span>');
-						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=honorarium_claim_table_view_parent]').hide(); } else { $j('.btn[id=honorarium_claim_table_view_parent]').show(); }
-
-						if(typeof(honorarium_details_update_autofills__RAND__) == 'function') honorarium_details_update_autofills__RAND__();
-					}
-				});
-			}
-
-		<?php } else { ?>
-
-			$j.ajax({
-				url: 'ajax_combo.php',
-				dataType: 'json',
-				data: { id: AppGini.current_honorarium_details__RAND__.value, t: 'honorarium_Activities', f: 'honorarium_details' },
-				success: function(resp) {
-					$j('[id=honorarium_details-container__RAND__], [id=honorarium_details-container-readonly__RAND__]').html('<span class="match-text" id="honorarium_details-match-text">' + resp.results[0].text + '</span>');
-					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=honorarium_claim_table_view_parent]').hide(); } else { $j('.btn[id=honorarium_claim_table_view_parent]').show(); }
-
-					if(typeof(honorarium_details_update_autofills__RAND__) == 'function') honorarium_details_update_autofills__RAND__();
-				}
-			});
-		<?php } ?>
-
-		}
 	</script>
 	<?php
 
@@ -414,9 +318,6 @@ function honorarium_Activities_form($selectedId = '', $allowUpdate = true, $allo
 	}
 
 	// process combos
-	$templateCode = str_replace('<%%COMBO(honorarium_details)%%>', $combo_honorarium_details->HTML, $templateCode);
-	$templateCode = str_replace('<%%COMBOTEXT(honorarium_details)%%>', $combo_honorarium_details->MatchText, $templateCode);
-	$templateCode = str_replace('<%%URLCOMBOTEXT(honorarium_details)%%>', urlencode($combo_honorarium_details->MatchText), $templateCode);
 	$templateCode = str_replace(
 		'<%%COMBO(date)%%>',
 		(!$fieldsAreEditable ?
@@ -426,7 +327,7 @@ function honorarium_Activities_form($selectedId = '', $allowUpdate = true, $allo
 	$templateCode = str_replace('<%%COMBOTEXT(date)%%>', $combo_date->GetHTML(true), $templateCode);
 
 	/* lookup fields array: 'lookup field name' => ['parent table name', 'lookup field caption'] */
-	$lookup_fields = ['honorarium_details' => ['honorarium_claim_table', 'Honorarium details'], ];
+	$lookup_fields = [];
 	foreach($lookup_fields as $luf => $ptfc) {
 		$pt_perm = getTablePermissions($ptfc[0]);
 
@@ -548,8 +449,6 @@ function honorarium_Activities_form($selectedId = '', $allowUpdate = true, $allo
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
-	if(isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>')
-		$templateCode.="\n<input type=hidden name=honorarium_details value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery
 	$templateCode = preg_replace('/blank.gif" data-lightbox=".*?"/', 'blank.gif"', $templateCode);

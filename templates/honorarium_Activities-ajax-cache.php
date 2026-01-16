@@ -8,21 +8,12 @@
 
 		/* data for selected record, or defaults if none is selected */
 		var data = {
-			honorarium_details: <?php echo json_encode(['id' => $rdata['honorarium_details'], 'value' => $rdata['honorarium_details'], 'text' => $jdata['honorarium_details']]); ?>
 		};
 
 		/* initialize or continue using AppGini.cache for the current table */
 		AppGini.cache = AppGini.cache || {};
 		AppGini.cache[tn] = AppGini.cache[tn] || AppGini.ajaxCache();
 		var cache = AppGini.cache[tn];
-
-		/* saved value for honorarium_details */
-		cache.addCheck(function(u, d) {
-			if(u != 'ajax_combo.php') return false;
-			if(d.t == tn && d.f == 'honorarium_details' && d.id == data.honorarium_details.id)
-				return { results: [ data.honorarium_details ], more: false, elapsed: 0.01 };
-			return false;
-		});
 
 		cache.start();
 	});

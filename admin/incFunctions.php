@@ -15755,9 +15755,6 @@
 			'honorarium_claim_table' => [
 				'user_table' => ['coordinated_by_tih_user'],
 			],
-			'honorarium_Activities' => [
-				'honorarium_claim_table' => ['honorarium_details'],
-			],
 			'selected_proposals_final_tdp' => [
 				'panel_decision_table_tdp' => ['project_id'],
 			],
@@ -19233,7 +19230,6 @@
 				'coordinated_by_tih_user' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`name`) || CHAR_LENGTH(`user_table`.`memberID`), CONCAT_WS(\'\', `user_table`.`name`, \'::\', `user_table`.`memberID`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'honorarium_Activities' => [
-				'honorarium_details' => 'SELECT `honorarium_claim_table`.`id`, IF(CHAR_LENGTH(`honorarium_claim_table`.`id`) || CHAR_LENGTH(`honorarium_claim_table`.`name_of_advisor`), CONCAT_WS(\'\', `honorarium_claim_table`.`id`, \'~\', `honorarium_claim_table`.`name_of_advisor`), \'\') FROM `honorarium_claim_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`honorarium_claim_table`.`coordinated_by_tih_user` ORDER BY 2',
 			],
 			'all_bank_account_statement_table' => [
 			],

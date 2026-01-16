@@ -19,7 +19,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`honorarium_Activities`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`honorarium_claim_table1`.`id`) || CHAR_LENGTH(`honorarium_claim_table1`.`name_of_advisor`), CONCAT_WS('',   `honorarium_claim_table1`.`id`, '~', `honorarium_claim_table1`.`name_of_advisor`), '') /* Honorarium details */" => "honorarium_details",
+		"`honorarium_Activities`.`honorarium_details`" => "honorarium_details",
 		"if(`honorarium_Activities`.`date`,date_format(`honorarium_Activities`.`date`,'%d/%m/%Y'),'')" => "date",
 		"`honorarium_Activities`.`no_of_hours`" => "no_of_hours",
 		"`honorarium_Activities`.`case_reference_email_subject`" => "case_reference_email_subject",
@@ -34,7 +34,7 @@
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
 		1 => '`honorarium_Activities`.`id`',
-		2 => 2,
+		2 => '`honorarium_Activities`.`honorarium_details`',
 		3 => '`honorarium_Activities`.`date`',
 		4 => 4,
 		5 => 5,
@@ -50,7 +50,7 @@
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`honorarium_Activities`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`honorarium_claim_table1`.`id`) || CHAR_LENGTH(`honorarium_claim_table1`.`name_of_advisor`), CONCAT_WS('',   `honorarium_claim_table1`.`id`, '~', `honorarium_claim_table1`.`name_of_advisor`), '') /* Honorarium details */" => "honorarium_details",
+		"`honorarium_Activities`.`honorarium_details`" => "honorarium_details",
 		"if(`honorarium_Activities`.`date`,date_format(`honorarium_Activities`.`date`,'%d/%m/%Y'),'')" => "date",
 		"`honorarium_Activities`.`no_of_hours`" => "no_of_hours",
 		"`honorarium_Activities`.`case_reference_email_subject`" => "case_reference_email_subject",
@@ -65,7 +65,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`honorarium_Activities`.`id`" => "ID",
-		"IF(    CHAR_LENGTH(`honorarium_claim_table1`.`id`) || CHAR_LENGTH(`honorarium_claim_table1`.`name_of_advisor`), CONCAT_WS('',   `honorarium_claim_table1`.`id`, '~', `honorarium_claim_table1`.`name_of_advisor`), '') /* Honorarium details */" => "Honorarium details",
+		"`honorarium_Activities`.`honorarium_details`" => "Honorarium details",
 		"`honorarium_Activities`.`date`" => "Date",
 		"`honorarium_Activities`.`no_of_hours`" => "No. of hours",
 		"`honorarium_Activities`.`case_reference_email_subject`" => "Case Reference Email Subject (If Any)",
@@ -81,7 +81,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`honorarium_Activities`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`honorarium_claim_table1`.`id`) || CHAR_LENGTH(`honorarium_claim_table1`.`name_of_advisor`), CONCAT_WS('',   `honorarium_claim_table1`.`id`, '~', `honorarium_claim_table1`.`name_of_advisor`), '') /* Honorarium details */" => "honorarium_details",
+		"`honorarium_Activities`.`honorarium_details`" => "honorarium_details",
 		"if(`honorarium_Activities`.`date`,date_format(`honorarium_Activities`.`date`,'%d/%m/%Y'),'')" => "date",
 		"`honorarium_Activities`.`no_of_hours`" => "no_of_hours",
 		"`honorarium_Activities`.`case_reference_email_subject`" => "case_reference_email_subject",
@@ -95,9 +95,9 @@
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['honorarium_details' => 'Honorarium details', ];
+	$x->filterers = [];
 
-	$x->QueryFrom = "`honorarium_Activities` LEFT JOIN `honorarium_claim_table` as honorarium_claim_table1 ON `honorarium_claim_table1`.`id`=`honorarium_Activities`.`honorarium_details` ";
+	$x->QueryFrom = "`honorarium_Activities` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 

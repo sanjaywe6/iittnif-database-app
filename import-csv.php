@@ -419,7 +419,6 @@
 			return $data;
 		},
 		'honorarium_Activities' => function($data, $options = []) {
-			if(isset($data['honorarium_details'])) $data['honorarium_details'] = pkGivenLookupText($data['honorarium_details'], 'honorarium_Activities', 'honorarium_details');
 			if(isset($data['date'])) $data['date'] = guessMySQLDateTime($data['date']);
 
 			return $data;

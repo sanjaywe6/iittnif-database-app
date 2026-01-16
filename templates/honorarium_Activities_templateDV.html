@@ -22,9 +22,12 @@
 				<!-- Field: Honorarium details -->
 				<div class="form-group honorarium_Activities-honorarium_details">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="honorarium_details" data-parent_link="view_parent_modal">Honorarium details</label>
+					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Honorarium details</label>
 					<div class="col-lg-9">
-						<div class="lookup-flex"><%%COMBO(honorarium_details)%%><%%PLINK(honorarium_details)%%><%%ADDNEW(honorarium_claim_table)%%></div>
+						<div class="form-control-static">
+							<span id="honorarium_details-readonly"><%%COMBOTEXT(honorarium_details)%%></span>
+							<%%PLINK(honorarium_details)%%>
+						</div>
 					</div>
 				</div>
 
@@ -132,27 +135,9 @@
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
-				AppGini.once({
-					condition: function() {
-						return $j('.form-group.honorarium_Activities-honorarium_details')
-									.find('.nicEdit-main, .select2-container, input[type=radio]')
-									.length > 0
-								// or read-only DV
-								|| (!$j('#update').length && !$j('#insert').length);
-					},
-					action: function() {
-						$j('#honorarium_Activities_dv_container-loading').addClass('hidden');
-						$j('#honorarium_Activities_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('honorarium_Activities', 'honorarium_details');
-					},
-					timeout:  5000,
-					doActionOnTimeout:  true
-				});
-			} else {
-				$j('#honorarium_Activities_dv_container-loading').addClass('hidden');
-				$j('#honorarium_Activities_dv_container').removeClass('hidden');
-			}
+			$j('#honorarium_Activities_dv_container-loading').addClass('hidden');
+			$j('#honorarium_Activities_dv_container').removeClass('hidden');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('honorarium_Activities', 'date');
 
 			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
 

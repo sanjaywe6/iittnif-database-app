@@ -599,7 +599,7 @@
 					'Caption' => 'Honorarium Activities',
 					'Description' => '',
 					'tableIcon' => 'table.gif',
-					'group' => $tg[0],
+					'group' => $tg[10],
 					'homepageShowCount' => 1
 				],
 				'all_bank_account_statement_table' => [
@@ -931,7 +931,7 @@
 			'evaluators_table' => ['Evaluators table', '', 'table.gif', 'Program Apps'],
 			'approval_billing_table' => ['Approval billing table', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'honorarium_claim_table' => ['Honorarium - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
-			'honorarium_Activities' => ['Honorarium Activities', '', 'table.gif', 'Approvals &amp; Sanctions'],
+			'honorarium_Activities' => ['Honorarium Activities', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'all_bank_account_statement_table' => ['All bank account statement - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'payment_track_details_table' => ['Payment track details - App', '', 'table.gif', 'Accounts &amp; Finance Apps'],
 			'travel_table' => ['Travel - App', '', 'table.gif', 'Transport Apps'],
@@ -9598,6 +9598,20 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Total no of hours',
+							'description' => '',
+						],
+					],
+					'date' => [
+						'appgini' => "DATE NULL",
+						'info' => [
+							'caption' => 'Date',
+							'description' => '',
+						],
+					],
+					'no_of_hours' => [
+						'appgini' => "VARCHAR(255) NULL",
+						'info' => [
+							'caption' => 'No. of hours',
 							'description' => '',
 						],
 					],
@@ -19219,7 +19233,7 @@
 				'coordinated_by_tih_user' => 'SELECT `user_table`.`user_id`, IF(CHAR_LENGTH(`user_table`.`name`) || CHAR_LENGTH(`user_table`.`memberID`), CONCAT_WS(\'\', `user_table`.`name`, \'::\', `user_table`.`memberID`), \'\') FROM `user_table` ORDER BY 2',
 			],
 			'honorarium_Activities' => [
-				'honorarium_details' => 'SELECT `honorarium_claim_table`.`id`, IF(CHAR_LENGTH(`honorarium_claim_table`.`id`) || CHAR_LENGTH(`honorarium_claim_table`.`name_of_advisor`), CONCAT_WS(\'\', `honorarium_claim_table`.`id`, `honorarium_claim_table`.`name_of_advisor`), \'\') FROM `honorarium_claim_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`honorarium_claim_table`.`coordinated_by_tih_user` ORDER BY 2',
+				'honorarium_details' => 'SELECT `honorarium_claim_table`.`id`, IF(CHAR_LENGTH(`honorarium_claim_table`.`id`) || CHAR_LENGTH(`honorarium_claim_table`.`name_of_advisor`), CONCAT_WS(\'\', `honorarium_claim_table`.`id`, \'~\', `honorarium_claim_table`.`name_of_advisor`), \'\') FROM `honorarium_claim_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`honorarium_claim_table`.`coordinated_by_tih_user` ORDER BY 2',
 			],
 			'all_bank_account_statement_table' => [
 			],

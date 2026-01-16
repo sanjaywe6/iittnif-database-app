@@ -24,8 +24,10 @@ function honorarium_claim_table_insert(&$error_message = '') {
 		'bank_name' => Request::val('bank_name', ''),
 		'pan' => Request::val('pan', ''),
 		'place_of_work' => Request::val('place_of_work', ''),
-		'total_no_of_days' => Request::val('total_no_of_days', ''),
-		'total_no_of_hours' => Request::val('total_no_of_hours', ''),
+		'date' => Request::dateComponents('date', '1'),
+		'no_of_hours' => Request::val('no_of_hours', ''),
+		'case_reference_email_subject' => Request::val('case_reference_email_subject', ''),
+		'activities' => br2nl(Request::val('activities', '')),
 		'coordinated_by_tih_user' => Request::lookup('coordinated_by_tih_user', ''),
 		'payment_date' => Request::dateComponents('payment_date', ''),
 		'amount_paid' => Request::val('amount_paid', ''),
@@ -128,8 +130,10 @@ function honorarium_claim_table_update(&$selected_id, &$error_message = '') {
 		'bank_name' => Request::val('bank_name', ''),
 		'pan' => Request::val('pan', ''),
 		'place_of_work' => Request::val('place_of_work', ''),
-		'total_no_of_days' => Request::val('total_no_of_days', ''),
-		'total_no_of_hours' => Request::val('total_no_of_hours', ''),
+		'date' => Request::dateComponents('date', ''),
+		'no_of_hours' => Request::val('no_of_hours', ''),
+		'case_reference_email_subject' => Request::val('case_reference_email_subject', ''),
+		'activities' => br2nl(Request::val('activities', '')),
 		'coordinated_by_tih_user' => Request::lookup('coordinated_by_tih_user', ''),
 		'payment_date' => Request::dateComponents('payment_date', ''),
 		'amount_paid' => Request::val('amount_paid', ''),
@@ -271,6 +275,14 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 	$combo_date_5->DefaultDate = parseMySQLDate('', '');
 	$combo_date_5->MonthNames = $Translation['month names'];
 	$combo_date_5->NamePrefix = 'date_5';
+	// combobox: date
+	$combo_date = new DateCombo;
+	$combo_date->DateFormat = "dmy";
+	$combo_date->MinYear = defined('honorarium_claim_table.date.MinYear') ? constant('honorarium_claim_table.date.MinYear') : 1900;
+	$combo_date->MaxYear = defined('honorarium_claim_table.date.MaxYear') ? constant('honorarium_claim_table.date.MaxYear') : 2100;
+	$combo_date->DefaultDate = parseMySQLDate('1', '1');
+	$combo_date->MonthNames = $Translation['month names'];
+	$combo_date->NamePrefix = 'date';
 	// combobox: coordinated_by_tih_user
 	$combo_coordinated_by_tih_user = new DataCombo;
 	// combobox: payment_date
@@ -306,6 +318,7 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 		$combo_date_3->DefaultDate = $row['date_3'];
 		$combo_date_4->DefaultDate = $row['date_4'];
 		$combo_date_5->DefaultDate = $row['date_5'];
+		$combo_date->DefaultDate = $row['date'];
 		$combo_coordinated_by_tih_user->SelectedData = $row['coordinated_by_tih_user'];
 		$combo_payment_date->DefaultDate = $row['payment_date'];
 		$combo_approval_status->SelectedData = $row['approval_status'];
@@ -316,7 +329,7 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
 		$combo_coordinated_by_tih_user->SelectedData = $filterer_coordinated_by_tih_user;
-		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '28' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '30' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 	}
 	$combo_coordinated_by_tih_user->HTML = '<span id="coordinated_by_tih_user-container' . $rnd1 . '"></span><input type="hidden" name="coordinated_by_tih_user" id="coordinated_by_tih_user' . $rnd1 . '" value="' . html_attr($combo_coordinated_by_tih_user->SelectedData) . '">';
 	$combo_coordinated_by_tih_user->MatchText = '<span id="coordinated_by_tih_user-container-readonly' . $rnd1 . '"></span><input type="hidden" name="coordinated_by_tih_user" id="coordinated_by_tih_user' . $rnd1 . '" value="' . html_attr($combo_coordinated_by_tih_user->SelectedData) . '">';
@@ -504,8 +517,11 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 		$jsReadOnly .= "\t\$j('#bank_name').replaceWith('<div class=\"form-control-static\" id=\"bank_name\">' + (\$j('#bank_name').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#pan').replaceWith('<div class=\"form-control-static\" id=\"pan\">' + (\$j('#pan').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#place_of_work').replaceWith('<div class=\"form-control-static\" id=\"place_of_work\">' + (\$j('#place_of_work').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#total_no_of_days').replaceWith('<div class=\"form-control-static\" id=\"total_no_of_days\">' + (\$j('#total_no_of_days').val() || '') + '</div>');\n";
-		$jsReadOnly .= "\t\$j('#total_no_of_hours').replaceWith('<div class=\"form-control-static\" id=\"total_no_of_hours\">' + (\$j('#total_no_of_hours').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#date').prop('readonly', true);\n";
+		$jsReadOnly .= "\t\$j('#dateDay, #dateMonth, #dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\t\$j('#no_of_hours').replaceWith('<div class=\"form-control-static\" id=\"no_of_hours\">' + (\$j('#no_of_hours').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#case_reference_email_subject').replaceWith('<div class=\"form-control-static\" id=\"case_reference_email_subject\">' + (\$j('#case_reference_email_subject').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#activities').replaceWith('<div class=\"form-control-static\" id=\"activities\">' + (\$j('#activities').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#coordinated_by_tih_user').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#coordinated_by_tih_user_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\t\$j('#payment_date').prop('readonly', true);\n";
@@ -559,6 +575,13 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 			$combo_date_5->GetHTML()
 		), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(date_5)%%>', $combo_date_5->GetHTML(true), $templateCode);
+	$templateCode = str_replace(
+		'<%%COMBO(date)%%>',
+		(!$fieldsAreEditable ?
+			'<div class="form-control-static">' . $combo_date->GetHTML(true) . '</div>' :
+			$combo_date->GetHTML()
+		), $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(date)%%>', $combo_date->GetHTML(true), $templateCode);
 	$templateCode = str_replace('<%%COMBO(coordinated_by_tih_user)%%>', $combo_coordinated_by_tih_user->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(coordinated_by_tih_user)%%>', $combo_coordinated_by_tih_user->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(coordinated_by_tih_user)%%>', urlencode($combo_coordinated_by_tih_user->MatchText), $templateCode);
@@ -610,6 +633,8 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 	$templateCode = str_replace('<%%UPLOADFILE(hours_5)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(total_no_of_days)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(total_no_of_hours)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(date)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(no_of_hours)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(case_reference_email_subject)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(activities)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(coordinated_by_tih_user)%%>', '', $templateCode);
@@ -684,6 +709,11 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(total_no_of_hours)%%>', safe_html($urow['total_no_of_hours']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(total_no_of_hours)%%>', html_attr($row['total_no_of_hours']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(total_no_of_hours)%%>', urlencode($urow['total_no_of_hours']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(date)%%>', app_datetime($row['date']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(date)%%>', urlencode(app_datetime($urow['date'])), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(no_of_hours)%%>', safe_html($urow['no_of_hours']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(no_of_hours)%%>', html_attr($row['no_of_hours']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(no_of_hours)%%>', urlencode($urow['no_of_hours']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(case_reference_email_subject)%%>', safe_html($urow['case_reference_email_subject']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(case_reference_email_subject)%%>', html_attr($row['case_reference_email_subject']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(case_reference_email_subject)%%>', urlencode($urow['case_reference_email_subject']), $templateCode);
@@ -760,6 +790,10 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 		$templateCode = str_replace('<%%URLVALUE(total_no_of_days)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(total_no_of_hours)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(total_no_of_hours)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(date)%%>', '1', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(date)%%>', urlencode('1'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(no_of_hours)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(no_of_hours)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(case_reference_email_subject)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(case_reference_email_subject)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(activities)%%>', '', $templateCode);

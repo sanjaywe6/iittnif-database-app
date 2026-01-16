@@ -94,21 +94,39 @@
 					</div>
 				</div>
 
-				<!-- Field: Total No. of Days -->
-				<div class="form-group honorarium_claim_table-total_no_of_days">
+				<!-- Field: Date -->
+				<div class="form-group honorarium_claim_table-date">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="total_no_of_days">Total No. of Days</label>
+					<label class="control-label col-lg-3" for="date-dd">Date</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="total_no_of_days" id="total_no_of_days" value="<%%VALUE(total_no_of_days)%%>">
+						<%%COMBO(date)%%>
 					</div>
 				</div>
 
-				<!-- Field: Total no of hours -->
-				<div class="form-group honorarium_claim_table-total_no_of_hours">
+				<!-- Field: No. of hours -->
+				<div class="form-group honorarium_claim_table-no_of_hours">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="total_no_of_hours">Total no of hours</label>
+					<label class="control-label col-lg-3" for="no_of_hours">No. of hours</label>
 					<div class="col-lg-9">
-						<input maxlength="255" type="text" class="form-control" name="total_no_of_hours" id="total_no_of_hours" value="<%%VALUE(total_no_of_hours)%%>">
+						<input maxlength="255" type="text" class="form-control" name="no_of_hours" id="no_of_hours" value="<%%VALUE(no_of_hours)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Case Reference Email Subject (If Any) -->
+				<div class="form-group honorarium_claim_table-case_reference_email_subject">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="case_reference_email_subject">Case Reference Email Subject (If Any)</label>
+					<div class="col-lg-9">
+						<input maxlength="255" type="text" class="form-control" name="case_reference_email_subject" id="case_reference_email_subject" value="<%%VALUE(case_reference_email_subject)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Activities/Deliverables -->
+				<div class="form-group honorarium_claim_table-activities">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="activities">Activities/Deliverables</label>
+					<div class="col-lg-9">
+						<textarea maxlength="65500" class="form-control" name="activities" id="activities" rows=" 5"><%%VALUE(activities)%%></textarea>
 					</div>
 				</div>
 

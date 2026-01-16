@@ -810,7 +810,7 @@
 			'honorarium_details' => [
 				'parent_table' => 'honorarium_claim_table',
 				'parent_pk_field' => 'id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`honorarium_claim_table`.`id`) || CHAR_LENGTH(`honorarium_claim_table`.`name_of_advisor`), CONCAT_WS(\'\', `honorarium_claim_table`.`id`, `honorarium_claim_table`.`name_of_advisor`), \'\')',
+				'parent_caption' => 'IF(CHAR_LENGTH(`honorarium_claim_table`.`id`) || CHAR_LENGTH(`honorarium_claim_table`.`name_of_advisor`), CONCAT_WS(\'\', `honorarium_claim_table`.`id`, \'~\', `honorarium_claim_table`.`name_of_advisor`), \'\')',
 				'parent_from' => '`honorarium_claim_table` LEFT JOIN `user_table` as user_table1 ON `user_table1`.`user_id`=`honorarium_claim_table`.`coordinated_by_tih_user` ',
 				'filterers' => [],
 				'custom_query' => '',

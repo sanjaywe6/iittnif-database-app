@@ -15,8 +15,12 @@ function honorarium_Activities_insert(&$error_message = '') {
 		return false;
 	}
 
+	// automatic honorarium_details if passed as filterer
+	if(Request::val('filterer_honorarium_details')) {
+		$_REQUEST['honorarium_details'] = Request::val('filterer_honorarium_details');
+	}
+
 	$data = [
-		'honorarium_details' => Request::lookup('honorarium_details', ''),
 		'date' => Request::dateComponents('date', '1'),
 		'no_of_hours' => Request::val('no_of_hours', ''),
 		'case_reference_email_subject' => Request::val('case_reference_email_subject', ''),
@@ -25,6 +29,11 @@ function honorarium_Activities_insert(&$error_message = '') {
 		'created_at' => parseCode('<%%creationDateTime%%>', true),
 	];
 
+
+	// automatic honorarium_details if passed as filterer
+	if(Request::val('filterer_honorarium_details')) {
+		$data['honorarium_details'] = Request::val('filterer_honorarium_details');
+	}
 	// record owner is current user
 	$recordOwner = getLoggedMemberID();
 
@@ -89,7 +98,6 @@ function honorarium_Activities_update(&$selected_id, &$error_message = '') {
 	if(!check_record_permission('honorarium_Activities', $selected_id, 'edit')) return false;
 
 	$data = [
-		'honorarium_details' => Request::lookup('honorarium_details', ''),
 		'date' => Request::dateComponents('date', ''),
 		'no_of_hours' => Request::val('no_of_hours', ''),
 		'case_reference_email_subject' => Request::val('case_reference_email_subject', ''),
@@ -391,8 +399,6 @@ function honorarium_Activities_form($selectedId = '', $allowUpdate = true, $allo
 	// set records to read only if user can't insert new records and can't edit current record
 	if(!$fieldsAreEditable) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\t\$j('#honorarium_details').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\t\$j('#honorarium_details_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\t\$j('#date').prop('readonly', true);\n";
 		$jsReadOnly .= "\t\$j('#dateDay, #dateMonth, #dateYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#no_of_hours').replaceWith('<div class=\"form-control-static\" id=\"no_of_hours\">' + (\$j('#no_of_hours').val() || '') + '</div>');\n";
@@ -453,8 +459,7 @@ function honorarium_Activities_form($selectedId = '', $allowUpdate = true, $allo
 	if($hasSelectedId) {
 		$templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(honorarium_details)%%>', safe_html($urow['honorarium_details']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(honorarium_details)%%>', html_attr($row['honorarium_details']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(honorarium_details)%%>', safe_html($urow['honorarium_details']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(honorarium_details)%%>', urlencode($urow['honorarium_details']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(date)%%>', app_datetime($row['date']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(date)%%>', urlencode(app_datetime($urow['date'])), $templateCode);
@@ -543,6 +548,8 @@ function honorarium_Activities_form($selectedId = '', $allowUpdate = true, $allo
 	$filterField = Request::val('FilterField');
 	$filterOperator = Request::val('FilterOperator');
 	$filterValue = Request::val('FilterValue');
+	if(isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>')
+		$templateCode.="\n<input type=hidden name=honorarium_details value=\"" . html_attr($filterValue[1]) . "\">\n";
 
 	// don't include blank images in lightbox gallery
 	$templateCode = preg_replace('/blank.gif" data-lightbox=".*?"/', 'blank.gif"', $templateCode);

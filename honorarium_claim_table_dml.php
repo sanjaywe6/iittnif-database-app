@@ -28,6 +28,7 @@ function honorarium_claim_table_insert(&$error_message = '') {
 		'no_of_hours' => Request::val('no_of_hours', ''),
 		'case_reference_email_subject' => Request::val('case_reference_email_subject', ''),
 		'activities' => br2nl(Request::val('activities', '')),
+		'others_if_any' => br2nl(Request::val('others_if_any', '')),
 		'coordinated_by_tih_user' => Request::lookup('coordinated_by_tih_user', ''),
 		'payment_date' => Request::dateComponents('payment_date', ''),
 		'amount_paid' => Request::val('amount_paid', ''),
@@ -114,6 +115,7 @@ function honorarium_claim_table_update(&$selected_id, &$error_message = '') {
 		'no_of_hours' => Request::val('no_of_hours', ''),
 		'case_reference_email_subject' => Request::val('case_reference_email_subject', ''),
 		'activities' => br2nl(Request::val('activities', '')),
+		'others_if_any' => br2nl(Request::val('others_if_any', '')),
 		'coordinated_by_tih_user' => Request::lookup('coordinated_by_tih_user', ''),
 		'payment_date' => Request::dateComponents('payment_date', ''),
 		'amount_paid' => Request::val('amount_paid', ''),
@@ -309,7 +311,7 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
 		$combo_coordinated_by_tih_user->SelectedData = $filterer_coordinated_by_tih_user;
-		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '30' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
+		$combo_approval_status->SelectedText = (isset($filterField[1]) && $filterField[1] == '31' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('Under Consideration'));
 	}
 	$combo_coordinated_by_tih_user->HTML = '<span id="coordinated_by_tih_user-container' . $rnd1 . '"></span><input type="hidden" name="coordinated_by_tih_user" id="coordinated_by_tih_user' . $rnd1 . '" value="' . html_attr($combo_coordinated_by_tih_user->SelectedData) . '">';
 	$combo_coordinated_by_tih_user->MatchText = '<span id="coordinated_by_tih_user-container-readonly' . $rnd1 . '"></span><input type="hidden" name="coordinated_by_tih_user" id="coordinated_by_tih_user' . $rnd1 . '" value="' . html_attr($combo_coordinated_by_tih_user->SelectedData) . '">';
@@ -502,6 +504,7 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 		$jsReadOnly .= "\t\$j('#no_of_hours').replaceWith('<div class=\"form-control-static\" id=\"no_of_hours\">' + (\$j('#no_of_hours').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#case_reference_email_subject').replaceWith('<div class=\"form-control-static\" id=\"case_reference_email_subject\">' + (\$j('#case_reference_email_subject').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#activities').replaceWith('<div class=\"form-control-static\" id=\"activities\">' + (\$j('#activities').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#others_if_any').replaceWith('<div class=\"form-control-static\" id=\"others_if_any\">' + (\$j('#others_if_any').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#coordinated_by_tih_user').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#coordinated_by_tih_user_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\t\$j('#payment_date').prop('readonly', true);\n";
@@ -617,6 +620,7 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 	$templateCode = str_replace('<%%UPLOADFILE(no_of_hours)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(case_reference_email_subject)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(activities)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(others_if_any)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(coordinated_by_tih_user)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(payment_date)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(amount_paid)%%>', '', $templateCode);
@@ -699,6 +703,8 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 		$templateCode = str_replace('<%%URLVALUE(case_reference_email_subject)%%>', urlencode($urow['case_reference_email_subject']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(activities)%%>', safe_html($urow['activities'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(activities)%%>', urlencode($urow['activities']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(others_if_any)%%>', safe_html($urow['others_if_any'], $fieldsAreEditable), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(others_if_any)%%>', urlencode($urow['others_if_any']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(coordinated_by_tih_user)%%>', safe_html($urow['coordinated_by_tih_user']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(coordinated_by_tih_user)%%>', html_attr($row['coordinated_by_tih_user']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(coordinated_by_tih_user)%%>', urlencode($urow['coordinated_by_tih_user']), $templateCode);
@@ -778,6 +784,8 @@ function honorarium_claim_table_form($selectedId = '', $allowUpdate = true, $all
 		$templateCode = str_replace('<%%URLVALUE(case_reference_email_subject)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(activities)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(activities)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(others_if_any)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(others_if_any)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(coordinated_by_tih_user)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(coordinated_by_tih_user)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(payment_date)%%>', '', $templateCode);

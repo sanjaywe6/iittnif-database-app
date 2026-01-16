@@ -182,7 +182,11 @@
 		setupTable('approval_billing_table', []);
 		setupIndexes('approval_billing_table', ['approval_lookup','paid_by',]);
 
-		setupTable('honorarium_claim_table', []);
+		setupTable('honorarium_claim_table', [
+				"ALTER TABLE honorarium_claim_table ADD `field1` VARCHAR(40)",
+				"ALTER TABLE `honorarium_claim_table` CHANGE `field1` `others_if_any` VARCHAR(255) NULL ",
+				" ALTER TABLE `honorarium_claim_table` CHANGE `others_if_any` `others_if_any` TEXT NULL ",
+			]);
 		setupIndexes('honorarium_claim_table', ['coordinated_by_tih_user',]);
 
 		setupTable('honorarium_Activities', []);

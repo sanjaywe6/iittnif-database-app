@@ -9629,6 +9629,13 @@
 							'description' => '',
 						],
 					],
+					'others_if_any' => [
+						'appgini' => "TEXT NULL",
+						'info' => [
+							'caption' => 'Others if any (Optional)',
+							'description' => '',
+						],
+					],
 					'coordinated_by_tih_user' => [
 						'appgini' => "INT UNSIGNED NULL",
 						'info' => [

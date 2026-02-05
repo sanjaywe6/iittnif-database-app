@@ -418,7 +418,9 @@ function approval_billing_table_form($selectedId = '', $allowUpdate = true, $all
 				AppGini.current_approval_lookup__RAND__.value = e.added.id;
 				AppGini.current_approval_lookup__RAND__.text = e.added.text;
 				$j('[name="approval_lookup"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=approval_table_view_parent]').hide(); } else { $j('.btn[id=approval_table_view_parent]').show(); }
+				$j(this).parents('.form-group')
+					.find('.btn[id=approval_table_view_parent]')
+					.toggleClass('hidden', e.added.id == '<?php echo empty_lookup_value; ?>');
 
 
 				if(typeof(approval_lookup_update_autofills__RAND__) == 'function') approval_lookup_update_autofills__RAND__();
@@ -495,7 +497,9 @@ function approval_billing_table_form($selectedId = '', $allowUpdate = true, $all
 				AppGini.current_paid_by__RAND__.value = e.added.id;
 				AppGini.current_paid_by__RAND__.text = e.added.text;
 				$j('[name="paid_by"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
+				$j(this).parents('.form-group')
+					.find('.btn[id=user_table_view_parent]')
+					.toggleClass('hidden', e.added.id == '<?php echo empty_lookup_value; ?>');
 
 
 				if(typeof(paid_by_update_autofills__RAND__) == 'function') paid_by_update_autofills__RAND__();
@@ -581,7 +585,7 @@ function approval_billing_table_form($selectedId = '', $allowUpdate = true, $all
 		else
 			$templateCode = str_replace('<%%DELETE_BUTTON%%>', '', $templateCode);
 
-		$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '<button type="submit" class="btn btn-default" id="deselect" name="deselect_x" value="1" onclick="' . $backAction . '" title="' . html_attr($Translation['Back']) . '"><i class="glyphicon glyphicon-chevron-left"></i> ' . $Translation['Back'] . '</button>', $templateCode);
+		$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '<button type="submit" class="btn btn-default ltr" id="deselect" name="deselect_x" value="1" onclick="' . $backAction . '" title="' . html_attr($Translation['Back']) . '"><i class="glyphicon glyphicon-chevron-left"></i> ' . $Translation['Back'] . '</button>', $templateCode);
 	} else {
 		$templateCode = str_replace('<%%UPDATE_BUTTON%%>', '', $templateCode);
 		$templateCode = str_replace('<%%DELETE_BUTTON%%>', '', $templateCode);
@@ -599,7 +603,7 @@ function approval_billing_table_form($selectedId = '', $allowUpdate = true, $all
 				'<%%DESELECT_BUTTON%%>',
 				'<button
 					type="submit"
-					class="btn btn-default"
+					class="btn btn-default ltr"
 					id="deselect"
 					name="deselect_x"
 					value="1"

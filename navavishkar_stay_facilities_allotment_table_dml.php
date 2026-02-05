@@ -328,7 +328,9 @@ function navavishkar_stay_facilities_allotment_table_form($selectedId = '', $all
 				AppGini.current_item_lookup__RAND__.value = e.added.id;
 				AppGini.current_item_lookup__RAND__.text = e.added.text;
 				$j('[name="item_lookup"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=navavishkar_stay_facilities_table_view_parent]').hide(); } else { $j('.btn[id=navavishkar_stay_facilities_table_view_parent]').show(); }
+				$j(this).parents('.form-group')
+					.find('.btn[id=navavishkar_stay_facilities_table_view_parent]')
+					.toggleClass('hidden', e.added.id == '<?php echo empty_lookup_value; ?>');
 
 
 				if(typeof(item_lookup_update_autofills__RAND__) == 'function') item_lookup_update_autofills__RAND__();
@@ -405,7 +407,9 @@ function navavishkar_stay_facilities_allotment_table_form($selectedId = '', $all
 				AppGini.current_select_employee__RAND__.value = e.added.id;
 				AppGini.current_select_employee__RAND__.text = e.added.text;
 				$j('[name="select_employee"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
+				$j(this).parents('.form-group')
+					.find('.btn[id=user_table_view_parent]')
+					.toggleClass('hidden', e.added.id == '<?php echo empty_lookup_value; ?>');
 
 
 				if(typeof(select_employee_update_autofills__RAND__) == 'function') select_employee_update_autofills__RAND__();
@@ -482,7 +486,9 @@ function navavishkar_stay_facilities_allotment_table_form($selectedId = '', $all
 				AppGini.current_alloted_by__RAND__.value = e.added.id;
 				AppGini.current_alloted_by__RAND__.text = e.added.text;
 				$j('[name="alloted_by"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
+				$j(this).parents('.form-group')
+					.find('.btn[id=user_table_view_parent]')
+					.toggleClass('hidden', e.added.id == '<?php echo empty_lookup_value; ?>');
 
 
 				if(typeof(alloted_by_update_autofills__RAND__) == 'function') alloted_by_update_autofills__RAND__();
@@ -568,7 +574,7 @@ function navavishkar_stay_facilities_allotment_table_form($selectedId = '', $all
 		else
 			$templateCode = str_replace('<%%DELETE_BUTTON%%>', '', $templateCode);
 
-		$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '<button type="submit" class="btn btn-default" id="deselect" name="deselect_x" value="1" onclick="' . $backAction . '" title="' . html_attr($Translation['Back']) . '"><i class="glyphicon glyphicon-chevron-left"></i> ' . $Translation['Back'] . '</button>', $templateCode);
+		$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '<button type="submit" class="btn btn-default ltr" id="deselect" name="deselect_x" value="1" onclick="' . $backAction . '" title="' . html_attr($Translation['Back']) . '"><i class="glyphicon glyphicon-chevron-left"></i> ' . $Translation['Back'] . '</button>', $templateCode);
 	} else {
 		$templateCode = str_replace('<%%UPDATE_BUTTON%%>', '', $templateCode);
 		$templateCode = str_replace('<%%DELETE_BUTTON%%>', '', $templateCode);
@@ -586,7 +592,7 @@ function navavishkar_stay_facilities_allotment_table_form($selectedId = '', $all
 				'<%%DESELECT_BUTTON%%>',
 				'<button
 					type="submit"
-					class="btn btn-default"
+					class="btn btn-default ltr"
 					id="deselect"
 					name="deselect_x"
 					value="1"

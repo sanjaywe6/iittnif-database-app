@@ -318,7 +318,9 @@ function task_allocation_table_form($selectedId = '', $allowUpdate = true, $allo
 				AppGini.current_supervisor_name__RAND__.value = e.added.id;
 				AppGini.current_supervisor_name__RAND__.text = e.added.text;
 				$j('[name="supervisor_name"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
+				$j(this).parents('.form-group')
+					.find('.btn[id=user_table_view_parent]')
+					.toggleClass('hidden', e.added.id == '<?php echo empty_lookup_value; ?>');
 
 
 				if(typeof(supervisor_name_update_autofills__RAND__) == 'function') supervisor_name_update_autofills__RAND__();
@@ -395,7 +397,9 @@ function task_allocation_table_form($selectedId = '', $allowUpdate = true, $allo
 				AppGini.current_assigned_to__RAND__.value = e.added.id;
 				AppGini.current_assigned_to__RAND__.text = e.added.text;
 				$j('[name="assigned_to"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=user_table_view_parent]').hide(); } else { $j('.btn[id=user_table_view_parent]').show(); }
+				$j(this).parents('.form-group')
+					.find('.btn[id=user_table_view_parent]')
+					.toggleClass('hidden', e.added.id == '<?php echo empty_lookup_value; ?>');
 
 
 				if(typeof(assigned_to_update_autofills__RAND__) == 'function') assigned_to_update_autofills__RAND__();
@@ -481,7 +485,7 @@ function task_allocation_table_form($selectedId = '', $allowUpdate = true, $allo
 		else
 			$templateCode = str_replace('<%%DELETE_BUTTON%%>', '', $templateCode);
 
-		$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '<button type="submit" class="btn btn-default" id="deselect" name="deselect_x" value="1" onclick="' . $backAction . '" title="' . html_attr($Translation['Back']) . '"><i class="glyphicon glyphicon-chevron-left"></i> ' . $Translation['Back'] . '</button>', $templateCode);
+		$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '<button type="submit" class="btn btn-default ltr" id="deselect" name="deselect_x" value="1" onclick="' . $backAction . '" title="' . html_attr($Translation['Back']) . '"><i class="glyphicon glyphicon-chevron-left"></i> ' . $Translation['Back'] . '</button>', $templateCode);
 	} else {
 		$templateCode = str_replace('<%%UPDATE_BUTTON%%>', '', $templateCode);
 		$templateCode = str_replace('<%%DELETE_BUTTON%%>', '', $templateCode);
@@ -499,7 +503,7 @@ function task_allocation_table_form($selectedId = '', $allowUpdate = true, $allo
 				'<%%DESELECT_BUTTON%%>',
 				'<button
 					type="submit"
-					class="btn btn-default"
+					class="btn btn-default ltr"
 					id="deselect"
 					name="deselect_x"
 					value="1"

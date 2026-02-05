@@ -2479,14 +2479,21 @@
 	#########################################################
 
 	function htmlUserBar() {
+		if(Request::val('Embedded')) return ''; // skip if in embedded mode
+
 		global $Translation;
 		if(!defined('PREPEND_PATH')) define('PREPEND_PATH', '');
 
 		$mi = getMemberInfo();
-		$adminConfig = config('adminConfig');
-		$home_page = (basename($_SERVER['PHP_SELF']) == 'index.php');
-		ob_start();
+		$home_page = defined('HOMEPAGE') && HOMEPAGE;
 
+		$navMenu = getUserData('navMenu');
+		if(!$navMenu) {
+			setUserData('navMenu', DEFAULT_NAV_MENU);
+			$navMenu = DEFAULT_NAV_MENU;
+		}
+
+		ob_start();
 		?>
 		<nav class="navbar navbar-default navbar-fixed-top hidden-print" role="navigation">
 			<div class="navbar-header">
@@ -2514,20 +2521,8 @@
 					</ul>
 				<?php } ?>
 
-				<ul class="nav navbar-nav"><?php echo ($home_page && !HOMEPAGE_NAVMENUS ? '' : NavMenus()); ?></ul>
-
-				<?php if(userCanImport()){ ?>
-					<ul class="nav navbar-nav">
-						<a href="<?php echo PREPEND_PATH; ?>import-csv.php" class="btn btn-default navbar-btn hidden-xs btn-import-csv" title="<?php echo html_attr($Translation['import csv file']); ?>"><i class="glyphicon glyphicon-th"></i> <?php echo $Translation['import CSV']; ?></a>
-						<a href="<?php echo PREPEND_PATH; ?>import-csv.php" class="btn btn-default navbar-btn visible-xs btn-lg btn-import-csv" title="<?php echo html_attr($Translation['import csv file']); ?>"><i class="glyphicon glyphicon-th"></i> <?php echo $Translation['import CSV']; ?></a>
-					</ul>
-				<?php } ?>
-
-				<?php if(getLoggedAdmin() !== false) { ?>
-					<ul class="nav navbar-nav">
-						<a href="<?php echo PREPEND_PATH; ?>admin/pageHome.php" class="btn btn-danger navbar-btn hidden-xs" title="<?php echo html_attr($Translation['admin area']); ?>"><i class="glyphicon glyphicon-cog"></i> <?php echo $Translation['admin area']; ?></a>
-						<a href="<?php echo PREPEND_PATH; ?>admin/pageHome.php" class="btn btn-danger navbar-btn visible-xs btn-lg" title="<?php echo html_attr($Translation['admin area']); ?>"><i class="glyphicon glyphicon-cog"></i> <?php echo $Translation['admin area']; ?></a>
-					</ul>
+				<?php if(!$home_page || HOMEPAGE_NAVMENUS) { ?>
+					<ul class="nav navbar-nav horizontal-navlinks<?php echo $navMenu != 'horizontal' ? ' hidden' : ''; ?>"><?php echo NavMenus(); ?></ul>
 				<?php } ?>
 
 				<?php if(!Request::val('signIn') && !Request::val('loginFailed')) { ?>
@@ -2585,6 +2580,20 @@
 					<?php } ?>
 				<?php } ?>
 
+				<?php if(getLoggedAdmin() !== false) { ?>
+					<ul class="nav navbar-nav navbar-right">
+						<a href="<?php echo PREPEND_PATH; ?>admin/pageHome.php" class="btn btn-danger navbar-btn hidden-xs btn-admin-area" title="<?php echo html_attr($Translation['admin area']); ?>"><i class="glyphicon glyphicon-cog"></i> <?php echo $Translation['admin area']; ?></a>
+						<a href="<?php echo PREPEND_PATH; ?>admin/pageHome.php" class="btn btn-danger navbar-btn visible-xs btn-lg btn-admin-area" title="<?php echo html_attr($Translation['admin area']); ?>"><i class="glyphicon glyphicon-cog"></i> <?php echo $Translation['admin area']; ?></a>
+					</ul>
+				<?php } ?>
+
+				<?php if(userCanImport()){ ?>
+					<ul class="nav navbar-nav navbar-right">
+						<a href="<?php echo PREPEND_PATH; ?>import-csv.php" class="btn btn-default navbar-btn hidden-xs btn-import-csv" title="<?php echo html_attr($Translation['import csv file']); ?>"><i class="glyphicon glyphicon-th"></i> <?php echo $Translation['import CSV']; ?></a>
+						<a href="<?php echo PREPEND_PATH; ?>import-csv.php" class="btn btn-default navbar-btn visible-xs btn-lg btn-import-csv" title="<?php echo html_attr($Translation['import csv file']); ?>"><i class="glyphicon glyphicon-th"></i> <?php echo $Translation['import CSV']; ?></a>
+					</ul>
+				<?php } ?>
+
 				<ul class="nav navbar-nav">
 					<a href="#" title="<?php echo html_attr($Translation['exit']); ?>" class="btn btn-default navbar-btn btn-lg visible-xs hidden-browser exit-pwa">
 						<i class="glyphicon glyphicon-remove"></i>
@@ -2611,8 +2620,8 @@
 
 						// if user dismissed the install prompt, don't show it again for some time
 						if(
-							localStorage.getItem('AppGini.PWApromptDismissedAt')
-							&& (new Date().getTime() - localStorage.getItem('AppGini.PWApromptDismissedAt')) < silentPeriod
+							AppGini.localStorage.getItem('PWApromptDismissedAt')
+							&& (new Date().getTime() - AppGini.localStorage.getItem('PWApromptDismissedAt')) < silentPeriod
 						) return;
 
 						// unhide .install-pwa-btn by removing .hidden
@@ -2625,7 +2634,7 @@
 								e.prompt();
 
 								// add a localStorage item to prevent showing the install button for some time
-								localStorage.setItem('AppGini.PWApromptDismissedAt', new Date().getTime());
+								AppGini.localStorage.setItem('PWApromptDismissedAt', new Date().getTime());
 							});
 						});
 					});
@@ -2637,6 +2646,7 @@
 				</script>
 			</div>
 		</nav>
+		<div style="min-height: 70px;" class="hidden-print top-margin-adjuster"></div>
 		<?php
 
 		return ob_get_clean();
@@ -2860,7 +2870,7 @@
 
 	function addFilter($index, $filterAnd, $filterField, $filterOperator, $filterValue) {
 		// validate input
-		if($index < 1 || $index > 80 || !is_int($index)) return false;
+		if($index < 1 || $index > FILTER_GROUPS * FILTERS_PER_GROUP || !is_int($index)) return false;
 		if($filterAnd != 'or')   $filterAnd = 'and';
 		$filterField = intval($filterField);
 
@@ -2889,7 +2899,7 @@
 	#########################################################
 
 	function clearFilters() {
-		for($i=1; $i<=80; $i++) {
+		for($i = 1; $i <= FILTER_GROUPS * FILTERS_PER_GROUP; $i++) {
 			addFilter($i, '', 0, '', '');
 		}
 	}
@@ -3272,6 +3282,31 @@
 
 	#########################################################
 
+	function tablesHiddenInNavMenu() {
+		return ['user_table','suggestion','approval_table','techlead_web_page','navavishkar_stay_facilities_table','navavishkar_stay_facilities_allotment_table','car_table','car_usage_table','cycle_table','cycle_usage_table','gym_table','coffee_table','cafeteria_table','event_table','outcomes_expected_table','event_decision_table','meetings_table','agenda_table','decision_table','participants_table','action_actor','visiting_card_table','mou_details_table','goal_setting_table','goal_progress_table','task_allocation_table','task_progress_status_table','timesheet_entry_table','internship_fellowship_details_app','star_pnt','hrd_sdp_events_table','training_program_on_geospatial_tchnologies_table','space_day_school_details_app','space_day_college_student_table','school_list','sdp_participants_college_details_table','asset_table','asset_allotment_table','sub_asset_table','sub_asset_allotment_table','it_inventory_app','it_inventory_billing_details','it_inventory_allotment_table','computer_details_table','computer_user_details','computer_allotment_table','employees_personal_data_table','employees_designation_table','employees_appraisal_table','beyond_working_hours_table','leave_table','half_day_leave_table','work_from_home_table','work_from_home_tasks_app','navavishkar_stay_table','navavishkar_stay_payment_table','email_id_allocation_table','attendence_details_table','all_startup_data_table','shortlisted_startups_for_fund_table','shortlisted_startups_dd_and_agreement_table','vikas_startup_applications_table','programs_table','evaluation_table','problem_statement_table','evaluators_table','approval_billing_table','honorarium_claim_table','honorarium_Activities','all_bank_account_statement_table','payment_track_details_table','travel_table','travel_stay_table','travel_local_commute_table','r_and_d_progress','panel_decision_table_tdp','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','summary_table_tdp','project_details_tdp','newsletter_table','contact_call_log_table','r_and_d_monthly_progress_app','r_and_d_quarterly_progress_app','projects','td_projects_td_intellectual_property','td_projects_td_technology_products','td_publications_and_intellectual_activities','td_publications','td_ipr','td_cps_research_base','ed_tbi','ed_startup_companies','ed_gcc','ed_eir','ed_job_creation','hrd_Fellowship','hrd_sd','it_International_Collaboration',];
+	}
+
+	#########################################################
+
+	function tablesHiddenInHomepage() {
+		return ['user_table','navavishkar_stay_facilities_allotment_table','cycle_usage_table','outcomes_expected_table','event_decision_table','agenda_table','decision_table','participants_table','action_actor','goal_progress_table','task_progress_status_table','star_pnt','asset_allotment_table','sub_asset_allotment_table','it_inventory_billing_details','employees_appraisal_table','work_from_home_tasks_app','navavishkar_stay_payment_table','evaluation_table','problem_statement_table','evaluators_table','approval_billing_table','honorarium_Activities','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','summary_table_tdp','project_details_tdp','r_and_d_monthly_progress_app','r_and_d_quarterly_progress_app','td_publications','td_ipr',];
+	}
+
+
+	#########################################################
+
+	function tablesWithAddNewInHomepage() {
+		return ['suggestion','approval_table','techlead_web_page','navavishkar_stay_facilities_table','navavishkar_stay_facilities_allotment_table','car_table','car_usage_table','cycle_table','cycle_usage_table','gym_table','coffee_table','cafeteria_table','event_table','outcomes_expected_table','event_decision_table','meetings_table','agenda_table','decision_table','participants_table','action_actor','visiting_card_table','mou_details_table','goal_setting_table','goal_progress_table','task_allocation_table','task_progress_status_table','timesheet_entry_table','internship_fellowship_details_app','star_pnt','hrd_sdp_events_table','training_program_on_geospatial_tchnologies_table','space_day_school_details_app','space_day_college_student_table','school_list','sdp_participants_college_details_table','asset_table','asset_allotment_table','sub_asset_table','sub_asset_allotment_table','it_inventory_app','it_inventory_billing_details','it_inventory_allotment_table','computer_details_table','computer_user_details','computer_allotment_table','employees_personal_data_table','employees_designation_table','employees_appraisal_table','beyond_working_hours_table','leave_table','half_day_leave_table','work_from_home_table','work_from_home_tasks_app','navavishkar_stay_table','navavishkar_stay_payment_table','email_id_allocation_table','attendence_details_table','all_startup_data_table','shortlisted_startups_for_fund_table','shortlisted_startups_dd_and_agreement_table','vikas_startup_applications_table','programs_table','evaluation_table','problem_statement_table','evaluators_table','approval_billing_table','honorarium_claim_table','honorarium_Activities','all_bank_account_statement_table','payment_track_details_table','travel_table','travel_stay_table','travel_local_commute_table','r_and_d_progress','panel_decision_table_tdp','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','summary_table_tdp','project_details_tdp','newsletter_table','projects','td_projects_td_intellectual_property','td_projects_td_technology_products','td_publications_and_intellectual_activities','td_publications','td_ipr','td_cps_research_base','ed_tbi','ed_startup_companies','ed_gcc','ed_eir','ed_job_creation','hrd_Fellowship','hrd_sd','it_International_Collaboration',];
+	}
+
+	#########################################################
+
+	function tablesToFilterBeforeTV() {
+		return ['task_progress_status_table',];
+	}
+
+	#########################################################
+
 	function NavMenus($options = []) {
 		if(!defined('PREPEND_PATH')) define('PREPEND_PATH', '');
 		global $Translation;
@@ -3293,10 +3328,10 @@
 		if(is_array($arrTables)) {
 			foreach($arrTables as $tn => $tc) {
 				/* ---- list of tables where hide link in nav menu is set ---- */
-				$tChkHL = array_search($tn, ['user_table','suggestion','approval_table','techlead_web_page','navavishkar_stay_facilities_table','navavishkar_stay_facilities_allotment_table','car_table','car_usage_table','cycle_table','cycle_usage_table','gym_table','coffee_table','cafeteria_table','event_table','outcomes_expected_table','event_decision_table','meetings_table','agenda_table','decision_table','participants_table','action_actor','visiting_card_table','mou_details_table','goal_setting_table','goal_progress_table','task_allocation_table','task_progress_status_table','timesheet_entry_table','internship_fellowship_details_app','star_pnt','hrd_sdp_events_table','training_program_on_geospatial_tchnologies_table','space_day_school_details_app','space_day_college_student_table','school_list','sdp_participants_college_details_table','asset_table','asset_allotment_table','sub_asset_table','sub_asset_allotment_table','it_inventory_app','it_inventory_billing_details','it_inventory_allotment_table','computer_details_table','computer_user_details','computer_allotment_table','employees_personal_data_table','employees_designation_table','employees_appraisal_table','beyond_working_hours_table','leave_table','half_day_leave_table','work_from_home_table','work_from_home_tasks_app','navavishkar_stay_table','navavishkar_stay_payment_table','email_id_allocation_table','attendence_details_table','all_startup_data_table','shortlisted_startups_for_fund_table','shortlisted_startups_dd_and_agreement_table','vikas_startup_applications_table','programs_table','evaluation_table','problem_statement_table','evaluators_table','approval_billing_table','honorarium_claim_table','honorarium_Activities','all_bank_account_statement_table','payment_track_details_table','travel_table','travel_stay_table','travel_local_commute_table','r_and_d_progress','panel_decision_table_tdp','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','summary_table_tdp','project_details_tdp','newsletter_table','contact_call_log_table','r_and_d_monthly_progress_app','r_and_d_quarterly_progress_app','projects','td_projects_td_intellectual_property','td_projects_td_technology_products','td_publications_and_intellectual_activities','td_publications','td_ipr','td_cps_research_base','ed_tbi','ed_startup_companies','ed_gcc','ed_eir','ed_job_creation','hrd_Fellowship','hrd_sd','it_International_Collaboration']);
+				$tChkHL = array_search($tn, tablesHiddenInNavMenu());
 
 				/* ---- list of tables where filter first is set ---- */
-				$tChkFF = array_search($tn, ['task_progress_status_table']);
+				$tChkFF = array_search($tn, tablesToFilterBeforeTV());
 				if($tChkFF !== false && $tChkFF !== null) {
 					$searchFirst = '&Filter_x=1';
 				} else {
@@ -3309,14 +3344,14 @@
 			}
 		}
 
-		// custom nav links, as defined in "hooks/links-navmenu.php"
+		// custom nav links, as defined in hooks/links-navmenu.php
 		global $navLinks;
 		if(is_array($navLinks)) {
 			$memberInfo = getMemberInfo();
 			$links_added = [];
 			foreach($navLinks as $link) {
 				if(!isset($link['url']) || !isset($link['title'])) continue;
-				if(getLoggedAdmin() !== false || @in_array($memberInfo['group'], $link['groups']) || @in_array('*', $link['groups'])) {
+				if(getLoggedAdmin() !== false || $link['groups'] == '*' || @in_array($memberInfo['group'], $link['groups']) || @in_array('*', $link['groups'])) {
 					$menu_index = intval($link['table_group']);
 					if(!$links_added[$menu_index]) $menu[$menu_index] .= '<li class="divider"></li>';
 
@@ -5607,19 +5642,15 @@ EOT;
 	 */
 	function compactFilters(&$FilterAnd, &$FilterField, &$FilterOperator, &$FilterValue) {
 
-		// TODO: move to definitions.php as constants
-		$filterConditionsPerGroup = 4; // Number of filter conditions per group
-		$filterGroups = datalist_filters_count / $filterConditionsPerGroup; // Number of filter groups
-
 		$filterConditionIsEmpty = function($i) use ($FilterField, $FilterOperator) {
 			// check if filter is empty
 			return !$FilterField[$i] || !$FilterOperator[$i];
 		};
 
-		$filterGroupIsEmpty = function($i) use ($filterConditionIsEmpty, $filterConditionsPerGroup) {
+		$filterGroupIsEmpty = function($i) use ($filterConditionIsEmpty) {
 			// check if filter group is empty
-			for($j = 1; $j <= $filterConditionsPerGroup; $j++) {
-				if(!$filterConditionIsEmpty(($i - 1) * $filterConditionsPerGroup + $j)) {
+			for($j = 1; $j <= FILTERS_PER_GROUP; $j++) {
+				if(!$filterConditionIsEmpty(($i - 1) * FILTERS_PER_GROUP + $j)) {
 					return false;
 				}
 			}
@@ -5628,10 +5659,10 @@ EOT;
 
 		// 'compact' filter conditions by removing gaps inside each group and removing empty groups
 		$compactedGroups = [];
-		for($gi = 1; $gi <= $filterGroups; $gi++) {
+		for($gi = 1; $gi <= FILTER_GROUPS; $gi++) {
 			$compactedGroups[$gi] = [];
-			for($fi = 1; $fi <= $filterConditionsPerGroup; $fi++) {
-				$filterIndex = (($gi - 1) * $filterConditionsPerGroup) + $fi;
+			for($fi = 1; $fi <= FILTERS_PER_GROUP; $fi++) {
+				$filterIndex = (($gi - 1) * FILTERS_PER_GROUP) + $fi;
 				if(!$filterConditionIsEmpty($filterIndex)) {
 					$compactedGroups[$gi][] = $filterIndex;
 				}
@@ -5650,7 +5681,7 @@ EOT;
 		$newFilterAnd = $newFilterField = $newFilterOperator = $newFilterValue = [];
 		foreach($compactedGroups as $gi0b => $group) {
 			foreach($group as $fi0b => $fi) {
-				$filterIndex = $gi0b * $filterConditionsPerGroup + $fi0b + 1;
+				$filterIndex = $gi0b * FILTERS_PER_GROUP + $fi0b + 1;
 				$newFilterAnd[$filterIndex] = $FilterAnd[$fi];
 				$newFilterField[$filterIndex] = $FilterField[$fi];
 				$newFilterOperator[$filterIndex] = $FilterOperator[$fi];

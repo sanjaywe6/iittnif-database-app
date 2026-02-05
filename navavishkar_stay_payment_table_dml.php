@@ -331,7 +331,9 @@ function navavishkar_stay_payment_table_form($selectedId = '', $allowUpdate = tr
 				AppGini.current_navavishakr_stay_details__RAND__.value = e.added.id;
 				AppGini.current_navavishakr_stay_details__RAND__.text = e.added.text;
 				$j('[name="navavishakr_stay_details"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=navavishkar_stay_table_view_parent]').hide(); } else { $j('.btn[id=navavishkar_stay_table_view_parent]').show(); }
+				$j(this).parents('.form-group')
+					.find('.btn[id=navavishkar_stay_table_view_parent]')
+					.toggleClass('hidden', e.added.id == '<?php echo empty_lookup_value; ?>');
 
 
 				if(typeof(navavishakr_stay_details_update_autofills__RAND__) == 'function') navavishakr_stay_details_update_autofills__RAND__();
@@ -417,7 +419,7 @@ function navavishkar_stay_payment_table_form($selectedId = '', $allowUpdate = tr
 		else
 			$templateCode = str_replace('<%%DELETE_BUTTON%%>', '', $templateCode);
 
-		$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '<button type="submit" class="btn btn-default" id="deselect" name="deselect_x" value="1" onclick="' . $backAction . '" title="' . html_attr($Translation['Back']) . '"><i class="glyphicon glyphicon-chevron-left"></i> ' . $Translation['Back'] . '</button>', $templateCode);
+		$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '<button type="submit" class="btn btn-default ltr" id="deselect" name="deselect_x" value="1" onclick="' . $backAction . '" title="' . html_attr($Translation['Back']) . '"><i class="glyphicon glyphicon-chevron-left"></i> ' . $Translation['Back'] . '</button>', $templateCode);
 	} else {
 		$templateCode = str_replace('<%%UPDATE_BUTTON%%>', '', $templateCode);
 		$templateCode = str_replace('<%%DELETE_BUTTON%%>', '', $templateCode);
@@ -435,7 +437,7 @@ function navavishkar_stay_payment_table_form($selectedId = '', $allowUpdate = tr
 				'<%%DESELECT_BUTTON%%>',
 				'<button
 					type="submit"
-					class="btn btn-default"
+					class="btn btn-default ltr"
 					id="deselect"
 					name="deselect_x"
 					value="1"

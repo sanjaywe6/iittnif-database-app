@@ -18,14 +18,33 @@
 			Panels: https://getbootstrap.com/components/#panels
 			Buttons: https://getbootstrap.com/css/#buttons
 	*/
+	$cols = HOMEPAGE_TABLES_PER_ROW;
+	$isDouble = HOMEPAGE_FIRST_TABLE_DOUBLE_WIDTH;
+
+	if ($isDouble) {
+		if ($cols > 3) { $grid_first = 'col-sm-12 col-md-8 col-lg-6'; }
+		elseif ($cols == 3) { $grid_first = 'col-md-12 col-lg-8'; }
+		else { $grid_first = 'col-lg-12'; }
+	} else {
+		if ($cols > 3) { $grid_first = 'col-sm-6 col-md-4 col-lg-3'; }
+		elseif ($cols == 3) { $grid_first = 'col-md-6 col-lg-4'; }
+		elseif ($cols == 2) { $grid_first = 'col-lg-6'; }
+		else { $grid_first = 'col-lg-12'; }
+	}
+
+	if ($cols > 3) { $grid_other = 'col-sm-6 col-md-4 col-lg-3'; }
+	elseif ($cols == 3) { $grid_other = 'col-md-6 col-lg-4'; }
+	elseif ($cols == 2) { $grid_other = 'col-lg-6'; }
+	else { $grid_other = 'col-lg-12'; }
+
 	$block_classes = [
 		'first' => [
-			'grid_column' => 'col-lg-12',
+			'grid_column' => $grid_first,
 			'panel' => 'panel-warning',
 			'link' => 'btn-warning',
 		],
 		'other' => [
-			'grid_column' => 'col-lg-6',
+			'grid_column' => $grid_other,
 			'panel' => 'panel-info',
 			'link' => 'btn-info',
 		],
@@ -35,7 +54,7 @@
 <style>
 	.panel-body-description{
 		margin-top: 10px;
-		height: 50px;
+		height: <?php echo HOMEPAGE_PANEL_HEIGHT; ?>px;
 		overflow: auto;
 	}
 	.panel-body .btn img{
@@ -84,11 +103,11 @@
 		foreach($tg as $tn => $tgroup) {
 			$tc = $arrTables[$tn];
 			/* is the current table filter-first? */
-			$tChkFF = array_search($tn, ['task_progress_status_table']);
+			$tChkFF = array_search($tn, tablesToFilterBeforeTV());
 			/* hide current table in homepage? */
-			$tChkHL = array_search($tn, ['user_table','navavishkar_stay_facilities_allotment_table','cycle_usage_table','outcomes_expected_table','event_decision_table','agenda_table','decision_table','participants_table','action_actor','goal_progress_table','task_progress_status_table','star_pnt','asset_allotment_table','sub_asset_allotment_table','it_inventory_billing_details','employees_appraisal_table','work_from_home_tasks_app','navavishkar_stay_payment_table','evaluation_table','problem_statement_table','evaluators_table','approval_billing_table','honorarium_Activities','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','summary_table_tdp','project_details_tdp','r_and_d_monthly_progress_app','r_and_d_quarterly_progress_app','td_publications','td_ipr']);
+			$tChkHL = array_search($tn, tablesHiddenInHomepage());
 			/* allow homepage 'add new' for current table? */
-			$tChkAHAN = array_search($tn, ['suggestion','approval_table','techlead_web_page','navavishkar_stay_facilities_table','navavishkar_stay_facilities_allotment_table','car_table','car_usage_table','cycle_table','cycle_usage_table','gym_table','coffee_table','cafeteria_table','event_table','outcomes_expected_table','event_decision_table','meetings_table','agenda_table','decision_table','participants_table','action_actor','visiting_card_table','mou_details_table','goal_setting_table','goal_progress_table','task_allocation_table','task_progress_status_table','timesheet_entry_table','internship_fellowship_details_app','star_pnt','hrd_sdp_events_table','training_program_on_geospatial_tchnologies_table','space_day_school_details_app','space_day_college_student_table','school_list','sdp_participants_college_details_table','asset_table','asset_allotment_table','sub_asset_table','sub_asset_allotment_table','it_inventory_app','it_inventory_billing_details','it_inventory_allotment_table','computer_details_table','computer_user_details','computer_allotment_table','employees_personal_data_table','employees_designation_table','employees_appraisal_table','beyond_working_hours_table','leave_table','half_day_leave_table','work_from_home_table','work_from_home_tasks_app','navavishkar_stay_table','navavishkar_stay_payment_table','email_id_allocation_table','attendence_details_table','all_startup_data_table','shortlisted_startups_for_fund_table','shortlisted_startups_dd_and_agreement_table','vikas_startup_applications_table','programs_table','evaluation_table','problem_statement_table','evaluators_table','approval_billing_table','honorarium_claim_table','honorarium_Activities','all_bank_account_statement_table','payment_track_details_table','travel_table','travel_stay_table','travel_local_commute_table','r_and_d_progress','panel_decision_table_tdp','selected_proposals_final_tdp','stage_wise_budget_table_tdp','first_level_shortlisted_proposals_tdp','budget_table_tdp','panel_comments_tdp','selected_tdp','address_tdp','summary_table_tdp','project_details_tdp','newsletter_table','projects','td_projects_td_intellectual_property','td_projects_td_technology_products','td_publications_and_intellectual_activities','td_publications','td_ipr','td_cps_research_base','ed_tbi','ed_startup_companies','ed_gcc','ed_eir','ed_job_creation','hrd_Fellowship','hrd_sd','it_International_Collaboration']);
+			$tChkAHAN = array_search($tn, tablesWithAddNewInHomepage());
 
 			/* homepageShowCount for current table? */
 			$count_badge = '';
@@ -133,8 +152,8 @@
 									<?php if($can_insert && $tChkAHAN !== false && $tChkAHAN !== null) { ?>
 
 										<div class="btn-group" style="width: 100%;">
-										   <a style="width: calc(100% - 3.5em);" class="btn btn-lg <?php echo (!$i ? $block_classes['first']['link'] : $block_classes['other']['link']); ?>" title="<?php echo preg_replace("/&amp;(#[0-9]+|[a-z]+);/i", "&$1;", html_attr(strip_tags($tc['Description']))); ?>" href="<?php echo $tn; ?>_view.php<?php echo $searchFirst; ?>"><?php echo ($tc['tableIcon'] ? '<img src="' . $tc['tableIcon'] . '">' : '');?><strong class="table-caption"><?php echo $tc['Caption']; ?></strong><?php echo $count_badge; ?></a>
-										   <a id="<?php echo $tn; ?>_add_new" style="width: 3.5em; padding-right: 0.1rem; padding-left: 0.1rem;" class="btn btn-add-new btn-lg <?php echo (!$i ? $block_classes['first']['link'] : $block_classes['other']['link']); ?>" title="<?php echo html_attr($Translation['Add New']); ?>" href="<?php echo $tn; ?>_view.php?addNew_x=1"><i style="vertical-align: bottom;" class="glyphicon glyphicon-plus"></i></a>
+											<a style="width: calc(100% - 3.5em);" class="btn btn-lg <?php echo (!$i ? $block_classes['first']['link'] : $block_classes['other']['link']); ?>" title="<?php echo preg_replace("/&amp;(#[0-9]+|[a-z]+);/i", "&$1;", html_attr(strip_tags($tc['Description']))); ?>" href="<?php echo $tn; ?>_view.php<?php echo $searchFirst; ?>"><?php echo ($tc['tableIcon'] ? '<img src="' . $tc['tableIcon'] . '">' : '');?><strong class="table-caption"><?php echo $tc['Caption']; ?></strong><?php echo $count_badge; ?></a>
+											<a id="<?php echo $tn; ?>_add_new" style="width: 3.5em; padding-right: 0.1rem; padding-left: 0.1rem;" class="btn btn-add-new btn-lg <?php echo (!$i ? $block_classes['first']['link'] : $block_classes['other']['link']); ?>" title="<?php echo html_attr($Translation['Add New']); ?>" href="<?php echo $tn; ?>_view.php?addNew_x=1"><i style="vertical-align: bottom;" class="glyphicon glyphicon-plus"></i></a>
 										</div>
 									<?php } else { ?>
 
@@ -281,8 +300,8 @@
 				});
 			});
 
-			// focus search box if not hidden
-			$j('#homepage-search-box').focus();
+			// focus search box if not in xs screen size
+			if(!screen_size('xs')) $j('#homepage-search-box').focus();
 
 			// focus search box on pressing '/' or '?' keys
 			$j(document).keyup(function(e) {

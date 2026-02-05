@@ -455,7 +455,9 @@ function td_projects_td_technology_products_form($selectedId = '', $allowUpdate 
 				AppGini.current_source_of_ip__RAND__.value = e.added.id;
 				AppGini.current_source_of_ip__RAND__.text = e.added.text;
 				$j('[name="source_of_ip"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=projects_view_parent]').hide(); } else { $j('.btn[id=projects_view_parent]').show(); }
+				$j(this).parents('.form-group')
+					.find('.btn[id=projects_view_parent]')
+					.toggleClass('hidden', e.added.id == '<?php echo empty_lookup_value; ?>');
 
 
 				if(typeof(source_of_ip_update_autofills__RAND__) == 'function') source_of_ip_update_autofills__RAND__();
@@ -541,7 +543,7 @@ function td_projects_td_technology_products_form($selectedId = '', $allowUpdate 
 		else
 			$templateCode = str_replace('<%%DELETE_BUTTON%%>', '', $templateCode);
 
-		$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '<button type="submit" class="btn btn-default" id="deselect" name="deselect_x" value="1" onclick="' . $backAction . '" title="' . html_attr($Translation['Back']) . '"><i class="glyphicon glyphicon-chevron-left"></i> ' . $Translation['Back'] . '</button>', $templateCode);
+		$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '<button type="submit" class="btn btn-default ltr" id="deselect" name="deselect_x" value="1" onclick="' . $backAction . '" title="' . html_attr($Translation['Back']) . '"><i class="glyphicon glyphicon-chevron-left"></i> ' . $Translation['Back'] . '</button>', $templateCode);
 	} else {
 		$templateCode = str_replace('<%%UPDATE_BUTTON%%>', '', $templateCode);
 		$templateCode = str_replace('<%%DELETE_BUTTON%%>', '', $templateCode);
@@ -559,7 +561,7 @@ function td_projects_td_technology_products_form($selectedId = '', $allowUpdate 
 				'<%%DESELECT_BUTTON%%>',
 				'<button
 					type="submit"
-					class="btn btn-default"
+					class="btn btn-default ltr"
 					id="deselect"
 					name="deselect_x"
 					value="1"

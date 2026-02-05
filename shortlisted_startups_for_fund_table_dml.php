@@ -306,7 +306,9 @@ function shortlisted_startups_for_fund_table_form($selectedId = '', $allowUpdate
 				AppGini.current_startup__RAND__.value = e.added.id;
 				AppGini.current_startup__RAND__.text = e.added.text;
 				$j('[name="startup"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=all_startup_data_table_view_parent]').hide(); } else { $j('.btn[id=all_startup_data_table_view_parent]').show(); }
+				$j(this).parents('.form-group')
+					.find('.btn[id=all_startup_data_table_view_parent]')
+					.toggleClass('hidden', e.added.id == '<?php echo empty_lookup_value; ?>');
 
 
 				if(typeof(startup_update_autofills__RAND__) == 'function') startup_update_autofills__RAND__();
@@ -392,7 +394,7 @@ function shortlisted_startups_for_fund_table_form($selectedId = '', $allowUpdate
 		else
 			$templateCode = str_replace('<%%DELETE_BUTTON%%>', '', $templateCode);
 
-		$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '<button type="submit" class="btn btn-default" id="deselect" name="deselect_x" value="1" onclick="' . $backAction . '" title="' . html_attr($Translation['Back']) . '"><i class="glyphicon glyphicon-chevron-left"></i> ' . $Translation['Back'] . '</button>', $templateCode);
+		$templateCode = str_replace('<%%DESELECT_BUTTON%%>', '<button type="submit" class="btn btn-default ltr" id="deselect" name="deselect_x" value="1" onclick="' . $backAction . '" title="' . html_attr($Translation['Back']) . '"><i class="glyphicon glyphicon-chevron-left"></i> ' . $Translation['Back'] . '</button>', $templateCode);
 	} else {
 		$templateCode = str_replace('<%%UPDATE_BUTTON%%>', '', $templateCode);
 		$templateCode = str_replace('<%%DELETE_BUTTON%%>', '', $templateCode);
@@ -410,7 +412,7 @@ function shortlisted_startups_for_fund_table_form($selectedId = '', $allowUpdate
 				'<%%DESELECT_BUTTON%%>',
 				'<button
 					type="submit"
-					class="btn btn-default"
+					class="btn btn-default ltr"
 					id="deselect"
 					name="deselect_x"
 					value="1"

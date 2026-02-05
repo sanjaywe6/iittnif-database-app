@@ -502,7 +502,7 @@
 			],
 			'approval_table' => [
 				'id' => '',
-				'approval_from' => 'CEO',
+				'approval_from' => 'PD',
 				'type' => '',
 				'description' => '',
 				'quantity' => '',

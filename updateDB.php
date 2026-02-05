@@ -13,7 +13,9 @@
 
 		setupTable('suggestion', []);
 
-		setupTable('approval_table', []);
+		setupTable('approval_table', [
+				" ALTER TABLE `approval_table` CHANGE `approval_from` `approval_from` VARCHAR(255) NULL DEFAULT 'PD' ",
+			]);
 		setupIndexes('approval_table', ['person_responsbility',]);
 
 		setupTable('techlead_web_page', []);
@@ -182,11 +184,7 @@
 		setupTable('approval_billing_table', []);
 		setupIndexes('approval_billing_table', ['approval_lookup','paid_by',]);
 
-		setupTable('honorarium_claim_table', [
-				"ALTER TABLE honorarium_claim_table ADD `field1` VARCHAR(40)",
-				"ALTER TABLE `honorarium_claim_table` CHANGE `field1` `others_if_any` VARCHAR(255) NULL ",
-				" ALTER TABLE `honorarium_claim_table` CHANGE `others_if_any` `others_if_any` TEXT NULL ",
-			]);
+		setupTable('honorarium_claim_table', []);
 		setupIndexes('honorarium_claim_table', ['coordinated_by_tih_user',]);
 
 		setupTable('honorarium_Activities', []);

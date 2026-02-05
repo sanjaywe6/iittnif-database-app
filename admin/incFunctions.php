@@ -1898,7 +1898,7 @@
 						],
 					],
 					'approval_from' => [
-						'appgini' => "VARCHAR(255) NULL DEFAULT 'CEO'",
+						'appgini' => "VARCHAR(255) NULL DEFAULT 'PD'",
 						'info' => [
 							'caption' => 'Approval From',
 							'description' => '',

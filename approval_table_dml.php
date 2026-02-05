@@ -16,7 +16,7 @@ function approval_table_insert(&$error_message = '') {
 	}
 
 	$data = [
-		'approval_from' => Request::val('approval_from', 'CEO'),
+		'approval_from' => Request::val('approval_from', 'PD'),
 		'type' => Request::val('type', ''),
 		'description' => Request::val('description', ''),
 		'quantity' => Request::val('quantity', ''),
@@ -343,7 +343,7 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		$combo_approval_from->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($approval_from_data))));
 		$combo_approval_from->ListData = $combo_approval_from->ListItem;
 	} else {
-		$combo_approval_from->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("CEO;;PD"))));
+		$combo_approval_from->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("PD;;CEO"))));
 		$combo_approval_from->ListData = $combo_approval_from->ListItem;
 	}
 	$combo_approval_from->SelectName = 'approval_from';
@@ -358,7 +358,7 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		$combo_type->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions($type_data))));
 		$combo_type->ListData = $combo_type->ListItem;
 	} else {
-		$combo_type->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Event;;Function;;Celebration;;Product;;Software;;Hardware;;Service;;Hiring;;Advance;;Local Travel;;Out Station Travel;;Outstation Stay;;Technology Development Project;;Centre of Excellence;;Hackathon;;Workshop;;Seminar;;Conference;;Skill Development;;Business Development;;Startups;;Operation Dronagiri;;HRD;;Navavishkar Stay;; Navavishkar Ride;;Office Gym;;Installation;;Refurbishment;;Consultancy;;Webinar;;Bootcamps;;Innovation Challenges / Idea Contests;;Panel Discussions / Roundtables;;Annual Day / Foundation Day;;Investor Connect / Pitch Days;;Awareness Drives or Campaigns;;Training Programs / Certificate Courses;;MoU Signing or Collaboration Events;;Exhibitions / Demo Days / Tech Shows;;Networking Event"))));
+		$combo_type->ListItem = array_trim(explode('||', entitiesToUTF8(convertLegacyOptions("Event;;Purchase;;Celebration;;Product;;Software;;Hardware;;Service;;Hiring;;Advance;;Local Travel;;Out Station Travel;;Outstation Stay;;Technology Development Project;;Centre of Excellence;;Hackathon;;Workshop;;Seminar;;Conference;;Skill Development;;Business Development;;Startups;;Operation Dronagiri;;HRD;;Navavishkar Stay;; Navavishkar Ride;;Office Gym;;Installation;;Refurbishment;;Consultancy;;Webinar;;Bootcamps;;Innovation Challenges / Idea Contests;;Panel Discussions / Roundtables;;Annual Day / Foundation Day;;Investor Connect / Pitch Days;;Awareness Drives or Campaigns;;Training Programs / Certificate Courses;;MoU Signing or Collaboration Events;;Exhibitions / Demo Days / Tech Shows;;Networking Event"))));
 		$combo_type->ListData = $combo_type->ListItem;
 	}
 	$combo_type->SelectName = 'type';
@@ -442,7 +442,7 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		$filterField = Request::val('FilterField');
 		$filterOperator = Request::val('FilterOperator');
 		$filterValue = Request::val('FilterValue');
-		$combo_approval_from->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('CEO'));
+		$combo_approval_from->SelectedText = (isset($filterField[1]) && $filterField[1] == '2' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8('PD'));
 		$combo_type->SelectedText = (isset($filterField[1]) && $filterField[1] == '3' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
 		$combo_person_responsbility->SelectedData = $filterer_person_responsbility;
 		$combo_mode_of_purchase->SelectedText = (isset($filterField[1]) && $filterField[1] == '11' && $filterOperator[1] == '<=>' ? $filterValue[1] : entitiesToUTF8(''));
@@ -807,8 +807,8 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(approval_from)%%>', 'CEO', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(approval_from)%%>', urlencode('CEO'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(approval_from)%%>', 'PD', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(approval_from)%%>', urlencode('PD'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(type)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(type)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%HTMLAREA(description)%%>', '<textarea maxlength="65500" name="description" id="description" rows="5"></textarea>', $templateCode);

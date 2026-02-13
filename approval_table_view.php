@@ -182,7 +182,7 @@
 	$x->TableTitle = 'Approval - App';
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`approval_table`.`id`';
-	$x->DefaultSortField = '15';
+	$x->DefaultSortField = '1';
 	$x->DefaultSortDirection = 'desc';
 
 	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, ];

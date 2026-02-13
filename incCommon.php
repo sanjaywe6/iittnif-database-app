@@ -3521,7 +3521,7 @@ EOT;
 					'display-field-names' => [0 => 'id', 1 => 'approval_from', 2 => 'type', 3 => 'description', 5 => 'full_est_value', 14 => 'approval_status', 15 => 'remarks_for_approval', 18 => 'created_by_username'],
 					'sortable-fields' => [0 => '`approval_table`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8, 8 => 9, 9 => 10, 10 => 11, 11 => 12, 12 => 13, 13 => 14, 14 => 15, 15 => 16, 16 => 17, 17 => 18, 18 => 19, 19 => 20, 20 => 21, 21 => 22, 22 => 23, 23 => 24],
 					'records-per-page' => 10,
-					'default-sort-by' => 14,
+					'default-sort-by' => 0,
 					'default-sort-direction' => 'desc',
 					'open-detail-view-on-click' => true,
 					'display-page-selector' => true,

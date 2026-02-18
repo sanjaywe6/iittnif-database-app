@@ -2013,7 +2013,7 @@
 						'appgini' => "VARCHAR(255) NULL",
 						'info' => [
 							'caption' => 'Upload Other File if Any (Optional)',
-							'description' => 'Maximum file size allowed: 1000 KB.<br>Allowed file types: txt, doc, docx, docm, odt, pdf, rtf',
+							'description' => 'Maximum file size allowed: 100000 KB.<br>Allowed file types: txt, doc, docx, docm, odt, pdf, rtf',
 						],
 					],
 					'created_by_username' => [

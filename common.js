@@ -500,7 +500,7 @@ function approval_table_validateData(insertMode) {
 		AppGini.scrollTo('image');
 		return false;
 	}
-	if($j('#other_file').val() && !AppGini.checkFileUpload('other_file', 'txt|doc|docx|docm|odt|pdf|rtf', 1024000)) {
+	if($j('#other_file').val() && !AppGini.checkFileUpload('other_file', 'txt|doc|docx|docm|odt|pdf|rtf', 102400000)) {
 		AppGini.scrollTo('other_file');
 		return false;
 	}

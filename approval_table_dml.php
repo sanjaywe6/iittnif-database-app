@@ -48,7 +48,7 @@ function approval_table_insert(&$error_message = '') {
 			},
 		]),
 		'other_file' => Request::fileUpload('other_file', [
-			'maxSize' => 1024000,
+			'maxSize' => 102400000,
 			'types' => 'txt|doc|docx|docm|odt|pdf|rtf',
 			'noRename' => false,
 			'dir' => '',
@@ -216,7 +216,7 @@ function approval_table_update(&$selected_id, &$error_message = '') {
 			},
 		]),
 		'other_file' => Request::fileUpload('other_file', [
-			'maxSize' => 1024000,
+			'maxSize' => 102400000,
 			'types' => 'txt|doc|docx|docm|odt|pdf|rtf',
 			'noRename' => false,
 			'dir' => '',
@@ -715,7 +715,7 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 	} else {
 		$templateCode = str_replace('<%%REMOVEFILE(image)%%>', '', $templateCode);
 	}
-	$templateCode = str_replace('<%%UPLOADFILE(other_file)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="other_file" id="other_file" data-filetypes="txt|doc|docx|docm|odt|pdf|rtf" data-maxsize="1024000" style="max-width: calc(100% - 1.5rem);" accept=".txt,.doc,.docx,.docm,.odt,.pdf,.rtf">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(other_file)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<input type="file" name="other_file" id="other_file" data-filetypes="txt|doc|docx|docm|odt|pdf|rtf" data-maxsize="102400000" style="max-width: calc(100% - 1.5rem);" accept=".txt,.doc,.docx,.docm,.odt,.pdf,.rtf">' . '<i class="text-danger clear-upload hidden pull-right" style="margin-top: -.1em; font-size: large;">&times;</i>'), $templateCode);
 	if($allowUpdate && $row['other_file'] != '') {
 		$templateCode = str_replace('<%%REMOVEFILE(other_file)%%>', '<input type="checkbox" name="other_file_remove" id="other_file_remove" value="1"> <label for="other_file_remove" style="color: red; font-weight: bold;">'.$Translation['remove image'].'</label>', $templateCode);
 	} else {

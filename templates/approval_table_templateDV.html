@@ -42,8 +42,8 @@
 				<div class="form-group approval_table-description">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="description">Description</label>
-					<div class="col-lg-9 has-nicedit">
-						<%%HTMLAREA(description)%%>
+					<div class="col-lg-9">
+						<textarea maxlength="65500" class="form-control" name="description" id="description" rows=" 5"><%%VALUE(description)%%></textarea>
 					</div>
 				</div>
 
@@ -78,8 +78,8 @@
 				<div class="form-group approval_table-purpose">
 					<hr class="hidden-md hidden-lg">
 					<label class="control-label col-lg-3" for="purpose">Purpose</label>
-					<div class="col-lg-9 has-nicedit">
-						<%%HTMLAREA(purpose)%%>
+					<div class="col-lg-9">
+						<textarea maxlength="65500" class="form-control" name="purpose" id="purpose" rows=" 5"><%%VALUE(purpose)%%></textarea>
 					</div>
 				</div>
 
@@ -285,8 +285,6 @@
 			AppGini.once({
 				condition: function() { return bkLib != undefined; },
 				action: function() {
-					if($j('textarea#description').length) new nicEditor({ fullPanel : true }).panelInstance('description');
-					if($j('textarea#purpose').length) new nicEditor({ fullPanel : true }).panelInstance('purpose');
 					if($j('textarea#remarks_for_approval').length) new nicEditor({ fullPanel : true }).panelInstance('remarks_for_approval');
 				}
 			});

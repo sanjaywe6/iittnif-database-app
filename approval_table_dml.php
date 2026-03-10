@@ -18,11 +18,11 @@ function approval_table_insert(&$error_message = '') {
 	$data = [
 		'approval_from' => Request::val('approval_from', 'PD'),
 		'type' => Request::val('type', ''),
-		'description' => Request::val('description', ''),
+		'description' => br2nl(Request::val('description', '')),
 		'quantity' => Request::val('quantity', ''),
 		'full_est_value' => Request::val('full_est_value', ''),
 		'name_of_vendor' => br2nl(Request::val('name_of_vendor', '')),
-		'purpose' => Request::val('purpose', ''),
+		'purpose' => br2nl(Request::val('purpose', '')),
 		'requested_department' => Request::val('requested_department', ''),
 		'person_responsbility' => Request::lookup('person_responsbility', ''),
 		'mode_of_purchase' => Request::val('mode_of_purchase', ''),
@@ -171,11 +171,11 @@ function approval_table_update(&$selected_id, &$error_message = '') {
 	$data = [
 		'approval_from' => Request::val('approval_from', ''),
 		'type' => Request::val('type', ''),
-		'description' => Request::val('description', ''),
+		'description' => br2nl(Request::val('description', '')),
 		'quantity' => Request::val('quantity', ''),
 		'full_est_value' => Request::val('full_est_value', ''),
 		'name_of_vendor' => br2nl(Request::val('name_of_vendor', '')),
-		'purpose' => Request::val('purpose', ''),
+		'purpose' => br2nl(Request::val('purpose', '')),
 		'requested_department' => Request::val('requested_department', ''),
 		'person_responsbility' => Request::lookup('person_responsbility', ''),
 		'mode_of_purchase' => Request::val('mode_of_purchase', ''),
@@ -637,9 +637,11 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		$jsReadOnly = '';
 		$jsReadOnly .= "\t\$j('#approval_from').replaceWith('<div class=\"form-control-static\" id=\"approval_from\">' + (\$j('#approval_from').val() || '') + '</div>'); \$j('#approval_from-multi-selection-help').hide();\n";
 		$jsReadOnly .= "\t\$j('#type').replaceWith('<div class=\"form-control-static\" id=\"type\">' + (\$j('#type').val() || '') + '</div>'); \$j('#type-multi-selection-help').hide();\n";
+		$jsReadOnly .= "\t\$j('#description').replaceWith('<div class=\"form-control-static\" id=\"description\">' + (\$j('#description').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#quantity').replaceWith('<div class=\"form-control-static\" id=\"quantity\">' + (\$j('#quantity').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#full_est_value').replaceWith('<div class=\"form-control-static\" id=\"full_est_value\">' + (\$j('#full_est_value').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#name_of_vendor').replaceWith('<div class=\"form-control-static\" id=\"name_of_vendor\">' + (\$j('#name_of_vendor').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\t\$j('#purpose').replaceWith('<div class=\"form-control-static\" id=\"purpose\">' + (\$j('#purpose').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#requested_department').replaceWith('<div class=\"form-control-static\" id=\"requested_department\">' + (\$j('#requested_department').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\t\$j('#person_responsbility').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\t\$j('#person_responsbility_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
@@ -738,12 +740,7 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(type)%%>', safe_html($urow['type']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(type)%%>', html_attr($row['type']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(type)%%>', urlencode($urow['type']), $templateCode);
-		if($fieldsAreEditable) {
-			$templateCode = str_replace('<%%HTMLAREA(description)%%>', '<textarea maxlength="65500" name="description" id="description" rows="5">' . safe_html(htmlspecialchars_decode($row['description'])) . '</textarea>', $templateCode);
-		} else {
-			$templateCode = str_replace('<%%HTMLAREA(description)%%>', '<div id="description" class="form-control-static">' . $row['description'] . '</div>', $templateCode);
-		}
-		$templateCode = str_replace('<%%VALUE(description)%%>', nl2br($row['description']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(description)%%>', safe_html($urow['description'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(description)%%>', urlencode($urow['description']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(quantity)%%>', safe_html($urow['quantity']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(quantity)%%>', html_attr($row['quantity']), $templateCode);
@@ -753,12 +750,7 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		$templateCode = str_replace('<%%URLVALUE(full_est_value)%%>', urlencode($urow['full_est_value']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(name_of_vendor)%%>', safe_html($urow['name_of_vendor'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(name_of_vendor)%%>', urlencode($urow['name_of_vendor']), $templateCode);
-		if($fieldsAreEditable) {
-			$templateCode = str_replace('<%%HTMLAREA(purpose)%%>', '<textarea maxlength="65500" name="purpose" id="purpose" rows="5">' . safe_html(htmlspecialchars_decode($row['purpose'])) . '</textarea>', $templateCode);
-		} else {
-			$templateCode = str_replace('<%%HTMLAREA(purpose)%%>', '<div id="purpose" class="form-control-static">' . $row['purpose'] . '</div>', $templateCode);
-		}
-		$templateCode = str_replace('<%%VALUE(purpose)%%>', nl2br($row['purpose']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(purpose)%%>', safe_html($urow['purpose'], $fieldsAreEditable), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(purpose)%%>', urlencode($urow['purpose']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(requested_department)%%>', safe_html($urow['requested_department']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(requested_department)%%>', html_attr($row['requested_department']), $templateCode);
@@ -813,14 +805,16 @@ function approval_table_form($selectedId = '', $allowUpdate = true, $allowInsert
 		$templateCode = str_replace('<%%URLVALUE(approval_from)%%>', urlencode('PD'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(type)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(type)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%HTMLAREA(description)%%>', '<textarea maxlength="65500" name="description" id="description" rows="5"></textarea>', $templateCode);
+		$templateCode = str_replace('<%%VALUE(description)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(description)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(quantity)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(quantity)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(full_est_value)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(full_est_value)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(name_of_vendor)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(name_of_vendor)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%HTMLAREA(purpose)%%>', '<textarea maxlength="65500" name="purpose" id="purpose" rows="5"></textarea>', $templateCode);
+		$templateCode = str_replace('<%%VALUE(purpose)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(purpose)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(requested_department)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(requested_department)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(person_responsbility)%%>', '', $templateCode);
